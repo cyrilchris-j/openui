@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "industrial-mono",
+  "type": "registry:theme",
+  "title": "Industrial Mono",
+  "description": "A dark instrumentation theme: near-black grounds, phosphor text, monospace as the primary voice, and one amber signal reserved for attention.",
+  "category": "themes",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "industrial-mono.css", "type": "registry:theme", "target": "styles" }],
+  "tags": ["theme", "industrial", "dark"],
+  "license": "MIT",
+  "designSystem": "industrial-archive",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["dark-first", "wcag-aa", "monospace"],
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

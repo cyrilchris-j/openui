@@ -1,0 +1,32 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-button",
+  "type": "registry:component",
+  "title": "Magnetic Button",
+  "description": "A button whose label and edge follow the pointer inside a bounded magnet field. Keyboard, touch and reduced-motion behaviour stay identical to a plain button.",
+  "category": "components",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [
+    {
+      "path": "magnetic-button.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": ["pointer", "button", "physics"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["keyboard-accessible", "reduced-motion-safe", "touch-safe"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

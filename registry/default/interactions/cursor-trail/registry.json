@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cursor-trail",
+  "type": "registry:interaction",
+  "title": "Cursor Trail",
+  "description": "A pointer trail drawn with a fixed-size pool of divs and one animation frame loop, disabled on coarse pointers and under reduced motion, and paused when the tab is hidden.",
+  "category": "interactions",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "cursor-trail.tsx", "type": "registry:interaction" }],
+  "tags": ["pointer", "cursor", "trail"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["reduced-motion-safe", "pointer-fine-only", "pauses-when-hidden"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "scatter",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

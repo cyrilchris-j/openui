@@ -1,0 +1,105 @@
+A registry is a static tree of JSON artifacts plus one index. There is no
+database in the read path, which is what makes it fast, cacheable and
+mirrorable — and what makes a local search over the whole catalogue possible in
+the browser.
+
+## The index
+
+<CodeBlock
+  caption="GET /r/registry.json"
+  language="json"
+  code={`{
+  "$schema": "https://openui.dev/schema/registry.json",
+  "name": "openui",
+  "version": "0.1.0",
+  "namespaces": ["default"],
+  "items": [
+    {
+      "name": "magnetic-button",
+      "namespace": "default",
+      "type": "registry:component",
+      "title": "Magnetic Button",
+      "resourceType": "component",
+      "dependencies": ["motion"],
+      "registryDependencies": ["cn"],
+      "tags": ["pointer", "magnet", "button"],
+      "dna": {
+        "genre": "editorial",
+        "density": "medium",
+        "shapeLanguage": "sharp",
+        "motionLanguage": "subtle"
+      },
+      "url": "components/magnetic-button.json",
+      "integrity": "sha256-k3dayGgsNKquzQJOh1yBxF23eXPdTa1+W7V9C2dJhg0="
+    }
+  ]
+}`}
+/>
+
+Two fields deserve attention. `dna` is the design fingerprint: it lets a
+consumer filter by genre and density without downloading any source. `integrity`
+is a content digest of the item's files, and the CLI refuses to install an
+artifact whose digest does not match it.
+
+## The item artifact
+
+<CodeBlock
+  caption="GET /r/magnetic-button.json"
+  language="json"
+  code={`{
+  "name": "magnetic-button",
+  "type": "registry:component",
+  "title": "Magnetic Button",
+  "description": "A physics-inspired button whose motion is bounded.",
+  "category": "components",
+  "license": "MIT",
+  "dependencies": ["motion"],
+  "registryDependencies": ["cn"],
+  "files": [
+    {
+      "path": "magnetic-button.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\\n\\nimport ...",
+      "contentHash": "9f2c…",
+      "sizeBytes": 4218
+    }
+  ],
+  "designRules": "# Design System\\n\\nGenre: editorial\\n…"
+}`}
+/>
+
+Note that file **content is inlined**. An artifact is self-contained: one request
+gets you everything the resource needs, which is what lets the registry be served
+from a CDN or a filesystem with no read amplification.
+
+## Item types
+
+<CodeBlock
+  caption="The taxonomy"
+  language="text"
+  code={`registry:component     registry:section     registry:theme
+registry:text          registry:block       registry:pattern
+registry:motion        registry:template    registry:ai
+registry:interaction   registry:hook        registry:utility
+registry:background    registry:layout      registry:config`}
+/>
+
+## Namespaces
+
+An item's name is unique within its namespace. `default` is the first-party
+namespace; a fork or an organisation publishes under its own, and the two cannot
+collide. An unqualified name resolves inside `default` first, which is why
+`openui add magnetic-button` needs no prefix.
+
+## Immutability
+
+A published version is never edited. A fix is a new version, and the index's
+`integrity` changes with it. This is not a policy the project asks contributors
+to follow — the build pipeline has no code path that can rewrite a published
+artifact, and `resource_versions` carries `UNIQUE (resource_id, version)` so the
+database refuses a silent overwrite even if something tried.
+
+## Next
+
+- [Design systems](/docs/design-systems) — how tokens and rules are distributed.
+- [Security model](/docs/security) — why registry source is treated as untrusted.

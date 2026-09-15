@@ -1,0 +1,8 @@
+node_modules
+dist
+.turbo
+coverage
+pnpm-lock.yaml
+registry/index.json
+apps/web/public/r
+registry/generated

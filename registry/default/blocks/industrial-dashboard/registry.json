@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "industrial-dashboard",
+  "type": "registry:block",
+  "title": "Industrial Dashboard",
+  "description": "An operations dashboard without cards: hairline-divided regions, monospace figures, a ledger table and a metric row that reads like instrumentation rather than marketing.",
+  "category": "blocks",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn", "ledger-table", "status-pill"],
+  "files": [{ "path": "industrial-dashboard.tsx", "type": "registry:block" }],
+  "tags": ["dashboard", "block", "dense"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "features": ["no-card-chrome", "tabular-figures", "landmark-correct"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

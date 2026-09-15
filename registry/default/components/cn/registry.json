@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cn",
+  "type": "registry:utility",
+  "title": "Class Name Merge",
+  "description": "The className helper every OpenUI resource uses: conditional classes with Tailwind conflict resolution, so consumers can always override styling.",
+  "category": "components",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "cn.ts",
+      "type": "registry:utility",
+      "target": "lib"
+    }
+  ],
+  "tags": ["utility", "tailwind"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["zero-runtime-overhead"]
+  }
+}

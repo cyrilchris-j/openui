@@ -1,0 +1,117 @@
+A registry distributes other people's code into your project. That is the whole
+threat model in one sentence, and everything below follows from taking it
+seriously.
+
+## Registry source is untrusted
+
+Code from the registry is treated exactly like code from an unknown contributor
+on the internet, because that is what it is.
+
+- **It is never executed in the application's origin.** The playground runs
+  resources inside a sandboxed `iframe` with a strict Content Security Policy. A
+  resource cannot read this origin's storage, cookies or DOM, and it cannot call
+  the authenticated API with your token.
+- **It is never executed on the server.** No endpoint compiles or evaluates
+  registry source. There is no code path that runs a contribution.
+- **It is never rendered as HTML.** Markdown and MDX are compiled at build time
+  with a component whitelist; user-submitted content is never parsed into the
+  live document.
+
+## The request pipeline
+
+Every API request passes through the same stages, applied globally rather than
+per route, so a new endpoint is protected by construction:
+
+<CodeBlock
+  caption="The order of operations"
+  language="text"
+  code={`request id
+  ↓ secure headers (CSP, nosniff, DENY frames, no-referrer)
+  ↓ CORS (allow-listed origins only)
+  ↓ rate limit (keyed on a salted digest, never the raw address)
+  ↓ authentication (JWT verified against JWKS or the shared secret)
+  ↓ authorisation (role read from the database, never from the token)
+  ↓ Zod validation
+  ↓ business logic
+  ↓ database (parameterised queries only)`}
+/>
+
+## Authentication and authorisation
+
+Supabase Auth owns credentials. The project never stores a password, never hashes
+one, and has no password column anywhere.
+
+The important detail is what the API refuses to do. **It never reads a role from
+the token.** The token establishes identity; `profiles.role`, read from the
+database, establishes authority. A hand-crafted token containing
+`"role": "admin"` changes nothing, because nothing in the request path looks at
+that claim.
+
+That check happens twice over: the API calls `requireRole`, and the row-level
+security policies in PostgreSQL enforce the same rule again for any direct
+database access. A bug in one layer is not a privilege escalation.
+
+## Row-level security
+
+| Table | Policy |
+| --- | --- |
+| `profiles` | A user may update only their own row. |
+| `collections` | A user may modify only their own collections. Reading requires `is_public` or ownership. |
+| `favorites` | A user may create and delete only their own. |
+| `submissions` | A user may insert as themselves and read only their own; staff read all. |
+| `resources` | Anonymous readers see `status = 'published' or 'deprecated'` and `deleted_at is null`. |
+| `audit_logs` | Staff only. Written by triggers, never by a client. |
+
+The public-read filter is written in the RLS policies *and* in the query layer.
+Duplication is intentional: a mistake in one is not a disclosure.
+
+## Database integrity
+
+Counting is done in SQL, not in application memory. A favourite cannot produce a
+duplicate or lose a count under concurrency, because the constraint and the
+increment are both in the database:
+
+| Constraint | What it prevents |
+| --- | --- |
+| `UNIQUE (resources.slug)` | Two resources claiming the same install name |
+| `UNIQUE (resource_versions.resource_id, resource_versions.version)` | A silent overwrite of a published version |
+| `UNIQUE (favorites.user_id, favorites.resource_id)` | A double favourite |
+| `UNIQUE (collection_items.collection_id, collection_items.resource_id)` | A duplicated collection entry |
+| `UNIQUE (profiles.username)` | Two accounts with the same handle |
+
+## Path safety
+
+Registry file paths are validated, not sanitised after the fact. A path
+containing `..`, a leading `/`, a null byte or a symlink escape is a schema
+error, and the CLI only writes below the aliases declared in `openui.json`. The
+artifacts server reduces every requested path to a basename and only serves names
+that appear in the index, so traversal is impossible by construction rather than
+by filtering.
+
+## Dependency policy
+
+A contribution's npm dependencies are validated for name shape, checked against
+OSV advisories, and flagged when they resemble a popular package too closely. The
+policy exists because the most common supply-chain attack on a registry is not a
+zero-day — it is a name one character away from a real one.
+
+## Data handling
+
+Collected: an email, a username, contributions, favourites, collections, and
+aggregate counters.
+
+Not collected: precise location, contact lists, device fingerprints, raw IP
+addresses. Client addresses are hashed with a server-side salt before any write,
+and the salt is not in the database.
+
+## Reporting a vulnerability
+
+Do not open a public issue. Use GitHub's private vulnerability reporting on the
+repository, or the security contact in `SECURITY.md`. Expect an acknowledgement
+within a few days, and please include a reproduction — a registry has a large
+attack surface and a precise report is worth a great deal.
+
+## Next
+
+- [Contributing](/docs/contributing) — what CI checks before anything publishes.
+- [The registry](/docs/registry) — why published artifacts are immutable.

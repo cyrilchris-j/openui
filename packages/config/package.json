@@ -1,0 +1,25 @@
+{
+  "name": "@openui/config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared lint, TypeScript and test configuration for the OpenUI monorepo.",
+  "exports": {
+    "./eslint/base": "./eslint/base.js",
+    "./eslint/react": "./eslint/react.js",
+    "./vitest/base": "./vitest/base.ts"
+  },
+  "scripts": {
+    "build": "node -e \"process.exit(0)\"",
+    "typecheck": "node -e \"process.exit(0)\"",
+    "lint": "node -e \"process.exit(0)\""
+  },
+  "dependencies": {
+    "@eslint/js": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.18.1"
+  }
+}

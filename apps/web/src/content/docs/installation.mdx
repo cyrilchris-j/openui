@@ -1,0 +1,59 @@
+OpenUI is not a dependency you add to `package.json`. It is a registry you copy
+source from, which means the code becomes yours: you can read it, change it, and
+delete it without a breaking change waiting for you upstream.
+
+## What you need
+
+React 19 and Tailwind CSS 3.4 or later. Everything in the registry is written
+against those two, plus three small runtime helpers — `clsx`, `tailwind-merge`
+and `motion` — which are declared per resource rather than assumed.
+
+<CommandLine command="pnpm add clsx tailwind-merge motion" />
+
+## Make the design tokens available
+
+Every resource is styled against the platform's design tokens: `--paper`,
+`--ink`, `--line`, `--oxide` and the rest. A theme resource sets them, and the
+Tailwind preset maps them to utilities.
+
+<CodeBlock
+  caption="tailwind.config.ts"
+  language="ts"
+  code={`import { openuiPreset } from "@openui/ui/tailwind-preset";
+
+export default {
+  presets: [openuiPreset],
+  content: ["./src/**/*.{ts,tsx}"],
+};`}
+/>
+
+Then import the stylesheet once, in your entry file. Without this step a
+resource renders, but its colours and rules do not resolve.
+
+<CodeBlock
+  caption="src/main.tsx"
+  language="tsx"
+  code={`import "@openui/ui/styles.css";`}
+/>
+
+## Add a resource
+
+<CommandLine command="pnpm dlx openui add magnetic-button" />
+
+The CLI resolves the item and its registry dependencies, verifies the integrity
+digest published in the index, checks every target path against your project, and
+only writes when there is no conflict. If a file already exists and differs, it
+tells you and changes nothing.
+
+## Why there is no install step for the registry itself
+
+A registry endpoint is a URL, not a server you run. The CLI reads
+`registry.json` from the registry you configure, fetches the artifacts it names,
+and caches what it has already verified. There is nothing to deploy, and there is
+no service that can go down between you and source you have already installed.
+
+## Next
+
+- [The CLI](/docs/cli) — every command, and what it does to your project.
+- [The registry](/docs/registry) — what an item is, and the artifact format.
+- [Component authoring](/docs/components) — how to publish one of your own.

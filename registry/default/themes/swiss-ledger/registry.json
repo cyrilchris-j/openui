@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swiss-ledger",
+  "type": "registry:theme",
+  "title": "Swiss Ledger",
+  "description": "A high-contrast Swiss theme: warm paper, true ink, one signal red, zero radius, hairline rules and a type scale built for tabular comparison.",
+  "category": "themes",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "swiss-ledger.css", "type": "registry:theme", "target": "styles" }],
+  "tags": ["theme", "swiss", "high-contrast"],
+  "license": "MIT",
+  "designSystem": "swiss-editorial",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["dark-mode", "reduced-motion-safe", "wcag-aa"],
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

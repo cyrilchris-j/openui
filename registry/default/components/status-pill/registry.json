@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "status-pill",
+  "type": "registry:component",
+  "title": "Status Pill",
+  "description": "A compact status label with variants that carry meaning without relying on colour alone, using a leading glyph and an accessible label for screen readers.",
+  "category": "components",
+  "dependencies": ["react", "class-variance-authority"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "status-pill.tsx", "type": "registry:component" }],
+  "tags": ["status", "badge", "variants"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["colour-independent", "cva-variants"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

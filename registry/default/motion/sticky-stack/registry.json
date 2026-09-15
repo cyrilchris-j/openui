@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sticky-stack",
+  "type": "registry:motion",
+  "title": "Sticky Stack",
+  "description": "Cards that pin and stack as the page scrolls, driven entirely by CSS position sticky so there is no scroll listener, no jank and no JavaScript.",
+  "category": "motion",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "sticky-stack.tsx", "type": "registry:motion" }],
+  "tags": ["scroll", "sticky", "stack"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["css-only", "no-scroll-listener", "reduced-motion-safe"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

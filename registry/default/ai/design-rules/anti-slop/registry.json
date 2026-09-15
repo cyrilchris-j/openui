@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "anti-slop",
+  "type": "registry:ai",
+  "title": "Anti-Slop Rules",
+  "description": "The negative ruleset: the eleven failure modes that make generated interfaces recognisable, stated as prohibitions an agent can check against before it ships a layout.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "anti-slop.md", "type": "registry:ai", "target": "ai" }],
+  "tags": ["ai", "rules", "anti-slop"],
+  "license": "MIT",
+  "meta": { "difficulty": "starter", "features": ["agent-consumable", "auditable"] }
+}

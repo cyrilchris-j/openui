@@ -1,0 +1,59 @@
+{
+  "name": "openui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenUI Design Registry — open-code UI resources, design systems and AI-ready design rules.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.33.3",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate:registry": "tsx scripts/validate-registry.ts",
+    "build:registry": "tsx scripts/build-registry.ts",
+    "generate:search": "tsx scripts/generate-search-index.ts",
+    "generate:og": "tsx scripts/generate-og.ts",
+    "release": "tsx scripts/release.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:maintain": "tsx scripts/maintain.ts",
+    "typecheck:registry": "tsx scripts/typecheck-registry.ts",
+    "check:dependencies": "tsx scripts/check-dependencies.ts",
+    "audit:ui": "tsx scripts/audit-ui.ts",
+    "cli": "tsx cli/openui/src/index.ts",
+    "cli:build": "turbo run build --filter=openui"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp", "supabase"]
+  },
+  "devDependencies": {
+    "@openui/design-system": "workspace:*",
+    "@openui/registry-client": "workspace:*",
+    "@openui/registry-schema": "workspace:*",
+    "@openui/search": "workspace:*",
+    "@openui/types": "workspace:*",
+    "@openui/utils": "workspace:*",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
+    "postgres": "^3.4.5",
+    "react": "^19.0.0",
+    "tailwind-merge": "^2.6.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

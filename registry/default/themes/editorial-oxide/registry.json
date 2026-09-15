@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-oxide",
+  "type": "registry:theme",
+  "title": "Editorial Oxide",
+  "description": "A warm editorial theme: book paper, iron-gall ink, oxide accent, a display serif for statements and a mono face for metadata.",
+  "category": "themes",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "editorial-oxide.css", "type": "registry:theme", "target": "styles" }],
+  "tags": ["theme", "editorial", "serif"],
+  "license": "MIT",
+  "designSystem": "swiss-editorial",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["dark-mode", "wcag-aa", "serif-display"],
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

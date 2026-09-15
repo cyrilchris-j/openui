@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "blueprint-grid",
+  "type": "registry:background",
+  "title": "Blueprint Grid",
+  "description": "A modular grid drawn with repeating gradients, exposing the baseline and column rhythm of the page as a visible structure rather than an invisible assumption.",
+  "category": "backgrounds",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "blueprint-grid.tsx", "type": "registry:background" }],
+  "tags": ["surface", "grid", "technical"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["pure-css", "no-requests", "theme-aware"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    }
+  }
+}

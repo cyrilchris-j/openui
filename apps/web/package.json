@@ -1,0 +1,51 @@
+{
+  "name": "@openui/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenUI Design Registry — the discovery site: catalogue, resource pages and playground.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@codesandbox/sandpack-react": "^2.19.10",
+    "@mdx-js/react": "^3.1.0",
+    "@monaco-editor/react": "^4.6.0",
+    "@openui/design-system": "workspace:*",
+    "@openui/registry-client": "workspace:*",
+    "@openui/registry-schema": "workspace:*",
+    "@openui/search": "workspace:*",
+    "@openui/types": "workspace:*",
+    "@openui/ui": "workspace:*",
+    "@openui/utils": "workspace:*",
+    "@supabase/supabase-js": "^2.47.10",
+    "lucide-react": "^0.469.0",
+    "motion": "^11.15.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.1.1"
+  },
+  "devDependencies": {
+    "@mdx-js/rollup": "^3.1.0",
+    "@openui/config": "workspace:*",
+    "@playwright/test": "^1.49.1",
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "jsdom": "^25.0.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8"
+  }
+}

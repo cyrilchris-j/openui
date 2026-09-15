@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "industrial-archive",
+  "type": "registry:theme",
+  "title": "Industrial Archive",
+  "description": "A dense archive system: monospace as the primary voice, cut corners instead of radii, mosaic composition, one amber signal, and instrumentation-density tables.",
+  "category": "design-systems",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "industrial-archive.css", "type": "registry:theme", "target": "styles" }],
+  "tags": ["design-system", "industrial", "dark"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["design-tokens", "dark-first", "ai-consumable"],
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

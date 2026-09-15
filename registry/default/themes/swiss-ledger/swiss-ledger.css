@@ -1,0 +1,65 @@
+/* Swiss Ledger — generated from design DNA (swiss · rail · sharp)
+ *
+ * High contrast, zero radius, one signal colour. Figures are tabular by default
+ * because every surface this theme is applied to is a ledger of some kind.
+ */
+
+:root {
+  --color-paper: #f7f5f0;
+  --color-ink: #0e0e0d;
+  --color-graphite: #55534f;
+  --color-line: rgba(14, 14, 13, 0.18);
+  --color-oxide: #a83216;
+  --color-moss: #2f4a37;
+
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  --motion-fast: 140ms;
+  --motion-normal: 280ms;
+  --motion-slow: 520ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --swiss-rule: 1px solid var(--color-line);
+
+  font-variant-numeric: tabular-nums;
+}
+
+.dark {
+  --color-paper: #0b0b0a;
+  --color-ink: #f5f2ec;
+  --color-graphite: #a3a09a;
+  --color-line: rgba(245, 242, 236, 0.2);
+  --color-oxide: #e2624a;
+  --color-moss: #85a78e;
+}
+
+/* The rule grid: this theme draws structure instead of shading it. */
+.swiss-rule-grid > * + * {
+  border-top: var(--swiss-rule);
+}
+
+.swiss-hairline {
+  border-bottom: var(--swiss-rule);
+}
+
+.swiss-index-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-normal: 0ms;
+    --motion-slow: 0ms;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-reveal",
+  "type": "registry:motion",
+  "title": "Scroll Reveal",
+  "description": "IntersectionObserver reveal with staggered children, one observer per instance, unobserve-on-reveal, and a reduced-motion path that shows content immediately.",
+  "category": "motion",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "scroll-reveal.tsx", "type": "registry:motion" }],
+  "tags": ["scroll", "reveal", "intersection-observer"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["reduced-motion-safe", "no-layout-shift", "one-shot"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

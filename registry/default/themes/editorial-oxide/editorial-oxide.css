@@ -1,0 +1,69 @@
+/* Editorial Oxide — generated from design DNA (editorial · asymmetric · sharp)
+ *
+ * Warm paper, iron-gall ink, a single oxide accent at 4.5:1 against the paper,
+ * and a display serif that carries statements. Sharp corners throughout: an
+ * editorial surface uses rules, not rounded cards.
+ */
+
+:root {
+  --color-paper: #f3f0e9;
+  --color-ink: #100f0d;
+  --color-graphite: #565452;
+  --color-line: rgba(16, 15, 13, 0.16);
+  --color-oxide: #b33f26;
+  --color-moss: #3c5a44;
+
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+
+  --motion-fast: 180ms;
+  --motion-normal: 320ms;
+  --motion-slow: 600ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  --editorial-measure: 68ch;
+  --editorial-display-leading: 0.95;
+}
+
+.dark {
+  --color-paper: #0c0c0b;
+  --color-ink: #f2efe7;
+  --color-graphite: #a5a19a;
+  --color-line: rgba(242, 239, 231, 0.18);
+  --color-oxide: #e4614a;
+  --color-moss: #7fa089;
+}
+
+.editorial-prose {
+  max-width: var(--editorial-measure);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+}
+
+.editorial-display {
+  font-family: var(--font-display);
+  line-height: var(--editorial-display-leading);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.editorial-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-normal: 0ms;
+    --motion-slow: 0ms;
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@openui/registry-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenUI registry API: public reads, community writes, moderation and registry artifacts.",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist/index.js --packages=external",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint src",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@openui/registry-schema": "workspace:*",
+    "@openui/search": "workspace:*",
+    "@openui/types": "workspace:*",
+    "@openui/utils": "workspace:*",
+    "hono": "^4.6.14",
+    "jose": "^5.9.6",
+    "postgres": "^3.4.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@openui/config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

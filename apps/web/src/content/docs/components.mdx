@@ -1,0 +1,121 @@
+A resource is a directory. Everything else — the artifact, the index entry, the
+preview — is generated from it.
+
+## The directory
+
+<CodeBlock
+  caption="registry/default/components/magnetic-button/"
+  language="text"
+  code={`registry.json      metadata: name, type, licence, dependencies
+magnetic-button.tsx  the source
+demo.tsx           rendered in the isolated sandbox
+README.md          prose for a human reader
+design.md          the fingerprint and the rules
+screenshot.webp    optional, used for social previews`}
+/>
+
+## registry.json
+
+<CodeBlock
+  caption="registry.json"
+  language="json"
+  code={`{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-button",
+  "type": "registry:component",
+  "title": "Magnetic Button",
+  "description": "A physics-inspired button whose motion is bounded.",
+  "category": "components",
+  "license": "MIT",
+  "dependencies": ["motion"],
+  "registryDependencies": ["cn"],
+  "tags": ["pointer", "magnet", "button"],
+  "meta": {
+    "difficulty": "intermediate",
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle"
+    }
+  },
+  "files": [
+    { "path": "magnetic-button.tsx", "type": "registry:component" },
+    { "path": "demo.tsx", "type": "registry:component", "target": "components" }
+  ]
+}`}
+/>
+
+The schema is validated before anything is published. A missing licence, a path
+that escapes the item directory, or a dependency that looks like a package
+typosquat is an error, not a warning.
+
+## design.md
+
+This file is why the registry exists in its current form. It is not decoration —
+it is the input an AI tool reads before it writes a page, and the thing a person
+reads before deciding whether this resource belongs in their interface.
+
+<CodeBlock
+  caption="design.md"
+  language="markdown"
+  code={`# Design System
+
+Genre: editorial
+Macrostructure: asymmetric
+Density: medium
+Shape: sharp
+Motion: subtle
+
+## Typography
+
+Heading: Instrument Serif
+Body: Inter
+Mono: JetBrains Mono
+
+## Motion
+
+Fast: 140ms
+Normal: 280ms
+Slow: 520ms
+
+## Rules
+
+- The magnet must be bounded; an unbounded target feels broken.
+- Never move the hit area, only transform.
+- Keyboard focus behaves exactly like a plain button.
+- Disable magnetisation under prefers-reduced-motion.`}
+/>
+
+Write rules as constraints, not as descriptions. "Sharp, two pixels, because the
+page is a ledger" is useful; "modern, clean look" is not — it is a phrase that
+could describe anything, which is precisely the problem the registry is a
+response to.
+
+## House rules for first-party source
+
+- **No inline styles** except where a value must be computed at runtime — a
+  transform, a measured offset.
+- **Accessible behaviour before visual polish.** If a control cannot be used
+  with a keyboard, it is not finished.
+- **Guard every animation** behind `prefers-reduced-motion`.
+- **No shadows for separation.** Use a hairline rule.
+- **Narrow props.** A component that takes twelve booleans is a configuration
+  file, not a component.
+
+## Validate locally
+
+<CodeBlock
+  caption="terminal"
+  language="bash"
+  code={`pnpm validate:registry   # schema, paths, dependency policy, licences
+pnpm typecheck:registry  # the resource source, type-checked in isolation
+pnpm audit:ui            # the design-quality report for every item
+pnpm build:registry      # generate the artifacts and the index`}
+/>
+
+## Next
+
+- [Contributing](/docs/contributing) — the pull request path and what CI runs.
+- [AI resources](/docs/ai-rules) — the rules a model reads before composing.

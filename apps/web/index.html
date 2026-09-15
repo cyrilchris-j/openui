@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <title>OpenUI Design Registry — interfaces should have a fingerprint</title>
+    <meta
+      name="description"
+      content="An open registry of distinctive UI resources: components, text effects, motion, layouts, themes and design systems — with design rules that AI tools can consume instead of inventing generic interfaces."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0b0a" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://openui.dev/" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OpenUI Design Registry" />
+    <meta property="og:title" content="OpenUI Design Registry" />
+    <meta
+      property="og:description"
+      content="Open code. Distinctive design. Composable systems. AI-ready infrastructure."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Typography is the product's primary design device, so the display serif is
+      loaded eagerly and the text faces are loaded with `display=swap`. A
+      two-family stack is deliberate: adding a third face would flatten the
+      hierarchy the whole site is built on.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <!--
+      Theme is resolved before first paint. Doing it in React would flash the
+      light theme at a dark-mode user on every navigation.
+    -->
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem("openui-theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const dark = stored ? stored === "dark" : prefersDark;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch {
+          /* A blocked localStorage is not a reason to fail to render. */
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <noscript>
+      OpenUI's catalogue is browsable without JavaScript, but the playground and
+      search need it. Enable JavaScript to continue.
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

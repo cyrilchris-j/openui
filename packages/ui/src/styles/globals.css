@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   OpenUI — design tokens
+   --------------------------------------------------------------------------
+   This is the platform's own design fingerprint, not a neutral starter theme.
+   The rules it encodes are the same rules the product teaches:
+
+     * Two neutral warm tones (paper, ink) and one signal colour (oxide).
+     * Hairline rules instead of shadows for separation.
+     * Structure drawn with type and alignment, not with boxes.
+     * Motion that supports hierarchy and never exceeds 600ms.
+
+   Tokens are declared as CSS custom properties so a *design system* from the
+   registry can override them at runtime without a rebuild — that is the whole
+   premise of the product, so the website has to demonstrate it.
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* --- Colour -------------------------------------------------------- */
+    --paper: 42 33% 96%;
+    --ink: 60 4% 5%;
+    --graphite: 40 4% 33%;
+    --line: 60 4% 5%;
+    --oxide: 13 76% 37%;
+    --moss: 137 22% 24%;
+    --azure: 214 45% 34%;
+
+    /* Alpha variants are separate tokens so a theme can change the *rule*
+       weight without touching the colour. */
+    --line-alpha: 0.16;
+    --wash-alpha: 0.04;
+
+    /* --- Typography ---------------------------------------------------- */
+    --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    /* A modular scale with a 1.25 ratio from a 1rem base. Anything off the
+       scale has to earn its place. */
+    --step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.85rem);
+    --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+    --step-1: clamp(1.15rem, 1.1rem + 0.25vw, 1.3rem);
+    --step-2: clamp(1.4rem, 1.3rem + 0.5vw, 1.7rem);
+    --step-3: clamp(1.75rem, 1.55rem + 1vw, 2.35rem);
+    --step-4: clamp(2.2rem, 1.8rem + 2vw, 3.4rem);
+    --step-5: clamp(2.8rem, 2rem + 4vw, 5.2rem);
+
+    /* --- Spacing ------------------------------------------------------- */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+
+    /* --- Shape --------------------------------------------------------- */
+    /* Sharp by default. Two pixels exists for optical correction on large
+       surfaces; anything rounder is a deliberate departure. */
+    --radius-sm: 0px;
+    --radius-md: 2px;
+    --radius-lg: 3px;
+    --radius-pill: 999px;
+
+    /* --- Motion -------------------------------------------------------- */
+    --motion-fast: 140ms;
+    --motion-normal: 280ms;
+    --motion-slow: 520ms;
+    --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+    /* --- Composition --------------------------------------------------- */
+    --measure: 68ch;
+    --shell-max: 1440px;
+    --gutter: clamp(1rem, 4vw, 4rem);
+  }
+
+  /* The dark theme is a genuine inversion, not a dimmed copy: the accent is
+     lightened until it holds contrast against near-black. */
+  .dark {
+    --paper: 60 5% 5%;
+    --ink: 40 20% 93%;
+    --graphite: 40 5% 64%;
+    --line: 40 20% 93%;
+    --oxide: 13 72% 58%;
+    --moss: 137 20% 58%;
+    --azure: 214 55% 68%;
+
+    --line-alpha: 0.22;
+    --wash-alpha: 0.07;
+  }
+
+  * {
+    border-color: hsl(var(--line) / var(--line-alpha));
+  }
+
+  html {
+    /* Anchor navigation should not land under the fixed masthead. */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: hsl(var(--paper));
+    color: hsl(var(--ink));
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings are display type. Tightening the leading and the tracking is what
+     makes editorial type read as *composed* rather than as enlarged body text. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--step-5);
+  }
+  h2 {
+    font-size: var(--step-4);
+  }
+  h3 {
+    font-size: var(--step-3);
+  }
+  h4 {
+    font-size: var(--step-1);
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  /* Focus is never removed, only restyled — and it must survive on a surface
+     of any colour, hence the two-tone ring. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--oxide));
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: hsl(var(--oxide) / 0.22);
+  }
+
+  /* Numerals in tables, metrics and counts are tabular by default: nothing on
+     this site is easier to read with proportional figures. */
+  table,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   Composition utilities
+   --------------------------------------------------------------------------
+   Small, named layout primitives. These exist because the alternative — a
+   twelve-class utility string repeated on every section — is how a site drifts
+   out of alignment.
+   ========================================================================== */
+
+@layer components {
+  /* The page shell: a bounded measure with real gutters. */
+  .shell {
+    width: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* A hairline rule that spans the shell. Used as a section divider. */
+  .rule {
+    border-top: 1px solid hsl(var(--line) / var(--line-alpha));
+  }
+
+  /* The small, tracked monospace label that indexes every section. It is the
+     typographic device that makes the site read as an archive. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: hsl(var(--graphite));
+  }
+
+  /* Body copy in a reading column. Long-form pages set this once. */
+  .prose-measure {
+    max-width: var(--measure);
+  }
+
+  /* The asymmetric editorial split: a wide content column and a narrow index
+     column. Collapses to one column below the tablet breakpoint rather than
+     hiding the index — the index is content, not decoration. */
+  .editorial-split {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 60rem) {
+    .editorial-split {
+      grid-template-columns: minmax(0, 7fr) minmax(14rem, 3fr);
+      gap: var(--space-12);
+    }
+  }
+
+  /* A grid of resource tiles that does not fall into identical 3-column rows:
+     the first item spans two columns so the eye has an entry point. */
+  .catalogue-grid {
+    display: grid;
+    gap: 1px;
+    background-color: hsl(var(--line) / var(--line-alpha));
+    border: 1px solid hsl(var(--line) / var(--line-alpha));
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 48rem) {
+    .catalogue-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .catalogue-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* The inverse surface used to break up a long scroll. */
+  .panel-ink {
+    background-color: hsl(var(--ink));
+    color: hsl(var(--paper));
+  }
+
+  .panel-ink .eyebrow {
+    color: hsl(var(--paper) / 0.6);
+  }
+
+  /* A faint wash for hover and for "this row is selected". Alpha rather than a
+     fixed tint, so it works on both themes without a second token. */
+  .wash {
+    background-color: hsl(var(--ink) / var(--wash-alpha));
+  }
+}

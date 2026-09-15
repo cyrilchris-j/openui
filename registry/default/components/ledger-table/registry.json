@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ledger-table",
+  "type": "registry:component",
+  "title": "Ledger Table",
+  "description": "A dense data table built on real table semantics: hairline rules instead of card chrome, sortable columns with announced state, and sticky headers that stay legible.",
+  "category": "components",
+  "dependencies": ["react", "lucide-react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "ledger-table.tsx", "type": "registry:component" }],
+  "tags": ["table", "data", "industrial"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["sortable", "keyboard-accessible", "sticky-header"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

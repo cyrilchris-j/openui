@@ -1,0 +1,62 @@
+/* Swiss Editorial — design system tokens
+ *
+ * The system's rules live in design.md; this file is their compiled form. Apply
+ * it before any resource stylesheet so resources can override individual tokens
+ * without forking the system.
+ */
+
+:root {
+  /* Colour — high contrast, one accent, no third hue. */
+  --color-paper: #f3f0e9;
+  --color-ink: #100f0d;
+  --color-graphite: #565452;
+  --color-line: rgba(16, 15, 13, 0.16);
+  --color-oxide: #b33f26;
+  --color-moss: #3c5a44;
+
+  /* Typography — display serif for statements, grotesk for text, mono for data. */
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Spacing — a five-step scale. Anything outside it needs a reason. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-8: 2rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Shape — sharp. Two pixels exists only for optical correction. */
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+
+  /* Motion — three named durations, one easing. */
+  --motion-fast: 180ms;
+  --motion-normal: 320ms;
+  --motion-slow: 600ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Composition — the ratio the system composes at. */
+  --ratio-primary: 7;
+  --ratio-secondary: 5;
+  --measure: 68ch;
+}
+
+.dark {
+  --color-paper: #0c0c0b;
+  --color-ink: #f2efe7;
+  --color-graphite: #a5a19a;
+  --color-line: rgba(242, 239, 231, 0.18);
+  --color-oxide: #e4614a;
+  --color-moss: #7fa089;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-normal: 0ms;
+    --motion-slow: 0ms;
+  }
+}

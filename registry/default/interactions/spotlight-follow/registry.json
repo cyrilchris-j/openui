@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spotlight-follow",
+  "type": "registry:interaction",
+  "title": "Spotlight Follow",
+  "description": "A radial highlight that tracks the pointer using two CSS custom properties written once per frame, so the effect costs no layout or paint work beyond a composited layer.",
+  "category": "interactions",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "spotlight-follow.tsx", "type": "registry:interaction" }],
+  "tags": ["pointer", "spotlight", "css-variables"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["reduced-motion-safe", "gpu-composited", "keyboard-fallback"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

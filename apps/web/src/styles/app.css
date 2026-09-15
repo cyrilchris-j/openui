@@ -1,0 +1,105 @@
+/*
+ * The shared stylesheet is imported first and carries the `@tailwind` directives
+ * along with the design tokens and composition utilities. Vite inlines `@import`
+ * through postcss-import *before* the Tailwind plugin runs, so the layers below
+ * merge into the same cascade as everything in `@openui/ui` — which is what
+ * makes a utility class here able to override a component class there.
+ *
+ * This file therefore must not repeat the `@tailwind` directives.
+ */
+@import "@openui/ui/styles.css";
+
+/* ==========================================================================
+   Web-app layer
+   --------------------------------------------------------------------------
+   Only rules that are specific to the *site* belong here. Anything reusable by
+   the docs or the admin console belongs in `@openui/ui`.
+   ========================================================================== */
+
+@layer components {
+  /* The masthead is a hairline rule with content sitting on it. It is sticky
+     because the catalogue is long, and opaque because a translucent header over
+     editorial type is unreadable. */
+  .masthead {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid hsl(var(--line) / var(--line-alpha));
+    background-color: hsl(var(--paper));
+  }
+
+  /* The demonstration surface: a bordered plate with a faint grid, so a
+     component's own geometry is visible against something. */
+  .demo-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 16rem;
+    padding: var(--space-8);
+    border: 1px solid hsl(var(--line) / var(--line-alpha));
+    background-color: hsl(var(--paper));
+    background-image:
+      linear-gradient(hsl(var(--line) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--line) / 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    overflow: hidden;
+  }
+
+  .demo-stage--ink {
+    background-color: hsl(var(--ink));
+    background-image:
+      linear-gradient(hsl(var(--paper) / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--paper) / 0.07) 1px, transparent 1px);
+  }
+
+  /* A code block: monospace, horizontally scrollable, and never the only place
+     the information exists — every block has a copy control. */
+  .code-plate {
+    background-color: hsl(var(--ink));
+    color: hsl(var(--paper));
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    padding: var(--space-4);
+    tab-size: 2;
+  }
+
+  .code-plate--light {
+    background-color: hsl(var(--ink) / 0.04);
+    color: hsl(var(--ink));
+    border: 1px solid hsl(var(--line) / var(--line-alpha));
+  }
+
+  /* The long-form typographic column used by docs and READMEs. */
+  .reading-column {
+    max-width: var(--measure);
+    font-size: var(--step-1);
+    line-height: 1.65;
+  }
+
+  .reading-column > * + * {
+    margin-top: var(--space-4);
+  }
+
+  .reading-column h2 {
+    margin-top: var(--space-12);
+  }
+
+  .reading-column h3 {
+    margin-top: var(--space-8);
+  }
+}
+
+@layer utilities {
+  /* A hairline that is heavier than `border` but is still a rule, not a box. */
+  .rule-strong {
+    border-color: hsl(var(--line) / 0.5);
+  }
+
+  /* Optical alignment for display type inside a grid: the serif's sidebearing
+     makes an un-nudged heading look inset by a few pixels. */
+  .optically-align {
+    margin-left: -0.04em;
+  }
+}

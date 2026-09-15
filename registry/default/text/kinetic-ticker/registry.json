@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-ticker",
+  "type": "registry:text",
+  "title": "Kinetic Ticker",
+  "description": "A rotating word ticker that reserves the width of its longest phrase so the surrounding layout never reflows, and pauses when the tab is hidden.",
+  "category": "text",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "kinetic-ticker.tsx", "type": "registry:text" }],
+  "tags": ["typography", "ticker", "loop"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["no-layout-shift", "reduced-motion-safe", "pauses-when-hidden"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "condensed",
+      "colorStrategy": "duotone"
+    }
+  }
+}

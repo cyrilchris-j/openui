@@ -1,0 +1,43 @@
+import * as React from "react";
+import { Outlet, ScrollRestoration } from "react-router";
+
+import { Footer } from "../components/Footer.js";
+import { Masthead } from "../components/Masthead.js";
+
+/**
+ * The root layout.
+ *
+ * Three accessibility details that are cheap here and expensive to retrofit:
+ *
+ *  - a **skip link** as the first focusable element, so a keyboard user does not
+ *    traverse the entire index on every page,
+ *  - `ScrollRestoration`, so a browser Back returns to where the user was rather
+ *    than to the top of the previous page,
+ *  - a single `<main>` landmark with `tabIndex={-1}`, which is what the skip link
+ *    targets and what makes route changes announceable.
+ *
+ * The page background is set on `<body>` rather than here, so the area outside
+ * the shell is the same colour as the content — otherwise overscroll on macOS
+ * flashes white at a dark-mode user.
+ */
+export function RootLayout(): React.JSX.Element {
+  return (
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-paper focus:px-4 focus:py-2 focus:font-mono focus:text-[11px] focus:uppercase focus:tracking-[0.16em] focus:text-ink"
+      >
+        Skip to content
+      </a>
+
+      <Masthead />
+
+      <main id="main" tabIndex={-1} className="focus-visible:outline-none">
+        <Outlet />
+      </main>
+
+      <Footer />
+      <ScrollRestoration />
+    </>
+  );
+}

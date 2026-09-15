@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-ui",
+  "type": "registry:ai",
+  "title": "Audit UI Skill",
+  "description": "A skill for scoring an existing interface against the design rules and returning a structured report with scores, findings and ranked remediation steps.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "audit-ui.md", "type": "registry:ai", "target": "ai" }],
+  "tags": ["ai", "skill", "audit"],
+  "license": "MIT",
+  "meta": { "difficulty": "intermediate", "features": ["agent-consumable", "produces-report"] }
+}

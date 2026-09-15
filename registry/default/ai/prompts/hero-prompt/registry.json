@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-prompt",
+  "type": "registry:ai",
+  "title": "Hero Composition Prompt",
+  "description": "A targeted prompt for composing a page opening: it supplies the design system, the ratio, the resource set and the constraints, and asks for a plan before markup.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": ["anti-slop"],
+  "files": [{ "path": "hero.md", "type": "registry:ai", "target": "ai" }],
+  "tags": ["ai", "prompt", "hero"],
+  "license": "MIT",
+  "meta": { "difficulty": "starter", "features": ["agent-consumable", "copy-paste"] }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compose-page",
+  "type": "registry:ai",
+  "title": "Compose Page Skill",
+  "description": "A skill that turns a page brief into a composition plan built from registry resources and a design system's DNA, with the ratio, sections and resource names made explicit before any code is written.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "compose-page.md", "type": "registry:ai", "target": "ai" }],
+  "tags": ["ai", "skill", "composition"],
+  "license": "MIT",
+  "meta": { "difficulty": "intermediate", "features": ["agent-consumable", "registry-aware"] }
+}

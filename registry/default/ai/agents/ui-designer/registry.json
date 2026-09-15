@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ui-designer",
+  "type": "registry:ai",
+  "title": "UI Designer Agent",
+  "description": "An agent definition that composes, audits and repairs interfaces using a design system's DNA and the registry, with explicit refusal conditions for generic output.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": ["anti-slop", "editorial-rules", "compose-page", "audit-ui"],
+  "files": [{ "path": "ui-designer.md", "type": "registry:ai", "target": "ai" }],
+  "tags": ["ai", "agent", "design"],
+  "license": "MIT",
+  "meta": { "difficulty": "advanced", "features": ["agent-consumable", "registry-aware", "self-auditing"] }
+}

@@ -1,0 +1,67 @@
+/* Industrial Mono — generated from design DNA (industrial · mosaic · cut)
+ *
+ * Dark-first instrumentation. Monospace is the primary voice, hairlines are the
+ * primary separator, and a single amber signal is reserved for attention — if
+ * everything glows, nothing does.
+ */
+
+:root {
+  --color-paper: #0b0c0d;
+  --color-ink: #e6e8e3;
+  --color-graphite: #8d938c;
+  --color-line: rgba(230, 232, 227, 0.16);
+  --color-oxide: #d98b2b;
+  --color-moss: #6f9f7c;
+
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+
+  --motion-fast: 140ms;
+  --motion-normal: 240ms;
+  --motion-slow: 420ms;
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --instrument-cut: 10px;
+}
+
+.light {
+  --color-paper: #f2f2ef;
+  --color-ink: #101112;
+  --color-graphite: #5c5f5d;
+  --color-line: rgba(16, 17, 18, 0.18);
+  --color-oxide: #a8620f;
+}
+
+/* Cut corner: the theme's one shape gesture, used sparingly. */
+.instrument-panel {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  clip-path: polygon(0 0, calc(100% - var(--instrument-cut)) 0, 100% var(--instrument-cut), 100% 100%, 0 100%);
+}
+
+.instrument-readout {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.instrument-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-normal: 0ms;
+    --motion-slow: 0ms;
+  }
+}

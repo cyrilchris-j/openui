@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-text",
+  "type": "registry:text",
+  "title": "Split Text",
+  "description": "Per-word reveal that keeps the sentence readable: words are wrapped in inline-block spans, the text stays selectable and copyable, and reduced motion shows the finished state immediately.",
+  "category": "text",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "split-text.tsx", "type": "registry:text" }],
+  "tags": ["typography", "reveal", "stagger"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["selectable-text", "reduced-motion-safe", "scroll-triggered"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

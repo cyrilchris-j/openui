@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-heading",
+  "type": "registry:text",
+  "title": "Editorial Heading",
+  "description": "A display heading that splits into a lead phrase and an emphasised phrase, with an optional italic contrast, hairline rule and index label. The type does the composing, not a gradient.",
+  "category": "text",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "editorial-heading.tsx", "type": "registry:text" }],
+  "tags": ["typography", "display", "editorial"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["responsive-type", "reduced-motion-safe"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

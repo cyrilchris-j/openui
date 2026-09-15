@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swiss-editorial",
+  "type": "registry:theme",
+  "title": "Swiss Editorial",
+  "description": "A persistent design system: asymmetric composition at a 7/5 ratio, a display serif against a neutral grotesk, sharp geometry, hairline structure and motion used only to explain hierarchy.",
+  "category": "design-systems",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [{ "path": "swiss-editorial.css", "type": "registry:theme", "target": "styles" }],
+  "tags": ["design-system", "editorial", "swiss"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["design-tokens", "dark-mode", "ai-consumable"],
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "grain-background",
+  "type": "registry:background",
+  "title": "Grain Background",
+  "description": "A film-grain surface generated from a single inline SVG turbulence filter, tuned by two custom properties, with a print-safe density and no image request.",
+  "category": "backgrounds",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "grain-background.tsx", "type": "registry:background" }],
+  "tags": ["surface", "grain", "noise"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": ["zero-requests", "print-safe", "colour-agnostic"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+A contribution is a pull request against the registry repository. The database
+records metadata about what was published; it is never the home of the source,
+which keeps exactly one version of the truth and keeps the project portable.
+
+## The path
+
+<CodeBlock
+  caption="From an idea to a published resource"
+  language="text"
+  code={`fork
+  ↓ branch
+  ↓ add registry/default/<category>/<name>/
+  ↓ pnpm validate:registry      ← run this before you push
+  ↓ pull request
+  ↓ GitHub Actions              ← lint, types, schema, security, build, e2e
+  ↓ preview build
+  ↓ moderator review            ← design quality and licence
+  ↓ merge
+  ↓ registry build → publish`}
+/>
+
+## What CI checks
+
+| Job | What fails the build |
+| --- | --- |
+| `lint` | ESLint errors, including `jsx-a11y` rules |
+| `typecheck` | Any type error in the app, packages or a resource's source |
+| `test` | Unit, registry and API suites |
+| `validate:registry` | Schema errors, unsafe paths, licence problems, dependency policy |
+| `check:dependencies` | An npm dependency that looks like a typosquat, or an OSV advisory |
+| `build` | A production build failure in any app |
+| `e2e` | Playwright flows: catalogue, resource page, playground, search |
+
+A contribution cannot be published while validation fails. There is no override
+flag; the build pipeline has no code path that writes a registry artifact from an
+invalid item.
+
+## Before you open a pull request
+
+<CodeBlock
+  caption="terminal"
+  language="bash"
+  code={`pnpm install
+pnpm validate:registry
+pnpm typecheck
+pnpm test
+pnpm build:registry`}
+/>
+
+## What a good resource looks like
+
+- **It solves one problem.** A component that does three things is three
+  resources.
+- **It ships a `design.md`.** Not optional in practice: a resource without one
+  cannot be filtered by fingerprint and is not what the AI resources read.
+- **It has a demo.** A resource with no `demo.tsx` cannot be previewed, so
+  nobody can judge it before installing it.
+- **It is accessible.** Keyboard operable, labelled, contrast-checked, and every
+  animation guarded by `prefers-reduced-motion`.
+- **It states its licence.** MIT by default, but a resource that adapts
+  third-party code must say so, and must be compatible.
+
+## Licensing
+
+The project is MIT. Every resource states its own licence in `registry.json`,
+and a resource that adapts third-party source must attribute it. Public
+availability is **not** permission to relicense: a resource found on a
+permissively-licensed site is still governed by the licence on that file, and a
+missing licence means "all rights reserved", not "free to use".
+
+## Security expectations
+
+- No `eval`, no `new Function`, no injecting HTML with `dangerouslySetInnerHTML`.
+- No network calls from a component. A resource that phones home will be
+  rejected.
+- No `postinstall` scripts in a dependency you introduce.
+- Report a vulnerability privately — see the security model rather than opening
+  a public issue.
+
+## Review outcomes
+
+| Status | Meaning |
+| --- | --- |
+| `changes_requested` | Something needs to change. The review notes say what. |
+| `rejected` | It will not be published. Usually a licence, security or scope problem. |
+| `approved` | An administrator approved it. It is published and becomes immutable. |
+
+Only an administrator can approve, and approval is what publishes. A contributor
+cannot move their own submission into a published state, however they call the
+API — the policy and the endpoint both require staff.
+
+## Next
+
+- [Security model](/docs/security) — the threat model, in full.
+- [Component authoring](/docs/components) — the directory layout and the schema.

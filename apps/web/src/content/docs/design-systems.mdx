@@ -1,0 +1,99 @@
+A design system is the registry's heaviest resource and its most useful one. It
+answers the question a component library cannot: *what should this interface feel
+like?*
+
+## The seven dimensions
+
+| Dimension | What it decides | Example values |
+| --- | --- | --- |
+| `genre` | The overall register | `editorial`, `brutalist`, `industrial`, `luxe` |
+| `macrostructure` | How the page is composed | `asymmetric`, `symmetric`, `rail`, `mosaic` |
+| `density` | How much air | `compact`, `medium`, `airy` |
+| `shapeLanguage` | Corners and edges | `sharp`, `soft`, `pill`, `cut` |
+| `motionLanguage` | How movement behaves | `none`, `subtle`, `mechanical`, `kinetic` |
+| `typographyStyle` | The typographic voice | `serif-display`, `grotesk`, `monospace` |
+| `colorStrategy` | How colour is used | `monochrome`, `duotone`, `signal`, `neon-on-dark` |
+
+These seven are enough to distinguish two interfaces built from identical
+components. That is the claim worth testing: take the same hero, heading and
+button, apply an editorial system and an industrial one, and they should read as
+different products.
+
+## A system is a theme plus rules
+
+<CodeBlock
+  caption="registry/default/design-systems/swiss-editorial/"
+  language="text"
+  code={`registry.json           metadata and fingerprint
+swiss-editorial.css     the tokens, compiled
+design.md               the rules, in prose
+README.md`}
+/>
+
+<CodeBlock
+  caption="swiss-editorial.css"
+  language="css"
+  code={`:root {
+  /* Colour — high contrast, one accent, no third hue. */
+  --color-paper: #f3f0e9;
+  --color-ink: #100f0d;
+  --color-oxide: #b33f26;
+
+  /* Typography — display serif, grotesk, mono for data. */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Shape — sharp. Two pixels exists only for optical correction. */
+  --radius-sm: 0px;
+  --radius-md: 2px;
+
+  /* Motion — three named durations, one easing. */
+  --motion-fast: 180ms;
+  --motion-normal: 320ms;
+  --motion-slow: 600ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}`}
+/>
+
+## Linking resources to a system
+
+A resource names its system in `registry.json`. The link is what makes a
+catalogue coherent: a page composed entirely of resources linked to
+`swiss-editorial` inherits one voice, and the builder's audit can then score the
+composition against that system's rules rather than against generic taste.
+
+<CodeBlock
+  caption="A component that declares its system"
+  language="json"
+  code={`{
+  "name": "editorial-heading",
+  "type": "registry:text",
+  "designSystem": "swiss-editorial",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "typographyStyle": "serif-display",
+      "density": "airy"
+    }
+  }
+}`}
+/>
+
+## Reading a fingerprint before you install
+
+<CodeBlock
+  caption="terminal"
+  language="bash"
+  code={`pnpm dlx openui view editorial-heading
+pnpm dlx openui theme add swiss-editorial`}
+/>
+
+The `view` output includes the resource's `design.md`, which is the honest part:
+the fingerprint says what the resource claims, and the rules say when claiming it
+is wrong.
+
+## Next
+
+- [Builder](/builder) — compose a page and audit it against a system.
+- [AI resources](/docs/ai-rules) — how a model consumes a fingerprint.

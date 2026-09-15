@@ -1,0 +1,32 @@
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+
+# generated registry artifacts (rebuilt by `pnpm build:registry`)
+registry/index.json
+apps/web/public/r/
+apps/docs/public/r/
+registry/generated/
+
+# test output
+coverage/
+playwright-report/
+test-results/
+.playwright/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# editors / os
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log

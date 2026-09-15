@@ -1,0 +1,89 @@
+The CLI is the distribution layer. It is the only part of OpenUI that writes to
+your project, and it is deliberately conservative about doing so.
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `openui init` | Writes `openui.json`, the project's registry and alias configuration. |
+| `openui search <query>` | Searches the registry from the terminal. |
+| `openui view <resource>` | Prints an item's metadata, dependencies and design rules. |
+| `openui add <resource...>` | Resolves, verifies and installs one or more resources. |
+| `openui update <resource>` | Re-installs a resource at its latest version, after a diff. |
+| `openui remove <resource>` | Removes the files the CLI installed, and nothing else. |
+| `openui list` | Lists everything installed in this project. |
+| `openui theme add <theme>` | Installs a theme's tokens and its `design.md`. |
+
+## Initialise a project
+
+<CommandLine command="pnpm dlx openui init" />
+
+<CodeBlock
+  caption="openui.json"
+  language="json"
+  code={`{
+  "$schema": "https://openui.dev/schema/openui.json",
+  "registry": "https://openui.dev/r",
+  "aliases": {
+    "components": "./src/components",
+    "lib": "./src/lib",
+    "hooks": "./src/hooks",
+    "styles": "./src/styles",
+    "ai": "./ai"
+  }
+}`}
+/>
+
+The `aliases` block is what makes a resource portable. Registry source imports
+`@/lib/cn`; the CLI rewrites that to whichever path your project actually uses,
+so the same source lands correctly in a project that keeps helpers under
+`src/utils` as in one that keeps them under `src/lib`.
+
+## What `add` does, in order
+
+<CodeBlock
+  caption="The install pipeline"
+  language="text"
+  code={`read openui.json
+  ↓ resolve the registry and fetch the index
+  ↓ fetch the item artifact
+  ↓ verify the integrity digest matches the index
+  ↓ resolve registry dependencies (depth-first)
+  ↓ resolve npm dependencies
+  ↓ plan every file write, including alias rewrites
+  ↓ diff each target path against the project   ← the safe step
+  ↓ write files, then update package.json
+  ↓ apply any required styles or tokens`}
+/>
+
+Nothing is written before the diff completes. A conflict on the last file means
+the first file is not written either.
+
+## Conflicts
+
+The CLI never silently overwrites a file you have edited. When a target path
+exists and its content differs, it reports every conflict at once and stops.
+`--overwrite` is available and is never the default; when a resource is
+installed from a *newer* version, `openui update` shows the diff before offering
+it.
+
+## Verifying what you installed
+
+<CodeBlock
+  caption="terminal"
+  language="bash"
+  code={`# Show the integrity digest the CLI verified
+pnpm dlx openui view magnetic-button --json | jq .integrity
+
+# Search the registry, filtered
+pnpm dlx openui search "hero" --type section --json`}
+/>
+
+Because artifacts are content-addressed, the digest is the same value published
+in the registry index. Anyone can reproduce the check without trusting the CLI:
+fetch the artifact, hash it, compare.
+
+## Next
+
+- [The registry](/docs/registry) — the artifact format the CLI reads.
+- [Contributing](/docs/contributing) — publish a resource other people can add.

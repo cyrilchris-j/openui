@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-navigation",
+  "type": "registry:section",
+  "title": "Editorial Navigation",
+  "description": "A two-tier masthead: a thin utility strip above a ruled wordmark row, with a mobile disclosure that keeps the same reading order and no hamburger icon dependency.",
+  "category": "sections",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "editorial-navigation.tsx", "type": "registry:section" }],
+  "tags": ["navigation", "header", "masthead"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["keyboard-accessible", "skip-link", "works-without-js-fallback"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

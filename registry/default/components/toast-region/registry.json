@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toast-region",
+  "type": "registry:component",
+  "title": "Toast Region",
+  "description": "An accessible notification region with a single provider, queued announcements, polite versus assertive politeness, and a fixed corner that never covers the interface.",
+  "category": "components",
+  "dependencies": ["react"],
+  "registryDependencies": ["cn"],
+  "files": [{ "path": "toast-region.tsx", "type": "registry:component" }],
+  "tags": ["toast", "notification", "live-region"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": ["live-region", "reduced-motion-safe", "no-portal-required"],
+    "peer": { "react": ">=19" },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

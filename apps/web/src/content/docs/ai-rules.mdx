@@ -1,0 +1,96 @@
+OpenUI ships resources for AI tools, and none of them is a chatbot. They are
+files a model reads before it writes — the input that makes the difference
+between a generated page and a composed one.
+
+## Four kinds of resource
+
+| Kind | What it is | Example |
+| --- | --- | --- |
+| `design-rules` | Constraints a model must not violate | `anti-slop.md`, `editorial.md` |
+| `skills` | A procedure with inputs and outputs | `compose-page.md`, `audit-ui.md` |
+| `agents` | A role with a mandate and a required reading list | `ui-designer.md` |
+| `prompts` | A structured brief for one task | `hero.md`, `dashboard.md` |
+
+They are registry items like any other, which means they install with the same
+CLI into an `ai/` directory your project owns:
+
+<CommandLine command="pnpm dlx openui add anti-slop editorial-rules compose-page" />
+
+## Why rules instead of a model
+
+The registry's position is that the *distinctive* part of an AI-assisted
+interface is not the generation — it is the constraint. A model that has read
+`anti-slop.md` and a `design.md` for the system it is working inside produces
+something materially different from one that has read nothing.
+
+The anti-slop rule begins where the problem is visible:
+
+<CodeBlock
+  caption="ai/design-rules/anti-slop/anti-slop.md"
+  language="markdown"
+  code={`# Anti-slop
+
+An interface reads as generated when it makes the same
+five decisions every time:
+
+1. A centred hero with a gradient behind it.
+2. Three equal cards in a row, each with an icon.
+3. Everything rounded by the same radius.
+4. One typeface at three sizes, none of them used
+   for structure.
+5. No interaction beyond a hover colour change.
+
+None of these is a mistake in isolation. Together they
+are a fingerprint — and it is the wrong one.`}
+/>
+
+## The audit is a rule engine, not a model
+
+`audit-ui` runs a weighted set of named checks over a *structural description* of
+an interface: section roles and alignment, the type scale, radii, gradients,
+motion durations, interactions. It returns a report like this:
+
+<CodeBlock
+  caption="pnpm dlx openui audit"
+  language="text"
+  code={`AI UI AUDIT
+
+Structure        72/100
+Typography       81/100
+Motion           54/100
+Composition      66/100
+Originality      48/100
+Accessibility    88/100
+
+Overall          68/100
+
+Potential issues:
+- Centred hero; nothing pulls the eye off the centre line.
+- 78% of containers are softly rounded.
+- No interaction beyond default browser behaviour.`}
+/>
+
+Two properties make this useful where a model's opinion is not. It is
+**reproducible** — the same structure always scores the same, so a number in a
+pull request means something. And it is **explainable** — every finding names the
+check that produced it and the change that would fix it.
+
+## What a model should read, in order
+
+<CodeBlock
+  caption="The required reading list"
+  language="text"
+  code={`1. The design system's design.md      ← the voice to write in
+2. ai/design-rules/anti-slop.md       ← what not to do
+3. The registry index for the page    ← what exists to compose from
+4. The chosen resources' design.md    ← the intent behind each part
+5. The audit report after composing   ← what to change`}
+/>
+
+A model given all five is doing something categorically different from a model
+given a screenshot. It is composing inside a system rather than inventing one.
+
+## Next
+
+- [Builder](/builder) — the audit, running in your browser.
+- [Design systems](/docs/design-systems) — where the voice comes from.
