@@ -94,7 +94,7 @@ export function createRegistryStore(env: Env): RegistryStore {
       );
     }
 
-    const value: RegistryItemRecord = { entry, artifact: parsed.data, raw };
+    const value: RegistryItemRecord = { entry, artifact: parsed.data as unknown as BuiltRegistryItem, raw };
     itemCache.set(key, { value, loadedAt: Date.now() });
     return value;
   }
