@@ -145,6 +145,7 @@ export interface RegistryIndexEntry {
   description: string;
   category: string;
   resourceType: ResourceType;
+  author?: RegistryItemAuthor;
   tags: string[];
   designSystem?: string;
   dependencies: string[];

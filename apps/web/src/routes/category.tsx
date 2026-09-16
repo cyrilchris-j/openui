@@ -35,11 +35,19 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
   );
   const filterValue = params.get("filter");
 
+  const FACET_TO_DNA_KEY = {
+    genre: "genre",
+    density: "density",
+    shape: "shapeLanguage",
+    motion: "motionLanguage",
+  } as const;
+
   const facets = React.useMemo(() => {
     if (facet === "none") return [];
+    const dnaKey = FACET_TO_DNA_KEY[facet];
     const counts = new Map<string, number>();
     for (const item of items) {
-      const value = item.dna?.[facet];
+      const value = item.dna?.[dnaKey];
       if (value) counts.set(String(value), (counts.get(String(value)) ?? 0) + 1);
     }
     return [...counts.entries()]
@@ -49,7 +57,8 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
 
   const visible = React.useMemo(() => {
     if (!filterValue || facet === "none") return items;
-    return items.filter((item) => String(item.dna?.[facet] ?? "") === filterValue);
+    const dnaKey = FACET_TO_DNA_KEY[facet];
+    return items.filter((item) => String(item.dna?.[dnaKey] ?? "") === filterValue);
   }, [items, facet, filterValue]);
 
   if (!definition) {

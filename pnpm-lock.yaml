@@ -215,6 +215,28 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.2)(jsdom@25.0.1)
 
+  cli/openui:
+    dependencies:
+      '@openui/registry-client':
+        specifier: workspace:*
+        version: link:../../packages/registry-client
+      '@openui/registry-schema':
+        specifier: workspace:*
+        version: link:../../packages/registry-schema
+      '@openui/types':
+        specifier: workspace:*
+        version: link:../../packages/types
+      '@openui/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.2
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
   packages/config:
     dependencies:
       '@eslint/js':

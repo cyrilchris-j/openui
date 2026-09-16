@@ -171,6 +171,20 @@ export interface ContributorSummary {
   joinedAt: Timestamp;
 }
 
+export interface DesignSystemRecord {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  tokens: Record<string, unknown>;
+  rules: Record<string, unknown>;
+  author_id: string;
+  is_official: boolean;
+  version: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Paginated<T> {
   items: T[];
   total: number;

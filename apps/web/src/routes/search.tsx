@@ -307,14 +307,18 @@ export default function SearchPage(): React.JSX.Element {
                     </p>
                     <div className="mt-1 flex flex-wrap items-center gap-x-6 gap-y-2">
                       <DnaStrip
-                        dna={{
-                          genre: result.design?.genre ?? undefined,
-                          macrostructure: result.design?.macrostructure ?? undefined,
-                          density: result.design?.density ?? undefined,
-                          shapeLanguage: result.design?.shapeLanguage ?? undefined,
-                          motionLanguage: result.design?.motionLanguage ?? undefined,
-                          typographyStyle: result.design?.typographyStyle ?? undefined,
-                        }}
+                        dna={
+                          result.design
+                            ? ({
+                                genre: (result.design.genre as any) ?? undefined,
+                                macrostructure: (result.design.macrostructure as any) ?? undefined,
+                                density: (result.design.density as any) ?? undefined,
+                                shapeLanguage: (result.design.shapeLanguage as any) ?? undefined,
+                                motionLanguage: (result.design.motionLanguage as any) ?? undefined,
+                                typographyStyle: (result.design.typographyStyle as any) ?? undefined,
+                              })
+                            : undefined
+                        }
                       />
                       {result.tags.length > 0 ? (
                         <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite/70">

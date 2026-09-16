@@ -142,6 +142,7 @@ export function toIndexEntry(
     registryDependencies: item.registryDependencies,
     url: artifactUrl(item.name, namespace, options.baseUrl),
     integrity: integrityOf(item),
+    ...(item.author ? { author: item.author } : {}),
     ...(item.designSystem ? { designSystem: item.designSystem } : {}),
     ...(item.license ? { license: item.license } : {}),
     ...(item.meta?.difficulty ? { difficulty: item.meta.difficulty } : {}),

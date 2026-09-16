@@ -55,7 +55,7 @@ export default function BuilderPage(): React.JSX.Element {
 
   const pickerOptions = React.useMemo(() => {
     const all = (index.data?.items ?? []).filter(
-      (item) => !item.type.startsWith("registry:ai") && item.resourceType !== "design-system",
+      (item) => !item.type.startsWith("registry:ai") && (item.resourceType as string) !== "design-system",
     );
     return pickerType === "all" ? all : all.filter((item) => item.resourceType === pickerType);
   }, [index.data, pickerType]);
@@ -467,7 +467,7 @@ function structureFrom(items: readonly RegistryIndexEntry[]): UiStructure {
   const sizes = displayLed ? [13, 16, 21, 40, 72] : [14, 16, 20, 28, 40];
 
   const shapes = new Set(items.map((item) => item.dna?.shapeLanguage ?? "sharp"));
-  const radii = [...shapes].map((shape) =>
+  const radii: number[] = [...shapes].map((shape) =>
     shape === "rounded" ? 16 : shape === "soft" ? 8 : shape === "pill" ? 999 : 2,
   );
   // A spine is always present; the stacked shapes are what vary.

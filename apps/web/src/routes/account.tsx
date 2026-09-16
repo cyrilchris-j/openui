@@ -405,13 +405,13 @@ export function AccountSubmissionsPage(): React.JSX.Element {
 
       <Section label="What the statuses mean" className="mt-12">
         <ul className="flex flex-col">
-          {[
+          {([
             ["pending", "Received. Waiting for a moderator to pick it up."],
             ["reviewing", "A moderator is looking at it, usually alongside CI."],
             ["changes_requested", "Something needs to change before it can be approved."],
             ["approved", "An administrator approved it; it is published and immutable."],
             ["rejected", "It will not be published. The review notes say why."],
-          ].map(([status, meaning]) => (
+          ] as const).map(([status, meaning]) => (
             <li key={status} className="flex flex-wrap items-baseline gap-4 border-b border-line py-3">
               <span className="w-[10rem] shrink-0">
                 <StatusPill tone={SUBMISSION_STATUS_TONE[status] ?? "neutral"}>

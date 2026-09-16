@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { parseSearchParams, searchInMemory, serializeSearchParams } from "@openui/search";
-import type { RegistryIndexEntry, SearchResult } from "@openui/types";
+import type { DesignDna, RegistryIndexEntry, SearchResult } from "@openui/types";
 
 import { useDebounced } from "../../hooks/use-async.js";
 import * as api from "../../lib/api.js";
@@ -161,7 +161,7 @@ export type FacetKey =
  * schema — they are allowed to differ, and renaming one should not break the
  * other.
  */
-const DNA_KEY_FOR: Partial<Record<FacetKey, keyof RegistryIndexEntry["dna"] & string>> = {
+const DNA_KEY_FOR: Partial<Record<FacetKey, keyof DesignDna & string>> = {
   shape: "shapeLanguage",
   motion: "motionLanguage",
 };
