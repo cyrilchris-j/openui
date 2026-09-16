@@ -80,7 +80,7 @@ export default function SearchPage(): React.JSX.Element {
   }, [index.data]);
 
   return (
-    <div className="shell py-16">
+    <div className="shell py-8 sm:py-16">
       <SectionHeader
         as="h1"
         eyebrow="Search"
@@ -90,7 +90,7 @@ export default function SearchPage(): React.JSX.Element {
 
       <form
         role="search"
-        className="mt-10 flex items-end gap-3 border-t border-line pt-6"
+        className="mt-6 sm:mt-10 flex items-center gap-2 sm:gap-3 border-t border-line pt-4 sm:pt-6"
         onSubmit={(event) => {
           event.preventDefault();
           update((next) => {
@@ -99,8 +99,8 @@ export default function SearchPage(): React.JSX.Element {
           });
         }}
       >
-        <div className="flex flex-1 items-center gap-3 border-b border-line">
-          <SearchIcon aria-hidden className="h-4 w-4 text-graphite" />
+        <div className="flex flex-1 items-center gap-2.5 sm:gap-3 border-b border-line">
+          <SearchIcon aria-hidden className="h-4 w-4 text-graphite shrink-0" />
           <label htmlFor="search-input" className="sr-only">
             Search the registry
           </label>
@@ -110,96 +110,116 @@ export default function SearchPage(): React.JSX.Element {
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
             placeholder="editorial hero, magnetic, grain…"
-            className="h-11 w-full bg-transparent text-step-1 text-ink placeholder:text-graphite/60 focus:outline-none"
+            className="h-10 sm:h-11 w-full bg-transparent text-base sm:text-step-1 text-ink placeholder:text-graphite/60 focus:outline-none"
           />
         </div>
         <Button type="submit">Search</Button>
       </form>
 
-      <div className="mt-10 grid gap-12 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
+      <div className="mt-6 sm:mt-10 grid gap-6 sm:gap-12 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
         {/* ---------------------------------------------------------- */}
         {/* Filter rail                                                */}
         {/* ---------------------------------------------------------- */}
         <aside aria-label="Filters">
-          <div className="flex items-center justify-between">
-            <p className="eyebrow">Filters</p>
-            {activeFilters.length > 0 ? (
-              <button
-                type="button"
-                onClick={() => setParams(new URLSearchParams(query ? { q: query } : {}), { replace: true })}
-                className="eyebrow flex items-center gap-1 transition-colors hover:text-ink"
-              >
-                <X aria-hidden className="h-3 w-3" />
-                Clear
-              </button>
-            ) : null}
-          </div>
-
-          {activeFilters.length > 0 ? (
-            <ul className="mt-3 flex flex-wrap gap-1.5">
-              {activeFilters.map((filter) => (
-                <li key={`${filter.key}:${filter.value}`}>
+          <details
+            className="group border border-line p-3.5 lg:border-0 lg:p-0"
+            open={activeFilters.length > 0}
+          >
+            <summary className="flex cursor-pointer items-center justify-between list-none [&::-webkit-details-marker]:hidden lg:cursor-default">
+              <div className="flex items-center gap-2">
+                <p className="eyebrow text-ink">Filters</p>
+                {activeFilters.length > 0 ? (
+                  <span className="font-mono text-[10px] text-oxide">({activeFilters.length})</span>
+                ) : null}
+              </div>
+              <div className="flex items-center gap-2">
+                {activeFilters.length > 0 ? (
                   <button
                     type="button"
-                    onClick={() => toggle(filter.key, filter.value)}
-                    className="flex items-center gap-1 border border-ink px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setParams(new URLSearchParams(query ? { q: query } : {}), { replace: true });
+                    }}
+                    className="eyebrow flex items-center gap-1 transition-colors hover:text-ink text-[10px]"
                   >
-                    {filter.value}
-                    <X aria-hidden className="h-2.5 w-2.5" />
-                    <span className="sr-only">Remove filter</span>
+                    <X aria-hidden className="h-3 w-3" />
+                    Clear
                   </button>
-                </li>
-              ))}
-            </ul>
-          ) : null}
+                ) : null}
+                <span className="font-mono text-[10px] uppercase tracking-wider text-graphite lg:hidden">
+                  Filter list
+                </span>
+              </div>
+            </summary>
 
-          {(
-            [
-              ["category", "Category"],
-              ["type", "Resource type"],
-              ["difficulty", "Difficulty"],
-              ["genre", "Genre"],
-              ["density", "Density"],
-              ["shape", "Shape"],
-              ["motion", "Motion"],
-            ] as const
-          ).map(([key, label]) => {
-            const values = facets[key] ?? [];
-            if (values.length === 0) return null;
-            return (
-              <fieldset key={key} className="mt-8 border-t border-line pt-3">
-                <legend className="eyebrow">{label}</legend>
-                <ul className="mt-2 flex flex-col gap-1">
-                  {values.map((value) => {
-                    const checked = params.getAll(key).includes(value.value);
-                    const id = `${key}-${value.value}`;
-                    return (
-                      <li key={value.value}>
-                        <label
-                          htmlFor={id}
-                          className="flex cursor-pointer items-baseline justify-between gap-2 py-0.5"
-                        >
-                          <span className="flex items-baseline gap-2">
-                            <input
-                              id={id}
-                              type="checkbox"
-                              checked={checked}
-                              onChange={() => toggle(key, value.value)}
-                              className="mt-0.5 h-3 w-3 shrink-0 accent-oxide"
-                            />
-                            <span className="text-[0.82rem] text-graphite">{value.value}</span>
-                          </span>
-                          <span className="font-mono text-[10px] text-graphite/70">
-                            {value.count}
-                          </span>
-                        </label>
-                      </li>
-                    );
-                  })}
+            <div className="mt-3 lg:mt-0">
+              {activeFilters.length > 0 ? (
+                <ul className="mb-4 flex flex-wrap gap-1.5 pt-2">
+                  {activeFilters.map((filter) => (
+                    <li key={`${filter.key}:${filter.value}`}>
+                      <button
+                        type="button"
+                        onClick={() => toggle(filter.key, filter.value)}
+                        className="flex items-center gap-1 border border-ink px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink"
+                      >
+                        {filter.value}
+                        <X aria-hidden className="h-2.5 w-2.5" />
+                        <span className="sr-only">Remove filter</span>
+                      </button>
+                    </li>
+                  ))}
                 </ul>
-              </fieldset>
-            );
-          })}
+              ) : null}
+
+              {(
+                [
+                  ["category", "Category"],
+                  ["type", "Resource type"],
+                  ["difficulty", "Difficulty"],
+                  ["genre", "Genre"],
+                  ["density", "Density"],
+                  ["shape", "Shape"],
+                  ["motion", "Motion"],
+                ] as const
+              ).map(([key, label]) => {
+                const values = facets[key] ?? [];
+                if (values.length === 0) return null;
+                return (
+                  <fieldset key={key} className="mt-4 sm:mt-8 border-t border-line pt-2.5 sm:pt-3">
+                    <legend className="eyebrow text-[10px] sm:text-[11px]">{label}</legend>
+                    <ul className="mt-2 flex flex-col gap-1">
+                      {values.map((value) => {
+                        const checked = params.getAll(key).includes(value.value);
+                        const id = `${key}-${value.value}`;
+                        return (
+                          <li key={value.value}>
+                            <label
+                              htmlFor={id}
+                              className="flex cursor-pointer items-baseline justify-between gap-2 py-0.5"
+                            >
+                              <span className="flex items-baseline gap-2">
+                                <input
+                                  id={id}
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => toggle(key, value.value)}
+                                  className="mt-0.5 h-3 w-3 shrink-0 accent-oxide"
+                                />
+                                <span className="text-[0.82rem] text-graphite">{value.value}</span>
+                              </span>
+                              <span className="font-mono text-[10px] text-graphite/70">
+                                {value.count}
+                              </span>
+                            </label>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </fieldset>
+                );
+              })}
+            </div>
+          </details>
         </aside>
 
         {/* ---------------------------------------------------------- */}

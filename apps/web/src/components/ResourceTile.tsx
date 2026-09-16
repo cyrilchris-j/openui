@@ -33,7 +33,7 @@ export function ResourceTile({ item, index, className }: ResourceTileProps): Rea
   return (
     <article
       className={cn(
-        "group relative flex flex-col bg-paper p-5",
+        "group relative flex flex-col bg-paper p-4 sm:p-5",
         "transition-colors duration-fast ease-editorial hover:bg-ink/[0.02]",
         "focus-within:bg-ink/[0.02]",
         className,
@@ -42,25 +42,25 @@ export function ResourceTile({ item, index, className }: ResourceTileProps): Rea
       {index !== undefined ? (
         <span
           aria-hidden
-          className="absolute right-4 top-4 font-mono text-[10px] tracking-[0.2em] text-graphite"
+          className="absolute right-3.5 top-3.5 sm:right-4 sm:top-4 font-mono text-[10px] tracking-[0.2em] text-graphite"
         >
           {String(index).padStart(2, "0")}
         </span>
       ) : null}
 
       <div className="flex items-center gap-2">
-        <span className="eyebrow">{item.type.replace("registry:", "")}</span>
+        <span className="eyebrow text-[10px] sm:text-[11px]">{item.type.replace("registry:", "")}</span>
         {item.license ? (
           <>
             <span aria-hidden className="text-graphite/50">
               ·
             </span>
-            <span className="eyebrow">{item.license}</span>
+            <span className="eyebrow text-[10px] sm:text-[11px]">{item.license}</span>
           </>
         ) : null}
       </div>
 
-      <h3 className="mt-3 max-w-[22ch] font-display text-step-2 leading-[1.1] tracking-tight text-ink">
+      <h3 className="mt-2.5 sm:mt-3 max-w-[22ch] font-display text-xl sm:text-step-2 leading-tight sm:leading-[1.1] tracking-tight text-ink">
         <Link
           to={href}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -69,17 +69,17 @@ export function ResourceTile({ item, index, className }: ResourceTileProps): Rea
         </Link>
       </h3>
 
-      <p className="mt-3 max-w-[42ch] text-[0.88rem] leading-relaxed text-graphite">
+      <p className="mt-2 sm:mt-3 max-w-[42ch] text-[0.82rem] sm:text-[0.88rem] leading-relaxed text-graphite line-clamp-2 sm:line-clamp-none">
         {item.description}
       </p>
 
-      <div className="mt-auto pt-6">
+      <div className="mt-auto pt-4 sm:pt-6">
         <DnaStrip dna={item.dna} />
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite">
+        <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-3">
+          <p className="font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.14em] text-graphite truncate">
             {dependencies.length === 0 ? "zero dependencies" : dependencies.length === 1 ? dependencies[0] : `${dependencies.length} deps`}
           </p>
-          <span className="flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.14em] text-graphite transition-colors duration-fast group-hover:text-oxide">
+          <span className="flex items-center gap-1 font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.14em] text-graphite transition-colors duration-fast group-hover:text-oxide shrink-0">
             Open
             <ArrowUpRight aria-hidden className="h-3 w-3" />
           </span>

@@ -49,10 +49,10 @@ export function Masthead(): React.JSX.Element {
 
   return (
     <header className="masthead">
-      <div className="shell flex h-16 items-center gap-6">
+      <div className="shell flex h-14 sm:h-16 items-center gap-3 sm:gap-6">
         <Link
           to="/"
-          className="shrink-0 font-display text-step-2 leading-none tracking-tight text-ink"
+          className="shrink-0 font-display text-xl sm:text-step-2 leading-none tracking-tight text-ink"
         >
           OpenUI
         </Link>
@@ -77,7 +77,7 @@ export function Masthead(): React.JSX.Element {
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <form
             role="search"
             onSubmit={(event) => {
@@ -110,12 +110,12 @@ export function Masthead(): React.JSX.Element {
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls="mobile-index"
-            className="grid h-9 w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide lg:hidden"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide lg:hidden"
           >
             {menuOpen ? (
-              <X aria-hidden className="h-4 w-4" />
+              <X aria-hidden="true" className="h-4 w-4" />
             ) : (
-              <Menu aria-hidden className="h-4 w-4" />
+              <Menu aria-hidden="true" className="h-4 w-4" />
             )}
             <span className="sr-only">{menuOpen ? "Close index" : "Open index"}</span>
           </button>
@@ -125,7 +125,7 @@ export function Masthead(): React.JSX.Element {
       {menuOpen ? (
         <div
           id="mobile-index"
-          className="fixed inset-x-0 bottom-0 top-16 z-30 overflow-y-auto border-t border-line bg-paper lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-14 sm:top-16 z-30 overflow-y-auto border-t border-line bg-paper lg:hidden"
         >
           <nav aria-label="Catalogue" className="shell py-6">
             <p className="eyebrow mb-4">Index</p>

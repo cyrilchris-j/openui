@@ -18,9 +18,9 @@ export function Footer(): React.JSX.Element {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-24 border-t border-line">
-      <div className="shell grid gap-10 py-16 md:grid-cols-[2fr_1fr_1fr_1fr]">
-        <div>
+    <footer className="mt-14 sm:mt-24 border-t border-line">
+      <div className="shell grid gap-8 sm:gap-10 py-10 sm:py-16 grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div className="col-span-2 md:col-span-1">
           <p className="font-display text-step-2 leading-none tracking-tight text-ink">OpenUI</p>
           <p className="mt-4 max-w-[34ch] text-[0.9rem] leading-relaxed text-graphite">
             An open registry of UI resources that carry a design fingerprint — with the design

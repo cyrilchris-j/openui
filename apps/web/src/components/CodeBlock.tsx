@@ -98,11 +98,11 @@ export function CodeBlock({
  */
 export function CommandLine({ command }: { command: string }): React.JSX.Element {
   return (
-    <div className="flex items-stretch border border-line">
-      <code className="flex-1 truncate bg-ink/95 px-4 py-3 font-mono text-[0.8rem] text-paper">
+    <div className="flex items-stretch border border-line max-w-full">
+      <code className="flex-1 overflow-x-auto whitespace-nowrap no-scrollbar bg-ink/95 px-3.5 sm:px-4 py-2.5 sm:py-3 font-mono text-[0.75rem] sm:text-[0.8rem] text-paper">
         {command}
       </code>
-      <CopyButton value={command} label="Copy install command" className="border-y-0 border-r-0" />
+      <CopyButton value={command} label="Copy install command" className="border-y-0 border-r-0 shrink-0" />
     </div>
   );
 }

@@ -31,7 +31,7 @@ export function CollectionsPage(): React.JSX.Element {
   useDocumentTitle("Collections — OpenUI Design Registry");
 
   return (
-    <div className="shell py-16">
+    <div className="shell py-8 sm:py-16">
       <SectionHeader
         as="h1"
         eyebrow="Collections"

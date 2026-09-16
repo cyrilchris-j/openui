@@ -34,16 +34,18 @@ export function SectionHeader({
   className,
 }: SectionHeaderProps): React.JSX.Element {
   return (
-    <header className={cn("border-t border-line pt-5", className)}>
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        {eyebrow ? <p className="eyebrow">{eyebrow}</p> : <span />}
-        {actions ? <div className="flex items-center gap-3">{actions}</div> : null}
+    <header className={cn("border-t border-line pt-4 sm:pt-5", className)}>
+      <div className="flex flex-wrap items-baseline justify-between gap-2.5 sm:gap-3">
+        {eyebrow ? <p className="eyebrow text-[10px] sm:text-[11px]">{eyebrow}</p> : <span />}
+        {actions ? <div className="flex items-center gap-2 sm:gap-3">{actions}</div> : null}
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,4fr)] lg:gap-12">
-        <Heading className="optically-align max-w-[24ch] text-balance">{title}</Heading>
+      <div className="mt-4 sm:mt-6 grid gap-3 sm:gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,4fr)] lg:gap-12">
+        <Heading className="optically-align text-2xl sm:text-3xl lg:text-step-4 max-w-[24ch] text-balance leading-[1.08]">
+          {title}
+        </Heading>
         {description ? (
-          <div className="prose-measure text-[0.95rem] leading-relaxed text-graphite lg:pt-2">
+          <div className="prose-measure text-[0.88rem] sm:text-[0.95rem] leading-relaxed text-graphite lg:pt-2">
             {description}
           </div>
         ) : null}

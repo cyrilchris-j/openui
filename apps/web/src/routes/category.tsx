@@ -81,7 +81,7 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
   const counts = visible.length;
 
   return (
-    <div className="shell py-16">
+    <div className="shell py-8 sm:py-16">
       <SectionHeader
         as="h1"
         eyebrow={`Catalogue · ${definition.resourceType ?? "system"}`}
@@ -94,7 +94,7 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
         }
       />
 
-      <div className="mt-10 flex flex-wrap items-end justify-between gap-6 border-t border-line pt-5">
+      <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-6 border-t border-line pt-4 sm:pt-5">
         <SegmentedControl
           label="Fingerprint dimension"
           value={facet}
@@ -112,13 +112,13 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
             { value: "motion", label: "Motion" },
           ]}
         />
-        <p className="eyebrow">
+        <p className="eyebrow self-start sm:self-auto text-graphite/80 text-[10px] sm:text-[11px]">
           {counts} {counts === 1 ? definition.noun : `${definition.noun}s`}
         </p>
       </div>
 
       {facet !== "none" && facets.length > 0 ? (
-        <div className="mt-5">
+        <div className="mt-3 sm:mt-5">
           <SegmentedControl
             label={`Filter by ${facet}`}
             value={filterValue ?? "__all__"}
@@ -134,7 +134,7 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
       ) : null}
 
       {state.isLoading ? (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 3 }, (_, position) => (
             <Skeleton key={position} lines={5} />
           ))}
@@ -171,14 +171,14 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
           }
         />
       ) : (
-        <div className="catalogue-grid mt-10">
+        <div className="catalogue-grid mt-6 sm:mt-10">
           {visible.map((item, position) => (
             <ResourceTile key={item.name} item={item} index={position + 1} />
           ))}
         </div>
       )}
 
-      <nav aria-label="Other categories" className="mt-20 border-t border-line pt-6">
+      <nav aria-label="Other categories" className="mt-12 sm:mt-20 border-t border-line pt-5 sm:pt-6">
         <p className="eyebrow mb-4">Also in the registry</p>
         <ul className="flex flex-wrap gap-x-6 gap-y-3">
           {CATALOGUE_CATEGORIES.filter((candidate) => candidate.slug !== category).map(

@@ -159,8 +159,8 @@ export default function ResourcePage(): React.JSX.Element {
       {/* ------------------------------------------------------------ */}
       {/* Header                                                        */}
       {/* ------------------------------------------------------------ */}
-      <header className="shell pt-12">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2">
+      <header className="shell pt-6 sm:pt-12">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 overflow-x-auto no-scrollbar whitespace-nowrap">
           <Link to="/explore" className="eyebrow transition-colors hover:text-ink">
             Registry
           </Link>
@@ -179,14 +179,14 @@ export default function ResourcePage(): React.JSX.Element {
           <span className="eyebrow text-ink">{entry.name}</span>
         </nav>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
+        <div className="mt-5 sm:mt-8 grid gap-6 sm:gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
           <div>
-            <h1 className="optically-align max-w-[20ch] text-balance">{entry.title}</h1>
-            <p className="prose-measure mt-6 text-step-1 leading-relaxed text-graphite">
+            <h1 className="optically-align text-3xl sm:text-5xl lg:text-step-5 max-w-[20ch] text-balance leading-[1.08]">{entry.title}</h1>
+            <p className="prose-measure mt-4 sm:mt-6 text-[0.92rem] sm:text-step-1 leading-relaxed text-graphite">
               {entry.description}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-2">
+            <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-1.5 sm:gap-2">
               <Badge tone="ink">{entry.type.replace("registry:", "")}</Badge>
               {entry.difficulty ? <Badge>{entry.difficulty}</Badge> : null}
               {entry.license ? <Badge tone="moss">{entry.license}</Badge> : null}
@@ -195,7 +195,7 @@ export default function ResourcePage(): React.JSX.Element {
               </StatusPill>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-2">
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-2">
               <Button
                 variant={favorited ? "primary" : "outline"}
                 onClick={() => void toggleFavorite()}
@@ -293,7 +293,7 @@ export default function ResourcePage(): React.JSX.Element {
       {/* ------------------------------------------------------------ */}
       {/* Tabs                                                          */}
       {/* ------------------------------------------------------------ */}
-      <div className="shell mt-16">
+      <div className="shell mt-8 sm:mt-16">
         <Tabs value={activeTab} onValueChange={setTab}>
           <TabsList>
             <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -305,7 +305,7 @@ export default function ResourcePage(): React.JSX.Element {
 
           {/* Preview -------------------------------------------------- */}
           <TabsContent value="preview">
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
               <p className="prose-measure text-[0.9rem] text-graphite">
                 The resource runs in an isolated document. Nothing it does can reach this page, your
                 session or your files.

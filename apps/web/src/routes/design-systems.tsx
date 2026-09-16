@@ -45,7 +45,7 @@ export function DesignSystemsPage(): React.JSX.Element {
   }, [index.data]);
 
   return (
-    <div className="shell py-16">
+    <div className="shell py-8 sm:py-16">
       <SectionHeader
         as="h1"
         eyebrow="Catalogue · system"

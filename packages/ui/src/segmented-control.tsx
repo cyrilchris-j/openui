@@ -50,41 +50,43 @@ export function SegmentedControl({
   const labelId = React.useId();
 
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
+    <div className={cn("flex flex-col gap-1.5 max-w-full", className)}>
       <span id={labelId} className={hideLabel ? "sr-only" : "eyebrow"}>
         {label}
       </span>
-      <ToggleGroup.Root
-        type="single"
-        value={value}
-        onValueChange={(next) => {
-          // Radix reports an empty string when the active item is re-pressed.
-          // A segmented control always has a selection, so that is ignored.
-          if (next) onValueChange(next);
-        }}
-        aria-labelledby={labelId}
-        className="inline-flex flex-wrap border border-line"
-      >
-        {options.map((option) => (
-          <ToggleGroup.Item
-            key={option.value}
-            value={option.value}
-            disabled={option.disabled}
-            className={cn(
-              "inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2",
-              "eyebrow text-graphite",
-              "border-r border-line last:border-r-0",
-              "transition-colors duration-fast ease-editorial",
-              "hover:text-ink",
-              "data-[state=on]:bg-ink data-[state=on]:text-paper",
-              "disabled:cursor-not-allowed disabled:opacity-40",
-            )}
-          >
-            {option.icon ? <span aria-hidden>{option.icon}</span> : null}
-            {option.label}
-          </ToggleGroup.Item>
-        ))}
-      </ToggleGroup.Root>
+      <div className="max-w-full overflow-x-auto no-scrollbar scroll-smooth">
+        <ToggleGroup.Root
+          type="single"
+          value={value}
+          onValueChange={(next) => {
+            // Radix reports an empty string when the active item is re-pressed.
+            // A segmented control always has a selection, so that is ignored.
+            if (next) onValueChange(next);
+          }}
+          aria-labelledby={labelId}
+          className="inline-flex flex-nowrap border border-line"
+        >
+          {options.map((option) => (
+            <ToggleGroup.Item
+              key={option.value}
+              value={option.value}
+              disabled={option.disabled}
+              className={cn(
+                "inline-flex shrink-0 items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4 sm:py-2",
+                "eyebrow whitespace-nowrap text-[10px] sm:text-[11px] text-graphite",
+                "border-r border-line last:border-r-0",
+                "transition-colors duration-fast ease-editorial",
+                "hover:text-ink",
+                "data-[state=on]:bg-ink data-[state=on]:text-paper",
+                "disabled:cursor-not-allowed disabled:opacity-40",
+              )}
+            >
+              {option.icon ? <span aria-hidden>{option.icon}</span> : null}
+              {option.label}
+            </ToggleGroup.Item>
+          ))}
+        </ToggleGroup.Root>
+      </div>
     </div>
   );
 }

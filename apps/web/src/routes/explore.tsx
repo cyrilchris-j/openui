@@ -55,7 +55,7 @@ export default function ExplorePage(): React.JSX.Element {
   };
 
   return (
-    <div className="shell py-16">
+    <div className="shell py-8 sm:py-16">
       <SectionHeader
         as="h1"
         eyebrow="Explore"
@@ -75,7 +75,7 @@ export default function ExplorePage(): React.JSX.Element {
       />
 
       {typeOptions.length > 1 ? (
-        <div className="mt-10">
+        <div className="mt-6 sm:mt-10">
           <SegmentedControl
             label="Filter by resource type"
             value={typeFilter ?? "__all__"}
@@ -85,8 +85,8 @@ export default function ExplorePage(): React.JSX.Element {
         </div>
       ) : null}
 
-      <div className="mt-8 flex items-center justify-between gap-4 border-t border-line pt-4">
-        <p className="eyebrow">
+      <div className="mt-5 sm:mt-8 flex items-center justify-between gap-3 border-t border-line pt-3.5 sm:pt-4">
+        <p className="eyebrow text-[10px] sm:text-[11px]">
           {items.length} {items.length === 1 ? "result" : "results"}
           {typeFilter ? ` · ${typeFilter}` : ""}
         </p>
@@ -103,7 +103,7 @@ export default function ExplorePage(): React.JSX.Element {
       </div>
 
       {index.isLoading ? (
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }, (_, position) => (
             <Skeleton key={position} lines={5} />
           ))}
@@ -128,13 +128,13 @@ export default function ExplorePage(): React.JSX.Element {
           }
         />
       ) : view === "list" ? (
-        <ul className="mt-8">
+        <ul className="mt-6 sm:mt-8">
           {items.map((item) => (
             <ResourceRow key={item.name} item={item} />
           ))}
         </ul>
       ) : (
-        <div className="catalogue-grid mt-8">
+        <div className="catalogue-grid mt-6 sm:mt-8">
           {items.map((item, position) => (
             <ResourceTile key={item.name} item={item} index={position + 1} />
           ))}

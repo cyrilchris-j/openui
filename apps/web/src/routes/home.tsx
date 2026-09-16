@@ -53,27 +53,27 @@ export default function HomePage(): React.JSX.Element {
       {/* ---------------------------------------------------------------- */}
       {/* Opening statement                                                 */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell pt-16 lg:pt-24">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
+      <section className="shell pt-8 sm:pt-16 lg:pt-24">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
           <div>
-            <p className="eyebrow">Open registry · MIT · v{index.data?.version ?? "0.1.0"}</p>
+            <p className="eyebrow text-[10px] sm:text-[11px]">Open registry · MIT · v{index.data?.version ?? "0.1.0"}</p>
 
-            <h1 className="optically-align mt-8 max-w-[18ch] text-balance">
+            <h1 className="optically-align mt-4 sm:mt-8 max-w-[18ch] text-balance text-3xl sm:text-5xl lg:text-step-5 leading-[1.05]">
               Interfaces should have a fingerprint.
             </h1>
 
-            <p className="prose-measure mt-8 text-step-1 leading-relaxed text-graphite">
+            <p className="prose-measure mt-4 sm:mt-8 text-[0.92rem] sm:text-step-1 leading-relaxed text-graphite">
               Most generated interfaces look the same because nothing ever told them not to. OpenUI
               is an open registry of components, text effects, motion, layouts, themes and design
               systems — each one shipping its source, a demo, and the <em>design rules</em> that
               make it work. Install the code. Keep the rules.
             </p>
 
-            <div className="mt-10 max-w-[34rem]">
+            <div className="mt-6 sm:mt-10 max-w-[34rem]">
               <CommandLine command="pnpm dlx openui add magnetic-button" />
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
               <Button asChild>
                 <Link to="/explore">Explore the registry</Link>
               </Button>
@@ -133,7 +133,7 @@ export default function HomePage(): React.JSX.Element {
       {/* ---------------------------------------------------------------- */}
       {/* The thesis, demonstrated with a real resource                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell mt-24 lg:mt-32">
+      <section className="shell mt-12 sm:mt-24 lg:mt-32">
         <SectionHeader
           eyebrow="01 — What a resource contains"
           title="A resource is code, a demonstration, and a written reason."
@@ -189,7 +189,7 @@ Motion: subtle
       {/* ---------------------------------------------------------------- */}
       {/* Featured, chosen by rule                                          */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell mt-24 lg:mt-32">
+      <section className="shell mt-12 sm:mt-24 lg:mt-32">
         <SectionHeader
           eyebrow="02 — Fingerprinted resources"
           title="Selected because they declare their fingerprint."
@@ -226,7 +226,7 @@ Motion: subtle
       {/* ---------------------------------------------------------------- */}
       {/* The anti-slop rule, as content                                    */}
       {/* ---------------------------------------------------------------- */}
-      <section className="mt-24 border-y border-line py-20 lg:mt-32">
+      <section className="mt-12 sm:mt-24 border-y border-line py-10 sm:py-20 lg:mt-32">
         <div className="shell">
           <SectionHeader
             eyebrow="03 — Why"
@@ -289,7 +289,7 @@ are a fingerprint — and it is the wrong one.`}
       {/* ---------------------------------------------------------------- */}
       {/* How it works                                                      */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell mt-24 lg:mt-32">
+      <section className="shell mt-12 sm:mt-24 lg:mt-32">
         <SectionHeader
           eyebrow="04 — The path"
           title="From a registry URL to code in your project."
@@ -329,19 +329,19 @@ pnpm dlx openui theme add swiss-editorial`}
       {/* ---------------------------------------------------------------- */}
       {/* Closing                                                           */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell mt-24 lg:mt-32">
-        <div className="grid gap-8 border-t border-line pt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,4fr)] lg:gap-16">
-          <h2 className="optically-align max-w-[20ch] text-balance">
+      <section className="shell mt-12 sm:mt-24 lg:mt-32">
+        <div className="grid gap-6 sm:gap-8 border-t border-line pt-6 sm:pt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,4fr)] lg:gap-16">
+          <h2 className="optically-align text-2xl sm:text-3xl lg:text-step-4 max-w-[20ch] text-balance leading-[1.08]">
             Add the resource you wish existed.
           </h2>
-          <div className="flex flex-col items-start gap-6">
-            <p className="prose-measure text-[0.95rem] leading-relaxed text-graphite">
+          <div className="flex flex-col items-start gap-4 sm:gap-6">
+            <p className="prose-measure text-[0.88rem] sm:text-[0.95rem] leading-relaxed text-graphite">
               Contributions go through a pull request, automated schema validation, a preview build
               and a moderation review. Published versions are immutable — a correction is a new
               version, never an edit, so anyone who installed 1.0.0 can always see what 1.0.0
               contained.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
               <Button asChild>
                 <Link to="/submit">Submit a resource</Link>
               </Button>

@@ -44,10 +44,10 @@
     --step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.85rem);
     --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
     --step-1: clamp(1.15rem, 1.1rem + 0.25vw, 1.3rem);
-    --step-2: clamp(1.4rem, 1.3rem + 0.5vw, 1.7rem);
-    --step-3: clamp(1.75rem, 1.55rem + 1vw, 2.35rem);
-    --step-4: clamp(2.2rem, 1.8rem + 2vw, 3.4rem);
-    --step-5: clamp(2.8rem, 2rem + 4vw, 5.2rem);
+    --step-2: clamp(1.25rem, 1.15rem + 0.5vw, 1.7rem);
+    --step-3: clamp(1.5rem, 1.35rem + 1vw, 2.35rem);
+    --step-4: clamp(1.85rem, 1.55rem + 1.8vw, 3.4rem);
+    --step-5: clamp(2.25rem, 1.75rem + 3vw, 5.2rem);
 
     /* --- Spacing ------------------------------------------------------- */
     --space-1: 0.25rem;
@@ -77,7 +77,7 @@
     /* --- Composition --------------------------------------------------- */
     --measure: 68ch;
     --shell-max: 1440px;
-    --gutter: clamp(1rem, 4vw, 4rem);
+    --gutter: clamp(0.875rem, 3.5vw, 4rem);
   }
 
   /* The dark theme is a genuine inversion, not a dimmed copy: the accent is
@@ -275,3 +275,14 @@
     background-color: hsl(var(--ink) / var(--wash-alpha));
   }
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+

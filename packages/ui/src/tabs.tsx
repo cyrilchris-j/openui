@@ -24,7 +24,10 @@ export const TabsList = React.forwardRef<
   return (
     <Primitive.List
       ref={ref}
-      className={cn("flex flex-wrap items-stretch gap-x-6 border-b border-line", className)}
+      className={cn(
+        "flex flex-nowrap items-stretch gap-x-4 sm:gap-x-6 border-b border-line overflow-x-auto no-scrollbar scroll-smooth w-full",
+        className,
+      )}
       {...props}
     />
   );
@@ -38,7 +41,7 @@ export const TabsTrigger = React.forwardRef<
     <Primitive.Trigger
       ref={ref}
       className={cn(
-        "relative -mb-px border-b-2 border-transparent pb-3 pt-1",
+        "relative -mb-px shrink-0 whitespace-nowrap border-b-2 border-transparent pb-3 pt-1 text-[11px] sm:text-xs",
         "eyebrow text-graphite",
         "transition-colors duration-fast ease-editorial",
         "hover:text-ink",
