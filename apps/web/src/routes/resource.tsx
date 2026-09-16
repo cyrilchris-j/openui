@@ -354,7 +354,7 @@ export default function ResourcePage(): React.JSX.Element {
                 </p>
 
                 <div className="mt-6">
-                  <CommandLine command={`pnpm dlx openui add ${entry.name}`} />
+                  <CommandLine command={`openui add ${entry.name}`} />
                 </div>
 
                 <h3 className="mt-10 font-display text-step-2 tracking-tight">

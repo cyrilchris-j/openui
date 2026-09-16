@@ -32,6 +32,7 @@
     "react-router": "^7.1.1"
   },
   "devDependencies": {
+    "@babel/standalone": "^8.0.5",
     "@mdx-js/rollup": "^3.1.0",
     "@openui/config": "workspace:*",
     "@playwright/test": "^1.49.1",

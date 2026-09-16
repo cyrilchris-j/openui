@@ -11,7 +11,7 @@ import {
 } from "@openui/types";
 import { loadRegistryItem, validateRegistry, type LoadedRegistryItem } from "@openui/registry-schema/node";
 
-import { hashFiles, sha256Integrity, toPosix } from "@openui/utils/node";
+import { hashFiles, sha256Hex, sha256Integrity, toPosix } from "@openui/utils/node";
 
 import { REGISTRY_BASE_URL, REGISTRY_VERSION, SITE_HOMEPAGE, DEFAULT_NAMESPACE } from "./paths.js";
 
@@ -94,6 +94,20 @@ export function toBuiltItem(
     contentHash: file.contentHash,
     sizeBytes: file.sizeBytes,
   }));
+
+  // Include demo.tsx in the artifact so the website's Sandpack preview can use
+  // it as the entry point (App.tsx). It is an auxiliary file — not installed by
+  // the CLI — but the built artifact needs it so the browser sandbox can render
+  // a real demo rather than a generated placeholder.
+  if (item.demoSource) {
+    files.push({
+      path: "demo.tsx",
+      type: item.item.type,
+      content: item.demoSource,
+      contentHash: sha256Hex(item.demoSource),
+      sizeBytes: Buffer.byteLength(item.demoSource, "utf8"),
+    });
+  }
 
   return {
     ...item.item,

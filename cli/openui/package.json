@@ -1,0 +1,24 @@
+{
+  "name": "openui",
+  "version": "0.1.0",
+  "description": "OpenUI CLI — install open-code UI components from the registry",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "openui": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@openui/registry-client": "workspace:*",
+    "@openui/registry-schema": "workspace:*",
+    "@openui/types": "workspace:*",
+    "@openui/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -61,9 +61,12 @@ export function buildSandboxFiles(item: BuiltRegistryItem): SandboxFiles {
 /**
  * Rewrites the alias the registry is authored against into sandbox-relative
  * paths. `@/lib/cn` → `./lib/cn`, and `@/components/...` → a local sibling.
+ * Also strips `"use client"` — a Next.js directive that is meaningless (and
+ * confusing) inside the Sandpack preview, which runs plain React.
  */
 function rewriteImports(source: string): string {
   return source
+    .replace(/^["']use client["'];\n?/m, "")
     .replace(/(["'])@\/lib\//g, "$1./lib/")
     .replace(/(["'])@\/components\//g, "$1./")
     .replace(/(["'])@\/hooks\//g, "$1./");
