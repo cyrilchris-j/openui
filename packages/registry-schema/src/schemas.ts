@@ -149,12 +149,13 @@ export const registryItemMetaSchema = z
  * a local contribution.
  */
 function validateItemFiles(
-  item: { files: Array<{ path: string }>; type?: string },
+  item: { files: Array<{ path?: string; [key: string]: unknown }>; type?: string },
   context: z.RefinementCtx,
 ): void {
   const seenPaths = new Set<string>();
   item.files.forEach((file, index) => {
-    const reason = explainUnsafePath(file.path, { allowedExtensions: ALLOWED_FILE_EXTENSIONS });
+    const filePath = file.path ?? "";
+    const reason = explainUnsafePath(filePath, { allowedExtensions: ALLOWED_FILE_EXTENSIONS });
     if (reason) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
@@ -162,19 +163,19 @@ function validateItemFiles(
         message: reason,
       });
     }
-    if (seenPaths.has(file.path)) {
+    if (filePath && seenPaths.has(filePath)) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["files", index, "path"],
-        message: `Duplicate file path "${file.path}".`,
+        message: `Duplicate file path "${filePath}".`,
       });
     }
-    seenPaths.add(file.path);
+    if (filePath) seenPaths.add(filePath);
   });
 
   // AI resources are prose (rules, skills, agents, prompts) and ship markdown
   // only. Everything else must include runnable source.
-  if (item.type !== "registry:ai" && !item.files.some((file) => /\.(tsx?|jsx?|css)$/.test(file.path))) {
+  if (item.type !== "registry:ai" && !item.files.some((file) => /\.(tsx?|jsx?|css)$/.test(file.path ?? ""))) {
     context.addIssue({
       code: z.ZodIssueCode.custom,
       path: ["files"],
