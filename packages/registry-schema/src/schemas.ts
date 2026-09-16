@@ -149,12 +149,13 @@ export const registryItemMetaSchema = z
  * a local contribution.
  */
 function validateItemFiles(
-  item: { files: Array<{ path?: string; [key: string]: unknown }>; type?: string },
+  item: any,
   context: z.RefinementCtx,
 ): void {
+  const files: Array<{ path?: string }> = Array.isArray(item?.files) ? item.files : [];
   const seenPaths = new Set<string>();
-  item.files.forEach((file, index) => {
-    const filePath = file.path ?? "";
+  files.forEach((file, index) => {
+    const filePath = file?.path ?? "";
     const reason = explainUnsafePath(filePath, { allowedExtensions: ALLOWED_FILE_EXTENSIONS });
     if (reason) {
       context.addIssue({
@@ -175,7 +176,7 @@ function validateItemFiles(
 
   // AI resources are prose (rules, skills, agents, prompts) and ship markdown
   // only. Everything else must include runnable source.
-  if (item.type !== "registry:ai" && !item.files.some((file) => /\.(tsx?|jsx?|css)$/.test(file.path ?? ""))) {
+  if (item?.type !== "registry:ai" && !files.some((file) => /\.(tsx?|jsx?|css)$/.test(file?.path ?? ""))) {
     context.addIssue({
       code: z.ZodIssueCode.custom,
       path: ["files"],
