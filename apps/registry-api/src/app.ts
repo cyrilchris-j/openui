@@ -14,7 +14,7 @@ import {
   requestId,
   requestLogger,
   type AppBindings,
-} from "./middleware.js";
+} from "./middlewares.js";
 import { createRegistryStore, type RegistryStore } from "./registry/store.js";
 import { accountRoutes } from "./routes/account.js";
 import { collectionRoutes } from "./routes/collections.js";

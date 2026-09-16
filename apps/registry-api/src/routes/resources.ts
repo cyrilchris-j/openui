@@ -25,7 +25,7 @@ import {
   resolveResourceId,
 } from "../db/writes.js";
 import { optionalResourceType, pagination, slugParam, sortParam } from "../params.js";
-import { requirePrincipal, type AppBindings, type AppContext } from "../middleware.js";
+import { requirePrincipal, type AppBindings, type AppContext } from "../middlewares.js";
 
 /**
  * Public read surface.

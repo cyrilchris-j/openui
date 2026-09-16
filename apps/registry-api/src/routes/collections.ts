@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 
-import type { AppBindings } from "../middleware.js";
+import type { AppBindings } from "../middlewares.js";
 import { getCollection, listCollections } from "../db/queries.js";
 import { pagination, uuidParam } from "../params.js";
 

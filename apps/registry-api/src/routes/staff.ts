@@ -14,8 +14,8 @@ import {
   softDeleteResource,
   updateReportStatus,
 } from "../db/writes.js";
-import type { AppBindings } from "../middleware.js";
-import { parseJson, requirePrincipal } from "../middleware.js";
+import type { AppBindings } from "../middlewares.js";
+import { parseJson, requirePrincipal } from "../middlewares.js";
 import { pagination, slugParam, uuidParam } from "../params.js";
 
 /**

@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 
 import { publicConfig } from "../env.js";
-import type { AppBindings, AppContext } from "../middleware.js";
+import type { AppBindings, AppContext } from "../middlewares.js";
 import type { RegistryStore } from "../registry/store.js";
 
 /**

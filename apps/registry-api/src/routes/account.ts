@@ -5,8 +5,8 @@ import { z } from "zod";
 import { notFound } from "@openui/utils";
 
 import type { Database } from "../db/client.js";
-import type { AppBindings } from "../middleware.js";
-import { parseJson, requirePrincipal } from "../middleware.js";
+import type { AppBindings } from "../middlewares.js";
+import { parseJson, requirePrincipal } from "../middlewares.js";
 import {
   createCollection,
   createReport,
