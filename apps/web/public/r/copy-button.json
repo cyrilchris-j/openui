@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "copy-button",
+  "type": "registry:component",
+  "title": "Copy Button",
+  "description": "Copy-to-clipboard with real failure handling: a visible state change, a polite screen-reader announcement, a legacy fallback and no false success.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "copy-button.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\nimport { Check, Copy, TriangleAlert } from \"lucide-react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Copy Button\n *\n * Clipboard code is usually written as `navigator.clipboard.writeText(value)`\n * with no `catch`, which silently does nothing in an insecure context or when\n * the permission is denied. This component treats failure as a first-class\n * state: the icon changes, the live region says what happened, and the button\n * never claims success it did not have.\n */\n\nexport type CopyStatus = \"idle\" | \"copied\" | \"failed\";\n\nexport interface CopyButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onCopy\"> {\n  value: string;\n  label?: string;\n  copiedLabel?: string;\n  failedLabel?: string;\n  /** Reset delay in ms. */\n  resetAfter?: number;\n  onCopied?: (value: string) => void;\n}\n\nasync function writeToClipboard(value: string): Promise<boolean> {\n  try {\n    if (navigator.clipboard?.writeText) {\n      await navigator.clipboard.writeText(value);\n      return true;\n    }\n  } catch {\n    /* fall through to the legacy path */\n  }\n\n  // Legacy path for insecure contexts (http://localhost is fine, plain http is not).\n  try {\n    const area = document.createElement(\"textarea\");\n    area.value = value;\n    area.setAttribute(\"readonly\", \"\");\n    area.style.position = \"fixed\";\n    area.style.opacity = \"0\";\n    document.body.appendChild(area);\n    area.select();\n    const ok = document.execCommand(\"copy\");\n    document.body.removeChild(area);\n    return ok;\n  } catch {\n    return false;\n  }\n}\n\nexport function CopyButton({\n  value,\n  label = \"Copy\",\n  copiedLabel = \"Copied\",\n  failedLabel = \"Press ⌘C\",\n  resetAfter = 1800,\n  onCopied,\n  className,\n  ...props\n}: CopyButtonProps) {\n  const [status, setStatus] = useState<CopyStatus>(\"idle\");\n  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);\n\n  useEffect(\n    () => () => {\n      if (timer.current) clearTimeout(timer.current);\n    },\n    [],\n  );\n\n  const copy = useCallback(async () => {\n    const ok = await writeToClipboard(value);\n    setStatus(ok ? \"copied\" : \"failed\");\n    if (ok) onCopied?.(value);\n    if (timer.current) clearTimeout(timer.current);\n    timer.current = setTimeout(() => setStatus(\"idle\"), resetAfter);\n  }, [onCopied, resetAfter, value]);\n\n  const Icon = status === \"copied\" ? Check : status === \"failed\" ? TriangleAlert : Copy;\n  const text = status === \"copied\" ? copiedLabel : status === \"failed\" ? failedLabel : label;\n\n  return (\n    <button\n      type=\"button\"\n      onClick={copy}\n      data-status={status}\n      className={cn(\n        \"inline-flex items-center gap-2 border border-line px-3 py-1.5\",\n        \"font-mono text-[11px] uppercase tracking-[0.18em] text-graphite\",\n        \"transition-colors hover:border-ink hover:text-ink\",\n        \"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide\",\n        status === \"copied\" && \"border-moss text-moss\",\n        status === \"failed\" && \"border-oxide text-oxide\",\n        className,\n      )}\n      {...props}\n    >\n      <Icon aria-hidden=\"true\" className=\"size-3.5\" />\n      {text}\n      <span role=\"status\" aria-live=\"polite\" className=\"sr-only\">\n        {status === \"copied\" ? \"Copied to clipboard\" : status === \"failed\" ? \"Copy failed\" : \"\"}\n      </span>\n    </button>\n  );\n}\n\nexport default CopyButton;\n",
+      "contentHash": "0d7143c159faa595d722d2bd4546ac452d15e4afc9033692cfe7910fddf51e8b",
+      "sizeBytes": 3408
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { CopyButton } from \"./copy-button\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4 bg-paper p-10 text-ink\">\n      <CopyButton value=\"openui add magnetic-button\" />\n      <CopyButton value=\"openui add grain-background\" label=\"Install background\" />\n    </div>\n  );\n}\n",
+      "contentHash": "1ec89e013df1133478850724397a0f70b75e93ee1da2285110d27a73a4fa986f",
+      "sizeBytes": 326
+    }
+  ],
+  "tags": [
+    "clipboard",
+    "button",
+    "announcement"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "screen-reader-announced",
+      "graceful-failure"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/copy-button.json",
+  "designRules": "# Copy Button\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Motion\n\nFast: 140ms\nNormal: 200ms\nSlow: 320ms\n\n## Rules\n\n- State changes are textual as well as visual; never colour-only.\n- Failure is a first-class state with its own label.\n- Keep the control one line high so it can sit inside a code header.\n\n## Avoid\n\n- Toasts for a copy result; announce in place instead.\n- Claiming success when the clipboard write failed.\n- Icon-only buttons without an accessible name.\n"
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-oxide",
+  "type": "registry:theme",
+  "title": "Editorial Oxide",
+  "description": "A warm editorial theme: book paper, iron-gall ink, oxide accent, a display serif for statements and a mono face for metadata.",
+  "category": "themes",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "editorial-oxide.css",
+      "type": "registry:theme",
+      "target": "styles",
+      "content": "/* Editorial Oxide — generated from design DNA (editorial · asymmetric · sharp)\n *\n * Warm paper, iron-gall ink, a single oxide accent at 4.5:1 against the paper,\n * and a display serif that carries statements. Sharp corners throughout: an\n * editorial surface uses rules, not rounded cards.\n */\n\n:root {\n  --color-paper: #f3f0e9;\n  --color-ink: #100f0d;\n  --color-graphite: #565452;\n  --color-line: rgba(16, 15, 13, 0.16);\n  --color-oxide: #b33f26;\n  --color-moss: #3c5a44;\n\n  --font-display: \"Instrument Serif\", \"Iowan Old Style\", Georgia, serif;\n  --font-sans: \"Inter\", system-ui, sans-serif;\n  --font-mono: \"JetBrains Mono\", ui-monospace, monospace;\n\n  --radius-sm: 0px;\n  --radius-md: 2px;\n  --radius-lg: 4px;\n\n  --motion-fast: 180ms;\n  --motion-normal: 320ms;\n  --motion-slow: 600ms;\n  --motion-ease: cubic-bezier(0.2, 0, 0, 1);\n\n  --editorial-measure: 68ch;\n  --editorial-display-leading: 0.95;\n}\n\n.dark {\n  --color-paper: #0c0c0b;\n  --color-ink: #f2efe7;\n  --color-graphite: #a5a19a;\n  --color-line: rgba(242, 239, 231, 0.18);\n  --color-oxide: #e4614a;\n  --color-moss: #7fa089;\n}\n\n.editorial-prose {\n  max-width: var(--editorial-measure);\n  font-family: var(--font-sans);\n  line-height: 1.65;\n}\n\n.editorial-display {\n  font-family: var(--font-display);\n  line-height: var(--editorial-display-leading);\n  letter-spacing: -0.02em;\n  text-wrap: balance;\n}\n\n.editorial-meta {\n  font-family: var(--font-mono);\n  font-size: 11px;\n  letter-spacing: 0.24em;\n  text-transform: uppercase;\n  color: var(--color-graphite);\n}\n\n@media (prefers-reduced-motion: reduce) {\n  :root {\n    --motion-fast: 0ms;\n    --motion-normal: 0ms;\n    --motion-slow: 0ms;\n  }\n}\n",
+      "contentHash": "e298ea7062d81ea56b8cfd7b06a18c8c4e758f78d264f1a29a8fe09f5c7520c1",
+      "sizeBytes": 1658
+    }
+  ],
+  "tags": [
+    "theme",
+    "editorial",
+    "serif"
+  ],
+  "designSystem": "swiss-editorial",
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "dark-mode",
+      "wcag-aa",
+      "serif-display"
+    ]
+  },
+  "url": "https://openui.dev/r/editorial-oxide.json"
+}

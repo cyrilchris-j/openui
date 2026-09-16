@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "blueprint-grid",
+  "type": "registry:background",
+  "title": "Blueprint Grid",
+  "description": "A modular grid drawn with repeating gradients, exposing the baseline and column rhythm of the page as a visible structure rather than an invisible assumption.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "blueprint-grid.tsx",
+      "type": "registry:background",
+      "content": "import { cn } from \"@/lib/cn\";\n\n/**\n * Blueprint Grid\n *\n * Two superimposed repeating gradients: a fine cell and a coarse module. Drawn\n * with `background-image` so it costs nothing to scroll and is easy to align\n * with a layout grid — set `cell` to your baseline and `module` to your column\n * width and the background becomes documentation of the layout system.\n *\n * The grid is `aria-hidden` decoration and never sits above content: it is a\n * background layer, not a scrim.\n */\n\nexport interface BlueprintGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Fine cell size, e.g. `\"24px\"`. */\n  cell?: string;\n  /** Module size, e.g. `\"96px\"`. */\n  module?: string;\n  cellColor?: string;\n  moduleColor?: string;\n  children?: React.ReactNode;\n}\n\nexport function BlueprintGrid({\n  cell = \"24px\",\n  module = \"96px\",\n  cellColor = \"color-mix(in oklab, var(--color-line, #100F0D) 40%, transparent)\",\n  moduleColor = \"color-mix(in oklab, var(--color-line, #100F0D) 75%, transparent)\",\n  className,\n  children,\n  ...props\n}: BlueprintGridProps) {\n  return (\n    <div\n      className={cn(\"relative isolate bg-paper text-ink\", className)}\n      style={\n        {\n          backgroundImage: `\n            linear-gradient(to right, ${cellColor} 1px, transparent 1px),\n            linear-gradient(to bottom, ${cellColor} 1px, transparent 1px),\n            linear-gradient(to right, ${moduleColor} 1px, transparent 1px),\n            linear-gradient(to bottom, ${moduleColor} 1px, transparent 1px)\n          `,\n          backgroundSize: `${cell} ${cell}, ${cell} ${cell}, ${module} ${module}, ${module} ${module}`,\n        } as React.CSSProperties\n      }\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport default BlueprintGrid;\n",
+      "contentHash": "9fa8f81f215742c78662b48d49dcf3d28a61b1393e1a9f0c28fb54c7fa824d89",
+      "sizeBytes": 1750
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "import { BlueprintGrid } from \"./blueprint-grid\";\n\nexport default function Demo() {\n  return (\n    <BlueprintGrid className=\"p-10\">\n      <div className=\"max-w-xl border border-ink bg-paper/85 p-6 backdrop-blur-none\">\n        <p className=\"font-mono text-[11px] uppercase tracking-[0.3em] text-graphite\">cell 24 · module 96</p>\n        <p className=\"mt-3 font-[family-name:var(--font-display)] text-3xl leading-tight\">\n          Show the grid, then break it on purpose.\n        </p>\n      </div>\n    </BlueprintGrid>\n  );\n}\n",
+      "contentHash": "c93cb1c462de43ee69d608ea6d421739c9cdfd3b251775ef79a394ccb14a3b96",
+      "sizeBytes": 525
+    }
+  ],
+  "tags": [
+    "surface",
+    "grid",
+    "technical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "starter",
+    "features": [
+      "pure-css",
+      "no-requests",
+      "theme-aware"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/blueprint-grid.json",
+  "designRules": "# Blueprint Grid\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Duotone\n\n## Rules\n\n- Grid lines sit below 10% opacity; they are a substrate, not a pattern.\n- Match `cell` to the baseline and `module` to the column width.\n- Content sits on the grid; break it deliberately once per page.\n- Never place a grid behind another grid.\n\n## Avoid\n\n- Grids that do not align with the layout they support.\n- Coloured grids used as decoration.\n- Gradient fades over the grid to hide the edges.\n"
+}

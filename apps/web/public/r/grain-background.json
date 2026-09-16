@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "grain-background",
+  "type": "registry:background",
+  "title": "Grain Background",
+  "description": "A film-grain surface generated from a single inline SVG turbulence filter, tuned by two custom properties, with a print-safe density and no image request.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "grain-background.tsx",
+      "type": "registry:background",
+      "content": "import { cn } from \"@/lib/cn\";\n\n/**\n * Grain Background\n *\n * Grain fixes the single biggest problem with flat digital surfaces: they have\n * no tooth, so large fields of colour read as unfinished. This generates it from\n * an inline `feTurbulence` filter — no image request, no base64 payload, and it\n * scales to any viewport without tiling seams.\n *\n * Two custom properties drive it: `--grain-opacity` (default 0.06) and\n * `--grain-scale` (default 1). Above ~0.12 the surface stops reading as paper\n * and starts reading as noise, which is why the default is deliberately low.\n */\n\nexport interface GrainBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Grain strength, 0–0.25. */\n  opacity?: number;\n  /** Base frequency; higher is finer. */\n  scale?: number;\n  /** Blend mode for the grain layer. */\n  blend?: \"overlay\" | \"soft-light\" | \"multiply\" | \"screen\";\n  children?: React.ReactNode;\n}\n\nexport function GrainBackground({\n  opacity = 0.06,\n  scale = 1,\n  blend = \"overlay\",\n  className,\n  children,\n  ...props\n}: GrainBackgroundProps) {\n  const frequency = 0.9 * scale;\n\n  return (\n    <div\n      className={cn(\"relative isolate overflow-hidden bg-paper text-ink\", className)}\n      style={\n        {\n          \"--grain-opacity\": opacity,\n          \"--grain-blend\": blend,\n        } as React.CSSProperties\n      }\n      {...props}\n    >\n      <svg\n        aria-hidden=\"true\"\n        focusable=\"false\"\n        className=\"pointer-events-none absolute inset-0 -z-10 size-full opacity-[var(--grain-opacity)] mix-blend-[var(--grain-blend)]\"\n      >\n        <filter id=\"openui-grain\" x=\"0\" y=\"0\" width=\"100%\" height=\"100%\">\n          <feTurbulence\n            type=\"fractalNoise\"\n            baseFrequency={frequency}\n            numOctaves={3}\n            stitchTiles=\"stitch\"\n            result=\"noise\"\n          />\n          <feColorMatrix type=\"saturate\" values=\"0\" in=\"noise\" result=\"desaturated\" />\n          <feComponentTransfer in=\"desaturated\">\n            <feFuncA type=\"linear\" slope=\"0.85\" intercept=\"0\" />\n          </feComponentTransfer>\n        </filter>\n        <rect width=\"100%\" height=\"100%\" filter=\"url(#openui-grain)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n\nexport default GrainBackground;\n",
+      "contentHash": "67c29dec4f90465e7a0e06b9ae052b2b42747e8579219660e93282e26fd6bcf0",
+      "sizeBytes": 2252
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "import { GrainBackground } from \"./grain-background\";\n\nexport default function Demo() {\n  return (\n    <div className=\"grid gap-4 sm:grid-cols-2\">\n      <GrainBackground className=\"min-h-56 p-8\">\n        <p className=\"font-mono text-[11px] uppercase tracking-[0.3em] text-graphite\">opacity 0.06</p>\n        <p className=\"mt-3 font-[family-name:var(--font-display)] text-3xl leading-tight\">\n          Paper, not pixels.\n        </p>\n      </GrainBackground>\n      <GrainBackground opacity={0.14} scale={1.6} blend=\"multiply\" className=\"min-h-56 bg-ink p-8 text-paper\">\n        <p className=\"font-mono text-[11px] uppercase tracking-[0.3em] text-paper/60\">opacity 0.14 · dense</p>\n        <p className=\"mt-3 font-[family-name:var(--font-display)] text-3xl leading-tight text-paper\">\n          Coarse tooth for dark surfaces.\n        </p>\n      </GrainBackground>\n    </div>\n  );\n}\n",
+      "contentHash": "d965a7cd9f3fe8e9af91c634b9c493f14dcb9739107a1bf6746b123510aa554c",
+      "sizeBytes": 880
+    }
+  ],
+  "tags": [
+    "surface",
+    "grain",
+    "noise"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "zero-requests",
+      "print-safe",
+      "colour-agnostic"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/grain-background.json",
+  "designRules": "# Grain Background\n\nGenre: Industrial\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Grain opacity stays under 0.12 wherever text sits above it.\n- One grain layer per surface; nesting two doubles the density unexpectedly.\n- Use `multiply` on dark surfaces and `overlay` on light ones.\n- Grain must never be the only separator between two regions.\n\n## Avoid\n\n- Animated grain or `.webp` noise textures that tile visibly.\n- Grain behind body copy at small sizes; it reduces perceived contrast.\n"
+}

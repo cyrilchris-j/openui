@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "asymmetric-split",
+  "type": "registry:layout",
+  "title": "Asymmetric Split",
+  "description": "A two-column shell with a deliberate ratio (7/5 by default), a gutter that becomes a visible rule, and a stack order that recomposes — rather than hides — content on small screens.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "asymmetric-split.tsx",
+      "type": "registry:layout",
+      "content": "import { cn } from \"@/lib/cn\";\n\n/**\n * Asymmetric Split\n *\n * The default two-column layout in most libraries is 50/50 — the ratio that\n * carries the least information. This one defaults to 7/5 so the primary column\n * is unmistakably primary, and the gutter is a visible hairline so the split is\n * legible as structure.\n *\n * On small screens the columns **recompose**: the aside moves after the main\n * content in the reading order, rather than being hidden. Hiding content on\n * mobile is how a layout becomes a redesign.\n */\n\nexport interface AsymmetricSplitProps extends React.HTMLAttributes<HTMLDivElement> {\n  main: React.ReactNode;\n  aside: React.ReactNode;\n  /** Secondary column ratio, out of 12. */\n  ratio?: 4 | 5 | 6;\n  /** Put the aside on the left. */\n  asideFirst?: boolean;\n  gap?: \"sm\" | \"md\" | \"lg\";\n  /** Landmark label for the aside. */\n  asideLabel?: string;\n}\n\nconst RATIO_COLUMNS: Record<NonNullable<AsymmetricSplitProps[\"ratio\"]>, string> = {\n  4: \"lg:grid-cols-[2fr_1fr]\",\n  5: \"lg:grid-cols-[7fr_5fr]\",\n  6: \"lg:grid-cols-[3fr_2fr]\",\n};\n\nconst GAPS: Record<NonNullable<AsymmetricSplitProps[\"gap\"]>, string> = {\n  sm: \"gap-8 lg:gap-10\",\n  md: \"gap-10 lg:gap-16\",\n  lg: \"gap-14 lg:gap-24\",\n};\n\nexport function AsymmetricSplit({\n  main,\n  aside,\n  ratio = 5,\n  asideFirst = false,\n  gap = \"md\",\n  asideLabel = \"Context\",\n  className,\n  ...props\n}: AsymmetricSplitProps) {\n  return (\n    <div\n      className={cn(\n        \"grid grid-cols-1 items-start\",\n        GAPS[gap],\n        RATIO_COLUMNS[ratio],\n        asideFirst ? \"lg:[&>aside]:order-first\" : \"lg:[&>aside]:order-last\",\n        className,\n      )}\n      {...props}\n    >\n      <main className=\"min-w-0 lg:border-r lg:border-line lg:pr-10\">{main}</main>\n      <aside aria-label={asideLabel} className=\"min-w-0\">\n        {aside}\n      </aside>\n    </div>\n  );\n}\n\nexport default AsymmetricSplit;\n",
+      "contentHash": "bf42b6d6163f324447f1ccef4616b334511c67fa5cdc57f4a794a247e87ccf9c",
+      "sizeBytes": 1880
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "import { AsymmetricSplit } from \"./asymmetric-split\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper p-10 text-ink\">\n      <AsymmetricSplit\n        ratio={5}\n        gap=\"lg\"\n        main={\n          <>\n            <h2 className=\"font-[family-name:var(--font-display)] text-4xl leading-tight\">\n              The 7/5 split is an argument about what matters.\n            </h2>\n            <p className=\"mt-4 max-w-prose text-[15px] leading-relaxed text-graphite\">\n              A fifty-fifty two-column layout says both halves matter equally, which is almost never\n              true. Choosing a ratio is a design decision; the default should not make it for you.\n            </p>\n          </>\n        }\n        aside={\n          <dl className=\"space-y-4 border-t border-line pt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-graphite\">\n            <div>\n              <dt>Ratio</dt>\n              <dd className=\"text-ink\">7 / 5</dd>\n            </div>\n            <div>\n              <dt>Breakpoint</dt>\n              <dd className=\"text-ink\">1024px</dd>\n            </div>\n            <div>\n              <dt>Mobile</dt>\n              <dd className=\"text-ink\">Recomposed, not hidden</dd>\n            </div>\n          </dl>\n        }\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "1638adeb75470ef9bcd634400f4a648ecb71a9ad288730b7699a75dfda9a0958",
+      "sizeBytes": 1297
+    }
+  ],
+  "tags": [
+    "layout",
+    "asymmetric",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "responsive-recomposition",
+      "semantic-landmarks"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/asymmetric-split.json",
+  "designRules": "# Asymmetric Split\n\nGenre: Swiss\nMacrostructure: Asymmetric\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Choose a ratio deliberately: 7/5 default, never 6/6.\n- Make the split legible with a hairline between the columns.\n- Recompose below 1024px; never hide the secondary column.\n- The reading order in the DOM is the reading order on mobile.\n\n## Avoid\n\n- Equal columns with no visual hierarchy.\n- Sidebars that become accordions on mobile.\n- Gaps wider than the content measure.\n"
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-heading",
+  "type": "registry:text",
+  "title": "Editorial Heading",
+  "description": "A display heading that splits into a lead phrase and an emphasised phrase, with an optional italic contrast, hairline rule and index label. The type does the composing, not a gradient.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-heading.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\n/**\n * Editorial Heading\n *\n * Composition from typography alone: a display serif at a large `clamp()` size,\n * one emphasised phrase set in italic, an optional mono index label on the\n * baseline and a hairline rule. No gradient, no blur, no glow — the hierarchy\n * is created by scale, weight, case and one change of voice.\n *\n * The emphasised phrase is rendered in the same heading element, so the\n * accessible name reads as one sentence rather than two fragments.\n */\n\nexport interface EditorialHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {\n  /** The opening words, set in roman. */\n  lead: string;\n  /** The closing words, set in italic to create the change of voice. */\n  emphasis?: string;\n  /** Optional mono label, e.g. \"01 — Manifesto\". */\n  index?: string;\n  as?: \"h1\" | \"h2\" | \"h3\";\n  size?: \"sm\" | \"md\" | \"lg\";\n  rule?: boolean;\n}\n\nconst SIZES: Record<NonNullable<EditorialHeadingProps[\"size\"]>, string> = {\n  sm: \"text-3xl sm:text-4xl\",\n  md: \"text-4xl sm:text-5xl lg:text-6xl\",\n  lg: \"text-5xl sm:text-6xl lg:text-8xl\",\n};\n\nexport function EditorialHeading({\n  lead,\n  emphasis,\n  index,\n  as: Tag = \"h2\",\n  size = \"md\",\n  rule = true,\n  className,\n  ...props\n}: EditorialHeadingProps) {\n  return (\n    <div className={cn(\"w-full\", className)}>\n      {index ? (\n        <p className=\"mb-4 font-mono text-[11px] uppercase tracking-[0.32em] text-graphite\">{index}</p>\n      ) : null}\n      <Tag\n        className={cn(\n          \"font-[family-name:var(--font-display)] font-normal text-balance text-ink\",\n          \"leading-[0.95] tracking-[-0.02em]\",\n          SIZES[size],\n        )}\n        {...props}\n      >\n        <span className=\"block\">{lead}</span>\n        {emphasis ? <span className=\"block italic text-oxide\">{emphasis}</span> : null}\n      </Tag>\n      {rule ? <span aria-hidden=\"true\" className=\"mt-6 block h-px w-full bg-line\" /> : null}\n    </div>\n  );\n}\n\nexport default EditorialHeading;\n",
+      "contentHash": "4b4ca536199c6c1f9d2f516d5bed718ca2a14747859878b959262ee7e2c3a0ea",
+      "sizeBytes": 1973
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { EditorialHeading } from \"./editorial-heading\";\n\nexport default function Demo() {\n  return (\n    <div className=\"space-y-14 bg-paper p-10 text-ink\">\n      <EditorialHeading\n        as=\"h1\"\n        size=\"lg\"\n        index=\"01 — Thesis\"\n        lead=\"Interfaces should have\"\n        emphasis=\"a fingerprint.\"\n      />\n      <EditorialHeading\n        size=\"md\"\n        index=\"02 — Registry\"\n        lead=\"Open code, not open endpoints.\"\n        emphasis=\"Install the source.\"\n      />\n      <EditorialHeading size=\"sm\" lead=\"A heading without emphasis\" rule={false} />\n    </div>\n  );\n}\n",
+      "contentHash": "bee188937af1c0acb994dad75614b0d0017dd6d21b65e6d0824d2398234d3158",
+      "sizeBytes": 596
+    }
+  ],
+  "tags": [
+    "typography",
+    "display",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "responsive-type",
+      "reduced-motion-safe"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/editorial-heading.json",
+  "designRules": "# Editorial Heading\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Typography\n\nHeading: Instrument Serif\nBody: Inter\nMono: JetBrains Mono\n\n## Motion\n\nFast: 120ms\nNormal: 320ms\nSlow: 600ms\n\n## Rules\n\n- Hierarchy comes from scale, case and one change of voice — never from decoration.\n- Keep the heading to two lines of thought: a lead and an emphasis.\n- Set the index label in monospace with wide tracking.\n- Keep line-height below 1.0 for display sizes.\n\n## Avoid\n\n- Gradient text fills.\n- Letter-spaced all-caps display headings.\n- Centring display type over a symmetric stack.\n"
+}

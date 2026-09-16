@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-reveal",
+  "type": "registry:motion",
+  "title": "Scroll Reveal",
+  "description": "IntersectionObserver reveal with staggered children, one observer per instance, unobserve-on-reveal, and a reduced-motion path that shows content immediately.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-reveal.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Scroll Reveal\n *\n * Reveals once, then stops observing. Reveal animations that re-trigger on\n * every scroll direction change are the reason people disable animations.\n *\n * - One `IntersectionObserver` per instance, disconnected after the first hit.\n * - Children stagger through a CSS variable, so no JavaScript animates.\n * - Content is visible by default and animation is additive: if the observer\n *   never fires (no JS, ancient browser), nothing stays hidden.\n */\n\nexport interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Stagger between direct children in ms. */\n  stagger?: number;\n  duration?: number;\n  /** Translate distance in px. */\n  distance?: number;\n  /** Fraction of the element that must be visible. */\n  threshold?: number;\n  /** Reveal as `individual` children or as one `block`. */\n  mode?: \"block\" | \"children\";\n}\n\nexport function ScrollReveal({\n  stagger = 80,\n  duration = 560,\n  distance = 18,\n  threshold = 0.2,\n  mode = \"block\",\n  className,\n  children,\n  ...props\n}: ScrollRevealProps) {\n  const ref = useRef<HTMLDivElement>(null);\n  const [revealed, setRevealed] = useState(false);\n\n  useEffect(() => {\n    const element = ref.current;\n    if (!element || typeof window === \"undefined\") return;\n\n    const reduced = window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n    if (reduced || !(\"IntersectionObserver\" in window)) {\n      setRevealed(true);\n      return;\n    }\n\n    const observer = new IntersectionObserver(\n      (entries) => {\n        for (const entry of entries) {\n          if (!entry.isIntersecting) continue;\n          setRevealed(true);\n          observer.disconnect();\n        }\n      },\n      { threshold, rootMargin: \"0px 0px -8% 0px\" },\n    );\n    observer.observe(element);\n    return () => observer.disconnect();\n  }, [threshold]);\n\n  return (\n    <div\n      ref={ref}\n      data-revealed={revealed ? \"true\" : \"false\"}\n      className={cn(mode === \"children\" && \"openui-reveal-children\", className)}\n      style={\n        {\n          \"--reveal-duration\": `${duration}ms`,\n          \"--reveal-stagger\": `${stagger}ms`,\n          \"--reveal-distance\": `${distance}px`,\n        } as React.CSSProperties\n      }\n      {...props}\n    >\n      <style>{`[data-reveal-target]{opacity:0;transform:translate3d(0,var(--reveal-distance,18px),0);transition:opacity var(--reveal-duration,560ms) cubic-bezier(0.2,0,0,1),transform var(--reveal-duration,560ms) cubic-bezier(0.2,0,0,1)}[data-revealed=\"true\"][data-reveal-target],[data-revealed=\"true\"]>[data-reveal-target],[data-revealed=\"true\"] [data-reveal-item]{opacity:1;transform:none}.openui-reveal-children>[data-reveal-item]{opacity:0;transform:translate3d(0,var(--reveal-distance,18px),0);transition:opacity var(--reveal-duration,560ms) cubic-bezier(0.2,0,0,1),transform var(--reveal-duration,560ms) cubic-bezier(0.2,0,0,1);transition-delay:calc(var(--reveal-index,0) * var(--reveal-stagger,80ms))}@media (prefers-reduced-motion: reduce){[data-reveal-target],.openui-reveal-children>[data-reveal-item]{opacity:1;transform:none;transition:none}}`}</style>\n      {children}\n    </div>\n  );\n}\n\n/** Marks a child for staggered reveal. */\nexport function ScrollRevealItem({\n  index = 0,\n  className,\n  children,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement> & { index?: number }) {\n  return (\n    <div\n      data-reveal-item=\"\"\n      style={{ \"--reveal-index\": index } as React.CSSProperties}\n      className={className}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport default ScrollReveal;\n",
+      "contentHash": "3236cffbaa24f11f5d7d450e652702f993dad2fe3ae93184520c772eee7277b8",
+      "sizeBytes": 3655
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollReveal, ScrollRevealItem } from \"./scroll-reveal\";\n\nconst ITEMS = [\"01 / Registry\", \"02 / Design DNA\", \"03 / Playground\", \"04 / CLI\"];\n\nexport default function Demo() {\n  return (\n    <div className=\"space-y-24 bg-paper p-10 text-ink\">\n      <ScrollReveal mode=\"children\" stagger={90} className=\"grid gap-6 sm:grid-cols-2\">\n        {ITEMS.map((item, index) => (\n          <ScrollRevealItem key={item} index={index} className=\"border border-line p-6 font-mono text-xs uppercase tracking-[0.2em]\">\n            {item}\n          </ScrollRevealItem>\n        ))}\n      </ScrollReveal>\n      <ScrollReveal className=\"h-24 border border-line p-6\">\n        <p className=\"font-[family-name:var(--font-display)] text-2xl\">Block reveal</p>\n      </ScrollReveal>\n    </div>\n  );\n}\n",
+      "contentHash": "10f7520f46588ce004582d8fb660af63522f03843d73c828043d078e1f01aa68",
+      "sizeBytes": 783
+    }
+  ],
+  "tags": [
+    "scroll",
+    "reveal",
+    "intersection-observer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "reduced-motion-safe",
+      "no-layout-shift",
+      "one-shot"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-reveal.json",
+  "designRules": "# Scroll Reveal\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Motion\n\nFast: 180ms\nNormal: 320ms\nSlow: 560ms\n\n## Rules\n\n- Reveal once. Never re-trigger on scroll direction change.\n- Travel stays under 24px; a reveal is a settle, not an entrance.\n- Content is visible without JavaScript; animation is additive.\n- Stagger direct children only, by 60–120ms.\n\n## Avoid\n\n- Revealing every element on the page.\n- Fading from 0 opacity with a delay long enough to look broken.\n- Slide-ins from the side on large blocks.\n"
+}

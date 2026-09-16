@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cn",
+  "type": "registry:utility",
+  "title": "Class Name Merge",
+  "description": "The className helper every OpenUI resource uses: conditional classes with Tailwind conflict resolution, so consumers can always override styling.",
+  "category": "components",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "cn.ts",
+      "type": "registry:utility",
+      "target": "lib",
+      "content": "import { clsx, type ClassValue } from \"clsx\";\nimport { twMerge } from \"tailwind-merge\";\n\n/**\n * Merges conditional class names and resolves Tailwind conflicts (last wins).\n *\n * Every resource in the registry uses this so a consumer can override any part\n * of a component's styling from the outside:\n *\n * ```tsx\n * <MagneticButton className=\"bg-ink text-paper\" />\n * ```\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "contentHash": "333b28c2954f9ae5887ed438bfae4a8b59648a274d937f85ea440bfc84c4c888",
+      "sizeBytes": 465
+    }
+  ],
+  "tags": [
+    "utility",
+    "tailwind"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": [
+      "zero-runtime-overhead"
+    ]
+  },
+  "url": "https://openui.dev/r/cn.json",
+  "designRules": "# Class Name Merge\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- A utility carries no styling of its own.\n- Prefer explicit variant props over long conditional class lists.\n- Never sort or deduplicate classes by hand; that is `cn`'s job.\n\n## Avoid\n\n- Hiding layout decisions inside a utility.\n- Re-exporting a UI component from a utility module.\n"
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "industrial-dashboard",
+  "type": "registry:block",
+  "title": "Industrial Dashboard",
+  "description": "An operations dashboard without cards: hairline-divided regions, monospace figures, a ledger table and a metric row that reads like instrumentation rather than marketing.",
+  "category": "blocks",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "ledger-table",
+    "status-pill"
+  ],
+  "files": [
+    {
+      "path": "industrial-dashboard.tsx",
+      "type": "registry:block",
+      "content": "import { cn } from \"@/lib/cn\";\n\n/**\n * Industrial Dashboard\n *\n * The anti-card dashboard. Instead of a grid of rounded, shadowed tiles, the\n * surface is divided by hairlines into regions of different weight: a wide\n * primary region for the operational list, a narrow rail for counters. That\n * single decision removes the \"every tile is equally important\" problem that\n * makes dashboard work look generated.\n *\n * Figures use tabular numerals and are right-aligned so a column of numbers can\n * be compared by shape, not by reading.\n */\n\nexport interface Metric {\n  label: string;\n  value: string;\n  delta?: string;\n  /** `up` is not automatically good — this only controls the sign glyph. */\n  trend?: \"up\" | \"down\" | \"flat\";\n}\n\nexport interface DashboardPanel {\n  title: string;\n  content: React.ReactNode;\n  /** Column span out of 12 at the `lg` breakpoint. */\n  span?: 3 | 4 | 6 | 8 | 12;\n}\n\nexport interface IndustrialDashboardProps {\n  title: string;\n  metrics: Metric[];\n  panels: DashboardPanel[];\n  actions?: React.ReactNode;\n  className?: string;\n}\n\nconst SPAN: Record<NonNullable<DashboardPanel[\"span\"]>, string> = {\n  3: \"lg:col-span-3\",\n  4: \"lg:col-span-4\",\n  6: \"lg:col-span-6\",\n  8: \"lg:col-span-8\",\n  12: \"lg:col-span-12\",\n};\n\nconst TREND_GLYPH: Record<NonNullable<Metric[\"trend\"]>, string> = {\n  up: \"▲\",\n  down: \"▼\",\n  flat: \"—\",\n};\n\nexport function IndustrialDashboard({ title, metrics, panels, actions, className }: IndustrialDashboardProps) {\n  return (\n    <section aria-label={title} className={cn(\"border border-ink bg-paper text-ink\", className)}>\n      <header className=\"flex flex-wrap items-center justify-between gap-4 border-b border-ink px-5 py-3\">\n        <h2 className=\"font-mono text-[11px] uppercase tracking-[0.28em] text-graphite\">{title}</h2>\n        {actions}\n      </header>\n\n      <div className=\"grid grid-cols-2 divide-x divide-y divide-line border-b border-ink sm:grid-cols-4 sm:divide-y-0\">\n        {metrics.map((metric) => (\n          <div key={metric.label} className=\"px-5 py-4\">\n            <p className=\"font-mono text-[10px] uppercase tracking-[0.24em] text-graphite\">{metric.label}</p>\n            <p className=\"mt-2 flex items-baseline gap-2\">\n              <span className=\"font-[family-name:var(--font-display)] text-3xl tabular-nums\">\n                {metric.value}\n              </span>\n              {metric.trend ? (\n                <span\n                  aria-label={metric.trend === \"flat\" ? \"no change\" : `trending ${metric.trend}`}\n                  className=\"font-mono text-[11px] text-graphite\"\n                >\n                  <span aria-hidden=\"true\">{TREND_GLYPH[metric.trend]}</span>\n                  {metric.delta ? ` ${metric.delta}` : null}\n                </span>\n              ) : null}\n            </p>\n          </div>\n        ))}\n      </div>\n\n      <div className=\"grid grid-cols-1 gap-0 divide-line lg:grid-cols-12 lg:divide-x\">\n        {panels.map((panel) => (\n          <div key={panel.title} className={cn(\"border-b border-line lg:border-b-0\", SPAN[panel.span ?? 6])}>\n            <h3 className=\"border-b border-line px-5 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-graphite\">\n              {panel.title}\n            </h3>\n            <div className=\"p-5\">{panel.content}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n\nexport default IndustrialDashboard;\n",
+      "contentHash": "10805ea21cc49f8121f30e6fb172b2e1b344308cd0cfd1a39cadfe84e8b79dfb",
+      "sizeBytes": 3396
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "import { IndustrialDashboard } from \"./industrial-dashboard\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper p-8 text-ink\">\n      <IndustrialDashboard\n        title=\"Registry operations\"\n        metrics={[\n          { label: \"Published\", value: \"48\", trend: \"up\", delta: \"6\" },\n          { label: \"In review\", value: \"03\", trend: \"flat\" },\n          { label: \"Downloads / 7d\", value: \"12.4k\", trend: \"up\", delta: \"8%\" },\n          { label: \"Failed audits\", value: \"02\", trend: \"down\", delta: \"1\" },\n        ]}\n        panels={[\n          {\n            title: \"Submission queue\",\n            span: 8,\n            content: (\n              <ul className=\"divide-y divide-line font-mono text-[13px]\">\n                {[\"kinetic-ticker · text\", \"spotlight-follow · interaction\", \"ledger-table · component\"].map(\n                  (row) => (\n                    <li key={row} className=\"flex items-center justify-between py-2\">\n                      <span>{row}</span>\n                      <span className=\"text-graphite\">pending</span>\n                    </li>\n                  ),\n                )}\n              </ul>\n            ),\n          },\n          {\n            title: \"Category mix\",\n            span: 4,\n            content: (\n              <dl className=\"space-y-2 font-mono text-[13px]\">\n                {[\n                  [\"components\", \"14\"],\n                  [\"text\", \"05\"],\n                  [\"motion\", \"05\"],\n                  [\"interactions\", \"05\"],\n                ].map(([label, value]) => (\n                  <div key={label} className=\"flex items-center justify-between border-b border-line pb-1\">\n                    <dt className=\"text-graphite\">{label}</dt>\n                    <dd className=\"tabular-nums\">{value}</dd>\n                  </div>\n                ))}\n              </dl>\n            ),\n          },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "76892e5673f4a4ac5fe9d9afda8213497ba9879ea906d499b697330e8760ed58",
+      "sizeBytes": 1909
+    }
+  ],
+  "tags": [
+    "dashboard",
+    "block",
+    "dense"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "no-card-chrome",
+      "tabular-figures",
+      "landmark-correct"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/industrial-dashboard.json",
+  "designRules": "# Industrial Dashboard\n\nGenre: Industrial\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Motion\n\nFast: 120ms\nNormal: 200ms\nSlow: 320ms\n\n## Rules\n\n- Regions differ by weight, not elevation: hairlines, not shadows.\n- Metrics are monospace, tabular, and aligned on a shared baseline.\n- Trend glyphs are signs, not judgements; up is not automatically good.\n- Every panel states its unit or its scope in the header.\n\n## Avoid\n\n- A grid of equally weighted rounded tiles.\n- Sparklines without axes or units.\n- Colour as the only indicator of a threshold breach.\n"
+}

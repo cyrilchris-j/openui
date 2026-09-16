@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-control",
+  "type": "registry:component",
+  "title": "Segmented Control",
+  "description": "A segmented switcher with roving tabindex and arrow-key navigation, implemented as a real radiogroup rather than a row of buttons pretending to be one.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-control.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useId, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Segmented Control\n *\n * Uses `role=\"radiogroup\"` because a segmented control *is* a single-choice\n * input. That gives screen readers the right model (one of N, current value)\n * and lets us implement roving tabindex: exactly one segment is tabbable, and\n * arrow keys move between them, as in a native radio group.\n */\n\nexport interface SegmentedOption<T extends string> {\n  value: T;\n  label: string;\n  /** Optional short description for assistive technology. */\n  description?: string;\n}\n\nexport interface SegmentedControlProps<T extends string> {\n  options: readonly SegmentedOption<T>[];\n  value?: T;\n  defaultValue?: T;\n  onValueChange?: (value: T) => void;\n  label: string;\n  size?: \"sm\" | \"md\";\n  className?: string;\n}\n\nexport function SegmentedControl<T extends string>({\n  options,\n  value,\n  defaultValue,\n  onValueChange,\n  label,\n  size = \"md\",\n  className,\n}: SegmentedControlProps<T>) {\n  const [internal, setInternal] = useState<T>(defaultValue ?? options[0]!.value);\n  const selected = value ?? internal;\n  const groupId = useId();\n  const refs = useRef<Array<HTMLButtonElement | null>>([]);\n\n  function select(next: T) {\n    if (value === undefined) setInternal(next);\n    onValueChange?.(next);\n  }\n\n  function move(delta: number) {\n    const index = options.findIndex((option) => option.value === selected);\n    const next = options[(index + delta + options.length) % options.length]!;\n    select(next.value);\n    const target = refs.current[options.findIndex((option) => option.value === next.value)];\n    target?.focus();\n  }\n\n  return (\n    <div\n      role=\"radiogroup\"\n      aria-label={label}\n      className={cn(\"inline-flex border border-ink\", className)}\n      onKeyDown={(event) => {\n        if (event.key === \"ArrowRight\" || event.key === \"ArrowDown\") {\n          event.preventDefault();\n          move(1);\n        }\n        if (event.key === \"ArrowLeft\" || event.key === \"ArrowUp\") {\n          event.preventDefault();\n          move(-1);\n        }\n      }}\n    >\n      {options.map((option, index) => {\n        const active = option.value === selected;\n        return (\n          <button\n            key={option.value}\n            ref={(node) => {\n              refs.current[index] = node;\n            }}\n            type=\"button\"\n            role=\"radio\"\n            id={`${groupId}-${option.value}`}\n            aria-checked={active}\n            tabIndex={active ? 0 : -1}\n            aria-describedby={option.description ? `${groupId}-${option.value}-desc` : undefined}\n            onClick={() => select(option.value)}\n            className={cn(\n              \"border-r border-ink px-4 uppercase tracking-[0.16em] transition-colors last:border-r-0\",\n              \"focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-oxide\",\n              size === \"sm\" ? \"py-1 text-[11px]\" : \"py-2 text-xs\",\n              active ? \"bg-ink text-paper\" : \"bg-transparent text-ink hover:bg-ink/5\",\n            )}\n          >\n            {option.label}\n            {option.description ? (\n              <span id={`${groupId}-${option.value}-desc`} className=\"sr-only\">\n                {option.description}\n              </span>\n            ) : null}\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default SegmentedControl;\n",
+      "contentHash": "e74c138d40d4f7722ac6672b57f0408872ad981908e8757c068bcbe986ae5387",
+      "sizeBytes": 3387
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SegmentedControl } from \"./segmented-control\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex flex-col items-start gap-6 bg-paper p-10 text-ink\">\n      <SegmentedControl\n        label=\"Preview density\"\n        defaultValue=\"medium\"\n        options={[\n          { value: \"compact\", label: \"Compact\" },\n          { value: \"medium\", label: \"Medium\" },\n          { value: \"airy\", label: \"Airy\" },\n        ]}\n      />\n      <SegmentedControl\n        label=\"Code flavour\"\n        size=\"sm\"\n        defaultValue=\"react\"\n        options={[\n          { value: \"react\", label: \"React\" },\n          { value: \"typescript\", label: \"TypeScript\" },\n          { value: \"tailwind\", label: \"Tailwind\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "039a1e69d4ac9eef280db1b7f96a270b86f42a6d29bc92a2bd1a3d3f618c6990",
+      "sizeBytes": 756
+    }
+  ],
+  "tags": [
+    "tabs",
+    "radiogroup",
+    "keyboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "roving-tabindex",
+      "keyboard-accessible",
+      "controlled-and-uncontrolled"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/segmented-control.json",
+  "designRules": "# Segmented Control\n\nGenre: Swiss\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Motion\n\nFast: 120ms\nNormal: 180ms\nSlow: 320ms\n\n## Rules\n\n- Segments share borders; the group is one object, not several buttons.\n- The active segment inverts (ink on paper), it does not glow or pill.\n- Labels are uppercase with 0.16em tracking at 11–12px.\n- Selected state must be expressible without colour: inversion carries it.\n\n## Avoid\n\n- Floating pill segments with gaps between them.\n- More than five options; use a select instead.\n- Preselecting an option the user has not confirmed in a destructive flow.\n"
+}

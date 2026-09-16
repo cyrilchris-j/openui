@@ -7,9 +7,7 @@ build/
 .turbo/
 *.tsbuildinfo
 
-# generated registry artifacts (rebuilt by `pnpm build:registry`)
-registry/index.json
-apps/web/public/r/
+# generated registry artifacts
 apps/docs/public/r/
 registry/generated/
 

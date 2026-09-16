@@ -1,0 +1,33 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-rules",
+  "type": "registry:ai",
+  "title": "Editorial Rules",
+  "description": "The positive ruleset for editorial interfaces: how to compose with typography, ratio, hairlines and one accent, expressed as instructions an agent can follow.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "editorial.md",
+      "type": "registry:ai",
+      "target": "ai",
+      "content": "# Editorial Rules\n\n## Composition\n\n- Compose asymmetric: **7/5**, not 50/50. State the ratio you used.\n- Enter at the top-right and exit down the left rail. The eye should travel, not bounce.\n- One idea per band. Separate bands with hairlines, not backgrounds.\n- Allow the widest element on the page to touch the viewport edge once.\n\n## Typography\n\n- Display serif above 24px for statements; never for body text.\n- Body text set to a `68ch` measure, `1.6` line-height.\n- Metadata: monospace, uppercase, `0.22em` tracking, 11px, graphite.\n- Hierarchy from scale and case, not from colour or weight alone.\n- Keep display line-height at or below `1.0`.\n\n## Motion\n\n- Three durations: `180 / 320 / 600ms`. Name them; do not invent a fourth.\n- One easing curve across the page.\n- Motion explains hierarchy, confirms input, or preserves context. Nothing else.\n\n## Colour\n\n- One accent. One neutral scale. One signal colour reserved for attention.\n- Accents used on type must hold 4.5:1 against their background.\n\n## Copy\n\n- Say the specific thing. \"Interfaces should have a fingerprint\" beats\n  \"Build beautiful interfaces with AI\".\n- Prefer a concrete noun over an adjective. Prefer a claim over a benefit.\n- Never use \"seamlessly\", \"effortlessly\", \"supercharge\" or \"unlock\".\n\n## Self-check\n\nBefore returning a layout, report: the ratio you used, the type scale, the motion\ndurations, and which anti-slop rules you deliberately stayed clear of.\n",
+      "contentHash": "f2f16649b15c4779aab0de5f3bd09514d0df26156ae65ba13bc49b74c4b21ccf",
+      "sizeBytes": 1440
+    }
+  ],
+  "tags": [
+    "ai",
+    "rules",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": [
+      "agent-consumable"
+    ]
+  },
+  "url": "https://openui.dev/r/editorial-rules.json"
+}

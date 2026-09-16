@@ -1,0 +1,34 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-ui",
+  "type": "registry:ai",
+  "title": "Audit UI Skill",
+  "description": "A skill for scoring an existing interface against the design rules and returning a structured report with scores, findings and ranked remediation steps.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "audit-ui.md",
+      "type": "registry:ai",
+      "target": "ai",
+      "content": "# Skill: Audit UI\n\nScore an interface against the design rules and return a report, not an opinion.\n\n## Inputs\n\n- a page, route or component tree\n- `anti-slop.md` and the project's `design.md`\n- optional: the structure description accepted by `@openui/design-system`\n\n## Procedure\n\n1. **Describe the structure** in the audit's shape: sections (role, columns,\n   alignment), typography (families, weights, sizes, heading levels), surface\n   (radii, gradients, shadows, colour pairs), motion (durations, easings,\n   reduced-motion coverage), interactions, spacing.\n2. **Run the engine** (`runAudit`) if available; otherwise score by hand against\n   the same checks and say that you did.\n3. **Report per category:** Structure, Typography, Motion, Composition,\n   Originality, Accessibility — each 0–100, each with the findings that produced\n   it.\n4. **Report the overall score** and the five highest-impact changes, ranked by\n   score improvement per unit of work.\n5. **Never** report a score without the evidence that produced it.\n\n## Output format\n\n```text\nAI UI AUDIT\n\nStructure        72/100\nTypography       81/100\nMotion           54/100\nComposition      66/100\nOriginality      48/100\nAccessibility    63/100\nOverall          64/100\n\nPotential issues:\n- Generic centred hero with a three-column grid beneath it\n- 80% of containers use a radius of 12px or more\n- No interaction beyond default hover states\n- Animated elements are not guarded by prefers-reduced-motion\n\nHighest-impact changes:\n1. Recompose the hero as a 7/5 asymmetric split (+14 originality)\n2. Reduce radii to 0–2px and separate with hairlines (+9 composition)\n3. Add one scroll-linked reveal and one pointer interaction (+11 motion)\n4. Guard animations behind prefers-reduced-motion (+8 accessibility)\n5. Widen the type scale to a 6× display-to-body ratio (+6 typography)\n```\n\n## Rules\n\n- A score is a claim about evidence. Cite the finding behind every number.\n- Do not audit aesthetics you cannot measure — say \"not assessed\" instead.\n- Never suggest a change that breaks an accessibility requirement.\n",
+      "contentHash": "5259de8f27eed7d4b8c1e158123e4d39cc597165fdf72a9f120c477b8b8a195a",
+      "sizeBytes": 2086
+    }
+  ],
+  "tags": [
+    "ai",
+    "skill",
+    "audit"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": [
+      "agent-consumable",
+      "produces-report"
+    ]
+  },
+  "url": "https://openui.dev/r/audit-ui.json"
+}

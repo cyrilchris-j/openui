@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toast-region",
+  "type": "registry:component",
+  "title": "Toast Region",
+  "description": "An accessible notification region with a single provider, queued announcements, polite versus assertive politeness, and a fixed corner that never covers the interface.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toast-region.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Toast Region\n *\n * The hard part of a toast system is not the animation, it is the announcement.\n * `role=\"status\"` is polite and queues behind whatever the reader is saying;\n * `role=\"alert\"` interrupts. Getting that wrong makes an interface unusable with\n * a screen reader, so this component picks per tone rather than globally, keeps\n * one live region mounted for the lifetime of the app (screen readers ignore\n * regions that appear at the same time as their content), and never traps focus.\n */\n\nexport type ToastTone = \"info\" | \"success\" | \"error\";\n\nexport interface Toast {\n  id: string;\n  message: string;\n  tone: ToastTone;\n  /** Milliseconds; 0 keeps the toast until dismissed. */\n  duration?: number;\n  action?: { label: string; onClick: () => void };\n}\n\ninterface ToastContextValue {\n  toast: (input: Omit<Toast, \"id\"> & { id?: string }) => string;\n  dismiss: (id: string) => void;\n  clear: () => void;\n}\n\nconst ToastContext = createContext<ToastContextValue | null>(null);\n\nexport function useToast(): ToastContextValue {\n  const context = useContext(ToastContext);\n  if (!context) throw new Error(\"useToast must be used inside <ToastProvider>.\");\n  return context;\n}\n\nexport function ToastProvider({ children }: { children: React.ReactNode }) {\n  const [toasts, setToasts] = useState<Toast[]>([]);\n  const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());\n  const counter = useRef(0);\n\n  const dismiss = useCallback((id: string) => {\n    setToasts((current) => current.filter((item) => item.id !== id));\n    const timer = timers.current.get(id);\n    if (timer) {\n      clearTimeout(timer);\n      timers.current.delete(id);\n    }\n  }, []);\n\n  const toast = useCallback(\n    (input: Omit<Toast, \"id\"> & { id?: string }) => {\n      counter.current += 1;\n      const id = input.id ?? `toast-${counter.current}`;\n      const duration = input.duration ?? (input.tone === \"error\" ? 8000 : 5000);\n      setToasts((current) => [...current.filter((item) => item.id !== id), { ...input, id }]);\n      if (duration > 0) {\n        const timer = setTimeout(() => dismiss(id), duration);\n        timers.current.set(id, timer);\n      }\n      return id;\n    },\n    [dismiss],\n  );\n\n  const clear = useCallback(() => {\n    setToasts([]);\n    for (const timer of timers.current.values()) clearTimeout(timer);\n    timers.current.clear();\n  }, []);\n\n  useEffect(\n    () => () => {\n      for (const timer of timers.current.values()) clearTimeout(timer);\n      timers.current.clear();\n    },\n    [],\n  );\n\n  const value = useMemo(() => ({ toast, dismiss, clear }), [clear, dismiss, toast]);\n\n  return (\n    <ToastContext.Provider value={value}>\n      {children}\n      <div\n        className=\"pointer-events-none fixed bottom-4 left-1/2 z-50 flex w-[min(30rem,calc(100vw-2rem))] -translate-x-1/2 flex-col gap-2\"\n        aria-label=\"Notifications\"\n      >\n        {toasts.map((item) => (\n          <div\n            key={item.id}\n            role={item.tone === \"error\" ? \"alert\" : \"status\"}\n            aria-live={item.tone === \"error\" ? \"assertive\" : \"polite\"}\n            className={cn(\n              \"pointer-events-auto flex items-start gap-3 border bg-paper px-4 py-3 text-sm shadow-[0_18px_40px_-24px_rgba(16,15,13,0.5)]\",\n              item.tone === \"error\" ? \"border-oxide text-oxide\" : \"border-ink text-ink\",\n              \"animate-[openui-toast-in_180ms_cubic-bezier(0.2,0,0,1)] motion-reduce:animate-none\",\n            )}\n          >\n            <span className=\"flex-1 font-sans leading-snug\">{item.message}</span>\n            {item.action ? (\n              <button\n                type=\"button\"\n                onClick={() => {\n                  item.action?.onClick();\n                  dismiss(item.id);\n                }}\n                className=\"font-mono text-[11px] uppercase tracking-[0.16em] underline underline-offset-4\"\n              >\n                {item.action.label}\n              </button>\n            ) : null}\n            <button\n              type=\"button\"\n              onClick={() => dismiss(item.id)}\n              aria-label=\"Dismiss notification\"\n              className=\"font-mono text-xs text-graphite hover:text-ink\"\n            >\n              ✕\n            </button>\n          </div>\n        ))}\n      </div>\n      <style>{`@keyframes openui-toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }`}</style>\n    </ToastContext.Provider>\n  );\n}\n\nexport default ToastProvider;\n",
+      "contentHash": "539a2d14ed5991321e07ed8316d9bcca992781729234305f2cbac9203729a2ab",
+      "sizeBytes": 4637
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ToastProvider, useToast } from \"./toast-region\";\n\nfunction Controls() {\n  const { toast } = useToast();\n  return (\n    <div className=\"flex flex-wrap gap-3\">\n      <button\n        type=\"button\"\n        className=\"border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.16em]\"\n        onClick={() => toast({ tone: \"success\", message: \"magnetic-button installed.\" })}\n      >\n        Success\n      </button>\n      <button\n        type=\"button\"\n        className=\"border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.16em]\"\n        onClick={() =>\n          toast({\n            tone: \"info\",\n            message: \"3 files written to src/components.\",\n            action: { label: \"Undo\", onClick: () => console.log(\"undo\") },\n          })\n        }\n      >\n        With action\n      </button>\n      <button\n        type=\"button\"\n        className=\"border border-oxide px-4 py-2 font-mono text-xs uppercase tracking-[0.16em] text-oxide\"\n        onClick={() => toast({ tone: \"error\", message: \"Registry unreachable. The install was not applied.\" })}\n      >\n        Error\n      </button>\n    </div>\n  );\n}\n\nexport default function Demo() {\n  return (\n    <ToastProvider>\n      <div className=\"bg-paper p-10 text-ink\">\n        <Controls />\n      </div>\n    </ToastProvider>\n  );\n}\n",
+      "contentHash": "8ae4963199316dec7fc4d6b1980d6faaa588f7016c72864fa39cf61785f0e16d",
+      "sizeBytes": 1310
+    }
+  ],
+  "tags": [
+    "toast",
+    "notification",
+    "live-region"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "live-region",
+      "reduced-motion-safe",
+      "no-portal-required"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/toast-region.json",
+  "designRules": "# Toast Region\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Motion\n\nFast: 180ms\nNormal: 240ms\nSlow: 320ms\n\n## Rules\n\n- Errors are assertive and persist longer; everything else is polite.\n- Toasts never take focus and never block the underlying interface.\n- One region, mounted for the lifetime of the app.\n- The border colour carries the tone; never fill the surface with a saturated tint.\n\n## Avoid\n\n- Stacking more than three toasts at once.\n- Auto-dismissing an error the user must act on.\n- Toasts for information the user can already see.\n"
+}

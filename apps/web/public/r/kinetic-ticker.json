@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-ticker",
+  "type": "registry:text",
+  "title": "Kinetic Ticker",
+  "description": "A rotating word ticker that reserves the width of its longest phrase so the surrounding layout never reflows, and pauses when the tab is hidden.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-ticker.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useMemo, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Kinetic Ticker\n *\n * Two details separate a usable ticker from a distracting one:\n *\n *  1. **Width reservation.** An invisible copy of the longest phrase sits in the\n *     layout, so the words around it never move. Without this, every rotation\n *     shoves the rest of the sentence sideways.\n *  2. **Visibility.** The interval stops when the document is hidden, so a\n *     background tab is not animating 60 times a second.\n *\n * Under reduced motion it stops rotating and shows the first phrase, with the\n * full list available to screen readers as text.\n */\n\nexport interface KineticTickerProps {\n  phrases: readonly string[];\n  /** Milliseconds each phrase stays. */\n  interval?: number;\n  className?: string;\n  /** Text before the rotating word, e.g. \"Build with\". */\n  prefix?: string;\n  /** Text after the rotating word. */\n  suffix?: string;\n}\n\nexport function KineticTicker({\n  phrases,\n  interval = 2200,\n  className,\n  prefix,\n  suffix,\n}: KineticTickerProps) {\n  const [index, setIndex] = useState(0);\n  const [reduced, setReduced] = useState(false);\n  const timer = useRef<ReturnType<typeof setInterval> | null>(null);\n\n  const longest = useMemo(\n    () => phrases.reduce((longestSoFar, phrase) => (phrase.length > longestSoFar.length ? phrase : longestSoFar), \"\"),\n    [phrases],\n  );\n\n  useEffect(() => {\n    if (typeof window === \"undefined\" || !window.matchMedia) return;\n    const query = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setReduced(query.matches);\n    update();\n    query.addEventListener(\"change\", update);\n    return () => query.removeEventListener(\"change\", update);\n  }, []);\n\n  useEffect(() => {\n    if (reduced || phrases.length < 2) return;\n\n    function start() {\n      if (timer.current) clearInterval(timer.current);\n      timer.current = setInterval(() => setIndex((current) => (current + 1) % phrases.length), interval);\n    }\n    function stop() {\n      if (timer.current) clearInterval(timer.current);\n      timer.current = null;\n    }\n\n    start();\n    const onVisibility = () => (document.hidden ? stop() : start());\n    document.addEventListener(\"visibilitychange\", onVisibility);\n    return () => {\n      stop();\n      document.removeEventListener(\"visibilitychange\", onVisibility);\n    };\n  }, [interval, phrases.length, reduced]);\n\n  return (\n    <span className={cn(\"inline-flex flex-wrap items-baseline gap-x-3\", className)}>\n      {prefix ? <span>{prefix}</span> : null}\n      <span className=\"relative inline-block align-baseline\">\n        {/* Reservers: keep the widest phrase in the flow so nothing reflows. */}\n        <span aria-hidden=\"true\" className=\"invisible block font-[inherit] whitespace-pre\">\n          {longest}\n        </span>\n        <span\n          aria-hidden=\"true\"\n          key={index}\n          className=\"absolute inset-0 flex items-center font-[inherit] text-oxide motion-safe:animate-[openui-ticker-in_420ms_cubic-bezier(0.2,0,0,1)]\"\n        >\n          {phrases[index]}\n        </span>\n      </span>\n      {suffix ? <span>{suffix}</span> : null}\n      <span className=\"sr-only\">{phrases.join(\", \")}</span>\n      <style>{`@keyframes openui-ticker-in { from { opacity: 0; transform: translate3d(0,0.55em,0); } to { opacity: 1; transform: none; } }`}</style>\n    </span>\n  );\n}\n\nexport default KineticTicker;\n",
+      "contentHash": "15d5daa2173574fe7b333a41f545e35ae9ce7592126e85b2af2255b771c3bcab",
+      "sizeBytes": 3443
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { KineticTicker } from \"./kinetic-ticker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper p-10 text-ink\">\n      <p className=\"max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-tight\">\n        <KineticTicker\n          prefix=\"Build interfaces with\"\n          phrases={[\"a fingerprint\", \"an editorial voice\", \"an opinion\", \"asymmetry\"]}\n          suffix=\".\"\n        />\n      </p>\n    </div>\n  );\n}\n",
+      "contentHash": "6418d6ef930933fc6acb3928f417b78a7dc26002ad8951166f2ba4d80cecd454",
+      "sizeBytes": 446
+    }
+  ],
+  "tags": [
+    "typography",
+    "ticker",
+    "loop"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "condensed",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "no-layout-shift",
+      "reduced-motion-safe",
+      "pauses-when-hidden"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/kinetic-ticker.json",
+  "designRules": "# Kinetic Ticker\n\nGenre: Industrial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Condensed\nColor: Duotone\n\n## Motion\n\nFast: 180ms\nNormal: 420ms\nSlow: 2200ms\n\n## Rules\n\n- Reserve the width of the longest phrase; the sentence around it must not move.\n- One accent colour on the rotating phrase only.\n- Rotate phrases of similar length (within ~40%) so the rhythm is stable.\n- Three to five phrases; more becomes a slideshow.\n\n## Avoid\n\n- Rotating inside a headline with a fixed line-height that clips.\n- Vertical slides that shift the baseline of neighbouring text.\n- Rotation that continues while the tab is hidden.\n"
+}

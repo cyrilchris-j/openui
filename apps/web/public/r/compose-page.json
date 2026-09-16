@@ -1,0 +1,34 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compose-page",
+  "type": "registry:ai",
+  "title": "Compose Page Skill",
+  "description": "A skill that turns a page brief into a composition plan built from registry resources and a design system's DNA, with the ratio, sections and resource names made explicit before any code is written.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "compose-page.md",
+      "type": "registry:ai",
+      "target": "ai",
+      "content": "# Skill: Compose Page\n\nTurn a brief into a composition plan. **Plan before code.** A page assembled from\nregistry resources with a stated structure outperforms one improvised into JSX.\n\n## Inputs\n\n- the brief (what the page is for, who reads it)\n- the installed design system (`design.md` + tokens)\n- the registry index (`GET /r/registry.json`)\n\n## Procedure\n\n1. **Choose the design system.** If none is installed, propose one and state why\n   it fits the brief. Never proceed without a DNA.\n2. **Choose the macrostructure** from the DNA (asymmetric, mosaic, rail, …).\n   State the ratio for any split.\n3. **Draft the band list.** Six to nine bands, one idea each. For every band\n   write: purpose, resources to use, and composition.\n4. **Assign resources by name from the index.** Prefer resources whose `dna`\n   matches the system. List registry dependencies the install will pull in.\n5. **Check the plan against `anti-slop`.** For each rule, confirm the plan does\n   not break it. If it does, change the plan, not the rule.\n6. **State the plan** as a table before writing any component code.\n7. **Generate the code** band by band, using the resources' real props.\n8. **Report** the fingerprint score for the plan and the audit score after\n   implementation.\n\n## Output format\n\n```text\nDesign system: swiss-editorial (editorial · asymmetric · sharp)\nMacrostructure: asymmetric 7/5\nBands: 7\n  01  masthead          editorial-navigation    full-bleed\n  02  hero              asymmetric-hero         7/5 split, rail right\n  03  index rail        marquee-index           full-bleed, hairline\n  ...\nResources: asymmetric-hero, marquee-index, ledger-table, editorial-heading\nRegistry deps pulled in: cn, editorial-heading\nAnti-slop check: rules 1, 2, 6, 10 constrained the plan\n```\n\n## Rules\n\n- Never invent a resource name. If the index does not have it, propose adding it.\n- Never use more than two resource types per band.\n- Ask before downloading or installing anything.\n",
+      "contentHash": "59b91937d3914fdf4cf834f08a8e5a51b907b3d355206eff81c717a813d45750",
+      "sizeBytes": 1975
+    }
+  ],
+  "tags": [
+    "ai",
+    "skill",
+    "composition"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "features": [
+      "agent-consumable",
+      "registry-aware"
+    ]
+  },
+  "url": "https://openui.dev/r/compose-page.json"
+}

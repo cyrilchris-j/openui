@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cursor-trail",
+  "type": "registry:interaction",
+  "title": "Cursor Trail",
+  "description": "A pointer trail drawn with a fixed-size pool of divs and one animation frame loop, disabled on coarse pointers and under reduced motion, and paused when the tab is hidden.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cursor-trail.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Cursor Trail\n *\n * A trail is the easiest way to make a page feel broken, so this one is\n * deliberately constrained:\n *\n * - **Fixed pool.** N nodes are created once and recycled. No allocation while\n *   the pointer moves, no unbounded growth.\n * - **One frame loop.** The rAF loop only runs while the pointer has moved\n *   recently and stops when idle or when the tab is hidden.\n * - **Never on touch.** Coarse pointers and reduced-motion users get nothing.\n * - **Inert to input.** `pointer-events: none` on the layer, and the trail is\n *   `aria-hidden`: it must never intercept a click or be announced.\n */\n\nexport interface CursorTrailProps {\n  /** Number of recycled dots. 12–30 is the usable range. */\n  count?: number;\n  /** Easing factor, 0–1. Higher follows the pointer more tightly. */\n  ease?: number;\n  size?: number;\n  className?: string;\n}\n\nexport function CursorTrail({ count = 18, ease = 0.32, size = 6, className }: CursorTrailProps) {\n  const layer = useRef<HTMLDivElement>(null);\n  const [enabled, setEnabled] = useState(false);\n\n  useEffect(() => {\n    if (typeof window === \"undefined\" || !window.matchMedia) return;\n    const fine = window.matchMedia(\"(pointer: fine)\");\n    const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setEnabled(fine.matches && !reduced.matches);\n    update();\n    fine.addEventListener(\"change\", update);\n    reduced.addEventListener(\"change\", update);\n    return () => {\n      fine.removeEventListener(\"change\", update);\n      reduced.removeEventListener(\"change\", update);\n    };\n  }, []);\n\n  useEffect(() => {\n    const element = layer.current;\n    if (!enabled || !element) return;\n\n    const nodes = Array.from(element.children) as HTMLElement[];\n    const points = nodes.map(() => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));\n    const target = { x: points[0]!.x, y: points[0]!.y };\n    let frame: number | null = null;\n    let idleFrames = 0;\n\n    function onPointerMove(event: PointerEvent) {\n      if (event.pointerType !== \"mouse\") return;\n      target.x = event.clientX;\n      target.y = event.clientY;\n      idleFrames = 0;\n      if (frame === null) frame = requestAnimationFrame(tick);\n    }\n\n    function tick() {\n      frame = null;\n      let previous = { x: target.x, y: target.y };\n\n      for (let index = 0; index < points.length; index += 1) {\n        const point = points[index]!;\n        point.x += (previous.x - point.x) * ease;\n        point.y += (previous.y - point.y) * ease;\n        const node = nodes[index]!;\n        const scale = 1 - index / (points.length + 2);\n        node.style.transform = `translate3d(${point.x.toFixed(1)}px, ${point.y.toFixed(1)}px, 0) translate(-50%, -50%) scale(${scale.toFixed(2)})`;\n        node.style.opacity = String(0.14 + (1 - index / points.length) * 0.5);\n        previous = { x: point.x, y: point.y };\n      }\n\n      const stillMoving = Math.hypot(previous.x - target.x, previous.y - target.y) > 0.4;\n      idleFrames = stillMoving ? 0 : idleFrames + 1;\n      if (idleFrames < 40 && !document.hidden) frame = requestAnimationFrame(tick);\n    }\n\n    window.addEventListener(\"pointermove\", onPointerMove, { passive: true });\n    return () => {\n      window.removeEventListener(\"pointermove\", onPointerMove);\n      if (frame !== null) cancelAnimationFrame(frame);\n    };\n  }, [ease, enabled]);\n\n  return (\n    <div\n      ref={layer}\n      aria-hidden=\"true\"\n      data-enabled={enabled ? \"true\" : \"false\"}\n      className={cn(\"pointer-events-none fixed inset-0 z-[60] overflow-hidden\", !enabled && \"hidden\", className)}\n    >\n      {Array.from({ length: count }).map((_, index) => (\n        <span\n          key={index}\n          className=\"absolute top-0 left-0 rounded-full bg-oxide\"\n          style={{ width: size, height: size, willChange: \"transform, opacity\" }}\n        />\n      ))}\n    </div>\n  );\n}\n\nexport default CursorTrail;\n",
+      "contentHash": "644bfe14c1eee2172aef7bba817f23ec11ad633526d3e7d6608fe37c40b8a643",
+      "sizeBytes": 4020
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { CursorTrail } from \"./cursor-trail\";\n\nexport default function Demo() {\n  return (\n    <div className=\"relative bg-ink p-10 text-paper\">\n      <CursorTrail count={22} ease={0.34} />\n      <p className=\"font-mono text-xs uppercase tracking-[0.3em] text-paper/60\">Move the pointer</p>\n      <p className=\"mt-4 max-w-lg font-[family-name:var(--font-display)] text-3xl leading-tight\">\n        The trail follows with easing, not with a listener per dot.\n      </p>\n    </div>\n  );\n}\n",
+      "contentHash": "f943b1c9dc6b8a0d90eaa0f5925b1c8c336e2d613b36937ce58675a4975cf00e",
+      "sizeBytes": 486
+    }
+  ],
+  "tags": [
+    "pointer",
+    "cursor",
+    "trail"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "scatter",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "reduced-motion-safe",
+      "pointer-fine-only",
+      "pauses-when-hidden"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/cursor-trail.json",
+  "designRules": "# Cursor Trail\n\nGenre: Industrial\nMacrostructure: Scatter\nDensity: Dense\nShape: Cut\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Motion\n\nFast: 90ms\nNormal: 160ms\nSlow: 280ms\n\n## Rules\n\n- One trail per page, and only on dark or high-contrast surfaces.\n- The trail must fade toward the tail, not toward the head.\n- Never on coarse pointers or under reduced motion.\n- The layer is inert: no pointer events, no layout impact.\n\n## Avoid\n\n- Trails that change size on every dot.\n- Coloured confetti variations.\n- Trails bright enough to reduce the contrast of text above them.\n"
+}

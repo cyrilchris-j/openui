@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-prompt",
+  "type": "registry:ai",
+  "title": "Hero Composition Prompt",
+  "description": "A targeted prompt for composing a page opening: it supplies the design system, the ratio, the resource set and the constraints, and asks for a plan before markup.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [
+    "anti-slop"
+  ],
+  "files": [
+    {
+      "path": "hero.md",
+      "type": "registry:ai",
+      "target": "ai",
+      "content": "# Prompt: Hero Composition\n\nCopy this prompt and fill in the four slots. Keeping the slots explicit is the\npoint: most generic output comes from an underspecified brief, not from a bad\nmodel.\n\n---\n\nCompose the opening section of a page.\n\n**Product**: `{{what it is, one sentence, no adjectives}}`\n**Reader**: `{{who arrives here and what they already know}}`\n**Design system**: `{{design system name, or \"none installed\"}}`\n**Resources available**: `{{paste the relevant entries from registry.json}}`\n\nConstraints:\n\n- Macrostructure is asymmetric. State the ratio you use and why.\n- No centring. No three-column feature card grid. No decorative gradient\n  (`anti-slop.md` rules 1, 2, 3).\n- Type carries the hierarchy: display face for the statement, mono for metadata.\n- Include one measurable piece of evidence (a count, a date, a constraint) rather\n  than a benefit claim.\n- Write the copy yourself. Do not use the words \"seamless\", \"effortless\",\n  \"supercharge\", \"unlock\" or \"beautiful\".\n- Everything present in the markup must be meaningful on a 390px viewport:\n  recompose, do not hide.\n\nDeliver, in this order:\n\n1. the ratio and the band list (three to five bands)\n2. the resource names you will use, taken from the list above\n3. the copy, final\n4. the component code\n5. the audit score for the result, with the findings behind each number\n\nDo not write any code before steps 1–3 are stated.\n",
+      "contentHash": "c7fa66731ac99720037a41e55f09211af4f2feaea851d02c3bb4635f2c8be679",
+      "sizeBytes": 1400
+    }
+  ],
+  "tags": [
+    "ai",
+    "prompt",
+    "hero"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": [
+      "agent-consumable",
+      "copy-paste"
+    ]
+  },
+  "url": "https://openui.dev/r/hero-prompt.json"
+}

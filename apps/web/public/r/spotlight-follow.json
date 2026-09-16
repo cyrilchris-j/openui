@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spotlight-follow",
+  "type": "registry:interaction",
+  "title": "Spotlight Follow",
+  "description": "A radial highlight that tracks the pointer using two CSS custom properties written once per frame, so the effect costs no layout or paint work beyond a composited layer.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spotlight-follow.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Spotlight Follow\n *\n * Writes `--spot-x` and `--spot-y` once per animation frame; the radial gradient\n * itself lives in CSS. That keeps the effect off the main-thread layout path —\n * only a composited layer changes.\n *\n * Because a pointer-only affordance is invisible to keyboard users, the\n * spotlight recentres on the focused element when the pointer has not moved,\n * so the effect still communicates which card is active while tabbing.\n */\n\nexport interface SpotlightFollowProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Radius of the highlight, in px. */\n  radius?: number;\n  /** Highlight colour. Use a low-alpha value so text stays legible. */\n  color?: string;\n  children: React.ReactNode;\n}\n\nexport function SpotlightFollow({\n  radius = 260,\n  color = \"rgba(200,69,43,0.16)\",\n  className,\n  children,\n  ...props\n}: SpotlightFollowProps) {\n  const ref = useRef<HTMLDivElement>(null);\n  const frame = useRef<number | null>(null);\n  const [reduced, setReduced] = useState(false);\n\n  useEffect(() => {\n    if (typeof window === \"undefined\" || !window.matchMedia) return;\n    const query = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setReduced(query.matches);\n    update();\n    query.addEventListener(\"change\", update);\n    return () => query.removeEventListener(\"change\", update);\n  }, []);\n\n  const set = useCallback((x: number, y: number) => {\n    if (frame.current !== null) cancelAnimationFrame(frame.current);\n    frame.current = requestAnimationFrame(() => {\n      const element = ref.current;\n      if (!element) return;\n      element.style.setProperty(\"--spot-x\", `${x}px`);\n      element.style.setProperty(\"--spot-y\", `${y}px`);\n    });\n  }, []);\n\n  return (\n    <div\n      ref={ref}\n      onPointerMove={(event) => {\n        if (reduced || event.pointerType !== \"mouse\") return;\n        const rect = event.currentTarget.getBoundingClientRect();\n        set(event.clientX - rect.left, event.clientY - rect.top);\n      }}\n      onFocus={(event) => {\n        if (reduced) return;\n        const target = event.target as HTMLElement;\n        const rect = target.getBoundingClientRect();\n        const parent = event.currentTarget.getBoundingClientRect();\n        set(rect.left - parent.left + rect.width / 2, rect.top - parent.top + rect.height / 2);\n      }}\n      data-spotlight=\"on\"\n      className={cn(\"relative isolate\", className)}\n      style={\n        {\n          \"--spot-radius\": `${radius}px`,\n          \"--spot-color\": color,\n        } as React.CSSProperties\n      }\n      {...props}\n    >\n      <span\n        aria-hidden=\"true\"\n        className=\"pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 [background:radial-gradient(var(--spot-radius)_circle_at_var(--spot-x,50%)_var(--spot-y,50%),var(--spot-color),transparent_70%)] motion-reduce:transition-none data-[on]:opacity-100\"\n        data-on=\"\"\n      />\n      {children}\n    </div>\n  );\n}\n\nexport default SpotlightFollow;\n",
+      "contentHash": "7970fc3fde133a5729acae2edad1cd731d446e6d8d1e521afc5bbf331386a5d6",
+      "sizeBytes": 3107
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { SpotlightFollow } from \"./spotlight-follow\";\n\nexport default function Demo() {\n  return (\n    <div className=\"grid gap-4 bg-ink p-10 sm:grid-cols-3\">\n      {[\"Components\", \"Text\", \"Motion\"].map((title) => (\n        <SpotlightFollow key={title} className=\"border border-paper/15 p-6\">\n          <h3 className=\"font-[family-name:var(--font-display)] text-2xl text-paper\">{title}</h3>\n          <p className=\"mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/50\">\n            Hover or tab\n          </p>\n        </SpotlightFollow>\n      ))}\n    </div>\n  );\n}\n",
+      "contentHash": "4f7f26356f74299f95df3c3ad36d5958a71089c8ab0d3d3982f263adebd2a461",
+      "sizeBytes": 580
+    }
+  ],
+  "tags": [
+    "pointer",
+    "spotlight",
+    "css-variables"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "reduced-motion-safe",
+      "gpu-composited",
+      "keyboard-fallback"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/spotlight-follow.json",
+  "designRules": "# Spotlight Follow\n\nGenre: Industrial\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Neon On Dark\n\n## Motion\n\nFast: 120ms\nNormal: 200ms\nSlow: 320ms\n\n## Rules\n\n- One radial highlight, low alpha, no hard edge.\n- The highlight communicates the active region; it is not decoration.\n- Focus must recentre the highlight so keyboard users see the same feedback.\n- Disabled under prefers-reduced-motion.\n\n## Avoid\n\n- Multi-colour spotlight gradients.\n- Highlights bright enough to wash out body text.\n- Applying it to every card on the page at once.\n"
+}

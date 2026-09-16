@@ -1,0 +1,58 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-navigation",
+  "type": "registry:section",
+  "title": "Editorial Navigation",
+  "description": "A two-tier masthead: a thin utility strip above a ruled wordmark row, with a mobile disclosure that keeps the same reading order and no hamburger icon dependency.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-navigation.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { useEffect, useId, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Editorial Navigation\n *\n * A masthead rather than a navbar: a utility strip for secondary links and\n * counts, a ruled wordmark row for identity and primary navigation, and a\n * current-section marker that is a rule, not a pill.\n *\n * Accessibility handled explicitly: a skip link, `aria-expanded` and\n * `aria-controls` on the mobile disclosure, focus returned to the toggle on\n * Escape, and the open panel closing on navigation. The disclosure uses text\n * (\"Menu\"), because an unlabelled icon is a riddle.\n */\n\nexport interface NavLink {\n  href: string;\n  label: string;\n}\n\nexport interface EditorialNavigationProps {\n  wordmark: React.ReactNode;\n  links: readonly NavLink[];\n  utilityLinks?: readonly NavLink[];\n  currentPath?: string;\n  actions?: React.ReactNode;\n  className?: string;\n}\n\nexport function EditorialNavigation({\n  wordmark,\n  links,\n  utilityLinks = [],\n  currentPath = \"/\",\n  actions,\n  className,\n}: EditorialNavigationProps) {\n  const [open, setOpen] = useState(false);\n  const panelId = useId();\n\n  useEffect(() => {\n    setOpen(false);\n  }, [currentPath]);\n\n  return (\n    <header className={cn(\"border-b border-line bg-paper text-ink\", className)}>\n      <a\n        href=\"#main\"\n        className=\"sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:border focus-visible:border-ink focus-visible:bg-paper focus-visible:px-4 focus-visible:py-2 focus-visible:font-mono focus-visible:text-xs\"\n      >\n        Skip to content\n      </a>\n\n      {utilityLinks.length > 0 ? (\n        <div className=\"hidden border-b border-line md:block\">\n          <div className=\"mx-auto flex max-w-[96rem] items-center justify-end gap-6 px-6 py-2\">\n            {utilityLinks.map((link) => (\n              <a\n                key={link.href}\n                href={link.href}\n                className=\"font-mono text-[11px] uppercase tracking-[0.22em] text-graphite transition-colors hover:text-oxide\"\n              >\n                {link.label}\n              </a>\n            ))}\n          </div>\n        </div>\n      ) : null}\n\n      <div className=\"mx-auto flex max-w-[96rem] items-center justify-between gap-6 px-6 py-4\">\n        <a href=\"/\" className=\"font-[family-name:var(--font-display)] text-xl tracking-tight\">\n          {wordmark}\n        </a>\n\n        <nav aria-label=\"Primary\" className=\"hidden items-center gap-8 md:flex\">\n          {links.map((link) => {\n            const current = isCurrent(link.href, currentPath);\n            return (\n              <a\n                key={link.href}\n                href={link.href}\n                aria-current={current ? \"page\" : undefined}\n                className={cn(\n                  \"relative py-1 font-mono text-[11px] uppercase tracking-[0.22em] transition-colors\",\n                  \"after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-oxide after:transition-transform hover:after:scale-x-100 motion-reduce:after:transition-none\",\n                  current ? \"text-ink after:scale-x-100\" : \"text-graphite hover:text-ink\",\n                )}\n              >\n                {link.label}\n              </a>\n            );\n          })}\n        </nav>\n\n        <div className=\"flex items-center gap-4\">\n          {actions}\n          <button\n            type=\"button\"\n            aria-expanded={open}\n            aria-controls={panelId}\n            aria-label={open ? \"Close menu\" : \"Open menu\"}\n            onClick={() => setOpen((value) => !value)}\n            onKeyDown={(event) => {\n              if (event.key === \"Escape\" && open) {\n                setOpen(false);\n                event.currentTarget.focus();\n              }\n            }}\n            className=\"border border-ink px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] md:hidden\"\n          >\n            {open ? \"Close\" : \"Menu\"}\n          </button>\n        </div>\n      </div>\n\n      <div id={panelId} hidden={!open} className=\"border-t border-line md:hidden\">\n        <nav aria-label=\"Primary mobile\" className=\"divide-y divide-line\">\n          {links.map((link) => (\n            <a\n              key={link.href}\n              href={link.href}\n              aria-current={isCurrent(link.href, currentPath) ? \"page\" : undefined}\n              className=\"block px-6 py-4 font-mono text-xs uppercase tracking-[0.2em]\"\n            >\n              {link.label}\n            </a>\n          ))}\n        </nav>\n      </div>\n    </header>\n  );\n}\n\nfunction isCurrent(href: string, currentPath: string): boolean {\n  if (href === \"/\") return currentPath === \"/\";\n  return currentPath === href || currentPath.startsWith(`${href}/`);\n}\n\nexport default EditorialNavigation;\n",
+      "contentHash": "1472be7f3d3da6fe810f3e2966c631e74b5752b96f52127fa1107cccf5cc0678",
+      "sizeBytes": 4853
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "import { EditorialNavigation } from \"./editorial-navigation\";\n\nexport default function Demo() {\n  return (\n    <EditorialNavigation\n      wordmark={\n        <span>\n          Open<span className=\"text-oxide\">UI</span>\n        </span>\n      }\n      currentPath=\"/components\"\n      utilityLinks={[\n        { href: \"/docs\", label: \"Docs\" },\n        { href: \"/contributors\", label: \"Contributors\" },\n        { href: \"/submit\", label: \"Submit\" },\n      ]}\n      links={[\n        { href: \"/explore\", label: \"Explore\" },\n        { href: \"/components\", label: \"Components\" },\n        { href: \"/text\", label: \"Text\" },\n        { href: \"/motion\", label: \"Motion\" },\n        { href: \"/design-systems\", label: \"Systems\" },\n        { href: \"/playground\", label: \"Playground\" },\n      ]}\n    />\n  );\n}\n",
+      "contentHash": "6e6be287a0c9475a312552c5ca3eb2eb75c8eebcca4f0dd89580ab5853a3f9a1",
+      "sizeBytes": 787
+    }
+  ],
+  "tags": [
+    "navigation",
+    "header",
+    "masthead"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "skip-link",
+      "works-without-js-fallback"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/editorial-navigation.json",
+  "designRules": "# Editorial Navigation\n\nGenre: Editorial\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: Monochrome\n\n## Motion\n\nFast: 140ms\nNormal: 200ms\nSlow: 320ms\n\n## Rules\n\n- Two tiers: a utility strip in monospace, an identity row in the display face.\n- The active route is marked by a rule, not a filled pill.\n- Keep primary navigation to seven items at most.\n- The mobile disclosure is a labelled text control, never an icon alone.\n\n## Avoid\n\n- Sticky headers that consume more than 80px of viewport.\n- Transparent headers that become opaque on scroll.\n- Search fields inside the primary navigation row.\n"
+}

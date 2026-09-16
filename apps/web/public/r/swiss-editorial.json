@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swiss-editorial",
+  "type": "registry:theme",
+  "title": "Swiss Editorial",
+  "description": "A persistent design system: asymmetric composition at a 7/5 ratio, a display serif against a neutral grotesk, sharp geometry, hairline structure and motion used only to explain hierarchy.",
+  "category": "design-systems",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "swiss-editorial.css",
+      "type": "registry:theme",
+      "target": "styles",
+      "content": "/* Swiss Editorial — design system tokens\n *\n * The system's rules live in design.md; this file is their compiled form. Apply\n * it before any resource stylesheet so resources can override individual tokens\n * without forking the system.\n */\n\n:root {\n  /* Colour — high contrast, one accent, no third hue. */\n  --color-paper: #f3f0e9;\n  --color-ink: #100f0d;\n  --color-graphite: #565452;\n  --color-line: rgba(16, 15, 13, 0.16);\n  --color-oxide: #b33f26;\n  --color-moss: #3c5a44;\n\n  /* Typography — display serif for statements, grotesk for text, mono for data. */\n  --font-display: \"Instrument Serif\", \"Iowan Old Style\", Georgia, serif;\n  --font-sans: \"Inter\", system-ui, sans-serif;\n  --font-mono: \"JetBrains Mono\", ui-monospace, monospace;\n\n  /* Spacing — a five-step scale. Anything outside it needs a reason. */\n  --space-1: 0.25rem;\n  --space-2: 0.5rem;\n  --space-4: 1rem;\n  --space-8: 2rem;\n  --space-16: 4rem;\n  --space-24: 6rem;\n\n  /* Shape — sharp. Two pixels exists only for optical correction. */\n  --radius-sm: 0px;\n  --radius-md: 2px;\n  --radius-lg: 4px;\n\n  /* Motion — three named durations, one easing. */\n  --motion-fast: 180ms;\n  --motion-normal: 320ms;\n  --motion-slow: 600ms;\n  --motion-ease: cubic-bezier(0.2, 0, 0, 1);\n\n  /* Composition — the ratio the system composes at. */\n  --ratio-primary: 7;\n  --ratio-secondary: 5;\n  --measure: 68ch;\n}\n\n.dark {\n  --color-paper: #0c0c0b;\n  --color-ink: #f2efe7;\n  --color-graphite: #a5a19a;\n  --color-line: rgba(242, 239, 231, 0.18);\n  --color-oxide: #e4614a;\n  --color-moss: #7fa089;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  :root {\n    --motion-fast: 0ms;\n    --motion-normal: 0ms;\n    --motion-slow: 0ms;\n  }\n}\n",
+      "contentHash": "a91d76ed0465d2912807e6aa7099d35fc27e586af3dba3733a58df1f4c26e804",
+      "sizeBytes": 1695
+    }
+  ],
+  "tags": [
+    "design-system",
+    "editorial",
+    "swiss"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "design-tokens",
+      "dark-mode",
+      "ai-consumable"
+    ]
+  },
+  "url": "https://openui.dev/r/swiss-editorial.json",
+  "designRules": "# Swiss Editorial\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Typography\n\nHeading: Instrument Serif\nBody: Inter\nMono: JetBrains Mono\n\n## Motion\n\nFast: 180ms\nNormal: 320ms\nSlow: 600ms\n\n## Rules\n\n- Compose on a 7/5 split. A 50/50 layout is not a neutral choice, it is an absent one.\n- Statements are set in the display serif above 24px; never below.\n- Structure is drawn with hairlines, never with shadows or elevation.\n- Metadata is monospace, uppercase, widely tracked, and small.\n- Motion explains hierarchy or confirms input. It never decorates.\n- One accent colour per page.\n\n## Avoid\n\n- Gradients used as background decoration.\n- Rounded cards containing three identical feature columns.\n- Centred display type over a symmetric stack.\n- Elevation, drop shadows and glass blur.\n- Two accent colours competing for attention.\n"
+}

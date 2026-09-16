@@ -1,0 +1,60 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "asymmetric-hero",
+  "type": "registry:section",
+  "title": "Asymmetric Hero",
+  "description": "An opening section with a 5/7 vertical split, an edge-to-edge index rail and a display heading that is composed from type rather than a gradient block.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "editorial-heading",
+    "marquee-index"
+  ],
+  "files": [
+    {
+      "path": "asymmetric-hero.tsx",
+      "type": "registry:section",
+      "content": "import { cn } from \"@/lib/cn\";\n\n/**\n * Asymmetric Hero\n *\n * What this hero deliberately does **not** do: centre a headline, stack three\n * feature cards under it, and lay a purple-to-blue gradient behind both.\n *\n * Instead the composition is: a narrow index rail on the left (numbers, key\n * facts, hairlines), a wide statement on the right, and a ticker along the\n * bottom edge. The eye enters at the top-right and exits along the rail, so the\n * headline is read rather than scanned past.\n *\n * Everything is present in the DOM in reading order: the rail's contents are not\n * \"mobile content\", they are simply placed first.\n */\n\nexport interface HeroFact {\n  label: string;\n  value: string;\n}\n\nexport interface AsymmetricHeroProps {\n  eyebrow?: string;\n  statement: React.ReactNode;\n  supporting?: React.ReactNode;\n  facts?: HeroFact[];\n  actions?: React.ReactNode;\n  rail?: React.ReactNode;\n  className?: string;\n}\n\nexport function AsymmetricHero({\n  eyebrow,\n  statement,\n  supporting,\n  facts,\n  actions,\n  rail,\n  className,\n}: AsymmetricHeroProps) {\n  return (\n    <section\n      aria-labelledby=\"hero-statement\"\n      className={cn(\"relative border-b border-line bg-paper text-ink\", className)}\n    >\n      <div className=\"grid grid-cols-1 lg:grid-cols-12\">\n        <div className=\"order-2 border-line px-0 lg:order-1 lg:col-span-5 lg:border-r xl:col-span-4\">\n          {rail ?? (\n            <dl className=\"divide-y divide-line border-t border-line lg:border-t-0\">\n              {(facts ?? []).map((fact) => (\n                <div key={fact.label} className=\"flex items-baseline justify-between gap-6 px-6 py-4\">\n                  <dt className=\"font-mono text-[11px] uppercase tracking-[0.24em] text-graphite\">\n                    {fact.label}\n                  </dt>\n                  <dd className=\"font-[family-name:var(--font-display)] text-xl tabular-nums\">{fact.value}</dd>\n                </div>\n              ))}\n            </dl>\n          )}\n        </div>\n\n        <div className=\"order-1 px-6 pt-14 pb-12 lg:order-2 lg:col-span-7 lg:px-12 lg:pt-24 xl:col-span-8\">\n          {eyebrow ? (\n            <p className=\"mb-6 font-mono text-[11px] uppercase tracking-[0.32em] text-oxide\">{eyebrow}</p>\n          ) : null}\n          <h1\n            id=\"hero-statement\"\n            className=\"max-w-[24ch] font-[family-name:var(--font-display)] text-[clamp(2.6rem,7vw,5.6rem)] leading-[0.94] tracking-[-0.03em] text-balance\"\n          >\n            {statement}\n          </h1>\n          {supporting ? (\n            <div className=\"mt-8 max-w-[52ch] text-[15px] leading-relaxed text-graphite\">{supporting}</div>\n          ) : null}\n          {actions ? <div className=\"mt-10 flex flex-wrap items-center gap-4\">{actions}</div> : null}\n        </div>\n      </div>\n    </section>\n  );\n}\n\nexport default AsymmetricHero;\n",
+      "contentHash": "e185aeb807e0b9d010f94091d33678bef7e54dfa403e2d96e803806013723d1c",
+      "sizeBytes": 2831
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "import { AsymmetricHero } from \"./asymmetric-hero\";\n\nexport default function Demo() {\n  return (\n    <AsymmetricHero\n      eyebrow=\"OpenUI Design Registry\"\n      statement={\n        <>\n          Interfaces should have <em className=\"italic text-oxide\">a fingerprint.</em>\n        </>\n      }\n      supporting={\n        <p>\n          Open code, distributed through a registry, governed by design DNA that both people and AI\n          tools read before they build anything.\n        </p>\n      }\n      facts={[\n        { label: \"Resources\", value: \"48\" },\n        { label: \"Design systems\", value: \"02\" },\n        { label: \"Runtime deps\", value: \"0\" },\n        { label: \"License\", value: \"MIT\" },\n      ]}\n      actions={\n        <a\n          href=\"#explore\"\n          className=\"border border-ink px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] transition-colors hover:bg-ink hover:text-paper\"\n        >\n          Explore the registry\n        </a>\n      }\n    />\n  );\n}\n",
+      "contentHash": "e2558ee7b65c7d513d91a73b9ceae348a0a6f085e9cddf92c1726a56978f368c",
+      "sizeBytes": 975
+    }
+  ],
+  "tags": [
+    "hero",
+    "section",
+    "asymmetric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "no-gradient",
+      "responsive-recomposition",
+      "landmark-correct"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/asymmetric-hero.json",
+  "designRules": "# Asymmetric Hero\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Motion\n\nFast: 180ms\nNormal: 320ms\nSlow: 600ms\n\n## Rules\n\n- Enter at the top-right, exit down the left rail.\n- One display statement, one supporting paragraph, one action group.\n- The index rail carries facts (counts, dates, constraints), not adjectives.\n- The statement must read as a claim, not a benefit.\n\n## Avoid\n\n- Centred headlines over a three-column feature grid.\n- Background gradients behind the statement.\n- More than two calls to action.\n"
+}

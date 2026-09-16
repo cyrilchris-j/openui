@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "industrial-archive",
+  "type": "registry:theme",
+  "title": "Industrial Archive",
+  "description": "A dense archive system: monospace as the primary voice, cut corners instead of radii, mosaic composition, one amber signal, and instrumentation-density tables.",
+  "category": "design-systems",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "industrial-archive.css",
+      "type": "registry:theme",
+      "target": "styles",
+      "content": "/* Industrial Archive — design system tokens\n *\n * Dark-first. Monospace is the primary type voice; radius tokens are all zero\n * because shape is expressed with a cut corner, not a curve.\n */\n\n:root {\n  --color-paper: #0b0c0d;\n  --color-ink: #e6e8e3;\n  --color-graphite: #8d938c;\n  --color-line: rgba(230, 232, 227, 0.16);\n  --color-oxide: #d98b2b;\n  --color-moss: #6f9f7c;\n\n  --font-display: \"JetBrains Mono\", ui-monospace, monospace;\n  --font-sans: \"Inter\", system-ui, sans-serif;\n  --font-mono: \"JetBrains Mono\", ui-monospace, monospace;\n\n  /* Dense spacing scale: four steps, tightly packed. */\n  --space-1: 0.25rem;\n  --space-2: 0.5rem;\n  --space-3: 0.75rem;\n  --space-5: 1.25rem;\n\n  --radius-sm: 0px;\n  --radius-md: 0px;\n  --radius-lg: 0px;\n\n  --motion-fast: 140ms;\n  --motion-normal: 240ms;\n  --motion-slow: 420ms;\n  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);\n\n  --cut: 10px;\n  --grid-cell: 24px;\n  --grid-module: 96px;\n}\n\n.light {\n  --color-paper: #f2f2ef;\n  --color-ink: #101112;\n  --color-graphite: #5c5f5d;\n  --color-line: rgba(16, 17, 18, 0.18);\n  --color-oxide: #a8620f;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  :root {\n    --motion-fast: 0ms;\n    --motion-normal: 0ms;\n    --motion-slow: 0ms;\n  }\n}\n",
+      "contentHash": "9a3934dadc5f9ecb796d36101cbfa2ee6ae4d09e0893606f9764f24600796682",
+      "sizeBytes": 1224
+    }
+  ],
+  "tags": [
+    "design-system",
+    "industrial",
+    "dark"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "design-tokens",
+      "dark-first",
+      "ai-consumable"
+    ]
+  },
+  "url": "https://openui.dev/r/industrial-archive.json",
+  "designRules": "# Industrial Archive\n\nGenre: Industrial\nMacrostructure: Mosaic\nDensity: Dense\nShape: Cut\nMotion: Mechanical\nTypography: Monospace\nColor: Neon On Dark\n\n## Typography\n\nHeading: JetBrains Mono\nBody: Inter\nMono: JetBrains Mono\n\n## Motion\n\nFast: 140ms\nNormal: 240ms\nSlow: 420ms\n\n## Rules\n\n- Regions differ by weight, not by elevation. Use hairlines to divide.\n- Numbers are monospace and tabular; every figure must align in a column.\n- Shapes are cut, not rounded. One corner gesture per surface, on the outer edge only.\n- Density is a feature: pack information, then use whitespace to separate regions, not items.\n- A single amber signal marks attention. Never use it for decoration or branding.\n- Motion is mechanical: short, linear-ish, and identical across similar interactions.\n\n## Avoid\n\n- Rounded card grids with drop shadows.\n- More than one attention colour on a screen.\n- Centred headline stacks with feature columns beneath.\n- Soft easing curves that make instrumentation feel bouncy.\n- Hiding data behind hover-only affordances.\n"
+}

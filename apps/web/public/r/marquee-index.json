@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "marquee-index",
+  "type": "registry:component",
+  "title": "Marquee Index",
+  "description": "An infinite horizontal ticker that pauses for keyboard focus and hover, and renders static under prefers-reduced-motion instead of animating invisibly.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "marquee-index.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Marquee Index\n *\n * A ticker with the behaviour most implementations forget:\n *\n *  - It pauses on hover **and** on focus-within, so a keyboard user can actually\n *    reach a link inside it.\n *  - Under `prefers-reduced-motion` it stops translating and becomes a\n *    horizontally scrollable list — motion is removed, content is not.\n *  - It duplicates the track exactly once and animates by -50%, which is what\n *    makes the loop seamless regardless of content width.\n */\n\nexport interface MarqueeIndexProps extends React.HTMLAttributes<HTMLDivElement> {\n  items: readonly string[];\n  /** Seconds for one full pass. Slower for longer lists. */\n  duration?: number;\n  direction?: \"left\" | \"right\";\n  separator?: React.ReactNode;\n}\n\nexport function MarqueeIndex({\n  items,\n  duration = 32,\n  direction = \"left\",\n  separator = <span aria-hidden=\"true\" className=\"px-6 text-graphite/60\">/</span>,\n  className,\n  ...props\n}: MarqueeIndexProps) {\n  const [reduced, setReduced] = useState(false);\n  const scroller = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    if (typeof window === \"undefined\" || !window.matchMedia) return;\n    const query = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setReduced(query.matches);\n    update();\n    query.addEventListener(\"change\", update);\n    return () => query.removeEventListener(\"change\", update);\n  }, []);\n\n  const track = (\n    <div className=\"flex shrink-0 items-center whitespace-nowrap\">\n      {items.map((item, index) => (\n        <span key={`${item}-${index}`} className=\"flex items-center\">\n          <span className=\"font-mono text-xs uppercase tracking-[0.28em]\">{item}</span>\n          {index < items.length - 1 ? separator : null}\n        </span>\n      ))}\n    </div>\n  );\n\n  return (\n    <div\n      ref={scroller}\n      role=\"marquee\"\n      aria-label=\"Resource index ticker\"\n      data-reduced-motion={reduced ? \"true\" : \"false\"}\n      className={cn(\n        \"group relative flex w-full items-center overflow-hidden border-y border-line py-4\",\n        reduced && \"overflow-x-auto\",\n        className,\n      )}\n      {...props}\n    >\n      {reduced ? (\n        track\n      ) : (\n        <div\n          className=\"flex min-w-full shrink-0 [animation-play-state:running] group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]\"\n          style={{\n            animation: `openui-marquee ${duration}s linear infinite`,\n            animationDirection: direction === \"right\" ? \"reverse\" : \"normal\",\n          }}\n        >\n          {track}\n          <div aria-hidden=\"true\" className=\"flex shrink-0\">\n            {track}\n          </div>\n        </div>\n      )}\n\n      <style>{`@keyframes openui-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }`}</style>\n    </div>\n  );\n}\n\nexport default MarqueeIndex;\n",
+      "contentHash": "9f1c9c9329e39501cd2bc9f91b3237749d38fd8485f28ba50f6058720a08d43b",
+      "sizeBytes": 2984
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { MarqueeIndex } from \"./marquee-index\";\n\nconst RESOURCES = [\n  \"asymmetric-hero\",\n  \"editorial-heading\",\n  \"split-text\",\n  \"cursor-trail\",\n  \"grain-background\",\n  \"ledger-table\",\n  \"kinetic-ticker\",\n  \"spotlight-follow\",\n  \"sticky-aside\",\n  \"contour-lines\",\n];\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper p-0 font-sans text-ink\">\n      <MarqueeIndex items={RESOURCES} />\n      <MarqueeIndex items={[\"components\", \"text\", \"motion\", \"interactions\"]} direction=\"right\" duration={24} />\n    </div>\n  );\n}\n",
+      "contentHash": "b27a7586533b1f141d2aaea74053819ebdd882389db197fce0e5b66e68869eb5",
+      "sizeBytes": 539
+    }
+  ],
+  "tags": [
+    "ticker",
+    "marquee",
+    "navigation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "reduced-motion-safe",
+      "pause-on-hover"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/marquee-index.json",
+  "designRules": "# Marquee Index\n\nGenre: Industrial\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Monochrome\n\n## Motion\n\nFast: 140ms\nNormal: 320ms\nSlow: 480ms\n\n## Rules\n\n- Constant velocity; no easing on the loop.\n- Pause on hover and on focus-within, always.\n- One line of type between two hairlines; nothing else in the band.\n- Reduce to static, scrollable content under reduced motion.\n\n## Avoid\n\n- Vertical tickers competing with a headline.\n- Gradient fade masks that hide content edges.\n- Speeds fast enough to be unreadable.\n"
+}

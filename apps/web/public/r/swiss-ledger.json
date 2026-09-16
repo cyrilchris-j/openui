@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swiss-ledger",
+  "type": "registry:theme",
+  "title": "Swiss Ledger",
+  "description": "A high-contrast Swiss theme: warm paper, true ink, one signal red, zero radius, hairline rules and a type scale built for tabular comparison.",
+  "category": "themes",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "swiss-ledger.css",
+      "type": "registry:theme",
+      "target": "styles",
+      "content": "/* Swiss Ledger — generated from design DNA (swiss · rail · sharp)\n *\n * High contrast, zero radius, one signal colour. Figures are tabular by default\n * because every surface this theme is applied to is a ledger of some kind.\n */\n\n:root {\n  --color-paper: #f7f5f0;\n  --color-ink: #0e0e0d;\n  --color-graphite: #55534f;\n  --color-line: rgba(14, 14, 13, 0.18);\n  --color-oxide: #a83216;\n  --color-moss: #2f4a37;\n\n  --font-display: \"Inter\", system-ui, sans-serif;\n  --font-sans: \"Inter\", system-ui, sans-serif;\n  --font-mono: \"JetBrains Mono\", ui-monospace, monospace;\n\n  --radius-sm: 0px;\n  --radius-md: 0px;\n  --radius-lg: 0px;\n\n  --motion-fast: 140ms;\n  --motion-normal: 280ms;\n  --motion-slow: 520ms;\n  --motion-ease: cubic-bezier(0.2, 0, 0, 1);\n\n  --swiss-rule: 1px solid var(--color-line);\n\n  font-variant-numeric: tabular-nums;\n}\n\n.dark {\n  --color-paper: #0b0b0a;\n  --color-ink: #f5f2ec;\n  --color-graphite: #a3a09a;\n  --color-line: rgba(245, 242, 236, 0.2);\n  --color-oxide: #e2624a;\n  --color-moss: #85a78e;\n}\n\n/* The rule grid: this theme draws structure instead of shading it. */\n.swiss-rule-grid > * + * {\n  border-top: var(--swiss-rule);\n}\n\n.swiss-hairline {\n  border-bottom: var(--swiss-rule);\n}\n\n.swiss-index-label {\n  font-family: var(--font-mono);\n  font-size: 11px;\n  letter-spacing: 0.24em;\n  text-transform: uppercase;\n  color: var(--color-graphite);\n}\n\n@media (prefers-reduced-motion: reduce) {\n  :root {\n    --motion-fast: 0ms;\n    --motion-normal: 0ms;\n    --motion-slow: 0ms;\n  }\n}\n",
+      "contentHash": "f1066933428f2fd6058ed7ece5d72f01fc7c748f4257c511e16d77595d99e180",
+      "sizeBytes": 1508
+    }
+  ],
+  "tags": [
+    "theme",
+    "swiss",
+    "high-contrast"
+  ],
+  "designSystem": "swiss-editorial",
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "dark-mode",
+      "reduced-motion-safe",
+      "wcag-aa"
+    ]
+  },
+  "url": "https://openui.dev/r/swiss-ledger.json"
+}

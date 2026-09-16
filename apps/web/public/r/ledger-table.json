@@ -1,0 +1,59 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ledger-table",
+  "type": "registry:component",
+  "title": "Ledger Table",
+  "description": "A dense data table built on real table semantics: hairline rules instead of card chrome, sortable columns with announced state, and sticky headers that stay legible.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ledger-table.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useMemo, useState } from \"react\";\nimport { ArrowDown, ArrowUp, ChevronsUpDown } from \"lucide-react\";\n\nimport { cn } from \"@/lib/cn\";\n\n/**\n * Ledger Table\n *\n * A dense table for lists that are read, not admired. It exists because most\n * \"data table\" components ship as a styled `div` soup with `role=\"table\"` bolted\n * on. This one is a real `<table>`:\n *\n *  - sorting state is announced with `aria-sort` on the `<th>`\n *  - the header row sticks without becoming a floating card\n *  - rows are keyboard reachable only when they are actually interactive\n *  - numeric columns get tabular figures and right alignment\n */\n\nexport type LedgerAlign = \"left\" | \"right\";\n\nexport interface LedgerColumn<T> {\n  key: string;\n  header: string;\n  align?: LedgerAlign;\n  /** Sortable columns must expose a comparable primitive. */\n  accessor?: (row: T) => string | number;\n  render?: (row: T) => React.ReactNode;\n  width?: string;\n}\n\nexport interface LedgerTableProps<T> {\n  columns: LedgerColumn<T>[];\n  rows: T[];\n  rowKey: (row: T) => string;\n  caption?: string;\n  initialSort?: { key: string; direction: \"asc\" | \"desc\" };\n  onRowClick?: (row: T) => void;\n  emptyMessage?: string;\n  className?: string;\n}\n\nexport function LedgerTable<T>({\n  columns,\n  rows,\n  rowKey,\n  caption,\n  initialSort,\n  onRowClick,\n  emptyMessage = \"No records.\",\n  className,\n}: LedgerTableProps<T>) {\n  const [sort, setSort] = useState(initialSort ?? null);\n\n  const sorted = useMemo(() => {\n    if (!sort) return rows;\n    const column = columns.find((candidate) => candidate.key === sort.key);\n    if (!column?.accessor) return rows;\n    const direction = sort.direction === \"asc\" ? 1 : -1;\n    return [...rows].sort((a, b) => {\n      const left = column.accessor!(a);\n      const right = column.accessor!(b);\n      if (typeof left === \"number\" && typeof right === \"number\") return (left - right) * direction;\n      return String(left).localeCompare(String(right), \"en\") * direction;\n    });\n  }, [columns, rows, sort]);\n\n  function toggleSort(column: LedgerColumn<T>) {\n    if (!column.accessor) return;\n    setSort((current) =>\n      current?.key === column.key\n        ? { key: column.key, direction: current.direction === \"asc\" ? \"desc\" : \"asc\" }\n        : { key: column.key, direction: \"asc\" },\n    );\n  }\n\n  return (\n    <div className={cn(\"w-full overflow-x-auto border border-line bg-paper\", className)}>\n      <table className=\"w-full border-collapse text-left font-mono text-[13px] leading-tight\">\n        {caption ? (\n          <caption className=\"border-b border-line px-3 py-2 text-left text-[11px] uppercase tracking-[0.24em] text-graphite\">\n            {caption}\n          </caption>\n        ) : null}\n        <thead className=\"sticky top-0 z-10 bg-paper\">\n          <tr className=\"border-b border-ink\">\n            {columns.map((column) => {\n              const isSorted = sort?.key === column.key;\n              const sortable = Boolean(column.accessor);\n              return (\n                <th\n                  key={column.key}\n                  scope=\"col\"\n                  style={column.width ? { width: column.width } : undefined}\n                  aria-sort={\n                    isSorted ? (sort!.direction === \"asc\" ? \"ascending\" : \"descending\") : \"none\"\n                  }\n                  className={cn(\n                    \"px-3 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-graphite\",\n                    column.align === \"right\" ? \"text-right\" : \"text-left\",\n                  )}\n                >\n                  {sortable ? (\n                    <button\n                      type=\"button\"\n                      onClick={() => toggleSort(column)}\n                      className={cn(\n                        \"inline-flex items-center gap-1.5 uppercase tracking-[0.18em] transition-colors\",\n                        \"hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide\",\n                        column.align === \"right\" && \"flex-row-reverse\",\n                        isSorted && \"text-ink\",\n                      )}\n                    >\n                      {column.header}\n                      {isSorted ? (\n                        sort!.direction === \"asc\" ? (\n                          <ArrowUp aria-hidden=\"true\" className=\"size-3\" />\n                        ) : (\n                          <ArrowDown aria-hidden=\"true\" className=\"size-3\" />\n                        )\n                      ) : (\n                        <ChevronsUpDown aria-hidden=\"true\" className=\"size-3 opacity-40\" />\n                      )}\n                    </button>\n                  ) : (\n                    column.header\n                  )}\n                </th>\n              );\n            })}\n          </tr>\n        </thead>\n        <tbody>\n          {sorted.length === 0 ? (\n            <tr>\n              <td colSpan={columns.length} className=\"px-3 py-8 text-center text-graphite\">\n                {emptyMessage}\n              </td>\n            </tr>\n          ) : (\n            sorted.map((row) => (\n              <tr\n                key={rowKey(row)}\n                onClick={onRowClick ? () => onRowClick(row) : undefined}\n                className={cn(\n                  \"border-b border-line last:border-b-0\",\n                  onRowClick &&\n                    \"cursor-pointer transition-colors hover:bg-ink hover:text-paper focus-within:bg-ink focus-within:text-paper\",\n                )}\n              >\n                {columns.map((column) => (\n                  <td\n                    key={column.key}\n                    className={cn(\n                      \"px-3 py-2 align-top\",\n                      column.align === \"right\" && \"text-right [font-variant-numeric:tabular-nums]\",\n                    )}\n                  >\n                    {column.render ? column.render(row) : String(column.accessor?.(row) ?? \"\")}\n                  </td>\n                ))}\n              </tr>\n            ))\n          )}\n        </tbody>\n      </table>\n    </div>\n  );\n}\n\nexport default LedgerTable;\n",
+      "contentHash": "d54277551688f00f3dce00288eeb433ad6ca6ad68bc70c664d52ded8b3953697",
+      "sizeBytes": 6097
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { LedgerTable, type LedgerColumn } from \"./ledger-table\";\n\ninterface Row {\n  slug: string;\n  type: string;\n  downloads: number;\n  updated: string;\n}\n\nconst ROWS: Row[] = [\n  { slug: \"magnetic-button\", type: \"component\", downloads: 4201, updated: \"2026-08-14\" },\n  { slug: \"editorial-heading\", type: \"text\", downloads: 3180, updated: \"2026-08-11\" },\n  { slug: \"grain-background\", type: \"background\", downloads: 1904, updated: \"2026-08-02\" },\n  { slug: \"cursor-trail\", type: \"interaction\", downloads: 987, updated: \"2026-07-29\" },\n];\n\nconst COLUMNS: LedgerColumn<Row>[] = [\n  { key: \"slug\", header: \"Resource\", accessor: (row) => row.slug },\n  { key: \"type\", header: \"Type\", accessor: (row) => row.type },\n  { key: \"downloads\", header: \"Downloads\", align: \"right\", accessor: (row) => row.downloads },\n  { key: \"updated\", header: \"Updated\", align: \"right\", accessor: (row) => row.updated },\n];\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper p-8 text-ink\">\n      <LedgerTable\n        caption=\"Registry ledger\"\n        columns={COLUMNS}\n        rows={ROWS}\n        rowKey={(row) => row.slug}\n        initialSort={{ key: \"downloads\", direction: \"desc\" }}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "d3215e3e61454a6462d541cb45cc4e8062887f939704f784ae82852bb6bb249a",
+      "sizeBytes": 1210
+    }
+  ],
+  "tags": [
+    "table",
+    "data",
+    "industrial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "sortable",
+      "keyboard-accessible",
+      "sticky-header"
+    ],
+    "peer": {
+      "react": ">=19"
+    }
+  },
+  "url": "https://openui.dev/r/ledger-table.json",
+  "designRules": "# Ledger Table\n\nGenre: Industrial\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Motion\n\nFast: 120ms\nNormal: 200ms\nSlow: 320ms\n\n## Rules\n\n- Rules separate rows: no zebra striping, no card chrome, no shadows.\n- Numbers are right-aligned with tabular figures so columns compare by shape.\n- Headers are monospace uppercase at 11px with wide tracking.\n- Sorting state is announced with aria-sort, not only with an icon.\n\n## Avoid\n\n- Row hover that changes the row height.\n- Pagination controls inside the table surface.\n- Truncating the identifier column.\n"
+}

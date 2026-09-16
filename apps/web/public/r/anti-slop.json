@@ -1,0 +1,34 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "anti-slop",
+  "type": "registry:ai",
+  "title": "Anti-Slop Rules",
+  "description": "The negative ruleset: the eleven failure modes that make generated interfaces recognisable, stated as prohibitions an agent can check against before it ships a layout.",
+  "category": "ai",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "anti-slop.md",
+      "type": "registry:ai",
+      "target": "ai",
+      "content": "# Anti-Slop Rules\n\nRead this before generating or reviewing an interface. Every rule is a\nprohibition, so it can be checked mechanically by\n`@openui/design-system`'s audit.\n\n1. **Do not centre a hero headline over a three-column feature grid.** This is the\n   single most recognisable generated layout. If a hero is centred, the rest of\n   the page must not be a symmetric grid.\n2. **Do not repeat the same multi-column card grid more than twice per page.**\n   Vary composition, not just content.\n3. **Do not use a gradient as background decoration.** A gradient must encode\n   something: depth, direction, state, data.\n4. **Do not give every container the same large radius.** Above 8px, radius is a\n   statement — make it once.\n5. **Do not use a single neutral grotesk for everything.** Pair a display face\n   with a text face, or use weight and width as hierarchy.\n6. **Do not separate every region with a shadow.** Elevation implies\n   interactivity. Use hairlines for structure.\n7. **Do not ship a page with no interaction.** One deliberate pointer, scroll or\n   keyboard behaviour is the difference between an interface and a poster.\n8. **Do not use more than one spacing step for a single relationship.** Rhythm\n   comes from a small scale applied consistently.\n9. **Do not let more than two accent colours compete.** One accent, one neutral\n   scale, one signal.\n10. **Do not animate for decoration.** Every transition should explain hierarchy,\n   confirm input or preserve context.\n11. **Do not hide content on small screens.** Recompose the layout; never delete\n    the argument.\n\n## How to use this file\n\n- **Agents:** include it in context, then self-check the output against each rule\n  and state which ones constrained the result.\n- **Reviewers:** use it as the acceptance checklist in a pull request.\n- **Audits:** run `pnpm audit:ui` (or the Playground's \"Audit\" tab) and treat\n  anything below 70/100 in Originality as a blocker.\n",
+      "contentHash": "a72bf2dd8c926fc4689e06bf402a6f06cb17055cd39757885cc0d720282ba88b",
+      "sizeBytes": 1949
+    }
+  ],
+  "tags": [
+    "ai",
+    "rules",
+    "anti-slop"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": [
+      "agent-consumable",
+      "auditable"
+    ]
+  },
+  "url": "https://openui.dev/r/anti-slop.json"
+}
