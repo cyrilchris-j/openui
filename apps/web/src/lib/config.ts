@@ -31,8 +31,11 @@ export const config: AppConfig = {
   // Defaults point at the dev proxy, so `pnpm dev` works with no `.env` file.
   apiBaseUrl: read("VITE_API_BASE_URL", "/api/v1").replace(/\/+$/, ""),
   registryBaseUrl: read("VITE_REGISTRY_BASE_URL", "/r").replace(/\/+$/, ""),
-  supabaseUrl: import.meta.env["VITE_SUPABASE_URL"] || null,
-  supabaseAnonKey: import.meta.env["VITE_SUPABASE_ANON_KEY"] || null,
+  supabaseUrl: read("VITE_SUPABASE_URL", "https://hkzacjeplcmyexqmzyqn.supabase.co"),
+  supabaseAnonKey: read(
+    "VITE_SUPABASE_ANON_KEY",
+    "sb_publishable_IsfEdcoPgI5Vu6SbcXSoXA_hLdp_CC6",
+  ),
   get authEnabled(): boolean {
     return Boolean(this.supabaseUrl && this.supabaseAnonKey);
   },
