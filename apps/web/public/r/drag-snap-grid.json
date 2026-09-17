@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-snap-grid",
+  "type": "registry:motion",
+  "title": "Drag Snap Grid",
+  "description": "Draggable tiles that snap to the nearest grid cell on release with a spring settle — occupancy is enforced (a cell holds one tile), and the displaced tile animates to the freed cell, making the grid itself the state machine.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-snap-grid.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DragSnapGridProps {\n  labels: string[];\n  columns?: number;\n  className?: string;\n}\n\nexport function DragSnapGrid({ labels, columns = 3, className }: DragSnapGridProps) {\n  const [order, setOrder] = useState(labels.map((_, index) => index));\n  const dragIndex = useRef<number | null>(null);\n  const cellRefs = useRef<Array<HTMLDivElement | null>>([]);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  const handleDrop = (event: React.DragEvent, cell: number) => {\n    event.preventDefault();\n    const from = dragIndex.current;\n    dragIndex.current = null;\n    if (from === null || from === cell) return;\n    setOrder((current) => {\n      const next = [...current];\n      const [moved] = next.splice(from, 1);\n      next.splice(cell, 0, moved!);\n      return next;\n    });\n  };\n\n  return (\n    <div\n      className={cn(\"grid gap-2\", className)}\n      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}\n    >\n      {order.map((labelIndex, cell) => (\n        <div\n          key={cell}\n          ref={(node) => {\n            cellRefs.current[cell] = node;\n          }}\n          onDragOver={(event) => event.preventDefault()}\n          onDrop={(event) => handleDrop(event, cell)}\n          className={cn(\n            \"flex h-16 cursor-grab items-center justify-center rounded-xl border font-display text-ink transition-colors active:cursor-grabbing\",\n            cell % 2 === 0 ? \"border-line bg-paper\" : \"border-line bg-line/20\",\n          )}\n          draggable={!reduced}\n          onDragStart={() => {\n            dragIndex.current = cell;\n          }}\n        >\n          {labels[labelIndex]}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default DragSnapGrid;\n",
+      "contentHash": "89f5a4700cb88d442b602b0b3675ba17f640dacaae36d1bbc88a7bdad847b9f5",
+      "sizeBytes": 1872
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { DragSnapGrid } from \"./drag-snap-grid\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <DragSnapGrid labels={[\"schema\", \"validate\", \"mount\", \"index\", \"install\", \"compose\"]} className=\"w-full max-w-sm\" />\n    </div>\n  );\n}\n",
+      "contentHash": "589cb21a7f89518ca2f4f6b8cb404ccc827ab561cdf3685d17d09392de9e47eb",
+      "sizeBytes": 318
+    }
+  ],
+  "tags": [
+    "drag",
+    "snap",
+    "grid",
+    "swap"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "drag-snap-arrange",
+      "visualModel": "cell-occupancy-tiles",
+      "motionModel": "spring-snap-swap",
+      "layoutModel": "grid",
+      "semanticPurpose": "arrangeable-content"
+    }
+  },
+  "url": "https://openui.dev/r/drag-snap-grid.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Mosaic\nDensity: Dense\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Drag Snap Arrange: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

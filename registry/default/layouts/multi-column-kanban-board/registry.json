@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-column-kanban-board",
+  "type": "registry:layout",
+  "title": "Multi Column Kanban Board",
+  "description": "Horizontal scrolling kanban workspace with responsive column rails and card racks.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-column-kanban-board.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "kanban",
+    "board",
+    "columns",
+    "workflow",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "kanban-column-horizontal-flow",
+      "visualModel": "multi-column-workflow-board",
+      "motionModel": "none",
+      "layoutModel": "horizontal-column-rack",
+      "semanticPurpose": "project-kanban-stage"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

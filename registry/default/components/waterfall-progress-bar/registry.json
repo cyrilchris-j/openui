@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "waterfall-progress-bar",
+  "type": "registry:component",
+  "title": "Waterfall Progress Bar",
+  "description": "Sequential build/deployment phases tracker showing pipeline stage timings and completion states.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "waterfall-progress-bar.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "waterfall",
+    "pipeline",
+    "progress",
+    "stages",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "sequential-phase-inspection",
+      "visualModel": "waterfall-timing-bars",
+      "motionModel": "none",
+      "layoutModel": "stacked-timeline-phases",
+      "semanticPurpose": "pipeline-latency-breakdown"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-media-showcase",
+  "type": "registry:section",
+  "title": "Hero Media Showcase",
+  "description": "A flagship hero section featuring browser frame window mockup, glowing gradients, callout badges, and dual action CTAs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-media-showcase.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HeroMediaShowcaseProps extends React.HTMLAttributes<HTMLElement> {\n  badge?: string;\n  headline?: string;\n  subheadline?: string;\n  primaryCta?: string;\n  secondaryCta?: string;\n}\n\nexport function HeroMediaShowcase({\n  badge = \"OpenUI Registry v2.4 Now Live\",\n  headline = \"The interface standard for high-assurance web applications\",\n  subheadline = \"800 verified, zero-dependency accessible components, layouts, sections, and blocks designed to drop straight into your production Next.js codebase.\",\n  primaryCta = \"Browse 800 Components →\",\n  secondaryCta = \"View CLI Docs\",\n  className,\n  ...props\n}: HeroMediaShowcaseProps) {\n  return (\n    <section className={cn(\"w-full py-20 px-4 md:px-8 max-w-6xl mx-auto text-center\", className)} {...props}>\n      <div className=\"inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 mb-6\">\n        <span className=\"h-2 w-2 rounded-full bg-emerald-500\" />\n        <span>{badge}</span>\n      </div>\n\n      <h1 className=\"text-4xl md:text-6xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100 max-w-4xl mx-auto leading-tight\">\n        {headline}\n      </h1>\n\n      <p className=\"text-base md:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto mt-6 leading-relaxed\">\n        {subheadline}\n      </p>\n\n      <div className=\"flex flex-wrap items-center justify-center gap-4 mt-8\">\n        <button\n          type=\"button\"\n          className=\"px-6 py-3 rounded-xl text-sm font-semibold bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200 transition-colors shadow-sm\"\n        >\n          {primaryCta}\n        </button>\n        <button\n          type=\"button\"\n          className=\"px-6 py-3 rounded-xl text-sm font-semibold border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors\"\n        >\n          {secondaryCta}\n        </button>\n      </div>\n\n      {/* Browser mockup stage */}\n      <div className=\"mt-14 max-w-5xl mx-auto rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 p-2 shadow-2xl\">\n        <div className=\"h-8 rounded-t-xl bg-neutral-200/80 dark:bg-neutral-900 flex items-center px-4 gap-2\">\n          <div className=\"h-2.5 w-2.5 rounded-full bg-red-400\" />\n          <div className=\"h-2.5 w-2.5 rounded-full bg-amber-400\" />\n          <div className=\"h-2.5 w-2.5 rounded-full bg-emerald-400\" />\n          <div className=\"mx-auto text-[11px] font-mono text-neutral-400\">\n            https://openui.dev/catalog/sections\n          </div>\n        </div>\n        <div className=\"h-64 sm:h-80 w-full rounded-b-lg bg-white dark:bg-neutral-900/50 flex items-center justify-center text-neutral-400 font-mono text-xs\">\n          [Interactive Component Canvas: 800 Live Primitives Ready]\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "002aa1aa9fe814c81628ed4737ed29e98c6ec2eda55bc50e8dfc4920e509486f",
+      "sizeBytes": 3158
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { HeroMediaShowcase } from \"./hero-media-showcase\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[500px] flex items-center justify-center bg-white dark:bg-neutral-950\">\n      <HeroMediaShowcase />\n    </div>\n  );\n}\n",
+      "contentHash": "32823fa3d6cf0fc2b4cc098912519ebe4ed3f726fcac2a230df987ac1f406be3",
+      "sizeBytes": 270
+    }
+  ],
+  "tags": [
+    "hero",
+    "media",
+    "showcase",
+    "mockup",
+    "cta"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hero",
+    "fingerprint": {
+      "interactionModel": "hero-media-showcase-interaction",
+      "visualModel": "hero-media-showcase-visual",
+      "motionModel": "subtle",
+      "layoutModel": "asymmetric-layout",
+      "semanticPurpose": "hero-media-showcase-section"
+    }
+  },
+  "url": "https://openui.dev/r/hero-media-showcase.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Hero Media Showcase Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

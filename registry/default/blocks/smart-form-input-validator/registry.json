@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "smart-form-input-validator",
+  "type": "registry:block",
+  "title": "Smart Form Input Validator",
+  "description": "A live form field validator displaying real-time feedback for password strength, email formatting, and slug syntax.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "smart-form-input-validator.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "forms",
+    "validation",
+    "input",
+    "schema",
+    "feedback"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "live-input-schema-validation",
+      "visualModel": "interactive-form-validator-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "client-side-form-validation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

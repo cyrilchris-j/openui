@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "soundwave-visualizer-bar",
+  "type": "registry:motion",
+  "title": "Soundwave Visualizer Bar",
+  "description": "An audio equalizer bar array pulsating with organic harmonic frequency fluctuations and vertical dancing springs.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "soundwave-visualizer-bar.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "equalizer",
+    "audio",
+    "soundwave",
+    "bars",
+    "music"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "continuous-frequency-bounce",
+      "visualModel": "vertical-spectrum-columns",
+      "motionModel": "pseudo-random-harmonic-bounce",
+      "layoutModel": "inline-equalizer-rack",
+      "semanticPurpose": "audio-activity-visualizer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

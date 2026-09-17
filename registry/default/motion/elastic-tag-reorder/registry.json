@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-tag-reorder",
+  "type": "registry:motion",
+  "title": "Elastic Tag Reorder",
+  "description": "An interactive tag pill shelf where items exchange grid slots with smooth spring-driven layout shifts.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-tag-reorder.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "tags",
+    "reorder",
+    "spring",
+    "layout",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "tag-swap-shuffle",
+      "visualModel": "flex-pill-shelf",
+      "motionModel": "fluid-reordering-spring",
+      "layoutModel": "wrapping-pill-grid",
+      "semanticPurpose": "interactive-filter-organizer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

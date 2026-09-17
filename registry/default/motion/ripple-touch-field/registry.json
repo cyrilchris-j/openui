@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ripple-touch-field",
+  "type": "registry:motion",
+  "title": "Ripple Touch Field",
+  "description": "A tactile responsive canvas emitting expanding concentric shockwave rings on click with physics decay.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ripple-touch-field.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "ripple",
+    "touch",
+    "shockwave",
+    "canvas",
+    "waves"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "click-dispersion-shockwave",
+      "visualModel": "expanding-concentric-crests",
+      "motionModel": "radial-propagation-decay",
+      "layoutModel": "touch-surface-field",
+      "semanticPurpose": "sensory-feedback-pad"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

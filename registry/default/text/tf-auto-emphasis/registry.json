@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tf-auto-emphasis",
+  "type": "registry:text",
+  "title": "TF Auto Emphasis",
+  "description": "Automatic emphasis by term frequency: words repeated in the passage get progressively bolder, so the vocabulary that carries the text rises to the surface — a document outline you can see inside a paragraph.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tf-auto-emphasis.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "term-frequency",
+    "emphasis",
+    "analysis",
+    "weights"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "frequency-weighted-weights",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "vocabulary-surface"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

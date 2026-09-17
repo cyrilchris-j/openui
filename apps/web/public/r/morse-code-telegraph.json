@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "morse-code-telegraph",
+  "type": "registry:background",
+  "title": "Morse Code Telegraph",
+  "description": "Horizontal rhythm of dots and dashes encoding telegraphic transmission signals.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "morse-code-telegraph.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MorseCodeTelegraphProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MorseCodeTelegraph({ className, children, ...props }: MorseCodeTelegraphProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"morse-pat\" width=\"80\" height=\"24\" patternUnits=\"userSpaceOnUse\">\n            <rect x=\"5\" y=\"11\" width=\"4\" height=\"2\" rx=\"1\" fill=\"currentColor\" />\n            <rect x=\"15\" y=\"11\" width=\"14\" height=\"2\" rx=\"1\" fill=\"currentColor\" />\n            <rect x=\"35\" y=\"11\" width=\"4\" height=\"2\" rx=\"1\" fill=\"currentColor\" />\n            <rect x=\"45\" y=\"11\" width=\"4\" height=\"2\" rx=\"1\" fill=\"currentColor\" />\n            <rect x=\"55\" y=\"11\" width=\"18\" height=\"2\" rx=\"1\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#morse-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "d22e2f30c46c08ef4ed53cd2bc03fcae57bf7ccf7e53fcba79d4d7c646b4e682",
+      "sizeBytes": 1193
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { MorseCodeTelegraph } from \"./morse-code-telegraph\";\n\nexport default function MorseCodeTelegraphDemo() {\n  return (\n    <MorseCodeTelegraph className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Morse Telegraph</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Horizontal dot-and-dash telegraph signal tracks.</p>\n      </div>\n    </MorseCodeTelegraph>\n  );\n}\n",
+      "contentHash": "757618590b5b8e12fcab2fc1814804789fa532e8d98360feefa35efe3fbf6c1d",
+      "sizeBytes": 584
+    }
+  ],
+  "tags": [
+    "morse",
+    "telegraph",
+    "dots",
+    "dashes",
+    "data"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-telegraph-texture",
+      "visualModel": "staggered-morse-lines",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "telegraph-transmission-pattern"
+    }
+  },
+  "url": "https://openui.dev/r/morse-code-telegraph.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Telegraph Texture: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

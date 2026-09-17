@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "roadmap-quarterly-milestones",
+  "type": "registry:section",
+  "title": "Roadmap Quarterly Milestones",
+  "description": "A forward-looking technical roadmap displaying upcoming milestones across Q1 through Q4.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "roadmap-quarterly-milestones.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function RoadmapQuarterlyMilestones({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const quarters = [\n    { q: \"Q1\", title: \"800 Certified Catalog\", status: \"Delivered\" },\n    { q: \"Q2\", title: \"Private Air-gapped Mirroring\", status: \"In Progress\" },\n    { q: \"Q3\", title: \"Figma Variables Synchronizer\", status: \"Planned\" },\n    { q: \"Q4\", title: \"AI-Assisted Layout Diffing\", status: \"Planned\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-5xl mx-auto\", className)} {...props}>\n      <h3 className=\"text-2xl font-bold text-center text-neutral-900 dark:text-white mb-8\">Technical Roadmap</h3>\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">\n        {quarters.map((item) => (\n          <div key={item.q} className=\"p-5 rounded-xl border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n            <span className=\"text-xs font-mono font-bold text-neutral-400\">{item.q}</span>\n            <h4 className=\"text-sm font-bold text-neutral-900 dark:text-white mt-2\">{item.title}</h4>\n            <div className=\"text-[10px] font-mono text-emerald-600 dark:text-emerald-400 mt-3\">{item.status}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "47182481beed724f38246e5c3b5a2ed3b72fb0dfb66de661f3757e43cf8931e9",
+      "sizeBytes": 1345
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { RoadmapQuarterlyMilestones } from \"./roadmap-quarterly-milestones\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <RoadmapQuarterlyMilestones />\n    </div>\n  );\n}\n",
+      "contentHash": "97ee995fb5c44301437ad75f312f76ce632c7fcdaf8b2756ba06351d576c47f9",
+      "sizeBytes": 307
+    }
+  ],
+  "tags": [
+    "roadmap",
+    "milestones",
+    "quarters",
+    "planning",
+    "future"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "roadmap",
+    "fingerprint": {
+      "interactionModel": "roadmap-quarterly-milestones-interaction",
+      "visualModel": "roadmap-quarterly-milestones-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "roadmap-quarterly-milestones-section"
+    }
+  },
+  "url": "https://openui.dev/r/roadmap-quarterly-milestones.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Roadmap Quarterly Milestones Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

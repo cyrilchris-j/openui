@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "incident-postmortem-report",
+  "type": "registry:block",
+  "title": "Incident Postmortem Report",
+  "description": "An operational incident debrief card summarizing root cause analysis, timeline, and mitigation actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "incident-postmortem-report.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "incident",
+    "postmortem",
+    "devops",
+    "mttr",
+    "reliability"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "incident-postmortem-review",
+      "visualModel": "structured-postmortem-dossier",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "incident-resolution-postmortem"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "celestial-zodiac-map",
+  "type": "registry:background",
+  "title": "Celestial Zodiac Map",
+  "description": "Antique star constellation chart with coordinate meridian lines and celestial astrological markers.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "celestial-zodiac-map.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CelestialZodiacMapProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CelestialZodiacMap({ className, children, ...props }: CelestialZodiacMapProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 400\">\n        <circle cx=\"300\" cy=\"200\" r=\"180\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <circle cx=\"300\" cy=\"200\" r=\"120\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"0.75\" strokeDasharray=\"3 3\" />\n        <line x1=\"120\" y1=\"200\" x2=\"480\" y2=\"200\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n        <line x1=\"300\" y1=\"20\" x2=\"300\" y2=\"380\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n        <circle cx=\"240\" cy=\"160\" r=\"2\" fill=\"currentColor\" />\n        <circle cx=\"360\" cy=\"140\" r=\"3\" fill=\"currentColor\" />\n        <circle cx=\"280\" cy=\"260\" r=\"2\" fill=\"currentColor\" />\n        <circle cx=\"330\" cy=\"220\" r=\"2.5\" fill=\"currentColor\" />\n        <line x1=\"240\" y1=\"160\" x2=\"360\" y2=\"140\" stroke=\"currentColor\" strokeWidth=\"0.5\" />\n        <line x1=\"360\" y1=\"140\" x2=\"330\" y2=\"220\" stroke=\"currentColor\" strokeWidth=\"0.5\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "7be6903a75344bacbb7eb5277fa6d29f4aabf2e865c60624f9907f5f1220ba8e",
+      "sizeBytes": 1434
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CelestialZodiacMap } from \"./celestial-zodiac-map\";\n\nexport default function CelestialZodiacMapDemo() {\n  return (\n    <CelestialZodiacMap className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Celestial Meridian</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Astrological constellation chart meridians.</p>\n      </div>\n    </CelestialZodiacMap>\n  );\n}\n",
+      "contentHash": "c6f5baea1a1b38339f8533b2eb605c48ee9d71f3705455b4f30a18703cd05ee4",
+      "sizeBytes": 583
+    }
+  ],
+  "tags": [
+    "celestial",
+    "stars",
+    "zodiac",
+    "map",
+    "astronomy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-astronomy-chart",
+      "visualModel": "celestial-meridian-lattice",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "celestial-cartography-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/celestial-zodiac-map.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Passive Astronomy Chart: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

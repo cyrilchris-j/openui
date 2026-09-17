@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-terminal-block",
+  "type": "registry:component",
+  "title": "Code Terminal Block",
+  "description": "A dark terminal console output box displaying terminal prompt and executed output lines.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-terminal-block.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "terminal",
+    "code",
+    "console",
+    "prompt",
+    "output"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-terminal-log",
+      "visualModel": "dark-console-chassis",
+      "motionModel": "none",
+      "layoutModel": "terminal-console-block",
+      "semanticPurpose": "console-log-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

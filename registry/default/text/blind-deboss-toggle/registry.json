@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "blind-deboss-toggle",
+  "type": "registry:text",
+  "title": "Blind Deboss Toggle",
+  "description": "A tactile switch rendered as typography: the word ON or OFF sits in a soft rubber pad and physically debosses on press — shadows invert, the glyph sinks — a state indicator you can feel with your eyes.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "blind-deboss-toggle.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "toggle",
+    "deboss",
+    "tactile",
+    "state"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "press-toggle",
+      "visualModel": "inverted-shadow-deboss",
+      "motionModel": "press-sink-release",
+      "layoutModel": "inline",
+      "semanticPurpose": "binary-state"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

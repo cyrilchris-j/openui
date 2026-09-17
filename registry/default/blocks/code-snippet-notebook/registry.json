@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-snippet-notebook",
+  "type": "registry:block",
+  "title": "Code Snippet Notebook",
+  "description": "An interactive computational notebook block with executable code cells, markdown blocks, and output preview.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-snippet-notebook.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "notebook",
+    "code",
+    "cells",
+    "execution",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "notebook-code-cell-execution",
+      "visualModel": "executable-snippet-workbook",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-code-notebook"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

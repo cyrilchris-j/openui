@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tally-glyph-counter",
+  "type": "registry:text",
+  "title": "Tally Glyph Counter",
+  "description": "Counts rendered as tally marks: groups of four vertical strokes with a diagonal fifth strike-through, animated stroke-by-stroke as the value ticks up — a counting display that predates numerals and still reads instantly.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tally-glyph-counter.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TallyGlyphCounterProps {\n  value: number;\n  /** Whether to show the numeral beside the marks. */\n  numeral?: boolean;\n  className?: string;\n}\n\nfunction TallyGroup({ index, filled }: { index: number; filled: boolean }) {\n  return (\n    <svg\n      aria-hidden\n      width=\"26\"\n      height=\"30\"\n      viewBox=\"0 0 26 30\"\n      className={cn(\"inline-block\", !filled && \"opacity-25\")}\n    >\n      {[4, 9, 14, 19].map((x, i) => (\n        <line\n          key={i}\n          x1={x}\n          y1={4}\n          x2={x}\n          y2={26}\n          stroke=\"currentColor\"\n          strokeWidth=\"2.4\"\n          strokeLinecap=\"round\"\n          pathLength={1}\n          style={filled ? { strokeDasharray: 1, animation: `openui-tally-draw 160ms ease-out ${i * 60}ms both` } : undefined}\n        />\n      ))}\n      {filled && (\n        <line\n          x1=\"1\"\n          y1=\"22\"\n          x2=\"23\"\n          y2=\"7\"\n          stroke=\"#e2624a\"\n          strokeWidth=\"2.6\"\n          strokeLinecap=\"round\"\n          pathLength={1}\n          style={{ strokeDasharray: 1, animation: \"openui-tally-draw 200ms ease-out 260ms both\" }}\n        />\n      )}\n      <title>{`group ${index + 1}`}</title>\n    </svg>\n  );\n}\n\nexport function TallyGlyphCounter({ value, numeral = true, className }: TallyGlyphCounterProps) {\n  const groups = Math.ceil(value / 5);\n  const [animatedValue, setAnimatedValue] = useState(0);\n  const previous = useRef(0);\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setAnimatedValue(value);\n      previous.current = value;\n      return;\n    }\n    // Tick up in steps of 5 so new groups draw one at a time.\n    const step = value > previous.current ? 1 : -1;\n    let current = previous.current;\n    const timer = window.setInterval(() => {\n      current += step;\n      setAnimatedValue(current);\n      if (current === value) {\n        window.clearInterval(timer);\n        previous.current = value;\n      }\n    }, 120);\n    return () => window.clearInterval(timer);\n  }, [value]);\n\n  const visibleGroups = Math.ceil(animatedValue / 5);\n\n  return (\n    <span\n      className={cn(\"inline-flex items-center gap-3\", className)}\n      role=\"status\"\n      aria-label={`${value} counted`}\n    >\n      <span aria-hidden className=\"flex max-w-md flex-wrap gap-1.5 text-ink\">\n        {Array.from({ length: Math.max(groups, 1) }, (_, index) => (\n          <TallyGroup key={index} index={index} filled={index < visibleGroups} />\n        ))}\n      </span>\n      {numeral && <span className=\"font-mono text-sm tabular-nums text-ink/70\">{value}</span>}\n      <style>{`@keyframes openui-tally-draw { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } } @media (prefers-reduced-motion: reduce) { line { animation: none !important; stroke-dashoffset: 0 !important } }`}</style>\n    </span>\n  );\n}\n\nexport default TallyGlyphCounter;\n",
+      "contentHash": "7b66e34a7f885480cdf9f6d87f0506efd9d604eee72d4a05d9e91f35c52739e8",
+      "sizeBytes": 2983
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { useEffect, useState } from \"react\";\nimport { TallyGlyphCounter } from \"./tally-glyph-counter\";\n\nexport default function Demo() {\n  const [value, setValue] = useState(12);\n\n  useEffect(() => {\n    const timer = window.setInterval(() => setValue((v) => (v >= 33 ? 3 : v + 3)), 1800);\n    return () => window.clearInterval(timer);\n  }, []);\n\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <TallyGlyphCounter value={value} className=\"text-step-2\" />\n    </div>\n  );\n}\n",
+      "contentHash": "7eaad3bad668a113532ec8d4fc409c821167e5969322857c1581e1320794fcba",
+      "sizeBytes": 526
+    }
+  ],
+  "tags": [
+    "tally",
+    "counter",
+    "svg",
+    "strokes"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "value-tick",
+      "visualModel": "tally-stroke-groups",
+      "motionModel": "stroke-draw-increment",
+      "layoutModel": "inline-wrap",
+      "semanticPurpose": "counting-display"
+    }
+  },
+  "url": "https://openui.dev/r/tally-glyph-counter.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Rail\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Value Tick: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

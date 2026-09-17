@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "metric-stat-card",
+  "type": "registry:component",
+  "title": "Metric Stat Card",
+  "description": "A KPI scorecard tile featuring large numeric metrics, percentage delta badges, and contextual timeframe labels.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "metric-stat-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MetricStatCardProps {\n  label?: string;\n  value?: string;\n  change?: string;\n  positive?: boolean;\n  className?: string;\n}\n\nexport function MetricStatCard({\n  label = \"Monthly Active Queries\",\n  value = \"1,842,900\",\n  change = \"+14.2%\",\n  positive = true,\n  className,\n}: MetricStatCardProps) {\n  return (\n    <div className={cn(\"w-full max-w-xs rounded-xl border border-line bg-paper p-5 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60 uppercase\">{label}</span>\n      <div className=\"mt-2 flex items-baseline justify-between\">\n        <span className=\"font-mono text-2xl font-bold text-ink\">{value}</span>\n        <span\n          className={cn(\n            \"rounded px-2 py-0.5 font-mono text-xs font-semibold\",\n            positive ? \"bg-emerald-500/10 text-emerald-600\" : \"bg-red-500/10 text-red-600\"\n          )}\n        >\n          {change}\n        </span>\n      </div>\n      <p className=\"mt-3 font-mono text-[10px] text-ink/40\">vs. previous 30-day baseline</p>\n    </div>\n  );\n}\n\nexport default MetricStatCard;\n",
+      "contentHash": "d88f7bab694a14f0f4c55553ef7c9c2de341650db74dabe4d8de52bbeabdd3e2",
+      "sizeBytes": 1112
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { MetricStatCard } from \"./metric-stat-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <MetricStatCard />\n    </div>\n  );\n}\n",
+      "contentHash": "bc1e046b7403fc36d1469b27c3e083d1e4863abb1a740241042068be32a6708b",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "metric",
+    "kpi",
+    "stat",
+    "card",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-kpi-inspection",
+      "visualModel": "bordered-kpi-card",
+      "motionModel": "none",
+      "layoutModel": "kpi-metric-tile",
+      "semanticPurpose": "dashboard-metric-tile"
+    }
+  },
+  "url": "https://openui.dev/r/metric-stat-card.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Kpi Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

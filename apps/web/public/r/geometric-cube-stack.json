@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-cube-stack",
+  "type": "registry:background",
+  "title": "Geometric Cube Stack",
+  "description": "Vertical columns of tessellated isometric voxels forming modular architecture towers.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-cube-stack.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface GeometricCubeStackProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GeometricCubeStack({ className, children, ...props }: GeometricCubeStackProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"stack-pat\" width=\"40\" height=\"70\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"20,0 40,12 20,24 0,12\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"20,24 40,36 20,48 0,36\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"20,48 40,60 20,72 0,60\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#stack-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "5bda1e51c4a7b167e9df96e81707741f3e07bf0890e1bc4219b38516a01c3f49",
+      "sizeBytes": 1094
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GeometricCubeStack } from \"./geometric-cube-stack\";\n\nexport default function GeometricCubeStackDemo() {\n  return (\n    <GeometricCubeStack className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Voxel Cube Columns</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Vertical isometric modular column tessellation.</p>\n      </div>\n    </GeometricCubeStack>\n  );\n}\n",
+      "contentHash": "cb51b9b27f18dcf0761506d36cf466a156a6fb1606b7a37411dd664a20a21394",
+      "sizeBytes": 586
+    }
+  ],
+  "tags": [
+    "voxels",
+    "cubes",
+    "towers",
+    "isometric",
+    "architecture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-voxel-towers",
+      "visualModel": "columnar-cube-pillars",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "isometric-voxel-texture"
+    }
+  },
+  "url": "https://openui.dev/r/geometric-cube-stack.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Voxel Towers: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

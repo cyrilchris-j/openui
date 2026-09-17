@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rating-gauge-bar",
+  "type": "registry:component",
+  "title": "Rating Gauge Bar",
+  "description": "A linear satisfaction gauge tracking breakdown percentages across ratings categories.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rating-gauge-bar.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "rating",
+    "gauge",
+    "bar",
+    "feedback",
+    "satisfaction"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "linear-satisfaction-breakdown",
+      "visualModel": "segmented-percentage-track",
+      "motionModel": "none",
+      "layoutModel": "horizontal-gauge-bar",
+      "semanticPurpose": "satisfaction-gauge-bar"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

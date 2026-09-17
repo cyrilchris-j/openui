@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hatch-fill-type",
+  "type": "registry:text",
+  "title": "Hatch Fill Type",
+  "description": "Glyphs filled with diagonal hatching instead of ink: a repeating-linear-gradient clipped to the text, with hatch angle, spacing and weight exposed as controls — engraved-plate shading as a fill system.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hatch-fill-type.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HatchFillTypeProps {\n  children: string;\n  ink?: string;\n  className?: string;\n}\n\nexport function HatchFillType({ children, ink = \"#1c1c1e\", className }: HatchFillTypeProps) {\n  const [angle, setAngle] = useState(45);\n  const [spacing, setSpacing] = useState(6);\n\n  return (\n    <span className={cn(\"inline-flex flex-col gap-4\", className)}>\n      <span\n        aria-hidden\n        className=\"inline-block select-none font-display\"\n        style={{\n          backgroundImage: `repeating-linear-gradient(${angle}deg, ${ink} 0 1.5px, transparent 1.5px ${spacing}px)`,\n          WebkitBackgroundClip: \"text\",\n          backgroundClip: \"text\",\n          color: \"transparent\",\n        }}\n      >\n        {children}\n      </span>\n      <span className=\"sr-only\">{children}</span>\n      <label className=\"flex items-center gap-2 font-mono text-xs text-ink/70\">\n        angle\n        <input type=\"range\" min={0} max={90} value={angle} onChange={(event) => setAngle(Number(event.target.value))} className=\"w-24\" />\n      </label>\n      <label className=\"flex items-center gap-2 font-mono text-xs text-ink/70\">\n        spacing\n        <input type=\"range\" min={3} max={14} value={spacing} onChange={(event) => setSpacing(Number(event.target.value))} className=\"w-24\" />\n      </label>\n    </span>\n  );\n}\n\nexport default HatchFillType;\n",
+      "contentHash": "eab63590e71966dfde3dad09d0b5542c23d0612ca94506ed0fcb29482ab98a90",
+      "sizeBytes": 1422
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { HatchFillType } from \"./hatch-fill-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <HatchFillType className=\"text-step-5\">Etched</HatchFillType>\n    </div>\n  );\n}\n",
+      "contentHash": "b94770f57fb51362c2432c4634bde6974c833aeb95fd343dae57aca13261c925",
+      "sizeBytes": 265
+    }
+  ],
+  "tags": [
+    "hatch",
+    "engraved",
+    "fill",
+    "pattern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "pattern-dial",
+      "visualModel": "hatch-pattern-clipped-fill",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    }
+  },
+  "url": "https://openui.dev/r/hatch-fill-type.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Variable Poster\nColor: Monochrome\n\n## Rules\n\n- Pattern Dial: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

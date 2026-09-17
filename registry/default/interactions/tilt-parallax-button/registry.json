@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tilt-parallax-button",
+  "type": "registry:interaction",
+  "title": "Tilt Parallax Button",
+  "description": "A primary button calculating 3D perspective rotation and specular rim lighting under mouse hover angle.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tilt-parallax-button.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "button",
+    "tilt",
+    "3d",
+    "specular",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "button-tilt-perspective",
+      "visualModel": "beveled-action-pill",
+      "motionModel": "damped-perspective-swivel",
+      "layoutModel": "centered-action-capsule",
+      "semanticPurpose": "high-impact-cta-button"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-terminal-block",
+  "type": "registry:component",
+  "title": "Code Terminal Block",
+  "description": "A dark terminal console output box displaying terminal prompt and executed output lines.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-terminal-block.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CodeTerminalBlockProps {\n  command?: string;\n  output?: string;\n  className?: string;\n}\n\nexport function CodeTerminalBlock({\n  command = \"openui add metric-stat-card\",\n  output = \"✓ Materialized 5 files to registry/default/components/metric-stat-card\",\n  className,\n}: CodeTerminalBlockProps) {\n  return (\n    <div className={cn(\"w-full max-w-md rounded-xl border border-line bg-ink text-paper p-4 font-mono text-xs shadow-md space-y-2\", className)}>\n      <div className=\"flex items-center gap-2\">\n        <span className=\"text-emerald-400 font-bold\">$</span>\n        <span>{command}</span>\n      </div>\n      <div className=\"text-paper/60 text-[11px] leading-relaxed\">{output}</div>\n    </div>\n  );\n}\n\nexport default CodeTerminalBlock;\n",
+      "contentHash": "11da8e0e61d04bf7616d86db77b4c5d25066eeba711efae69e51084a866ce101",
+      "sizeBytes": 804
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { CodeTerminalBlock } from \"./code-terminal-block\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <CodeTerminalBlock />\n    </div>\n  );\n}\n",
+      "contentHash": "e4c08387bdb85e67e8b2ec6f029c0ffeca625b1e4b80c07cdcfe477640f706f7",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "terminal",
+    "code",
+    "console",
+    "prompt",
+    "output"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-terminal-log",
+      "visualModel": "dark-console-chassis",
+      "motionModel": "none",
+      "layoutModel": "terminal-console-block",
+      "semanticPurpose": "console-log-display"
+    }
+  },
+  "url": "https://openui.dev/r/code-terminal-block.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Terminal Log: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

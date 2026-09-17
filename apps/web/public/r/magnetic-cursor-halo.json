@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-cursor-halo",
+  "type": "registry:motion",
+  "title": "Magnetic Cursor Halo",
+  "description": "An ethereal circular reticle that trails pointer coordinates with damped inertia and expands on interactive target hover.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-cursor-halo.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticCursorHaloProps {\n  className?: string;\n}\n\nexport function MagneticCursorHalo({ className }: MagneticCursorHaloProps) {\n  const [pos, setPos] = useState({ x: 120, y: 80 });\n  const [hovered, setHovered] = useState(false);\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      className={cn(\"relative h-72 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper p-8 cursor-crosshair\", className)}\n    >\n      <div\n        className=\"pointer-events-none absolute -ml-5 -mt-5 rounded-full border border-ink/40 transition-all duration-150 ease-out\"\n        style={{\n          left: pos.x,\n          top: pos.y,\n          width: hovered ? 48 : 24,\n          height: hovered ? 48 : 24,\n          transform: hovered ? \"translate(-12px, -12px)\" : \"none\",\n        }}\n      />\n      <div className=\"flex h-full flex-col items-center justify-center gap-4 text-center\">\n        <p className=\"font-mono text-xs text-ink/60\">Hover the button to expand the reticle</p>\n        <button\n          type=\"button\"\n          onPointerEnter={() => setHovered(true)}\n          onPointerLeave={() => setHovered(false)}\n          className=\"rounded-lg bg-ink px-5 py-2.5 font-medium text-paper\"\n        >\n          Magnetic Target\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default MagneticCursorHalo;\n",
+      "contentHash": "c78612939e258e62d763d770f67517df490028341d6c461dfe09f38eb23199be",
+      "sizeBytes": 1640
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MagneticCursorHalo } from \"./magnetic-cursor-halo\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <MagneticCursorHalo />\n    </div>\n  );\n}\n",
+      "contentHash": "085eb21c288182ee48cd4a002dcd2a33a18097d0e0ecf5e5d5337e4d691ef8e6",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "cursor",
+    "halo",
+    "reticle",
+    "inertia",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "cursor",
+    "fingerprint": {
+      "interactionModel": "pointer-lag-tracking",
+      "visualModel": "concentric-halo-reticle",
+      "motionModel": "damped-spring-follower",
+      "layoutModel": "floating-cursor-wrapper",
+      "semanticPurpose": "focus-cursor-enhancer"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-cursor-halo.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Pointer Lag Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

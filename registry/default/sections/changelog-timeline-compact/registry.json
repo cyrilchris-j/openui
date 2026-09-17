@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "changelog-timeline-compact",
+  "type": "registry:section",
+  "title": "Changelog Timeline Compact",
+  "description": "A streamlined vertical timeline for minor releases, dependency bumps, and rapid fixes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "changelog-timeline-compact.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "changelog",
+    "timeline",
+    "compact",
+    "releases",
+    "minimal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "changelog",
+    "fingerprint": {
+      "interactionModel": "changelog-timeline-compact-interaction",
+      "visualModel": "changelog-timeline-compact-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "changelog-timeline-compact-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "rail",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "dense",
+      "genre": "minimal"
+    }
+  }
+}

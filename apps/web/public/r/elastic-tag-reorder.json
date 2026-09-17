@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-tag-reorder",
+  "type": "registry:motion",
+  "title": "Elastic Tag Reorder",
+  "description": "An interactive tag pill shelf where items exchange grid slots with smooth spring-driven layout shifts.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-tag-reorder.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticTagReorderProps {\n  className?: string;\n}\n\nexport function ElasticTagReorder({ className }: ElasticTagReorderProps) {\n  const [tags, setTags] = useState([\"React\", \"Motion\", \"Tailwind\", \"Design\", \"CSS\"]);\n\n  const shuffle = () => {\n    setTags([...tags].sort(() => Math.random() - 0.5));\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex flex-wrap gap-2 max-w-xs justify-center\">\n        {tags.map((tag) => (\n          <span\n            key={tag}\n            className=\"rounded-full border border-line bg-paper px-3 py-1 font-mono text-xs text-ink shadow-sm transition-all duration-300\"\n          >\n            {tag}\n          </span>\n        ))}\n      </div>\n\n      <button\n        type=\"button\"\n        onClick={shuffle}\n        className=\"rounded border border-line px-3 py-1 font-mono text-xs text-ink hover:bg-line/20\"\n      >\n        Shuffle Order\n      </button>\n    </div>\n  );\n}\n\nexport default ElasticTagReorder;\n",
+      "contentHash": "bd6e23f412b57ac4d16e2bad3897935179d05f9dcfc95bd38c408bb5e4dc0137",
+      "sizeBytes": 1153
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticTagReorder } from \"./elastic-tag-reorder\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ElasticTagReorder />\n    </div>\n  );\n}\n",
+      "contentHash": "a89d23cbe2d5c1273c855b6b2971b912483dd022ddda0abe8999f2d23cf69654",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "tags",
+    "reorder",
+    "spring",
+    "layout",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "tag-swap-shuffle",
+      "visualModel": "flex-pill-shelf",
+      "motionModel": "fluid-reordering-spring",
+      "layoutModel": "wrapping-pill-grid",
+      "semanticPurpose": "interactive-filter-organizer"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-tag-reorder.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Tag Swap Shuffle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

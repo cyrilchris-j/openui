@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-swap-face",
+  "type": "registry:motion",
+  "title": "Hover Swap Face",
+  "description": "A card with two registered faces that swap on hover via a 3D flip around the horizontal axis — not opacity crossfade but genuine rotation, with the resting face dimming slightly before the flip begins (anticipation).",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-swap-face.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "flip",
+    "hover",
+    "swap",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-flip",
+      "visualModel": "dual-registered-faces",
+      "motionModel": "rotate-x-swap",
+      "layoutModel": "card",
+      "semanticPurpose": "feature-teaser"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

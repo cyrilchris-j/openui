@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bionic-emphasis-text",
+  "type": "registry:text",
+  "title": "Bionic Emphasis Text",
+  "description": "Reading-aid typography that bolds the leading fragment of every word at a set attention ratio, guiding the eye through long paragraphs without changing a single word — a genuine legibility system, not decoration.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bionic-emphasis-text.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface BionicEmphasisTextProps {\n  children: string;\n  /** Fraction of each word to emphasise, 0–1. */\n  ratio?: number;\n  className?: string;\n}\n\n/**\n * Bionic Emphasis Text\n *\n * Words are split at `ceil(length * ratio)` with a floor of one character;\n * short glue words (a, the, of) stay untouched so the emphasis pattern reflects\n * information structure rather than fireing uniformly.\n */\nconst GLUE_WORDS = new Set([\"a\", \"an\", \"the\", \"of\", \"to\", \"in\", \"on\", \"and\", \"or\", \"as\", \"at\", \"by\", \"for\"]);\n\nexport function BionicEmphasisText({ children, ratio = 0.4, className }: BionicEmphasisTextProps) {\n  const renderWord = (word: string, key: number) => {\n    if (GLUE_WORDS.has(word.toLowerCase()) || word.length <= 2) {\n      return <span key={key}>{word} </span>;\n    }\n    const take = Math.max(1, Math.ceil(word.length * ratio));\n    return (\n      <span key={key}>\n        <strong className=\"font-semibold text-ink\">{word.slice(0, take)}</strong>\n        <span className=\"text-ink/80\">{word.slice(take)}</span>{\" \"}\n      </span>\n    );\n  };\n\n  return (\n    <p className={cn(\"max-w-prose leading-relaxed\", className)}>\n      {children.split(/\\s+/).map((word, index) => renderWord(word, index))}\n    </p>\n  );\n}\n\nexport default BionicEmphasisText;\n",
+      "contentHash": "9002afaa31588f7c8fcd29dbb42bbc1a1f2c0db1e326f67c646a470d934f97ed",
+      "sizeBytes": 1300
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BionicEmphasisText } from \"./bionic-emphasis-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[13rem] bg-paper p-10\">\n      <BionicEmphasisText className=\"text-base text-ink\">\n        Interfaces carry meaning through structure long before colour or motion enter the picture.\n      </BionicEmphasisText>\n    </div>\n  );\n}\n",
+      "contentHash": "94e8e4ee078ef017f5d2352c8f270634b11bd2e03e09a0139359045b8e9e0ff0",
+      "sizeBytes": 359
+    }
+  ],
+  "tags": [
+    "bionic",
+    "reading",
+    "legibility",
+    "emphasis"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "fragment-weighting",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "reading-assistance"
+    }
+  },
+  "url": "https://openui.dev/r/bionic-emphasis-text.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

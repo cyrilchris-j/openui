@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pan-zoom-minimap",
+  "type": "registry:interaction",
+  "title": "Pan Zoom Minimap",
+  "description": "A floating radar thumbnail box reflecting global canvas viewport coordinates and tracking pan state.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pan-zoom-minimap.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "minimap",
+    "pan",
+    "zoom",
+    "radar",
+    "viewport"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "viewport-minimap-reflection",
+      "visualModel": "scaled-orthographic-radar",
+      "motionModel": "proportional-reticle-translation",
+      "layoutModel": "corner-docked-radar",
+      "semanticPurpose": "canvas-radar-minimap"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

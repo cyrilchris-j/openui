@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swatch-words",
+  "type": "registry:text",
+  "title": "Swatch Words",
+  "description": "Colour names rendered in their own colour with a click-to-copy chip: the word is the swatch, a miniature circular chip rides the baseline, and clicking copies the hex with a small toast — a palette you can read.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "swatch-words.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SwatchWord {\n  name: string;\n  hex: string;\n}\n\nexport interface SwatchWordsProps {\n  swatches: SwatchWord[];\n  className?: string;\n}\n\nexport function SwatchWords({ swatches, className }: SwatchWordsProps) {\n  const [copied, setCopied] = useState<string | null>(null);\n\n  const copy = async (swatch: SwatchWord) => {\n    try {\n      await navigator.clipboard.writeText(swatch.hex);\n      setCopied(swatch.hex);\n      window.setTimeout(() => setCopied(null), 1400);\n    } catch {\n      setCopied(null);\n    }\n  };\n\n  return (\n    <p className={cn(\"flex flex-wrap items-center gap-x-3 gap-y-2 text-lg\", className)}>\n      {swatches.map((swatch) => (\n        <button\n          key={swatch.hex}\n          type=\"button\"\n          onClick={() => copy(swatch)}\n          className=\"inline-flex cursor-pointer items-baseline gap-1.5 border-0 bg-transparent p-0 transition-transform hover:scale-105\"\n          aria-label={`Copy ${swatch.name} ${swatch.hex}`}\n        >\n          <span\n            aria-hidden\n            className=\"inline-block h-3.5 w-3.5 self-center rounded-full border border-black/10\"\n            style={{ background: swatch.hex }}\n          />\n          <span style={{ color: swatch.hex }} className=\"font-semibold\">\n            {swatch.name}\n          </span>\n        </button>\n      ))}\n      {copied && (\n        <span role=\"status\" className=\"rounded bg-ink px-2 py-0.5 font-mono text-xs text-paper\" style={{ animation: \"openui-toast 1400ms ease both\" }}>\n          {copied} copied\n        </span>\n      )}\n      <style>{`@keyframes openui-toast { 0% { opacity: 0; transform: translateY(4px) } 12% { opacity: 1; transform: translateY(0) } 88% { opacity: 1 } 100% { opacity: 0 } }`}</style>\n    </p>\n  );\n}\n\nexport default SwatchWords;\n",
+      "contentHash": "1355227146b05ca5283ce90a24d2d71b2d67d4537e421e7deadc6677af8569ef",
+      "sizeBytes": 1849
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SwatchWords } from \"./swatch-words\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <SwatchWords\n        swatches={[\n          { name: \"Terracotta\", hex: \"#c86a4a\" },\n          { name: \"Sage\", hex: \"#8ba888\" },\n          { name: \"Ink\", hex: \"#22252a\" },\n          { name: \"Ochre\", hex: \"#d9a441\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "5f351d85ffc308dba2116e7974f160fbbb2dfa5574a4b1116564ebb782040c56",
+      "sizeBytes": 433
+    }
+  ],
+  "tags": [
+    "color",
+    "palette",
+    "copy",
+    "swatch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "pastel"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "click-copy",
+      "visualModel": "self-coloured-tokens",
+      "motionModel": "toast-confirm",
+      "layoutModel": "inline",
+      "semanticPurpose": "palette-display"
+    }
+  },
+  "url": "https://openui.dev/r/swatch-words.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Pastel\n\n## Rules\n\n- Click Copy: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

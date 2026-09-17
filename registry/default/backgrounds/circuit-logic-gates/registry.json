@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circuit-logic-gates",
+  "type": "registry:background",
+  "title": "Circuit Logic Gates",
+  "description": "Digital schematic diagram with Boolean logic gates (AND, OR, XOR) interconnected by signal nets.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circuit-logic-gates.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "logic",
+    "gates",
+    "schematic",
+    "boolean",
+    "circuit"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-logic-schematic",
+      "visualModel": "boolean-gate-diagram",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "logic-schematic-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-tilt-button",
+  "type": "registry:interaction",
+  "title": "Magnetic Tilt Button",
+  "description": "A primary button that leans toward the mouse with tactile spring pull and specular light sheen reflection.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-tilt-button.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticTiltButtonProps {\n  label?: string;\n  className?: string;\n}\n\nexport function MagneticTiltButton({ label = \"Deploy Endpoint\", className }: MagneticTiltButtonProps) {\n  const [offset, setOffset] = useState({ x: 0, y: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = (e.clientX - (rect.left + rect.width / 2)) * 0.35;\n    const y = (e.clientY - (rect.top + rect.height / 2)) * 0.35;\n    setOffset({ x, y });\n  };\n\n  const handlePointerLeave = () => {\n    setOffset({ x: 0, y: 0 });\n  };\n\n  return (\n    <button\n      type=\"button\"\n      onPointerMove={handlePointerMove}\n      onPointerLeave={handlePointerLeave}\n      style={{\n        transform: `translate(${offset.x}px, ${offset.y}px)`,\n      }}\n      className={cn(\n        \"rounded-full bg-ink px-6 py-3 font-display text-sm font-bold text-paper shadow-lg transition-transform duration-100 ease-out active:scale-95\",\n        className\n      )}\n    >\n      {label}\n    </button>\n  );\n}\n\nexport default MagneticTiltButton;\n",
+      "contentHash": "22c0c5e063bbd7c24c0ed83500ce203469ff86dc648670cc903117334f86775b",
+      "sizeBytes": 1185
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { MagneticTiltButton } from \"./magnetic-tilt-button\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <MagneticTiltButton />\n    </div>\n  );\n}\n",
+      "contentHash": "8f17a06ba75abe00154f304f1a7d4032a4639fbb2063bbe5b99f7df496bd2cec",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "button",
+    "magnetic",
+    "tilt",
+    "spring",
+    "sheen"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "proximity-tether-pull",
+      "visualModel": "specular-beveled-capsule",
+      "motionModel": "damped-euler-lean",
+      "layoutModel": "centered-pill-cta",
+      "semanticPurpose": "magnetic-action-trigger"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-tilt-button.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Proximity Tether Pull: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-compliance-dashboard",
+  "type": "registry:block",
+  "title": "Audit Compliance Dashboard",
+  "description": "An enterprise regulatory readiness dashboard showing SOC2, ISO 27001, and HIPAA control checks with evidence logs.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audit-compliance-dashboard.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "compliance",
+    "soc2",
+    "iso27001",
+    "hipaa",
+    "audit"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "compliance",
+    "fingerprint": {
+      "interactionModel": "compliance-controls-checklist-tracker",
+      "visualModel": "audit-readiness-assurance-gauge",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "enterprise-security-compliance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "slider-gain-control",
+  "type": "registry:component",
+  "title": "Slider Gain Control",
+  "description": "A precision gain control slider with dB calibrated notches and decibel label outputs.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "slider-gain-control.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "slider",
+    "gain",
+    "audio",
+    "calibrated",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "calibrated-gain-slider",
+      "visualModel": "db-metered-track",
+      "motionModel": "none",
+      "layoutModel": "horizontal-calibrated-gauge",
+      "semanticPurpose": "audio-gain-control-bar"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "accordion-chevron-list",
+  "type": "registry:component",
+  "title": "Accordion Chevron List",
+  "description": "A vertical list of stacked question and answer disclosures with animated chevron indicators.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "accordion-chevron-list.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface AccordionChevronListProps {\n  className?: string;\n}\n\nexport function AccordionChevronList({ className }: AccordionChevronListProps) {\n  const [open, setOpen] = useState<number | null>(0);\n  const items = [\n    { q: \"Is OpenUI fully typed?\", a: \"Yes, every resource carries strict TypeScript interfaces.\" },\n    { q: \"How are components installed?\", a: \"Via the openui CLI copying zero-dependency source.\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-md rounded-xl border border-line bg-paper p-4 shadow-sm divide-y divide-line\", className)}>\n      {items.map((item, idx) => {\n        const isOpen = open === idx;\n        return (\n          <div key={item.q} className=\"py-3\">\n            <button\n              type=\"button\"\n              onClick={() => setOpen(isOpen ? null : idx)}\n              className=\"flex w-full items-center justify-between font-display text-sm font-bold text-ink\"\n            >\n              <span>{item.q}</span>\n              <span className=\"font-mono text-xs\">{isOpen ? \"▲\" : \"▼\"}</span>\n            </button>\n            {isOpen && <p className=\"mt-2 text-xs leading-relaxed text-ink/70 font-mono\">{item.a}</p>}\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default AccordionChevronList;\n",
+      "contentHash": "242dea955bfe788d241a69291d916129226784a7439519c3f3640e1bd3bbb169",
+      "sizeBytes": 1351
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { AccordionChevronList } from \"./accordion-chevron-list\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <AccordionChevronList />\n    </div>\n  );\n}\n",
+      "contentHash": "6bf038be239a1fb8d0d35bcce101e0c2197198a1705acc2a08a75c848c15d2c3",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "accordion",
+    "faq",
+    "disclosure",
+    "chevron",
+    "list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "accordion-chevron-toggle",
+      "visualModel": "stacked-ruled-disclosures",
+      "motionModel": "stepwise-content-expansion",
+      "layoutModel": "vertical-accordion-flow",
+      "semanticPurpose": "faq-disclosure-stack"
+    }
+  },
+  "url": "https://openui.dev/r/accordion-chevron-list.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Accordion Chevron Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

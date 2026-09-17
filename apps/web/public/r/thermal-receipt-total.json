@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "thermal-receipt-total",
+  "type": "registry:text",
+  "title": "Thermal Receipt Total",
+  "description": "A receipt layout with dot-leader lines between item names and prices, a dashed separator, a double-ruled total, and tabular numerals that keep every currency column aligned — the typography of honest arithmetic.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "thermal-receipt-total.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface ReceiptLine {\n  label: string;\n  amount: number;\n}\n\nexport interface ThermalReceiptTotalProps {\n  lines: ReceiptLine[];\n  taxRate?: number;\n  currency?: string;\n  className?: string;\n}\n\nexport function ThermalReceiptTotal({\n  lines,\n  taxRate = 0.08,\n  currency = \"$\",\n  className,\n}: ThermalReceiptTotalProps) {\n  const subtotal = lines.reduce((sum, line) => sum + line.amount, 0);\n  const tax = subtotal * taxRate;\n  const total = subtotal + tax;\n\n  const fmt = (value: number) => `${currency}${value.toFixed(2)}`;\n\n  return (\n    <div className={cn(\"w-64 font-mono text-sm\", className)} role=\"table\" aria-label=\"Receipt\">\n      {lines.map((line, index) => (\n        <ReceiptRow key={index} label={line.label} value={fmt(line.amount)} />\n      ))}\n      <div aria-hidden className=\"my-2 border-t border-dashed border-ink/40\" />\n      <ReceiptRow label=\"Subtotal\" value={fmt(subtotal)} />\n      <ReceiptRow label={`Tax (${Math.round(taxRate * 100)}%)`} value={fmt(tax)} />\n      <div aria-hidden className=\"my-2 border-t-2 border-double border-ink\" />\n      <div className=\"flex items-baseline\">\n        <span className=\"font-semibold\">TOTAL</span>\n        <span className=\"tabular-nums font-semibold\" style={{ marginLeft: \"auto\" }}>\n          {fmt(total)}\n        </span>\n      </div>\n    </div>\n  );\n}\n\nfunction ReceiptRow({ label, value }: { label: string; value: string }) {\n  return (\n    <div className=\"flex items-baseline\" role=\"row\">\n      <span role=\"cell\">{label}</span>\n      <span\n        aria-hidden\n        className=\"mx-1 flex-1 select-none overflow-hidden whitespace-nowrap text-ink/40\"\n        style={{ maskImage: \"linear-gradient(to right, transparent, black 20%, black 80%, transparent)\" }}\n      >\n        {\"·\".repeat(40)}\n      </span>\n      <span role=\"cell\" className=\"tabular-nums\">{value}</span>\n    </div>\n  );\n}\n\nexport default ThermalReceiptTotal;\n",
+      "contentHash": "d9daef190c1d891c9eb35edee9110d0399e1b1b93a12bcd516ff50f7a12ca7ff",
+      "sizeBytes": 1928
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ThermalReceiptTotal } from \"./thermal-receipt-total\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center p-10\" style={{ background: \"#efe9dc\" }}>\n      <div className=\"rounded-sm bg-white px-5 py-4 shadow-md\" style={{ transform: \"rotate(-1deg)\" }}>\n        <ThermalReceiptTotal\n          lines={[\n            { label: \"Type specimen\", amount: 24 },\n            { label: \"Grid poster\", amount: 18 },\n            { label: \"Manifesto\", amount: 5 },\n          ]}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "323356101ef16743498384a437551640daa2e7674167b484a657c4c0d07b7c0c",
+      "sizeBytes": 571
+    }
+  ],
+  "tags": [
+    "receipt",
+    "dot-leader",
+    "tabular",
+    "totals"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "dot-leader-columns",
+      "motionModel": "none",
+      "layoutModel": "receipt",
+      "semanticPurpose": "itemised-total"
+    }
+  },
+  "url": "https://openui.dev/r/thermal-receipt-total.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

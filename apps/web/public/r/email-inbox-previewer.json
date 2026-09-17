@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "email-inbox-previewer",
+  "type": "registry:block",
+  "title": "Email Inbox Previewer",
+  "description": "A dual-column webmail client displaying message threads, sender badges, and email reading pane.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "email-inbox-previewer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function EmailInboxPreviewer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [active, setActive] = React.useState(0);\n\n  const emails = [\n    { from: \"Marcus Vance\", subject: \"Verification suite completed\", body: \"All 800 items verified with 0 typescript errors.\" },\n    { from: \"Elena Rostova\", subject: \"Design DNA tokens updated\", body: \"Checked mathematical token consistency across themes.\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"grid grid-cols-1 md:grid-cols-12 gap-4\">\n        <div className=\"md:col-span-5 space-y-2\">\n          {emails.map((m, idx) => (\n            <div\n              key={idx}\n              onClick={() => setActive(idx)}\n              className={cn(\n                \"p-3 rounded-xl border cursor-pointer transition-colors\",\n                active === idx ? \"border-emerald-600 bg-emerald-50/20 dark:bg-emerald-950/20\" : \"border-neutral-200 dark:border-neutral-800\"\n              )}\n            >\n              <div className=\"font-bold text-neutral-900 dark:text-white\">{m.from}</div>\n              <div className=\"text-neutral-500 truncate mt-0.5\">{m.subject}</div>\n            </div>\n          ))}\n        </div>\n        <div className=\"md:col-span-7 p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30\">\n          <div className=\"font-bold text-sm text-neutral-900 dark:text-white mb-2\">{emails[active]?.subject}</div>\n          <div className=\"text-neutral-600 dark:text-neutral-400 leading-relaxed\">{emails[active]?.body}</div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "b2249a9f98faf003276b19d0882c0c221c511f3303acc312fa0ee178b571fdfb",
+      "sizeBytes": 1865
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { EmailInboxPreviewer } from \"./email-inbox-previewer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <EmailInboxPreviewer />\n    </div>\n  );\n}\n",
+      "contentHash": "e6daaa41ec6ae88aef908d67a5b52ed1edb57a7d9556e7ae2350dae501d85d3c",
+      "sizeBytes": 286
+    }
+  ],
+  "tags": [
+    "email",
+    "inbox",
+    "mail",
+    "reader",
+    "messages"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "email",
+    "fingerprint": {
+      "interactionModel": "email-selection-and-reading-pane",
+      "visualModel": "split-email-inbox-workspace",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "email-inbox-navigation"
+    }
+  },
+  "url": "https://openui.dev/r/email-inbox-previewer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Email Selection And Reading Pane: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

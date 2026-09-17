@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "combobox-autocomplete",
+  "type": "registry:component",
+  "title": "Combobox Autocomplete",
+  "description": "A searchable dropdown select combining a text input field with filtered option suggestions.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "combobox-autocomplete.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ComboboxAutocompleteProps {\n  className?: string;\n}\n\nexport function ComboboxAutocomplete({ className }: ComboboxAutocompleteProps) {\n  const [val, setVal] = useState(\"\");\n  const [open, setOpen] = useState(false);\n  const options = [\"components\", \"text\", \"motion\", \"interactions\", \"backgrounds\", \"layouts\"];\n\n  const filtered = options.filter((o) => o.toLowerCase().includes(val.toLowerCase()));\n\n  return (\n    <div className={cn(\"relative w-full max-w-xs font-mono text-xs\", className)}>\n      <input\n        type=\"text\"\n        value={val}\n        onChange={(e) => {\n          setVal(e.target.value);\n          setOpen(true);\n        }}\n        onFocus={() => setOpen(true)}\n        placeholder=\"Select category...\"\n        className=\"w-full rounded-xl border border-line bg-paper p-2.5 outline-none focus:border-ink shadow-sm\"\n      />\n\n      {open && filtered.length > 0 && (\n        <div className=\"absolute top-full mt-1.5 inset-x-0 rounded-xl border border-line bg-paper p-1.5 shadow-xl z-20 space-y-1\">\n          {filtered.map((opt) => (\n            <div\n              key={opt}\n              onClick={() => {\n                setVal(opt);\n                setOpen(false);\n              }}\n              className=\"px-3 py-1.5 rounded hover:bg-line/20 cursor-pointer text-ink\"\n            >\n              {opt}\n            </div>\n          ))}\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default ComboboxAutocomplete;\n",
+      "contentHash": "26d41c3e4264701d0246d65f642a4dcc699b68eeef19eb0901e7a076a0921b88",
+      "sizeBytes": 1530
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ComboboxAutocomplete } from \"./combobox-autocomplete\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ComboboxAutocomplete />\n    </div>\n  );\n}\n",
+      "contentHash": "d863e2518ac1df5043427695f138705f385ebc9352f0959d972967dbb3bcda5e",
+      "sizeBytes": 240
+    }
+  ],
+  "tags": [
+    "combobox",
+    "autocomplete",
+    "dropdown",
+    "search",
+    "select"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "autocomplete-filter-select",
+      "visualModel": "combobox-anchor-dropdown",
+      "motionModel": "none",
+      "layoutModel": "stacked-combobox-field",
+      "semanticPurpose": "autocomplete-search-field"
+    }
+  },
+  "url": "https://openui.dev/r/combobox-autocomplete.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Autocomplete Filter Select: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

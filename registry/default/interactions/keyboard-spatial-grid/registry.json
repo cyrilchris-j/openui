@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-spatial-grid",
+  "type": "registry:interaction",
+  "title": "Keyboard Spatial Grid",
+  "description": "A 2D navigation grid supporting full directional arrow key navigation, spatial focus retention, and enter activation.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-spatial-grid.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "keyboard",
+    "grid",
+    "spatial",
+    "navigation",
+    "arrows"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "spatial-arrow-key-navigation",
+      "visualModel": "coordinate-matrix-cells",
+      "motionModel": "discrete-cell-jump",
+      "layoutModel": "2d-spatial-mosaic",
+      "semanticPurpose": "spatial-grid-navigator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "draggable-sticker-board",
+  "type": "registry:interaction",
+  "title": "Draggable Sticker Board",
+  "description": "A freeform pinboard surface allowing multiple graphic badges and stickers to be repositioned freely with mouse drag.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "draggable-sticker-board.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "stickers",
+    "pinboard",
+    "drag",
+    "canvas",
+    "freeform"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "freeform-sticker-placement",
+      "visualModel": "scattered-pinboard-tokens",
+      "motionModel": "2d-direct-manipulation",
+      "layoutModel": "freeform-pinboard-stage",
+      "semanticPurpose": "sticker-collage-board"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "scatter",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

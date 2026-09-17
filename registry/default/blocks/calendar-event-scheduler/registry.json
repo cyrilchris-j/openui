@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "calendar-event-scheduler",
+  "type": "registry:block",
+  "title": "Calendar Event Scheduler",
+  "description": "An interactive date and time reservation widget supporting slot booking and automated invitation generation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "calendar-event-scheduler.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "calendar",
+    "scheduler",
+    "booking",
+    "appointments",
+    "dates"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "calendar",
+    "fingerprint": {
+      "interactionModel": "calendar-slot-selection-booking",
+      "visualModel": "date-picker-agenda-scheduler",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "meeting-appointment-booking"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

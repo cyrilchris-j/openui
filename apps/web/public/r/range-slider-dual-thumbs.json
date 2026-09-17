@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "range-slider-dual-thumbs",
+  "type": "registry:interaction",
+  "title": "Range Slider Dual Thumbs",
+  "description": "A min-max dual handle range slider guaranteeing non-overlapping bounds across a shared track rail.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "range-slider-dual-thumbs.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RangeSliderDualThumbsProps {\n  className?: string;\n}\n\nexport function RangeSliderDualThumbs({ className }: RangeSliderDualThumbsProps) {\n  const [minVal, setMinVal] = useState(25);\n  const [maxVal, setMaxVal] = useState(75);\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex justify-between font-mono text-xs text-ink/60 mb-4\">\n        <span>WINDOW BOUNDS</span>\n        <span className=\"font-bold text-ink\">[{minVal} - {maxVal}]</span>\n      </div>\n\n      <div className=\"space-y-3\">\n        <div>\n          <span className=\"font-mono text-[10px] text-ink/40\">MIN BOUND</span>\n          <input\n            type=\"range\"\n            min=\"0\"\n            max={maxVal - 5}\n            value={minVal}\n            onChange={(e) => setMinVal(parseInt(e.target.value, 10))}\n            className=\"w-full cursor-pointer accent-ink\"\n          />\n        </div>\n        <div>\n          <span className=\"font-mono text-[10px] text-ink/40\">MAX BOUND</span>\n          <input\n            type=\"range\"\n            min={minVal + 5}\n            max=\"100\"\n            value={maxVal}\n            onChange={(e) => setMaxVal(parseInt(e.target.value, 10))}\n            className=\"w-full cursor-pointer accent-ink\"\n          />\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport default RangeSliderDualThumbs;\n",
+      "contentHash": "e61c87107aca8f9c29682d88116fd69e5c97f6d291b81ec94f5153bb7ed95a9b",
+      "sizeBytes": 1484
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { RangeSliderDualThumbs } from \"./range-slider-dual-thumbs\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <RangeSliderDualThumbs />\n    </div>\n  );\n}\n",
+      "contentHash": "7b761aa8f83c83ecab5263c3bbab0f4975c41796ccd4d9d4907627adf4f2ca9b",
+      "sizeBytes": 245
+    }
+  ],
+  "tags": [
+    "slider",
+    "dual",
+    "range",
+    "min-max",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "dual-thumb-range-selection",
+      "visualModel": "bounded-interval-track",
+      "motionModel": "clamped-non-overlapping-travel",
+      "layoutModel": "horizontal-interval-rail",
+      "semanticPurpose": "bounded-numeric-window"
+    }
+  },
+  "url": "https://openui.dev/r/range-slider-dual-thumbs.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Dual Thumb Range Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

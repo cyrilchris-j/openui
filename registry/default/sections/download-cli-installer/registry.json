@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "download-cli-installer",
+  "type": "registry:section",
+  "title": "Download CLI Installer",
+  "description": "A command-line installation strip featuring curl, brew, and npm install tabs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "download-cli-installer.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "installer",
+    "cli",
+    "download",
+    "curl",
+    "homebrew"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "download-cli-installer-interaction",
+      "visualModel": "download-cli-installer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "download-cli-installer-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

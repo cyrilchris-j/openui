@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-type-reveal",
+  "type": "registry:motion",
+  "title": "Kinetic Type Reveal",
+  "description": "A mechanical typewriter entrance effect featuring physical carriage returns and vibrating strike-head impressions.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-type-reveal.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KineticTypeRevealProps {\n  phrase?: string;\n  className?: string;\n}\n\nexport function KineticTypeReveal({\n  phrase = \"SYSTEM_KERNEL_OK: INTEGRITY VERIFIED\",\n  className,\n}: KineticTypeRevealProps) {\n  const [index, setIndex] = useState(0);\n\n  useEffect(() => {\n    if (index >= phrase.length) return;\n    const timer = setTimeout(() => {\n      setIndex((i) => i + 1);\n    }, 60);\n    return () => clearTimeout(timer);\n  }, [index, phrase]);\n\n  return (\n    <div className={cn(\"rounded-xl border border-line bg-paper p-6 font-mono text-sm shadow-sm\", className)}>\n      <div className=\"flex items-center gap-2\">\n        <span className=\"text-ink\">{phrase.slice(0, index)}</span>\n        <span className=\"h-4 w-2 bg-ink animate-pulse\" />\n      </div>\n      <button\n        type=\"button\"\n        onClick={() => setIndex(0)}\n        className=\"mt-4 rounded border border-line px-3 py-1 text-xs text-ink hover:bg-line/20\"\n      >\n        Re-type\n      </button>\n    </div>\n  );\n}\n\nexport default KineticTypeReveal;\n",
+      "contentHash": "8a4b6cdc8020096e64b27471f6f123e181624c0cce4dd019bb411ca96b902ade",
+      "sizeBytes": 1118
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { KineticTypeReveal } from \"./kinetic-type-reveal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <KineticTypeReveal />\n    </div>\n  );\n}\n",
+      "contentHash": "c516bb8eea74712bcd2ffa80eadead9a2427ce2eec644409272f64ad016c0074",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "typewriter",
+    "type",
+    "reveal",
+    "mechanical",
+    "text"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "character-carriage-advance",
+      "visualModel": "strikethrough-typewriter-line",
+      "motionModel": "stepped-character-typing",
+      "layoutModel": "inline-terminal-ribbon",
+      "semanticPurpose": "teletype-heading-reveal"
+    }
+  },
+  "url": "https://openui.dev/r/kinetic-type-reveal.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Character Carriage Advance: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

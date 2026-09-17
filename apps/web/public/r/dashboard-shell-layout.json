@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dashboard-shell-layout",
+  "type": "registry:layout",
+  "title": "Dashboard Shell Layout",
+  "description": "Modern web application dashboard framework with collapsible sidebar, top command bar, and fluid widget grid.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dashboard-shell-layout.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DashboardShellLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  sidebar?: React.ReactNode;\n  topbar?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function DashboardShellLayout({\n  sidebar,\n  topbar,\n  children,\n  className,\n  ...props\n}: DashboardShellLayoutProps) {\n  return (\n    <div className={cn(\"min-h-[400px] flex bg-paper text-ink font-sans w-full\", className)} {...props}>\n      {sidebar && <aside className=\"w-60 border-r border-line p-4 shrink-0 bg-surface/30 hidden sm:block\">{sidebar}</aside>}\n      <div className=\"flex-1 flex flex-col min-w-0\">\n        {topbar && <header className=\"h-14 border-b border-line px-4 flex items-center shrink-0 bg-surface/20\">{topbar}</header>}\n        <main className=\"flex-1 p-6 overflow-y-auto\">{children}</main>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "0370cbabf0b6ed45347b67398e4d8f2115d4f2fcd4e5878aad05da69b3c386ef",
+      "sizeBytes": 880
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { DashboardShellLayout } from \"./dashboard-shell-layout\";\n\nexport default function DashboardShellLayoutDemo() {\n  return (\n    <div className=\"w-full border border-line rounded-xl overflow-hidden shadow-sm\">\n      <DashboardShellLayout\n        sidebar={\n          <div className=\"space-y-3 font-mono text-xs\">\n            <div className=\"font-bold text-accent\">OPENUI ADMIN</div>\n            <div className=\"text-ink/60\">Overview</div>\n            <div className=\"text-ink/60\">Telemetry</div>\n            <div className=\"text-ink/60\">Registry Items</div>\n          </div>\n        }\n        topbar={<div className=\"font-mono text-xs text-ink/70\">Search commands or endpoints... (⌘K)</div>}\n      >\n        <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">\n          <div className=\"p-4 rounded-lg border border-line bg-surface/40\">\n            <div className=\"text-xs font-mono text-ink/60\">API Latency</div>\n            <div className=\"text-xl font-bold font-mono text-ink mt-1\">24ms</div>\n          </div>\n          <div className=\"p-4 rounded-lg border border-line bg-surface/40\">\n            <div className=\"text-xs font-mono text-ink/60\">Active Agents</div>\n            <div className=\"text-xl font-bold font-mono text-ink mt-1\">1,248</div>\n          </div>\n        </div>\n      </DashboardShellLayout>\n    </div>\n  );\n}\n",
+      "contentHash": "ced4032890bf06017bb3ba37792a723ce77f5e07754e2f4c78fd91946324bf07",
+      "sizeBytes": 1355
+    }
+  ],
+  "tags": [
+    "dashboard",
+    "admin",
+    "shell",
+    "sidebar",
+    "workspace"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "collapsible-sidebar-workspace",
+      "visualModel": "dashboard-app-shell",
+      "motionModel": "none",
+      "layoutModel": "sidebar-and-canvas-stack",
+      "semanticPurpose": "dashboard-application-shell"
+    }
+  },
+  "url": "https://openui.dev/r/dashboard-shell-layout.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Collapsible Sidebar Workspace: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

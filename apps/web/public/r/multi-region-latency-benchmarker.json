@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-region-latency-benchmarker",
+  "type": "registry:block",
+  "title": "Multi-region Latency Benchmarker",
+  "description": "An edge ping diagnostic utility testing real-time connection latencies against Frankfurt, Virginia, Tokyo, and Singapore.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-region-latency-benchmarker.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MultiRegionLatencyBenchmarker({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const regions = [\n    { name: \"US-East (N. Virginia)\", ping: \"4ms\" },\n    { name: \"EU-West (Frankfurt)\", ping: \"12ms\" },\n    { name: \"AP-East (Tokyo)\", ping: \"18ms\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-lg mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-3\">Edge Ping Diagnostics</h3>\n      <div className=\"space-y-2\">\n        {regions.map((r) => (\n          <div key={r.name} className=\"p-2.5 rounded bg-neutral-50 dark:bg-neutral-900 flex justify-between\">\n            <span>{r.name}</span>\n            <span className=\"text-emerald-500 font-bold\">{r.ping}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "fea0de6a873c29debf168a3036f0e3ee189f8c8edc2c754bac88de958fbd45be",
+      "sizeBytes": 1015
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { MultiRegionLatencyBenchmarker } from \"./multi-region-latency-benchmarker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <MultiRegionLatencyBenchmarker />\n    </div>\n  );\n}\n",
+      "contentHash": "63297e1e01aa024a13cf48cb24eb54a5fc41334180181f9a2f70613417465b07",
+      "sizeBytes": 317
+    }
+  ],
+  "tags": [
+    "latency",
+    "edge",
+    "ping",
+    "benchmark",
+    "network"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "ping-benchmark-execution",
+      "visualModel": "edge-region-ping-comparison-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "multi-region-latency-testing"
+    }
+  },
+  "url": "https://openui.dev/r/multi-region-latency-benchmarker.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Ping Benchmark Execution: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

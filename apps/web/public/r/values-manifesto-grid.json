@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "values-manifesto-grid",
+  "type": "registry:section",
+  "title": "Values Manifesto Grid",
+  "description": "Core architectural principles section: Independence, Mathematical Rigor, and Character.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "values-manifesto-grid.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ValuesManifestoGridProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n}\n\nexport function ValuesManifestoGrid({\n  title = \"Our Core Architectural Axioms\",\n  className,\n  ...props\n}: ValuesManifestoGridProps) {\n  const axioms = [\n    { num: \"01\", title: \"Autonomy\", desc: \"No runtime dependency handcuffs. You own every line of emitted code.\" },\n    { num: \"02\", title: \"Mathematical Rigor\", desc: \"Closed type schemas that eliminate subjective runtime regressions.\" },\n    { num: \"03\", title: \"Character\", desc: \"Interfaces should carry a distinct fingerprint rather than corporate blandness.\" },\n  ];\n\n  return (\n    <section className={cn(\"py-16 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <h2 className=\"text-2xl sm:text-3xl font-bold font-serif text-center text-ink mb-12\">{title}</h2>\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">\n        {axioms.map((a) => (\n          <div key={a.num} className=\"p-6 rounded-2xl border border-line bg-surface/30 space-y-3\">\n            <div className=\"font-mono text-2xl font-bold text-accent\">{a.num}</div>\n            <div className=\"font-serif text-lg font-bold text-ink\">{a.title}</div>\n            <p className=\"text-xs text-ink/70 leading-relaxed font-sans\">{a.desc}</p>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "f0ff150b39322566c43ac91a253fecdbad7b15d8a6f33df828e1ad24073742af",
+      "sizeBytes": 1416
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ValuesManifestoGrid } from \"./values-manifesto-grid\";\n\nexport default function ValuesManifestoGridDemo() {\n  return <ValuesManifestoGrid />;\n}\n",
+      "contentHash": "6bd1daa9163aa430a6969fcdacb434a4f7d3caccdab3a416c64632a991931089",
+      "sizeBytes": 167
+    }
+  ],
+  "tags": [
+    "manifesto",
+    "values",
+    "principles",
+    "philosophy",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "about",
+    "fingerprint": {
+      "interactionModel": "manifesto-principles-reading",
+      "visualModel": "three-column-principles-grid",
+      "motionModel": "none",
+      "layoutModel": "tri-column-manifesto",
+      "semanticPurpose": "company-manifesto-section"
+    }
+  },
+  "url": "https://openui.dev/r/values-manifesto-grid.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Manifesto Principles Reading: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

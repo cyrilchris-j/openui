@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cta-closing-billboard",
+  "type": "registry:section",
+  "title": "CTA Closing Billboard",
+  "description": "A monumental high-impact conversion stage at the base of the page with quickstart commands.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cta-closing-billboard.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "cta",
+    "billboard",
+    "conversion",
+    "closing",
+    "landing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "cta",
+    "fingerprint": {
+      "interactionModel": "cta-closing-billboard-interaction",
+      "visualModel": "cta-closing-billboard-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "cta-closing-billboard-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "airy",
+      "genre": "brutalist"
+    }
+  }
+}

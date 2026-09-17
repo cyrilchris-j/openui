@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "morph-search-bar",
+  "type": "registry:motion",
+  "title": "Morph Search Bar",
+  "description": "A compact search icon button that expands smoothly into a full input field upon user click.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "morph-search-bar.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "search",
+    "input",
+    "morph",
+    "expand",
+    "transition"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "expand-search-aperture",
+      "visualModel": "morphing-pill-chassis",
+      "motionModel": "width-interpolation-spring",
+      "layoutModel": "expanding-header-slot",
+      "semanticPurpose": "collapsible-search-trigger"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

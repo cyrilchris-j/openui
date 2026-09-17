@@ -1,0 +1,20 @@
+# Design System
+
+Genre: Swiss
+Macrostructure: Rail
+Density: Airy
+Shape: Sharp
+Motion: Expressive
+Typography: Variable Poster
+Color: Monochrome
+
+## Rules
+
+- Pointer Proximity Weight: the interaction model is part of the design, not an add-on.
+- Reduced motion replaces animation with a state change; nothing is hidden behind motion.
+- The component composes through `cn` and never hardcodes colours.
+
+## Avoid
+
+- Reskinning this resource and republishing it under a new name.
+- Adding shadows or radii that contradict its shape language.

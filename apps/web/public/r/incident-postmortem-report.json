@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "incident-postmortem-report",
+  "type": "registry:block",
+  "title": "Incident Postmortem Report",
+  "description": "An operational incident debrief card summarizing root cause analysis, timeline, and mitigation actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "incident-postmortem-report.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function IncidentPostmortemReport({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-3\">\n        <span className=\"font-bold text-neutral-900 dark:text-white\">INCIDENT #2026-08-A</span>\n        <span className=\"text-emerald-500 font-bold\">Resolved (MTTR: 8m)</span>\n      </div>\n      <div className=\"space-y-2 text-neutral-700 dark:text-neutral-300\">\n        <div><strong className=\"text-neutral-900 dark:text-white\">Impact:</strong> Temporary 1.2s latency spike on EU-Frankfurt edge node.</div>\n        <div><strong className=\"text-neutral-900 dark:text-white\">Root Cause:</strong> Memory isolate GC compaction contention under 25k simultaneous requests.</div>\n        <div><strong className=\"text-neutral-900 dark:text-white\">Action Taken:</strong> Increased V8 isolate memory ceiling to 256MB.</div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "9c8f2565ec48200fa0ebe5af48157468d7f80b06bcede5a58e4322ac60ed20fa",
+      "sizeBytes": 1262
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { IncidentPostmortemReport } from \"./incident-postmortem-report\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <IncidentPostmortemReport />\n    </div>\n  );\n}\n",
+      "contentHash": "d172fabb2e5f11ce64d62d98ae2e13a17e090bbaef2720deb1313b2cb4f9e9f0",
+      "sizeBytes": 301
+    }
+  ],
+  "tags": [
+    "incident",
+    "postmortem",
+    "devops",
+    "mttr",
+    "reliability"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "incident-postmortem-review",
+      "visualModel": "structured-postmortem-dossier",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "incident-resolution-postmortem"
+    }
+  },
+  "url": "https://openui.dev/r/incident-postmortem-report.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Incident Postmortem Review: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

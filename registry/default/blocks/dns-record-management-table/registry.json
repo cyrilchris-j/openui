@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dns-record-management-table",
+  "type": "registry:block",
+  "title": "DNS Record Management Table",
+  "description": "A domain routing table managing A, CNAME, and TXT records with TTL durations and verification checks.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dns-record-management-table.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "dns",
+    "domains",
+    "records",
+    "devops",
+    "cname"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "dns-record-row-management",
+      "visualModel": "domain-nameserver-table",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "dns-configuration-console"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

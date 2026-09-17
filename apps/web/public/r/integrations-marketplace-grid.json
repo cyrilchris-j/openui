@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "integrations-marketplace-grid",
+  "type": "registry:block",
+  "title": "Integrations Marketplace Grid",
+  "description": "An ecosystem catalog showcasing third-party software connections with install status and OAuth triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "integrations-marketplace-grid.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function IntegrationsMarketplaceGrid({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [apps, setApps] = React.useState([\n    { name: \"GitHub Sync\", desc: \"Automate pull request validation on push\", connected: true },\n    { name: \"Slack Connect\", desc: \"Broadcast build alerts to engineering channel\", connected: true },\n    { name: \"Figma Variables\", desc: \"Export design tokens to theme CSS files\", connected: false },\n    { name: \"Sentry Telemetry\", desc: \"Pipe client component crashes to Sentry\", connected: false },\n  ]);\n\n  const toggle = (name: string) => {\n    setApps((prev) => prev.map((a) => (a.name === name ? { ...a, connected: !a.connected } : a)));\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-4\">Connected Integrations</h3>\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">\n        {apps.map((a) => (\n          <div key={a.name} className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 flex items-start justify-between gap-4\">\n            <div>\n              <div className=\"font-bold text-neutral-900 dark:text-white\">{a.name}</div>\n              <div className=\"text-neutral-500 mt-1\">{a.desc}</div>\n            </div>\n            <button\n              type=\"button\"\n              onClick={() => toggle(a.name)}\n              className={cn(\"px-3 py-1 rounded text-[11px] font-semibold transition-colors shrink-0\", a.connected ? \"bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50\" : \"bg-neutral-900 text-white dark:bg-white dark:text-neutral-900\")}\n            >\n              {a.connected ? \"Connected\" : \"Install\"}\n            </button>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "e853184f66ea719f42db71fc3be15c726b7c30807b788d09bfd40be9bd78696b",
+      "sizeBytes": 2002
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { IntegrationsMarketplaceGrid } from \"./integrations-marketplace-grid\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <IntegrationsMarketplaceGrid />\n    </div>\n  );\n}\n",
+      "contentHash": "357565ef5fb753852da23ad2856b450625770fb3b4cae047331a44bf9ee34b40",
+      "sizeBytes": 310
+    }
+  ],
+  "tags": [
+    "integrations",
+    "marketplace",
+    "apps",
+    "oauth",
+    "plugins"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "integrations",
+    "fingerprint": {
+      "interactionModel": "app-integration-connect-toggle",
+      "visualModel": "marketplace-app-catalog-cards",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "third-party-app-marketplace"
+    }
+  },
+  "url": "https://openui.dev/r/integrations-marketplace-grid.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- App Integration Connect Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

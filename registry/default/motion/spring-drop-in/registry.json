@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-drop-in",
+  "type": "registry:motion",
+  "title": "Spring Drop In",
+  "description": "Entrance motion built on a critically damped spring equation run in rAF: element falls from above with velocity-carrying overshoot, one bounce below rest position, then settles — parameterised by stiffness and damping, not keyframes.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "spring-drop-in.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "spring",
+    "entrance",
+    "physics",
+    "overshoot"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "single-element-drop",
+      "motionModel": "damped-spring-integrator",
+      "layoutModel": "block",
+      "semanticPurpose": "entrance-attention"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

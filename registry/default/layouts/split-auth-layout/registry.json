@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-auth-layout",
+  "type": "registry:layout",
+  "title": "Split Auth Layout",
+  "description": "Authentication layout with graphic mural banner on one side and clean authentication dialog on the other.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-auth-layout.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "auth",
+    "login",
+    "signup",
+    "split",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "authentication-flow-split",
+      "visualModel": "mural-and-auth-form",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-auth-halves",
+      "semanticPurpose": "authentication-screen-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

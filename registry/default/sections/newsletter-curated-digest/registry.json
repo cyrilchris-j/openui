@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "newsletter-curated-digest",
+  "type": "registry:section",
+  "title": "Newsletter Curated Digest",
+  "description": "A subscription card offering weekly design engineering breakdowns and curated component patterns.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "newsletter-curated-digest.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "newsletter",
+    "digest",
+    "subscribe",
+    "curated",
+    "articles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "newsletter",
+    "fingerprint": {
+      "interactionModel": "newsletter-curated-digest-interaction",
+      "visualModel": "newsletter-curated-digest-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "newsletter-curated-digest-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

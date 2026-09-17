@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "file-storage-browser",
+  "type": "registry:block",
+  "title": "File Storage Browser",
+  "description": "A cloud asset manager with folder directory hierarchy, file size badges, and selection controls.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "file-storage-browser.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FileItem {\n  name: string;\n  size: string;\n  type: \"folder\" | \"file\";\n  updated: string;\n}\n\nconst FILES: FileItem[] = [\n  { name: \"components/\", size: \"100 items\", type: \"folder\", updated: \"2m ago\" },\n  { name: \"sections/\", size: \"100 items\", type: \"folder\", updated: \"Just now\" },\n  { name: \"registry.json\", size: \"2.4 MB\", type: \"file\", updated: \"1m ago\" },\n  { name: \"openui.config.ts\", size: \"1.2 KB\", type: \"file\", updated: \"1h ago\" },\n];\n\nexport function FileStorageBrowser({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800\">\n        <span className=\"font-bold text-neutral-900 dark:text-neutral-100\">Root / registry / default</span>\n        <button type=\"button\" className=\"px-3 py-1 rounded bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 text-[11px] font-bold\">\n          Upload File\n        </button>\n      </div>\n      <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800 mt-2\">\n        {FILES.map((f) => (\n          <div key={f.name} className=\"py-2.5 flex items-center justify-between hover:bg-neutral-50 dark:hover:bg-neutral-900 px-2 rounded\">\n            <div className=\"flex items-center gap-2\">\n              <span>{f.type === \"folder\" ? \"📁\" : \"📄\"}</span>\n              <span className=\"font-medium text-neutral-900 dark:text-neutral-100\">{f.name}</span>\n            </div>\n            <div className=\"flex items-center gap-6 text-neutral-400 text-[11px]\">\n              <span>{f.size}</span>\n              <span>{f.updated}</span>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "bcfbb7904d36c8d7eed7b7f3141293cce493fde19ddf89e39ae06b3b7d89b8ad",
+      "sizeBytes": 2006
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { FileStorageBrowser } from \"./file-storage-browser\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-50 dark:bg-neutral-900\">\n      <FileStorageBrowser />\n    </div>\n  );\n}\n",
+      "contentHash": "029369e794f75dc08bf082d8cbd1abb05bced48cd2e4102da71a38deb0092761",
+      "sizeBytes": 282
+    }
+  ],
+  "tags": [
+    "files",
+    "storage",
+    "explorer",
+    "directory",
+    "browser"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "files",
+    "fingerprint": {
+      "interactionModel": "directory-navigation-and-file-selection",
+      "visualModel": "hierarchical-asset-file-explorer",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "cloud-storage-file-management"
+    }
+  },
+  "url": "https://openui.dev/r/file-storage-browser.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Directory Navigation And File Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

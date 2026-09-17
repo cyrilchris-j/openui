@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-choice-tag-cloud",
+  "type": "registry:interaction",
+  "title": "Multi Choice Tag Cloud",
+  "description": "A responsive flex pill cluster allowing multi-select filter toggles with active badge count computation.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-choice-tag-cloud.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiChoiceTagCloudProps {\n  className?: string;\n}\n\nexport function MultiChoiceTagCloud({ className }: MultiChoiceTagCloudProps) {\n  const [selected, setSelected] = useState<string[]>([\"Core\"]);\n  const tags = [\"Core\", \"Motion\", \"Interactions\", \"Typography\", \"Canvas\", \"3D\", \"Audio\"];\n\n  const toggle = (tag: string) => {\n    setSelected((prev) =>\n      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]\n    );\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-5 shadow-sm\", className)}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-line mb-3 font-mono text-xs text-ink/60\">\n        <span>TAG FILTER</span>\n        <span>{selected.length} ACTIVE</span>\n      </div>\n\n      <div className=\"flex flex-wrap gap-2\">\n        {tags.map((tag) => {\n          const isSel = selected.includes(tag);\n          return (\n            <button\n              key={tag}\n              type=\"button\"\n              onClick={() => toggle(tag)}\n              className={cn(\n                \"rounded-full border px-3 py-1 font-mono text-xs transition-all\",\n                isSel\n                  ? \"border-ink bg-ink text-paper shadow-sm\"\n                  : \"border-line bg-paper text-ink hover:border-ink\"\n              )}\n            >\n              {tag}\n            </button>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n\nexport default MultiChoiceTagCloud;\n",
+      "contentHash": "0cd19d8dfc7c57542c0776f9aabba762a7000fc32a4fff33132b005034ffb936",
+      "sizeBytes": 1547
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { MultiChoiceTagCloud } from \"./multi-choice-tag-cloud\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <MultiChoiceTagCloud />\n    </div>\n  );\n}\n",
+      "contentHash": "d69a27b880883a1522fd6d2fe647305562e7a8a60eb76509c4cfd8636923cc11",
+      "sizeBytes": 239
+    }
+  ],
+  "tags": [
+    "tags",
+    "multi-select",
+    "cloud",
+    "filter",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "selection",
+    "fingerprint": {
+      "interactionModel": "multi-tag-toggle-selection",
+      "visualModel": "compact-pill-constellation",
+      "motionModel": "bistable-pill-invert",
+      "layoutModel": "flex-wrapping-cloud",
+      "semanticPurpose": "faceted-filter-cloud"
+    }
+  },
+  "url": "https://openui.dev/r/multi-choice-tag-cloud.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Multi Tag Toggle Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

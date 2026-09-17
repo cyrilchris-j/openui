@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "brand-press-kit-download",
+  "type": "registry:section",
+  "title": "Brand Press Kit Download",
+  "description": "A media assets and brand press resource section with vector logos, color codes, and download bundles.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "brand-press-kit-download.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "brand",
+    "press",
+    "kit",
+    "download",
+    "assets"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "brand",
+    "fingerprint": {
+      "interactionModel": "brand-press-kit-download-interaction",
+      "visualModel": "brand-press-kit-download-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "brand-press-kit-download-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

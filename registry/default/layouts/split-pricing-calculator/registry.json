@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-pricing-calculator",
+  "type": "registry:layout",
+  "title": "Split Pricing Calculator",
+  "description": "Interactive billing estimator: range slider inputs on left with dynamic calculated total breakdown on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-pricing-calculator.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "pricing",
+    "calculator",
+    "slider",
+    "estimator",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "interactive-cost-estimation",
+      "visualModel": "slider-and-cost-receipt",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-calculator",
+      "semanticPurpose": "pricing-estimation-workbench"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

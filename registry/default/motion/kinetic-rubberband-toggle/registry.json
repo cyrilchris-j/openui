@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-rubberband-toggle",
+  "type": "registry:motion",
+  "title": "Kinetic Rubberband Toggle",
+  "description": "A switch control whose pill thumb elongates and squashes during travel, simulating high-elasticity rubber before snapping into rest shape.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-rubberband-toggle.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "toggle",
+    "switch",
+    "rubberband",
+    "morph",
+    "physics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "click-drag-snap-toggle",
+      "visualModel": "elastic-elongating-capsule",
+      "motionModel": "viscoelastic-squash-stretch",
+      "layoutModel": "inline-pill-rail",
+      "semanticPurpose": "boolean-state-switch"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

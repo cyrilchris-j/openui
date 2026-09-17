@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "career-benefits-perks",
+  "type": "registry:section",
+  "title": "Career Benefits Perks",
+  "description": "An employee value proposition grid displaying health coverage, remote stipends, and learning budgets.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "career-benefits-perks.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "careers",
+    "benefits",
+    "perks",
+    "culture",
+    "hiring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "careers",
+    "fingerprint": {
+      "interactionModel": "career-benefits-perks-interaction",
+      "visualModel": "career-benefits-perks-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "career-benefits-perks-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

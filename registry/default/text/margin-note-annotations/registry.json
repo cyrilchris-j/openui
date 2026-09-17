@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "margin-note-annotations",
+  "type": "registry:text",
+  "title": "Margin Note Annotations",
+  "description": "Body text with superscript markers that open notes in the outer margin on wide viewports and inline expanders on narrow ones — a responsive recomposition of the scholarly annotation, not just a hidden block.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "margin-note-annotations.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "marginalia",
+    "footnotes",
+    "responsive",
+    "scholarly"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "click-expand-note",
+      "visualModel": "margin-anchored-notes",
+      "motionModel": "grid-reflow",
+      "layoutModel": "two-column-margins",
+      "semanticPurpose": "annotation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

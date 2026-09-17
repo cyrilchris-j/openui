@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "diagonal-stripes-pattern",
+  "type": "registry:background",
+  "title": "Diagonal Stripes Pattern",
+  "description": "Ultra-fine minimal 45-degree pinstripes with high-contrast subtle rhythm.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "diagonal-stripes-pattern.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DiagonalStripesPatternProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function DiagonalStripesPattern({ className, children, ...props }: DiagonalStripesPatternProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-10 -z-10\"\n        style={{\n          backgroundImage: \"repeating-linear-gradient(45deg, currentColor, currentColor 1px, transparent 1px, transparent 12px)\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "9f7d8574b6dd0f5cd0fce4ec2582f1dd24aed9ece02217b7a96c57224dfa8ce6",
+      "sizeBytes": 694
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { DiagonalStripesPattern } from \"./diagonal-stripes-pattern\";\n\nexport default function DiagonalStripesPatternDemo() {\n  return (\n    <DiagonalStripesPattern className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Fine Pinstripe</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Precision 45-degree diagonal hairline rhythm.</p>\n      </div>\n    </DiagonalStripesPattern>\n  );\n}\n",
+      "contentHash": "3e3c5ee00a6fa02854771a17ce5f6fa2810ea3bebcc4b2ad8b5b23ec5e5ab799",
+      "sizeBytes": 600
+    }
+  ],
+  "tags": [
+    "stripes",
+    "diagonal",
+    "pattern",
+    "minimal",
+    "texture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-pinstripe-backdrop",
+      "visualModel": "fine-diagonal-striping",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "minimalist-stripe-texture"
+    }
+  },
+  "url": "https://openui.dev/r/diagonal-stripes-pattern.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Pinstripe Backdrop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

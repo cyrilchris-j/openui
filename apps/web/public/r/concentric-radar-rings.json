@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "concentric-radar-rings",
+  "type": "registry:background",
+  "title": "Concentric Radar Rings",
+  "description": "Expanding concentric circles with crosshair range finders creating a tactical radar sweep ambiance.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "concentric-radar-rings.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ConcentricRadarRingsProps extends React.HTMLAttributes<HTMLDivElement> {\n  ringCount?: number;\n  children?: React.ReactNode;\n}\n\nexport function ConcentricRadarRings({\n  ringCount = 5,\n  className,\n  children,\n  ...props\n}: ConcentricRadarRingsProps) {\n  const rings = Array.from({ length: ringCount }, (_, i) => (i + 1) * (100 / ringCount));\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 -z-10\">\n        <div className=\"absolute inset-x-0 top-1/2 h-px bg-line\" />\n        <div className=\"absolute inset-y-0 left-1/2 w-px bg-line\" />\n        {rings.map((pct, idx) => (\n          <div\n            key={idx}\n            className=\"absolute rounded-full border border-line\"\n            style={{ width: `${pct}%`, height: `${pct}%`, maxWidth: `${pct * 6}px`, maxHeight: `${pct * 6}px` }}\n          />\n        ))}\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "6cb4623e528b0a1acf70d58b35605b94986a3f38fe4a19a88042242b9a02f00e",
+      "sizeBytes": 1108
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { ConcentricRadarRings } from \"./concentric-radar-rings\";\n\nexport default function ConcentricRadarRingsDemo() {\n  return (\n    <ConcentricRadarRings className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Radar Rings Target</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Concentric range markers and crosshair lines.</p>\n      </div>\n    </ConcentricRadarRings>\n  );\n}\n",
+      "contentHash": "d5540af1f12f0bed10cda66489bfb6a99c16161986526b43e364b47ca1b61ba3",
+      "sizeBytes": 594
+    }
+  ],
+  "tags": [
+    "radar",
+    "concentric",
+    "circles",
+    "ambient",
+    "tactical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-radar-ambiance",
+      "visualModel": "concentric-range-rings",
+      "motionModel": "subtle-pulsing-rings",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "telemetry-radar-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/concentric-radar-rings.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Radar Ambiance: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

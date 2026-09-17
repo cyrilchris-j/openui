@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "slider-stepper-control",
+  "type": "registry:component",
+  "title": "Slider Stepper Control",
+  "description": "A continuous range bar flanked by decrement and increment step buttons for dual-mode adjustments.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "slider-stepper-control.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "slider",
+    "stepper",
+    "controls",
+    "range",
+    "buttons"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "slider-with-flanking-steppers",
+      "visualModel": "hybrid-track-stepper",
+      "motionModel": "none",
+      "layoutModel": "horizontal-flanked-rail",
+      "semanticPurpose": "calibrated-range-stepper"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

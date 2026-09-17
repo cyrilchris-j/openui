@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "command-center-hud",
+  "type": "registry:layout",
+  "title": "Command Center HUD",
+  "description": "Cyberpunk operational network operations center (NOC) HUD with six synchronized telemetry widgets.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "command-center-hud.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "hud",
+    "noc",
+    "cyberpunk",
+    "telemetry",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "noc-multi-tile-monitoring",
+      "visualModel": "six-cell-hud-cluster",
+      "motionModel": "none",
+      "layoutModel": "six-widget-hud-matrix",
+      "semanticPurpose": "network-operations-hud"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

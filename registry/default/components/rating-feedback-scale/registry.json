@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rating-feedback-scale",
+  "type": "registry:component",
+  "title": "Rating Feedback Scale",
+  "description": "A 1-10 net promoter score rating scale with clickable score tiles and hover highlights.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rating-feedback-scale.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "rating",
+    "nps",
+    "scale",
+    "feedback",
+    "score"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "ten-point-scale-selection",
+      "visualModel": "numbered-tile-row",
+      "motionModel": "none",
+      "layoutModel": "horizontal-scale-array",
+      "semanticPurpose": "nps-feedback-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

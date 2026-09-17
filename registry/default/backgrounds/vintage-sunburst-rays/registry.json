@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "vintage-sunburst-rays",
+  "type": "registry:background",
+  "title": "Vintage Sunburst Rays",
+  "description": "Retro radial sunburst flare with alternating light and dark beams radiating upward from bottom.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "vintage-sunburst-rays.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "sunburst",
+    "rays",
+    "retro",
+    "vintage",
+    "beams"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-sunburst-flare",
+      "visualModel": "radial-wedge-sunburst",
+      "motionModel": "none",
+      "layoutModel": "bottom-center-anchored",
+      "semanticPurpose": "vintage-sunburst-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

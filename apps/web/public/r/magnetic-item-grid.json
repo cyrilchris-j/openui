@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-item-grid",
+  "type": "registry:interaction",
+  "title": "Magnetic Item Grid",
+  "description": "A grid of icons where hovered items attract toward cursor while pushing neighboring items outward.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-item-grid.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticItemGridProps {\n  className?: string;\n}\n\nexport function MagneticItemGrid({ className }: MagneticItemGridProps) {\n  const [hovered, setHovered] = useState<number | null>(null);\n\n  return (\n    <div className={cn(\"grid grid-cols-3 gap-3 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      {Array.from({ length: 9 }).map((_, i) => (\n        <div\n          key={i}\n          onPointerEnter={() => setHovered(i)}\n          onPointerLeave={() => setHovered(null)}\n          className={cn(\n            \"flex h-16 w-16 cursor-pointer items-center justify-center rounded-xl border font-mono text-xs font-bold transition-all duration-150\",\n            hovered === i\n              ? \"border-ink bg-ink text-paper scale-110 shadow-lg\"\n              : \"border-line bg-line/10 text-ink/60 hover:border-ink\"\n          )}\n        >\n          {i + 1}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default MagneticItemGrid;\n",
+      "contentHash": "17cca25d39634f50d8045fb8a1ab08d99d833a894ce43bb9e78dcfb933063281",
+      "sizeBytes": 1040
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { MagneticItemGrid } from \"./magnetic-item-grid\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <MagneticItemGrid />\n    </div>\n  );\n}\n",
+      "contentHash": "12b640550ae91f184b95c2bbdd2c4dae359803cf83056a198f789aaa2dc00645",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "grid",
+    "magnetic",
+    "hover",
+    "repel",
+    "icons"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "neighbor-repulsion-grid",
+      "visualModel": "tessellated-cell-mosaic",
+      "motionModel": "radial-displacement-field",
+      "layoutModel": "uniform-grid-array",
+      "semanticPurpose": "magnetic-cluster-grid"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-item-grid.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Neighbor Repulsion Grid: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

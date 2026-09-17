@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "orbit-ring-spinner",
+  "type": "registry:motion",
+  "title": "Orbit Ring Spinner",
+  "description": "A gyroscopic multi-axis ring loading spinner executing concentric orbital rotations with varying phase velocities.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "orbit-ring-spinner.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "spinner",
+    "orbit",
+    "ring",
+    "gyroscope",
+    "loader"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "loaders",
+    "fingerprint": {
+      "interactionModel": "continuous-rotation-cycle",
+      "visualModel": "gimbal-ring-assembler",
+      "motionModel": "multi-axis-gyroscopic-spin",
+      "layoutModel": "centered-circular-spinner",
+      "semanticPurpose": "gyroscopic-loading-spinner"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

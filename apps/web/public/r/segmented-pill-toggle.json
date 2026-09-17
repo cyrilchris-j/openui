@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-pill-toggle",
+  "type": "registry:component",
+  "title": "Segmented Pill Toggle",
+  "description": "A dual-state pill toggle with active selection highlight, sliding thumb transition, and tactile feedback.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-pill-toggle.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SegmentedPillToggleProps {\n  leftLabel?: string;\n  rightLabel?: string;\n  className?: string;\n}\n\nexport function SegmentedPillToggle({\n  leftLabel = \"Light\",\n  rightLabel = \"Dark\",\n  className,\n}: SegmentedPillToggleProps) {\n  const [selected, setSelected] = useState<\"left\" | \"right\">(\"left\");\n\n  return (\n    <div className={cn(\"inline-flex rounded-full border border-line bg-line/20 p-1\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setSelected(\"left\")}\n        className={cn(\n          \"rounded-full px-4 py-1.5 font-mono text-xs font-bold transition-all\",\n          selected === \"left\" ? \"bg-ink text-paper shadow-sm\" : \"text-ink/60 hover:text-ink\"\n        )}\n      >\n        {leftLabel}\n      </button>\n      <button\n        type=\"button\"\n        onClick={() => setSelected(\"right\")}\n        className={cn(\n          \"rounded-full px-4 py-1.5 font-mono text-xs font-bold transition-all\",\n          selected === \"right\" ? \"bg-ink text-paper shadow-sm\" : \"text-ink/60 hover:text-ink\"\n        )}\n      >\n        {rightLabel}\n      </button>\n    </div>\n  );\n}\n\nexport default SegmentedPillToggle;\n",
+      "contentHash": "ae9e318f003e47270c5d10a172244a71c2c022ab9bfb9cd84c561ce4272cd02d",
+      "sizeBytes": 1225
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SegmentedPillToggle } from \"./segmented-pill-toggle\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SegmentedPillToggle />\n    </div>\n  );\n}\n",
+      "contentHash": "5e137f8bdffb341f23f6b53ea2fa671a94d3019f2e5eb0d5f9f2569839accc59",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "toggle",
+    "pill",
+    "switch",
+    "binary",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "segmented-toggle-choice",
+      "visualModel": "bordered-pill-switch",
+      "motionModel": "lateral-thumb-slide",
+      "layoutModel": "inline-pill-switch",
+      "semanticPurpose": "binary-mode-selector"
+    }
+  },
+  "url": "https://openui.dev/r/segmented-pill-toggle.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Segmented Toggle Choice: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

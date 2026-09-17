@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "reorderable-tab-strip",
+  "type": "registry:interaction",
+  "title": "Reorderable Tab Strip",
+  "description": "A browser-style tab bar allowing tabs to be dragged horizontally to swap places with animated displacement.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "reorderable-tab-strip.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ReorderableTabStripProps {\n  className?: string;\n}\n\nexport function ReorderableTabStrip({ className }: ReorderableTabStripProps) {\n  const [tabs, setTabs] = useState([\"index.tsx\", \"styles.css\", \"schema.json\"]);\n  const [active, setActive] = useState(0);\n\n  const swap = (i1: number, i2: number) => {\n    const next = [...tabs];\n    const item1 = next[i1];\n    const item2 = next[i2];\n    if (!item1 || !item2) return;\n    next[i1] = item2;\n    next[i2] = item1;\n    setTabs(next);\n  };\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-1.5 rounded-xl border border-line bg-line/10 p-1.5 shadow-sm\", className)}>\n      {tabs.map((tab, idx) => (\n        <div\n          key={tab}\n          onClick={() => setActive(idx)}\n          className={cn(\n            \"flex items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-xs font-semibold transition-all cursor-pointer\",\n            active === idx ? \"bg-paper text-ink shadow-sm\" : \"text-ink/60 hover:text-ink\"\n          )}\n        >\n          <span>{tab}</span>\n          {idx > 0 && (\n            <button\n              type=\"button\"\n              onClick={(e) => {\n                e.stopPropagation();\n                swap(idx, idx - 1);\n              }}\n              className=\"text-[9px] text-ink/30 hover:text-ink\"\n            >\n              ◀\n            </button>\n          )}\n          {idx < tabs.length - 1 && (\n            <button\n              type=\"button\"\n              onClick={(e) => {\n                e.stopPropagation();\n                swap(idx, idx + 1);\n              }}\n              className=\"text-[9px] text-ink/30 hover:text-ink\"\n            >\n              ▶\n            </button>\n          )}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default ReorderableTabStrip;\n",
+      "contentHash": "2e61ee58345c9132487868c967832d2dfcf7e7db1cc9bc2e58be76d3059c0ef2",
+      "sizeBytes": 1866
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ReorderableTabStrip } from \"./reorderable-tab-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ReorderableTabStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "0fc87a0d537bba09e46ee0cf955fe50c896dd3756d74c9a18eac651306a93ead",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "tabs",
+    "reorderable",
+    "drag",
+    "browser",
+    "strip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "horizontal-tab-reorder",
+      "visualModel": "browser-tab-strip",
+      "motionModel": "lateral-tab-displacement",
+      "layoutModel": "horizontal-tab-rail",
+      "semanticPurpose": "reorderable-browser-tabs"
+    }
+  },
+  "url": "https://openui.dev/r/reorderable-tab-strip.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Horizontal Tab Reorder: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

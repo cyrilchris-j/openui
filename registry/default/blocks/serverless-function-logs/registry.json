@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "serverless-function-logs",
+  "type": "registry:block",
+  "title": "Serverless Function Logs",
+  "description": "An edge serverless function invocation console reporting execution duration, memory consumption, and cold start metrics.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "serverless-function-logs.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "serverless",
+    "functions",
+    "logs",
+    "edge",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "serverless-execution-log-streaming",
+      "visualModel": "edge-function-invocation-ledger",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "serverless-function-telemetry"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

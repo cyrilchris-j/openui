@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-cursor-bubble",
+  "type": "registry:interaction",
+  "title": "Magnetic Cursor Bubble",
+  "description": "A liquid bubble node that follows pointer coordinates with fluid velocity lag and viscoelastic stretch.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-cursor-bubble.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "bubble",
+    "magnetic",
+    "cursor",
+    "fluid",
+    "lag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "fluid-bubble-lag-tracking",
+      "visualModel": "viscoelastic-fluid-droplet",
+      "motionModel": "damped-lag-interpolation",
+      "layoutModel": "freeform-bubble-stage",
+      "semanticPurpose": "fluid-pointer-droplet"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-comparison-slider",
+  "type": "registry:layout",
+  "title": "Split Comparison Slider",
+  "description": "Before-and-after visual comparison framework with center boundary line.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-comparison-slider.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "comparison",
+    "slider",
+    "before-after",
+    "split",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "before-after-divider",
+      "visualModel": "dual-layer-comparison-stage",
+      "motionModel": "none",
+      "layoutModel": "center-split-comparison",
+      "semanticPurpose": "visual-regression-inspection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

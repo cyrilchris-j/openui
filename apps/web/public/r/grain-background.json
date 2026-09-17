@@ -51,6 +51,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "texture",
+    "fingerprint": {
+      "interactionModel": "passive-viewport",
+      "visualModel": "photographic-film-grain",
+      "layoutModel": "fixed-noise-overlay",
+      "semanticPurpose": "editorial-backdrop"
     }
   },
   "url": "https://openui.dev/r/grain-background.json",

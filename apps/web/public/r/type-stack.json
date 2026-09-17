@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "type-stack",
+  "type": "registry:text",
+  "title": "Type Stack",
+  "description": "A vertical stack of phrases that cycles with a directional slide, reserving the height of the longest phrase so surrounding layout never reflows; pauses on hover and focus.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "type-stack.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TypeStackProps {\n  phrases: string[];\n  /** Milliseconds each phrase holds. */\n  interval?: number;\n  className?: string;\n}\n\nexport function TypeStack({ phrases, interval = 2600, className }: TypeStackProps) {\n  const [active, setActive] = useState(0);\n  const [paused, setPaused] = useState(false);\n  const timer = useRef<number | null>(null);\n  const longest = phrases.reduce((max, phrase) => Math.max(max, phrase.length), 0);\n\n  useEffect(() => {\n    if (paused) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n    timer.current = window.setInterval(\n      () => setActive((value) => (value + 1) % phrases.length),\n      interval,\n    );\n    return () => {\n      if (timer.current !== null) window.clearInterval(timer.current);\n    };\n  }, [paused, phrases.length, interval]);\n\n  return (\n    <span\n      className={cn(\"relative inline-grid overflow-hidden align-bottom\", className)}\n      style={{ minHeight: \"1.2em\", minWidth: `${longest}ch` }}\n      onPointerEnter={() => setPaused(true)}\n      onPointerLeave={() => setPaused(false)}\n      onFocus={() => setPaused(true)}\n      onBlur={() => setPaused(false)}\n      tabIndex={0}\n      role=\"status\"\n      aria-label={phrases[active]}\n    >\n      {phrases.map((phrase, index) => (\n        <span\n          key={phrase}\n          aria-hidden={index !== active}\n          className={cn(\n            \"col-start-1 row-start-1 transition-[transform,opacity] duration-normal ease-editorial motion-reduce:transition-none\",\n            index === active ? \"translate-y-0 opacity-100\" : \"pointer-events-none translate-y-full opacity-0\",\n          )}\n        >\n          {phrase}\n        </span>\n      ))}\n    </span>\n  );\n}\n\nexport default TypeStack;\n",
+      "contentHash": "d0525676899ebfdbf11abcd78b08aa47012c8d9b340c30f3074c7e030e8717d7",
+      "sizeBytes": 1854
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { TypeStack } from \"./type-stack\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <p className=\"font-display text-step-3 text-ink\">\n        Design is <TypeStack phrases={[\"structure.\", \"rhythm.\", \"restraint.\", \"contrast.\"]} />\n      </p>\n    </div>\n  );\n}\n",
+      "contentHash": "842c36ec5e3ecadf8c6de4028a7572a041243b88ea8a7f99ee8a28bdd7c3c324",
+      "sizeBytes": 350
+    }
+  ],
+  "tags": [
+    "rotator",
+    "stack",
+    "phrases",
+    "reserved-space"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "timer-cycle",
+      "visualModel": "stacked-phrases",
+      "motionModel": "directional-slide",
+      "layoutModel": "reserved-height",
+      "semanticPurpose": "heading-rotation"
+    }
+  },
+  "url": "https://openui.dev/r/type-stack.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Timer Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

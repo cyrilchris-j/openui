@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "changelog-release-feed",
+  "type": "registry:section",
+  "title": "Changelog Release Feed",
+  "description": "A chronological release notes section highlighting version bumps, features, breaking changes, and bug fixes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "changelog-release-feed.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "changelog",
+    "release",
+    "feed",
+    "updates",
+    "versioning"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "changelog",
+    "fingerprint": {
+      "interactionModel": "changelog-release-feed-interaction",
+      "visualModel": "changelog-release-feed-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "changelog-release-feed-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "rail",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

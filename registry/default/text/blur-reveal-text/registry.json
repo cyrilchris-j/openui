@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "blur-reveal-text",
+  "type": "registry:text",
+  "title": "Blur Reveal Text",
+  "description": "A focus-pull reveal: words start defocused and transparent, then sharpen in reading order with an interleaved delay, using only filter and opacity so layout is stable throughout.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "blur-reveal-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "blur",
+    "focus-pull",
+    "reveal",
+    "filter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "viewport-trigger",
+      "visualModel": "gaussian-deblur-fade",
+      "motionModel": "smooth-filter-transition",
+      "layoutModel": "inline-block",
+      "semanticPurpose": "heading-entrance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

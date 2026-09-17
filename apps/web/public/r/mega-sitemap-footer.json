@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mega-sitemap-footer",
+  "type": "registry:section",
+  "title": "Mega Sitemap Footer",
+  "description": "A comprehensive multi-column site directory footer with legal links, social handles, and system status indicator.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mega-sitemap-footer.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FooterColumn {\n  title: string;\n  links: { label: string; href: string }[];\n}\n\nexport interface MegaSitemapFooterProps extends React.HTMLAttributes<HTMLElement> {\n  columns?: FooterColumn[];\n}\n\nconst DEFAULT_COLUMNS: FooterColumn[] = [\n  {\n    title: \"Registry\",\n    links: [\n      { label: \"Components (100)\", href: \"/components\" },\n      { label: \"Text (100)\", href: \"/text\" },\n      { label: \"Motion (100)\", href: \"/motion\" },\n      { label: \"Interactions (100)\", href: \"/interactions\" },\n    ],\n  },\n  {\n    title: \"Architecture\",\n    links: [\n      { label: \"Backgrounds (100)\", href: \"/backgrounds\" },\n      { label: \"Layouts (100)\", href: \"/layouts\" },\n      { label: \"Sections (100)\", href: \"/sections\" },\n      { label: \"Blocks (100)\", href: \"/blocks\" },\n    ],\n  },\n  {\n    title: \"Developers\",\n    links: [\n      { label: \"CLI Documentation\", href: \"/docs\" },\n      { label: \"GitHub Repository\", href: \"https://github.com/cyrilchris-j/openui\" },\n      { label: \"Discord Community\", href: \"/community\" },\n      { label: \"System Telemetry\", href: \"/status\" },\n    ],\n  },\n  {\n    title: \"Legal & Trust\",\n    links: [\n      { label: \"MIT License\", href: \"/license\" },\n      { label: \"Privacy Policy\", href: \"/privacy\" },\n      { label: \"Security Disclosures\", href: \"/security\" },\n      { label: \"SOC2 Compliance\", href: \"/trust\" },\n    ],\n  },\n];\n\nexport function MegaSitemapFooter({\n  columns = DEFAULT_COLUMNS,\n  className,\n  ...props\n}: MegaSitemapFooterProps) {\n  return (\n    <footer className={cn(\"w-full border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 py-16 px-4 md:px-8\", className)} {...props}>\n      <div className=\"max-w-6xl mx-auto\">\n        <div className=\"grid grid-cols-2 md:grid-cols-4 gap-8 pb-12 border-b border-neutral-200 dark:border-neutral-800\">\n          {columns.map((col) => (\n            <div key={col.title}>\n              <h4 className=\"text-xs font-mono uppercase tracking-widest text-neutral-400 font-bold mb-4\">\n                {col.title}\n              </h4>\n              <ul className=\"space-y-2.5 text-xs\">\n                {col.links.map((link) => (\n                  <li key={link.label}>\n                    <a\n                      href={link.href}\n                      className=\"text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors\"\n                    >\n                      {link.label}\n                    </a>\n                  </li>\n                ))}\n              </ul>\n            </div>\n          ))}\n        </div>\n\n        <div className=\"pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500\">\n          <div>© {new Date().getFullYear()} OpenUI Open Source Project. MIT Licensed.</div>\n          <div className=\"flex items-center gap-2\">\n            <span className=\"h-2 w-2 rounded-full bg-emerald-500\" />\n            <span>All systems nominal</span>\n          </div>\n        </div>\n      </div>\n    </footer>\n  );\n}\n",
+      "contentHash": "a6252ed40e70658cf6dda52abfff17d416eb4cf797c49da56536d768a154fd2d",
+      "sizeBytes": 3108
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { MegaSitemapFooter } from \"./mega-sitemap-footer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full bg-white dark:bg-neutral-950\">\n      <MegaSitemapFooter />\n    </div>\n  );\n}\n",
+      "contentHash": "7e2d9f9c893e097b67acf297940934a536c13dbd3a1522024d1ea07170d14416",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "footer",
+    "sitemap",
+    "navigation",
+    "directory",
+    "legal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "mega-sitemap-footer-interaction",
+      "visualModel": "mega-sitemap-footer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "mega-sitemap-footer-section"
+    }
+  },
+  "url": "https://openui.dev/r/mega-sitemap-footer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Mega Sitemap Footer Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

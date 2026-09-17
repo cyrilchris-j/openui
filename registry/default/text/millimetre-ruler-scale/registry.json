@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "millimetre-ruler-scale",
+  "type": "registry:text",
+  "title": "Millimetre Ruler Scale",
+  "description": "A physical ruler rendered in CSS: millimetre ticks every 4px, centimetre ticks taller with numerals, edge-accurate against the page — hold a credit card against it in the demo to check your screen's true DPI.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "millimetre-ruler-scale.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "ruler",
+    "measurement",
+    "scale",
+    "calibration"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "drag-measure",
+      "visualModel": "css-physical-ruler",
+      "motionModel": "none",
+      "layoutModel": "rail",
+      "semanticPurpose": "physical-calibration"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

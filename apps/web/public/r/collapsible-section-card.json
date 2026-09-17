@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "collapsible-section-card",
+  "type": "registry:component",
+  "title": "Collapsible Section Card",
+  "description": "A surface card featuring a top disclosure header with an animated chevron toggle to collapse body contents.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "collapsible-section-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CollapsibleSectionCardProps {\n  title?: string;\n  className?: string;\n}\n\nexport function CollapsibleSectionCard({\n  title = \"Security & Access Policies\",\n  className,\n}: CollapsibleSectionCardProps) {\n  const [collapsed, setCollapsed] = useState(false);\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper overflow-hidden shadow-sm\", className)}>\n      <div\n        onClick={() => setCollapsed((c) => !c)}\n        className=\"flex items-center justify-between p-4 cursor-pointer hover:bg-line/10 transition-colors font-display text-sm font-bold text-ink\"\n      >\n        <span>{title}</span>\n        <span className=\"font-mono text-xs\">{collapsed ? \"▼\" : \"▲\"}</span>\n      </div>\n\n      {!collapsed && (\n        <div className=\"border-t border-line p-4 font-mono text-xs text-ink/70 leading-relaxed\">\n          Cryptographic token signing enforced across all edge worker requests. Mutual TLS enabled on upstream endpoints.\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default CollapsibleSectionCard;\n",
+      "contentHash": "e3a920172f1f2bbf94c4a8ebd701ace8f9fa74c4d1f09d69ee358870bba11537",
+      "sizeBytes": 1145
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { CollapsibleSectionCard } from \"./collapsible-section-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <CollapsibleSectionCard />\n    </div>\n  );\n}\n",
+      "contentHash": "277a9901bf93e54b97a6e3d970f22b0abd493e2767334ba0e5574f0a0cff26f3",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "card",
+    "collapsible",
+    "disclosure",
+    "accordion",
+    "section"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "cards",
+    "fingerprint": {
+      "interactionModel": "card-chevron-disclosure",
+      "visualModel": "bordered-collapsible-chassis",
+      "motionModel": "stepwise-body-collapse",
+      "layoutModel": "stacked-section-card",
+      "semanticPurpose": "collapsible-content-card"
+    }
+  },
+  "url": "https://openui.dev/r/collapsible-section-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Card Chevron Disclosure: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

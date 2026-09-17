@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inline-swap-sentence",
+  "type": "registry:text",
+  "title": "Inline Swap Sentence",
+  "description": "A sentence with one clickable word that cycles through alternatives on click — a live copy-testing widget where the sentence grammar stays intact and the swapped word rolls in with a vertical slide.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inline-swap-sentence.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "swap",
+    "cycle",
+    "copy",
+    "inline"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "click-cycle",
+      "visualModel": "inline-slot-swap",
+      "motionModel": "vertical-slide",
+      "layoutModel": "inline",
+      "semanticPurpose": "copy-exploration"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

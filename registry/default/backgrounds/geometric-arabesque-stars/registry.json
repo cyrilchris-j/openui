@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-arabesque-stars",
+  "type": "registry:background",
+  "title": "Geometric Arabesque Stars",
+  "description": "Islamic geometric 8-pointed star tessellation with interlocking polygonal strapwork.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-arabesque-stars.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "arabesque",
+    "islamic",
+    "stars",
+    "tessellation",
+    "geometry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-arabesque-tessellation",
+      "visualModel": "eight-point-star-strapwork",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "ornamental-arabesque-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

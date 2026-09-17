@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "jitter-type",
+  "type": "registry:text",
+  "title": "Jitter Type",
+  "description": "Seeded per-glyph jitter on a coarse grid: each character offsets by a quantised random amount that re-rolls on an offbeat interval, so the field feels alive without a full-time animation loop.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "jitter-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "jitter",
+    "noise",
+    "seeded",
+    "poster"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "interval-quantised",
+      "visualModel": "seeded-offset-field",
+      "motionModel": "quantised-jump",
+      "layoutModel": "inline",
+      "semanticPurpose": "poster-energy"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "scatter",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "quantum-particle-web",
+  "type": "registry:background",
+  "title": "Quantum Particle Web",
+  "description": "Interactive constellation web connecting nearby drifting particles with dynamic threshold lines.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "quantum-particle-web.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "constellation",
+    "particles",
+    "network",
+    "canvas",
+    "web"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-particles",
+      "visualModel": "proximity-constellation-network",
+      "motionModel": "stochastic-particle-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "network-graph-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

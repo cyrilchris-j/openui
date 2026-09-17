@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-lit-paragraph",
+  "type": "registry:text",
+  "title": "Scroll Lit Paragraph",
+  "description": "A long paragraph where words illuminate one by one as scroll progress passes them — reading position made spatial, like a cursor of light sweeping through the copy as the page moves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-lit-paragraph.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "progressive",
+    "illuminate",
+    "reading"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "word-illumination-ramp",
+      "motionModel": "scroll-linked-fill",
+      "layoutModel": "block",
+      "semanticPurpose": "reading-progress"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

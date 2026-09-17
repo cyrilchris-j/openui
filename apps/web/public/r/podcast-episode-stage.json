@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "podcast-episode-stage",
+  "type": "registry:section",
+  "title": "Podcast Episode Stage",
+  "description": "A featured multimedia stage showcasing podcast interviews, interactive progress scrubbers, and guest credentials.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "podcast-episode-stage.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PodcastEpisodeStageProps extends React.HTMLAttributes<HTMLElement> {\n  episodeNumber?: string;\n  title?: string;\n  guest?: string;\n  duration?: string;\n}\n\nexport function PodcastEpisodeStage({\n  episodeNumber = \"EPISODE 42\",\n  title = \"Designing the Next Decade of React & V8 Interfaces\",\n  guest = \"with Elena Rostova & Cyril Chris\",\n  duration = \"48 min\",\n  className,\n  ...props\n}: PodcastEpisodeStageProps) {\n  const [isPlaying, setIsPlaying] = React.useState(false);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"bg-neutral-900 text-white rounded-2xl p-6 md:p-10 border border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-8\">\n        <div className=\"max-w-xl\">\n          <div className=\"flex items-center gap-3 text-xs font-mono text-emerald-400\">\n            <span>{episodeNumber}</span>\n            <span>•</span>\n            <span>{duration}</span>\n          </div>\n          <h2 className=\"text-2xl md:text-3xl font-bold tracking-tight mt-2\">\n            {title}\n          </h2>\n          <p className=\"text-xs text-neutral-400 mt-2 font-mono\">\n            {guest}\n          </p>\n        </div>\n\n        <div className=\"flex flex-col items-center gap-3\">\n          <button\n            type=\"button\"\n            onClick={() => setIsPlaying(!isPlaying)}\n            className=\"h-16 w-16 rounded-full bg-white text-neutral-900 flex items-center justify-center text-xl font-bold hover:scale-105 transition-transform shadow-lg\"\n          >\n            {isPlaying ? \"❚❚\" : \"▶\"}\n          </button>\n          <span className=\"text-[11px] font-mono text-neutral-400\">\n            {isPlaying ? \"Playing snippet...\" : \"Play 2m preview\"}\n          </span>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "707d78eaf860c91dcd5428b8716b1ce3b619850c306186bd35ca707fde548926",
+      "sizeBytes": 1920
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { PodcastEpisodeStage } from \"./podcast-episode-stage\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-950\">\n      <PodcastEpisodeStage />\n    </div>\n  );\n}\n",
+      "contentHash": "a2001f2798dec2d830bc152269cd4005f48e0f329b0340f52d9c12dcaa74ef0c",
+      "sizeBytes": 266
+    }
+  ],
+  "tags": [
+    "podcast",
+    "media",
+    "audio",
+    "interview",
+    "episode"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "podcast-episode-stage-interaction",
+      "visualModel": "podcast-episode-stage-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "podcast-episode-stage-section"
+    }
+  },
+  "url": "https://openui.dev/r/podcast-episode-stage.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Podcast Episode Stage Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

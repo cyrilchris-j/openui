@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-segment-tabs",
+  "type": "registry:interaction",
+  "title": "Interactive Segment Tabs",
+  "description": "A pill segment bar featuring smooth indicator gliding between active view targets on selection.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-segment-tabs.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "segment",
+    "pill",
+    "navigation",
+    "views"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "segmented-view-switch",
+      "visualModel": "sliding-pill-indicator",
+      "motionModel": "lateral-pill-glide",
+      "layoutModel": "horizontal-pill-rail",
+      "semanticPurpose": "segmented-view-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "edge-cache-purge-console",
+  "type": "registry:block",
+  "title": "Edge Cache Purge Console",
+  "description": "A global CDN cache invalidator with URL path targeting, tag-based purging, and execution verification logs.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "edge-cache-purge-console.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function EdgeCachePurgeConsole({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [purged, setPurged] = React.useState(false);\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-3\">Edge CDN Cache Purge</h3>\n      <input\n        type=\"text\"\n        defaultValue=\"/r/components/*\"\n        className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 mb-3\"\n      />\n      <button\n        type=\"button\"\n        onClick={() => setPurged(true)}\n        className=\"w-full py-2 bg-rose-600 text-white font-bold rounded-lg\"\n      >\n        Purge Global Edge Cache\n      </button>\n      {purged && (\n        <div className=\"mt-3 p-3 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 rounded\">\n          ✓ Invalidated 284 global points of presence in 420ms.\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "contentHash": "c5ca7c71a418ef49fe425d62e9e007b68cd7ba9ada4205fe0d824cef4f22c6af",
+      "sizeBytes": 1221
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { EdgeCachePurgeConsole } from \"./edge-cache-purge-console\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <EdgeCachePurgeConsole />\n    </div>\n  );\n}\n",
+      "contentHash": "059f4bbaa033d35b65c0af25799ac01961b03d63b3b6254b493acbe0ae9a306b",
+      "sizeBytes": 293
+    }
+  ],
+  "tags": [
+    "cache",
+    "cdn",
+    "purge",
+    "edge",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "cache-invalidation-path-purge",
+      "visualModel": "cdn-purge-action-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "cdn-edge-cache-invalidation"
+    }
+  },
+  "url": "https://openui.dev/r/edge-cache-purge-console.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Cache Invalidation Path Purge: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

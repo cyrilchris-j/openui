@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-cube-lattice",
+  "type": "registry:background",
+  "title": "Geometric Cube Lattice",
+  "description": "Escher-inspired 3D tumbling isometric cubes optical illusion pattern.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-cube-lattice.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "cubes",
+    "escher",
+    "illusion",
+    "isometric",
+    "geometric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-cube-illusion",
+      "visualModel": "isometric-cube-tessellation",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "isometric-cube-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

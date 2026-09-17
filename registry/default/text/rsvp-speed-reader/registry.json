@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rsvp-speed-reader",
+  "type": "registry:text",
+  "title": "RSVP Speed Reader",
+  "description": "Rapid Serial Visual Presentation: words flash one at a time at a fixed focal point with the optimal recognition letter (ORP) highlighted in red, play/pause and WPM control — reading 400 wpm without moving your eyes.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rsvp-speed-reader.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "rsvp",
+    "speed-reading",
+    "wpm",
+    "orp"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "playback-control",
+      "visualModel": "single-word-focus",
+      "motionModel": "fixed-interval-flash",
+      "layoutModel": "stack",
+      "semanticPurpose": "speed-reading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

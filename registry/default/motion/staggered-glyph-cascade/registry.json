@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-glyph-cascade",
+  "type": "registry:motion",
+  "title": "Staggered Glyph Cascade",
+  "description": "A dramatic entrance reveal splitting strings into glyphs that drop down like raindrops with slight pseudo-random angle jitter and spring settle.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-glyph-cascade.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "typography",
+    "cascade",
+    "stagger",
+    "spring",
+    "drop"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "viewport-entrance-cycle",
+      "visualModel": "character-split-raindrop",
+      "motionModel": "staggered-spring-delay",
+      "layoutModel": "headline-flow",
+      "semanticPurpose": "hero-statement-entrance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

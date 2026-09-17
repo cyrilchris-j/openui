@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-shape-morph",
+  "type": "registry:motion",
+  "title": "Liquid Shape Morph",
+  "description": "A surface that morphs between organic blob shapes using animated border-radius interpolation across eight values — the cheapest real morph in CSS, with asymmetric timing so the blob never looks mechanical.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-shape-morph.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "morph",
+    "blob",
+    "organic",
+    "shape"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "page",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "border-radius-blob",
+      "motionModel": "keyframe-radius-morph",
+      "layoutModel": "block",
+      "semanticPurpose": "decorative-motion"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "pastel"
+    }
+  }
+}

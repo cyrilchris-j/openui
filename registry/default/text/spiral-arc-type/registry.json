@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spiral-arc-type",
+  "type": "registry:text",
+  "title": "Spiral Arc Type",
+  "description": "Text laid along an Archimedean spiral via per-glyph placement (rotate + translate per character), coiling from the outside in — glyphs shrink slightly with radius so the coil reads as one continuous word.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spiral-arc-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "spiral",
+    "arc",
+    "coiled",
+    "glyph-layout"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "path",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "per-glyph-spiral-placement",
+      "motionModel": "none",
+      "layoutModel": "spiral",
+      "semanticPurpose": "decorative-arrangement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "scatter",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

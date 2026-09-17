@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "millimetre-ruler-scale",
+  "type": "registry:text",
+  "title": "Millimetre Ruler Scale",
+  "description": "A physical ruler rendered in CSS: millimetre ticks every 4px, centimetre ticks taller with numerals, edge-accurate against the page — hold a credit card against it in the demo to check your screen's true DPI.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "millimetre-ruler-scale.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MillimetreRulerScaleProps {\n  /** Ruler length in millimetres. */\n  lengthMm?: number;\n  className?: string;\n}\n\nexport function MillimetreRulerScale({ lengthMm = 150, className }: MillimetreRulerScaleProps) {\n  const [dragMm, setDragMm] = useState<number | null>(null);\n  const trackRef = useRef<HTMLDivElement>(null);\n\n  // CSS mm unit = 1/25.4 inch rendered at 96dpi ≈ 3.78px, but the browser's\n  // physical calibration may differ; we trust CSS mm and let users verify.\n  const ticks = Array.from({ length: lengthMm + 1 }, (_, index) => index);\n\n  const onPointerDown = (event: React.PointerEvent) => {\n    const track = trackRef.current;\n    if (!track) return;\n    const update = (clientX: number) => {\n      const rect = track.getBoundingClientRect();\n      const ratio = (clientX - rect.left) / rect.width;\n      setDragMm(Math.max(0, Math.min(lengthMm, Math.round(ratio * lengthMm))));\n    };\n    update(event.clientX);\n    const move = (moveEvent: PointerEvent) => update(moveEvent.clientX);\n    const up = () => {\n      window.removeEventListener(\"pointermove\", move);\n      window.removeEventListener(\"pointerup\", up);\n    };\n    window.addEventListener(\"pointermove\", move);\n    window.addEventListener(\"pointerup\", up);\n  };\n\n  return (\n    <div className={cn(\"flex flex-col gap-3\", className)}>\n      <div\n        ref={trackRef}\n        onPointerDown={onPointerDown}\n        className=\"relative flex cursor-ew-resize select-none items-end border-b-2 border-ink pb-0.5\"\n        style={{ height: 56 }}\n        role=\"slider\"\n        aria-label=\"Measuring position in millimetres\"\n        aria-valuemin={0}\n        aria-valuemax={lengthMm}\n        aria-valuenow={dragMm ?? 0}\n        tabIndex={0}\n        onKeyDown={(event) => {\n          if (event.key === \"ArrowRight\") setDragMm((value) => Math.min(lengthMm, (value ?? 0) + 1));\n          if (event.key === \"ArrowLeft\") setDragMm((value) => Math.max(0, (value ?? 0) - 1));\n        }}\n      >\n        {ticks.map((mm) => {\n          const isCm = mm % 10 === 0;\n          const isHalf = mm % 5 === 0 && !isCm;\n          return (\n            <span\n              key={mm}\n              aria-hidden\n              className=\"relative flex flex-col items-center justify-end\"\n              style={{ width: \"1mm\", height: isCm ? 32 : isHalf ? 22 : 13 }}\n            >\n              <span\n                className=\"w-px bg-ink\"\n                style={{ height: \"100%\", opacity: isCm ? 1 : isHalf ? 0.7 : 0.45 }}\n              />\n              {isCm && (\n                <span className=\"absolute -top-4 font-mono text-[9px] text-ink/70\">{mm / 10}</span>\n              )}\n            </span>\n          );\n        })}\n        {dragMm !== null && (\n          <span\n            aria-hidden\n            className=\"absolute bottom-0 top-0 w-px bg-accent\"\n            style={{ left: `${(dragMm / lengthMm) * 100}%` }}\n          />\n        )}\n      </div>\n      <p className=\"font-mono text-xs text-ink/60\" role=\"status\">\n        {dragMm !== null ? `reading: ${dragMm} mm` : \"drag along the ruler · verify against a card\"}\n      </p>\n    </div>\n  );\n}\n\nexport default MillimetreRulerScale;\n",
+      "contentHash": "d2fe8310cd4f467d61cf7b05f62dc7f9a870bdd35a8b063335418cd682eec070",
+      "sizeBytes": 3243
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { MillimetreRulerScale } from \"./millimetre-ruler-scale\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <MillimetreRulerScale lengthMm={120} className=\"w-full max-w-xl\" />\n    </div>\n  );\n}\n",
+      "contentHash": "82f3f5a2ede4592a376d6e8a2a1a2b8ece095ff62733613b59b2f18491805d2e",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "ruler",
+    "measurement",
+    "scale",
+    "calibration"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "drag-measure",
+      "visualModel": "css-physical-ruler",
+      "motionModel": "none",
+      "layoutModel": "rail",
+      "semanticPurpose": "physical-calibration"
+    }
+  },
+  "url": "https://openui.dev/r/millimetre-ruler-scale.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Drag Measure: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

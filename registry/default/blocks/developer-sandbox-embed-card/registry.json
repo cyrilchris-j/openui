@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-sandbox-embed-card",
+  "type": "registry:block",
+  "title": "Developer Sandbox Embed Card",
+  "description": "An embeddable code snippet preview card with iframe embed code generator and direct share button.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-sandbox-embed-card.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "sandbox",
+    "embed",
+    "iframe",
+    "developer",
+    "share"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "sandbox-embed-copy-code",
+      "visualModel": "embed-share-preview-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "sandbox-component-embedding"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

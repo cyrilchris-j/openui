@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-toast-stack",
+  "type": "registry:motion",
+  "title": "Spring Toast Stack",
+  "description": "A cascade of alert cards stacked behind one another that eject smoothly when dismissed using hookean spring dynamics.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-toast-stack.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "toast",
+    "notifications",
+    "spring",
+    "stack",
+    "eject"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "notifications",
+    "fingerprint": {
+      "interactionModel": "dismiss-eject-card",
+      "visualModel": "cascading-deck-toasts",
+      "motionModel": "spring-ejection-flyaway",
+      "layoutModel": "bottom-right-anchor-deck",
+      "semanticPurpose": "stacked-alert-feed"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

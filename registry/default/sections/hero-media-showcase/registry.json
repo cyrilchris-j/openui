@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-media-showcase",
+  "type": "registry:section",
+  "title": "Hero Media Showcase",
+  "description": "A flagship hero section featuring browser frame window mockup, glowing gradients, callout badges, and dual action CTAs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-media-showcase.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "hero",
+    "media",
+    "showcase",
+    "mockup",
+    "cta"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "hero",
+    "fingerprint": {
+      "interactionModel": "hero-media-showcase-interaction",
+      "visualModel": "hero-media-showcase-visual",
+      "motionModel": "subtle",
+      "layoutModel": "asymmetric-layout",
+      "semanticPurpose": "hero-media-showcase-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "asymmetric",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "airy",
+      "genre": "minimal"
+    }
+  }
+}

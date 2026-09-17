@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "investor-metrics-deck",
+  "type": "registry:section",
+  "title": "Investor Metrics Deck",
+  "description": "A financial telemetry summary presenting capital efficiency, ARR growth rates, and market penetration.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "investor-metrics-deck.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "investors",
+    "metrics",
+    "arr",
+    "growth",
+    "finance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "investors",
+    "fingerprint": {
+      "interactionModel": "investor-metrics-deck-interaction",
+      "visualModel": "investor-metrics-deck-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "investor-metrics-deck-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "industrial"
+    }
+  }
+}

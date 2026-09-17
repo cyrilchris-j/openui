@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-feedback-nps-widget",
+  "type": "registry:block",
+  "title": "User Feedback NPS Widget",
+  "description": "A compact customer satisfaction widget featuring 0-10 Net Promoter Score selection and qualitative feedback field.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-feedback-nps-widget.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function UserFeedbackNpsWidget({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [score, setScore] = React.useState<number | null>(null);\n\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-lg text-xs\", className)} {...props}>\n      <h4 className=\"font-bold text-neutral-900 dark:text-white\">How likely are you to recommend OpenUI?</h4>\n      <p className=\"text-neutral-500 text-[11px] mt-0.5\">0 = Not likely at all, 10 = Extremely likely</p>\n      <div className=\"flex justify-between gap-1 my-4\">\n        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (\n          <button\n            key={n}\n            type=\"button\"\n            onClick={() => setScore(n)}\n            className={cn(\"h-7 w-7 rounded font-mono font-bold transition-colors\", score === n ? \"bg-emerald-600 text-white\" : \"bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300\")}\n          >\n            {n}\n          </button>\n        ))}\n      </div>\n      <button type=\"button\" disabled={score === null} className=\"w-full py-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-lg font-semibold disabled:opacity-40\">\n        Submit Rating\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "bd00991e6f727a370b783228553b8cff624d4fb1f61a9f192a5120e675933e9c",
+      "sizeBytes": 1403
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { UserFeedbackNpsWidget } from \"./user-feedback-nps-widget\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <UserFeedbackNpsWidget />\n    </div>\n  );\n}\n",
+      "contentHash": "3903004f6ef5e9201c4335f48d724e949afa72c9dfcd5e0a5653446bb4ca511e",
+      "sizeBytes": 293
+    }
+  ],
+  "tags": [
+    "nps",
+    "feedback",
+    "rating",
+    "survey",
+    "widget"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "nps-score-rating-submission",
+      "visualModel": "compact-floating-feedback-panel",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-satisfaction-scoring"
+    }
+  },
+  "url": "https://openui.dev/r/user-feedback-nps-widget.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Nps Score Rating Submission: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

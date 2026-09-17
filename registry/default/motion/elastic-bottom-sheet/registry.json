@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-bottom-sheet",
+  "type": "registry:motion",
+  "title": "Elastic Bottom Sheet",
+  "description": "A tactile mobile-style bottom sheet featuring drag resistance, velocity snap points, and rubberband bounds.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-bottom-sheet.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "drawer",
+    "bottom-sheet",
+    "gesture",
+    "spring",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "vertical-flick-sheet",
+      "visualModel": "docked-drawer-panel",
+      "motionModel": "snap-point-spring-detents",
+      "layoutModel": "bottom-pinned-sheet",
+      "semanticPurpose": "interactive-sheet-drawer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

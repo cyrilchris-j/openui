@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hatch-fill-type",
+  "type": "registry:text",
+  "title": "Hatch Fill Type",
+  "description": "Glyphs filled with diagonal hatching instead of ink: a repeating-linear-gradient clipped to the text, with hatch angle, spacing and weight exposed as controls — engraved-plate shading as a fill system.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hatch-fill-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "hatch",
+    "engraved",
+    "fill",
+    "pattern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "pattern-dial",
+      "visualModel": "hatch-pattern-clipped-fill",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

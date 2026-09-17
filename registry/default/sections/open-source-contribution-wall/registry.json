@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "open-source-contribution-wall",
+  "type": "registry:section",
+  "title": "Open Source Contribution Wall",
+  "description": "A community recognition board displaying GitHub stars, active PR contributors, and sponsorship tiers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "open-source-contribution-wall.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "open-source",
+    "contributors",
+    "github",
+    "community",
+    "sponsors"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "community",
+    "fingerprint": {
+      "interactionModel": "open-source-contribution-wall-interaction",
+      "visualModel": "open-source-contribution-wall-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "open-source-contribution-wall-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "technical"
+    }
+  }
+}

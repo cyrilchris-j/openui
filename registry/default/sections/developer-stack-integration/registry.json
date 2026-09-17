@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-stack-integration",
+  "type": "registry:section",
+  "title": "Developer Stack Integration",
+  "description": "An ecosystem compatibility grid showing native integration with Next.js, Vite, Tailwind v4, and React 19.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-stack-integration.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "stack",
+    "integration",
+    "nextjs",
+    "vite",
+    "tailwind"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ecosystem",
+    "fingerprint": {
+      "interactionModel": "developer-stack-integration-interaction",
+      "visualModel": "developer-stack-integration-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "developer-stack-integration-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

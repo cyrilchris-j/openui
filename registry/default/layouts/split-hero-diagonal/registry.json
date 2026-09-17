@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-hero-diagonal",
+  "type": "registry:layout",
+  "title": "Split Hero Diagonal",
+  "description": "Modern landing hero section with angled diagonal polygon dividing the typography from visual canvas.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-hero-diagonal.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "hero",
+    "diagonal",
+    "split",
+    "landing",
+    "polygon"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "diagonal-split-hero",
+      "visualModel": "angled-diagonal-halves",
+      "motionModel": "none",
+      "layoutModel": "diagonal-polygon-split",
+      "semanticPurpose": "dynamic-hero-banner"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

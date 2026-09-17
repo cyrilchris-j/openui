@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-fab-menu",
+  "type": "registry:motion",
+  "title": "Elastic Fab Menu",
+  "description": "A floating action button erupting into a fan of child action buttons with spring overshoot upon toggle.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-fab-menu.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "fab",
+    "floating",
+    "menu",
+    "radial",
+    "actions"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "radial-fab-explosion",
+      "visualModel": "floating-action-cluster",
+      "motionModel": "spring-radial-fanout",
+      "layoutModel": "corner-pinned-fab",
+      "semanticPurpose": "floating-action-speed-dial"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

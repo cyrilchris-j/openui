@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gerund-loading-label",
+  "type": "registry:text",
+  "title": "Gerund Loading Label",
+  "description": "Loading states as real gerunds: “Validating…”, “Compiling…”, “Installing…” — the label swaps at random-ish intervals with a typing underline that grows like a progress sense, and a final past-tense completion flip.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gerund-loading-label.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface GerundLoadingLabelProps {\n  /** Stages in order; the last one completes. */\n  stages: string[];\n  /** ms per stage. */\n  stageMs?: number;\n  /** Called once with the past-tense completion. */\n  onComplete?: () => void;\n  className?: string;\n}\n\nexport function GerundLoadingLabel({ stages, stageMs = 1100, onComplete, className }: GerundLoadingLabelProps) {\n  const [stage, setStage] = useState(0);\n\n  useEffect(() => {\n    if (stage >= stages.length) {\n      onComplete?.();\n      return;\n    }\n    const timer = window.setTimeout(() => setStage((value) => value + 1), stageMs);\n    return () => window.clearTimeout(timer);\n  }, [stage, stages.length, stageMs, onComplete]);\n\n  const done = stage >= stages.length;\n  const label = done ? \"Done\" : `${stages[stage]}…`;\n\n  return (\n    <p\n      className={cn(\"inline-flex flex-col gap-1.5 font-mono text-sm\", className)}\n      role=\"status\"\n      aria-live=\"polite\"\n      aria-label={label}\n    >\n      <span aria-hidden className={done ? \"text-emerald-600\" : \"text-ink\"}>\n        {label}\n      </span>\n      <span aria-hidden className=\"relative h-px w-40 bg-line\">\n        <span\n          className=\"absolute left-0 top-0 h-full bg-accent\"\n          style={{\n            width: done ? \"100%\" : `${((stage + 1) / stages.length) * 100}%`,\n            transition: \"width 600ms ease\",\n          }}\n        />\n      </span>\n    </p>\n  );\n}\n\nexport default GerundLoadingLabel;\n",
+      "contentHash": "ed5c6562433625cf604738e13d6fc75f77341722b65376956950ee5c9bf8433c",
+      "sizeBytes": 1532
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { GerundLoadingLabel } from \"./gerund-loading-label\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <GerundLoadingLabel stages={[\"Reading registry\", \"Validating schemas\", \"Linking dependencies\", \"Writing types\"]} />\n    </div>\n  );\n}\n",
+      "contentHash": "24594b0a4c46d2f66a04031809bba04d48741e884b16ae2f30c386076dea8591",
+      "sizeBytes": 329
+    }
+  ],
+  "tags": [
+    "loading",
+    "gerund",
+    "progress",
+    "states"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "async-state-machine",
+      "visualModel": "typed-progress-label",
+      "motionModel": "underline-grow",
+      "layoutModel": "inline",
+      "semanticPurpose": "progress-feedback"
+    }
+  },
+  "url": "https://openui.dev/r/gerund-loading-label.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Async State Machine: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

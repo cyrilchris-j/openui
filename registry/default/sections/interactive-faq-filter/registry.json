@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-faq-filter",
+  "type": "registry:section",
+  "title": "Interactive FAQ Filter",
+  "description": "A categorized FAQ accordion with live category filtering and expand-collapse state memory.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-faq-filter.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "faq",
+    "filter",
+    "questions",
+    "accordion",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "faq",
+    "fingerprint": {
+      "interactionModel": "interactive-faq-filter-interaction",
+      "visualModel": "interactive-faq-filter-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-faq-filter-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

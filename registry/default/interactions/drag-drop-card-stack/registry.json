@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-drop-card-stack",
+  "type": "registry:interaction",
+  "title": "Drag Drop Card Stack",
+  "description": "A deck of cards that can be dragged into discrete discard or retain target drop bins.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-drop-card-stack.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "drag",
+    "drop",
+    "deck",
+    "cards",
+    "bins"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "card-deck-drop-sorting",
+      "visualModel": "bin-delimited-stage",
+      "motionModel": "2d-drop-target-capture",
+      "layoutModel": "deck-with-drop-bins",
+      "semanticPurpose": "card-sorting-evaluator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

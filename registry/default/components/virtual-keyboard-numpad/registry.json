@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "virtual-keyboard-numpad",
+  "type": "registry:component",
+  "title": "Virtual Keyboard Numpad",
+  "description": "Tactile on-screen PIN/numeric keypad for POS terminals and verification gates with backspace and clear.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "virtual-keyboard-numpad.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "numpad",
+    "pin",
+    "keypad",
+    "controls",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "touch-keypad-pin-entry",
+      "visualModel": "three-column-button-grid",
+      "motionModel": "none",
+      "layoutModel": "numeric-keypad-matrix",
+      "semanticPurpose": "secure-pin-input"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

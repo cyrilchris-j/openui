@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "transfer-list-box",
+  "type": "registry:component",
+  "title": "Transfer List Box",
+  "description": "Dual column listbox transfer component with selection checkboxes, batch move buttons, and search filtering.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "transfer-list-box.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "transfer",
+    "listbox",
+    "forms",
+    "selection",
+    "dual-list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "dual-column-item-transfer",
+      "visualModel": "bracketed-dual-panel",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-rail",
+      "semanticPurpose": "batch-entity-assignment"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cookie-consent-script-blocker",
+  "type": "registry:block",
+  "title": "Cookie Consent Script Blocker",
+  "description": "An automated script blocking inspector showing which third-party tags are held pending explicit consent.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cookie-consent-script-blocker.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CookieConsentScriptBlocker({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-lg mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-2\">Client Script Gatekeeper</h3>\n      <div className=\"text-neutral-500 text-[11px] mb-3\">All third-party scripts blocked prior to consent grant.</div>\n      <div className=\"p-3 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 rounded font-bold\">\n        Zero external scripts loaded. 100% clean isolate.\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "71ce60f239c7c0455be269801eac5501e2096652893040681eb51734b156313c",
+      "sizeBytes": 828
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CookieConsentScriptBlocker } from \"./cookie-consent-script-blocker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CookieConsentScriptBlocker />\n    </div>\n  );\n}\n",
+      "contentHash": "1af793736c4b0b0d419fe69f2e0be982375244011437e9e8c9c480633b541dae",
+      "sizeBytes": 308
+    }
+  ],
+  "tags": [
+    "privacy",
+    "scripts",
+    "consent",
+    "gdpr",
+    "blocking"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "privacy",
+    "fingerprint": {
+      "interactionModel": "script-dependency-block-audit",
+      "visualModel": "tag-blocker-status-panel",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "script-blocking-consent-audit"
+    }
+  },
+  "url": "https://openui.dev/r/cookie-consent-script-blocker.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Script Dependency Block Audit: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

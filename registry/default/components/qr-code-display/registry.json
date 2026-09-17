@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "qr-code-display",
+  "type": "registry:component",
+  "title": "QR Code Display",
+  "description": "Scanable matrix card with copyable URL link, simulated SVG matrix pattern, and download action button.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "qr-code-display.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "qr",
+    "code",
+    "share",
+    "mobile",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "url-qr-presentation",
+      "visualModel": "matrix-barcode-frame",
+      "motionModel": "none",
+      "layoutModel": "card-centered-matrix",
+      "semanticPurpose": "quick-mobile-handoff"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

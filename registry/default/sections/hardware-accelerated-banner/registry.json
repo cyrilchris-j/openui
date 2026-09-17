@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hardware-accelerated-banner",
+  "type": "registry:section",
+  "title": "Hardware Accelerated Banner",
+  "description": "A high-performance technical callout banner emphasizing GPU composition and 120fps animations.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hardware-accelerated-banner.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "hardware",
+    "gpu",
+    "webgl",
+    "120fps",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hardware",
+    "fingerprint": {
+      "interactionModel": "hardware-accelerated-banner-interaction",
+      "visualModel": "hardware-accelerated-banner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "hardware-accelerated-banner-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

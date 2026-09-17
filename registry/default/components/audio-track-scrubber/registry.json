@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audio-track-scrubber",
+  "type": "registry:component",
+  "title": "Audio Track Scrubber",
+  "description": "Compact playback bar with play/pause state, dynamic progress waveform ticks, and timestamp display.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audio-track-scrubber.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "audio",
+    "player",
+    "scrubber",
+    "waveform",
+    "media"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "waveform-progress-scrubbing",
+      "visualModel": "bar-waveform-track",
+      "motionModel": "none",
+      "layoutModel": "compact-media-bar",
+      "semanticPurpose": "audio-playback-control"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

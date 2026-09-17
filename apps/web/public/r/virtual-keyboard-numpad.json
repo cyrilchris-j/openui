@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "virtual-keyboard-numpad",
+  "type": "registry:component",
+  "title": "Virtual Keyboard Numpad",
+  "description": "Tactile on-screen PIN/numeric keypad for POS terminals and verification gates with backspace and clear.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "virtual-keyboard-numpad.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Delete, Check } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function VirtualKeyboardNumpad({ className }: { className?: string }) {\n  const [pin, setPin] = useState(\"\");\n\n  const press = (digit: string) => {\n    if (pin.length < 6) setPin((prev) => prev + digit);\n  };\n\n  const backspace = () => setPin((prev) => prev.slice(0, -1));\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-xs w-full font-mono shadow-sm\", className)}>\n      <div className=\"flex items-center justify-center gap-2 h-10 mb-4 bg-surface rounded-lg border border-line/60\">\n        {[0, 1, 2, 3, 4, 5].map((i) => (\n          <div\n            key={i}\n            className={cn(\n              \"w-2.5 h-2.5 rounded-full transition-all\",\n              i < pin.length ? \"bg-accent scale-110\" : \"bg-line\"\n            )}\n          />\n        ))}\n      </div>\n\n      <div className=\"grid grid-cols-3 gap-2\">\n        {[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"C\", \"0\", \"DEL\"].map((k) => {\n          const isDel = k === \"DEL\";\n          const isClear = k === \"C\";\n          return (\n            <button\n              key={k}\n              type=\"button\"\n              onClick={() => {\n                if (isDel) backspace();\n                else if (isClear) setPin(\"\");\n                else press(k);\n              }}\n              className=\"h-11 rounded-lg border border-line bg-paper hover:bg-surface text-ink text-sm font-semibold flex items-center justify-center active:scale-95 transition-all\"\n            >\n              {isDel ? <Delete className=\"w-4 h-4 text-ink/60\" /> : k}\n            </button>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "a2cb7adf462d88d07903e40fe692e4f6533f3ade2971f31950854aff59bc7e46",
+      "sizeBytes": 1738
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { VirtualKeyboardNumpad } from \"./virtual-keyboard-numpad\";\n\nexport default function VirtualKeyboardNumpadDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[300px]\">\n      <VirtualKeyboardNumpad />\n    </div>\n  );\n}\n",
+      "contentHash": "1ac2215f5039a70fb05c1a01f8abf46ecbcbbf1565fe32fad51f1bf1511746ed",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "numpad",
+    "pin",
+    "keypad",
+    "controls",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "touch-keypad-pin-entry",
+      "visualModel": "three-column-button-grid",
+      "motionModel": "none",
+      "layoutModel": "numeric-keypad-matrix",
+      "semanticPurpose": "secure-pin-input"
+    }
+  },
+  "url": "https://openui.dev/r/virtual-keyboard-numpad.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Touch Keypad Pin Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

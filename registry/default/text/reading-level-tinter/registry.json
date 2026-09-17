@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "reading-level-tinter",
+  "type": "registry:text",
+  "title": "Reading Level Tinter",
+  "description": "Each sentence is tinted by its own complexity — average word length and clause count map to an ink density ramp — so a paragraph shows you where it gets hard to read before you get there.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "reading-level-tinter.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "readability",
+    "sentences",
+    "tint",
+    "analysis"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "complexity-tinted-sentences",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "readability-analysis"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

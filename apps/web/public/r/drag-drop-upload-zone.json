@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-drop-upload-zone",
+  "type": "registry:interaction",
+  "title": "Drag Drop Upload Zone",
+  "description": "A drag-and-drop file receiver highlighting boundary edges with dashed active indicators on file dragover.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-drop-upload-zone.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DragDropUploadZoneProps {\n  className?: string;\n}\n\nexport function DragDropUploadZone({ className }: DragDropUploadZoneProps) {\n  const [active, setActive] = useState(false);\n  const [files, setFiles] = useState<string[]>([]);\n\n  return (\n    <div\n      onDragOver={(e) => {\n        e.preventDefault();\n        setActive(true);\n      }}\n      onDragLeave={() => setActive(false)}\n      onDrop={(e) => {\n        e.preventDefault();\n        setActive(false);\n        setFiles([\"manifest.json\", \"schema.ts\"]);\n      }}\n      className={cn(\n        \"flex h-56 w-full max-w-sm flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 text-center transition-all\",\n        active ? \"border-ink bg-line/20 scale-98\" : \"border-line bg-paper\",\n        className\n      )}\n    >\n      <div className=\"h-10 w-10 rounded-full bg-line/20 flex items-center justify-center mb-3\">\n        ↑\n      </div>\n      <h4 className=\"font-display text-sm font-bold text-ink\">Drop Files to Upload</h4>\n      <p className=\"mt-1 font-mono text-[10px] text-ink/50\">Supports JSON, CSS, TSX registry specs</p>\n\n      {files.length > 0 && (\n        <div className=\"mt-4 font-mono text-[10px] text-emerald-600 font-bold\">\n          ✓ Received {files.length} payload files\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default DragDropUploadZone;\n",
+      "contentHash": "86f72aa0dd254960095b3ae950d603ecd7dedb04d26296afa9905a1da6ce1e0c",
+      "sizeBytes": 1436
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DragDropUploadZone } from \"./drag-drop-upload-zone\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <DragDropUploadZone />\n    </div>\n  );\n}\n",
+      "contentHash": "24b2d7336f9988f3688ffd79dc8ce34d2ed1be46a25a7193b435de14eeff97a8",
+      "sizeBytes": 236
+    }
+  ],
+  "tags": [
+    "upload",
+    "drag-drop",
+    "files",
+    "zone",
+    "dashed"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "drag-over-boundary-detection",
+      "visualModel": "dashed-dropzone-chassis",
+      "motionModel": "instantaneous-border-state-shift",
+      "layoutModel": "centered-dropzone-tile",
+      "semanticPurpose": "file-drop-receiver"
+    }
+  },
+  "url": "https://openui.dev/r/drag-drop-upload-zone.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Drag Over Boundary Detection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

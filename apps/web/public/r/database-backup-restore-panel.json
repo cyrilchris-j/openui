@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "database-backup-restore-panel",
+  "type": "registry:block",
+  "title": "Database Backup Restore Panel",
+  "description": "A database snapshot management block with manual snapshot trigger, backup size logs, and point-in-time recovery.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "database-backup-restore-panel.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DatabaseBackupRestorePanel({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-3\">\n        <span className=\"font-bold text-neutral-900 dark:text-white\">Point-In-Time Snapshots</span>\n        <button type=\"button\" className=\"px-3 py-1 bg-emerald-600 text-white rounded font-bold text-[11px]\">\n          Create Snapshot\n        </button>\n      </div>\n      <div className=\"space-y-2\">\n        <div className=\"p-3 rounded bg-neutral-50 dark:bg-neutral-900 flex justify-between items-center\">\n          <div>\n            <div className=\"font-bold text-neutral-900 dark:text-white\">snap_auto_20260918_0000</div>\n            <div className=\"text-neutral-400 text-[10px]\">Size: 1.8 GB • Retention: 30 days</div>\n          </div>\n          <button type=\"button\" className=\"text-emerald-500 font-bold hover:underline\">\n            Restore\n          </button>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "11c9ea6dc73fe0684b36a49c14d0ee05cc18b550d1903777e79ee4bbba9e58aa",
+      "sizeBytes": 1334
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DatabaseBackupRestorePanel } from \"./database-backup-restore-panel\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DatabaseBackupRestorePanel />\n    </div>\n  );\n}\n",
+      "contentHash": "3e002b4fa52ece63bc4e45d0a769b733726c9a6179e6a1c080e94bbe2b529e55",
+      "sizeBytes": 308
+    }
+  ],
+  "tags": [
+    "database",
+    "backup",
+    "restore",
+    "snapshots",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "database",
+    "fingerprint": {
+      "interactionModel": "database-snapshot-creation-and-restore",
+      "visualModel": "backup-recovery-management-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "database-backup-recovery"
+    }
+  },
+  "url": "https://openui.dev/r/database-backup-restore-panel.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Database Snapshot Creation And Restore: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

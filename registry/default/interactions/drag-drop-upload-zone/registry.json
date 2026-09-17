@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-drop-upload-zone",
+  "type": "registry:interaction",
+  "title": "Drag Drop Upload Zone",
+  "description": "A drag-and-drop file receiver highlighting boundary edges with dashed active indicators on file dragover.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-drop-upload-zone.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "upload",
+    "drag-drop",
+    "files",
+    "zone",
+    "dashed"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "drag-over-boundary-detection",
+      "visualModel": "dashed-dropzone-chassis",
+      "motionModel": "instantaneous-border-state-shift",
+      "layoutModel": "centered-dropzone-tile",
+      "semanticPurpose": "file-drop-receiver"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

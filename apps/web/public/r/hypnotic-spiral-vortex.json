@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hypnotic-spiral-vortex",
+  "type": "registry:background",
+  "title": "Hypnotic Spiral Vortex",
+  "description": "Rotating Archimedean logarithmic spiral vortex drawing focal attention inward.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hypnotic-spiral-vortex.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HypnoticSpiralVortexProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function HypnoticSpiralVortex({ className, children, ...props }: HypnoticSpiralVortexProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-15 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          <path\n            d=\"M 100 100 m 0 0 a 10 10 0 0 1 10 10 a 20 20 0 0 1 -20 20 a 30 30 0 0 1 -30 -30 a 40 40 0 0 1 40 -40 a 50 50 0 0 1 50 50 a 60 60 0 0 1 -60 60 a 70 70 0 0 1 -70 -70 a 80 80 0 0 1 80 -80\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            strokeWidth=\"1.2\"\n          />\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "6891bc687448b5bbeeb609b5f1585bfc04b515e24e5791733e4c71d449c3daed",
+      "sizeBytes": 960
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { HypnoticSpiralVortex } from \"./hypnotic-spiral-vortex\";\n\nexport default function HypnoticSpiralVortexDemo() {\n  return (\n    <HypnoticSpiralVortex className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Logarithmic Spiral</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Inward focusing Archimedean vortex spiral.</p>\n      </div>\n    </HypnoticSpiralVortex>\n  );\n}\n",
+      "contentHash": "178379bd46e25e26dac7a11c049c9f6e0dd484218302f945258157bd2cab214d",
+      "sizeBytes": 591
+    }
+  ],
+  "tags": [
+    "spiral",
+    "vortex",
+    "hypnotic",
+    "archimedean",
+    "optical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-spiral-geometry",
+      "visualModel": "archimedean-spiral-vortex",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "hypnotic-focal-vortex"
+    }
+  },
+  "url": "https://openui.dev/r/hypnotic-spiral-vortex.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Soft\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Spiral Geometry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

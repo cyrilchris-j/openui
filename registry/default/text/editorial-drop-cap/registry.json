@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-drop-cap",
+  "type": "registry:text",
+  "title": "Editorial Drop Cap",
+  "description": "A true initial letter: the first character sits in a measured float spanning a fixed number of text lines, with a hanging indent recomputed from the glyph's actual advance width, not a guessed ch value.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-drop-cap.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "drop-cap",
+    "editorial",
+    "initial",
+    "float"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "prose-typeset-flow",
+      "visualModel": "two-line-flourished-initial",
+      "layoutModel": "float-left-hanging-capital",
+      "semanticPurpose": "article-prologue-anchor"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

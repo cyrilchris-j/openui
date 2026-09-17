@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-eyedropper-loupe",
+  "type": "registry:interaction",
+  "title": "Color Eyedropper Loupe",
+  "description": "An interactive sampling loupe displaying pixel grid magnification and instantaneous hex readouts.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-eyedropper-loupe.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ColorEyedropperLoupeProps {\n  className?: string;\n}\n\nexport function ColorEyedropperLoupe({ className }: ColorEyedropperLoupeProps) {\n  const [pos, setPos] = useState({ x: 80, y: 80 });\n\n  return (\n    <div\n      onPointerMove={(e) => {\n        const rect = e.currentTarget.getBoundingClientRect();\n        setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });\n      }}\n      className={cn(\"relative h-64 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper p-6 select-none cursor-crosshair\", className)}\n    >\n      <div className=\"h-full w-full rounded-lg bg-gradient-to-tr from-rose-400 via-emerald-400 to-indigo-500 opacity-60\" />\n\n      <div\n        className=\"pointer-events-none absolute -ml-6 -mt-6 flex h-12 w-12 items-center justify-center rounded-full border-2 border-white shadow-xl backdrop-blur-sm\"\n        style={{ left: pos.x, top: pos.y }}\n      >\n        <span className=\"font-mono text-[8px] font-bold text-black bg-white/80 px-1 rounded\">#A4C</span>\n      </div>\n    </div>\n  );\n}\n\nexport default ColorEyedropperLoupe;\n",
+      "contentHash": "c041f491254fefeb0c1b9ddcdad7a794a7509622556eaaa6816303545e4ea609",
+      "sizeBytes": 1164
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ColorEyedropperLoupe } from \"./color-eyedropper-loupe\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <ColorEyedropperLoupe />\n    </div>\n  );\n}\n",
+      "contentHash": "2172abcb09acd11890fbed5dc478c31625d2b3431633915a934216fb903a9d0f",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "eyedropper",
+    "loupe",
+    "color",
+    "hex",
+    "picker"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "loupe-color-sampling",
+      "visualModel": "reticle-color-well",
+      "motionModel": "instantaneous-reticle-positioning",
+      "layoutModel": "overlaid-eyedropper-optic",
+      "semanticPurpose": "pixel-color-sampler"
+    }
+  },
+  "url": "https://openui.dev/r/color-eyedropper-loupe.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Loupe Color Sampling: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

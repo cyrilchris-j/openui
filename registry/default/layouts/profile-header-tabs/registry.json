@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "profile-header-tabs",
+  "type": "registry:layout",
+  "title": "Profile Header Tabs",
+  "description": "User account profile layout with wide panoramic banner, overlapping avatar badge, and content tabs.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "profile-header-tabs.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "profile",
+    "banner",
+    "avatar",
+    "tabs",
+    "account"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "profile-banner-tab-navigation",
+      "visualModel": "panoramic-banner-profile",
+      "motionModel": "none",
+      "layoutModel": "banner-avatar-tab-stack",
+      "semanticPurpose": "user-profile-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

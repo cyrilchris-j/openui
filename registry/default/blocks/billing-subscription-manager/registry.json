@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "billing-subscription-manager",
+  "type": "registry:block",
+  "title": "Billing Subscription Manager",
+  "description": "A subscription settings console showing active plan tier, billing cycle renewal, payment method, and invoice history.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "billing-subscription-manager.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "billing",
+    "subscription",
+    "invoices",
+    "payment",
+    "settings"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "billing",
+    "fingerprint": {
+      "interactionModel": "plan-management-and-invoicing",
+      "visualModel": "tiered-settings-card-stack",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "financial-subscription-console"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "exit-collapse-swap",
+  "type": "registry:motion",
+  "title": "Exit Collapse Swap",
+  "description": "List-item removal done respectfully: the leaving item animates height, margin and opacity to zero while neighbours slide into place simultaneously via FLIP measurement — no layout jump, no re-render jank.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "exit-collapse-swap.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ExitCollapseSwapProps {\n  items: string[];\n  className?: string;\n}\n\nexport function ExitCollapseSwap({ items: initial, className }: ExitCollapseSwapProps) {\n  const [items, setItems] = useState(initial);\n  const listRef = useRef<HTMLUListElement>(null);\n  const leaving = useRef<Set<string>>(new Set());\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  const remove = (item: string) => {\n    const list = listRef.current;\n    if (!list || reduced) {\n      setItems((current) => current.filter((entry) => entry !== item));\n      return;\n    }\n\n    // FLIP: measure siblings before mutation.\n    const before = new Map<string, DOMRect>();\n    list.querySelectorAll(\"li[data-item]\").forEach((node) => {\n      const el = node as HTMLElement;\n      before.set(el.dataset.item!, el.getBoundingClientRect());\n    });\n\n    leaving.current.add(item);\n    const leavingNode = list.querySelector(`li[data-item=\"${CSS.escape(item)}\"]`) as HTMLElement | null;\n\n    // Force the leaving row to collapse.\n    if (leavingNode) {\n      const rect = leavingNode.getBoundingClientRect();\n      leavingNode.style.height = `${rect.height}px`;\n      requestAnimationFrame(() => {\n        leavingNode.style.transition = \"height 320ms ease, opacity 240ms ease, margin 320ms ease\";\n        leavingNode.style.height = \"0px\";\n        leavingNode.style.opacity = \"0\";\n        leavingNode.style.marginBottom = \"0px\";\n        leavingNode.style.overflow = \"hidden\";\n      });\n    }\n\n    window.setTimeout(() => {\n      setItems((current) => current.filter((entry) => entry !== item));\n      leaving.current.delete(item);\n    }, 340);\n\n    // Slide neighbours in the same frame window.\n    requestAnimationFrame(() => {\n      list.querySelectorAll(\"li[data-item]\").forEach((node) => {\n        const el = node as HTMLElement;\n        const id = el.dataset.item!;\n        const after = el.getBoundingClientRect();\n        const firstRect = before.get(id);\n        if (!firstRect || leaving.current.has(id)) return;\n        const dy = firstRect.top - after.top;\n        if (Math.abs(dy) > 1) {\n          el.animate(\n            [{ transform: `translateY(${dy}px)` }, { transform: \"translateY(0)\" }],\n            { duration: 320, easing: \"cubic-bezier(0.2, 0, 0, 1)\" },\n          );\n        }\n      });\n    });\n  };\n\n  return (\n    <ul ref={listRef} className={cn(\"flex flex-col gap-2\", className)}>\n      {items.map((item) => (\n        <li\n          key={item}\n          data-item={item}\n          className=\"flex items-center justify-between rounded-lg border border-line bg-paper px-4 py-3\"\n          style={{ marginBottom: \"0.5rem\" }}\n        >\n          <span className=\"text-ink\">{item}</span>\n          <button\n            type=\"button\"\n            onClick={() => remove(item)}\n            aria-label={`Remove ${item}`}\n            className=\"rounded border border-line px-2 py-0.5 font-mono text-xs text-ink/60 hover:border-red-400 hover:text-red-500\"\n          >\n            remove\n          </button>\n        </li>\n      ))}\n      {items.length === 0 && <li className=\"py-6 text-center text-sm text-ink/50\">All items removed — add some back?</li>}\n    </ul>\n  );\n}\n\nexport default ExitCollapseSwap;\n",
+      "contentHash": "f2041313936de9fdddfc0c5b68c8b5bf7ebac571297e24648caafce22dcab560",
+      "sizeBytes": 3359
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ExitCollapseSwap } from \"./exit-collapse-swap\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <ExitCollapseSwap\n        className=\"w-full max-w-sm\"\n        items={[\"schema.json\", \"demo.tsx\", \"README.md\", \"design.md\", \"registry.json\"]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "dc8f659ed57c790228e2d69747cd48824304310cbad9ac797f3d36e27bf6fb63",
+      "sizeBytes": 359
+    }
+  ],
+  "tags": [
+    "exit",
+    "collapse",
+    "swap",
+    "list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "exit",
+    "fingerprint": {
+      "interactionModel": "remove-trigger",
+      "visualModel": "measured-collapse-rows",
+      "motionModel": "flip-neighbour-slide",
+      "layoutModel": "list",
+      "semanticPurpose": "list-mutation"
+    }
+  },
+  "url": "https://openui.dev/r/exit-collapse-swap.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Remove Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

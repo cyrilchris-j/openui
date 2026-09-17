@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-stepper-numeric",
+  "type": "registry:interaction",
+  "title": "Keyboard Stepper Numeric",
+  "description": "A precision number input field responding to keyboard arrow keys with rate acceleration on key hold.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-stepper-numeric.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "stepper",
+    "keyboard",
+    "numeric",
+    "arrows",
+    "input"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "keyboard-accelerated-stepping",
+      "visualModel": "calibrated-number-field",
+      "motionModel": "stepwise-rate-acceleration",
+      "layoutModel": "compact-stepper-box",
+      "semanticPurpose": "precision-numeric-input"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

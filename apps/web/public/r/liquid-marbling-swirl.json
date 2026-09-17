@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-marbling-swirl",
+  "type": "registry:background",
+  "title": "Liquid Marbling Swirl",
+  "description": "Viscous paper marbling Ebru ink fluid swirls with smooth harmonic color currents.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-marbling-swirl.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface LiquidMarblingSwirlProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function LiquidMarblingSwirl({ className, children, ...props }: LiquidMarblingSwirlProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-20 -z-10\"\n        style={{\n          background: `\n            radial-gradient(circle at 20% 40%, rgba(244, 114, 182, 0.4) 0%, transparent 50%),\n            radial-gradient(circle at 80% 60%, rgba(96, 165, 250, 0.4) 0%, transparent 50%),\n            radial-gradient(circle at 50% 80%, rgba(52, 211, 153, 0.3) 0%, transparent 50%)\n          `,\n          filter: \"blur(30px)\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "9a28ab004ee3a9fd753c326929bfd2ec6e46e1e9d17bfce4fc79f426247a4425",
+      "sizeBytes": 903
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { LiquidMarblingSwirl } from \"./liquid-marbling-swirl\";\n\nexport default function LiquidMarblingSwirlDemo() {\n  return (\n    <LiquidMarblingSwirl className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Ebru Marbled Silk</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Handmade paper marbling dye currents.</p>\n      </div>\n    </LiquidMarblingSwirl>\n  );\n}\n",
+      "contentHash": "7ac2392b1ee7bf298383efe988add3f30cddec26ffe788567ef4de37059d60c7",
+      "sizeBytes": 581
+    }
+  ],
+  "tags": [
+    "marbling",
+    "ebru",
+    "liquid",
+    "swirl",
+    "fluid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "pastel"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-marbling-currents",
+      "visualModel": "viscous-marbled-flow",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "paper-marbling-texture"
+    }
+  },
+  "url": "https://openui.dev/r/liquid-marbling-swirl.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: None\nTypography: Serif Display\nColor: Pastel\n\n## Rules\n\n- Passive Marbling Currents: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

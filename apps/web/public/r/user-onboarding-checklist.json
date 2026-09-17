@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-onboarding-checklist",
+  "type": "registry:block",
+  "title": "User Onboarding Checklist",
+  "description": "An interactive getting-started card with progress calculation, task completion toggles, and step guides.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-onboarding-checklist.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function UserOnboardingChecklist({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [items, setItems] = React.useState([\n    { id: \"1\", title: \"Install OpenUI CLI globally\", done: true },\n    { id: \"2\", title: \"Add first component to local src/\", done: true },\n    { id: \"3\", title: \"Configure Design DNA invariants in openui.config.ts\", done: false },\n    { id: \"4\", title: \"Verify build passes 'pnpm validate:catalog'\", done: false },\n  ]);\n\n  const toggle = (id: string) => {\n    setItems((prev) => prev.map((it) => (it.id === id ? { ...it, done: !it.done } : it)));\n  };\n\n  const completed = items.filter((it) => it.done).length;\n  const percent = Math.round((completed / items.length) * 100);\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"flex justify-between items-center mb-2\">\n        <h3 className=\"font-bold text-base text-neutral-900 dark:text-white\">Workspace Onboarding</h3>\n        <span className=\"font-mono font-bold text-emerald-600 dark:text-emerald-400\">{percent}% Done</span>\n      </div>\n      <div className=\"w-full h-2 rounded-full bg-neutral-100 dark:bg-neutral-800 mb-6 overflow-hidden\">\n        <div className=\"h-full bg-emerald-500 transition-all duration-300\" style={{ width: `${percent}%` }} />\n      </div>\n      <div className=\"space-y-3\">\n        {items.map((it) => (\n          <div key={it.id} onClick={() => toggle(it.id)} className=\"flex items-center gap-3 p-3 rounded-xl border border-neutral-200 dark:border-neutral-800 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors\">\n            <span className={cn(\"h-5 w-5 rounded-full flex items-center justify-center font-bold text-[10px]\", it.done ? \"bg-emerald-600 text-white\" : \"border border-neutral-300 dark:border-neutral-700\")}>\n              {it.done ? \"✓\" : \"\"}\n            </span>\n            <span className={cn(it.done ? \"line-through text-neutral-400\" : \"font-medium text-neutral-800 dark:text-neutral-200\")}>\n              {it.title}\n            </span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "0c5ea4ed6f7d6efdf5475800ea9a4caab2b2e136267fa624ad75ba32e4c038f5",
+      "sizeBytes": 2325
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { UserOnboardingChecklist } from \"./user-onboarding-checklist\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <UserOnboardingChecklist />\n    </div>\n  );\n}\n",
+      "contentHash": "00e96f1864259322fe9ddf222a16099aa6663c6afb4772cd41ce796a2ca933bc",
+      "sizeBytes": 298
+    }
+  ],
+  "tags": [
+    "onboarding",
+    "checklist",
+    "progress",
+    "setup",
+    "tasks"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "onboarding",
+    "fingerprint": {
+      "interactionModel": "task-completion-progress-checklist",
+      "visualModel": "gamified-onboarding-stepper",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "user-activation-checklist"
+    }
+  },
+  "url": "https://openui.dev/r/user-onboarding-checklist.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Task Completion Progress Checklist: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-reading-notes",
+  "type": "registry:layout",
+  "title": "Split Reading Notes",
+  "description": "Edward Tufte-style margin notes layout with annotations aligned adjacent to corresponding prose paragraphs.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-reading-notes.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "tufte",
+    "margin",
+    "notes",
+    "reading",
+    "prose"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "marginal-annotation-reading",
+      "visualModel": "side-margin-sidenotes",
+      "motionModel": "none",
+      "layoutModel": "prose-with-marginalia",
+      "semanticPurpose": "scholarly-reading-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

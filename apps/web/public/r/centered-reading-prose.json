@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "centered-reading-prose",
+  "type": "registry:layout",
+  "title": "Centered Reading Prose",
+  "description": "Narrow-measure centered typography layout optimized for distraction-free longform reading.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "centered-reading-prose.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CenteredReadingProseProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CenteredReadingProse({ children, className, ...props }: CenteredReadingProseProps) {\n  return (\n    <div className={cn(\"max-w-2xl mx-auto px-6 py-12 font-serif text-ink text-base leading-relaxed space-y-6\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "7266598092187734018bef8aa58563f4378839a4c1cffce071b8a69fbeefbde3",
+      "sizeBytes": 452
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CenteredReadingProse } from \"./centered-reading-prose\";\n\nexport default function CenteredReadingProseDemo() {\n  return (\n    <CenteredReadingProse>\n      <h1 className=\"text-2xl font-bold tracking-tight text-ink font-serif\">On the Architecture of Clean Web APIs</h1>\n      <p className=\"text-ink/80 text-sm\">\n        Simplicity is not the lack of clutter, that’s a consequence of simplicity. Simplicity somehow essentially describes the purpose and place of an object and product.\n      </p>\n      <p className=\"text-ink/80 text-sm\">\n        When an API is crafted with distinct boundary contracts, maintaining and evolving systems over time becomes an act of deliberate refinement.\n      </p>\n    </CenteredReadingProse>\n  );\n}\n",
+      "contentHash": "5efb2f061e9321a028da241d0090f63411916ae0ad5d6f4ee30223f2ac9eb3f6",
+      "sizeBytes": 755
+    }
+  ],
+  "tags": [
+    "prose",
+    "reading",
+    "centered",
+    "typography",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "passive-focused-reading",
+      "visualModel": "narrow-measure-prose-strip",
+      "motionModel": "none",
+      "layoutModel": "centered-single-column",
+      "semanticPurpose": "distraction-free-reading"
+    }
+  },
+  "url": "https://openui.dev/r/centered-reading-prose.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Passive Focused Reading: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

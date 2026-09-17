@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "countdown-timer-unit",
+  "type": "registry:component",
+  "title": "Countdown Timer Unit",
+  "description": "Multi-digit countdown clocks with hours, minutes, seconds cells, and time expiration state.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "countdown-timer-unit.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "countdown",
+    "timer",
+    "clock",
+    "date",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "interval-timer-presentation",
+      "visualModel": "segmented-clock-cells",
+      "motionModel": "none",
+      "layoutModel": "horizontal-digit-stack",
+      "semanticPurpose": "deadline-countdown"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

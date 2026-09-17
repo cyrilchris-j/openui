@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cascading-menu-tree",
+  "type": "registry:component",
+  "title": "Cascading Menu Tree",
+  "description": "A nested flyout menu with keyboard navigation support, chevron branch indicators, and action triggers.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cascading-menu-tree.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "menu",
+    "cascading",
+    "flyout",
+    "navigation",
+    "nested"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "cascading-flyout-hover",
+      "visualModel": "floating-nested-popover",
+      "motionModel": "none",
+      "layoutModel": "hierarchical-flyout",
+      "semanticPurpose": "hierarchical-action-menu"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

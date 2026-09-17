@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-arabesque-stars",
+  "type": "registry:background",
+  "title": "Geometric Arabesque Stars",
+  "description": "Islamic geometric 8-pointed star tessellation with interlocking polygonal strapwork.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-arabesque-stars.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface GeometricArabesqueStarsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GeometricArabesqueStars({ className, children, ...props }: GeometricArabesqueStarsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"arabesque-pat\" width=\"60\" height=\"60\" patternUnits=\"userSpaceOnUse\">\n            <rect x=\"15\" y=\"15\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <rect x=\"15\" y=\"15\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" transform=\"rotate(45 30 30)\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#arabesque-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "c66efbdfcc4fada10796a06a318eb8669b0c58d9fc762f453b16137bce89f9b4",
+      "sizeBytes": 1045
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GeometricArabesqueStars } from \"./geometric-arabesque-stars\";\n\nexport default function GeometricArabesqueStarsDemo() {\n  return (\n    <GeometricArabesqueStars className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Arabesque Stars</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">8-pointed rotational star strapwork tessellation.</p>\n      </div>\n    </GeometricArabesqueStars>\n  );\n}\n",
+      "contentHash": "8af3623dda68530736054eb827a49bfdb9ffba562505ac81019156eba724ed36",
+      "sizeBytes": 611
+    }
+  ],
+  "tags": [
+    "arabesque",
+    "islamic",
+    "stars",
+    "tessellation",
+    "geometry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-arabesque-tessellation",
+      "visualModel": "eight-point-star-strapwork",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "ornamental-arabesque-texture"
+    }
+  },
+  "url": "https://openui.dev/r/geometric-arabesque-stars.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Passive Arabesque Tessellation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

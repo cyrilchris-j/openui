@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "starfield-warp-speed",
+  "type": "registry:background",
+  "title": "Starfield Warp Speed",
+  "description": "Canvas 3D starfield simulation with stars accelerating toward the camera creating a hyperspace warp effect.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "starfield-warp-speed.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "starfield",
+    "warp",
+    "hyperspace",
+    "canvas",
+    "stars"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-warp",
+      "visualModel": "radial-hyperspace-streaks",
+      "motionModel": "center-outward-acceleration",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "hyperspace-travel-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

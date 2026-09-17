@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-log-export-modal",
+  "type": "registry:block",
+  "title": "Audit Log Export Modal",
+  "description": "An export dialog allowing compliance administrators to bundle security event logs into CSV or JSON tarballs.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audit-log-export-modal.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function AuditLogExportModal({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [format, setFormat] = React.useState<\"json\" | \"csv\">(\"json\");\n  const [exported, setExported] = React.useState(false);\n\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-2\">Export Audit Trail</h3>\n      <p className=\"text-neutral-500 mb-4\">Generate cryptographically verified compliance logs for external auditors.</p>\n\n      <div className=\"space-y-3 mb-6 font-mono\">\n        <label className=\"block text-neutral-400 text-[11px]\">Format</label>\n        <div className=\"flex gap-2\">\n          {([\"json\", \"csv\"] as const).map((fmt) => (\n            <button\n              key={fmt}\n              type=\"button\"\n              onClick={() => setFormat(fmt)}\n              className={cn(\"px-4 py-2 rounded-lg border uppercase font-bold\", format === fmt ? \"border-emerald-600 bg-emerald-50/20 text-emerald-600 dark:text-emerald-400\" : \"border-neutral-200 dark:border-neutral-800\")}\n            >\n              {fmt}\n            </button>\n          ))}\n        </div>\n      </div>\n\n      <button\n        type=\"button\"\n        onClick={() => setExported(true)}\n        className=\"w-full py-2.5 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-lg font-semibold\"\n      >\n        {exported ? \"Download Ready! (1.4 MB) ↓\" : \"Generate Export Bundle\"}\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "47b0a10364712e68c9907cccc5c18ba73eac6baa690a96109cbf7762b374a141",
+      "sizeBytes": 1711
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { AuditLogExportModal } from \"./audit-log-export-modal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <AuditLogExportModal />\n    </div>\n  );\n}\n",
+      "contentHash": "97dca8b37d4c47ad651865c89355d58ef8b9a262d3394515ad0e77cbff71d7ed",
+      "sizeBytes": 287
+    }
+  ],
+  "tags": [
+    "export",
+    "audit",
+    "compliance",
+    "logs",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "export-format-and-date-selector",
+      "visualModel": "modal-export-dialog-box",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "security-audit-export"
+    }
+  },
+  "url": "https://openui.dev/r/audit-log-export-modal.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Export Format And Date Selector: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

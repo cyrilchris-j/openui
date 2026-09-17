@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "redaction-declassifier",
+  "type": "registry:text",
+  "title": "Redaction Declassifier",
+  "description": "Government-memo typography: passages are blacked out with marker bars, and hovering (or focusing) a bar sweeps the ink away to reveal the text underneath, then re-redacts when attention leaves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "redaction-declassifier.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "redaction",
+    "reveal",
+    "secrecy",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "hover-declassify",
+      "visualModel": "ink-bar-censor",
+      "motionModel": "wipe-reveal",
+      "layoutModel": "block",
+      "semanticPurpose": "mystery-reveal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

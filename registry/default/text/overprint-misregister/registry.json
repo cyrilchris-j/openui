@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "overprint-misregister",
+  "type": "registry:text",
+  "title": "Overprint Misregister",
+  "description": "Simulated CMYK misregistration: cyan, magenta and yellow copies of the word sit one pixel off each side of a black key plate, and dragging a control shifts the plates further out of register like a cheap print run.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "overprint-misregister.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "cmyk",
+    "overprint",
+    "print",
+    "misregister"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "offset-dial",
+      "visualModel": "cmyk-plate-split",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "display-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    }
+  }
+}

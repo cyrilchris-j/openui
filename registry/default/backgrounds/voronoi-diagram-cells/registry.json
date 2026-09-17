@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "voronoi-diagram-cells",
+  "type": "registry:background",
+  "title": "Voronoi Diagram Cells",
+  "description": "Computational geometry cellular Voronoi tessellation partitions with boundary line edges.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "voronoi-diagram-cells.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "voronoi",
+    "cells",
+    "geometry",
+    "tessellation",
+    "organic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-voronoi-tessellation",
+      "visualModel": "polygon-cellular-partitions",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cellular-voronoi-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "cut",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

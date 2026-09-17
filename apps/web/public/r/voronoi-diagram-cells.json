@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "voronoi-diagram-cells",
+  "type": "registry:background",
+  "title": "Voronoi Diagram Cells",
+  "description": "Computational geometry cellular Voronoi tessellation partitions with boundary line edges.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "voronoi-diagram-cells.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface VoronoiDiagramCellsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function VoronoiDiagramCells({ className, children, ...props }: VoronoiDiagramCellsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\" viewBox=\"0 0 600 400\">\n        <polygon points=\"0,0 120,50 80,180 0,140\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"120,50 280,30 260,160 80,180\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"280,30 450,40 420,190 260,160\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"450,40 600,0 600,160 420,190\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"0,140 80,180 100,320 0,300\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"80,180 260,160 240,310 100,320\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"260,160 420,190 400,330 240,310\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"420,190 600,160 600,320 400,330\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"0,300 100,320 120,400 0,400\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"100,320 240,310 260,400 120,400\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"240,310 400,330 430,400 260,400\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <polygon points=\"400,330 600,320 600,400 430,400\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "63c3cb984b5d8793ce5fa19c3b8aaebb68f1bac35e8226b3d396857289503651",
+      "sizeBytes": 1928
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { VoronoiDiagramCells } from \"./voronoi-diagram-cells\";\n\nexport default function VoronoiDiagramCellsDemo() {\n  return (\n    <VoronoiDiagramCells className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Voronoi Partitioning</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Geometric polygon Dirichlet cell partition.</p>\n      </div>\n    </VoronoiDiagramCells>\n  );\n}\n",
+      "contentHash": "5243530ca63d247d0d892e71cf2f01869fe168f2e7d105aa372831365f7f537d",
+      "sizeBytes": 589
+    }
+  ],
+  "tags": [
+    "voronoi",
+    "cells",
+    "geometry",
+    "tessellation",
+    "organic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "cut",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-voronoi-tessellation",
+      "visualModel": "polygon-cellular-partitions",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cellular-voronoi-texture"
+    }
+  },
+  "url": "https://openui.dev/r/voronoi-diagram-cells.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Cut\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Voronoi Tessellation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

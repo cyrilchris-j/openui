@@ -5,15 +5,33 @@
   "title": "Marquee Index",
   "description": "An infinite horizontal ticker that pauses for keyboard focus and hover, and renders static under prefers-reduced-motion instead of animating invisibly.",
   "category": "components",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "marquee-index.tsx", "type": "registry:component" }],
-  "tags": ["ticker", "marquee", "navigation"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "marquee-index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "ticker",
+    "marquee",
+    "navigation"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["reduced-motion-safe", "pause-on-hover"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "reduced-motion-safe",
+      "pause-on-hover"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "industrial",
       "macrostructure": "rail",
@@ -22,6 +40,14 @@
       "motionLanguage": "mechanical",
       "typographyStyle": "monospace",
       "colorStrategy": "monochrome"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "pointer-pause-hover",
+      "visualModel": "continuous-tape-ticker",
+      "motionModel": "linear-infinite-travel",
+      "layoutModel": "full-width-strip",
+      "semanticPurpose": "catalogue-browse"
     }
   }
 }

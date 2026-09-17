@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inertia-scroll-marquee",
+  "type": "registry:motion",
+  "title": "Inertia Scroll Marquee",
+  "description": "A dual-strip ticker banner with interactive swipe flick: dragging alters translation velocity, settling back smoothly to baseline crawl velocity.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inertia-scroll-marquee.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InertiaScrollMarqueeProps {\n  items?: string[];\n  baseVelocity?: number;\n  className?: string;\n}\n\nexport function InertiaScrollMarquee({\n  items = [\"REVERBERATION\", \"KINETICS\", \"SUPERPOSITION\", \"EQUILIBRIUM\", \"DAMPING\", \"WAVELENGTH\"],\n  baseVelocity = 1.2,\n  className,\n}: InertiaScrollMarqueeProps) {\n  const [offset, setOffset] = useState(0);\n  const state = useRef({ offset: 0, velocity: baseVelocity, isDown: false, lastX: 0 });\n\n  useEffect(() => {\n    let raf: number;\n    const loop = () => {\n      if (!state.current.isDown) {\n        // Decelerate toward base velocity\n        state.current.velocity += (baseVelocity - state.current.velocity) * 0.04;\n      }\n      state.current.offset = (state.current.offset - state.current.velocity) % 1200;\n      setOffset(state.current.offset);\n      raf = requestAnimationFrame(loop);\n    };\n\n    raf = requestAnimationFrame(loop);\n    return () => cancelAnimationFrame(raf);\n  }, [baseVelocity]);\n\n  return (\n    <div\n      onPointerDown={(e) => {\n        state.current.isDown = true;\n        state.current.lastX = e.clientX;\n        (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);\n      }}\n      onPointerMove={(e) => {\n        if (!state.current.isDown) return;\n        const dx = e.clientX - state.current.lastX;\n        state.current.lastX = e.clientX;\n        state.current.velocity = -dx * 0.6;\n      }}\n      onPointerUp={(e) => {\n        state.current.isDown = false;\n        try {\n          (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);\n        } catch {}\n      }}\n      className={cn(\"overflow-hidden border-y border-line bg-ink py-4 text-paper cursor-grab active:cursor-grabbing select-none\", className)}\n    >\n      <div\n        style={{ transform: `translateX(${offset}px)` }}\n        className=\"flex gap-12 whitespace-nowrap font-mono text-sm uppercase tracking-widest\"\n      >\n        {[...items, ...items, ...items, ...items].map((word, i) => (\n          <span key={i} className=\"flex items-center gap-6\">\n            <span>{word}</span>\n            <span className=\"h-1.5 w-1.5 rounded-full bg-accent\" />\n          </span>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "8b25bdcdccb69bee181ed79a7916bd4006be359e001b63756aa23ad1b3d17fd2",
+      "sizeBytes": 2289
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { InertiaScrollMarquee } from \"./inertia-scroll-marquee\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] flex-col justify-center bg-paper p-6\">\n      <InertiaScrollMarquee />\n    </div>\n  );\n}\n",
+      "contentHash": "511e364b7b357df5a336a8dd7b677c8c214412a3cc3e2d39e8a9b0c0ff35e280",
+      "sizeBytes": 237
+    }
+  ],
+  "tags": [
+    "marquee",
+    "inertia",
+    "scroll",
+    "velocity",
+    "ticker"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "drag-acceleration-glide",
+      "visualModel": "infinite-tape-strip",
+      "motionModel": "momentum-decay-to-baseline",
+      "layoutModel": "horizontal-overflow-ribbon",
+      "semanticPurpose": "continuous-feature-ticker"
+    }
+  },
+  "url": "https://openui.dev/r/inertia-scroll-marquee.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: Kinetic\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Drag Acceleration Glide: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

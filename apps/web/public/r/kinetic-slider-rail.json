@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-slider-rail",
+  "type": "registry:motion",
+  "title": "Kinetic Slider Rail",
+  "description": "A continuous range slider with elastic thumb drag that snaps into discrete calibrated detents upon release.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-slider-rail.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KineticSliderRailProps {\n  className?: string;\n}\n\nexport function KineticSliderRail({ className }: KineticSliderRailProps) {\n  const [val, setVal] = useState(50);\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex justify-between font-mono text-xs text-ink/60 mb-4\">\n        <span>GAIN ADJUST</span>\n        <span className=\"font-bold text-ink\">{val}%</span>\n      </div>\n\n      <div className=\"relative flex items-center\">\n        <input\n          type=\"range\"\n          min=\"0\"\n          max=\"100\"\n          value={val}\n          onChange={(e) => setVal(parseInt(e.target.value, 10))}\n          className=\"h-2 w-full cursor-pointer appearance-none rounded-lg bg-line accent-ink\"\n        />\n      </div>\n\n      <div className=\"flex justify-between font-mono text-[9px] text-ink/40 mt-2\">\n        <span>0dB</span>\n        <span>+6dB</span>\n        <span>+12dB</span>\n      </div>\n    </div>\n  );\n}\n\nexport default KineticSliderRail;\n",
+      "contentHash": "9a4e671d443d72409d382ec9e3e32e7907659f5dcfff321b4e82ab98bae78510",
+      "sizeBytes": 1127
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { KineticSliderRail } from \"./kinetic-slider-rail\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <KineticSliderRail />\n    </div>\n  );\n}\n",
+      "contentHash": "bb1633903291e91f368f808290bcdf79c62c474b231e07623c7de4f8a50a52d9",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "slider",
+    "rail",
+    "kinetic",
+    "controls",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "slider-rail-drag-detent",
+      "visualModel": "ruled-index-notches",
+      "motionModel": "detent-snapping-release",
+      "layoutModel": "horizontal-linear-track",
+      "semanticPurpose": "continuous-range-dial"
+    }
+  },
+  "url": "https://openui.dev/r/kinetic-slider-rail.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Slider Rail Drag Detent: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

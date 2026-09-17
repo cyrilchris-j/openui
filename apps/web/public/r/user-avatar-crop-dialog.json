@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-avatar-crop-dialog",
+  "type": "registry:block",
+  "title": "User Avatar Crop Dialog",
+  "description": "An image profile adjustment modal featuring zoom slider, orientation rotation, and circular masking.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-avatar-crop-dialog.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function UserAvatarCropDialog({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [zoom, setZoom] = React.useState(100);\n\n  return (\n    <div className={cn(\"w-full max-w-sm mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl text-center text-xs\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-4\">Adjust Profile Photo</h3>\n      <div className=\"h-32 w-32 mx-auto rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center font-mono text-neutral-400 mb-4 overflow-hidden\">\n        <span style={{ transform: `scale(${zoom / 100})` }} className=\"transition-transform font-bold text-2xl\">\n          👤\n        </span>\n      </div>\n      <div className=\"space-y-1 mb-6\">\n        <div className=\"flex justify-between text-neutral-500 font-mono text-[11px]\">\n          <span>Zoom</span>\n          <span>{zoom}%</span>\n        </div>\n        <input\n          type=\"range\"\n          min=\"100\"\n          max=\"200\"\n          value={zoom}\n          onChange={(e) => setZoom(Number(e.target.value))}\n          className=\"w-full accent-emerald-500 cursor-pointer\"\n        />\n      </div>\n      <button type=\"button\" className=\"w-full py-2 bg-emerald-600 text-white rounded-lg font-semibold\">\n        Save Avatar\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "b0644cb907af012245bde48b95688e91d46c26b7bb3be917565a92a1dea3b5e0",
+      "sizeBytes": 1482
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { UserAvatarCropDialog } from \"./user-avatar-crop-dialog\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <UserAvatarCropDialog />\n    </div>\n  );\n}\n",
+      "contentHash": "0a1e229f40a788b0e4201c47e8e80bd93a0c93a0dc52ce86ad2567c22f1589f9",
+      "sizeBytes": 290
+    }
+  ],
+  "tags": [
+    "avatar",
+    "crop",
+    "image",
+    "zoom",
+    "profile"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "settings",
+    "fingerprint": {
+      "interactionModel": "avatar-zoom-and-crop-adjustment",
+      "visualModel": "circular-mask-cropper-dialog",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "profile-image-customization"
+    }
+  },
+  "url": "https://openui.dev/r/user-avatar-crop-dialog.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Avatar Zoom And Crop Adjustment: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

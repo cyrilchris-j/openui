@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dappled-forest-canopy",
+  "type": "registry:background",
+  "title": "Dappled Forest Canopy",
+  "description": "Atmospheric sunbeams (crepuscular rays) filtering down through an overhead woodland canopy.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dappled-forest-canopy.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DappledForestCanopyProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function DappledForestCanopy({ className, children, ...props }: DappledForestCanopyProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute -top-32 left-1/3 w-[600px] h-[500px] pointer-events-none opacity-20 -z-10 rotate-12\"\n        style={{\n          background: \"radial-gradient(ellipse at top, rgba(245, 158, 11, 0.4) 0%, rgba(16, 185, 129, 0.15) 60%, transparent 80%)\",\n          filter: \"blur(40px)\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "8665f48ace95d965c54b302815ec1432b7b66170e1715ccf222766f1f71cff86",
+      "sizeBytes": 758
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { DappledForestCanopy } from \"./dappled-forest-canopy\";\n\nexport default function DappledForestCanopyDemo() {\n  return (\n    <DappledForestCanopy className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Sunbeam Foliage</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Filtered crepuscular woodland sunbeams.</p>\n      </div>\n    </DappledForestCanopy>\n  );\n}\n",
+      "contentHash": "327ce6327c08f76aaedf7703f216b3efce9f84cc75e07df09c6d210cd126f95a",
+      "sizeBytes": 581
+    }
+  ],
+  "tags": [
+    "forest",
+    "canopy",
+    "sunbeams",
+    "godrays",
+    "nature"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-crepuscular-rays",
+      "visualModel": "canopy-light-shafts",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "forest-canopy-sunbeams"
+    }
+  },
+  "url": "https://openui.dev/r/dappled-forest-canopy.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: None\nTypography: Humanist\nColor: Muted Earth\n\n## Rules\n\n- Passive Crepuscular Rays: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

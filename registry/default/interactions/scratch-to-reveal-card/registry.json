@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scratch-to-reveal-card",
+  "type": "registry:interaction",
+  "title": "Scratch to Reveal Card",
+  "description": "A gamified reward card whose silver coating scratches away under pointer drag via destination-out canvas blending.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scratch-to-reveal-card.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "scratch",
+    "reveal",
+    "canvas",
+    "gamified",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "drag-scratch-erasure",
+      "visualModel": "metallic-silver-overcoat",
+      "motionModel": "pixel-erasure-blending",
+      "layoutModel": "layered-scratch-card",
+      "semanticPurpose": "voucher-reward-scratcher"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

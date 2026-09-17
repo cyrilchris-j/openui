@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "baseline-grid-overlay",
+  "type": "registry:text",
+  "title": "Baseline Grid Overlay",
+  "description": "A proofing tool that overlays the document's baseline grid on any block of text and flags lines that drift off it — vertical rhythm made visible, with a drift count readout for CI-style typographic QA.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "baseline-grid-overlay.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "baseline-grid",
+    "rhythm",
+    "proofing",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "toggle-inspect",
+      "visualModel": "grid-line-overlay",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "rhythm-verification"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

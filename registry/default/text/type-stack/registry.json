@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "type-stack",
+  "type": "registry:text",
+  "title": "Type Stack",
+  "description": "A vertical stack of phrases that cycles with a directional slide, reserving the height of the longest phrase so surrounding layout never reflows; pauses on hover and focus.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "type-stack.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "rotator",
+    "stack",
+    "phrases",
+    "reserved-space"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "timer-cycle",
+      "visualModel": "stacked-phrases",
+      "motionModel": "directional-slide",
+      "layoutModel": "reserved-height",
+      "semanticPurpose": "heading-rotation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

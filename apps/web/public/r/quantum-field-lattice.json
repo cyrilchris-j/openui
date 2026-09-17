@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "quantum-field-lattice",
+  "type": "registry:background",
+  "title": "Quantum Field Lattice",
+  "description": "Quantum electrodynamics subatomic particle probability density lattice with probability vertices.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "quantum-field-lattice.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface QuantumFieldLatticeProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function QuantumFieldLattice({ className, children, ...props }: QuantumFieldLatticeProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-20 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"quantum-pat\" width=\"36\" height=\"36\" patternUnits=\"userSpaceOnUse\">\n            <line x1=\"18\" y1=\"14\" x2=\"18\" y2=\"22\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"14\" y1=\"18\" x2=\"22\" y2=\"18\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <circle cx=\"18\" cy=\"18\" r=\"1.5\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#quantum-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "84e2d9c5e2552477303c803755278913f18ef91544fa05bdc66c1990a1381241",
+      "sizeBytes": 1033
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { QuantumFieldLattice } from \"./quantum-field-lattice\";\n\nexport default function QuantumFieldLatticeDemo() {\n  return (\n    <QuantumFieldLattice className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Quantum Field Grid</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Crosshair probability matrix vertices.</p>\n      </div>\n    </QuantumFieldLattice>\n  );\n}\n",
+      "contentHash": "933bafcc8477577347bfa7d8916744c7f75ac0168b62c40677f440ff528c9f9d",
+      "sizeBytes": 582
+    }
+  ],
+  "tags": [
+    "quantum",
+    "physics",
+    "lattice",
+    "probability",
+    "particles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-quantum-lattice",
+      "visualModel": "probability-density-crosshairs",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "subatomic-lattice-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/quantum-field-lattice.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Quantum Lattice: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

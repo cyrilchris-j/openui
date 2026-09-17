@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sight-size-ruler",
+  "type": "registry:text",
+  "title": "Sight Size Ruler",
+  "description": "Specimen typography wrapped in a working ruler: cap-height, x-height and baseline rules are drawn to scale behind the glyphs, and hovering a rule calls out its name — type anatomy as an interactive diagram.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sight-size-ruler.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "specimen",
+    "anatomy",
+    "ruler",
+    "diagram"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "hover-callout",
+      "visualModel": "metric-rule-overlay",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "type-education"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

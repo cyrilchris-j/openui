@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "vertical-kern-text",
+  "type": "registry:text",
+  "title": "Vertical Kern Text",
+  "description": "A label set in vertical writing mode with upright Latin glyphs and controlled letter spacing, for spines, rails and side navigation where horizontal space is the constraint.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "vertical-kern-text.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface VerticalKernTextProps {\n  children: string;\n  /** Letter spacing in em. */\n  tracking?: number;\n  /** Rotate 180° so the text reads bottom-to-top. */\n  flip?: boolean;\n  className?: string;\n}\n\n/**\n * Vertical Kern Text\n *\n * `text-orientation: mixed` keeps Latin upright while genuinely vertical\n * scripts keep their native behaviour; `upright` would break CJK readers'\n * expectations. The flip variant is a rotation, not a different writing\n * direction, so the reading order in the DOM stays correct.\n */\nexport function VerticalKernText({\n  children,\n  tracking = 0.32,\n  flip = false,\n  className,\n}: VerticalKernTextProps) {\n  return (\n    <span\n      className={cn(\"select-none font-mono text-[0.72rem] uppercase text-graphite\", className)}\n      style={{\n        writingMode: \"vertical-rl\",\n        letterSpacing: `${tracking}em`,\n        transform: flip ? \"rotate(180deg)\" : undefined,\n      }}\n      role=\"text\"\n    >\n      {children}\n    </span>\n  );\n}\n\nexport default VerticalKernText;\n",
+      "contentHash": "f8c70f9431e8f3ae9815316fc1b20d293c382dbb6acc0a044836f8d46aef8808",
+      "sizeBytes": 1049
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { VerticalKernText } from \"./vertical-kern-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-stretch justify-center gap-8 bg-paper p-10\">\n      <div className=\"border-l border-line pl-3\">\n        <VerticalKernText>Chapter One</VerticalKernText>\n      </div>\n      <div className=\"border-r border-line pr-3\">\n        <VerticalKernText flip>Chapter Two</VerticalKernText>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "c81a2fa1cf94fe3960ae0731fcd644da24be76d7dde8cdb2d477e644e8faccaa",
+      "sizeBytes": 455
+    }
+  ],
+  "tags": [
+    "vertical",
+    "writing-mode",
+    "spine",
+    "rail"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "responsive-orientation-flow",
+      "visualModel": "vertical-writing-mode-typeset",
+      "layoutModel": "sideways-sidebar-label",
+      "semanticPurpose": "editorial-margin-annotation"
+    }
+  },
+  "url": "https://openui.dev/r/vertical-kern-text.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Condensed\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

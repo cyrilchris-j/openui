@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "neon-flicker-sign",
+  "type": "registry:text",
+  "title": "Neon Flicker Sign",
+  "description": "A neon sign built from text-shadow stacks with a scripted flicker that buzzes specific letters off-beat — the failure pattern of real signage, applied per glyph, resting steady most of the time.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "neon-flicker-sign.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface NeonFlickerSignProps {\n  children: string;\n  /** Glow colour. */\n  glow?: string;\n  /** Indices of glyphs that misbehave, e.g. [2, 5]. */\n  faultyIndices?: number[];\n  className?: string;\n}\n\nexport function NeonFlickerSign({\n  children,\n  glow = \"#41ead4\",\n  faultyIndices = [],\n  className,\n}: NeonFlickerSignProps) {\n  const [lit, setLit] = useState<boolean[]>(() => [...children].map(() => true));\n\n  useEffect(() => {\n    if (faultyIndices.length === 0) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    let timeout: number | undefined;\n    const buzz = () => {\n      const next = [...children].map((_, index) =>\n        faultyIndices.includes(index) ? Math.random() > 0.5 : true,\n      );\n      setLit(next);\n      timeout = window.setTimeout(() => {\n        setLit([...children].map(() => true));\n        timeout = window.setTimeout(buzz, 2400 + Math.random() * 3600);\n      }, 140 + Math.random() * 220);\n    };\n\n    timeout = window.setTimeout(buzz, 2000);\n    return () => window.clearTimeout(timeout);\n  }, [children, faultyIndices]);\n\n  return (\n    <span className={cn(\"inline-block select-none font-display\", className)} role=\"text\" aria-label={children}>\n      {[...children].map((char, index) => (\n        <span\n          key={`${index}-${char}`}\n          aria-hidden\n          style={{\n            color: lit[index] ? glow : \"rgba(255,255,255,0.18)\",\n            textShadow: lit[index]\n              ? `0 0 4px ${glow}, 0 0 11px ${glow}, 0 0 32px ${glow}`\n              : \"none\",\n            transition: \"color 60ms linear, text-shadow 60ms linear\",\n          }}\n        >\n          {char === \" \" ? \"\\u00A0\" : char}\n        </span>\n      ))}\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default NeonFlickerSign;\n",
+      "contentHash": "16da3c3479b65e54cae0c06acf44935f92fce11d4f60033992bfc13c9a3e20d0",
+      "sizeBytes": 1914
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { NeonFlickerSign } from \"./neon-flicker-sign\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-ink p-10\">\n      <NeonFlickerSign className=\"text-step-4 tracking-[0.12em]\" faultyIndices={[3]}>\n        Open All Night\n      </NeonFlickerSign>\n    </div>\n  );\n}\n",
+      "contentHash": "abab9c2f5f00b33744b82f8e40f1ce884cb4078fce8f837ecba143a20a77fb44",
+      "sizeBytes": 333
+    }
+  ],
+  "tags": [
+    "neon",
+    "flicker",
+    "sign",
+    "glow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "per-glyph-script",
+      "visualModel": "shadow-glow-stack",
+      "motionModel": "offbeat-buzz",
+      "layoutModel": "inline",
+      "semanticPurpose": "signage"
+    }
+  },
+  "url": "https://openui.dev/r/neon-flicker-sign.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Rail\nDensity: Dense\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Neon On Dark\n\n## Rules\n\n- Per Glyph Script: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

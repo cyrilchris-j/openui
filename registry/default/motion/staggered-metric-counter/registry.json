@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-metric-counter",
+  "type": "registry:motion",
+  "title": "Staggered Metric Counter",
+  "description": "A KPI scorecard row where numeric metrics increment simultaneously with staggered duration and spring finish.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-metric-counter.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "metrics",
+    "kpi",
+    "counter",
+    "scorecard",
+    "stagger"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "counter",
+    "fingerprint": {
+      "interactionModel": "simultaneous-metric-spinup",
+      "visualModel": "dashboard-stat-row",
+      "motionModel": "interpolated-rate-countup",
+      "layoutModel": "multi-column-kpi-deck",
+      "semanticPurpose": "kpi-scorecard-banner"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

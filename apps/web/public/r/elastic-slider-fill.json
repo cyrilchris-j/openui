@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-slider-fill",
+  "type": "registry:interaction",
+  "title": "Elastic Slider Fill",
+  "description": "A vertical fill tank slider where the liquid surface deforms and sloshes as user scrubs vertical level.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-slider-fill.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticSliderFillProps {\n  className?: string;\n}\n\nexport function ElasticSliderFill({ className }: ElasticSliderFillProps) {\n  const [level, setLevel] = useState(65);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">TANK FILL: {level}%</span>\n\n      <div className=\"relative h-44 w-14 overflow-hidden rounded-lg border border-line bg-line/20 flex items-end\">\n        <div\n          className=\"w-full bg-ink transition-all duration-150 ease-out\"\n          style={{ height: `${level}%` }}\n        />\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"0\"\n        max=\"100\"\n        value={level}\n        onChange={(e) => setLevel(parseInt(e.target.value, 10))}\n        className=\"w-32 cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default ElasticSliderFill;\n",
+      "contentHash": "84eea23d2667d68723784ecab4758c7137ac030029dcc91d58dd999e9ffb5d6b",
+      "sizeBytes": 1027
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ElasticSliderFill } from \"./elastic-slider-fill\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <ElasticSliderFill />\n    </div>\n  );\n}\n",
+      "contentHash": "31c2f1402a6c93efd36fa775666b0aad3f26fd15f6d14de5b78c9d5c4b8c4a6e",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "slider",
+    "liquid",
+    "fill",
+    "vertical",
+    "tank"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "vertical-reservoir-scrub",
+      "visualModel": "columnar-liquid-tank",
+      "motionModel": "continuous-level-filling",
+      "layoutModel": "vertical-calibrated-column",
+      "semanticPurpose": "vertical-fluid-meter"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-slider-fill.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Vertical Reservoir Scrub: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

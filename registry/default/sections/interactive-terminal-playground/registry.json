@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-terminal-playground",
+  "type": "registry:section",
+  "title": "Interactive Terminal Playground",
+  "description": "An embedded simulated developer terminal executing commands like help, inspect, and test with live output.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-terminal-playground.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "terminal",
+    "playground",
+    "cli",
+    "interactive",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "interactive-terminal-playground-interaction",
+      "visualModel": "interactive-terminal-playground-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-terminal-playground-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

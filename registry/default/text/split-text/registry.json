@@ -5,15 +5,34 @@
   "title": "Split Text",
   "description": "Per-word reveal that keeps the sentence readable: words are wrapped in inline-block spans, the text stays selectable and copyable, and reduced motion shows the finished state immediately.",
   "category": "text",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "split-text.tsx", "type": "registry:text" }],
-  "tags": ["typography", "reveal", "stagger"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "typography",
+    "reveal",
+    "stagger"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["selectable-text", "reduced-motion-safe", "scroll-triggered"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "selectable-text",
+      "reduced-motion-safe",
+      "scroll-triggered"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "editorial",
       "macrostructure": "asymmetric",
@@ -22,6 +41,14 @@
       "motionLanguage": "expressive",
       "typographyStyle": "serif-display",
       "colorStrategy": "monochrome"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "scroll-triggered-split",
+      "visualModel": "character-clip-path-reveal",
+      "motionModel": "staggered-glyph-rise",
+      "layoutModel": "multiline-display",
+      "semanticPurpose": "hero-title-reveal"
     }
   }
 }

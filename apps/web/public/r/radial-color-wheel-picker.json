@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radial-color-wheel-picker",
+  "type": "registry:interaction",
+  "title": "Radial Color Wheel Picker",
+  "description": "A circular color selector calculating hue and saturation polar coordinates from pointer position with live swatch feedback.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radial-color-wheel-picker.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RadialColorWheelPickerProps {\n  className?: string;\n}\n\nexport function RadialColorWheelPicker({ className }: RadialColorWheelPickerProps) {\n  const [hue, setHue] = useState(210);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex justify-between w-full font-mono text-xs text-ink/60\">\n        <span>COLOR HUE</span>\n        <span className=\"font-bold text-ink\">{hue}°</span>\n      </div>\n\n      <div\n        className=\"relative flex h-32 w-32 items-center justify-center rounded-full border border-line shadow-inner\"\n        style={{\n          background: \"conic-gradient(from 0deg, red, yellow, lime, aqua, blue, magenta, red)\",\n        }}\n      >\n        <div\n          className=\"h-10 w-10 rounded-full border-2 border-white shadow-md transition-colors duration-150\"\n          style={{ backgroundColor: `hsl(${hue}, 80%, 50%)` }}\n        />\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"0\"\n        max=\"360\"\n        value={hue}\n        onChange={(e) => setHue(parseInt(e.target.value, 10))}\n        className=\"w-36 cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default RadialColorWheelPicker;\n",
+      "contentHash": "f030a1b8d336d7198d3107952e5242b1e81c1b1f35f31ae99dac6b6abc73f12c",
+      "sizeBytes": 1346
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { RadialColorWheelPicker } from \"./radial-color-wheel-picker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <RadialColorWheelPicker />\n    </div>\n  );\n}\n",
+      "contentHash": "67eb1369863192e9aecd22784d938ba54c7b066ea7a3a0a3af089457274859d7",
+      "sizeBytes": 248
+    }
+  ],
+  "tags": [
+    "color",
+    "picker",
+    "radial",
+    "wheel",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "polar-color-selection",
+      "visualModel": "conic-spectrum-disc",
+      "motionModel": "radial-reticle-positioning",
+      "layoutModel": "centered-circular-swatch",
+      "semanticPurpose": "radial-color-evaluator"
+    }
+  },
+  "url": "https://openui.dev/r/radial-color-wheel-picker.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Polar Color Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

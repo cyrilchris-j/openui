@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stat-sparkline-tile",
+  "type": "registry:component",
+  "title": "Stat Sparkline Tile",
+  "description": "A compact analytics KPI tile paired with an inline SVG sparkline graph visualizing 7-day trendlines.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stat-sparkline-tile.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "sparkline",
+    "chart",
+    "metrics",
+    "kpi",
+    "analytics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "kpi-sparkline-inspection",
+      "visualModel": "trendline-metric-card",
+      "motionModel": "none",
+      "layoutModel": "metric-tile-with-sparkline",
+      "semanticPurpose": "sparkline-trend-tile"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

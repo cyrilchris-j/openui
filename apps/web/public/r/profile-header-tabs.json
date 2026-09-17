@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "profile-header-tabs",
+  "type": "registry:layout",
+  "title": "Profile Header Tabs",
+  "description": "User account profile layout with wide panoramic banner, overlapping avatar badge, and content tabs.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "profile-header-tabs.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ProfileHeaderTabsProps extends React.HTMLAttributes<HTMLDivElement> {\n  banner?: React.ReactNode;\n  avatar?: React.ReactNode;\n  info?: React.ReactNode;\n  tabs?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function ProfileHeaderTabs({\n  banner,\n  avatar,\n  info,\n  tabs,\n  children,\n  className,\n  ...props\n}: ProfileHeaderTabsProps) {\n  return (\n    <div className={cn(\"max-w-4xl mx-auto rounded-2xl border border-line overflow-hidden bg-paper font-sans\", className)} {...props}>\n      <div className=\"h-32 bg-surface/60 border-b border-line\">{banner}</div>\n      <div className=\"px-6 pb-4\">\n        <div className=\"flex items-end justify-between -mt-10 mb-3\">\n          <div className=\"w-20 h-20 rounded-full border-4 border-paper bg-accent text-white flex items-center justify-center font-bold text-lg\">\n            {avatar}\n          </div>\n          <div>{info}</div>\n        </div>\n        <div className=\"border-b border-line pb-2 flex gap-4 text-xs font-mono\">{tabs}</div>\n      </div>\n      <div className=\"p-6\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "0d3db0cfe870097d1ea65cc55ccd856d9ec5a961d6a68b32ce91d52293013fa2",
+      "sizeBytes": 1132
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { ProfileHeaderTabs } from \"./profile-header-tabs\";\n\nexport default function ProfileHeaderTabsDemo() {\n  return (\n    <ProfileHeaderTabs\n      avatar=\"AG\"\n      info={<button type=\"button\" className=\"px-3 py-1.5 rounded bg-accent text-white text-xs font-mono\">Edit Profile</button>}\n      tabs={\n        <>\n          <span className=\"font-bold text-accent\">Repositories</span>\n          <span className=\"text-ink/60\">Contributions</span>\n        </>\n      }\n    >\n      <div className=\"text-xs text-ink/70\">Public code repositories and active design tokens.</div>\n    </ProfileHeaderTabs>\n  );\n}\n",
+      "contentHash": "183344fd9885af38185978933a17ccf4e77db477fa686195d95f2bf9ff05f8dc",
+      "sizeBytes": 618
+    }
+  ],
+  "tags": [
+    "profile",
+    "banner",
+    "avatar",
+    "tabs",
+    "account"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "profile-banner-tab-navigation",
+      "visualModel": "panoramic-banner-profile",
+      "motionModel": "none",
+      "layoutModel": "banner-avatar-tab-stack",
+      "semanticPurpose": "user-profile-shell"
+    }
+  },
+  "url": "https://openui.dev/r/profile-header-tabs.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Profile Banner Tab Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

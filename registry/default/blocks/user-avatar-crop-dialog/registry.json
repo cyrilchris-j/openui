@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-avatar-crop-dialog",
+  "type": "registry:block",
+  "title": "User Avatar Crop Dialog",
+  "description": "An image profile adjustment modal featuring zoom slider, orientation rotation, and circular masking.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-avatar-crop-dialog.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "avatar",
+    "crop",
+    "image",
+    "zoom",
+    "profile"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "settings",
+    "fingerprint": {
+      "interactionModel": "avatar-zoom-and-crop-adjustment",
+      "visualModel": "circular-mask-cropper-dialog",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "profile-image-customization"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

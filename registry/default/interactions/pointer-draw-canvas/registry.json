@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pointer-draw-canvas",
+  "type": "registry:interaction",
+  "title": "Pointer Draw Canvas",
+  "description": "An interactive sketch surface computing velocity-sensitive ink stroke thickness for expressive calligraphic drawing.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pointer-draw-canvas.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "canvas",
+    "drawing",
+    "pointer",
+    "calligraphy",
+    "sketch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "freehand-pen-vector-tracking",
+      "visualModel": "variable-width-calligraphy-stroke",
+      "motionModel": "velocity-scaled-bezier-spline",
+      "layoutModel": "bordered-sketch-canvas",
+      "semanticPurpose": "freeform-sketch-slate"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

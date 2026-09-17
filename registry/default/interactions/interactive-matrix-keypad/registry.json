@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-matrix-keypad",
+  "type": "registry:interaction",
+  "title": "Interactive Matrix Keypad",
+  "description": "A 3x4 numeric pin entry pad with haptic tactile depression feedback and masked passcode sequence display.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-matrix-keypad.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "keypad",
+    "pin",
+    "matrix",
+    "passcode",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "numeric-keypad-entry",
+      "visualModel": "pinpad-button-matrix",
+      "motionModel": "discrete-key-depression",
+      "layoutModel": "numeric-pinpad-grid",
+      "semanticPurpose": "security-pin-keypad"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

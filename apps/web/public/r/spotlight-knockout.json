@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spotlight-knockout",
+  "type": "registry:text",
+  "title": "Spotlight Knockout",
+  "description": "A wall of dark type with a spotlight hole punched through it: the headline sits underneath and is only legible inside a radial mask that tracks the pointer — reading becomes a searchlight act.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spotlight-knockout.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SpotlightKnockoutProps {\n  /** Text revealed inside the spotlight. */\n  children: string;\n  /** Cover colour above the text. */\n  cover?: string;\n  /** Spotlight radius, px. */\n  radius?: number;\n  className?: string;\n}\n\nexport function SpotlightKnockout({\n  children,\n  cover = \"#0e0e10\",\n  radius = 110,\n  className,\n}: SpotlightKnockoutProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const [enabled, setEnabled] = useState(false);\n\n  useEffect(() => {\n    setEnabled(Boolean(window.matchMedia?.(\"(pointer: fine)\")?.matches));\n  }, []);\n\n  const onMove = useCallback((event: React.PointerEvent) => {\n    const host = ref.current;\n    if (!host) return;\n    const rect = host.getBoundingClientRect();\n    host.style.setProperty(\"--spot-x\", `${event.clientX - rect.left}px`);\n    host.style.setProperty(\"--spot-y\", `${event.clientY - rect.top}px`);\n  }, []);\n\n  return (\n    <span\n      ref={ref}\n      onPointerMove={enabled ? onMove : undefined}\n      className={cn(\"relative inline-block select-none\", className)}\n      role=\"text\"\n      aria-label={children}\n      style={{ \"--spot-x\": \"50%\", \"--spot-y\": \"50%\" } as React.CSSProperties}\n    >\n      <span aria-hidden className=\"relative z-0 block text-ink\">\n        {children}\n      </span>\n      <span\n        aria-hidden\n        className=\"absolute inset-0 z-10\"\n        style={{\n          background: cover,\n          maskImage: `radial-gradient(circle ${radius}px at var(--spot-x) var(--spot-y), transparent 0 55%, black 78%)`,\n          WebkitMaskImage: `radial-gradient(circle ${radius}px at var(--spot-x) var(--spot-y), transparent 0 55%, black 78%)`,\n          opacity: enabled ? 1 : 0.86,\n          transition: \"opacity 300ms ease\",\n        }}\n      />\n    </span>\n  );\n}\n\nexport default SpotlightKnockout;\n",
+      "contentHash": "6a97e15b16555825ff91125371c9f6b645931e8ae9c4e98e511139fc99d489de",
+      "sizeBytes": 1908
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SpotlightKnockout } from \"./spotlight-knockout\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <SpotlightKnockout className=\"font-display text-step-4\">Find the light</SpotlightKnockout>\n    </div>\n  );\n}\n",
+      "contentHash": "bf3a4e345a2dad674b25d66d65bb664ddfa470c35823ba88f08a82505986a5b5",
+      "sizeBytes": 301
+    }
+  ],
+  "tags": [
+    "spotlight",
+    "mask",
+    "knockout",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-mask-follow",
+      "visualModel": "knockout-overlay",
+      "motionModel": "direct-follow",
+      "layoutModel": "overlay",
+      "semanticPurpose": "curiosity-heading"
+    }
+  },
+  "url": "https://openui.dev/r/spotlight-knockout.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- Pointer Mask Follow: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

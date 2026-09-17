@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inertial-rebound-scroll",
+  "type": "registry:motion",
+  "title": "Inertial Rebound Scroll",
+  "description": "A scroll container featuring physical overscroll rubberbanding that snaps back to boundaries via damped spring physics.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inertial-rebound-scroll.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InertialReboundScrollProps {\n  className?: string;\n}\n\nexport function InertialReboundScroll({ className }: InertialReboundScrollProps) {\n  const [bounce, setBounce] = useState(0);\n\n  const triggerBounce = () => {\n    setBounce(-30);\n    setTimeout(() => setBounce(15), 150);\n    setTimeout(() => setBounce(0), 300);\n  };\n\n  return (\n    <div className={cn(\"relative h-72 w-full max-w-sm rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-line\">\n        <span className=\"font-mono text-xs text-ink/60\">INERTIAL FEED</span>\n        <button\n          type=\"button\"\n          onClick={triggerBounce}\n          className=\"rounded border border-line px-2 py-0.5 font-mono text-[10px] text-ink hover:bg-line/20\"\n        >\n          Overscroll\n        </button>\n      </div>\n\n      <div\n        className=\"mt-3 space-y-2 transition-transform duration-200 ease-out\"\n        style={{ transform: `translateY(${bounce}px)` }}\n      >\n        {[\"Transaction #8901 - Verified\", \"Block #14209 - Confirmed\", \"Peer Heartbeat - Active\", \"State Sync - 100%\"].map((item, i) => (\n          <div key={i} className=\"rounded-lg border border-line bg-line/10 p-3 font-mono text-xs text-ink\">\n            {item}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default InertialReboundScroll;\n",
+      "contentHash": "0de4c480d2655de14fc49b808442263d30d1de72c970b10493b69c2ba46debeb",
+      "sizeBytes": 1477
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { InertialReboundScroll } from \"./inertial-rebound-scroll\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <InertialReboundScroll />\n    </div>\n  );\n}\n",
+      "contentHash": "03caba77660c02419a266f0c1afbb1a7d8609f90fbb4c385322ede23233fed5d",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "scroll",
+    "overscroll",
+    "rubberband",
+    "spring",
+    "inertial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "overscroll-rubberband-drag",
+      "visualModel": "elastic-scrollable-deck",
+      "motionModel": "boundary-spring-rebound",
+      "layoutModel": "bounded-scroll-viewport",
+      "semanticPurpose": "tactile-list-scroller"
+    }
+  },
+  "url": "https://openui.dev/r/inertial-rebound-scroll.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Overscroll Rubberband Drag: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

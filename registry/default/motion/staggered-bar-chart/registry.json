@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-bar-chart",
+  "type": "registry:motion",
+  "title": "Staggered Bar Chart",
+  "description": "An animated analytics histogram whose vertical bars rise sequentially with staggered elastic spring overshoot on trigger.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-bar-chart.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "chart",
+    "bars",
+    "analytics",
+    "stagger",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "mount-cascade-trigger",
+      "visualModel": "vertical-histogram-columns",
+      "motionModel": "staggered-spring-growth",
+      "layoutModel": "chart-coordinate-box",
+      "semanticPurpose": "data-growth-histogram"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

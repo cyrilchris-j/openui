@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-notification-counter",
+  "type": "registry:component",
+  "title": "Badge Notification Counter",
+  "description": "A compact count badge pill capping high values with plus suffixes for unread notifications.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-notification-counter.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BadgeNotificationCounterProps {\n  count?: number;\n  max?: number;\n  className?: string;\n}\n\nexport function BadgeNotificationCounter({\n  count = 28,\n  max = 99,\n  className,\n}: BadgeNotificationCounterProps) {\n  const display = count > max ? `${max}+` : count;\n\n  return (\n    <span\n      className={cn(\n        \"inline-flex items-center justify-center rounded-full bg-red-500 px-2 py-0.5 font-mono text-[10px] font-bold text-white shadow-sm\",\n        className\n      )}\n    >\n      {display}\n    </span>\n  );\n}\n\nexport default BadgeNotificationCounter;\n",
+      "contentHash": "f9f704b6415872eb155221a66179ce8456441d5eac9247b8ff13a1823f27f6f8",
+      "sizeBytes": 617
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { BadgeNotificationCounter } from \"./badge-notification-counter\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center gap-4 bg-paper p-8\">\n      <span className=\"font-mono text-xs text-ink\">Alerts</span>\n      <BadgeNotificationCounter count={142} />\n    </div>\n  );\n}\n",
+      "contentHash": "06d6691594e3b7c47181da6d7e191db2bdacbaf9c5ccf02dd090d89ff36a4d35",
+      "sizeBytes": 336
+    }
+  ],
+  "tags": [
+    "badge",
+    "counter",
+    "notifications",
+    "pill",
+    "unread"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "notification-count-badge",
+      "visualModel": "circular-badge-pill",
+      "motionModel": "none",
+      "layoutModel": "inline-badge-callout",
+      "semanticPurpose": "unread-notification-badge"
+    }
+  },
+  "url": "https://openui.dev/r/badge-notification-counter.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Notification Count Badge: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

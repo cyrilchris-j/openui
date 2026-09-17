@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "redaction-declassifier",
+  "type": "registry:text",
+  "title": "Redaction Declassifier",
+  "description": "Government-memo typography: passages are blacked out with marker bars, and hovering (or focusing) a bar sweeps the ink away to reveal the text underneath, then re-redacts when attention leaves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "redaction-declassifier.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RedactionDeclassifierProps {\n  /** Segments: plain strings or { secret: string } to redact. */\n  segments: Array<string | { secret: string }>;\n  className?: string;\n}\n\nexport function RedactionDeclassifier({ segments, className }: RedactionDeclassifierProps) {\n  const [revealed, setRevealed] = useState<number | null>(null);\n  let secretIndex = -1;\n\n  return (\n    <p className={cn(\"max-w-prose font-mono text-sm leading-loose\", className)}>\n      {segments.map((segment, index) => {\n        if (typeof segment === \"string\") return <span key={index}>{segment} </span>;\n        secretIndex += 1;\n        const mine = secretIndex;\n        const open = revealed === mine;\n        return (\n          <span\n            key={index}\n            tabIndex={0}\n            role=\"button\"\n            aria-label={open ? `declassified: ${segment.secret}` : \"classified text, activate to reveal\"}\n            onMouseEnter={() => setRevealed(mine)}\n            onMouseLeave={() => setRevealed(null)}\n            onFocus={() => setRevealed(mine)}\n            onBlur={() => setRevealed(null)}\n            className=\"relative cursor-pointer select-none px-0.5\"\n          >\n            <span aria-hidden={open ? undefined : true} className={open ? \"text-ink\" : \"opacity-0\"}>\n              {segment.secret}\n            </span>\n            <span\n              aria-hidden\n              className=\"absolute inset-0 rounded-[2px] bg-ink transition-opacity duration-300\"\n              style={{\n                opacity: open ? 0 : 1,\n                clipPath: open ? \"inset(0 0 0 100%)\" : \"inset(0 0 0 0)\",\n              }}\n            />\n            <span className=\"sr-only\">{open ? segment.secret : \"redacted\"}</span>\n          </span>\n        );\n      })}\n    </p>\n  );\n}\n\nexport default RedactionDeclassifier;\n",
+      "contentHash": "cb5deca6678a06a483f82dd3f5f9b420ea75f120476927ea2cdd25998023f4ac",
+      "sizeBytes": 1889
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { RedactionDeclassifier } from \"./redaction-declassifier\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <RedactionDeclassifier\n        className=\"w-full max-w-lg\"\n        segments={[\n          \"MEMO: The registry will ship\",\n          { secret: \"800 resources\" },\n          \"by end of quarter, pending\",\n          { secret: \"uniqueness validation\" },\n          \". Distribution limited to\",\n          { secret: \"everyone, because open source\" },\n          \".\",\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "fa9393a6a65090bf863b769a89d19fdbf2b5ef8fdf53973dda46c163acdaaa87",
+      "sizeBytes": 594
+    }
+  ],
+  "tags": [
+    "redaction",
+    "reveal",
+    "secrecy",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "hover-declassify",
+      "visualModel": "ink-bar-censor",
+      "motionModel": "wipe-reveal",
+      "layoutModel": "block",
+      "semanticPurpose": "mystery-reveal"
+    }
+  },
+  "url": "https://openui.dev/r/redaction-declassifier.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Hover Declassify: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

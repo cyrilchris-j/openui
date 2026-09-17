@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bento-feature-showcase",
+  "type": "registry:section",
+  "title": "Bento Feature Showcase",
+  "description": "Four-card modular bento grid showcasing core ecosystem features with varied aspect ratios.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bento-feature-showcase.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "bento",
+    "features",
+    "grid",
+    "showcase",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "features",
+    "fingerprint": {
+      "interactionModel": "bento-tile-inspection",
+      "visualModel": "four-card-bento-matrix",
+      "motionModel": "none",
+      "layoutModel": "asymmetric-mosaic-grid",
+      "semanticPurpose": "product-features-bento"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tilt-depth-badge",
+  "type": "registry:interaction",
+  "title": "Tilt Depth Badge",
+  "description": "A compact badge chip computing 3D tilt angles on hover with specular glass highlight reflections.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tilt-depth-badge.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "badge",
+    "tilt",
+    "3d",
+    "chip",
+    "specular"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "micro-tilt-tracking",
+      "visualModel": "chamfered-glass-chip",
+      "motionModel": "damped-perspective-recline",
+      "layoutModel": "centered-chip-stage",
+      "semanticPurpose": "verified-credential-chip"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepper-form-wizard",
+  "type": "registry:component",
+  "title": "Stepper Form Wizard",
+  "description": "Multi-step navigation bar with completed checkmarks, current step indicator, and next/previous controls.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepper-form-wizard.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Check, ChevronRight, ChevronLeft } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function StepperFormWizard({ className }: { className?: string }) {\n  const [currentStep, setCurrentStep] = useState(1);\n  const steps = [\"Details\", \"Credentials\", \"Review\"];\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-sm w-full font-sans shadow-sm\", className)}>\n      <div className=\"flex items-center justify-between mb-4 relative\">\n        <div className=\"absolute left-4 right-4 top-4 -translate-y-1/2 h-0.5 bg-line z-0\" />\n        {steps.map((label, i) => {\n          const isDone = i < currentStep;\n          const isCurr = i === currentStep;\n          return (\n            <div key={label} className=\"relative z-10 flex flex-col items-center\">\n              <div\n                className={cn(\n                  \"w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors\",\n                  isDone\n                    ? \"bg-emerald-500 text-white\"\n                    : isCurr\n                    ? \"bg-accent text-white shadow-sm ring-4 ring-accent/20\"\n                    : \"bg-surface border border-line text-ink/40\"\n                )}\n              >\n                {isDone ? <Check className=\"w-3.5 h-3.5\" /> : i + 1}\n              </div>\n              <span className={cn(\"text-[10px] mt-1 font-mono\", isCurr ? \"text-ink font-semibold\" : \"text-ink/50\")}>\n                {label}\n              </span>\n            </div>\n          );\n        })}\n      </div>\n\n      <div className=\"flex items-center justify-between pt-2 border-t border-line\">\n        <button\n          type=\"button\"\n          onClick={() => setCurrentStep((p) => Math.max(0, p - 1))}\n          disabled={currentStep === 0}\n          className=\"flex items-center gap-1 px-2.5 py-1 rounded text-xs font-mono border border-line bg-surface hover:bg-line/40 disabled:opacity-40 text-ink transition-colors\"\n        >\n          <ChevronLeft className=\"w-3.5 h-3.5\" />\n          Back\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => setCurrentStep((p) => Math.min(steps.length - 1, p + 1))}\n          disabled={currentStep === steps.length - 1}\n          className=\"flex items-center gap-1 px-3 py-1 rounded text-xs font-mono bg-accent text-white hover:bg-accent/90 disabled:opacity-40 transition-colors\"\n        >\n          Next\n          <ChevronRight className=\"w-3.5 h-3.5\" />\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "a82d129494db29a91029e8c0974e5274a0504ce0f0f4b9f9603db44b208b9fc3",
+      "sizeBytes": 2564
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { StepperFormWizard } from \"./stepper-form-wizard\";\n\nexport default function StepperFormWizardDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[220px]\">\n      <StepperFormWizard />\n    </div>\n  );\n}\n",
+      "contentHash": "9bb197885c6e57498967fc06e6e7ba6bc2e1ffcee1afe7d64caf6e7370dc458d",
+      "sizeBytes": 269
+    }
+  ],
+  "tags": [
+    "stepper",
+    "wizard",
+    "navigation",
+    "form",
+    "steps"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "sequential-wizard-stepping",
+      "visualModel": "stepper-rail-nodes",
+      "motionModel": "none",
+      "layoutModel": "horizontal-node-train",
+      "semanticPurpose": "form-wizard-flow"
+    }
+  },
+  "url": "https://openui.dev/r/stepper-form-wizard.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Sequential Wizard Stepping: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

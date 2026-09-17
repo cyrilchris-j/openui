@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "masonry-photo-wall",
+  "type": "registry:layout",
+  "title": "Masonry Photo Wall",
+  "description": "Seamless zero-gutter photo grid with dense visual interlocking image apertures.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "masonry-photo-wall.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MasonryPhotoWallProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MasonryPhotoWall({ children, className, ...props }: MasonryPhotoWallProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 md:grid-cols-4 max-w-5xl mx-auto rounded-2xl overflow-hidden border border-line\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "94b396c961842c9e5f2458c8d5b54ebff736557c88d2ee6890350b3c7a5ea5eb",
+      "sizeBytes": 452
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MasonryPhotoWall } from \"./masonry-photo-wall\";\n\nexport default function MasonryPhotoWallDemo() {\n  return (\n    <MasonryPhotoWall>\n      {Array.from({ length: 8 }).map((_, i) => (\n        <div key={i} className=\"h-32 bg-surface/40 border border-line/40 flex items-center justify-center font-mono text-[11px] text-ink/50\">\n          Photo #{i + 1}\n        </div>\n      ))}\n    </MasonryPhotoWall>\n  );\n}\n",
+      "contentHash": "4494c376167575635d81e3a78dc8d0fa7ba85f5914990c213112425920c7b88a",
+      "sizeBytes": 428
+    }
+  ],
+  "tags": [
+    "photo",
+    "wall",
+    "masonry",
+    "seamless",
+    "gallery"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "dense-photowall-mosaic",
+      "visualModel": "seamless-photo-tessellation",
+      "motionModel": "none",
+      "layoutModel": "zero-gutter-masonry",
+      "semanticPurpose": "immersive-photo-wall"
+    }
+  },
+  "url": "https://openui.dev/r/masonry-photo-wall.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Dense Photowall Mosaic: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

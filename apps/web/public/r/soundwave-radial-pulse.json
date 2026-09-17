@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "soundwave-radial-pulse",
+  "type": "registry:background",
+  "title": "Soundwave Radial Pulse",
+  "description": "Circular audio sonar pulses emanating radially outward like acoustic underwater echolocation.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "soundwave-radial-pulse.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SoundwaveRadialPulseProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function SoundwaveRadialPulse({ className, children, ...props }: SoundwaveRadialPulseProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-cyan-400 overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-25 -z-10\">\n        <div className=\"w-96 h-96 rounded-full border border-cyan-500/40\" />\n        <div className=\"absolute w-72 h-72 rounded-full border border-cyan-500/50\" />\n        <div className=\"absolute w-48 h-48 rounded-full border border-cyan-500/60\" />\n        <div className=\"absolute w-24 h-24 rounded-full border border-cyan-500/80\" />\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "e2e5dcabb6b654924b6801657eb9b8a0290fbd9c33eb7e104d6d6e94e18e6a1a",
+      "sizeBytes": 904
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { SoundwaveRadialPulse } from \"./soundwave-radial-pulse\";\n\nexport default function SoundwaveRadialPulseDemo() {\n  return (\n    <SoundwaveRadialPulse className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-cyan-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-cyan-400\">Sonar Echolocation</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Radial acoustic wave emission rings.</p>\n      </div>\n    </SoundwaveRadialPulse>\n  );\n}\n",
+      "contentHash": "f93653a3812dc6adf4044d799585f15994ca7a9a98f3fe592bf9ef59a569298c",
+      "sizeBytes": 599
+    }
+  ],
+  "tags": [
+    "sonar",
+    "pulse",
+    "acoustic",
+    "echolocation",
+    "soundwave"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-sonar-pulse",
+      "visualModel": "pulsing-echolocation-rings",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "sonar-pulse-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/soundwave-radial-pulse.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Sonar Pulse: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

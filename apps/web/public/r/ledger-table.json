@@ -52,6 +52,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "tabular-inspection",
+      "visualModel": "monochrome-ruled-ledger",
+      "layoutModel": "dense-horizontal-scroll",
+      "semanticPurpose": "financial-reporting"
     }
   },
   "url": "https://openui.dev/r/ledger-table.json",

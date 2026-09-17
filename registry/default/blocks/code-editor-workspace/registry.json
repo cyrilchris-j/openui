@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-editor-workspace",
+  "type": "registry:block",
+  "title": "Code Editor Workspace",
+  "description": "A developer code workspace featuring numbered lines, language selection, run action, and simulated execution console.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-editor-workspace.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "code",
+    "editor",
+    "ide",
+    "developer",
+    "console"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "code-editing-and-terminal-output",
+      "visualModel": "syntax-editor-with-console-drawer",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "developer-code-sandbox"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

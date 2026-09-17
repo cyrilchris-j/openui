@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "analytics-overview-dashboard",
+  "type": "registry:block",
+  "title": "Analytics Overview Dashboard",
+  "description": "A comprehensive metric workspace with KPI cards, revenue breakdowns, period filters, and live telemetry badges.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "analytics-overview-dashboard.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "dashboard",
+    "analytics",
+    "kpi",
+    "telemetry",
+    "metrics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "dashboard",
+    "fingerprint": {
+      "interactionModel": "timeframe-filter-kpi-drilldown",
+      "visualModel": "metric-grid-with-chart-canvas",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "business-telemetry-dashboard"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

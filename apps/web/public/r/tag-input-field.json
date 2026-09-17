@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tag-input-field",
+  "type": "registry:component",
+  "title": "Tag Input Field",
+  "description": "An input container creating removable keyword tag pills upon enter key press or comma delimiter.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tag-input-field.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TagInputFieldProps {\n  className?: string;\n}\n\nexport function TagInputField({ className }: TagInputFieldProps) {\n  const [tags, setTags] = useState([\"React\", \"Motion\"]);\n  const [input, setInput] = useState(\"\");\n\n  const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {\n    if (e.key === \"Enter\" && input.trim()) {\n      e.preventDefault();\n      if (!tags.includes(input.trim())) {\n        setTags([...tags, input.trim()]);\n      }\n      setInput(\"\");\n    }\n  };\n\n  const removeTag = (tag: string) => {\n    setTags((t) => t.filter((i) => i !== tag));\n  };\n\n  return (\n    <div className={cn(\"flex flex-wrap items-center gap-2 rounded-xl border border-line bg-paper p-2.5 shadow-sm w-full max-w-sm font-mono text-xs\", className)}>\n      {tags.map((t) => (\n        <span key={t} className=\"flex items-center gap-1 rounded bg-line/20 px-2 py-0.5 text-ink\">\n          {t}\n          <button type=\"button\" onClick={() => removeTag(t)} className=\"opacity-50 hover:opacity-100\">\n            ✕\n          </button>\n        </span>\n      ))}\n      <input\n        type=\"text\"\n        value={input}\n        onChange={(e) => setInput(e.target.value)}\n        onKeyDown={addTag}\n        placeholder=\"Add tag...\"\n        className=\"flex-1 bg-transparent outline-none placeholder:text-ink/40 text-xs min-w-[5rem]\"\n      />\n    </div>\n  );\n}\n\nexport default TagInputField;\n",
+      "contentHash": "b68a0e5312c9f58bcc71d1dde28ac0c16d5f490b23fd72468c27a301c1267197",
+      "sizeBytes": 1464
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { TagInputField } from \"./tag-input-field\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <TagInputField />\n    </div>\n  );\n}\n",
+      "contentHash": "adb22ee49ba5a85c9e8c40ecebf33b06a34f34534a2982ca51bf6338e57835b8",
+      "sizeBytes": 220
+    }
+  ],
+  "tags": [
+    "tags",
+    "input",
+    "chips",
+    "pills",
+    "keywords"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "tag-creation-entry",
+      "visualModel": "pill-chip-input-tray",
+      "motionModel": "none",
+      "layoutModel": "horizontal-tag-field",
+      "semanticPurpose": "keyword-tag-creator"
+    }
+  },
+  "url": "https://openui.dev/r/tag-input-field.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Tag Creation Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

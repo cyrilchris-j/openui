@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dynamic-island-morph",
+  "type": "registry:motion",
+  "title": "Dynamic Island Morph",
+  "description": "A compact floating pill header that morphs smoothly into a wide notification panel upon incoming state event.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dynamic-island-morph.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DynamicIslandMorphProps {\n  className?: string;\n}\n\nexport function DynamicIslandMorph({ className }: DynamicIslandMorphProps) {\n  const [expanded, setExpanded] = useState(false);\n\n  return (\n    <div className={cn(\"relative h-64 w-full max-w-md overflow-hidden rounded-2xl border border-line bg-paper p-6\", className)}>\n      <div className=\"flex justify-center\">\n        <div\n          onClick={() => setExpanded((e) => !e)}\n          className={cn(\n            \"cursor-pointer overflow-hidden rounded-full bg-ink text-paper transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] shadow-xl\",\n            expanded ? \"h-16 w-80 rounded-2xl px-5 py-3\" : \"h-9 w-32 px-3 py-1.5\"\n          )}\n        >\n          {expanded ? (\n            <div className=\"flex items-center justify-between\">\n              <div>\n                <p className=\"text-xs font-bold\">Incoming Call</p>\n                <p className=\"font-mono text-[10px] opacity-70\">Sarah Lin (Engineering)</p>\n              </div>\n              <div className=\"flex gap-2\">\n                <span className=\"h-6 w-6 rounded-full bg-red-500 flex items-center justify-center text-[10px]\">✕</span>\n                <span className=\"h-6 w-6 rounded-full bg-emerald-500 flex items-center justify-center text-[10px]\">✓</span>\n              </div>\n            </div>\n          ) : (\n            <div className=\"flex items-center justify-between text-xs\">\n              <span className=\"h-2 w-2 rounded-full bg-emerald-400 animate-pulse\" />\n              <span className=\"font-mono text-[10px]\">Connected</span>\n            </div>\n          )}\n        </div>\n      </div>\n      <p className=\"mt-8 text-center font-mono text-xs text-ink/50\">Click pill to toggle island state</p>\n    </div>\n  );\n}\n\nexport default DynamicIslandMorph;\n",
+      "contentHash": "0233fac681761c6e1b18839dc2cca7cfc6a6a6b748987b01d121a8631b4a7044",
+      "sizeBytes": 1890
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { DynamicIslandMorph } from \"./dynamic-island-morph\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <DynamicIslandMorph />\n    </div>\n  );\n}\n",
+      "contentHash": "96b14b90a96666e7c928898ad8a68c5aae58e965ba24c71a7433996c851c1966",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "island",
+    "morph",
+    "notification",
+    "pill",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "notifications",
+    "fingerprint": {
+      "interactionModel": "expandable-island-capsule",
+      "visualModel": "black-pill-aperture",
+      "motionModel": "interpolated-aspect-expansion",
+      "layoutModel": "top-pinned-capsule",
+      "semanticPurpose": "dynamic-status-capsule"
+    }
+  },
+  "url": "https://openui.dev/r/dynamic-island-morph.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Expandable Island Capsule: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "masonry-column-flow",
+  "type": "registry:layout",
+  "title": "Masonry Column Flow",
+  "description": "Pinterest-style cascading multi-column masonry pin-board layout with variable height item cards.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "masonry-column-flow.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "masonry",
+    "pinboard",
+    "columns",
+    "cards",
+    "flow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "cascading-pinboard-scroll",
+      "visualModel": "variable-height-masonry",
+      "motionModel": "none",
+      "layoutModel": "css-columns-waterfall",
+      "semanticPurpose": "masonry-pinboard-gallery"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "scatter",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

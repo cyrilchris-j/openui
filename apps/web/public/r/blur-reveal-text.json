@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "blur-reveal-text",
+  "type": "registry:text",
+  "title": "Blur Reveal Text",
+  "description": "A focus-pull reveal: words start defocused and transparent, then sharpen in reading order with an interleaved delay, using only filter and opacity so layout is stable throughout.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "blur-reveal-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BlurRevealTextProps {\n  text: string;\n  /** Seconds between word starts. */\n  stagger?: number;\n  className?: string;\n}\n\nexport function BlurRevealText({ text, stagger = 0.12, className }: BlurRevealTextProps) {\n  const { ref, inView } = useInView<HTMLSpanElement>({ once: true });\n  const words = text.split(\" \");\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const revealed = inView || Boolean(reduced);\n\n  return (\n    <span ref={ref} className={cn(\"inline\", className)} aria-label={text}>\n      {words.map((word, index) => (\n        <span\n          key={`${word}-${index}`}\n          aria-hidden\n          className=\"inline-block will-change-[filter,opacity]\"\n          style={{\n            filter: revealed ? \"blur(0)\" : \"blur(8px)\",\n            opacity: revealed ? 1 : 0,\n            transition: revealed\n              ? `filter 520ms ease ${index * stagger}s, opacity 520ms ease ${index * stagger}s`\n              : \"none\",\n          }}\n        >\n          {word}\n          {index < words.length - 1 ? \"\\u00A0\" : \"\"}\n        </span>\n      ))}\n    </span>\n  );\n}\n\nexport default BlurRevealText;\n",
+      "contentHash": "74126d05d31f0d3d3b61f709b57c6edd7db084b81f05bb6dd3784149100a411f",
+      "sizeBytes": 1294
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BlurRevealText } from \"./blur-reveal-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] items-center justify-center bg-paper p-10\">\n      <BlurRevealText\n        text=\"Clarity arrives one word at a time.\"\n        className=\"font-display text-step-2 text-ink\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "2dfdae699943616f8dd47f590f40647701d7fc6fac18b6fa8dd6c541c2131f44",
+      "sizeBytes": 335
+    }
+  ],
+  "tags": [
+    "blur",
+    "focus-pull",
+    "reveal",
+    "filter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "viewport-trigger",
+      "visualModel": "gaussian-deblur-fade",
+      "motionModel": "smooth-filter-transition",
+      "layoutModel": "inline-block",
+      "semanticPurpose": "heading-entrance"
+    }
+  },
+  "url": "https://openui.dev/r/blur-reveal-text.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Soft\nMotion: Expressive\nTypography: Serif Display\nColor: Monochrome\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

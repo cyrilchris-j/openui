@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "smart-breadcrumb",
+  "type": "registry:component",
+  "title": "Smart Breadcrumb",
+  "description": "A breadcrumb that collapses its middle entries into a disclosure menu once the trail overflows, measured with a ResizeObserver so truncation adapts to the container rather than a fixed item count.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "smart-breadcrumb.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "breadcrumb",
+    "navigation",
+    "responsive",
+    "overflow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "adaptive-overflow-collapse",
+      "visualModel": "slash-delimited-trail",
+      "motionModel": "popover-menu-spring",
+      "layoutModel": "responsive-inline-trail",
+      "semanticPurpose": "hierarchical-wayfinding"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

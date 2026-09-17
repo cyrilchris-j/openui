@@ -5,15 +5,33 @@
   "title": "Asymmetric Split",
   "description": "A two-column shell with a deliberate ratio (7/5 by default), a gutter that becomes a visible rule, and a stack order that recomposes — rather than hides — content on small screens.",
   "category": "layouts",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "asymmetric-split.tsx", "type": "registry:layout" }],
-  "tags": ["layout", "asymmetric", "grid"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "asymmetric-split.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "layout",
+    "asymmetric",
+    "grid"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["responsive-recomposition", "semantic-landmarks"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "responsive-recomposition",
+      "semantic-landmarks"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "swiss",
       "macrostructure": "asymmetric",
@@ -22,6 +40,13 @@
       "motionLanguage": "none",
       "typographyStyle": "grotesk",
       "colorStrategy": "high-contrast"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "dual-pane-scroll",
+      "visualModel": "golden-ratio-bleed-frame",
+      "layoutModel": "asymmetric-two-column",
+      "semanticPurpose": "narrative-lead-story"
     }
   }
 }

@@ -1,0 +1,36 @@
+# Spiral Arc Type
+
+Text laid along an Archimedean spiral via per-glyph placement (rotate + translate per character), coiling from the outside in — glyphs shrink slightly with radius so the coil reads as one continuous word.
+
+## Install
+
+```bash
+openui add spiral-arc-type
+```
+
+Dependencies: none beyond React.
+
+## What makes it distinct
+
+- Category: `text` → subcategory `path`
+- Interaction model: `static`
+- Visual model: `per-glyph-spiral-placement`
+- Motion model: `none`
+- Semantic purpose: `decorative-arrangement`
+
+## Accessibility
+
+- Keyboard reachable; visible focus ring.
+- Honours `prefers-reduced-motion`: animation is disabled or replaced with a
+  static state change.
+- Semantic HTML first; ARIA only where the semantics need help.
+
+## When to use
+
+When the interface needs exactly this behaviour — check the fingerprint above
+against the composition you are building.
+
+## When not to use
+
+When a simpler resource meets the need. Do not stack decorative motion on top
+of a surface that already carries motion.

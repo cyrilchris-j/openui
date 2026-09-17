@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ransom-collage-note",
+  "type": "registry:text",
+  "title": "Ransom Collage Note",
+  "description": "Each glyph is clipped from its own 'scrap' — deterministic per-index rotation, paper tone, serif/sans alternation and tape strip — so the collage is chaotic to the eye but reproducible to the pixel across renders.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ransom-collage-note.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "collage",
+    "cutout",
+    "scrap",
+    "deterministic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "per-glyph-collage-scrap",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "protest-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "scatter",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

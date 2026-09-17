@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sentiment-color-words",
+  "type": "registry:text",
+  "title": "Sentiment Color Words",
+  "description": "A sentiment readout where each word is tinted by its valence score on a diverging scale — negative cools, positive warms — with a hover tooltip exposing the exact score and a legend that doubles as the scale.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sentiment-color-words.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "sentiment",
+    "valence",
+    "color-scale",
+    "nlp"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "hover-readout",
+      "visualModel": "valence-tinted-words",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "sentiment-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "duotone"
+    }
+  }
+}

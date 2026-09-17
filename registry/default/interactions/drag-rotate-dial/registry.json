@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-rotate-dial",
+  "type": "registry:interaction",
+  "title": "Drag Rotate Dial",
+  "description": "A rotary knob computing continuous angle theta from dial origin as user drags pointer circularly around perimeter.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-rotate-dial.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "rotary",
+    "dial",
+    "angle",
+    "knob",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "circular-perimeter-drag",
+      "visualModel": "graduated-bezel-knob",
+      "motionModel": "continuous-angle-tracking",
+      "layoutModel": "centered-circular-dial",
+      "semanticPurpose": "rotary-azimuth-controller"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

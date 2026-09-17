@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "event-keynote-schedule",
+  "type": "registry:section",
+  "title": "Event Keynote Schedule",
+  "description": "A multi-track developer conference agenda with speaker profiles, track tags, and calendar reminders.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "event-keynote-schedule.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface AgendaItem {\n  time: string;\n  stage: string;\n  title: string;\n  speaker: string;\n  role: string;\n}\n\nexport interface EventKeynoteScheduleProps extends React.HTMLAttributes<HTMLElement> {\n  agenda?: AgendaItem[];\n}\n\nconst DEFAULT_AGENDA: AgendaItem[] = [\n  { time: \"09:00 AM\", stage: \"Main Stage\", title: \"Opening Keynote: The Post-Framework Web Interface\", speaker: \"Cyril Chris\", role: \"OpenUI Creator\" },\n  { time: \"10:30 AM\", stage: \"Stage A (Edge)\", title: \"Sub-10ms Global State Synthesis with SQLite Isolates\", speaker: \"Elena Rostova\", role: \"Distributed Systems Lead\" },\n  { time: \"01:00 PM\", stage: \"Stage B (Design)\", title: \"Mathematical Invariants of Design Systems in Code\", speaker: \"Marcus Vance\", role: \"Design Systems Engineer\" },\n  { time: \"03:30 PM\", stage: \"Main Stage\", title: \"Closing Panel: What 1000 Engineers Taught Us About Components\", speaker: \"Panel of Core Maintainers\", role: \"Open Source Collective\" },\n];\n\nexport function EventKeynoteSchedule({\n  agenda = DEFAULT_AGENDA,\n  className,\n  ...props\n}: EventKeynoteScheduleProps) {\n  const [selectedStage, setSelectedStage] = React.useState(\"All\");\n\n  const stages = [\"All\", \"Main Stage\", \"Stage A (Edge)\", \"Stage B (Design)\"];\n  const filtered = selectedStage === \"All\" ? agenda : agenda.filter((a) => a.stage === selectedStage);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b-2 border-neutral-900 dark:border-neutral-100 pb-4\">\n        <div>\n          <span className=\"text-xs font-mono uppercase tracking-widest font-bold text-neutral-500\">\n            OpenUI Summit 2026\n          </span>\n          <h2 className=\"text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100\">\n            Conference Agenda\n          </h2>\n        </div>\n        <div className=\"flex flex-wrap gap-1 font-mono text-xs\">\n          {stages.map((st) => (\n            <button\n              key={st}\n              type=\"button\"\n              onClick={() => setSelectedStage(st)}\n              className={cn(\n                \"px-3 py-1 border transition-colors\",\n                selectedStage === st\n                  ? \"bg-neutral-900 text-white border-neutral-900 dark:bg-neutral-100 dark:text-neutral-900\"\n                  : \"border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800\"\n              )}\n            >\n              {st}\n            </button>\n          ))}\n        </div>\n      </div>\n\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 font-mono\">\n        {filtered.map((item, idx) => (\n          <div key={idx} className=\"py-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-center\">\n            <div className=\"md:col-span-3 text-sm font-bold text-neutral-900 dark:text-neutral-100\">\n              {item.time}\n            </div>\n            <div className=\"md:col-span-6\">\n              <span className=\"text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200\">\n                {item.stage}\n              </span>\n              <h3 className=\"text-base font-bold text-neutral-900 dark:text-neutral-100 mt-1 font-sans\">\n                {item.title}\n              </h3>\n            </div>\n            <div className=\"md:col-span-3 text-right text-xs\">\n              <div className=\"font-bold text-neutral-900 dark:text-neutral-100\">{item.speaker}</div>\n              <div className=\"text-neutral-500 text-[11px]\">{item.role}</div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "c50bcb82cb67bdc7df073b84e876a576845468b7608b7df83db1afa15c946137",
+      "sizeBytes": 3795
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { EventKeynoteSchedule } from \"./event-keynote-schedule\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-950\">\n      <EventKeynoteSchedule />\n    </div>\n  );\n}\n",
+      "contentHash": "ba7ae03159ab43a2b12e8097f8cd0aebbaf04d44e96d81d7f8c1a8d2c25fafc7",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "event",
+    "schedule",
+    "conference",
+    "agenda",
+    "keynote"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "events",
+    "fingerprint": {
+      "interactionModel": "event-keynote-schedule-interaction",
+      "visualModel": "event-keynote-schedule-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "event-keynote-schedule-section"
+    }
+  },
+  "url": "https://openui.dev/r/event-keynote-schedule.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Event Keynote Schedule Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

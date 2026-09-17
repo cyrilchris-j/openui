@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "measuring-tape-hover",
+  "type": "registry:text",
+  "title": "Measuring Tape Hover",
+  "description": "Hover any word and a measuring tape slides out beneath it showing its rendered width in px and ch — a debugging instrument for kerning obsessives, implemented with real getBoundingClientRect measurement per word.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "measuring-tape-hover.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MeasuringTapeHoverProps {\n  children: string;\n  className?: string;\n}\n\nexport function MeasuringTapeHover({ children, className }: MeasuringTapeHoverProps) {\n  const [measurement, setMeasurement] = useState<{ index: number; px: number; ch: number } | null>(null);\n  const hostRef = useRef<HTMLParagraphElement>(null);\n\n  const measure = (event: React.MouseEvent<HTMLSpanElement>, index: number) => {\n    const host = hostRef.current;\n    if (!host) return;\n    const hostStyle = window.getComputedStyle(host);\n    const rect = event.currentTarget.getBoundingClientRect();\n    const chWidth = parseFloat(hostStyle.fontSize) * 0.5; // approx ch unit\n    setMeasurement({ index, px: Math.round(rect.width), ch: Number((rect.width / chWidth).toFixed(1)) });\n  };\n\n  return (\n    <div className={cn(\"flex flex-col gap-2\", className)}>\n      <p ref={hostRef} className=\"max-w-prose text-lg leading-loose text-ink\">\n        {children.split(\" \").map((word, index) => (\n          <span\n            key={index}\n            className=\"cursor-crosshair rounded-sm hover:bg-line/40\"\n            onMouseEnter={(event) => measure(event, index)}\n            onMouseLeave={() => setMeasurement(null)}\n          >\n            {word}{\" \"}\n          </span>\n        ))}\n      </p>\n      <div className=\"h-6 font-mono text-xs text-ink/60\" role=\"status\" aria-live=\"polite\">\n        {measurement !== null && (\n          <span aria-hidden>\n            word {measurement.index + 1}: {measurement.px}px ≈ {measurement.ch}ch\n          </span>\n        )}\n      </div>\n    </div>\n  );\n}\n\nexport default MeasuringTapeHover;\n",
+      "contentHash": "f4efc119ecdbf900c9031968314041595481d263a73997fe1705d8f81871eb23",
+      "sizeBytes": 1702
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { MeasuringTapeHover } from \"./measuring-tape-hover\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <MeasuringTapeHover className=\"w-full max-w-lg\">\n        Hover a word to measure it against the type size.\n      </MeasuringTapeHover>\n    </div>\n  );\n}\n",
+      "contentHash": "ae6f5caf4c2f0a7ce42891db6a1f580e7491ef4568da942ee33b48216e572ee5",
+      "sizeBytes": 348
+    }
+  ],
+  "tags": [
+    "measure",
+    "debug",
+    "width",
+    "ruler"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "hover-measure",
+      "visualModel": "width-callout-ruler",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "type-debugging"
+    }
+  },
+  "url": "https://openui.dev/r/measuring-tape-hover.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Hover Measure: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-card-expand",
+  "type": "registry:motion",
+  "title": "Liquid Card Expand",
+  "description": "A card thumbnail that morphs dynamically into an expanded modal sheet with shared layout boundary transitions.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-card-expand.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface LiquidCardExpandProps {\n  className?: string;\n}\n\nexport function LiquidCardExpand({ className }: LiquidCardExpandProps) {\n  const [expanded, setExpanded] = useState(false);\n\n  return (\n    <div className={cn(\"relative h-80 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper p-6\", className)}>\n      <div\n        onClick={() => setExpanded((e) => !e)}\n        className={cn(\n          \"cursor-pointer rounded-xl border border-line bg-paper p-6 shadow-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]\",\n          expanded ? \"absolute inset-4 z-20 shadow-2xl\" : \"relative h-44 w-full\"\n        )}\n      >\n        <div className=\"flex justify-between items-start\">\n          <span className=\"font-mono text-xs text-ink/50\">OPENUI SPEC</span>\n          <span className=\"text-xs font-mono text-ink/70\">{expanded ? \"Tap to collapse\" : \"Tap to expand\"}</span>\n        </div>\n        <h4 className=\"mt-2 font-display text-lg font-bold text-ink\">Design Tokens Core</h4>\n        <p className=\"mt-2 text-xs leading-relaxed text-ink/70\">\n          Shared element transitions create continuous spatial continuity across layout transformations.\n        </p>\n      </div>\n    </div>\n  );\n}\n\nexport default LiquidCardExpand;\n",
+      "contentHash": "53b144087fd4e66954415b00bfc59729cadfd63cdd9d77eb593f90c7a18c53a4",
+      "sizeBytes": 1345
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { LiquidCardExpand } from \"./liquid-card-expand\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <LiquidCardExpand />\n    </div>\n  );\n}\n",
+      "contentHash": "634155639bdecebeae03ef816dca8fa2365937aa769b5a39edad399d4063a15e",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "morph",
+    "expand",
+    "shared-layout",
+    "card",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "expand-modal-transition",
+      "visualModel": "bounding-box-morph",
+      "motionModel": "interpolated-geometry-spring",
+      "layoutModel": "thumbnail-to-overlay-morph",
+      "semanticPurpose": "shared-element-expander"
+    }
+  },
+  "url": "https://openui.dev/r/liquid-card-expand.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Expand Modal Transition: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

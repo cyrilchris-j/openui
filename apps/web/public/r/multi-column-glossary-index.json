@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-column-glossary-index",
+  "type": "registry:layout",
+  "title": "Multi Column Glossary Index",
+  "description": "Three-column alphabetical glossary layout with letter jump anchors and definition cards.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-column-glossary-index.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiColumnGlossaryIndexProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MultiColumnGlossaryIndex({ children, className, ...props }: MultiColumnGlossaryIndexProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto p-6 font-serif text-xs\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "28a315044182a08b281b816528738ddd03815a6afeca12cb8284e760ef81d399",
+      "sizeBytes": 458
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MultiColumnGlossaryIndex } from \"./multi-column-glossary-index\";\n\nexport default function MultiColumnGlossaryIndexDemo() {\n  return (\n    <MultiColumnGlossaryIndex>\n      <div className=\"space-y-2\">\n        <div className=\"text-lg font-bold font-mono text-accent\">A</div>\n        <div className=\"p-2.5 rounded border border-line bg-paper\"><strong>Axonometric</strong>: 3D projection without perspective convergence.</div>\n      </div>\n      <div className=\"space-y-2\">\n        <div className=\"text-lg font-bold font-mono text-accent\">B</div>\n        <div className=\"p-2.5 rounded border border-line bg-paper\"><strong>Bento Grid</strong>: Modular rectangular container matrix.</div>\n      </div>\n      <div className=\"space-y-2\">\n        <div className=\"text-lg font-bold font-mono text-accent\">C</div>\n        <div className=\"p-2.5 rounded border border-line bg-paper\"><strong>Closed Schema</strong>: Strict compile-time type validation.</div>\n      </div>\n    </MultiColumnGlossaryIndex>\n  );\n}\n",
+      "contentHash": "bb19980342e3902b2485254804158a495a5a4768713f1037b6a2fd066b4ca363",
+      "sizeBytes": 1020
+    }
+  ],
+  "tags": [
+    "glossary",
+    "alphabetical",
+    "index",
+    "columns",
+    "definitions"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "glossary-alphabetical-scan",
+      "visualModel": "three-column-letter-matrix",
+      "motionModel": "none",
+      "layoutModel": "three-column-glossary-grid",
+      "semanticPurpose": "alphabetical-glossary-index"
+    }
+  },
+  "url": "https://openui.dev/r/multi-column-glossary-index.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Glossary Alphabetical Scan: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

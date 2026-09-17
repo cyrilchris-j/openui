@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "infinite-tunnel-rings",
+  "type": "registry:background",
+  "title": "Infinite Tunnel Rings",
+  "description": "Concentric perspective square portal frames receding into an infinite central corridor.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "infinite-tunnel-rings.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "tunnel",
+    "portal",
+    "perspective",
+    "infinite",
+    "corridor"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-infinite-tunnel",
+      "visualModel": "receding-square-frames",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "infinite-portal-tunnel"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

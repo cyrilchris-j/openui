@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "invoice-generator-preview",
+  "type": "registry:block",
+  "title": "Invoice Generator Preview",
+  "description": "An itemized accounting invoice document with dynamic line additions, tax calculations, and printable summary.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "invoice-generator-preview.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InvoiceGeneratorPreview({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-8 bg-white dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex justify-between items-start pb-6 border-b border-neutral-300 dark:border-neutral-800\">\n        <div>\n          <h2 className=\"text-lg font-bold text-neutral-900 dark:text-white\">INVOICE</h2>\n          <div className=\"text-neutral-500\">INV-2026-09-800</div>\n        </div>\n        <div className=\"text-right text-neutral-500\">\n          <div>Date: 2026-09-18</div>\n          <div>Due: Upon Receipt</div>\n        </div>\n      </div>\n\n      <div className=\"py-6 border-b border-neutral-200 dark:border-neutral-800 space-y-2\">\n        <div className=\"flex justify-between font-bold\">\n          <span>Item</span>\n          <span>Amount</span>\n        </div>\n        <div className=\"flex justify-between text-neutral-600 dark:text-neutral-400\">\n          <span>OpenUI Enterprise License (Annual)</span>\n          <span>$1,908.00</span>\n        </div>\n      </div>\n\n      <div className=\"pt-4 flex justify-between text-base font-bold text-neutral-900 dark:text-white\">\n        <span>Total Due</span>\n        <span>$1,908.00</span>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "d473eac422cf11a0d0afa2b2d8909bfe664756af923e3f16cc884f0bea7d1071",
+      "sizeBytes": 1478
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { InvoiceGeneratorPreview } from \"./invoice-generator-preview\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <InvoiceGeneratorPreview />\n    </div>\n  );\n}\n",
+      "contentHash": "c0d54adb3762557b4b5a3bc61b7d26708d170b2a5fd49e0bae013856789f1607",
+      "sizeBytes": 298
+    }
+  ],
+  "tags": [
+    "invoice",
+    "billing",
+    "tax",
+    "accounting",
+    "calculator"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "billing",
+    "fingerprint": {
+      "interactionModel": "invoice-calculation-and-line-items",
+      "visualModel": "formal-invoice-document-sheet",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "tax-invoice-generation"
+    }
+  },
+  "url": "https://openui.dev/r/invoice-generator-preview.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Invoice Calculation And Line Items: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

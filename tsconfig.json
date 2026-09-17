@@ -21,8 +21,14 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "sourceMap": true,
-    "declaration": false,
-    "types": ["node"]
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/lib/cn": ["registry/default/components/cn/cn.ts"],
+      "@/hooks/use-in-view": ["registry/default/components/use-in-view/use-in-view.ts"],
+      "@/hooks/use-canvas-loop": ["registry/default/components/use-canvas-loop/use-canvas-loop.ts"],
+      "@/hooks/use-reduced-motion": ["registry/default/components/use-reduced-motion/use-reduced-motion.ts"]
+    }
   },
   "exclude": ["node_modules", "dist", ".turbo"]
 }

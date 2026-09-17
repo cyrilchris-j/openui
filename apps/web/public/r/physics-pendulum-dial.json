@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "physics-pendulum-dial",
+  "type": "registry:motion",
+  "title": "Physics Pendulum Dial",
+  "description": "An angular balance indicator suspended from a top pivot that swings with gravitational restoring torque and damped oscillations when pulled.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "physics-pendulum-dial.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PhysicsPendulumDialProps {\n  length?: number;\n  className?: string;\n}\n\nexport function PhysicsPendulumDial({ length = 140, className }: PhysicsPendulumDialProps) {\n  const [angle, setAngle] = useState(0.45);\n  const isDragging = useRef(false);\n  const state = useRef({ theta: 0.45, omega: 0 });\n  const containerRef = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    let raf: number;\n    const g = 9.8;\n    const l = length / 100;\n    const damping = 0.985;\n\n    const tick = () => {\n      if (!isDragging.current) {\n        // d²θ/dt² = -(g/l) * sin(θ)\n        const alpha = -(g / l) * Math.sin(state.current.theta) * 0.015;\n        state.current.omega = (state.current.omega + alpha) * damping;\n        state.current.theta += state.current.omega;\n        setAngle(state.current.theta);\n      }\n      raf = requestAnimationFrame(tick);\n    };\n\n    raf = requestAnimationFrame(tick);\n    return () => cancelAnimationFrame(raf);\n  }, [length]);\n\n  return (\n    <div\n      ref={containerRef}\n      className={cn(\"relative flex flex-col items-center justify-start h-64 w-64 select-none p-4\", className)}\n      onPointerDown={(e) => {\n        isDragging.current = true;\n        (e.target as HTMLElement).setPointerCapture(e.pointerId);\n      }}\n      onPointerMove={(e) => {\n        if (!isDragging.current || !containerRef.current) return;\n        const rect = containerRef.current.getBoundingClientRect();\n        const pivotX = rect.left + rect.width / 2;\n        const pivotY = rect.top + 30;\n        const dx = e.clientX - pivotX;\n        const dy = e.clientY - pivotY;\n        const rad = Math.atan2(dx, dy);\n        state.current.theta = Math.max(-1.4, Math.min(1.4, rad));\n        state.current.omega = 0;\n        setAngle(state.current.theta);\n      }}\n      onPointerUp={(e) => {\n        isDragging.current = false;\n        try {\n          (e.target as HTMLElement).releasePointerCapture(e.pointerId);\n        } catch {}\n      }}\n    >\n      {/* Pivot mount */}\n      <div className=\"h-4 w-4 rounded-full border-2 border-ink bg-paper z-10\" />\n\n      {/* Pendulum rod and bob */}\n      <div\n        style={{\n          height: `${length}px`,\n          transform: `rotate(${-angle}rad)`,\n          transformOrigin: \"top center\",\n        }}\n        className=\"absolute top-[38px] w-0.5 bg-ink cursor-grab active:cursor-grabbing flex flex-col items-center justify-end\"\n      >\n        <div className=\"h-9 w-9 rounded-full border border-ink bg-paper shadow-md flex items-center justify-center font-mono text-[9px] text-ink font-bold\">\n          {(angle * (180 / Math.PI)).toFixed(0)}°\n        </div>\n      </div>\n\n      <span className=\"mt-48 font-mono text-[10px] text-graphite tracking-widest uppercase\">\n        Drag Bob & Release\n      </span>\n    </div>\n  );\n}\n",
+      "contentHash": "8df2d38efa1f4da506312f754cad7a99380967ae3f800c0a18e48abffcb78144",
+      "sizeBytes": 2894
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { PhysicsPendulumDial } from \"./physics-pendulum-dial\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <PhysicsPendulumDial />\n    </div>\n  );\n}\n",
+      "contentHash": "c6f2451b1affdbbbde56a3bc3ec9196a7934887b090913b4a9bfc9aa260f4b5a",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "pendulum",
+    "physics",
+    "dial",
+    "gravity",
+    "gauge"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "rotational-drag-release",
+      "visualModel": "pivoted-plumb-bob",
+      "motionModel": "damped-angular-harmonic-oscillator",
+      "layoutModel": "vertically-suspended-gauge",
+      "semanticPurpose": "angle-tilt-meter"
+    }
+  },
+  "url": "https://openui.dev/r/physics-pendulum-dial.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Rotational Drag Release: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

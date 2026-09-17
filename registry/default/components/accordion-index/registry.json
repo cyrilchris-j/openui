@@ -5,15 +5,34 @@
   "title": "Accordion Index",
   "description": "A numbered accordion built on native details/summary so it works without JavaScript, then enhanced with height animation and a hairline index rail.",
   "category": "components",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "accordion-index.tsx", "type": "registry:component" }],
-  "tags": ["accordion", "disclosure", "index"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "accordion-index.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "accordion",
+    "disclosure",
+    "index"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["works-without-js", "reduced-motion-safe", "keyboard-accessible"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "works-without-js",
+      "reduced-motion-safe",
+      "keyboard-accessible"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "editorial",
       "macrostructure": "rail",
@@ -22,6 +41,13 @@
       "motionLanguage": "subtle",
       "typographyStyle": "monospace",
       "colorStrategy": "monochrome"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "disclosure-toggle",
+      "visualModel": "editorial-rule-separated",
+      "layoutModel": "vertical-stacked-list",
+      "semanticPurpose": "content-hierarchy"
     }
   }
 }

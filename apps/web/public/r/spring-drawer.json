@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-drawer",
+  "type": "registry:motion",
+  "title": "Spring Drawer",
+  "description": "A drawer that follows the finger 1:1 during drag and uses a velocity-aware spring on release: fast flicks complete the gesture even past the halfway mark, slow drags need majority travel — gesture semantics done properly.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-drawer.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SpringDrawerProps {\n  children: React.ReactNode;\n  /** Drawer width, px. */\n  width?: number;\n  className?: string;\n}\n\nexport function SpringDrawer({ children, width = 280, className }: SpringDrawerProps) {\n  const [open, setOpen] = useState(false);\n  const panelRef = useRef<HTMLDivElement>(null);\n  const state = useRef({ x: 0, dragging: false, startX: 0, lastX: 0, velocity: 0, raf: null as number | null });\n  const [openState, setOpenState] = useState(open);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  const settle = (target: number) => {\n    const s = state.current;\n    const tick = () => {\n      const force = -0.2 * (s.x - target);\n      s.velocity = (s.velocity + force) * 0.8;\n      s.x += s.velocity;\n      const panel = panelRef.current;\n      if (panel) panel.style.transform = `translateX(${s.x - width}px)`;\n\n      if (Math.abs(s.x - target) > 0.5 || Math.abs(s.velocity) > 0.5) {\n        s.raf = requestAnimationFrame(tick);\n      } else {\n        s.x = target;\n        s.raf = null;\n        setOpenState(target === 0);\n      }\n    };\n    if (s.raf === null) s.raf = requestAnimationFrame(tick);\n  };\n\n  useEffect(() => {\n    const panel = panelRef.current;\n    if (!panel || reduced) return;\n    const s = state.current;\n\n    const onDown = (event: PointerEvent) => {\n      s.dragging = true;\n      s.startX = event.clientX;\n      s.lastX = event.clientX;\n      s.velocity = 0;\n      panel.setPointerCapture(event.pointerId);\n    };\n    const onMove = (event: PointerEvent) => {\n      if (!s.dragging) return;\n      const dx = event.clientX - s.lastX;\n      s.lastX = event.clientX;\n      s.x = Math.max(-width, Math.min(0, s.x + (openState ? dx : dx)));\n      panel.style.transform = `translateX(${s.x - width}px)`;\n    };\n    const onUp = () => {\n      if (!s.dragging) return;\n      s.dragging = false;\n      const flick = s.velocity * 16;\n      const projected = s.x + flick;\n      const shouldOpen = openState ? projected > -width * 0.4 : projected > -width * 0.6;\n      settle(shouldOpen ? 0 : -width);\n    };\n\n    panel.addEventListener(\"pointerdown\", onDown);\n    panel.addEventListener(\"pointermove\", onMove);\n    panel.addEventListener(\"pointerup\", onUp);\n    return () => {\n      panel.removeEventListener(\"pointerdown\", onDown);\n      panel.removeEventListener(\"pointermove\", onMove);\n      panel.removeEventListener(\"pointerup\", onUp);\n    };\n  }, [width, openState, reduced]);\n\n  useEffect(() => {\n    if (reduced) {\n      const panel = panelRef.current;\n      if (panel) panel.style.transform = open ? \"translateX(0)\" : `translateX(-${width}px)`;\n      return;\n    }\n    settle(open ? 0 : -width);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [open, width, reduced]);\n\n  return (\n    <div className={cn(\"relative overflow-hidden rounded-xl border border-line bg-line/20\", className)} style={{ height: 260 }}>\n      <p className=\"absolute inset-x-0 top-4 text-center font-mono text-xs text-ink/50\">drag the panel →</p>\n      <div\n        ref={panelRef}\n        className=\"absolute bottom-0 left-0 top-0 w-72 touch-none cursor-grab overflow-y-auto rounded-r-xl border-r border-line bg-paper p-5 shadow-2xl active:cursor-grabbing\"\n        style={{ transform: `translateX(-${width}px)` }}\n        onClick={() => setOpen(true)}\n        role=\"dialog\"\n        aria-label=\"Spring drawer\"\n        aria-hidden={!openState}\n      >\n        {children}\n      </div>\n    </div>\n  );\n}\n\nexport default SpringDrawer;\n",
+      "contentHash": "4bce27d1e055c54169e97bb447c835d76ceb88ca2924991fcdcfc918682cc709",
+      "sizeBytes": 3657
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SpringDrawer } from \"./spring-drawer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-10\">\n      <SpringDrawer className=\"w-full max-w-md\">\n        <p className=\"font-display text-lg text-ink\">Velocity-aware</p>\n        <p className=\"mt-2 text-sm text-ink/70\">Flick me and I finish the gesture. Drag slowly and I need majority travel.</p>\n      </SpringDrawer>\n    </div>\n  );\n}\n",
+      "contentHash": "8e13220deac5dfacf4a126c466027e67f0dc9e4a4ee43148c32c95f3eb27894f",
+      "sizeBytes": 464
+    }
+  ],
+  "tags": [
+    "drawer",
+    "drag",
+    "velocity",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "drag-to-dismiss",
+      "visualModel": "edge-panel",
+      "motionModel": "velocity-spring-settle",
+      "layoutModel": "overlay",
+      "semanticPurpose": "sheet-navigation"
+    }
+  },
+  "url": "https://openui.dev/r/spring-drawer.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Drag To Dismiss: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

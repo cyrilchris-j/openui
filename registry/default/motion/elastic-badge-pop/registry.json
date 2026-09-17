@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-badge-pop",
+  "type": "registry:motion",
+  "title": "Elastic Badge Pop",
+  "description": "An interactive notification badge pill that squashes and springs into existence with vibrant rubberband momentum.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-badge-pop.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "badge",
+    "pop",
+    "spring",
+    "notification",
+    "pill"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "toggle-pill-pop",
+      "visualModel": "elastic-rubber-badge",
+      "motionModel": "squash-and-stretch-spring",
+      "layoutModel": "inline-pill-indicator",
+      "semanticPurpose": "notification-callout-badge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

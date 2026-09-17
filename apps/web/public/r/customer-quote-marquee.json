@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-quote-marquee",
+  "type": "registry:section",
+  "title": "Customer Quote Marquee",
+  "description": "A continuous sliding ribbon of authentic customer reviews and developer commendations.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-quote-marquee.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CustomerQuoteMarquee({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const quotes = [\n    \"“The single cleanest registry architecture I have ever seen.”\",\n    \"“We dropped 300kb from our initial bundle in one afternoon.”\",\n    \"“Design DNA tokens transformed how we ship design reviews.”\",\n  ];\n\n  return (\n    <section className={cn(\"w-full py-8 border-y border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 overflow-hidden\", className)} {...props}>\n      <div className=\"flex justify-around gap-8 text-xs font-serif italic text-neutral-700 dark:text-neutral-300 max-w-5xl mx-auto px-4\">\n        {quotes.map((q, i) => (\n          <span key={i} className=\"truncate\">{q}</span>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "efa7b9eb79a606917859e69cc9f5bc0b6bef0483a0825bc81c298cb207896d04",
+      "sizeBytes": 870
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CustomerQuoteMarquee } from \"./customer-quote-marquee\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[150px] flex items-center justify-center bg-stone-50 dark:bg-neutral-950\">\n      <CustomerQuoteMarquee />\n    </div>\n  );\n}\n",
+      "contentHash": "a376d7befc8fbdca195e1f18d72420399a8386fa27f2392e20a1ca21b6d3578c",
+      "sizeBytes": 282
+    }
+  ],
+  "tags": [
+    "marquee",
+    "quotes",
+    "reviews",
+    "social-proof",
+    "ribbon"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "testimonials",
+    "fingerprint": {
+      "interactionModel": "customer-quote-marquee-interaction",
+      "visualModel": "customer-quote-marquee-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "customer-quote-marquee-section"
+    }
+  },
+  "url": "https://openui.dev/r/customer-quote-marquee.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Customer Quote Marquee Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

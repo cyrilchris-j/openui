@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circular-aperture-diaphragm",
+  "type": "registry:background",
+  "title": "Circular Aperture Diaphragm",
+  "description": "Mechanical camera lens iris aperture diaphragm blades forming an optical polygonal opening.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circular-aperture-diaphragm.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "aperture",
+    "lens",
+    "camera",
+    "diaphragm",
+    "optics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-camera-aperture",
+      "visualModel": "overlapping-iris-blades",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "photographic-aperture-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

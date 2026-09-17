@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cloth-simulation-banner",
+  "type": "registry:motion",
+  "title": "Cloth Simulation Banner",
+  "description": "A physics-based Verlet integration mesh simulating a woven fabric flag waving dynamically in response to wind velocity.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cloth-simulation-banner.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "cloth",
+    "verlet",
+    "physics",
+    "canvas",
+    "flag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "continuous-wind-oscillation",
+      "visualModel": "quad-mesh-wireframe",
+      "motionModel": "verlet-particle-constraint",
+      "layoutModel": "suspended-flag-canvas",
+      "semanticPurpose": "physics-banner-simulation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

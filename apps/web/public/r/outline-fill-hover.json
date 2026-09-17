@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "outline-fill-hover",
+  "type": "registry:text",
+  "title": "Outline Fill Hover",
+  "description": "Text drawn as a stroke that fills from the reading direction on hover — two stacked copies, the fill one clipped by a width transition, so the fill sweeps like ink soaking into a letter rather than fading in.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "outline-fill-hover.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface OutlineFillHoverProps {\n  children: string;\n  /** Stroke colour at rest. */\n  stroke?: string;\n  /** Fill colour swept in on hover. */\n  fill?: string;\n  href?: string;\n  className?: string;\n}\n\nexport function OutlineFillHover({\n  children,\n  stroke = \"currentColor\",\n  fill = \"#e2624a\",\n  href = \"#\",\n  className,\n}: OutlineFillHoverProps) {\n  return (\n    <a\n      href={href}\n      className={cn(\"group relative inline-block font-display leading-none\", className)}\n      aria-label={children}\n    >\n      <span\n        aria-hidden\n        className=\"inline-block\"\n        style={{ WebkitTextStroke: `1.5px ${stroke}`, color: \"transparent\" }}\n      >\n        {children}\n      </span>\n      <span\n        aria-hidden\n        className=\"absolute inset-0 overflow-hidden whitespace-nowrap\"\n        style={{\n          color: fill,\n          clipPath: \"inset(0 100% 0 0)\",\n          transition: \"clip-path 420ms cubic-bezier(0.2, 0, 0, 1)\",\n        }}\n      >\n        <span className=\"group-hover:[clip-path:inset(0_0_0_0)]\" style={{ display: \"inline-block\" }}>\n          {children}\n        </span>\n      </span>\n      <style>{`.group:hover .absolute { clip-path: inset(0 0 0 0) !important; } @media (prefers-reduced-motion: reduce) { .absolute { transition: none !important } }`}</style>\n      <span className=\"sr-only\">{children}</span>\n    </a>\n  );\n}\n\nexport default OutlineFillHover;\n",
+      "contentHash": "27ec4229c0dc3bc20c3f00dfefbd7bab3db7d79676630b790a58d1b168a6ee78",
+      "sizeBytes": 1435
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { OutlineFillHover } from \"./outline-fill-hover\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <OutlineFillHover className=\"text-step-4 text-ink\">Flood</OutlineFillHover>\n    </div>\n  );\n}\n",
+      "contentHash": "3fafa5e9d2e68c0a888bd1cd6ea1a197064fda2415f91b55f377bbefccf0f1f8",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "outline",
+    "fill",
+    "hover",
+    "ink"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "hover-fill",
+      "visualModel": "stroke-plus-clipped-fill",
+      "motionModel": "directional-sweep",
+      "layoutModel": "inline",
+      "semanticPurpose": "link-emphasis"
+    }
+  },
+  "url": "https://openui.dev/r/outline-fill-hover.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: Expressive\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- Hover Fill: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

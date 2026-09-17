@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-cli-cheatsheet",
+  "type": "registry:section",
+  "title": "Developer CLI Cheatsheet",
+  "description": "A reference card mapping key CLI subcommands, options, and environmental variables.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-cli-cheatsheet.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "cli",
+    "cheatsheet",
+    "terminal",
+    "commands",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "developer-cli-cheatsheet-interaction",
+      "visualModel": "developer-cli-cheatsheet-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "developer-cli-cheatsheet-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "dense",
+      "genre": "technical"
+    }
+  }
+}

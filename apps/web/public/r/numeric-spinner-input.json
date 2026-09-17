@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "numeric-spinner-input",
+  "type": "registry:component",
+  "title": "Numeric Spinner Input",
+  "description": "A text field with integrated stepper chevron buttons for integer increments.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "numeric-spinner-input.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface NumericSpinnerInputProps {\n  className?: string;\n}\n\nexport function NumericSpinnerInput({ className }: NumericSpinnerInputProps) {\n  const [val, setVal] = useState(10);\n\n  return (\n    <div className={cn(\"inline-flex items-center rounded-lg border border-line bg-paper p-1 shadow-sm font-mono text-xs\", className)}>\n      <span className=\"px-3 font-bold text-ink\">{val}</span>\n      <div className=\"flex flex-col border-l border-line pl-1\">\n        <button type=\"button\" onClick={() => setVal((v) => v + 1)} className=\"px-1 hover:bg-line/20\">\n          ▲\n        </button>\n        <button type=\"button\" onClick={() => setVal((v) => Math.max(0, v - 1))} className=\"px-1 hover:bg-line/20\">\n          ▼\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default NumericSpinnerInput;\n",
+      "contentHash": "8ada9fe6fa95a11cb82a196277465199dbe94cb2e2f73f36c198b2e2ed71dac7",
+      "sizeBytes": 888
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { NumericSpinnerInput } from \"./numeric-spinner-input\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <NumericSpinnerInput />\n    </div>\n  );\n}\n",
+      "contentHash": "562613937625404962e053b324ad123202144399454c9c82d5c72d50d5344a59",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "spinner",
+    "input",
+    "stepper",
+    "controls",
+    "numeric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "spinner-stepper-entry",
+      "visualModel": "chevron-stepper-box",
+      "motionModel": "none",
+      "layoutModel": "compact-spinner-input",
+      "semanticPurpose": "numeric-spinner-field"
+    }
+  },
+  "url": "https://openui.dev/r/numeric-spinner-input.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Spinner Stepper Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "thermal-print-type",
+  "type": "registry:text",
+  "title": "Thermal Print Type",
+  "description": "Text emerges as if printed by a receipt printer: a hard clip line sweeps downward in steps while a dither mask fades in behind it, with the characteristic slight horizontal jitter of a misaligned head.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "thermal-print-type.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ThermalPrintTypeProps {\n  children: string;\n  /** Total print duration in ms. */\n  durationMs?: number;\n  className?: string;\n}\n\nexport function ThermalPrintType({ children, durationMs = 1400, className }: ThermalPrintTypeProps) {\n  const { ref, inView } = useInView<HTMLSpanElement>({ once: true });\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const printed = inView || Boolean(reduced);\n\n  return (\n    <span ref={ref} className={cn(\"block\", className)} role=\"text\" aria-label={children}>\n      <style>{`@keyframes openui-head-jitter { 0%, 100% { transform: translateX(0) } 25% { transform: translateX(-1px) } 60% { transform: translateX(1px) } } @media (prefers-reduced-motion: reduce) { .openui-thermal { animation: none !important; clip-path: inset(0 0 0 0) !important } }`}</style>\n      <span\n        aria-hidden\n        className=\"openui-thermal relative block font-mono\"\n        style={{\n          clipPath: printed ? \"inset(0 0 0 0)\" : \"inset(0 100% 0 0)\",\n          transition: `clip-path ${durationMs}ms steps(24, end)`,\n          animation: printed ? \"openui-head-jitter 120ms linear 6\" : undefined,\n        }}\n      >\n        <span\n          className=\"block\"\n          style={{\n            backgroundImage:\n              \"radial-gradient(rgba(0,0,0,0.28) 1px, transparent 1.4px)\",\n            backgroundSize: \"3px 3px\",\n            WebkitBackgroundClip: \"text\",\n            backgroundClip: \"text\",\n            color: \"transparent\",\n            WebkitTextStroke: \"0.5px currentColor\",\n            opacity: printed ? 1 : 0,\n            transition: `opacity ${durationMs * 0.6}ms ease ${durationMs * 0.4}ms`,\n          }}\n        >\n          {children}\n        </span>\n      </span>\n    </span>\n  );\n}\n\nexport default ThermalPrintType;\n",
+      "contentHash": "e05a9863b93a88f14473c89b2a6adca9692e2e195475c037d71b14db0ff0e9de",
+      "sizeBytes": 1943
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ThermalPrintType } from \"./thermal-print-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <ThermalPrintType className=\"text-step-3 text-ink\">\n        *** ORDER 0042 CONFIRMED ***\n      </ThermalPrintType>\n    </div>\n  );\n}\n",
+      "contentHash": "4da0a7ea34a9079ec70e94d3b879b0e1960a6c3cb4f1db9f3f756a3477eea134",
+      "sizeBytes": 324
+    }
+  ],
+  "tags": [
+    "thermal",
+    "receipt",
+    "dither",
+    "print"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "clip-line-plus-dither",
+      "motionModel": "stepped-sweep",
+      "layoutModel": "block",
+      "semanticPurpose": "narrative-accent"
+    }
+  },
+  "url": "https://openui.dev/r/thermal-print-type.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

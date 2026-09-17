@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "database-query-runner",
+  "type": "registry:block",
+  "title": "Database Query Runner",
+  "description": "An SQL workbench featuring query input, execution benchmark timer, and structured result record grid.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "database-query-runner.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DatabaseQueryRunner({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [query, setQuery] = React.useState(\"SELECT name, category, status FROM registry_items LIMIT 3;\");\n\n  const results = [\n    { name: \"SplitHeadlineHero\", category: \"sections\", status: \"verified\" },\n    { name: \"MagneticButton\", category: \"interactions\", status: \"verified\" },\n    { name: \"HolyGrailLayout\", category: \"layouts\", status: \"verified\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-3 border-b border-neutral-800 mb-3\">\n        <span className=\"text-white font-bold\">PostgreSQL Console (Isolate Pool)</span>\n        <span className=\"text-emerald-400\">0.8ms query time</span>\n      </div>\n      <div className=\"p-3 bg-neutral-900 rounded border border-neutral-800 text-neutral-300 mb-3\">\n        {query}\n      </div>\n      <div className=\"border border-neutral-800 rounded overflow-hidden\">\n        <div className=\"grid grid-cols-3 bg-neutral-900 p-2 font-bold text-neutral-400\">\n          <div>name</div>\n          <div>category</div>\n          <div>status</div>\n        </div>\n        <div className=\"divide-y divide-neutral-800\">\n          {results.map((r) => (\n            <div key={r.name} className=\"grid grid-cols-3 p-2 text-neutral-200\">\n              <div>{r.name}</div>\n              <div>{r.category}</div>\n              <div className=\"text-emerald-400\">{r.status}</div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "de138ee0585c6cf46c426e8103d44d8d02f017f1627d5ac6541b8d73094d4d0c",
+      "sizeBytes": 1770
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DatabaseQueryRunner } from \"./database-query-runner\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-900\">\n      <DatabaseQueryRunner />\n    </div>\n  );\n}\n",
+      "contentHash": "17ab63e0f945e755cb25dacc137cc4c4d60194108cd05c644d37c31d3a1120aa",
+      "sizeBytes": 266
+    }
+  ],
+  "tags": [
+    "sql",
+    "database",
+    "query",
+    "tables",
+    "records"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "database",
+    "fingerprint": {
+      "interactionModel": "sql-query-execution-and-results-grid",
+      "visualModel": "database-console-workbench",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "database-query-inspection"
+    }
+  },
+  "url": "https://openui.dev/r/database-query-runner.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Sql Query Execution And Results Grid: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ticker-tape-deltas",
+  "type": "registry:text",
+  "title": "Ticker Tape Deltas",
+  "description": "A stock-quote tape: symbols scroll horizontally while up/down deltas render as triangle glyphs with tabular numerals, ticking live values and flashing the cell background on change like a trading terminal.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ticker-tape-deltas.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "ticker",
+    "quotes",
+    "deltas",
+    "live"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "scrolling-quote-tape",
+      "motionModel": "marquee-with-flash",
+      "layoutModel": "rail",
+      "semanticPurpose": "market-data"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    }
+  }
+}

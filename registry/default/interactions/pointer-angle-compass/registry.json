@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pointer-angle-compass",
+  "type": "registry:interaction",
+  "title": "Pointer Angle Compass",
+  "description": "A navigational compass reticle whose needle tracks instantaneous bearing angle toward pointer cursor.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pointer-angle-compass.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "compass",
+    "angle",
+    "pointer",
+    "bearing",
+    "reticle"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "vector-bearing-tracking",
+      "visualModel": "calibrated-mariner-compass",
+      "motionModel": "continuous-bearing-rotation",
+      "layoutModel": "centered-compass-rosette",
+      "semanticPurpose": "navigational-bearing-dial"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

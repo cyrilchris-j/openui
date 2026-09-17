@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "partner-tier-ecosystem",
+  "type": "registry:section",
+  "title": "Partner Tier Ecosystem",
+  "description": "An alliance and certified consultancy network grid showcasing technology partners, tiers, and certification marks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "partner-tier-ecosystem.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PartnerItem {\n  name: string;\n  tier: \"Global Elite\" | \"Premier Partner\" | \"Authorized\";\n  specialty: string;\n  region: string;\n}\n\nexport interface PartnerTierEcosystemProps extends React.HTMLAttributes<HTMLElement> {\n  partners?: PartnerItem[];\n}\n\nconst DEFAULT_PARTNERS: PartnerItem[] = [\n  { name: \"Vercel Enterprise\", tier: \"Global Elite\", specialty: \"Edge Runtime & Next.js Deployment\", region: \"Worldwide\" },\n  { name: \"Cloudflare Workers\", tier: \"Global Elite\", specialty: \"V8 Compute & DDoS Shield\", region: \"Worldwide\" },\n  { name: \"Supabase\", tier: \"Premier Partner\", specialty: \"PostgreSQL & Realtime Sync\", region: \"North America / EMEA\" },\n  { name: \"Railway Systems\", tier: \"Premier Partner\", specialty: \"Container Orchestration\", region: \"Global\" },\n  { name: \"Resend Email\", tier: \"Authorized\", specialty: \"Transactional Message Pipeline\", region: \"Americas\" },\n  { name: \"Linear Systems\", tier: \"Authorized\", specialty: \"Engineering Project Sync\", region: \"Global\" },\n];\n\nexport function PartnerTierEcosystem({\n  partners = DEFAULT_PARTNERS,\n  className,\n  ...props\n}: PartnerTierEcosystemProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold\">\n          Alliances\n        </span>\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n          Certified Ecosystem Partners\n        </h2>\n        <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2\">\n          Backed by leading cloud infrastructure providers and developer-first platforms.\n        </p>\n      </div>\n\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4\">\n        {partners.map((partner) => (\n          <div\n            key={partner.name}\n            className=\"p-5 border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 rounded flex flex-col justify-between\"\n          >\n            <div>\n              <div className=\"flex items-center justify-between\">\n                <h3 className=\"text-sm font-bold text-neutral-900 dark:text-neutral-100\">\n                  {partner.name}\n                </h3>\n                <span className=\"text-[10px] font-mono uppercase px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700\">\n                  {partner.tier}\n                </span>\n              </div>\n              <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2\">\n                {partner.specialty}\n              </p>\n            </div>\n            <div className=\"text-[10px] font-mono text-neutral-400 mt-4 pt-2 border-t border-neutral-200 dark:border-neutral-800\">\n              Region: {partner.region}\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "0d27a2361bdbdb6a6c553ecf3e5075aed38a66b67f843754ad6dee4abe04d64e",
+      "sizeBytes": 3102
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { PartnerTierEcosystem } from \"./partner-tier-ecosystem\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-950\">\n      <PartnerTierEcosystem />\n    </div>\n  );\n}\n",
+      "contentHash": "a4904fdcec19251d053ef6445f927693e4b7b195558d5ddb8c80abb909c55dbd",
+      "sizeBytes": 289
+    }
+  ],
+  "tags": [
+    "partners",
+    "ecosystem",
+    "integrations",
+    "alliances",
+    "certifications"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "partners",
+    "fingerprint": {
+      "interactionModel": "partner-tier-ecosystem-interaction",
+      "visualModel": "partner-tier-ecosystem-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "partner-tier-ecosystem-section"
+    }
+  },
+  "url": "https://openui.dev/r/partner-tier-ecosystem.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Partner Tier Ecosystem Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

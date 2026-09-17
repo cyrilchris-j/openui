@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "flip-clock-digits",
+  "type": "registry:text",
+  "title": "Flip Clock Digits",
+  "description": "Split-flap style digit transitions: each changing digit folds through a two-panel rotateX with a shadow phase, built on real 3D transforms with backface culling and per-digit stagger.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "flip-clock-digits.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nfunction FlipDigit({ digit }: { digit: string }) {\n  const [current, setCurrent] = React.useState(digit);\n  const [flipping, setFlipping] = React.useState(false);\n\n  React.useEffect(() => {\n    if (digit === current) return;\n    setFlipping(true);\n    const timeout = window.setTimeout(() => {\n      setCurrent(digit);\n      setFlipping(false);\n    }, 320);\n    return () => window.clearTimeout(timeout);\n  }, [digit, current]);\n\n  return (\n    <span\n      className=\"relative inline-block h-[1.6em] w-[1ch] overflow-hidden align-bottom font-mono text-ink\"\n      style={{ perspective: \"220px\" }}\n      aria-hidden\n    >\n      <span\n        className=\"absolute inset-0 flex items-start justify-center\"\n        style={{\n          transformOrigin: \"50% 100%\",\n          transformStyle: \"preserve-3d\",\n          backfaceVisibility: \"hidden\",\n          transition: \"transform 320ms cubic-bezier(0.4, 0, 0.2, 1)\",\n          transform: flipping ? \"rotateX(-90deg)\" : \"rotateX(0)\",\n        }}\n      >\n        {current}\n      </span>\n      <span\n        className=\"absolute inset-0 flex items-end justify-center\"\n        style={{\n          transformOrigin: \"50% 0%\",\n          transformStyle: \"preserve-3d\",\n          backfaceVisibility: \"hidden\",\n          transition: \"transform 320ms cubic-bezier(0.4, 0, 0.2, 1)\",\n          transform: flipping ? \"rotateX(0)\" : \"rotateX(90deg)\",\n        }}\n      >\n        {digit}\n      </span>\n      <span className=\"absolute left-0 right-0 top-1/2 h-px bg-ink/20\" aria-hidden />\n    </span>\n  );\n}\n\nexport interface FlipClockDigitsProps {\n  /** Numeric value; each digit flips independently. */\n  value: number;\n  /** Minimum digit count, zero-padded. */\n  digits?: number;\n  className?: string;\n}\n\nexport function FlipClockDigits({ value, digits = 2, className }: FlipClockDigitsProps) {\n  const padded = String(Math.max(0, Math.floor(value))).padStart(digits, \"0\");\n  return (\n    <span className={cn(\"inline-flex gap-0.5\", className)} role=\"status\" aria-label={String(value)}>\n      {[...padded].map((digit, index) => (\n        <FlipDigit key={`${index}-${digit}`} digit={digit} />\n      ))}\n    </span>\n  );\n}\n\nexport default FlipClockDigits;\n",
+      "contentHash": "0a982ff0079c3bbe099d09e09e335e96a6f7c61a023bd6784d4a51580c3a12bc",
+      "sizeBytes": 2256
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { useEffect, useState } from \"react\";\nimport { FlipClockDigits } from \"./flip-clock-digits\";\n\nexport default function Demo() {\n  const [seconds, setSeconds] = useState(0);\n  useEffect(() => {\n    const timer = window.setInterval(() => setSeconds((value) => (value + 1) % 60), 1000);\n    return () => window.clearInterval(timer);\n  }, []);\n\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <FlipClockDigits value={seconds} digits={2} className=\"text-step-4\" />\n    </div>\n  );\n}\n",
+      "contentHash": "45921e649e6582f0ca6220258478465937bbf21e0bddc16c308a1ecdc47cb2f3",
+      "sizeBytes": 536
+    }
+  ],
+  "tags": [
+    "flip",
+    "clock",
+    "split-flap",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "numeric",
+    "fingerprint": {
+      "interactionModel": "value-change",
+      "visualModel": "split-flap-panel",
+      "motionModel": "rotate-x-fold",
+      "layoutModel": "rail",
+      "semanticPurpose": "live-counter"
+    }
+  },
+  "url": "https://openui.dev/r/flip-clock-digits.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Value Change: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

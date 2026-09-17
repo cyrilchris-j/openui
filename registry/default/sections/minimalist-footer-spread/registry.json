@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "minimalist-footer-spread",
+  "type": "registry:section",
+  "title": "Minimalist Footer Spread",
+  "description": "Complete site footer with brand declaration, categorical link columns, license metadata, and status beacon.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "minimalist-footer-spread.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "footer",
+    "sitemap",
+    "links",
+    "brand",
+    "legal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "footer",
+    "fingerprint": {
+      "interactionModel": "footer-sitemap-navigation",
+      "visualModel": "four-column-footer-spread",
+      "motionModel": "none",
+      "layoutModel": "columnar-footer-layout",
+      "semanticPurpose": "site-terminal-footer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

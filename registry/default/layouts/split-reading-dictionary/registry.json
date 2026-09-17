@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-reading-dictionary",
+  "type": "registry:layout",
+  "title": "Split Reading Dictionary",
+  "description": "Glossary lookup layout: alphabetical term list on left and comprehensive term definition on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-reading-dictionary.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "dictionary",
+    "glossary",
+    "terms",
+    "split",
+    "lookup"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "glossary-term-selection",
+      "visualModel": "dictionary-term-and-definition",
+      "motionModel": "none",
+      "layoutModel": "two-column-glossary-split",
+      "semanticPurpose": "glossary-lookup-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

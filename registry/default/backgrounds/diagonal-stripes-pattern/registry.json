@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "diagonal-stripes-pattern",
+  "type": "registry:background",
+  "title": "Diagonal Stripes Pattern",
+  "description": "Ultra-fine minimal 45-degree pinstripes with high-contrast subtle rhythm.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "diagonal-stripes-pattern.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "stripes",
+    "diagonal",
+    "pattern",
+    "minimal",
+    "texture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-pinstripe-backdrop",
+      "visualModel": "fine-diagonal-striping",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "minimalist-stripe-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

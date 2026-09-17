@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-webhook-debugger",
+  "type": "registry:block",
+  "title": "Developer Webhook Debugger",
+  "description": "An interactive webhook payload simulator with JSON syntax validation and instant HTTP response inspector.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-webhook-debugger.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeveloperWebhookDebugger({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-white mb-3\">Payload Replay Simulator</h3>\n      <div className=\"p-3 bg-neutral-900 rounded border border-neutral-800 text-emerald-400 mb-3\">\n        &#123; \"event\": \"resource.materialized\", \"count\": 800 &#125;\n      </div>\n      <button type=\"button\" className=\"w-full py-2 bg-emerald-600 text-white font-bold rounded\">\n        Dispatch Test Event →\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "546c9f9a296f892b8a8faab424da887502be7b4db4aa9c5c37da86486921f4ee",
+      "sizeBytes": 798
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DeveloperWebhookDebugger } from \"./developer-webhook-debugger\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-900\">\n      <DeveloperWebhookDebugger />\n    </div>\n  );\n}\n",
+      "contentHash": "3d0cb55a143576cfea29d9be783ff8dd3b91d04de30928e48a6af47494354338",
+      "sizeBytes": 281
+    }
+  ],
+  "tags": [
+    "webhooks",
+    "debugger",
+    "replay",
+    "json",
+    "api"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "webhooks",
+    "fingerprint": {
+      "interactionModel": "webhook-payload-replay-sandbox",
+      "visualModel": "debugger-payload-console",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "webhook-endpoint-debugging"
+    }
+  },
+  "url": "https://openui.dev/r/developer-webhook-debugger.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Webhook Payload Replay Sandbox: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "deployment-environment-diff",
+  "type": "registry:block",
+  "title": "Deployment Environment Diff",
+  "description": "A side-by-side environment inspector comparing staging vs production configuration variables.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "deployment-environment-diff.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeploymentEnvironmentDiff({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-white mb-3\">Environment Config Diff</h3>\n      <div className=\"grid grid-cols-2 gap-4\">\n        <div className=\"p-3 rounded bg-neutral-900 border border-neutral-800\">\n          <div className=\"font-bold text-amber-400 mb-2\">Staging (Preview)</div>\n          <div>DATABASE_URL=postgres://preview:5432</div>\n          <div>CACHE_TTL=60s</div>\n        </div>\n        <div className=\"p-3 rounded bg-neutral-900 border border-neutral-800\">\n          <div className=\"font-bold text-emerald-400 mb-2\">Production (Live)</div>\n          <div>DATABASE_URL=postgres://prod:5432</div>\n          <div>CACHE_TTL=86400s</div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "78bc2a267bd445e08eb53996a8cc164475bea20312350ae462a33905011ef1da",
+      "sizeBytes": 1070
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DeploymentEnvironmentDiff } from \"./deployment-environment-diff\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-900\">\n      <DeploymentEnvironmentDiff />\n    </div>\n  );\n}\n",
+      "contentHash": "d9d207e336762c2eb2a2aa157de0994365c395cf8423ac8fc24c85dfe80f13dc",
+      "sizeBytes": 284
+    }
+  ],
+  "tags": [
+    "env",
+    "diff",
+    "devops",
+    "staging",
+    "production"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "env-variable-diff-comparison",
+      "visualModel": "side-by-side-config-diff",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "environment-variable-comparison"
+    }
+  },
+  "url": "https://openui.dev/r/deployment-environment-diff.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Env Variable Diff Comparison: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

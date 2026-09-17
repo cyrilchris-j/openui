@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-comparison-slider",
+  "type": "registry:layout",
+  "title": "Split Comparison Slider",
+  "description": "Before-and-after visual comparison framework with center boundary line.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-comparison-slider.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitComparisonSliderProps extends React.HTMLAttributes<HTMLDivElement> {\n  before?: React.ReactNode;\n  after?: React.ReactNode;\n}\n\nexport function SplitComparisonSlider({ before, after, className, ...props }: SplitComparisonSliderProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 h-64 max-w-2xl mx-auto rounded-2xl overflow-hidden border border-line relative font-mono text-xs\", className)} {...props}>\n      <div className=\"bg-surface/50 p-4 flex items-center justify-center border-r border-accent\">{before}</div>\n      <div className=\"bg-paper p-4 flex items-center justify-center\">{after}</div>\n      <div className=\"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center font-bold text-[10px]\">\n        ⟷\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "3920560df05ba720be6ea39317a76cc2382fb6a5130af84069cf25b56001b6c2",
+      "sizeBytes": 898
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitComparisonSlider } from \"./split-comparison-slider\";\n\nexport default function SplitComparisonSliderDemo() {\n  return (\n    <SplitComparisonSlider\n      before={<div>Raw CSS (Uncurated)</div>}\n      after={<div>OpenUI Token Registry</div>}\n    />\n  );\n}\n",
+      "contentHash": "18692b74f39c08c0e46892ec29d5a257b2ee46429c54f45ff6033fe6c208594d",
+      "sizeBytes": 282
+    }
+  ],
+  "tags": [
+    "comparison",
+    "slider",
+    "before-after",
+    "split",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "before-after-divider",
+      "visualModel": "dual-layer-comparison-stage",
+      "motionModel": "none",
+      "layoutModel": "center-split-comparison",
+      "semanticPurpose": "visual-regression-inspection"
+    }
+  },
+  "url": "https://openui.dev/r/split-comparison-slider.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Before After Divider: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

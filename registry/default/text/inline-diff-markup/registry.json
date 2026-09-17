@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inline-diff-markup",
+  "type": "registry:text",
+  "title": "Inline Diff Markup",
+  "description": "Renders edits the way copyeditors mark them: insertions underlined in green, deletions struck in red — computed from a real word-level LCS diff, not hand-authored spans, so any two strings can be compared.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inline-diff-markup.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "diff",
+    "lcs",
+    "editing",
+    "compare"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "lcs-word-diff",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "change-review"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    }
+  }
+}

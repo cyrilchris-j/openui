@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "authentication-split-card",
+  "type": "registry:block",
+  "title": "Authentication Split Card",
+  "description": "A dual-mode authentication card supporting sign-in, account creation, OAuth social connectors, and magic links.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "authentication-split-card.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function AuthenticationSplitCard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [isSignUp, setIsSignUp] = React.useState(false);\n  const [email, setEmail] = React.useState(\"\");\n\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-6 sm:p-8 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-lg\", className)} {...props}>\n      <div className=\"text-center mb-6\">\n        <h3 className=\"text-xl font-bold text-neutral-900 dark:text-white\">\n          {isSignUp ? \"Create your workspace\" : \"Welcome back to OpenUI\"}\n        </h3>\n        <p className=\"text-xs text-neutral-500 mt-1\">\n          {isSignUp ? \"Join 10,000+ teams building zero-dependency web apps\" : \"Enter your credentials or continue with OAuth\"}\n        </p>\n      </div>\n\n      <div className=\"space-y-3\">\n        <button\n          type=\"button\"\n          className=\"w-full py-2.5 px-4 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2\"\n        >\n          <span>Continue with GitHub</span>\n        </button>\n        <button\n          type=\"button\"\n          className=\"w-full py-2.5 px-4 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-xs font-semibold text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2\"\n        >\n          <span>Continue with Google</span>\n        </button>\n      </div>\n\n      <div className=\"relative my-6 text-center\">\n        <div className=\"absolute inset-0 flex items-center\"><div className=\"w-full border-t border-neutral-200 dark:border-neutral-800\" /></div>\n        <span className=\"relative px-3 bg-white dark:bg-neutral-950 text-[11px] font-mono text-neutral-400 uppercase\">Or email</span>\n      </div>\n\n      <form onSubmit={(e) => e.preventDefault()} className=\"space-y-3 text-xs\">\n        <div>\n          <label className=\"block font-medium text-neutral-700 dark:text-neutral-300 mb-1\">Work Email</label>\n          <input\n            type=\"email\"\n            value={email}\n            onChange={(e) => setEmail(e.target.value)}\n            placeholder=\"you@company.com\"\n            required\n            className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-1 focus:ring-emerald-500\"\n          />\n        </div>\n        <button\n          type=\"submit\"\n          className=\"w-full py-2.5 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors\"\n        >\n          {isSignUp ? \"Sign Up with Email\" : \"Sign In with Magic Link\"}\n        </button>\n      </form>\n\n      <div className=\"mt-6 text-center text-xs text-neutral-500\">\n        {isSignUp ? \"Already have an account? \" : \"Don't have an account? \"}\n        <button\n          type=\"button\"\n          onClick={() => setIsSignUp(!isSignUp)}\n          className=\"font-semibold text-emerald-600 dark:text-emerald-400 hover:underline\"\n        >\n          {isSignUp ? \"Sign In\" : \"Sign Up\"}\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "bfd97700f5fc01663bc1e743bed5f537776b1536aab3b1be7c255d0e84879db5",
+      "sizeBytes": 3504
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { AuthenticationSplitCard } from \"./authentication-split-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[450px] p-4 flex items-center justify-center bg-neutral-50 dark:bg-neutral-900\">\n      <AuthenticationSplitCard />\n    </div>\n  );\n}\n",
+      "contentHash": "a37d16f64035f8be053cc0c1f6bfe5dd0998f617cc68a9469c7f613cc3f6a720",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "auth",
+    "login",
+    "signup",
+    "oauth",
+    "credentials"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "auth",
+    "fingerprint": {
+      "interactionModel": "tabbed-auth-mode-switch",
+      "visualModel": "centered-split-form-card",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "user-identity-access"
+    }
+  },
+  "url": "https://openui.dev/r/authentication-split-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Tabbed Auth Mode Switch: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

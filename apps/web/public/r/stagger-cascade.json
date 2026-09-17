@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stagger-cascade",
+  "type": "registry:motion",
+  "title": "Stagger Cascade",
+  "description": "Child elements enter in sequence where each successive delay is computed from the previous child's actual animation end (not a fixed step) — cascades that stay correct even when children have different durations.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "stagger-cascade.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StaggerCascadeProps {\n  children: React.ReactNode[];\n  /** Base duration per child, ms; delays chain from actual completion. */\n  childDurationMs?: number;\n  className?: string;\n}\n\nexport function StaggerCascade({ children, childDurationMs = 420, className }: StaggerCascadeProps) {\n  const { ref, inView } = useInView<HTMLUListElement>({ once: true });\n  const [visibleCount, setVisibleCount] = useState(0);\n  const timeouts = useRef<number[]>([]);\n\n  useEffect(() => {\n    if (!inView) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setVisibleCount(children.length);\n      return;\n    }\n    // Chain: child i starts when child i-1 has half-finished — the cascade\n    // overlaps like dominoes rather than marching metronomically.\n    let elapsed = 0;\n    children.forEach((_, index) => {\n      elapsed += index === 0 ? 0 : childDurationMs * 0.45;\n      timeouts.current.push(\n        window.setTimeout(() => setVisibleCount(index + 1), elapsed),\n      );\n    });\n    return () => {\n      timeouts.current.forEach((timer) => window.clearTimeout(timer));\n      timeouts.current = [];\n    };\n  }, [inView, children.length, childDurationMs]);\n\n  return (\n    <ul ref={ref} className={cn(\"flex flex-col gap-3\", className)}>\n      {children.map((child, index) => (\n        <li\n          key={index}\n          className=\"will-change-transform\"\n          style={{\n            opacity: index < visibleCount ? 1 : 0,\n            transform: index < visibleCount ? \"translateX(0)\" : \"translateX(-16px)\",\n            transition: \"opacity 300ms ease, transform 420ms cubic-bezier(0.2, 0, 0, 1)\",\n          }}\n        >\n          {child}\n        </li>\n      ))}\n    </ul>\n  );\n}\n\nexport default StaggerCascade;\n",
+      "contentHash": "6e61abdc90be6b696bbce0ed7c16e2e235573a62c663e92131a0d7ac18f3236b",
+      "sizeBytes": 1908
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { StaggerCascade } from \"./stagger-cascade\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <StaggerCascade className=\"w-72\">\n        <div className=\"rounded-lg border border-line bg-paper p-4 text-ink\">Registry schema</div>\n        <div className=\"rounded-lg border border-line bg-paper p-4 text-ink\">Validated metadata</div>\n        <div className=\"rounded-lg border border-line bg-paper p-4 text-ink\">Mounted demos</div>\n        <div className=\"rounded-lg border border-line bg-paper p-4 text-ink\">Published resources</div>\n      </StaggerCascade>\n    </div>\n  );\n}\n",
+      "contentHash": "6abe16a1a3203f17c30a5eaaf63292b48a79a1ea852d9af113999c13373d63e5",
+      "sizeBytes": 663
+    }
+  ],
+  "tags": [
+    "stagger",
+    "cascade",
+    "sequence",
+    "entrance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "child-sequence-entrance",
+      "motionModel": "measured-chained-delays",
+      "layoutModel": "stack",
+      "semanticPurpose": "list-entrance"
+    }
+  },
+  "url": "https://openui.dev/r/stagger-cascade.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

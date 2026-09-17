@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "braille-dual-render",
+  "type": "registry:text",
+  "title": "Braille Dual Render",
+  "description": "Renders a phrase in both Latin type and Unicode braille side by side, with per-cell dot animation on value change and real screen-reader behaviour (Latin spoken, braille aria-hidden decoration).",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "braille-dual-render.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nconst MAP: Record<string, string> = {\n  a: \"\\u2801\", b: \"\\u2803\", c: \"\\u2809\", d: \"\\u2819\", e: \"\\u2811\", f: \"\\u280b\", g: \"\\u281b\",\n  h: \"\\u2813\", i: \"\\u280a\", j: \"\\u281a\", k: \"\\u2805\", l: \"\\u2807\", m: \"\\u280d\", n: \"\\u281d\",\n  o: \"\\u2815\", p: \"\\u280f\", q: \"\\u281f\", r: \"\\u2817\", s: \"\\u280e\", t: \"\\u281e\", u: \"\\u2825\",\n  v: \"\\u2827\", w: \"\\u283a\", x: \"\\u282d\", y: \"\\u283d\", z: \"\\u2835\", \" \": \"\\u2800\",\n};\n\nexport interface BrailleDualRenderProps {\n  children: string;\n  className?: string;\n}\n\nexport function BrailleDualRender({ children, className }: BrailleDualRenderProps) {\n  const [dots, setDots] = useState(() => toBraille(children));\n\n  useEffect(() => {\n    setDots(toBraille(children));\n  }, [children]);\n\n  return (\n    <span className={cn(\"inline-flex flex-col gap-2\", className)}>\n      <span className=\"font-display text-lg text-ink\">{children}</span>\n      <span aria-hidden className=\"select-none font-mono text-2xl leading-none tracking-[0.2em] text-ink/85\">\n        {dots}\n      </span>\n    </span>\n  );\n}\n\nfunction toBraille(text: string): string {\n  return [...text.toLowerCase()].map((char) => MAP[char] ?? \"\\u2800\").join(\"\");\n}\n\nexport default BrailleDualRender;\n",
+      "contentHash": "6c6877ebca684ebebfc3d2926d9bccdf5a3176bae51d36cbe18b67d9ea98bf1f",
+      "sizeBytes": 1273
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BrailleDualRender } from \"./braille-dual-render\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <BrailleDualRender>Open to all</BrailleDualRender>\n    </div>\n  );\n}\n",
+      "contentHash": "b6162d4f31e84b858e406d9d9e1697a441fe9ec00e9841ad25d8c14d3ad25c30",
+      "sizeBytes": 262
+    }
+  ],
+  "tags": [
+    "braille",
+    "accessible",
+    "dual",
+    "dot-matrix"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "value-sync",
+      "visualModel": "dual-script-render",
+      "motionModel": "dot-cascade",
+      "layoutModel": "stacked",
+      "semanticPurpose": "inclusive-display"
+    }
+  },
+  "url": "https://openui.dev/r/braille-dual-render.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Value Sync: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

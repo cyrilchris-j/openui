@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "idle-float-loop",
+  "type": "registry:motion",
+  "title": "Idle Float Loop",
+  "description": "Multi-element idle float where each child bobs on its own sine wave with independent amplitude, period and phase — a still-life that breathes, with the entire system pausing via one reduced-motion check.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "idle-float-loop.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "float",
+    "idle",
+    "sine",
+    "breathing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "phase-offset-bobbing",
+      "motionModel": "sine-wave-superposition",
+      "layoutModel": "scatter",
+      "semanticPurpose": "ambient-life"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "scatter",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "pastel"
+    }
+  }
+}

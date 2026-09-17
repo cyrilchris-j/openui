@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "parallax-layer-stack",
+  "type": "registry:motion",
+  "title": "Parallax Layer Stack",
+  "description": "Depth from scroll: three planes move at different rates (background 0.3×, mid 0.6×, foreground 1.2×) with depths declared per layer, plus a gentle scale falloff so far planes feel genuinely distant.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "parallax-layer-stack.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "parallax",
+    "depth",
+    "scroll",
+    "layers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "multi-speed-planes",
+      "motionModel": "depth-rate-parallax",
+      "layoutModel": "layered",
+      "semanticPurpose": "depth-narrative"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "pastel"
+    }
+  }
+}

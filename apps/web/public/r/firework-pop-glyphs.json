@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "firework-pop-glyphs",
+  "type": "registry:text",
+  "title": "Firework Pop Glyphs",
+  "description": "Celebration typography: on trigger, each glyph fires once — pops upward with rotation, bursts into two spark pseudo-elements that fly apart, then the glyph re-seats with an overshoot settle. One shot per click.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "firework-pop-glyphs.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FireworkPopGlyphsProps {\n  children: string;\n  className?: string;\n}\n\nexport function FireworkPopGlyphs({ children, className }: FireworkPopGlyphsProps) {\n  const [burst, setBurst] = useState(0);\n  const reduced = useRef(\n    typeof window !== \"undefined\" &&\n      window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches,\n  );\n\n  return (\n    <button\n      type=\"button\"\n      onClick={() => setBurst((value) => value + 1)}\n      className={cn(\"inline-block cursor-pointer select-none border-0 bg-transparent p-0\", className)}\n      aria-label={`${children} (fire)`}\n    >\n      {[...children].map((char, index) => (\n        <span key={index} aria-hidden className=\"relative inline-block\">\n          <span\n            key={burst}\n            className=\"inline-block\"\n            style={{\n              animation:\n                burst > 0 && !reduced.current\n                  ? `openui-pop 620ms cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 45}ms`\n                  : undefined,\n            }}\n          >\n            {char === \" \" ? \"\\u00A0\" : char}\n          </span>\n          <span\n            key={`spark-${burst}-${index}`}\n            aria-hidden\n            className=\"pointer-events-none absolute left-1/2 top-1/2 h-1 w-1 rounded-full bg-accent\"\n            style={{\n              animation:\n                burst > 0 && !reduced.current\n                  ? `openui-spark 520ms ease-out ${index * 45}ms`\n                  : undefined,\n              opacity: 0,\n            }}\n          />\n        </span>\n      ))}\n      <style>{`\n        @keyframes openui-pop { 0% { transform: translateY(0) } 30% { transform: translateY(-14px) rotate(6deg) } 100% { transform: translateY(0) rotate(0) } }\n        @keyframes openui-spark { 0% { opacity: 1; transform: translate(-50%, -50%) scale(1) } 100% { opacity: 0; transform: translate(calc(-50% + 22px), -260%) scale(0.4) } }\n        @media (prefers-reduced-motion: reduce) { * { animation: none !important } }\n      `}</style>\n    </button>\n  );\n}\n\nexport default FireworkPopGlyphs;\n",
+      "contentHash": "c4c2bd0c5f35e4616bacaa63f1570a3fb6886189887d778a645b66c93d4c6bf3",
+      "sizeBytes": 2147
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { FireworkPopGlyphs } from \"./firework-pop-glyphs\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <FireworkPopGlyphs className=\"font-display text-step-4 text-ink\">Hooray</FireworkPopGlyphs>\n    </div>\n  );\n}\n",
+      "contentHash": "f49299d983b120abc7144648e809e84194fcba4bc3640fddc8cfd121cefcce4d",
+      "sizeBytes": 303
+    }
+  ],
+  "tags": [
+    "celebration",
+    "burst",
+    "firework",
+    "one-shot"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "click-trigger-one-shot",
+      "visualModel": "glyph-burst-sparks",
+      "motionModel": "pop-overshoot-settle",
+      "layoutModel": "inline",
+      "semanticPurpose": "celebration-heading"
+    }
+  },
+  "url": "https://openui.dev/r/firework-pop-glyphs.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Airy\nShape: Rounded\nMotion: Expressive\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- Click Trigger One Shot: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

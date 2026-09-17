@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-specs-sheet",
+  "type": "registry:layout",
+  "title": "Two Column Specs Sheet",
+  "description": "Clean specification layout for hardware or software documentation with bold key/value grid.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-specs-sheet.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoColumnSpecsSheetProps extends React.HTMLAttributes<HTMLDivElement> {\n  title?: string;\n  specs?: Array<{ key: string; value: string }>;\n}\n\nexport function TwoColumnSpecsSheet({\n  title = \"Technical Specifications\",\n  specs = [\n    { key: \"Architecture\", value: \"x86_64 / ARM64 Unified\" },\n    { key: \"Memory Bandwidth\", value: \"800 GB/s LPDDR5X\" },\n    { key: \"Thermal Design\", value: \"35W Passive Radiator\" },\n  ],\n  className,\n  ...props\n}: TwoColumnSpecsSheetProps) {\n  return (\n    <div className={cn(\"max-w-xl mx-auto p-6 rounded-2xl border border-line bg-paper font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"font-bold text-sm text-ink mb-4 pb-2 border-b border-line\">{title}</div>\n      <dl className=\"divide-y divide-line/60\">\n        {specs.map((s) => (\n          <div key={s.key} className=\"grid grid-cols-2 py-2\">\n            <dt className=\"text-ink/60\">{s.key}</dt>\n            <dd className=\"font-semibold text-ink text-right\">{s.value}</dd>\n          </div>\n        ))}\n      </dl>\n    </div>\n  );\n}\n",
+      "contentHash": "9991773d35f51d1b41b5d845463839430e0a99db428803e7391eceb42fe376fb",
+      "sizeBytes": 1109
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoColumnSpecsSheet } from \"./two-column-specs-sheet\";\n\nexport default function TwoColumnSpecsSheetDemo() {\n  return <TwoColumnSpecsSheet />;\n}\n",
+      "contentHash": "366e724db6261017842aa17ea3728e9705da336c96dd67ab444193b8bc511d62",
+      "sizeBytes": 168
+    }
+  ],
+  "tags": [
+    "specs",
+    "hardware",
+    "table",
+    "technical",
+    "sheet"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "technical-spec-lookup",
+      "visualModel": "two-column-key-value-sheet",
+      "motionModel": "none",
+      "layoutModel": "tabular-key-value-grid",
+      "semanticPurpose": "hardware-specification-sheet"
+    }
+  },
+  "url": "https://openui.dev/r/two-column-specs-sheet.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Technical Spec Lookup: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

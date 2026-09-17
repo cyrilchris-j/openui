@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-lit-paragraph",
+  "type": "registry:text",
+  "title": "Scroll Lit Paragraph",
+  "description": "A long paragraph where words illuminate one by one as scroll progress passes them — reading position made spatial, like a cursor of light sweeping through the copy as the page moves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-lit-paragraph.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollLitParagraphProps {\n  children: string;\n  className?: string;\n}\n\nexport function ScrollLitParagraph({ children, className }: ScrollLitParagraphProps) {\n  const ref = useRef<HTMLParagraphElement>(null);\n  const [progress, setProgress] = useState(0);\n  const words = children.split(/\\s+/);\n\n  useEffect(() => {\n    const node = ref.current;\n    if (!node) return;\n\n    const measure = () => {\n      const rect = node.getBoundingClientRect();\n      const viewport = window.innerHeight;\n      // 0 when the paragraph top reaches 80% of viewport, 1 when its bottom passes 35%.\n      const start = viewport * 0.8;\n      const end = viewport * 0.35;\n      const span = start - end + rect.height;\n      const travelled = start - rect.top;\n      setProgress(Math.max(0, Math.min(1, travelled / span)));\n    };\n\n    measure();\n    window.addEventListener(\"scroll\", measure, { passive: true });\n    window.addEventListener(\"resize\", measure);\n    return () => {\n      window.removeEventListener(\"scroll\", measure);\n      window.removeEventListener(\"resize\", measure);\n    };\n  }, []);\n\n  const litCount = Math.floor(progress * words.length);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const allLit = reduced && progress === 0 ? true : undefined;\n\n  return (\n    <p ref={ref} className={cn(\"max-w-prose text-lg leading-relaxed\", className)}>\n      {words.map((word, index) => (\n        <span\n          key={index}\n          style={{\n            color:\n              allLit || index < litCount\n                ? \"var(--openui-ink, #1c1c1e)\"\n                : \"color-mix(in oklab, currentColor, transparent 72%)\",\n            transition: \"color 180ms ease\",\n          }}\n        >\n          {word}{\" \"}\n        </span>\n      ))}\n    </p>\n  );\n}\n\nexport default ScrollLitParagraph;\n",
+      "contentHash": "f7da40e0b1ea65bd3d4ea30f986a0a513c4334d24ceccb4b363dfb1b1b32e7dd",
+      "sizeBytes": 1973
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ScrollLitParagraph } from \"./scroll-lit-paragraph\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[80vh] bg-paper p-10\">\n      <div className=\"h-[30vh]\" />\n      <ScrollLitParagraph className=\"w-full max-w-2xl\">\n        Scroll and watch the light travel. Each word waits for the page to bring it forward. This is how a long-form reading experience can show position without a progress bar: the text itself becomes the indicator, and the eye never leaves the sentence.\n      </ScrollLitParagraph>\n      <div className=\"h-[40vh]\" />\n    </div>\n  );\n}\n",
+      "contentHash": "954f4e493eb481a236fcf310a85685aa32208e3c23f23b5648a289350c17539e",
+      "sizeBytes": 583
+    }
+  ],
+  "tags": [
+    "scroll",
+    "progressive",
+    "illuminate",
+    "reading"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "word-illumination-ramp",
+      "motionModel": "scroll-linked-fill",
+      "layoutModel": "block",
+      "semanticPurpose": "reading-progress"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-lit-paragraph.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Scroll Progress Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

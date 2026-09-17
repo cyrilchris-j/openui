@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-code-documentation",
+  "type": "registry:layout",
+  "title": "Split Code Documentation",
+  "description": "Stripe-style API documentation layout with prose documentation on left and companion code examples on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-code-documentation.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "api",
+    "docs",
+    "code",
+    "split",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "prose-and-code-dual-scroll",
+      "visualModel": "stripe-style-api-docs",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-doc-halves",
+      "semanticPurpose": "api-reference-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

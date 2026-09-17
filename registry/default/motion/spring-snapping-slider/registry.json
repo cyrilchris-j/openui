@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-snapping-slider",
+  "type": "registry:motion",
+  "title": "Spring Snapping Slider",
+  "description": "A numeric range control where the thumb glides with simulated mass and snaps toward discrete notched positions via magnetic spring detents.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-snapping-slider.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "slider",
+    "spring",
+    "physics",
+    "haptic",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "continuous-drag-notched-snap",
+      "visualModel": "ruled-calibrated-gauge",
+      "motionModel": "restoring-spring-detent",
+      "layoutModel": "horizontal-bar",
+      "semanticPurpose": "calibrated-value-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-help-center",
+  "type": "registry:layout",
+  "title": "Two Column Help Center",
+  "description": "Knowledge base layout with categorical help directories on left and popular FAQ articles on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-help-center.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "help",
+    "knowledgebase",
+    "faq",
+    "support",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "knowledgebase-category-navigation",
+      "visualModel": "category-aside-and-article-rack",
+      "motionModel": "none",
+      "layoutModel": "two-column-help-shell",
+      "semanticPurpose": "help-center-portal-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

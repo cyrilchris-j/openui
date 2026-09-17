@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-matrix-table",
+  "type": "registry:layout",
+  "title": "Feature Matrix Table",
+  "description": "Structured comparison grid contrasting product features across Starter, Pro, and Enterprise tiers.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-matrix-table.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface FeatureMatrixTableProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function FeatureMatrixTable({ children, className, ...props }: FeatureMatrixTableProps) {\n  return (\n    <div className={cn(\"max-w-3xl mx-auto border border-line rounded-xl overflow-hidden font-sans text-xs bg-paper\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "5cad17e9b9b4c436b6eac495e960e3bfb255f83767f18cfa047c255d84e56f4c",
+      "sizeBytes": 452
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { FeatureMatrixTable } from \"./feature-matrix-table\";\n\nexport default function FeatureMatrixTableDemo() {\n  return (\n    <FeatureMatrixTable>\n      <div className=\"grid grid-cols-4 p-3 border-b border-line bg-surface/30 font-bold font-mono text-[11px]\">\n        <span>Feature</span>\n        <span className=\"text-center\">Community</span>\n        <span className=\"text-center text-accent\">Pro</span>\n        <span className=\"text-center\">Enterprise</span>\n      </div>\n      <div className=\"grid grid-cols-4 p-3 border-b border-line/60\">\n        <span className=\"font-medium\">800 Registry Components</span>\n        <span className=\"text-center\">✓</span>\n        <span className=\"text-center text-accent font-bold\">✓</span>\n        <span className=\"text-center\">✓</span>\n      </div>\n    </FeatureMatrixTable>\n  );\n}\n",
+      "contentHash": "1a9e13575f4a49a1267e70a8492ab62bc64e2a041e0d2ea46c23387648e8adc3",
+      "sizeBytes": 843
+    }
+  ],
+  "tags": [
+    "pricing",
+    "matrix",
+    "comparison",
+    "table",
+    "tiers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "pricing-tier-comparison",
+      "visualModel": "feature-check-matrix",
+      "motionModel": "none",
+      "layoutModel": "tabular-feature-grid",
+      "semanticPurpose": "plan-comparison-matrix"
+    }
+  },
+  "url": "https://openui.dev/r/feature-matrix-table.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Pricing Tier Comparison: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

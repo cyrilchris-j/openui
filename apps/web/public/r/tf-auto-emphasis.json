@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tf-auto-emphasis",
+  "type": "registry:text",
+  "title": "TF Auto Emphasis",
+  "description": "Automatic emphasis by term frequency: words repeated in the passage get progressively bolder, so the vocabulary that carries the text rises to the surface — a document outline you can see inside a paragraph.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tf-auto-emphasis.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface TfAutoEmphasisProps {\n  children: string;\n  className?: string;\n}\n\nexport function TfAutoEmphasis({ children, className }: TfAutoEmphasisProps) {\n  const words = children.split(/\\s+/);\n  const counts = new Map<string, number>();\n  for (const word of words) {\n    const key = word.toLowerCase().replace(/[^\\p{L}\\p{N}'-]/gu, \"\");\n    if (key.length > 3) counts.set(key, (counts.get(key) ?? 0) + 1);\n  }\n  const max = Math.max(...counts.values(), 1);\n\n  return (\n    <p className={cn(\"max-w-prose text-lg leading-relaxed\", className)}>\n      {words.map((word, index) => {\n        const key = word.toLowerCase().replace(/[^\\p{L}\\p{N}'-]/gu, \"\");\n        const count = key.length > 3 ? counts.get(key) ?? 0 : 0;\n        const weight = count / max;\n        return (\n          <span\n            key={index}\n            style={{\n              fontWeight: count > 1 ? 400 + Math.round(weight * 300) : 400,\n              color: count > 1 ? undefined : \"color-mix(in oklab, currentColor, transparent 25%)\",\n            }}\n          >\n            {word}{\" \"}\n          </span>\n        );\n      })}\n    </p>\n  );\n}\n\nexport default TfAutoEmphasis;\n",
+      "contentHash": "86f4934d6c4e7117bd465dff781b3a37c392fe8e73510cf3dfd5a8c0f20b5a04",
+      "sizeBytes": 1183
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { TfAutoEmphasis } from \"./tf-auto-emphasis\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <TfAutoEmphasis className=\"w-full max-w-lg\">\n        The registry stores resources. Resources carry metadata. Metadata makes the registry trustworthy, and trust makes the resources useful. Useful resources make the registry worth keeping.\n      </TfAutoEmphasis>\n    </div>\n  );\n}\n",
+      "contentHash": "3071e633e7bddff85c97776a255b4ea7a621fab0933af0b4142464fddacff56a",
+      "sizeBytes": 468
+    }
+  ],
+  "tags": [
+    "term-frequency",
+    "emphasis",
+    "analysis",
+    "weights"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "frequency-weighted-weights",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "vocabulary-surface"
+    }
+  },
+  "url": "https://openui.dev/r/tf-auto-emphasis.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

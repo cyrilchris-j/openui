@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "collapsible-details-card",
+  "type": "registry:component",
+  "title": "Collapsible Details Card",
+  "description": "A metadata specification tile with expandable details pane.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "collapsible-details-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CollapsibleDetailsCardProps {\n  className?: string;\n}\n\nexport function CollapsibleDetailsCard({ className }: CollapsibleDetailsCardProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"w-full max-w-xs rounded-xl border border-line bg-paper p-4 shadow-sm font-mono text-xs\", className)}>\n      <div className=\"flex justify-between items-center cursor-pointer\" onClick={() => setOpen((o) => !o)}>\n        <span className=\"font-bold text-ink\">Package Artifacts</span>\n        <span>{open ? \"▲\" : \"▼\"}</span>\n      </div>\n      {open && (\n        <div className=\"mt-3 border-t border-line pt-2 text-[10px] text-ink/70 space-y-1\">\n          <div>• index.js (1.4 kB)</div>\n          <div>• index.d.ts (820 B)</div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default CollapsibleDetailsCard;\n",
+      "contentHash": "25045d658f85a1d325cad0d5806c12237a725f2d9f0d6c33f6929dde798b3602",
+      "sizeBytes": 931
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { CollapsibleDetailsCard } from \"./collapsible-details-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <CollapsibleDetailsCard />\n    </div>\n  );\n}\n",
+      "contentHash": "ade39adfa58aa6565b90e606e7f42025a8ba945a1de18f728b1baf42fe2c11d1",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "card",
+    "details",
+    "collapsible",
+    "metadata",
+    "spec"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "cards",
+    "fingerprint": {
+      "interactionModel": "details-card-expansion",
+      "visualModel": "bordered-metadata-card",
+      "motionModel": "none",
+      "layoutModel": "stacked-details-slab",
+      "semanticPurpose": "specification-details-card"
+    }
+  },
+  "url": "https://openui.dev/r/collapsible-details-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Details Card Expansion: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

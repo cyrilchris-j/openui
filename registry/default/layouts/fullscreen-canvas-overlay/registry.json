@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fullscreen-canvas-overlay",
+  "type": "registry:layout",
+  "title": "Fullscreen Canvas Overlay",
+  "description": "Full-viewport interactive graphic canvas with floating HUD panels pinned to four corners.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fullscreen-canvas-overlay.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "hud",
+    "canvas",
+    "fullscreen",
+    "overlay",
+    "viewport"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "corner-hud-over-canvas",
+      "visualModel": "four-corner-hud-stage",
+      "motionModel": "none",
+      "layoutModel": "absolute-pinned-corners",
+      "semanticPurpose": "canvas-hud-workspace"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

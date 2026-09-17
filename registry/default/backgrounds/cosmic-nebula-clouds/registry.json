@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cosmic-nebula-clouds",
+  "type": "registry:background",
+  "title": "Cosmic Nebula Clouds",
+  "description": "Deep interstellar hydrogen dust clouds with ultraviolet chromatic gas dispersion.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cosmic-nebula-clouds.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "nebula",
+    "space",
+    "cosmic",
+    "clouds",
+    "astronomy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-nebula-glow",
+      "visualModel": "chromatic-gas-cloud-dispersion",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "deep-space-nebula"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

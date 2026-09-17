@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-pull-card",
+  "type": "registry:motion",
+  "title": "Magnetic Pull Card",
+  "description": "A card surface that feels magnetic attraction toward the pointer with dual-stage translation and 3D rotational tilt governed by Hooke's law.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-pull-card.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticPullCardProps {\n  title?: string;\n  category?: string;\n  description?: string;\n  className?: string;\n}\n\nexport function MagneticPullCard({\n  title = \"Rotational Inertia\",\n  category = \"Kinematics 04\",\n  description = \"A surface behaving as if suspended by high-tension micro-springs.\",\n  className,\n}: MagneticPullCardProps) {\n  const cardRef = useRef<HTMLDivElement>(null);\n  const [transform, setTransform] = useState(\"translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)\");\n  const [isHovered, setIsHovered] = useState(false);\n\n  useEffect(() => {\n    const card = cardRef.current;\n    if (!card) return;\n    if (window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    let targetX = 0;\n    let targetY = 0;\n    let currentX = 0;\n    let currentY = 0;\n    let currentRotX = 0;\n    let currentRotY = 0;\n    let rafId: number;\n\n    const handlePointerMove = (e: PointerEvent) => {\n      const rect = card.getBoundingClientRect();\n      const cx = rect.left + rect.width / 2;\n      const cy = rect.top + rect.height / 2;\n      const dx = e.clientX - cx;\n      const dy = e.clientY - cy;\n      const dist = Math.hypot(dx, dy);\n      const radius = 260;\n\n      if (dist < radius) {\n        const pull = (1 - dist / radius) * 28;\n        targetX = (dx / dist) * pull;\n        targetY = (dy / dist) * pull;\n      } else {\n        targetX = 0;\n        targetY = 0;\n      }\n    };\n\n    const loop = () => {\n      currentX += (targetX - currentX) * 0.12;\n      currentY += (targetY - currentY) * 0.12;\n      currentRotX += (-currentY * 0.6 - currentRotX) * 0.1;\n      currentRotY += (currentX * 0.6 - currentRotY) * 0.1;\n\n      setTransform(`translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`);\n      rafId = requestAnimationFrame(loop);\n    };\n\n    window.addEventListener(\"pointermove\", handlePointerMove);\n    rafId = requestAnimationFrame(loop);\n\n    return () => {\n      window.removeEventListener(\"pointermove\", handlePointerMove);\n      cancelAnimationFrame(rafId);\n    };\n  }, []);\n\n  return (\n    <div\n      ref={cardRef}\n      onMouseEnter={() => setIsHovered(true)}\n      onMouseLeave={() => setIsHovered(false)}\n      style={{ transform, transformStyle: \"preserve-3d\" }}\n      className={cn(\n        \"relative max-w-sm rounded border border-line bg-paper p-6 shadow-sm transition-colors duration-200\",\n        isHovered && \"border-ink shadow-md\",\n        className,\n      )}\n    >\n      <span className=\"font-mono text-[0.7rem] uppercase tracking-wider text-graphite\">\n        {category}\n      </span>\n      <h3 className=\"mt-2 font-serif text-lg font-bold text-ink\">{title}</h3>\n      <p className=\"mt-2 text-xs leading-relaxed text-graphite\">{description}</p>\n      <div className=\"mt-6 flex items-center justify-between border-t border-line/60 pt-3 text-[0.75rem] font-mono text-ink\">\n        <span>Spring Damping: 0.88</span>\n        <span className=\"font-bold\">→ Inspect</span>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "f4c308c9f06fac0cc0e1e337e19ee35a59e9ab5bfcc1da55d5320e0e37ca2da2",
+      "sizeBytes": 3154
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MagneticPullCard } from \"./magnetic-pull-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-10\">\n      <MagneticPullCard />\n    </div>\n  );\n}\n",
+      "contentHash": "65013c4f7856d2bd686ab14398287843c08a4f0381908092ffca41abd174dfdd",
+      "sizeBytes": 230
+    }
+  ],
+  "tags": [
+    "card",
+    "magnetic",
+    "tilt",
+    "spring",
+    "physics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-attraction",
+      "visualModel": "bordered-specimen-slab",
+      "motionModel": "damped-hookean-spring-attractor",
+      "layoutModel": "card-container",
+      "semanticPurpose": "interactive-feature-tile"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-pull-card.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Pointer Proximity Attraction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

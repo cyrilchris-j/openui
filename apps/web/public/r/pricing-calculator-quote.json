@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pricing-calculator-quote",
+  "type": "registry:block",
+  "title": "Pricing Calculator Quote",
+  "description": "An enterprise quote estimator calculating multi-seat licenses with dedicated support add-on toggles.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pricing-calculator-quote.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function PricingCalculatorQuote({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [seats, setSeats] = React.useState(25);\n  const total = seats * 29;\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-4\">Enterprise Quote Estimator</h3>\n      <div className=\"space-y-4\">\n        <div>\n          <div className=\"flex justify-between text-neutral-500 mb-1\">\n            <span>Team Members</span>\n            <span className=\"font-mono font-bold text-neutral-900 dark:text-white\">{seats} seats</span>\n          </div>\n          <input\n            type=\"range\"\n            min=\"5\"\n            max=\"100\"\n            value={seats}\n            onChange={(e) => setSeats(Number(e.target.value))}\n            className=\"w-full accent-emerald-500 cursor-pointer\"\n          />\n        </div>\n        <div className=\"p-4 rounded-xl bg-neutral-50 dark:bg-neutral-900 flex justify-between items-center font-mono\">\n          <span className=\"font-bold text-neutral-900 dark:text-white\">Estimated Annual Total:</span>\n          <span className=\"text-xl font-bold text-emerald-600 dark:text-emerald-400\">${total * 12}/yr</span>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "5cb3e548f9dffed19d2879ff2e2ca0930d610a1af8ccea8192e65070dbf2dd03",
+      "sizeBytes": 1494
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { PricingCalculatorQuote } from \"./pricing-calculator-quote\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <PricingCalculatorQuote />\n    </div>\n  );\n}\n",
+      "contentHash": "fc73eb2c7f8216e6d687da7ee0aeb5a575d49aa6f53de6aa4cbccb09c29a77bb",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "quote",
+    "calculator",
+    "pricing",
+    "enterprise",
+    "billing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "quote-cost-calculator",
+      "visualModel": "enterprise-quote-summary-sheet",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "enterprise-contract-quote"
+    }
+  },
+  "url": "https://openui.dev/r/pricing-calculator-quote.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Quote Cost Calculator: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

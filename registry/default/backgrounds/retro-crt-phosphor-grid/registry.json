@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "retro-crt-phosphor-grid",
+  "type": "registry:background",
+  "title": "Retro CRT Phosphor Grid",
+  "description": "Trinitron television aperture grille vertical phosphor stripes with RGB subpixel pattern.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "retro-crt-phosphor-grid.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "crt",
+    "phosphor",
+    "trinitron",
+    "subpixel",
+    "retro"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-phosphor-grille",
+      "visualModel": "vertical-aperture-stripes",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "trinitron-aperture-grille"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

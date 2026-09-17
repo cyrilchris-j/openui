@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-feedback-sentiment",
+  "type": "registry:section",
+  "title": "Customer Feedback Sentiment",
+  "description": "An aggregate user rating overview with NPS score breakdown, star reviews, and verified feedback quotes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-feedback-sentiment.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RatingBreakdown {\n  stars: number;\n  percentage: number;\n}\n\nexport interface CustomerFeedbackSentimentProps extends React.HTMLAttributes<HTMLElement> {\n  score?: number;\n  totalReviews?: number;\n  breakdown?: RatingBreakdown[];\n}\n\nconst DEFAULT_BREAKDOWN: RatingBreakdown[] = [\n  { stars: 5, percentage: 88 },\n  { stars: 4, percentage: 9 },\n  { stars: 3, percentage: 2 },\n  { stars: 2, percentage: 1 },\n  { stars: 1, percentage: 0 },\n];\n\nexport function CustomerFeedbackSentiment({\n  score = 4.9,\n  totalReviews = 1420,\n  breakdown = DEFAULT_BREAKDOWN,\n  className,\n  ...props\n}: CustomerFeedbackSentimentProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-4xl mx-auto\", className)} {...props}>\n      <div className=\"bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 md:p-8 shadow-sm\">\n        <div className=\"grid grid-cols-1 md:grid-cols-12 gap-8 items-center\">\n          <div className=\"md:col-span-5 text-center md:text-left border-b md:border-b-0 md:border-r border-neutral-200 dark:border-neutral-800 pb-6 md:pb-0 md:pr-8\">\n            <div className=\"text-5xl font-extrabold text-neutral-900 dark:text-neutral-100\">\n              {score}\n            </div>\n            <div className=\"text-amber-400 text-lg tracking-widest mt-1\">★★★★★</div>\n            <div className=\"text-xs text-neutral-500 dark:text-neutral-400 mt-2\">\n              Based on {totalReviews.toLocaleString()} verified developer ratings\n            </div>\n          </div>\n\n          <div className=\"md:col-span-7 space-y-2\">\n            {breakdown.map((row) => (\n              <div key={row.stars} className=\"flex items-center gap-3 text-xs font-mono\">\n                <span className=\"w-12 text-neutral-500\">{row.stars} Stars</span>\n                <div className=\"flex-1 h-2 rounded-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden\">\n                  <div\n                    className=\"h-full bg-amber-400 rounded-full\"\n                    style={{ width: `${row.percentage}%` }}\n                  />\n                </div>\n                <span className=\"w-10 text-right text-neutral-400\">{row.percentage}%</span>\n              </div>\n            ))}\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "e7011d6837a99f03a86112992484f3023d33496732d0b5b5fb586762ad91e8d6",
+      "sizeBytes": 2387
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CustomerFeedbackSentiment } from \"./customer-feedback-sentiment\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <CustomerFeedbackSentiment />\n    </div>\n  );\n}\n",
+      "contentHash": "9ab43d2a5a033e37fb917e2b124280822f1a231f1aaf44a8f051738a21a23f2a",
+      "sizeBytes": 306
+    }
+  ],
+  "tags": [
+    "feedback",
+    "sentiment",
+    "nps",
+    "ratings",
+    "reviews"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reviews",
+    "fingerprint": {
+      "interactionModel": "customer-feedback-sentiment-interaction",
+      "visualModel": "customer-feedback-sentiment-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "customer-feedback-sentiment-section"
+    }
+  },
+  "url": "https://openui.dev/r/customer-feedback-sentiment.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Customer Feedback Sentiment Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

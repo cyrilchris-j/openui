@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "countdown-timer-unit",
+  "type": "registry:component",
+  "title": "Countdown Timer Unit",
+  "description": "Multi-digit countdown clocks with hours, minutes, seconds cells, and time expiration state.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "countdown-timer-unit.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState, useEffect } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CountdownTimerUnit({ className }: { className?: string }) {\n  const [secondsLeft, setSecondsLeft] = useState(3600 * 2 + 14 * 60 + 45);\n\n  useEffect(() => {\n    const timer = setInterval(() => {\n      setSecondsLeft((prev) => (prev > 0 ? prev - 1 : 0));\n    }, 1000);\n    return () => clearInterval(timer);\n  }, []);\n\n  const hours = Math.floor(secondsLeft / 3600);\n  const minutes = Math.floor((secondsLeft % 3600) / 60);\n  const seconds = secondsLeft % 60;\n\n  const pad = (n: number) => String(n).padStart(2, \"0\");\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-xs w-full font-mono shadow-sm\", className)}>\n      <div className=\"text-xs text-ink/60 mb-3 text-center font-semibold uppercase\">Event Commences In</div>\n      <div className=\"flex items-center justify-center gap-2\">\n        <div className=\"flex flex-col items-center\">\n          <div className=\"w-12 h-12 rounded-lg bg-surface border border-line flex items-center justify-center text-lg font-bold text-ink\">\n            {pad(hours)}\n          </div>\n          <span className=\"text-[10px] text-ink/50 mt-1 uppercase\">Hours</span>\n        </div>\n        <span className=\"text-ink/40 font-bold mb-4\">:</span>\n        <div className=\"flex flex-col items-center\">\n          <div className=\"w-12 h-12 rounded-lg bg-surface border border-line flex items-center justify-center text-lg font-bold text-ink\">\n            {pad(minutes)}\n          </div>\n          <span className=\"text-[10px] text-ink/50 mt-1 uppercase\">Mins</span>\n        </div>\n        <span className=\"text-ink/40 font-bold mb-4\">:</span>\n        <div className=\"flex flex-col items-center\">\n          <div className=\"w-12 h-12 rounded-lg bg-surface border border-line flex items-center justify-center text-lg font-bold text-accent\">\n            {pad(seconds)}\n          </div>\n          <span className=\"text-[10px] text-ink/50 mt-1 uppercase\">Secs</span>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "e4f3e38efe73c30edd198e096e70cb132f914fbf52f5a945992514208b94d39f",
+      "sizeBytes": 2073
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { CountdownTimerUnit } from \"./countdown-timer-unit\";\n\nexport default function CountdownTimerUnitDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[220px]\">\n      <CountdownTimerUnit />\n    </div>\n  );\n}\n",
+      "contentHash": "9d73c78029d59bce3c664ad13f769c578e02796dc3979f4509858737daceff4c",
+      "sizeBytes": 273
+    }
+  ],
+  "tags": [
+    "countdown",
+    "timer",
+    "clock",
+    "date",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "interval-timer-presentation",
+      "visualModel": "segmented-clock-cells",
+      "motionModel": "none",
+      "layoutModel": "horizontal-digit-stack",
+      "semanticPurpose": "deadline-countdown"
+    }
+  },
+  "url": "https://openui.dev/r/countdown-timer-unit.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Interval Timer Presentation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

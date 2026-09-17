@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-spec-comparator",
+  "type": "registry:layout",
+  "title": "Split Spec Comparator",
+  "description": "Side-by-side benchmark comparison matrix evaluating framework speed, payload size, and memory usage.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-spec-comparator.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitSpecComparatorProps extends React.HTMLAttributes<HTMLDivElement> {\n  itemA?: React.ReactNode;\n  itemB?: React.ReactNode;\n}\n\nexport function SplitSpecComparator({ itemA, itemB, className, ...props }: SplitSpecComparatorProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto p-4 font-mono text-xs\", className)} {...props}>\n      <div className=\"p-4 rounded-xl border border-line bg-surface/30 space-y-2\">{itemA}</div>\n      <div className=\"p-4 rounded-xl border border-line bg-surface/30 space-y-2\">{itemB}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "648f0c825cc105e5ef5f89f99b664940562ef8394b50ea859bb1736709d0ad18",
+      "sizeBytes": 643
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitSpecComparator } from \"./split-spec-comparator\";\n\nexport default function SplitSpecComparatorDemo() {\n  return (\n    <SplitSpecComparator\n      itemA={<div><span className=\"font-bold\">Framework Alpha</span><br />Bundle: 120 KB<br />Hydration: 42ms</div>}\n      itemB={<div><span className=\"font-bold text-accent\">OpenUI Core</span><br />Bundle: 14 KB<br />Hydration: 1.2ms</div>}\n    />\n  );\n}\n",
+      "contentHash": "ba8377b5b085e4df82267c0a9734da8d647072be52f2aca7c44a57aa8256f5dd",
+      "sizeBytes": 423
+    }
+  ],
+  "tags": [
+    "benchmarks",
+    "comparator",
+    "matrix",
+    "split",
+    "specs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "benchmark-side-by-side-inspection",
+      "visualModel": "dual-column-spec-table",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-benchmark-grid",
+      "semanticPurpose": "benchmark-comparison-table"
+    }
+  },
+  "url": "https://openui.dev/r/split-spec-comparator.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Benchmark Side By Side Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

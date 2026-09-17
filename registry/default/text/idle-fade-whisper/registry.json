@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "idle-fade-whisper",
+  "type": "registry:text",
+  "title": "Idle Fade Whisper",
+  "description": "Ambient text that slowly fades toward invisibility while the reader is idle and breathes back on any input — presence-aware typography that rewards attention instead of demanding it.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "idle-fade-whisper.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "idle",
+    "fade",
+    "presence",
+    "ambient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "idle-decay",
+      "visualModel": "attention-fade",
+      "motionModel": "slow-opacity-drift",
+      "layoutModel": "block",
+      "semanticPurpose": "ambient-message"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

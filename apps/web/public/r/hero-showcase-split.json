@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-showcase-split",
+  "type": "registry:layout",
+  "title": "Hero Showcase Split",
+  "description": "Marketing landing hero section with compelling value proposition on left and dynamic graphic showcase on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-showcase-split.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HeroShowcaseSplitProps extends React.HTMLAttributes<HTMLDivElement> {\n  headline?: React.ReactNode;\n  visual?: React.ReactNode;\n}\n\nexport function HeroShowcaseSplit({ headline, visual, className, ...props }: HeroShowcaseSplitProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto p-8 items-center font-sans\", className)} {...props}>\n      <div className=\"space-y-4\">{headline}</div>\n      <div className=\"p-8 rounded-3xl border border-line bg-surface/40 flex items-center justify-center\">{visual}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "04504c2ed163fd405f868ddff2616779be86a35fa36fb8fb7160bcf1fcd7f3fd",
+      "sizeBytes": 630
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { HeroShowcaseSplit } from \"./hero-showcase-split\";\n\nexport default function HeroShowcaseSplitDemo() {\n  return (\n    <HeroShowcaseSplit\n      headline={\n        <>\n          <h1 className=\"text-2xl font-bold text-ink tracking-tight\">Design Registry for Autonomous Engineering</h1>\n          <p className=\"text-xs text-ink/70 leading-relaxed\">800 unique, installable components with architectural fingerprints.</p>\n        </>\n      }\n      visual={<div className=\"font-mono text-xs text-accent font-bold\">Interactive Component Node</div>}\n    />\n  );\n}\n",
+      "contentHash": "6870e383fc4f04211f23e1b826824937087a1ccc071f70e106baec39218e5e33",
+      "sizeBytes": 576
+    }
+  ],
+  "tags": [
+    "hero",
+    "marketing",
+    "split",
+    "landing",
+    "showcase"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "hero-value-prop-inspection",
+      "visualModel": "split-landing-hero",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-hero-banner",
+      "semanticPurpose": "landing-page-hero-split"
+    }
+  },
+  "url": "https://openui.dev/r/hero-showcase-split.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Hero Value Prop Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

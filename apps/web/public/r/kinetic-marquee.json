@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-marquee",
+  "type": "registry:text",
+  "title": "Kinetic Marquee",
+  "description": "A continuous text band whose speed responds to scroll velocity — faster scrolling accelerates the ticker and skews it proportionally, settling back to base speed when scrolling stops.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-marquee.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KineticMarqueeProps {\n  text: string;\n  /** Base speed in px/s when the page is idle. */\n  baseSpeed?: number;\n  /** Multiplier applied at peak scroll velocity. */\n  velocityGain?: number;\n  className?: string;\n}\n\nexport function KineticMarquee({\n  text,\n  baseSpeed = 60,\n  velocityGain = 6,\n  className,\n}: KineticMarqueeProps) {\n  const trackRef = useRef<HTMLDivElement>(null);\n  const state = useRef({ offset: 0, velocity: 0, lastScrollY: 0, lastTime: 0, raf: 0, halfWidth: 0 });\n\n  useEffect(() => {\n    const track = trackRef.current;\n    if (!track) return;\n    const reduced = window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n    const s = state.current;\n\n    const measure = () => {\n      s.halfWidth = track.scrollWidth / 2;\n    };\n    measure();\n\n    const onScroll = () => {\n      const now = performance.now();\n      if (s.lastTime > 0) {\n        const dy = window.scrollY - s.lastScrollY;\n        const dt = Math.max(1, now - s.lastTime);\n        s.velocity = s.velocity * 0.8 + (dy / dt) * 200 * 0.2;\n      }\n      s.lastScrollY = window.scrollY;\n      s.lastTime = now;\n    };\n\n    const step = (now: number) => {\n      const dt = Math.min(64, now - (s.lastTime || now));\n      s.lastTime = now;\n      // Scroll velocity adds to base speed and decays exponentially.\n      const speed = baseSpeed + Math.abs(s.velocity) * velocityGain;\n      s.velocity *= 0.92;\n      s.offset = (s.offset + (speed * dt) / 1000) % Math.max(1, s.halfWidth);\n      const skew = Math.max(-14, Math.min(14, s.velocity * velocityGain * 0.25));\n      track.style.transform = `translateX(-${s.offset}px) skewX(${skew}deg)`;\n      s.raf = requestAnimationFrame(step);\n    };\n\n    if (reduced) {\n      // Static band: content is still fully readable.\n      track.style.transform = \"none\";\n      return;\n    }\n\n    window.addEventListener(\"scroll\", onScroll, { passive: true });\n    window.addEventListener(\"resize\", measure);\n    s.raf = requestAnimationFrame(step);\n    return () => {\n      cancelAnimationFrame(s.raf);\n      window.removeEventListener(\"scroll\", onScroll);\n      window.removeEventListener(\"resize\", measure);\n    };\n  }, [baseSpeed, velocityGain]);\n\n  return (\n    <div className={cn(\"overflow-hidden border-y border-line py-3\", className)} aria-label={text}>\n      <div ref={trackRef} className=\"flex w-max whitespace-nowrap will-change-transform\">\n        {[0, 1, 2, 3].map((copy) => (\n          <span\n            key={copy}\n            aria-hidden={copy > 0}\n            className=\"px-6 font-mono text-[0.85rem] uppercase tracking-[0.3em] text-ink\"\n          >\n            {text} ·\n          </span>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default KineticMarquee;\n",
+      "contentHash": "204dc1a5e82a9897f2d7e78f80998d31dc4477c4b05e0e4baeb1ecb8c61fc0eb",
+      "sizeBytes": 2810
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { KineticMarquee } from \"./kinetic-marquee\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[16rem] bg-paper pt-16\">\n      <KineticMarquee text=\"800 resources · zero lock-in · MIT licensed\" />\n      <p className=\"mt-10 text-center text-[0.8rem] text-graphite\">Scroll the page — the band reacts to velocity.</p>\n    </div>\n  );\n}\n",
+      "contentHash": "602be722f68c53768ae3e317c232bb18bb0c97ede81f40f246f00355e027162f",
+      "sizeBytes": 364
+    }
+  ],
+  "tags": [
+    "marquee",
+    "scroll-velocity",
+    "skew",
+    "ticker"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "condensed",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity",
+      "visualModel": "repeating-band",
+      "motionModel": "velocity-coupled-translate",
+      "layoutModel": "full-bleed-rail",
+      "semanticPurpose": "announcement-band"
+    }
+  },
+  "url": "https://openui.dev/r/kinetic-marquee.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: Kinetic\nTypography: Condensed\nColor: High Contrast\n\n## Rules\n\n- Scroll Velocity: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

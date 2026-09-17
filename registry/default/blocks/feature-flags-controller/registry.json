@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-flags-controller",
+  "type": "registry:block",
+  "title": "Feature Flags Controller",
+  "description": "An environment release toggle panel managing boolean feature flags, rollout percentages, and target cohorts.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-flags-controller.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "feature-flags",
+    "toggles",
+    "rollout",
+    "devops",
+    "config"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "feature-flag-toggle-and-rollout",
+      "visualModel": "environment-switch-matrix",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "release-feature-management"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

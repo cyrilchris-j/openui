@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "typewriter-stack",
+  "type": "registry:text",
+  "title": "Typewriter Stack",
+  "description": "Types and deletes successive phrases with a blinking caret, where typing speed varies per character (humanised), deletion is faster than typing, and the caret width adapts to the current glyph.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "typewriter-stack.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "typewriter",
+    "typing",
+    "caret",
+    "loop"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "timer-cycle",
+      "visualModel": "incremental-substring",
+      "motionModel": "asymmetric-type-erase",
+      "layoutModel": "inline",
+      "semanticPurpose": "heading-rotation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

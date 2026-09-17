@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pinch-zoom-card",
+  "type": "registry:interaction",
+  "title": "Pinch Zoom Card",
+  "description": "An asset card supporting discrete stepped scaling buttons and pointer hover magnification factor.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pinch-zoom-card.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PinchZoomCardProps {\n  className?: string;\n}\n\nexport function PinchZoomCard({ className }: PinchZoomCardProps) {\n  const [zoom, setZoom] = useState(1);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex justify-between w-full font-mono text-xs text-ink/60\">\n        <span>ZOOM: {Math.round(zoom * 100)}%</span>\n        <div className=\"flex gap-1\">\n          <button\n            type=\"button\"\n            onClick={() => setZoom((z) => Math.max(0.75, z - 0.25))}\n            className=\"rounded border px-2 py-0.5\"\n          >\n            -\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setZoom((z) => Math.min(1.5, z + 0.25))}\n            className=\"rounded border px-2 py-0.5\"\n          >\n            +\n          </button>\n        </div>\n      </div>\n\n      <div\n        className=\"rounded-xl border border-line bg-ink text-paper p-6 transition-transform duration-200\"\n        style={{ transform: `scale(${zoom})` }}\n      >\n        <span className=\"font-mono text-[9px] uppercase opacity-60\">SCALED CARD</span>\n        <h4 className=\"font-display text-base font-bold\">Vector Entity</h4>\n      </div>\n    </div>\n  );\n}\n\nexport default PinchZoomCard;\n",
+      "contentHash": "c550d9fefad10e94eacdaef696f809c57b970b2afef479577f8226f2f6821525",
+      "sizeBytes": 1412
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { PinchZoomCard } from \"./pinch-zoom-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <PinchZoomCard />\n    </div>\n  );\n}\n",
+      "contentHash": "9fb5a7b42dab924f3361c3a00b34f7ec8c81785b227bc520f1ee8c171b3820af",
+      "sizeBytes": 220
+    }
+  ],
+  "tags": [
+    "zoom",
+    "card",
+    "scale",
+    "inspect",
+    "pinch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "stepped-card-scaling",
+      "visualModel": "zoomable-specimen-slab",
+      "motionModel": "stepped-scale-magnification",
+      "layoutModel": "centered-card-stage",
+      "semanticPurpose": "zoomable-product-slab"
+    }
+  },
+  "url": "https://openui.dev/r/pinch-zoom-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Stepped Card Scaling: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

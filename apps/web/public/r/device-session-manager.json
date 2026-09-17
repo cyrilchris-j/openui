@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "device-session-manager",
+  "type": "registry:block",
+  "title": "Device Session Manager",
+  "description": "A security authentication sessions console showing active browsers, IP geolocations, and remote termination.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "device-session-manager.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeviceSessionManager({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [sessions, setSessions] = React.useState([\n    { id: \"s1\", device: \"MacBook Pro (Chrome 128)\", ip: \"192.0.2.1\", location: \"San Francisco, US\", current: true },\n    { id: \"s2\", device: \"iPhone 16 Pro (Safari Mobile)\", ip: \"198.51.100.4\", location: \"San Francisco, US\", current: false },\n  ]);\n\n  const revoke = (id: string) => {\n    setSessions((prev) => prev.filter((s) => s.id !== id));\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-4\">Active Device Sessions</h3>\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden\">\n        {sessions.map((s) => (\n          <div key={s.id} className=\"p-4 flex items-center justify-between\">\n            <div>\n              <div className=\"flex items-center gap-2\">\n                <span className=\"font-semibold text-neutral-900 dark:text-white\">{s.device}</span>\n                {s.current && <span className=\"px-2 py-0.5 rounded text-[10px] bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold\">This Device</span>}\n              </div>\n              <div className=\"text-neutral-400 text-[11px] mt-0.5\">{s.location} • IP: {s.ip}</div>\n            </div>\n            {!s.current && (\n              <button type=\"button\" onClick={() => revoke(s.id)} className=\"text-rose-500 hover:underline font-semibold\">\n                Revoke\n              </button>\n            )}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "e5d89de02754eab94d16498922d96711af252788b98c70c27e641ae136af97e6",
+      "sizeBytes": 1926
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DeviceSessionManager } from \"./device-session-manager\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DeviceSessionManager />\n    </div>\n  );\n}\n",
+      "contentHash": "5f774aa69c038b8e545226d3adcd484019eb9b8e0c87147716227eac96060cb7",
+      "sizeBytes": 289
+    }
+  ],
+  "tags": [
+    "sessions",
+    "devices",
+    "security",
+    "auth",
+    "tokens"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "session-revocation-controls",
+      "visualModel": "connected-device-roster",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "user-session-security"
+    }
+  },
+  "url": "https://openui.dev/r/device-session-manager.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Session Revocation Controls: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "banner-notice-strip",
+  "type": "registry:component",
+  "title": "Banner Notice Strip",
+  "description": "An informational full-width banner notice with action CTA button and dismiss trigger.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "banner-notice-strip.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BannerNoticeStripProps {\n  message?: string;\n  className?: string;\n}\n\nexport function BannerNoticeStrip({\n  message = \"OpenUI 800 Master Catalog expansion currently compiling.\",\n  className,\n}: BannerNoticeStripProps) {\n  return (\n    <div className={cn(\"flex w-full items-center justify-between rounded-lg border border-line bg-line/10 px-4 py-2.5 font-mono text-xs shadow-sm\", className)}>\n      <span className=\"text-ink font-semibold\">📢 {message}</span>\n      <button type=\"button\" className=\"rounded bg-ink px-3 py-1 font-bold text-paper text-[10px]\">\n        Learn More\n      </button>\n    </div>\n  );\n}\n\nexport default BannerNoticeStrip;\n",
+      "contentHash": "d6d403c79e1f8767c994628922774877114c183d41c909c430203aa377f771eb",
+      "sizeBytes": 712
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { BannerNoticeStrip } from \"./banner-notice-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <BannerNoticeStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "10ac0568b69e9ed13dfa894d355e05029e980f09f21c9c8f442612d8b3407c6c",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "banner",
+    "notice",
+    "announcement",
+    "cta",
+    "feedback"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "announcement-banner-cta",
+      "visualModel": "full-width-notice-strip",
+      "motionModel": "none",
+      "layoutModel": "horizontal-banner-ribbon",
+      "semanticPurpose": "announcement-banner-ribbon"
+    }
+  },
+  "url": "https://openui.dev/r/banner-notice-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Announcement Banner Cta: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

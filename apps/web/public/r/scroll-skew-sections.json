@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-skew-sections",
+  "type": "registry:motion",
+  "title": "Scroll Skew Sections",
+  "description": "Alternating sections skew in opposing directions with scroll velocity — even sections lean forward, odd sections lean back, creating a shear wave through the page that flattens when scrolling stops.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-skew-sections.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollSkewSectionsProps {\n  sections: Array<{ title: string; body: string }>;\n  maxSkew?: number;\n  className?: string;\n}\n\nexport function ScrollSkewSections({ sections, maxSkew = 4, className }: ScrollSkewSectionsProps) {\n  const sectionRefs = useRef<Array<HTMLElement | null>>([]);\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    let lastY = window.scrollY;\n    let lastT = performance.now();\n    let velocity = 0;\n    let skew = 0;\n    let raf: number | null = null;\n\n    const tick = () => {\n      const now = performance.now();\n      const dy = window.scrollY - lastY;\n      const dt = Math.max(1, now - lastT);\n      lastY = window.scrollY;\n      lastT = now;\n      velocity += ((dy / dt) * 16 - velocity) * 0.2;\n      skew += (velocity * 0.08 - skew) * 0.3;\n\n      sectionRefs.current.forEach((node, index) => {\n        if (!node) return;\n        const direction = index % 2 === 0 ? 1 : -1;\n        node.style.transform = `skewY(${(skew * direction).toFixed(3)}deg)`;\n      });\n\n      if (Math.abs(skew) > 0.02 || Math.abs(velocity) > 0.1) {\n        raf = requestAnimationFrame(tick);\n      } else {\n        raf = null;\n        sectionRefs.current.forEach((node) => {\n          if (node) node.style.transform = \"\";\n        });\n      }\n    };\n\n    const kick = () => {\n      if (raf === null) raf = requestAnimationFrame(tick);\n    };\n    window.addEventListener(\"scroll\", kick, { passive: true });\n    return () => {\n      window.removeEventListener(\"scroll\", kick);\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, []);\n\n  return (\n    <div className={cn(\"flex flex-col\", className)}>\n      {sections.map((section, index) => (\n        <section\n          key={index}\n          ref={(node) => {\n            sectionRefs.current[index] = node;\n          }}\n          className={cn(\"py-16 will-change-transform\", index % 2 === 0 ? \"bg-paper\" : \"bg-line/20\")}\n        >\n          <div className=\"mx-auto max-w-xl px-8\">\n            <h2 className=\"font-display text-2xl text-ink\">{section.title}</h2>\n            <p className=\"mt-3 text-ink/70\">{section.body}</p>\n          </div>\n        </section>\n      ))}\n    </div>\n  );\n}\n\nexport default ScrollSkewSections;\n",
+      "contentHash": "5c1e9fa954445924c87f0a1ae53291bc015a01b1099d8f0bd94771dfab5a5b9a",
+      "sizeBytes": 2345
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollSkewSections } from \"./scroll-skew-sections\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper\">\n      <ScrollSkewSections\n        sections={[\n          { title: \"Even sections lean forward\", body: \"Skew follows scroll velocity.\" },\n          { title: \"Odd sections lean back\", body: \"The shear alternates through the page.\" },\n          { title: \"Rest flattens everything\", body: \"Stop scrolling and the grid returns.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "870a8b7c4d7b3735804217a5258656a3ddaeab2f581ecd39d0643bfd4617c571",
+      "sizeBytes": 501
+    }
+  ],
+  "tags": [
+    "skew",
+    "scroll",
+    "shear",
+    "sections"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "alternating-skew-planes",
+      "motionModel": "velocity-shear-opposing",
+      "layoutModel": "stack",
+      "semanticPurpose": "kinetic-sections"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-skew-sections.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Kinetic\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- Scroll Velocity Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

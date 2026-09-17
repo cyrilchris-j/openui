@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-reference-search",
+  "type": "registry:section",
+  "title": "API Reference Search",
+  "description": "A fast lookup interface allowing developers to filter endpoints, props, and design tokens.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-reference-search.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ApiReferenceSearch({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [query, setQuery] = React.useState(\"\");\n\n  return (\n    <section className={cn(\"w-full py-12 px-4 max-w-2xl mx-auto font-mono text-xs\", className)} {...props}>\n      <input\n        type=\"text\"\n        value={query}\n        onChange={(e) => setQuery(e.target.value)}\n        placeholder=\"Search API endpoints (e.g. /r/components/button)...\"\n        className=\"w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:outline-none\"\n      />\n    </section>\n  );\n}\n",
+      "contentHash": "13b14f7cf4825248f0aafbd76f37f20d49149fcd7066cba97c3d918ee7e6777e",
+      "sizeBytes": 738
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ApiReferenceSearch } from \"./api-reference-search\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <ApiReferenceSearch />\n    </div>\n  );\n}\n",
+      "contentHash": "4f76e15706915d1c597cfea5e94e2ab6b4935e5166f4c7e3193b62c0535443a3",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "api",
+    "search",
+    "reference",
+    "docs",
+    "lookup"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "api-reference-search-interaction",
+      "visualModel": "api-reference-search-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-reference-search-section"
+    }
+  },
+  "url": "https://openui.dev/r/api-reference-search.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Api Reference Search Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

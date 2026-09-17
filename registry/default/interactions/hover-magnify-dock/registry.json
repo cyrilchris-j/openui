@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-magnify-dock",
+  "type": "registry:interaction",
+  "title": "Hover Magnify Dock",
+  "description": "An icon tray shelf computing Gaussian proximity curves to smoothly enlarge icons surrounding mouse pointer.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-magnify-dock.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "dock",
+    "magnify",
+    "icons",
+    "hover",
+    "proximity"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "gaussian-dock-magnification",
+      "visualModel": "docked-shelf-capsules",
+      "motionModel": "proximity-bell-scaling",
+      "layoutModel": "dock-shelf-array",
+      "semanticPurpose": "app-launcher-shelf"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

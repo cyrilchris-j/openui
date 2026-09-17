@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-load-stress-tester",
+  "type": "registry:block",
+  "title": "System Load Stress Tester",
+  "description": "A simulated concurrent traffic stress tester with virtual user (VU) slider and live latency benchmarking curve.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-load-stress-tester.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "load-testing",
+    "stress",
+    "concurrency",
+    "benchmark",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "testing",
+    "fingerprint": {
+      "interactionModel": "concurrency-load-stress-simulation",
+      "visualModel": "stress-test-benchmark-console",
+      "motionModel": "mechanical",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "load-concurrency-benchmarking"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

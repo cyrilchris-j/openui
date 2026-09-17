@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "retro-synth-sun",
+  "type": "registry:background",
+  "title": "Retro Synth Sun",
+  "description": "Classic 80s outrun synthwave sun silhouette with horizontal sliced blind cutouts.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "retro-synth-sun.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface RetroSynthSunProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function RetroSynthSun({ className, children, ...props }: RetroSynthSunProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div className=\"absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-gradient-to-b from-amber-400 via-pink-500 to-purple-600 pointer-events-none opacity-70 -z-10 overflow-hidden shadow-[0_0_50px_rgba(236,72,153,0.5)]\">\n        <div\n          className=\"absolute inset-0\"\n          style={{\n            backgroundImage: \"repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, #020617 10px, #020617 14px)\",\n          }}\n        />\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "62adfebf688a7900dada16b3490f6c8388a7965b891bb3a53658b877157efa05",
+      "sizeBytes": 902
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { RetroSynthSun } from \"./retro-synth-sun\";\n\nexport default function RetroSynthSunDemo() {\n  return (\n    <RetroSynthSun className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-pink-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-pink-400\">Outrun Sunset Disc</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Horizontal sliced retro sunset blinds.</p>\n      </div>\n    </RetroSynthSun>\n  );\n}\n",
+      "contentHash": "a2cb2a27491e552f9bc635272ae8175f953647a175087dc086f81652cd34900e",
+      "sizeBytes": 566
+    }
+  ],
+  "tags": [
+    "synthwave",
+    "sun",
+    "retro",
+    "80s",
+    "outrun"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-outrun-sun",
+      "visualModel": "sliced-horizontal-sun-disc",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "synthwave-sunset-disc"
+    }
+  },
+  "url": "https://openui.dev/r/retro-synth-sun.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Outrun Sun: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

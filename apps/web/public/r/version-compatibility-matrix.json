@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "version-compatibility-matrix",
+  "type": "registry:block",
+  "title": "Version Compatibility Matrix",
+  "description": "A framework runtime compatibility checklist validating React 19, Next.js 15, Vite, and Node.js.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "version-compatibility-matrix.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function VersionCompatibilityMatrix({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const versions = [\n    { target: \"React\", version: \">=19.0.0\", status: \"Supported\" },\n    { target: \"Next.js\", version: \">=15.0.0\", status: \"Supported\" },\n    { target: \"Vite\", version: \">=6.0.0\", status: \"Supported\" },\n    { target: \"Node.js\", version: \">=20.0.0\", status: \"Supported\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-3\">Runtime Compatibility Spec</h3>\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden\">\n        {versions.map((v) => (\n          <div key={v.target} className=\"p-3 flex items-center justify-between\">\n            <span className=\"font-bold text-neutral-900 dark:text-white\">{v.target}</span>\n            <span className=\"text-neutral-400\">{v.version}</span>\n            <span className=\"text-emerald-500 font-bold\">✓ {v.status}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "357e2f9978ccb192b37b7fd7d6bb5e06ee3ea147a164e67e5c4aa0d235765424",
+      "sizeBytes": 1359
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { VersionCompatibilityMatrix } from \"./version-compatibility-matrix\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <VersionCompatibilityMatrix />\n    </div>\n  );\n}\n",
+      "contentHash": "7cfc9f59d386fb9afa0ce0d97ffdf3852a20417f6e1a3975ca18e52172250778",
+      "sizeBytes": 307
+    }
+  ],
+  "tags": [
+    "compatibility",
+    "matrix",
+    "versions",
+    "react19",
+    "nextjs15"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "runtime-version-check-matrix",
+      "visualModel": "compatibility-assurance-grid",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "runtime-compatibility-verification"
+    }
+  },
+  "url": "https://openui.dev/r/version-compatibility-matrix.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Runtime Version Check Matrix: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

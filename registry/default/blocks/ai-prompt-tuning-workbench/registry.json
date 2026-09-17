@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ai-prompt-tuning-workbench",
+  "type": "registry:block",
+  "title": "AI Prompt Tuning Workbench",
+  "description": "An interactive LLM prompt development playground with temperature sliders, token counters, and live response streaming.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ai-prompt-tuning-workbench.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "ai",
+    "prompt",
+    "llm",
+    "temperature",
+    "tokens"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "ai",
+    "fingerprint": {
+      "interactionModel": "prompt-engineering-parameter-tuning",
+      "visualModel": "dual-pane-prompt-workbench",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "ai-prompt-engineering"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

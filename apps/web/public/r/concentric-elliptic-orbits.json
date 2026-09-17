@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "concentric-elliptic-orbits",
+  "type": "registry:background",
+  "title": "Concentric Elliptic Orbits",
+  "description": "Keplerian orbital mechanics planetary ellipses intersecting around gravitational focal points.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "concentric-elliptic-orbits.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ConcentricEllipticOrbitsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function ConcentricEllipticOrbits({ className, children, ...props }: ConcentricEllipticOrbitsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-20 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 600\">\n        <ellipse cx=\"400\" cy=\"300\" rx=\"360\" ry=\"120\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" transform=\"rotate(-15 400 300)\" />\n        <ellipse cx=\"400\" cy=\"300\" rx=\"280\" ry=\"90\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" transform=\"rotate(25 400 300)\" />\n        <ellipse cx=\"400\" cy=\"300\" rx=\"200\" ry=\"70\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" transform=\"rotate(-40 400 300)\" />\n        <circle cx=\"400\" cy=\"300\" r=\"4\" fill=\"currentColor\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "055f6806a832c0eb471a88ffb9c7d866a40ca853300e940aa82c721491925302",
+      "sizeBytes": 1084
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { ConcentricEllipticOrbits } from \"./concentric-elliptic-orbits\";\n\nexport default function ConcentricEllipticOrbitsDemo() {\n  return (\n    <ConcentricEllipticOrbits className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Keplerian Orbits</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Multi-axis planetary elliptical trajectories.</p>\n      </div>\n    </ConcentricEllipticOrbits>\n  );\n}\n",
+      "contentHash": "7cbca37f08cb8155a6f113a8e76f17f175fc88193f4bf071a243b7ec768f41b8",
+      "sizeBytes": 612
+    }
+  ],
+  "tags": [
+    "orbits",
+    "astronomy",
+    "kepler",
+    "ellipses",
+    "space"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-kepler-orbits",
+      "visualModel": "intersecting-orbital-ellipses",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "astronomy-orbital-mechanics"
+    }
+  },
+  "url": "https://openui.dev/r/concentric-elliptic-orbits.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Kepler Orbits: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

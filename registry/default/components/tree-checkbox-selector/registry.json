@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tree-checkbox-selector",
+  "type": "registry:component",
+  "title": "Tree Checkbox Selector",
+  "description": "Hierarchical nested folder tree with multi-state parent checkboxes and expandable branch folders.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tree-checkbox-selector.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tree",
+    "checkbox",
+    "hierarchical",
+    "folder",
+    "forms"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "nested-checkbox-tree-selection",
+      "visualModel": "hierarchical-indented-tree",
+      "motionModel": "none",
+      "layoutModel": "nested-indentation-column",
+      "semanticPurpose": "nested-scope-selection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

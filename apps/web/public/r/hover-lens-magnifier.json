@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-lens-magnifier",
+  "type": "registry:interaction",
+  "title": "Hover Lens Magnifier",
+  "description": "An inspection loupe following pointer movement to provide high-detail magnification over technical graphics.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-lens-magnifier.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverLensMagnifierProps {\n  className?: string;\n}\n\nexport function HoverLensMagnifier({ className }: HoverLensMagnifierProps) {\n  const [lens, setLens] = useState({ x: 80, y: 80 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    setLens({ x: e.clientX - rect.left, y: e.clientY - rect.top });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      className={cn(\"relative h-64 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper p-6 select-none\", className)}\n    >\n      <div className=\"font-mono text-[11px] leading-5 text-ink/70\">\n        <p>0x0001: 4F 50 45 4E 55 49</p>\n        <p>0x0008: 72 65 67 69 73 74</p>\n        <p>0x0010: 72 79 2D 38 30 30</p>\n        <p>0x0018: 6B 65 72 6E 65 6C</p>\n      </div>\n\n      <div\n        className=\"pointer-events-none absolute -ml-8 -mt-8 flex h-16 w-16 items-center justify-center rounded-lg border-2 border-ink bg-paper/40 shadow-xl backdrop-blur-[1px]\"\n        style={{ left: lens.x, top: lens.y }}\n      >\n        <span className=\"font-mono text-[9px] font-bold text-ink\">LOUPE</span>\n      </div>\n    </div>\n  );\n}\n\nexport default HoverLensMagnifier;\n",
+      "contentHash": "592f152cd01ea1c8f06b9e74efa42690084dbab95cf394debe9128f67a15de13",
+      "sizeBytes": 1322
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverLensMagnifier } from \"./hover-lens-magnifier\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <HoverLensMagnifier />\n    </div>\n  );\n}\n",
+      "contentHash": "f171e78382389b04cd0418c20a3865346fe4a5fe650294d5779bb6bb390ad81b",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "lens",
+    "magnifier",
+    "loupe",
+    "zoom",
+    "inspection"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "coordinate-loupe-tracking",
+      "visualModel": "bordered-magnification-optic",
+      "motionModel": "linear-pointer-slave",
+      "layoutModel": "overlaid-lens-quadrant",
+      "semanticPurpose": "technical-inspection-loupe"
+    }
+  },
+  "url": "https://openui.dev/r/hover-lens-magnifier.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Coordinate Loupe Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

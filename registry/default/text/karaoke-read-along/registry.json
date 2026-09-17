@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "karaoke-read-along",
+  "type": "registry:text",
+  "title": "Karaoke Read-Along",
+  "description": "A paragraph that highlights each chunk in sync with a timer while an aria-live region reads the current chunk — designed for language learning and read-along accessibility, with speed control and pause.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "karaoke-read-along.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "karaoke",
+    "read-along",
+    "aria",
+    "learning"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "playback-control",
+      "visualModel": "progressive-highlight",
+      "motionModel": "timed-advance",
+      "layoutModel": "block",
+      "semanticPurpose": "guided-reading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stacked-timeline-stream",
+  "type": "registry:layout",
+  "title": "Stacked Timeline Stream",
+  "description": "Single-column vertical activity feed with avatar indicators and connecting timeline guides.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stacked-timeline-stream.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "timeline",
+    "activity",
+    "stream",
+    "feed",
+    "stack"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "activity-stream-scroll",
+      "visualModel": "vertical-timeline-wire",
+      "motionModel": "none",
+      "layoutModel": "single-column-timeline-stack",
+      "semanticPurpose": "activity-audit-stream"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

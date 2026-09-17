@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "breathing-loader",
+  "type": "registry:motion",
+  "title": "Breathing Loader",
+  "description": "A loader that breathes instead of spins: concentric rings expand and contract on offset sine phases with opacity tied to the exhale — calm by design, with a minutes-elapsed counter for long operations.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "breathing-loader.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BreathingLoaderProps {\n  rings?: number;\n  label?: string;\n  className?: string;\n}\n\nexport function BreathingLoader({ rings = 3, label = \"Working\", className }: BreathingLoaderProps) {\n  const refs = useRef<Array<HTMLSpanElement | null>>([]);\n  const [elapsed, setElapsed] = useState(0);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    const timer = window.setInterval(() => setElapsed((value) => value + 1), 1000);\n    return () => window.clearInterval(timer);\n  }, []);\n\n  useEffect(() => {\n    if (reduced) return;\n    let raf: number | null = null;\n    const start = performance.now();\n\n    const tick = (now: number) => {\n      const elapsed = (now - start) / 1000;\n      refs.current.forEach((node, index) => {\n        if (!node) return;\n        const phase = elapsed * 1.4 + index * 0.9;\n        const scale = 0.7 + Math.sin(phase) * 0.25;\n        const opacity = 0.25 + Math.sin(phase) * 0.2;\n        node.style.transform = `scale(${scale.toFixed(3)})`;\n        node.style.opacity = String(Math.max(0.05, opacity).toFixed(3));\n      });\n      raf = requestAnimationFrame(tick);\n    };\n    raf = requestAnimationFrame(tick);\n    return () => {\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, [reduced]);\n\n  return (\n    <div className={cn(\"relative flex h-32 w-32 items-center justify-center\", className)} role=\"status\" aria-label={`${label}. ${elapsed} seconds elapsed`}>\n      {Array.from({ length: rings }, (_, index) => (\n        <span\n          key={index}\n          ref={(node) => {\n            refs.current[index] = node;\n          }}\n          aria-hidden\n          className=\"absolute rounded-full border-2 border-ink/60\"\n          style={{ width: 80 + index * 22, height: 80 + index * 22, opacity: 0.3 }}\n        />\n      ))}\n      <span className=\"relative z-10 font-mono text-xs tabular-nums text-ink/60\">{elapsed}s</span>\n    </div>\n  );\n}\n\nexport default BreathingLoader;\n",
+      "contentHash": "3384ea1a7a82e1c659763696bcb8ee07040808bf2daf7175193c84c035f48370",
+      "sizeBytes": 2126
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { BreathingLoader } from \"./breathing-loader\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <BreathingLoader label=\"Validating registry\" />\n    </div>\n  );\n}\n",
+      "contentHash": "a9d63e2d46a594dc01d439db28a57db82028562a4aad35936697c41c3c2d58ee",
+      "sizeBytes": 254
+    }
+  ],
+  "tags": [
+    "loader",
+    "breathing",
+    "rings",
+    "calm"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "phase-offset-rings",
+      "motionModel": "sine-scale-opacity",
+      "layoutModel": "radial",
+      "semanticPurpose": "loading-calm"
+    }
+  },
+  "url": "https://openui.dev/r/breathing-loader.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

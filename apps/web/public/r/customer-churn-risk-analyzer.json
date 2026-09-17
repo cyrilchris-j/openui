@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-churn-risk-analyzer",
+  "type": "registry:block",
+  "title": "Customer Churn Risk Analyzer",
+  "description": "An AI telemetry analyzer tracking client engagement decline, health score metrics, and retention triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-churn-risk-analyzer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CustomerChurnRiskAnalyzer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-2\">Account Health Analysis</h3>\n      <div className=\"p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-500/20 text-center my-4\">\n        <div className=\"text-3xl font-bold font-mono text-emerald-600 dark:text-emerald-400\">92 / 100</div>\n        <div className=\"text-neutral-500 mt-1\">Low Churn Risk • High Engagement</div>\n      </div>\n      <div className=\"space-y-2 text-neutral-600 dark:text-neutral-400\">\n        <div>✓ Daily CLI usage across 12 developers</div>\n        <div>✓ 100% active seat utilization</div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "066867152c16dc9627be462e3b21f4ca0cf88fc0e3b9f9017b0b96fa9380659b",
+      "sizeBytes": 1044
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CustomerChurnRiskAnalyzer } from \"./customer-churn-risk-analyzer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CustomerChurnRiskAnalyzer />\n    </div>\n  );\n}\n",
+      "contentHash": "d0b0fbb6ce1318dd718b458ecae0afcff8452bef67724cee9e93d4c5646115f2",
+      "sizeBytes": 305
+    }
+  ],
+  "tags": [
+    "churn",
+    "retention",
+    "crm",
+    "health-score",
+    "analytics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "crm",
+    "fingerprint": {
+      "interactionModel": "churn-risk-scoring-drilldown",
+      "visualModel": "predictive-customer-risk-gauge",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-retention-scoring"
+    }
+  },
+  "url": "https://openui.dev/r/customer-churn-risk-analyzer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Churn Risk Scoring Drilldown: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

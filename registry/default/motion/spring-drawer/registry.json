@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-drawer",
+  "type": "registry:motion",
+  "title": "Spring Drawer",
+  "description": "A drawer that follows the finger 1:1 during drag and uses a velocity-aware spring on release: fast flicks complete the gesture even past the halfway mark, slow drags need majority travel — gesture semantics done properly.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-drawer.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "drawer",
+    "drag",
+    "velocity",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "drag-to-dismiss",
+      "visualModel": "edge-panel",
+      "motionModel": "velocity-spring-settle",
+      "layoutModel": "overlay",
+      "semanticPurpose": "sheet-navigation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

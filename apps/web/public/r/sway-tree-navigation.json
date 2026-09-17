@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sway-tree-navigation",
+  "type": "registry:motion",
+  "title": "Sway Tree Navigation",
+  "description": "A nested folder hierarchy where tree branches sway organically with delayed momentum when expanded or hovered.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sway-tree-navigation.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SwayTreeNavigationProps {\n  className?: string;\n}\n\nexport function SwayTreeNavigation({ className }: SwayTreeNavigationProps) {\n  const [openDirs, setOpenDirs] = useState<Record<string, boolean>>({ \"src\": true });\n\n  const toggle = (key: string) => {\n    setOpenDirs((prev) => ({ ...prev, [key]: !prev[key] }));\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-5 shadow-sm font-mono text-xs\", className)}>\n      <div className=\"mb-3 font-semibold uppercase tracking-wider text-ink/50\">WORKSPACE TREE</div>\n      <div className=\"space-y-1\">\n        <div>\n          <button\n            type=\"button\"\n            onClick={() => toggle(\"src\")}\n            className=\"flex items-center gap-2 text-ink hover:opacity-75\"\n          >\n            <span>{openDirs[\"src\"] ? \"▾\" : \"▸\"}</span>\n            <span className=\"font-bold\">src/</span>\n          </button>\n          {openDirs[\"src\"] && (\n            <div className=\"ml-4 mt-1 border-l border-line pl-3 space-y-1 transition-all duration-200\">\n              <div className=\"text-ink/70 hover:translate-x-1 transition-transform\">components/</div>\n              <div className=\"text-ink/70 hover:translate-x-1 transition-transform\">hooks/</div>\n              <div className=\"text-ink/70 hover:translate-x-1 transition-transform\">index.ts</div>\n            </div>\n          )}\n        </div>\n        <div className=\"text-ink/70 hover:translate-x-1 transition-transform pl-4\">package.json</div>\n        <div className=\"text-ink/70 hover:translate-x-1 transition-transform pl-4\">tsconfig.json</div>\n      </div>\n    </div>\n  );\n}\n\nexport default SwayTreeNavigation;\n",
+      "contentHash": "fd3e6dc884a6372c824f07ae32e0d38d3589e1346bf27a418410daa88e94c8ae",
+      "sizeBytes": 1757
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SwayTreeNavigation } from \"./sway-tree-navigation\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <SwayTreeNavigation />\n    </div>\n  );\n}\n",
+      "contentHash": "1871fe8779aa67ab6369e1805fb8fa8700d83d51ae2035aa640b37fdb4534439",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "tree",
+    "navigation",
+    "sway",
+    "spring",
+    "hierarchy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hierarchy",
+    "fingerprint": {
+      "interactionModel": "expandable-branch-inspection",
+      "visualModel": "arborescent-branching-links",
+      "motionModel": "pendular-harmonic-sway",
+      "layoutModel": "hierarchical-rail-tree",
+      "semanticPurpose": "filesystem-tree-browser"
+    }
+  },
+  "url": "https://openui.dev/r/sway-tree-navigation.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Rail\nDensity: Compact\nShape: Soft\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Expandable Branch Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

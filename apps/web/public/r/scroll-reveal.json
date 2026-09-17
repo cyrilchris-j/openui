@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "intersection-threshold-trigger",
+      "visualModel": "mask-unclip-rise",
+      "motionModel": "staggered-vertical-lift",
+      "layoutModel": "flow-child-wrapper",
+      "semanticPurpose": "story-entrance"
     }
   },
   "url": "https://openui.dev/r/scroll-reveal.json",

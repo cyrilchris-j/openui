@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "masonry-column-flow",
+  "type": "registry:layout",
+  "title": "Masonry Column Flow",
+  "description": "Pinterest-style cascading multi-column masonry pin-board layout with variable height item cards.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "masonry-column-flow.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MasonryColumnFlowProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MasonryColumnFlow({ children, className, ...props }: MasonryColumnFlowProps) {\n  return (\n    <div className={cn(\"columns-1 sm:columns-2 lg:columns-3 gap-4 p-4 max-w-5xl mx-auto space-y-4\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "582695d53ee09f9422d014d31becb8ec64df9ed56b1c37327d0a70b7a7e26b2d",
+      "sizeBytes": 432
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "import { cn } from \"@/lib/cn\";\nimport { MasonryColumnFlow } from \"./masonry-column-flow\";\n\nexport default function MasonryColumnFlowDemo() {\n  const heights = [\"h-32\", \"h-48\", \"h-40\", \"h-56\", \"h-36\", \"h-44\"];\n  return (\n    <MasonryColumnFlow>\n      {heights.map((h, i) => (\n        <div\n          key={i}\n          className={cn(\"p-4 rounded-xl border border-line bg-surface/30 break-inside-avoid flex flex-col justify-between\", h)}\n        >\n          <span className=\"font-mono text-xs font-bold text-ink\">Tile #{i + 1}</span>\n          <span className=\"text-[11px] text-ink/60 font-sans\">Variable height masonry card container.</span>\n        </div>\n      ))}\n    </MasonryColumnFlow>\n  );\n}\n",
+      "contentHash": "d59f93375d774cbb13a3997dc1a5536716db77a6ca17a2d74f847cbe2a285dad",
+      "sizeBytes": 696
+    }
+  ],
+  "tags": [
+    "masonry",
+    "pinboard",
+    "columns",
+    "cards",
+    "flow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "scatter",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "cascading-pinboard-scroll",
+      "visualModel": "variable-height-masonry",
+      "motionModel": "none",
+      "layoutModel": "css-columns-waterfall",
+      "semanticPurpose": "masonry-pinboard-gallery"
+    }
+  },
+  "url": "https://openui.dev/r/masonry-column-flow.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Scatter\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Cascading Pinboard Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

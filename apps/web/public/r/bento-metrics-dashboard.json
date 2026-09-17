@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bento-metrics-dashboard",
+  "type": "registry:layout",
+  "title": "Bento Metrics Dashboard",
+  "description": "Analytics bento box layout coordinating charts, tables, KPIs, and regional status panels.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bento-metrics-dashboard.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BentoMetricsDashboardProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function BentoMetricsDashboard({ children, className, ...props }: BentoMetricsDashboardProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-3 gap-3 max-w-5xl mx-auto p-4 font-mono text-xs\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "ca9f3c8b96b101dbbc9eed4ae722567acb4eee8f93845c8c4044ab36250930ab",
+      "sizeBytes": 448
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { BentoMetricsDashboard } from \"./bento-metrics-dashboard\";\n\nexport default function BentoMetricsDashboardDemo() {\n  return (\n    <BentoMetricsDashboard>\n      <div className=\"md:col-span-2 p-4 rounded-xl border border-line bg-surface/30\">\n        <span className=\"text-ink/60\">Primary Throughput</span>\n        <div className=\"text-lg font-bold text-ink mt-1\">1.2 TB / day</div>\n      </div>\n      <div className=\"p-4 rounded-xl border border-line bg-surface/30\">\n        <span className=\"text-ink/60\">Node Latency</span>\n        <div className=\"text-lg font-bold text-accent mt-1\">14ms</div>\n      </div>\n    </BentoMetricsDashboard>\n  );\n}\n",
+      "contentHash": "9ad48b7d119a8ec2d0fd257de6c53d83c58d1a524402c6eaf6ad0dc413417c41",
+      "sizeBytes": 665
+    }
+  ],
+  "tags": [
+    "bento",
+    "metrics",
+    "analytics",
+    "dashboard",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "bento-telemetry-scan",
+      "visualModel": "modular-metric-tiles",
+      "motionModel": "none",
+      "layoutModel": "mosaic-telemetry-matrix",
+      "semanticPurpose": "bento-analytics-matrix"
+    }
+  },
+  "url": "https://openui.dev/r/bento-metrics-dashboard.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Bento Telemetry Scan: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

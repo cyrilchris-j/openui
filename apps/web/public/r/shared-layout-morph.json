@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "shared-layout-morph",
+  "type": "registry:motion",
+  "title": "Shared Layout Morph",
+  "description": "A selected card expands into a detail panel while its identity persists: FLIP technique — first, last, invert, play — implemented from scratch with measured rects and one transform, so the element never teleports.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "shared-layout-morph.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SharedLayoutMorphProps {\n  items: Array<{ id: string; title: string; body: string }>;\n  className?: string;\n}\n\nexport function SharedLayoutMorph({ items, className }: SharedLayoutMorphProps) {\n  const [selected, setSelected] = useState<string | null>(null);\n  const cardRefs = useRef<Record<string, HTMLButtonElement | null>>({});\n  const detailRef = useRef<HTMLDivElement>(null);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  const expand = (id: string) => {\n    const card = cardRefs.current[id];\n    setSelected(id);\n    if (!card || reduced) return;\n    // Wait for the detail node to mount, then FLIP from the card's rect.\n    requestAnimationFrame(() => {\n      const detail = detailRef.current;\n      if (!detail) return;\n      const first = card.getBoundingClientRect();\n      const last = detail.getBoundingClientRect();\n      const dx = first.left - last.left;\n      const dy = first.top - last.top;\n      const sx = first.width / last.width;\n      const sy = first.height / last.height;\n      detail.animate(\n        [\n          { transform: `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`, borderRadius: \"12px\" },\n          { transform: \"translate(0, 0) scale(1, 1)\", borderRadius: \"12px\" },\n        ],\n        { duration: 420, easing: \"cubic-bezier(0.2, 0, 0, 1)\" },\n      );\n    });\n  };\n\n  return (\n    <div className={cn(\"relative\", className)}>\n      <div className=\"grid grid-cols-2 gap-3 sm:grid-cols-3\">\n        {items.map((item) => (\n          <button\n            key={item.id}\n            ref={(node) => {\n              cardRefs.current[item.id] = node;\n            }}\n            type=\"button\"\n            onClick={() => expand(item.id)}\n            className={cn(\n              \"rounded-xl border border-line bg-paper p-4 text-left transition-opacity\",\n              selected === item.id ? \"opacity-30\" : \"opacity-100 hover:border-accent\",\n            )}\n          >\n            <p className=\"font-display text-ink\">{item.title}</p>\n          </button>\n        ))}\n      </div>\n      {selected && (\n        <div className=\"absolute inset-0 z-10 flex items-center justify-center\">\n          <div\n            ref={detailRef}\n            className=\"w-full max-w-sm rounded-xl border border-line bg-paper p-6 shadow-2xl\"\n          >\n            <p className=\"font-display text-lg text-ink\">\n              {items.find((item) => item.id === selected)?.title}\n            </p>\n            <p className=\"mt-2 text-sm text-ink/70\">\n              {items.find((item) => item.id === selected)?.body}\n            </p>\n            <button\n              type=\"button\"\n              onClick={() => setSelected(null)}\n              className=\"mt-4 rounded-md border border-line px-3 py-1.5 text-sm text-ink hover:bg-line/20\"\n            >\n              Close\n            </button>\n          </div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default SharedLayoutMorph;\n",
+      "contentHash": "b75ca454ae3fb18138d0b48484c7ee86b847bc7e76dcc91a06f21f4f0d9b9615",
+      "sizeBytes": 3071
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SharedLayoutMorph } from \"./shared-layout-morph\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <SharedLayoutMorph\n        className=\"w-full max-w-md\"\n        items={[\n          { id: \"a\", title: \"Schema\", body: \"The contract every resource signs.\" },\n          { id: \"b\", title: \"Validate\", body: \"Metadata checked before publish.\" },\n          { id: \"c\", title: \"Mount\", body: \"Demos proven in a real DOM.\" },\n          { id: \"d\", title: \"Index\", body: \"Searchable, filterable, listed.\" },\n          { id: \"e\", title: \"Install\", body: \"One command, files on disk.\" },\n          { id: \"f\", title: \"Compose\", body: \"Resources combined into products.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "31ae12a5707ead7e1d8da12948738fe8f2f73fe43895aef0573cbed28c959cb5",
+      "sizeBytes": 789
+    }
+  ],
+  "tags": [
+    "flip",
+    "morph",
+    "shared-element",
+    "expansion"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "page",
+    "fingerprint": {
+      "interactionModel": "select-expand",
+      "visualModel": "measured-rect-morph",
+      "motionModel": "flip-invert-play",
+      "layoutModel": "grid-to-overlay",
+      "semanticPurpose": "detail-navigation"
+    }
+  },
+  "url": "https://openui.dev/r/shared-layout-morph.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Select Expand: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

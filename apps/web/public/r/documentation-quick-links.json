@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "documentation-quick-links",
+  "type": "registry:section",
+  "title": "Documentation Quick Links",
+  "description": "A fast navigation strip offering direct deep links into foundational documentation topics.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "documentation-quick-links.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DocumentationQuickLinks({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const links = [\"Getting Started\", \"Design DNA\", \"CLI Reference\", \"Schema Spec\", \"FAQ\"];\n\n  return (\n    <section className={cn(\"w-full py-8 px-4 max-w-4xl mx-auto\", className)} {...props}>\n      <div className=\"flex flex-wrap items-center justify-center gap-3 text-xs\">\n        {links.map((l) => (\n          <a\n            key={l}\n            href=\"#doc\"\n            className=\"px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 font-medium text-neutral-800 dark:text-neutral-200 hover:border-emerald-500 transition-colors\"\n          >\n            {l} →\n          </a>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "db091c90e2c7aca0f3d9c3b2c76665006ea1780d6c5824fa6ae2ef6c127e99c2",
+      "sizeBytes": 854
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DocumentationQuickLinks } from \"./documentation-quick-links\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[150px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <DocumentationQuickLinks />\n    </div>\n  );\n}\n",
+      "contentHash": "135b90c9c8da8256373d47bb088dfc333ac03de263d1696c4136e99c6851ffce",
+      "sizeBytes": 300
+    }
+  ],
+  "tags": [
+    "docs",
+    "quick-links",
+    "navigation",
+    "guides",
+    "api"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "documentation-quick-links-interaction",
+      "visualModel": "documentation-quick-links-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "documentation-quick-links-section"
+    }
+  },
+  "url": "https://openui.dev/r/documentation-quick-links.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Rail\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Documentation Quick Links Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

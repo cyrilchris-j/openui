@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "time-range-picker",
+  "type": "registry:component",
+  "title": "Time Range Picker",
+  "description": "An intuitive time span selector with preset duration pills, custom start/end hour inputs, and visual range bar.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "time-range-picker.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Clock } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TimeRangePickerProps {\n  className?: string;\n  defaultStart?: string;\n  defaultEnd?: string;\n}\n\nexport function TimeRangePicker({\n  className,\n  defaultStart = \"09:00\",\n  defaultEnd = \"17:00\",\n}: TimeRangePickerProps) {\n  const [start, setStart] = useState(defaultStart);\n  const [end, setEnd] = useState(defaultEnd);\n\n  const presets = [\n    { label: \"1h\", s: \"09:00\", e: \"10:00\" },\n    { label: \"4h\", s: \"09:00\", e: \"13:00\" },\n    { label: \"Workday\", s: \"09:00\", e: \"17:00\" },\n    { label: \"Evening\", s: \"18:00\", e: \"23:00\" },\n  ];\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-sm w-full font-sans shadow-sm\", className)}>\n      <div className=\"flex items-center justify-between mb-3\">\n        <div className=\"flex items-center gap-1.5 text-xs font-semibold text-ink\">\n          <Clock className=\"w-3.5 h-3.5 text-accent\" />\n          <span>Active Window</span>\n        </div>\n        <span className=\"text-[11px] font-mono text-ink/60\">{start} → {end}</span>\n      </div>\n\n      <div className=\"grid grid-cols-2 gap-2 mb-3\">\n        <div>\n          <label className=\"block text-[11px] font-mono text-ink/60 mb-1\">Start</label>\n          <input\n            type=\"time\"\n            value={start}\n            onChange={(e) => setStart(e.target.value)}\n            className=\"w-full px-2.5 py-1.5 rounded border border-line bg-surface text-xs font-mono text-ink focus:outline-none focus:border-accent\"\n          />\n        </div>\n        <div>\n          <label className=\"block text-[11px] font-mono text-ink/60 mb-1\">End</label>\n          <input\n            type=\"time\"\n            value={end}\n            onChange={(e) => setEnd(e.target.value)}\n            className=\"w-full px-2.5 py-1.5 rounded border border-line bg-surface text-xs font-mono text-ink focus:outline-none focus:border-accent\"\n          />\n        </div>\n      </div>\n\n      <div className=\"flex items-center gap-1.5\">\n        {presets.map((p) => (\n          <button\n            key={p.label}\n            type=\"button\"\n            onClick={() => {\n              setStart(p.s);\n              setEnd(p.e);\n            }}\n            className=\"px-2 py-1 rounded bg-surface hover:bg-line/40 text-[10px] font-mono text-ink/80 transition-colors\"\n          >\n            {p.label}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "87e4c759b61c7558395965038b7092f1728b4048fdb1153bfe2c5c2466ea7b7e",
+      "sizeBytes": 2484
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { TimeRangePicker } from \"./time-range-picker\";\n\nexport default function TimeRangePickerDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[260px]\">\n      <TimeRangePicker />\n    </div>\n  );\n}\n",
+      "contentHash": "3ac1fbe15d0f3ff42d0883f4c2bddba4d1905ee17fe6b4a4318f43ade96ad211",
+      "sizeBytes": 261
+    }
+  ],
+  "tags": [
+    "time",
+    "range",
+    "picker",
+    "controls",
+    "schedule"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "interval-slider-selection",
+      "visualModel": "time-interval-bar",
+      "motionModel": "none",
+      "layoutModel": "compact-form-stack",
+      "semanticPurpose": "time-window-specification"
+    }
+  },
+  "url": "https://openui.dev/r/time-range-picker.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Interval Slider Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-webhook-debugger",
+  "type": "registry:block",
+  "title": "Developer Webhook Debugger",
+  "description": "An interactive webhook payload simulator with JSON syntax validation and instant HTTP response inspector.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-webhook-debugger.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "webhooks",
+    "debugger",
+    "replay",
+    "json",
+    "api"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "webhooks",
+    "fingerprint": {
+      "interactionModel": "webhook-payload-replay-sandbox",
+      "visualModel": "debugger-payload-console",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "webhook-endpoint-debugging"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -5,15 +5,34 @@
   "title": "Segmented Control",
   "description": "A segmented switcher with roving tabindex and arrow-key navigation, implemented as a real radiogroup rather than a row of buttons pretending to be one.",
   "category": "components",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "segmented-control.tsx", "type": "registry:component" }],
-  "tags": ["tabs", "radiogroup", "keyboard"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-control.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "radiogroup",
+    "keyboard"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["roving-tabindex", "keyboard-accessible", "controlled-and-uncontrolled"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "roving-tabindex",
+      "keyboard-accessible",
+      "controlled-and-uncontrolled"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "swiss",
       "macrostructure": "rail",
@@ -22,6 +41,14 @@
       "motionLanguage": "subtle",
       "typographyStyle": "grotesk",
       "colorStrategy": "high-contrast"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "exclusive-pill-selection",
+      "visualModel": "capsule-slider-track",
+      "motionModel": "spring-thumb-slide",
+      "layoutModel": "inline-segmented",
+      "semanticPurpose": "view-mode-toggle"
     }
   }
 }

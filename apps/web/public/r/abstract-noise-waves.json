@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "abstract-noise-waves",
+  "type": "registry:background",
+  "title": "Abstract Noise Waves",
+  "description": "Layered undulating sine wave ribbons flowing smoothly across an animated HTML5 canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "abstract-noise-waves.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface AbstractNoiseWavesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function AbstractNoiseWaves({ className, children, ...props }: AbstractNoiseWavesProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let step = 0;\n\n    const render = () => {\n      canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;\n      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;\n      ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n      ctx.lineWidth = 1.5;\n      ctx.strokeStyle = \"rgba(100, 116, 139, 0.25)\";\n\n      for (let j = 0; j < 3; j++) {\n        ctx.beginPath();\n        for (let x = 0; x < canvas.width; x += 10) {\n          const y =\n            canvas.height / 2 +\n            Math.sin(x * 0.005 + step + j) * 40 +\n            Math.cos(x * 0.01 + step * 0.5) * 20;\n          if (x === 0) ctx.moveTo(x, y);\n          else ctx.lineTo(x, y);\n        }\n        ctx.stroke();\n      }\n\n      step += 0.015;\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "ba4979ff4fd76fc7d4e71cc94b09dfc29122eeae585d029868c3ca423a95af4a",
+      "sizeBytes": 1655
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { AbstractNoiseWaves } from \"./abstract-noise-waves\";\n\nexport default function AbstractNoiseWavesDemo() {\n  return (\n    <AbstractNoiseWaves className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Harmonic Waves</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Multi-frequency harmonic sine ribbons.</p>\n      </div>\n    </AbstractNoiseWaves>\n  );\n}\n",
+      "contentHash": "0510393f84e9c197957d177443eb37e640c735ae8e52c27ee79009952acd8d76",
+      "sizeBytes": 573
+    }
+  ],
+  "tags": [
+    "waves",
+    "noise",
+    "sine",
+    "canvas",
+    "abstract"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-waves",
+      "visualModel": "undulating-sine-ribbons",
+      "motionModel": "continuous-wave-flow",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "organic-wave-animation"
+    }
+  },
+  "url": "https://openui.dev/r/abstract-noise-waves.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Humanist\nColor: High Contrast\n\n## Rules\n\n- Passive Canvas Waves: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

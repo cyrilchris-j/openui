@@ -30,11 +30,164 @@ export function cn(...inputs: Parameters<typeof clsx>): string {
 
 export type SandboxFiles = Record<string, string>;
 
+/**
+ * Local implementations of the registry's hook items.
+ *
+ * A demo that imports `@/hooks/use-in-view` declares a *registry dependency*,
+ * which the CLI resolves by installing the hook item first. The sandbox has no
+ * installer, so each dependency is satisfied from an inlined module with the
+ * same public API — the identical strategy the `cn` module already uses.
+ */
+const HOOK_MODULES: Record<string, string> = {
+  "use-in-view": `import { useEffect, useRef, useState } from "react";
+
+export function useInView(options = {}) {
+  const { once = false, threshold = 0, rootMargin = "0px" } = options;
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        if (entry.isIntersecting) {
+          setInView(true);
+          if (once) observer.unobserve(element);
+        } else if (!once) {
+          setInView(false);
+        }
+      },
+      { threshold, rootMargin },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [once, threshold, rootMargin]);
+
+  return { ref, inView };
+}
+
+export default useInView;
+`,
+  "use-reduced-motion": `import { useEffect, useState } from "react";
+
+export function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+
+export default useReducedMotion;
+`,
+  "use-canvas-loop": `import { useEffect, useRef } from "react";
+
+export function useCanvasLoop(draw, options = {}) {
+  const canvasRef = useRef(null);
+  const drawRef = useRef(draw);
+  drawRef.current = draw;
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+    let width = 0;
+    let height = 0;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(1, Math.floor(rect.width));
+      height = Math.max(1, Math.floor(rect.height));
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(resize) : null;
+    resizeObserver?.observe(canvas);
+
+    let raf = null;
+    let running = false;
+    let onScreen = true;
+    const startEpoch = performance.now();
+
+    const frame = (time) => {
+      raf = null;
+      drawRef.current(context, width, height, time - startEpoch);
+      if (running) raf = requestAnimationFrame(frame);
+    };
+    const start = () => {
+      if (running || reduced) return;
+      running = true;
+      raf = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      running = false;
+      if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
+    };
+
+    if (reduced || options.static) {
+      drawRef.current(context, width, height, 0);
+    } else {
+      start();
+    }
+
+    const intersection = typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver(([entry]) => {
+          onScreen = Boolean(entry?.isIntersecting);
+          if (onScreen && !document.hidden && !reduced && !options.static) start();
+          if (!onScreen) stop();
+        })
+      : null;
+    intersection?.observe(canvas);
+
+    const visibility = () => {
+      if (document.hidden) stop();
+      else if (onScreen && !reduced && !options.static) start();
+    };
+    document.addEventListener("visibilitychange", visibility);
+
+    return () => {
+      stop();
+      resizeObserver?.disconnect();
+      intersection?.disconnect();
+      document.removeEventListener("visibilitychange", visibility);
+    };
+  }, []);
+
+  return canvasRef;
+}
+
+export default useCanvasLoop;
+`,
+};
+
 export function buildSandboxFiles(item: BuiltRegistryItem): SandboxFiles {
   const files: SandboxFiles = {};
   const needsCn =
     item.registryDependencies.includes("cn") ||
     item.files.some((file) => file.content.includes("@/lib/cn"));
+
+  // Detect every hook dependency actually imported by the item's source —
+  // declared or not — and inline the module for each.
+  const hookDeps = new Set<string>();
+  for (const file of item.files) {
+    for (const match of file.content.matchAll(/from ["']@\/hooks\/([a-z0-9-]+)["']/g)) {
+      hookDeps.add(match[1]!);
+    }
+  }
 
   for (const file of item.files) {
     // `README.md` and `design.md` are documentation, not sandbox inputs.
@@ -45,6 +198,10 @@ export function buildSandboxFiles(item: BuiltRegistryItem): SandboxFiles {
   }
 
   if (needsCn) files["/lib/cn.ts"] = CN_MODULE;
+  for (const hookName of hookDeps) {
+    const module = HOOK_MODULES[hookName];
+    if (module) files[`/hooks/${hookName}.ts`] = module;
+  }
 
   // The item's own demo is the entry point.
   if (files["/demo.tsx"]) {
@@ -69,7 +226,7 @@ function rewriteImports(source: string): string {
     .replace(/^["']use client["'];\n?/m, "")
     .replace(/(["'])@\/lib\//g, "$1./lib/")
     .replace(/(["'])@\/components\//g, "$1./")
-    .replace(/(["'])@\/hooks\//g, "$1./");
+    .replace(/(["'])@\/hooks\//g, "$1./hooks/");
 }
 
 /**

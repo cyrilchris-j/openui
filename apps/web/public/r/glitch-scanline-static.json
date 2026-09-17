@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-scanline-static",
+  "type": "registry:background",
+  "title": "Glitch Scanline Static",
+  "description": "Cathode-ray tube CRT monitor horizontal scanlines with subtle chromatic aberration bands.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-scanline-static.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface GlitchScanlineStaticProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GlitchScanlineStatic({ className, children, ...props }: GlitchScanlineStaticProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-emerald-400 overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-25 -z-10\"\n        style={{\n          backgroundImage: \"linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.7))\",\n          backgroundSize: \"100% 4px\",\n        }}\n      />\n      <div className=\"absolute inset-0 pointer-events-none bg-radial-gradient from-transparent via-black/40 to-black/80 -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "02d592051108aa4c1f5a22629b165a83aa9c20b3cf6da11099ce1bd5ea3640c8",
+      "sizeBytes": 885
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GlitchScanlineStatic } from \"./glitch-scanline-static\";\n\nexport default function GlitchScanlineStaticDemo() {\n  return (\n    <GlitchScanlineStatic className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-emerald-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-emerald-400\">CRT Monitor Phosphor</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Simulated phosphor raster scanlines.</p>\n      </div>\n    </GlitchScanlineStatic>\n  );\n}\n",
+      "contentHash": "e5417838f8061d55cd03ad3ae7fcbbd58da2079cca9be5b80c943c1df3a9a869",
+      "sizeBytes": 607
+    }
+  ],
+  "tags": [
+    "crt",
+    "scanlines",
+    "glitch",
+    "retro",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-crt-scanlines",
+      "visualModel": "horizontal-raster-scanlines",
+      "motionModel": "subtle-flicker-shiver",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "crt-television-raster"
+    }
+  },
+  "url": "https://openui.dev/r/glitch-scanline-static.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Crt Scanlines: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

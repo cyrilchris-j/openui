@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cron-job-scheduler-block",
+  "type": "registry:block",
+  "title": "Cron Job Scheduler Block",
+  "description": "A recurring task scheduler with 5-field cron syntax parser, human-readable translation, and trigger actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cron-job-scheduler-block.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "cron",
+    "scheduler",
+    "jobs",
+    "devops",
+    "automation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "cron-expression-input-and-trigger",
+      "visualModel": "scheduled-job-timeline-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "scheduled-cron-task-execution"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

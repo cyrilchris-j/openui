@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-cyber-mosaic",
+  "type": "registry:background",
+  "title": "Glitch Cyber Mosaic",
+  "description": "Digital pixel sorting displacement glitch blocks shifting unpredictably across canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-cyber-mosaic.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "glitch",
+    "pixel",
+    "sorting",
+    "cyber",
+    "displacement"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-glitch-canvas",
+      "visualModel": "pixel-sorting-shards",
+      "motionModel": "stroboscopic-slice-jitter",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cybernetic-glitch-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

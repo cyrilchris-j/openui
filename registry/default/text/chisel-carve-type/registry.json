@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chisel-carve-type",
+  "type": "registry:text",
+  "title": "Chisel Carve Type",
+  "description": "Letters carved into stone: dark text with a top inner highlight and bottom occlusion shadow inverted from the emboss formula, sitting on a speckled granite background built from layered radial gradients.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chisel-carve-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "carved",
+    "stone",
+    "chisel",
+    "deboss"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "inverted-shadow-carve",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "monument-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

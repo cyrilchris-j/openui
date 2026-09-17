@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circular-mandala-rays",
+  "type": "registry:background",
+  "title": "Circular Mandala Rays",
+  "description": "Hypnotic sacred geometry kaleidoscope mandala rings with 12-fold rotational symmetry.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circular-mandala-rays.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "mandala",
+    "kaleidoscope",
+    "symmetry",
+    "geometry",
+    "circular"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-mandala-symmetry",
+      "visualModel": "twelve-fold-sacred-geometry",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "kaleidoscope-mandala-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

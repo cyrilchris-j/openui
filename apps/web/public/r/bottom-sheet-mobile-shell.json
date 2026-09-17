@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bottom-sheet-mobile-shell",
+  "type": "registry:layout",
+  "title": "Bottom Sheet Mobile Shell",
+  "description": "Mobile-optimized viewport shell with top navigation bar and sliding bottom sheet drawer.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bottom-sheet-mobile-shell.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BottomSheetMobileShellProps extends React.HTMLAttributes<HTMLDivElement> {\n  header?: React.ReactNode;\n  sheet?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function BottomSheetMobileShell({\n  header,\n  sheet,\n  children,\n  className,\n  ...props\n}: BottomSheetMobileShellProps) {\n  return (\n    <div className={cn(\"max-w-xs mx-auto h-[480px] border border-line rounded-3xl overflow-hidden flex flex-col relative bg-paper text-ink font-sans shadow-lg\", className)} {...props}>\n      {header && <div className=\"p-3 border-b border-line shrink-0 bg-surface/30 font-bold text-xs\">{header}</div>}\n      <div className=\"flex-1 p-4 overflow-y-auto\">{children}</div>\n      {sheet && (\n        <div className=\"border-t border-line p-4 rounded-t-2xl bg-surface/90 backdrop-blur-md shadow-md shrink-0\">\n          <div className=\"w-8 h-1 bg-line rounded-full mx-auto mb-3\" />\n          {sheet}\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "contentHash": "9e64f68443d7f35ad1aca1a0d828c66a4ef2f7c7bd16ef93e933d649387fc579",
+      "sizeBytes": 1001
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { BottomSheetMobileShell } from \"./bottom-sheet-mobile-shell\";\n\nexport default function BottomSheetMobileShellDemo() {\n  return (\n    <BottomSheetMobileShell\n      header={<span>App Viewport</span>}\n      sheet={\n        <div className=\"space-y-1 text-xs\">\n          <div className=\"font-bold\">Active Drawer</div>\n          <div className=\"text-ink/60\">Swipe down to dismiss tray</div>\n        </div>\n      }\n    >\n      <p className=\"text-xs text-ink/70\">Main mobile viewport stream content.</p>\n    </BottomSheetMobileShell>\n  );\n}\n",
+      "contentHash": "7ed6743923a50402c9e784284c73203cce0a0526aca92d4cc9cb4d7de1ea18ef",
+      "sizeBytes": 556
+    }
+  ],
+  "tags": [
+    "mobile",
+    "bottom-sheet",
+    "drawer",
+    "shell",
+    "phone"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "mobile-bottom-sheet-tray",
+      "visualModel": "handheld-viewport-shell",
+      "motionModel": "none",
+      "layoutModel": "mobile-frame-stack",
+      "semanticPurpose": "handheld-mobile-shell"
+    }
+  },
+  "url": "https://openui.dev/r/bottom-sheet-mobile-shell.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Mobile Bottom Sheet Tray: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

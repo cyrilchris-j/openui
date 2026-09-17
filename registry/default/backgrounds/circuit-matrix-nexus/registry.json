@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circuit-matrix-nexus",
+  "type": "registry:background",
+  "title": "Circuit Matrix Nexus",
+  "description": "Glowing cyan/emerald circuit junction nodes pulsing at critical power grid intersections.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circuit-matrix-nexus.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "nexus",
+    "matrix",
+    "circuit",
+    "junction",
+    "glow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-nexus-glow",
+      "visualModel": "junction-node-matrix",
+      "motionModel": "subtle-nodal-pulse",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cybernetic-nexus-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

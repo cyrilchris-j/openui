@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "orbital-revolution",
+  "type": "registry:motion",
+  "title": "Orbital Revolution",
+  "description": "Satellites revolve a centre point on elliptical paths with independent periods and phases; each body's opacity and scale respond to depth (behind/in front of the centre), faking 3D with pure transforms.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "orbital-revolution.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface OrbitalRevolutionProps {\n  /** Orbiting bodies with their own radius, period and phase. */\n  bodies: Array<{ label: string; radius: number; periodSeconds: number; phase: number }>;\n  size?: number;\n  className?: string;\n}\n\nexport function OrbitalRevolution({ bodies, size = 260, className }: OrbitalRevolutionProps) {\n  const refs = useRef<Array<HTMLDivElement | null>>([]);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    if (reduced) return;\n    let raf: number | null = null;\n    const start = performance.now();\n\n    const tick = (now: number) => {\n      const elapsed = (now - start) / 1000;\n      bodies.forEach((body, index) => {\n        const node = refs.current[index];\n        if (!node) return;\n        const angle = body.phase + (elapsed / body.periodSeconds) * Math.PI * 2;\n        const x = Math.cos(angle) * body.radius;\n        const y = Math.sin(angle) * body.radius * 0.42; // elliptical\n        const depth = (Math.sin(angle) + 1) / 2; // 0 back, 1 front\n        node.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${0.7 + depth * 0.5})`;\n        node.style.opacity = String(0.45 + depth * 0.55);\n        node.style.zIndex = String(Math.round(depth * 10));\n      });\n      raf = requestAnimationFrame(tick);\n    };\n    raf = requestAnimationFrame(tick);\n    return () => {\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, [bodies, reduced]);\n\n  return (\n    <div className={cn(\"relative\", className)} style={{ width: size, height: size / 1.6 }} role=\"img\" aria-label=\"Orbiting bodies\">\n      <span aria-hidden className=\"absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink\" />\n      {bodies.map((body, index) => (\n        <div\n          key={body.label}\n          ref={(node) => {\n            refs.current[index] = node;\n          }}\n          aria-hidden\n          className=\"absolute left-1/2 top-1/2 flex items-center justify-center rounded-full border border-line bg-paper font-mono text-[10px] text-ink shadow-md will-change-transform\"\n          style={{ width: 34, height: 34 }}\n        >\n          {body.label}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default OrbitalRevolution;\n",
+      "contentHash": "8177b2d1c029f5b117ac7c3174a16b39d33332afefd366d42739b703004af6a7",
+      "sizeBytes": 2405
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { OrbitalRevolution } from \"./orbital-revolution\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <OrbitalRevolution\n        bodies={[\n          { label: \"ui\", radius: 110, periodSeconds: 6, phase: 0 },\n          { label: \"api\", radius: 82, periodSeconds: 4.2, phase: 2.1 },\n          { label: \"cli\", radius: 60, periodSeconds: 3, phase: 4.4 },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "fcb66e20590eefc83b7b0d644fbe03de77aba91a9349d55ad6c064a718142383",
+      "sizeBytes": 477
+    }
+  ],
+  "tags": [
+    "orbit",
+    "revolution",
+    "depth",
+    "elliptical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "depth-faked-orbits",
+      "motionModel": "elliptical-revolution",
+      "layoutModel": "radial",
+      "semanticPurpose": "system-diagram"
+    }
+  },
+  "url": "https://openui.dev/r/orbital-revolution.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Airy\nShape: Rounded\nMotion: Kinetic\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

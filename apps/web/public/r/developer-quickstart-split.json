@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-quickstart-split",
+  "type": "registry:section",
+  "title": "Developer Quickstart Split",
+  "description": "A two-column section pairing developer installation steps with copyable terminal snippets and flags.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-quickstart-split.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DeveloperQuickstartSplitProps extends React.HTMLAttributes<HTMLElement> {\n  command?: string;\n  tabs?: { label: string; code: string }[];\n}\n\nconst DEFAULT_TABS = [\n  { label: \"pnpm\", code: \"pnpm dlx openui@latest add split-headline-hero\" },\n  { label: \"npm\", code: \"npx openui@latest add split-headline-hero\" },\n  { label: \"yarn\", code: \"yarn dlx openui add split-headline-hero\" },\n  { label: \"bun\", code: \"bunx openui@latest add split-headline-hero\" },\n];\n\nexport function DeveloperQuickstartSplit({\n  tabs = DEFAULT_TABS,\n  className,\n  ...props\n}: DeveloperQuickstartSplitProps) {\n  const [activeTab, setActiveTab] = React.useState(0);\n  const [copied, setCopied] = React.useState(false);\n\n  const handleCopy = () => {\n    const text = tabs[activeTab]?.code || \"\";\n    if (navigator?.clipboard) {\n      navigator.clipboard.writeText(text);\n      setCopied(true);\n      setTimeout(() => setCopied(false), 2000);\n    }\n  };\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"grid grid-cols-1 lg:grid-cols-12 gap-10 items-center\">\n        <div className=\"lg:col-span-5\">\n          <span className=\"text-xs font-mono font-semibold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase\">\n            Quickstart\n          </span>\n          <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-2\">\n            One command, zero boilerplate\n          </h2>\n          <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed\">\n            Copy self-contained, typed components directly into your codebase. No lock-in, no runtime wrapper, complete design ownership.\n          </p>\n          <div className=\"mt-6 flex items-center gap-4 text-xs font-mono text-neutral-500\">\n            <div>✓ TypeScript Strict</div>\n            <div>✓ Tailwind v4 Ready</div>\n            <div>✓ Zero Dependencies</div>\n          </div>\n        </div>\n\n        <div className=\"lg:col-span-7 bg-neutral-950 text-neutral-100 rounded-xl border border-neutral-800 p-4 shadow-xl font-mono text-xs\">\n          <div className=\"flex items-center justify-between pb-3 border-b border-neutral-800\">\n            <div className=\"flex items-center gap-2\">\n              {tabs.map((tab, idx) => (\n                <button\n                  key={tab.label}\n                  type=\"button\"\n                  onClick={() => setActiveTab(idx)}\n                  className={cn(\n                    \"px-2.5 py-1 rounded text-[11px] transition-colors\",\n                    activeTab === idx ? \"bg-neutral-800 text-white font-bold\" : \"text-neutral-400 hover:text-neutral-200\"\n                  )}\n                >\n                  {tab.label}\n                </button>\n              ))}\n            </div>\n            <button\n              type=\"button\"\n              onClick={handleCopy}\n              className=\"text-[11px] text-neutral-400 hover:text-white px-2 py-1 bg-neutral-900 rounded border border-neutral-800\"\n            >\n              {copied ? \"Copied! ✓\" : \"Copy\"}\n            </button>\n          </div>\n\n          <div className=\"pt-4 pb-2 px-2 overflow-x-auto text-emerald-400 flex items-center gap-2\">\n            <span className=\"text-neutral-500 select-none\">$</span>\n            <span>{tabs[activeTab]?.code}</span>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "cb53a288b145e1b4cf0ade86c01b645484beb31e900414723655b37016c04562",
+      "sizeBytes": 3516
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DeveloperQuickstartSplit } from \"./developer-quickstart-split\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <DeveloperQuickstartSplit />\n    </div>\n  );\n}\n",
+      "contentHash": "590f37b7f5abe1928c2f10a1a6bf739ff1d3be398c677a7180c7c3e1efac6365",
+      "sizeBytes": 301
+    }
+  ],
+  "tags": [
+    "developer",
+    "quickstart",
+    "terminal",
+    "code",
+    "installation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "developer-quickstart-split-interaction",
+      "visualModel": "developer-quickstart-split-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "developer-quickstart-split-section"
+    }
+  },
+  "url": "https://openui.dev/r/developer-quickstart-split.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Developer Quickstart Split Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

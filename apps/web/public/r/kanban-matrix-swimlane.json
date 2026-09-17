@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kanban-matrix-swimlane",
+  "type": "registry:block",
+  "title": "Kanban Matrix Swimlane",
+  "description": "A two-axis project board organizing engineering tasks by milestone rows and delivery columns.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kanban-matrix-swimlane.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function KanbanMatrixSwimlane({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-sm text-neutral-900 dark:text-white mb-3\">Release 2.4 Swimlanes</h3>\n      <div className=\"grid grid-cols-2 gap-4\">\n        <div className=\"p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800\">\n          <div className=\"font-bold text-neutral-900 dark:text-white mb-2\">Milestone: 800 Catalog Total</div>\n          <div className=\"p-2 bg-white dark:bg-neutral-950 rounded border border-neutral-200 dark:border-neutral-800\">\n            ✓ 100% categories verified\n          </div>\n        </div>\n        <div className=\"p-3 rounded-lg bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800\">\n          <div className=\"font-bold text-neutral-900 dark:text-white mb-2\">Milestone: Registry Zero Errors</div>\n          <div className=\"p-2 bg-white dark:bg-neutral-950 rounded border border-neutral-200 dark:border-neutral-800\">\n            ✓ Zero TypeScript compilation errors\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "3ab2e058e4366783ea798026d7de22895e4cc4222bcb14d51b5fd5caa1513d66",
+      "sizeBytes": 1433
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { KanbanMatrixSwimlane } from \"./kanban-matrix-swimlane\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <KanbanMatrixSwimlane />\n    </div>\n  );\n}\n",
+      "contentHash": "03394301ee53581b034984bedef0e5cfdbc3ffd55cf219d69da44d9f2a30f6fc",
+      "sizeBytes": 289
+    }
+  ],
+  "tags": [
+    "kanban",
+    "swimlane",
+    "matrix",
+    "tasks",
+    "management"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kanban",
+    "fingerprint": {
+      "interactionModel": "swimlane-task-status-tracking",
+      "visualModel": "multilane-kanban-matrix",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "complex-project-task-matrix"
+    }
+  },
+  "url": "https://openui.dev/r/kanban-matrix-swimlane.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Swimlane Task Status Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

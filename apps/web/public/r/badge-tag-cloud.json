@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-tag-cloud",
+  "type": "registry:component",
+  "title": "Badge Tag Cloud",
+  "description": "A wrapping cloud of metadata badge chips providing taxonomy labels.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-tag-cloud.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BadgeTagCloudProps {\n  className?: string;\n}\n\nexport function BadgeTagCloud({ className }: BadgeTagCloudProps) {\n  const tags = [\"TypeScript\", \"Next.js\", \"Vite\", \"React 19\", \"Tailwind\", \"CSS\"];\n\n  return (\n    <div className={cn(\"flex flex-wrap gap-1.5 max-w-xs\", className)}>\n      {tags.map((t) => (\n        <span key={t} className=\"rounded-full border border-line bg-paper px-2.5 py-0.5 font-mono text-[10px] text-ink\">\n          {t}\n        </span>\n      ))}\n    </div>\n  );\n}\n\nexport default BadgeTagCloud;\n",
+      "contentHash": "2383adcd4e59b126d4688bf3d9d579e697878dda6c12f7a4d71a6e032b38922a",
+      "sizeBytes": 576
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { BadgeTagCloud } from \"./badge-tag-cloud\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <BadgeTagCloud />\n    </div>\n  );\n}\n",
+      "contentHash": "eba2e8618ee00949ace80f1392c8d18e7eff47fe0fab1d362ae4d64f324acf8b",
+      "sizeBytes": 220
+    }
+  ],
+  "tags": [
+    "tags",
+    "cloud",
+    "badges",
+    "chips",
+    "taxonomy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-tag-cloud",
+      "visualModel": "wrapping-pill-matrix",
+      "motionModel": "none",
+      "layoutModel": "flex-wrapping-cloud",
+      "semanticPurpose": "taxonomy-cloud-display"
+    }
+  },
+  "url": "https://openui.dev/r/badge-tag-cloud.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Tag Cloud: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

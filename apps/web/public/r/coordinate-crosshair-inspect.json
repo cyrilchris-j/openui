@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "coordinate-crosshair-inspect",
+  "type": "registry:interaction",
+  "title": "Coordinate Crosshair Inspect",
+  "description": "A precision inspection canvas overlay drawing orthogonal crosshair guides with realtime coordinate readouts.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "coordinate-crosshair-inspect.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CoordinateCrosshairInspectProps {\n  className?: string;\n}\n\nexport function CoordinateCrosshairInspect({ className }: CoordinateCrosshairInspectProps) {\n  const [point, setPoint] = useState({ x: 100, y: 100 });\n\n  return (\n    <div\n      onPointerMove={(e) => {\n        const rect = e.currentTarget.getBoundingClientRect();\n        setPoint({ x: e.clientX - rect.left, y: e.clientY - rect.top });\n      }}\n      className={cn(\"relative h-64 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper p-4 cursor-crosshair select-none\", className)}\n    >\n      <div className=\"flex justify-between items-center pb-2 border-b border-line mb-2 font-mono text-[10px] text-ink/60\">\n        <span>CROSSHAIR TELEMETRY</span>\n        <span>X:{point.x} Y:{point.y}</span>\n      </div>\n\n      <div className=\"relative h-48 w-full rounded bg-line/10\">\n        <div className=\"pointer-events-none absolute inset-x-0 h-[1px] bg-red-500/50\" style={{ top: point.y }} />\n        <div className=\"pointer-events-none absolute inset-y-0 w-[1px] bg-red-500/50\" style={{ left: point.x }} />\n      </div>\n    </div>\n  );\n}\n\nexport default CoordinateCrosshairInspect;\n",
+      "contentHash": "336a128d775e2543ef36e992a58e9c2c588dd77421d93b274d51f4abf23d5e83",
+      "sizeBytes": 1253
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { CoordinateCrosshairInspect } from \"./coordinate-crosshair-inspect\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <CoordinateCrosshairInspect />\n    </div>\n  );\n}\n",
+      "contentHash": "6bb5a522bedd5fa3314eac1cfa45254bc6689f95901fa66d24bc603dc996bba5",
+      "sizeBytes": 259
+    }
+  ],
+  "tags": [
+    "crosshair",
+    "coordinates",
+    "inspection",
+    "reticle",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "orthogonal-reticle-scrub",
+      "visualModel": "cad-graticule-crosshair",
+      "motionModel": "instantaneous-coordinate-tracking",
+      "layoutModel": "bounded-inspection-frame",
+      "semanticPurpose": "cad-inspection-reticle"
+    }
+  },
+  "url": "https://openui.dev/r/coordinate-crosshair-inspect.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Orthogonal Reticle Scrub: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

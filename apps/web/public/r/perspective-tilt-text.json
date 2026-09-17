@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "perspective-tilt-text",
+  "type": "registry:text",
+  "title": "Perspective Tilt Text",
+  "description": "Display text on a plane that tilts toward the pointer with rotateX/rotateY, layered with a translateZ shadow copy so the depth reads as physical; the transform origin eases back to centre on leave.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "perspective-tilt-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PerspectiveTiltTextProps {\n  children: string;\n  /** Maximum tilt in degrees on each axis. */\n  maxTilt?: number;\n  /** Extra depth for the shadow layer, in px. */\n  depth?: number;\n  className?: string;\n}\n\nexport function PerspectiveTiltText({\n  children,\n  maxTilt = 18,\n  depth = 24,\n  className,\n}: PerspectiveTiltTextProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const [tilt, setTilt] = useState({ x: 0, y: 0 });\n  const [enabled, setEnabled] = useState(false);\n  const frame = useRef<number | null>(null);\n\n  useEffect(() => {\n    const fine = window.matchMedia?.(\"(pointer: fine)\");\n    const reduced = window.matchMedia?.(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setEnabled(Boolean(fine?.matches) && !reduced?.matches);\n    update();\n    fine?.addEventListener?.(\"change\", update);\n    return () => fine?.removeEventListener?.(\"change\", update);\n  }, []);\n\n  useEffect(\n    () => () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    },\n    [],\n  );\n\n  const handleMove = (event: React.PointerEvent<HTMLSpanElement>) => {\n    if (!enabled) return;\n    const rect = event.currentTarget.getBoundingClientRect();\n    const px = (event.clientX - rect.left) / rect.width - 0.5;\n    const py = (event.clientY - rect.top) / rect.height - 0.5;\n    if (frame.current !== null) cancelAnimationFrame(frame.current);\n    frame.current = requestAnimationFrame(() => setTilt({ x: -py * maxTilt, y: px * maxTilt }));\n  };\n\n  const reset = () => setTilt({ x: 0, y: 0 });\n\n  return (\n    <span\n      ref={ref}\n      className={cn(\"inline-block\", className)}\n      style={{ perspective: \"600px\" }}\n      onPointerMove={handleMove}\n      onPointerLeave={reset}\n      role=\"text\"\n      aria-label={children}\n    >\n      <span\n        aria-hidden\n        className=\"relative inline-block will-change-transform motion-reduce:transform-none\"\n        style={{\n          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,\n          transformStyle: \"preserve-3d\",\n          transition: \"transform 180ms cubic-bezier(0.2, 0, 0, 1)\",\n        }}\n      >\n        <span\n          aria-hidden\n          className=\"absolute inset-0 select-none text-graphite/25\"\n          style={{ transform: `translateZ(-${depth}px)` }}\n        >\n          {children}\n        </span>\n        <span className=\"relative\" style={{ transform: `translateZ(${depth / 2}px)` }}>\n          {children}\n        </span>\n      </span>\n    </span>\n  );\n}\n\nexport default PerspectiveTiltText;\n",
+      "contentHash": "e47c4a00f193a785366ac0d8ac4da77b77fb1a9e6854fe1c864c1e4f0fe6e525",
+      "sizeBytes": 2622
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { PerspectiveTiltText } from \"./perspective-tilt-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <PerspectiveTiltText className=\"font-display text-step-5 tracking-tight text-ink\">\n        DEPTH\n      </PerspectiveTiltText>\n    </div>\n  );\n}\n",
+      "contentHash": "0eb03233fecc46a111060de22b51901515de6ee02ae673455dd3d57e4947dd03",
+      "sizeBytes": 341
+    }
+  ],
+  "tags": [
+    "3d",
+    "perspective",
+    "tilt",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "3d",
+    "fingerprint": {
+      "interactionModel": "pointer-tilt",
+      "visualModel": "z-layered-plane",
+      "motionModel": "spring-return",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    }
+  },
+  "url": "https://openui.dev/r/perspective-tilt-text.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: Expressive\nTypography: Variable Poster\nColor: Duotone\n\n## Rules\n\n- Pointer Tilt: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dual-panel-comparator",
+  "type": "registry:layout",
+  "title": "Dual Panel Comparator",
+  "description": "Side-by-side comparison layout for diffs, AB variants, or before-and-after evaluations.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dual-panel-comparator.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DualPanelComparatorProps extends React.HTMLAttributes<HTMLDivElement> {\n  leftTitle?: string;\n  rightTitle?: string;\n  left?: React.ReactNode;\n  right?: React.ReactNode;\n}\n\nexport function DualPanelComparator({\n  leftTitle = \"Variant A\",\n  rightTitle = \"Variant B\",\n  left,\n  right,\n  className,\n  ...props\n}: DualPanelComparatorProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto p-4 font-sans\", className)} {...props}>\n      <div className=\"p-4 rounded-xl border border-line bg-surface/30\">\n        <div className=\"font-mono text-xs font-bold text-ink mb-2 pb-2 border-b border-line\">{leftTitle}</div>\n        {left}\n      </div>\n      <div className=\"p-4 rounded-xl border border-line bg-surface/30\">\n        <div className=\"font-mono text-xs font-bold text-ink mb-2 pb-2 border-b border-line\">{rightTitle}</div>\n        {right}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "3608320eee19d046722c10be076fec91b4ab95c27f6cda926876fde4874af6ef",
+      "sizeBytes": 975
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { DualPanelComparator } from \"./dual-panel-comparator\";\n\nexport default function DualPanelComparatorDemo() {\n  return (\n    <DualPanelComparator\n      leftTitle=\"Original Specification\"\n      rightTitle=\"Optimized Bundle\"\n      left={<div className=\"text-xs font-mono text-ink/70\">Payload: 240 KB • Latency: 120ms</div>}\n      right={<div className=\"text-xs font-mono text-emerald-600 font-semibold\">Payload: 42 KB • Latency: 18ms</div>}\n    />\n  );\n}\n",
+      "contentHash": "c330b512169a227cf5888deb38de47de7ac9f6fa79f559d72c784a9ae4cdd102",
+      "sizeBytes": 478
+    }
+  ],
+  "tags": [
+    "comparator",
+    "diff",
+    "comparison",
+    "dual-panel",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "side-by-side-comparison",
+      "visualModel": "symmetric-dual-panel",
+      "motionModel": "none",
+      "layoutModel": "two-column-comparator",
+      "semanticPurpose": "entity-comparison-view"
+    }
+  },
+  "url": "https://openui.dev/r/dual-panel-comparator.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Side By Side Comparison: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

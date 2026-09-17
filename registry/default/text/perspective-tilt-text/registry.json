@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "perspective-tilt-text",
+  "type": "registry:text",
+  "title": "Perspective Tilt Text",
+  "description": "Display text on a plane that tilts toward the pointer with rotateX/rotateY, layered with a translateZ shadow copy so the depth reads as physical; the transform origin eases back to centre on leave.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "perspective-tilt-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "3d",
+    "perspective",
+    "tilt",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "3d",
+    "fingerprint": {
+      "interactionModel": "pointer-tilt",
+      "visualModel": "z-layered-plane",
+      "motionModel": "spring-return",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    }
+  }
+}

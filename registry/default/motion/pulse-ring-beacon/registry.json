@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pulse-ring-beacon",
+  "type": "registry:motion",
+  "title": "Pulse Ring Beacon",
+  "description": "An animated radar status indicator broadcasting expanding concentric pulse rings into surrounding space.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pulse-ring-beacon.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "pulse",
+    "beacon",
+    "radar",
+    "status",
+    "ring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "indicators",
+    "fingerprint": {
+      "interactionModel": "continuous-radar-broadcast",
+      "visualModel": "annular-pulse-radiator",
+      "motionModel": "radial-fadeout-expansion",
+      "layoutModel": "center-point-beacon",
+      "semanticPurpose": "live-telemetry-beacon"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

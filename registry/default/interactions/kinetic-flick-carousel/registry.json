@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-flick-carousel",
+  "type": "registry:interaction",
+  "title": "Kinetic Flick Carousel",
+  "description": "A horizontal card carousel responding to pointer flick velocity with simulated inertial drift and boundary bounce.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-flick-carousel.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "flick",
+    "carousel",
+    "momentum",
+    "drag",
+    "touch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "flick-velocity-carousel",
+      "visualModel": "kinetic-card-deck-reel",
+      "motionModel": "momentum-velocity-drift",
+      "layoutModel": "horizontal-flick-track",
+      "semanticPurpose": "momentum-card-carousel"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

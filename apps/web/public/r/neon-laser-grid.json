@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "neon-laser-grid",
+  "type": "registry:background",
+  "title": "Neon Laser Grid",
+  "description": "Retro 80s arcade neon magenta and cyan luminous laser lines with glowing intersections.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "neon-laser-grid.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface NeonLaserGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function NeonLaserGrid({ className, children, ...props }: NeonLaserGridProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-30 -z-10\"\n        style={{\n          backgroundImage: `\n            linear-gradient(to right, rgba(236, 72, 153, 0.7) 1px, transparent 1px),\n            linear-gradient(to bottom, rgba(6, 182, 212, 0.7) 1px, transparent 1px)\n          `,\n          backgroundSize: \"40px 40px\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "56cb25e30d8364f84cab20fd0a56e325bba326e4907cbd108b85e875291c889e",
+      "sizeBytes": 793
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { NeonLaserGrid } from \"./neon-laser-grid\";\n\nexport default function NeonLaserGridDemo() {\n  return (\n    <NeonLaserGrid className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-pink-500/40 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-pink-400\">Arcade Laser Grid</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Dual-color cyan and magenta laser crosshatch.</p>\n      </div>\n    </NeonLaserGrid>\n  );\n}\n",
+      "contentHash": "45569fa569d0634d6b23185b0862790b5b9258c689c0619629d3ff6c5db6152a",
+      "sizeBytes": 572
+    }
+  ],
+  "tags": [
+    "laser",
+    "neon",
+    "arcade",
+    "80s",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-neon-laser",
+      "visualModel": "luminescent-laser-lattice",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "arcade-neon-grid"
+    }
+  },
+  "url": "https://openui.dev/r/neon-laser-grid.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Neon Laser: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

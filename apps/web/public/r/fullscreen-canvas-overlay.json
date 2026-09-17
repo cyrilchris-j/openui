@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fullscreen-canvas-overlay",
+  "type": "registry:layout",
+  "title": "Fullscreen Canvas Overlay",
+  "description": "Full-viewport interactive graphic canvas with floating HUD panels pinned to four corners.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fullscreen-canvas-overlay.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface FullscreenCanvasOverlayProps extends React.HTMLAttributes<HTMLDivElement> {\n  topLeft?: React.ReactNode;\n  topRight?: React.ReactNode;\n  bottomLeft?: React.ReactNode;\n  bottomRight?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function FullscreenCanvasOverlay({\n  topLeft,\n  topRight,\n  bottomLeft,\n  bottomRight,\n  children,\n  className,\n  ...props\n}: FullscreenCanvasOverlayProps) {\n  return (\n    <div className={cn(\"relative w-full h-80 bg-paper text-ink overflow-hidden border border-line rounded-xl\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center -z-10\">{children}</div>\n      {topLeft && <div className=\"absolute top-3 left-3 z-10\">{topLeft}</div>}\n      {topRight && <div className=\"absolute top-3 right-3 z-10\">{topRight}</div>}\n      {bottomLeft && <div className=\"absolute bottom-3 left-3 z-10\">{bottomLeft}</div>}\n      {bottomRight && <div className=\"absolute bottom-3 right-3 z-10\">{bottomRight}</div>}\n    </div>\n  );\n}\n",
+      "contentHash": "f6e69b1ddda5f302b482279cc7e6c6e55eb797f21224be063166c2d4783245b0",
+      "sizeBytes": 1062
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { FullscreenCanvasOverlay } from \"./fullscreen-canvas-overlay\";\n\nexport default function FullscreenCanvasOverlayDemo() {\n  return (\n    <FullscreenCanvasOverlay\n      topLeft={<div className=\"px-2.5 py-1 rounded bg-paper/90 border border-line font-mono text-[10px]\">FPS: 60.0</div>}\n      topRight={<div className=\"px-2.5 py-1 rounded bg-paper/90 border border-line font-mono text-[10px]\">Zoom: 100%</div>}\n      bottomLeft={<div className=\"px-2.5 py-1 rounded bg-paper/90 border border-line font-mono text-[10px]\">Coordinates: (0, 0)</div>}\n      bottomRight={<div className=\"px-2.5 py-1 rounded bg-paper/90 border border-line font-mono text-[10px]\">Layers: 4</div>}\n    >\n      <div className=\"font-mono text-xs text-ink/40\">3D WebGL / Canvas Stage</div>\n    </FullscreenCanvasOverlay>\n  );\n}\n",
+      "contentHash": "ee15f2e2a9729eb27062d5edb01e56f5cbf56df53cb3e62453f4fb608745185f",
+      "sizeBytes": 817
+    }
+  ],
+  "tags": [
+    "hud",
+    "canvas",
+    "fullscreen",
+    "overlay",
+    "viewport"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "corner-hud-over-canvas",
+      "visualModel": "four-corner-hud-stage",
+      "motionModel": "none",
+      "layoutModel": "absolute-pinned-corners",
+      "semanticPurpose": "canvas-hud-workspace"
+    }
+  },
+  "url": "https://openui.dev/r/fullscreen-canvas-overlay.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Corner Hud Over Canvas: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

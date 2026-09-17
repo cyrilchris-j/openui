@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "three-tier-pricing-table",
+  "type": "registry:layout",
+  "title": "Three Tier Pricing Table",
+  "description": "Comparative SaaS pricing table layout with vertical plan columns and horizontal feature checkmark rows.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "three-tier-pricing-table.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ThreeTierPricingTableProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function ThreeTierPricingTable({ children, className, ...props }: ThreeTierPricingTableProps) {\n  return (\n    <div className={cn(\"max-w-4xl mx-auto border border-line rounded-2xl overflow-hidden font-sans text-xs bg-paper\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "2fbcbcd20c4a3742da894ab1d9aca7f5da90bc8920ebc4381ca50a3b265ee805",
+      "sizeBytes": 462
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { ThreeTierPricingTable } from \"./three-tier-pricing-table\";\n\nexport default function ThreeTierPricingTableDemo() {\n  return (\n    <ThreeTierPricingTable>\n      <div className=\"grid grid-cols-4 p-4 border-b border-line font-bold font-mono\">\n        <span>Plan</span>\n        <span className=\"text-center\">Free</span>\n        <span className=\"text-center text-accent\">Pro</span>\n        <span className=\"text-center\">Team</span>\n      </div>\n      <div className=\"grid grid-cols-4 p-4 border-b border-line/50\">\n        <span>Monthly Cost</span>\n        <span className=\"text-center font-mono\">$0</span>\n        <span className=\"text-center font-mono font-bold text-accent\">$29</span>\n        <span className=\"text-center font-mono\">$99</span>\n      </div>\n    </ThreeTierPricingTable>\n  );\n}\n",
+      "contentHash": "70f7e1dbd54a8eeb8fe3513cd301487fc4faaa51de5bab7c8c153acc179749e6",
+      "sizeBytes": 813
+    }
+  ],
+  "tags": [
+    "pricing",
+    "table",
+    "tiers",
+    "subscription",
+    "plans"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "three-tier-plan-matrix",
+      "visualModel": "columnar-pricing-table",
+      "motionModel": "none",
+      "layoutModel": "tabular-plan-columns",
+      "semanticPurpose": "subscription-plan-matrix"
+    }
+  },
+  "url": "https://openui.dev/r/three-tier-pricing-table.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Three Tier Plan Matrix: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

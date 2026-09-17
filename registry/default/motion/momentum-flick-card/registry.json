@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "momentum-flick-card",
+  "type": "registry:motion",
+  "title": "Momentum Flick Card",
+  "description": "A card deck element that responds to pointer swipe velocity, flying away when flicked beyond velocity threshold or springing back to center.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "momentum-flick-card.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "card",
+    "flick",
+    "swipe",
+    "velocity",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "swipe-throw-gesture",
+      "visualModel": "stacked-tinder-card",
+      "motionModel": "velocity-based-ballistic-flight",
+      "layoutModel": "center-stacked-card",
+      "semanticPurpose": "decision-deck-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

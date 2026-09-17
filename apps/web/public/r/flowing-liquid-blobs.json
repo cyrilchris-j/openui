@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "flowing-liquid-blobs",
+  "type": "registry:background",
+  "title": "Flowing Liquid Blobs",
+  "description": "Soft morphing SVG organic metaball shapes providing organic fluidity to marketing headers.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "flowing-liquid-blobs.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface FlowingLiquidBlobsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function FlowingLiquidBlobs({ className, children, ...props }: FlowingLiquidBlobsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute -top-20 -left-20 w-96 h-96 opacity-20 pointer-events-none -z-10 text-accent\" viewBox=\"0 0 200 200\" fill=\"currentColor\">\n        <path d=\"M42.7,-62.9C53.9,-54.2,60.8,-40.4,66.1,-26.4C71.3,-12.4,74.9,1.8,72.4,15.4C70,29.1,61.4,42.2,50.1,51.8C38.8,61.4,24.8,67.5,9.6,71.2C-5.6,74.8,-22,76,-36.8,70.3C-51.6,64.6,-64.8,52,-72.1,36.8C-79.4,21.6,-80.8,3.9,-77,-12.3C-73.2,-28.5,-64.2,-43.2,-51.6,-51.7C-39,-60.2,-22.8,-62.5,-6.3,-64.5C10.2,-66.5,31.5,-71.6,42.7,-62.9Z\" transform=\"translate(100 100)\" />\n      </svg>\n      <svg className=\"absolute -bottom-20 -right-20 w-96 h-96 opacity-15 pointer-events-none -z-10 text-emerald-500\" viewBox=\"0 0 200 200\" fill=\"currentColor\">\n        <path d=\"M38.1,-52C49.1,-46.3,57.5,-34.5,63.1,-21.2C68.6,-7.9,71.3,7,67.7,20.4C64.2,33.8,54.4,45.8,42.4,53.2C30.4,60.7,16.2,63.6,1.4,61.7C-13.4,59.7,-28.9,53,-41.6,43.2C-54.3,33.4,-64.2,20.5,-67.2,5.8C-70.2,-8.9,-66.3,-25.4,-56.9,-36.6C-47.5,-47.8,-32.6,-53.7,-18.8,-57.4C-5,-61.1,7.1,-62.6,21.1,-58.5C35.1,-54.4,27.1,-57.7,38.1,-52Z\" transform=\"translate(100 100)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "cd1b43b12bade6f655520c29489938fe8e30ba318de3f46ce12ba59ad736642c",
+      "sizeBytes": 1521
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { FlowingLiquidBlobs } from \"./flowing-liquid-blobs\";\n\nexport default function FlowingLiquidBlobsDemo() {\n  return (\n    <FlowingLiquidBlobs className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Organic Metaballs</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Generative bezier morphing blob contours.</p>\n      </div>\n    </FlowingLiquidBlobs>\n  );\n}\n",
+      "contentHash": "174abbeaf5c0a5396052a1b850591bc83d2cf11ad545e1079ff812afecffd032",
+      "sizeBytes": 579
+    }
+  ],
+  "tags": [
+    "liquid",
+    "blobs",
+    "metaball",
+    "organic",
+    "ambient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "pastel"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-liquid-ambiance",
+      "visualModel": "morphing-organic-blobs",
+      "motionModel": "subtle-morphing-shapes",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "organic-liquid-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/flowing-liquid-blobs.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Grotesk\nColor: Pastel\n\n## Rules\n\n- Passive Liquid Ambiance: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

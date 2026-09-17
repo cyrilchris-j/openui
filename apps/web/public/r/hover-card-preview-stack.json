@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-card-preview-stack",
+  "type": "registry:interaction",
+  "title": "Hover Card Preview Stack",
+  "description": "A compact stack of document tiles that fans out radially on hover to show detailed preview thumbnails.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-card-preview-stack.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverCardPreviewStackProps {\n  className?: string;\n}\n\nexport function HoverCardPreviewStack({ className }: HoverCardPreviewStackProps) {\n  const [fanned, setFanned] = useState(false);\n  const docs = [\"Design Brief\", \"Architecture Review\", \"Security Audit\"];\n\n  return (\n    <div\n      onPointerEnter={() => setFanned(true)}\n      onPointerLeave={() => setFanned(false)}\n      className={cn(\"flex h-64 w-full max-w-sm items-center justify-center rounded-xl border border-line bg-paper p-6\", className)}\n    >\n      <div className=\"relative h-36 w-52\">\n        {docs.map((title, idx) => {\n          const rot = fanned ? (idx - 1) * 12 : 0;\n          const x = fanned ? (idx - 1) * 36 : 0;\n          return (\n            <div\n              key={title}\n              className=\"absolute inset-0 rounded-xl border border-line bg-paper p-4 shadow-md transition-all duration-300 flex flex-col justify-between\"\n              style={{\n                transform: `translateX(${x}px) rotate(${rot}deg)`,\n                zIndex: idx,\n              }}\n            >\n              <span className=\"font-mono text-[9px] text-ink/50 uppercase\">SPEC {idx + 1}</span>\n              <h5 className=\"font-display font-bold text-xs text-ink\">{title}</h5>\n            </div>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n\nexport default HoverCardPreviewStack;\n",
+      "contentHash": "29493b80a1f90753ca74c1dc763b9d5f188c80da6993259cf774ac31c74ffdb2",
+      "sizeBytes": 1445
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverCardPreviewStack } from \"./hover-card-preview-stack\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <HoverCardPreviewStack />\n    </div>\n  );\n}\n",
+      "contentHash": "013408a08f8caef8f046eb5294b2f1567faf8a595a7290cd3833626d3ae47c1c",
+      "sizeBytes": 245
+    }
+  ],
+  "tags": [
+    "hover",
+    "stack",
+    "cards",
+    "preview",
+    "fan"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-fanned-card-expansion",
+      "visualModel": "tiered-stacked-documents",
+      "motionModel": "angular-fan-spread",
+      "layoutModel": "centered-card-deck",
+      "semanticPurpose": "document-preview-stack"
+    }
+  },
+  "url": "https://openui.dev/r/hover-card-preview-stack.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Hover Fanned Card Expansion: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

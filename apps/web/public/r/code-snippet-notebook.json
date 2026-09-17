@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-snippet-notebook",
+  "type": "registry:block",
+  "title": "Code Snippet Notebook",
+  "description": "An interactive computational notebook block with executable code cells, markdown blocks, and output preview.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-snippet-notebook.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CodeSnippetNotebook({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [output, setOutput] = React.useState<string | null>(null);\n\n  const runCode = () => {\n    setOutput(\"=> 800 items validated: 0 missing metadata, 0 duplicates.\");\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-3 border-b border-neutral-800 mb-3\">\n        <span className=\"text-neutral-400\">Notebook cell [1]</span>\n        <button type=\"button\" onClick={runCode} className=\"px-3 py-1 bg-emerald-600 text-white rounded font-bold text-[11px]\">\n          Run Cell ▶\n        </button>\n      </div>\n      <div className=\"p-3 bg-neutral-900 rounded text-emerald-400\">\n        import &#123; validateCatalog &#125; from \"@openui/registry-schema\";<br />\n        const report = await validateCatalog();<br />\n        console.log(report.summary);\n      </div>\n      {output && (\n        <div className=\"mt-3 p-3 bg-neutral-900/60 border border-neutral-800 text-neutral-300 rounded\">\n          {output}\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "contentHash": "e196e4f128618320c75ffe9497925528e40d7b6fa18222cab1e45b1bb3bb76f4",
+      "sizeBytes": 1331
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CodeSnippetNotebook } from \"./code-snippet-notebook\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-900\">\n      <CodeSnippetNotebook />\n    </div>\n  );\n}\n",
+      "contentHash": "883cbd7d3c6a397f881e152e30318e90682fca07f8d0350cdfdcb73338c643d5",
+      "sizeBytes": 266
+    }
+  ],
+  "tags": [
+    "notebook",
+    "code",
+    "cells",
+    "execution",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "notebook-code-cell-execution",
+      "visualModel": "executable-snippet-workbook",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-code-notebook"
+    }
+  },
+  "url": "https://openui.dev/r/code-snippet-notebook.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Notebook Code Cell Execution: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

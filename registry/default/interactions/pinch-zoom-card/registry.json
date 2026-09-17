@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pinch-zoom-card",
+  "type": "registry:interaction",
+  "title": "Pinch Zoom Card",
+  "description": "An asset card supporting discrete stepped scaling buttons and pointer hover magnification factor.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pinch-zoom-card.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "zoom",
+    "card",
+    "scale",
+    "inspect",
+    "pinch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "stepped-card-scaling",
+      "visualModel": "zoomable-specimen-slab",
+      "motionModel": "stepped-scale-magnification",
+      "layoutModel": "centered-card-stage",
+      "semanticPurpose": "zoomable-product-slab"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

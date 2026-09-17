@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gradient-prism-rainbow",
+  "type": "registry:background",
+  "title": "Gradient Prism Rainbow",
+  "description": "Refractive optical prism dispersion band stretching diagonally with spectral color hues.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gradient-prism-rainbow.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "prism",
+    "rainbow",
+    "optics",
+    "spectral",
+    "gradient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-prism-refraction",
+      "visualModel": "spectral-dispersion-ribbon",
+      "motionModel": "none",
+      "layoutModel": "diagonal-band-underlay",
+      "semanticPurpose": "optical-refraction-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

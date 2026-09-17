@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-impact-stats",
+  "type": "registry:section",
+  "title": "Customer Impact Stats",
+  "description": "A quantitative impact report showing cumulative developer hours saved and issues mitigated.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-impact-stats.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "impact",
+    "stats",
+    "roi",
+    "savings",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "customer-impact-stats-interaction",
+      "visualModel": "customer-impact-stats-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "customer-impact-stats-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

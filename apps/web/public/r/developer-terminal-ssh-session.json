@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-terminal-ssh-session",
+  "type": "registry:block",
+  "title": "Developer Terminal SSH Session",
+  "description": "A browser-based remote shell console emulator displaying active connection authentication and status output.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-terminal-ssh-session.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeveloperTerminalSshSession({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-xl\", className)} {...props}>\n      <div className=\"text-emerald-400 font-bold mb-2\">ssh deploy@edge.openui.dev (mTLS verified)</div>\n      <div className=\"text-neutral-300\">\n        Last login: Thu Sep 17 23:42:10 UTC from 192.0.2.4<br />\n        openui-node-01:~$ pnpm validate:catalog<br />\n        <span className=\"text-emerald-400\">TOTAL 800/800 ✓ All checks passed.</span>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "c45e86940ef899d9fd9202662cf81753f56ab1f049f20d1cae2b657a9f92f200",
+      "sizeBytes": 761
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DeveloperTerminalSshSession } from \"./developer-terminal-ssh-session\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-900\">\n      <DeveloperTerminalSshSession />\n    </div>\n  );\n}\n",
+      "contentHash": "72e85b202fa08b2d482258d7c34cb0f1894fbbe14bd5278853cc387ccc6b3330",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "ssh",
+    "terminal",
+    "shell",
+    "console",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "ssh-terminal-command-execution",
+      "visualModel": "browser-ssh-shell-window",
+      "motionModel": "mechanical",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "remote-shell-terminal-session"
+    }
+  },
+  "url": "https://openui.dev/r/developer-terminal-ssh-session.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Ssh Terminal Command Execution: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

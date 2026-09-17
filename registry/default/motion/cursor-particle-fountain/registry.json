@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cursor-particle-fountain",
+  "type": "registry:motion",
+  "title": "Cursor Particle Fountain",
+  "description": "A decorative canvas fountain erupting gravity-bound sparkles as pointer travels rapidly across the surface.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cursor-particle-fountain.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "cursor",
+    "fountain",
+    "particles",
+    "gravity",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "cursor",
+    "fingerprint": {
+      "interactionModel": "pointer-motion-emission",
+      "visualModel": "gravity-spark-fountain",
+      "motionModel": "ballistic-projectile-arc",
+      "layoutModel": "interactive-canvas-surface",
+      "semanticPurpose": "celebratory-spark-fountain"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

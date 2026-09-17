@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-progress-ring",
+  "type": "registry:motion",
+  "title": "Scroll Progress Ring",
+  "description": "Reading progress drawn as an SVG ring around a fixed badge: the stroke fills clockwise with scroll progress, the percentage ticks in tabular numerals in the centre, and clicking it scrolls back to top.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-progress-ring.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "progress",
+    "ring",
+    "scroll",
+    "svg"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "svg-stroke-ring",
+      "motionModel": "scroll-linked-dashoffset",
+      "layoutModel": "floating",
+      "semanticPurpose": "reading-progress"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "halftone-circular-burst",
+  "type": "registry:background",
+  "title": "Halftone Circular Burst",
+  "description": "Radial burst of concentric halftone dots scaling upward toward center.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "halftone-circular-burst.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HalftoneCircularBurstProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function HalftoneCircularBurst({ className, children, ...props }: HalftoneCircularBurstProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-15 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          {[20, 35, 50, 65, 80].map((r, ringIdx) => {\n            const dots = 12 + ringIdx * 6;\n            return Array.from({ length: dots }).map((_, dotIdx) => {\n              const angle = (dotIdx / dots) * Math.PI * 2;\n              const x = 100 + r * Math.cos(angle);\n              const y = 100 + r * Math.sin(angle);\n              return <circle key={`${ringIdx}-${dotIdx}`} cx={x} cy={y} r={ringIdx * 0.6 + 1} fill=\"currentColor\" />;\n            });\n          })}\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "7e23169f912fec07545bd8065a600f29972fea91811d5a4385a4b59b76f7c30b",
+      "sizeBytes": 1121
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { HalftoneCircularBurst } from \"./halftone-circular-burst\";\n\nexport default function HalftoneCircularBurstDemo() {\n  return (\n    <HalftoneCircularBurst className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Halftone Radial Burst</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Concentric radial scaling halftone dots.</p>\n      </div>\n    </HalftoneCircularBurst>\n  );\n}\n",
+      "contentHash": "76bd5672ea391a70db302bd1ee0223214cc177b5e7993fc0987ab61a1263803c",
+      "sizeBytes": 597
+    }
+  ],
+  "tags": [
+    "halftone",
+    "burst",
+    "radial",
+    "pop",
+    "dots"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-halftone-burst",
+      "visualModel": "radial-dot-burst-explosion",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "comic-halftone-explosion"
+    }
+  },
+  "url": "https://openui.dev/r/halftone-circular-burst.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Pill\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Halftone Burst: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

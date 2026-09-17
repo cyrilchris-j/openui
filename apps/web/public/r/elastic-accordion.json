@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-accordion",
+  "type": "registry:motion",
+  "title": "Elastic Accordion",
+  "description": "An accordion whose panels open with elastic overshoot: neighbouring rows are pushed with a spring-lag (each row's displacement chases the row above), so the stack wobbles like a slinky instead of snapping rigid.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-accordion.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticAccordionProps {\n  items: Array<{ q: string; a: string }>;\n  className?: string;\n}\n\nexport function ElasticAccordion({ items, className }: ElasticAccordionProps) {\n  const [open, setOpen] = useState<number | null>(0);\n  const rowRefs = useRef<Array<HTMLDivElement | null>>([]);\n  const offsets = useRef<number[]>(items.map(() => 0));\n  const velocities = useRef<number[]>(items.map(() => 0));\n  const raf = useRef<number | null>(null);\n\n  // Spring simulation: each closed row below the open one gets pushed down\n  // by the open panel's height, chasing with a lag proportional to its index.\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    const tick = () => {\n      const openIndex = open;\n      const openRow = openIndex !== null ? rowRefs.current[openIndex] : null;\n      const openHeight = openRow?.scrollHeight ?? 0;\n\n      items.forEach((_, index) => {\n        if (index === openIndex) {\n          offsets.current[index] = 0;\n          velocities.current[index] = 0;\n          return;\n        }\n        const pushed = openIndex !== null && index > openIndex ? openHeight : 0;\n        const force = -0.18 * (offsets.current[index]! - pushed);\n        velocities.current[index] = (velocities.current[index]! + force) * 0.82;\n        offsets.current[index] = offsets.current[index]! + velocities.current[index]!;\n      });\n\n      items.forEach((_, index) => {\n        const node = rowRefs.current[index];\n        if (node && index !== open) {\n          node.style.transform = `translateY(${offsets.current[index]!.toFixed(2)}px)`;\n        }\n      });\n\n      const stillMoving = offsets.current.some((offset, index) => index !== open && Math.abs(offset - (open !== null && index > open ? openHeight : 0)) > 0.5);\n      raf.current = stillMoving ? requestAnimationFrame(tick) : null;\n    };\n\n    if (raf.current === null) raf.current = requestAnimationFrame(tick);\n    return () => {\n      if (raf.current !== null) {\n        cancelAnimationFrame(raf.current);\n        raf.current = null;\n      }\n    };\n  }, [open, items]);\n\n  return (\n    <div className={cn(\"flex flex-col gap-2\", className)}>\n      {items.map((item, index) => (\n        <div key={index} className=\"overflow-hidden rounded-xl border border-line bg-paper\">\n          <button\n            type=\"button\"\n            onClick={() => setOpen((current) => (current === index ? null : index))}\n            aria-expanded={open === index}\n            className=\"flex w-full items-center justify-between px-5 py-4 text-left font-display text-ink\"\n          >\n            {item.q}\n            <span aria-hidden className=\"text-ink/40\">{open === index ? \"−\" : \"+\"}</span>\n          </button>\n          <div\n            ref={(node) => {\n              rowRefs.current[index] = node;\n            }}\n            className=\"grid transition-[grid-template-rows] duration-300\"\n            style={{\n              gridTemplateRows: open === index ? \"1fr\" : \"0fr\",\n              ...(window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches ? { transition: \"none\" } : {}),\n            }}\n          >\n            <div className=\"overflow-hidden\">\n              <p className=\"px-5 pb-4 text-sm leading-relaxed text-ink/75\">{item.a}</p>\n            </div>\n          </div>\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default ElasticAccordion;\n",
+      "contentHash": "e8d06db0ef2722a70eb28f438b3200c2c29cfd4c8b00a0c499442cb86682bd51",
+      "sizeBytes": 3483
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticAccordion } from \"./elastic-accordion\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-10\">\n      <ElasticAccordion\n        className=\"w-full max-w-md\"\n        items={[\n          { q: \"Is the metadata contract strict?\", a: \"Yes. Missing fields fail validation, and validation fails the build.\" },\n          { q: \"Can I fork a resource?\", a: \"Every resource is MIT-licensed source on disk. Fork, rename, resubmit through uniqueness.\" },\n          { q: \"Why 800?\", a: \"Scale forces systems: generators, validators, indexes. Copy-paste does not survive 800.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "9e47b0705755f1f889aee90f772f02becaf1a94a9af1a93a49c6b62ff1ada3e9",
+      "sizeBytes": 689
+    }
+  ],
+  "tags": [
+    "accordion",
+    "elastic",
+    "overshoot",
+    "slinky"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "click-expand",
+      "visualModel": "chained-push-rows",
+      "motionModel": "per-row-spring-lag",
+      "layoutModel": "stack",
+      "semanticPurpose": "faq-disclosure"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-accordion.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Click Expand: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

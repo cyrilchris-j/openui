@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-color-token-previewer",
+  "type": "registry:section",
+  "title": "Interactive Color Token Previewer",
+  "description": "An interactive color swatching utility allowing developers to visualize theme token overrides.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-color-token-previewer.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InteractiveColorTokenPreviewer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [activeToken, setActiveToken] = React.useState(\"emerald\");\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-3xl mx-auto text-center font-mono text-xs\", className)} {...props}>\n      <h3 className=\"text-sm font-bold text-neutral-900 dark:text-neutral-100 mb-4\">Color Strategy Tokens</h3>\n      <div className=\"flex justify-center gap-3 mb-6\">\n        {[\"emerald\", \"indigo\", \"rose\", \"amber\"].map((token) => (\n          <button\n            key={token}\n            type=\"button\"\n            onClick={() => setActiveToken(token)}\n            className={cn(\"px-3 py-1 rounded border\", activeToken === token ? \"border-black dark:border-white font-bold\" : \"border-neutral-300 dark:border-neutral-700\")}\n          >\n            {token}\n          </button>\n        ))}\n      </div>\n      <div className=\"p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n        Selected active accent: <span className=\"font-bold\">{activeToken}</span>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "a30c4e7e2212465eb1dec9437066b29af17a8ee4b914820b1db2afc797b24caa",
+      "sizeBytes": 1221
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveColorTokenPreviewer } from \"./interactive-color-token-previewer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <InteractiveColorTokenPreviewer />\n    </div>\n  );\n}\n",
+      "contentHash": "731c65f25e28cf1c26db2da250069047532574aeb447347b4a3ef0350de36115",
+      "sizeBytes": 320
+    }
+  ],
+  "tags": [
+    "colors",
+    "tokens",
+    "previewer",
+    "theme",
+    "design-system"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "design-system",
+    "fingerprint": {
+      "interactionModel": "interactive-color-token-previewer-interaction",
+      "visualModel": "interactive-color-token-previewer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "interactive-color-token-previewer-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-color-token-previewer.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Interactive Color Token Previewer Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

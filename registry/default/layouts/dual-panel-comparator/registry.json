@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dual-panel-comparator",
+  "type": "registry:layout",
+  "title": "Dual Panel Comparator",
+  "description": "Side-by-side comparison layout for diffs, AB variants, or before-and-after evaluations.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dual-panel-comparator.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "comparator",
+    "diff",
+    "comparison",
+    "dual-panel",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "side-by-side-comparison",
+      "visualModel": "symmetric-dual-panel",
+      "motionModel": "none",
+      "layoutModel": "two-column-comparator",
+      "semanticPurpose": "entity-comparison-view"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

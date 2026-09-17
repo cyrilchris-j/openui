@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "soundwave-equalizer-bars",
+  "type": "registry:background",
+  "title": "Soundwave Equalizer Bars",
+  "description": "Vertical acoustic equalizer spectral frequency bars running along the bottom edge.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "soundwave-equalizer-bars.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "soundwave",
+    "audio",
+    "equalizer",
+    "frequency",
+    "bars"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-audio-equalizer",
+      "visualModel": "vertical-spectrum-columns",
+      "motionModel": "none",
+      "layoutModel": "bottom-pinned-equalizer",
+      "semanticPurpose": "audio-spectrum-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

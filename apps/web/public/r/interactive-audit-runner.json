@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-audit-runner",
+  "type": "registry:section",
+  "title": "Interactive Audit Runner",
+  "description": "A simulated accessibility and schema verification runner displaying live diagnostic ticks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-audit-runner.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InteractiveAuditRunner({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [running, setRunning] = React.useState(false);\n  const [done, setDone] = React.useState(false);\n\n  const runAudit = () => {\n    setRunning(true);\n    setDone(false);\n    setTimeout(() => {\n      setRunning(false);\n      setDone(true);\n    }, 1200);\n  };\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-3xl mx-auto text-center font-mono text-xs\", className)} {...props}>\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 bg-white dark:bg-neutral-950\">\n        <h3 className=\"text-sm font-bold text-neutral-900 dark:text-white\">Live Verification Pipeline</h3>\n        <p className=\"text-neutral-500 mt-1\">Run continuous conformance tests against 800 catalog resources.</p>\n\n        <button\n          type=\"button\"\n          onClick={runAudit}\n          disabled={running}\n          className=\"mt-6 px-4 py-2 rounded-lg bg-emerald-600 text-white font-semibold disabled:opacity-50\"\n        >\n          {running ? \"Analyzing 800 manifests...\" : \"Execute Automated Audit\"}\n        </button>\n\n        {done && (\n          <div className=\"mt-4 p-3 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 rounded\">\n            ✓ 800 / 800 resources verified. Zero schema violations.\n          </div>\n        )}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "dba8226069b4e5e9c89388d98f8fe082e0366172f35fe5ad898a9214b87fb624",
+      "sizeBytes": 1505
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveAuditRunner } from \"./interactive-audit-runner\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <InteractiveAuditRunner />\n    </div>\n  );\n}\n",
+      "contentHash": "c68a2a11be1220fe96fccd4d775e215e674474db9d1c23363f39f7cf23a3c688",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "audit",
+    "runner",
+    "verification",
+    "diagnostics",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "verification",
+    "fingerprint": {
+      "interactionModel": "interactive-audit-runner-interaction",
+      "visualModel": "interactive-audit-runner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-audit-runner-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-audit-runner.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Interactive Audit Runner Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

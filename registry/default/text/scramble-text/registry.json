@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scramble-text",
+  "type": "registry:text",
+  "title": "Scramble Text",
+  "description": "Text that resolves from character noise to its final content, cycling each position through a glyph pool at its own rate so the reveal sweeps left to right rather than popping.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "scramble-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "scramble",
+    "reveal",
+    "monospace",
+    "decode"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scramble",
+    "fingerprint": {
+      "interactionModel": "pointer-hover-trigger",
+      "visualModel": "random-symbol-cycle",
+      "motionModel": "progressive-reveal-tick",
+      "layoutModel": "inline-phrase",
+      "semanticPurpose": "interactive-label-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

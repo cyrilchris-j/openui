@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "morse-code-telegraph",
+  "type": "registry:background",
+  "title": "Morse Code Telegraph",
+  "description": "Horizontal rhythm of dots and dashes encoding telegraphic transmission signals.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "morse-code-telegraph.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "morse",
+    "telegraph",
+    "dots",
+    "dashes",
+    "data"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-telegraph-texture",
+      "visualModel": "staggered-morse-lines",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "telegraph-transmission-pattern"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

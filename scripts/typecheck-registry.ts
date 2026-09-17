@@ -30,6 +30,19 @@ const directories = await discoverItemDirectories(REGISTRY_ROOT);
 // their own aliases; the CLI rewrites it on install.
 const cnDirectory = directories.find((directory) => directory.endsWith("/components/cn"));
 
+// Registry hook items resolve through `@/hooks/<name>`. Resources import the
+// hooks by that specifier, the CLI installs them into the consumer's hooks
+// alias, and the typechecker maps it to the hook's source file.
+const hookPaths: Record<string, string[]> = {};
+for (const directory of directories) {
+  const match = /[/\\]components[/\\](use-[a-z0-9-]+)$/.exec(directory);
+  if (!match) continue;
+  const hookName = match[1]!;
+  const source = await import("node:fs/promises").then((fs) => fs.readdir(directory));
+  const file = source.find((name) => name.startsWith(hookName) && /\.tsx?$/.test(name));
+  if (file) hookPaths[`@/hooks/${hookName}`] = [toPosix(relative(workdir, join(directory, file)))];
+}
+
 const config = {
   compilerOptions: {
     target: "ES2022",
@@ -45,6 +58,7 @@ const config = {
     allowImportingTsExtensions: true,
     types: [],
     paths: {
+      ...hookPaths,
       "@/lib/cn": [toPosix(relative(workdir, join(cnDirectory ?? REGISTRY_ROOT, "cn.ts")))],
       "@/lib/*": [toPosix(relative(workdir, join(cnDirectory ?? REGISTRY_ROOT, "*")))],
       "@/*": [toPosix(relative(workdir, REGISTRY_ROOT)) + "/*"],

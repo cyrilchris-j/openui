@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sticky-tab-bar-layout",
+  "type": "registry:layout",
+  "title": "Sticky Tab Bar Layout",
+  "description": "Scrollable view layout featuring a horizontal tab strip that sticks cleanly to the top viewport edge.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sticky-tab-bar-layout.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StickyTabBarLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  tabs?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function StickyTabBarLayout({ tabs, children, className, ...props }: StickyTabBarLayoutProps) {\n  return (\n    <div className={cn(\"max-w-3xl mx-auto p-4 font-sans\", className)} {...props}>\n      <div className=\"sticky top-2 z-20 py-2 mb-4 bg-paper/90 backdrop-blur-md border-b border-line flex gap-4 text-xs font-mono\">\n        {tabs}\n      </div>\n      <div className=\"space-y-4\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "4cd4a06b8c61ac656b27c6eb2e8cf0f4baec9f0e6f16cbba43254d9caf698b0e",
+      "sizeBytes": 617
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { StickyTabBarLayout } from \"./sticky-tab-bar-layout\";\n\nexport default function StickyTabBarLayoutDemo() {\n  return (\n    <StickyTabBarLayout\n      tabs={\n        <>\n          <span className=\"font-bold text-accent\">Design Tokens</span>\n          <span className=\"text-ink/60\">Source AST</span>\n          <span className=\"text-ink/60\">Documentation</span>\n        </>\n      }\n    >\n      <div className=\"p-4 rounded-xl border border-line bg-surface/30 text-xs\">Section panel content viewport.</div>\n    </StickyTabBarLayout>\n  );\n}\n",
+      "contentHash": "b459e787e66f7fc408eeb99cd325f86bada42218c77a3b9b9d6fd9716f8c8b94",
+      "sizeBytes": 554
+    }
+  ],
+  "tags": [
+    "tabs",
+    "sticky",
+    "navigation",
+    "scroll",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "sticky-tab-bar-scroll",
+      "visualModel": "pinned-horizontal-tab-rail",
+      "motionModel": "none",
+      "layoutModel": "tab-pinned-viewport",
+      "semanticPurpose": "tabbed-content-viewport"
+    }
+  },
+  "url": "https://openui.dev/r/sticky-tab-bar-layout.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Sticky Tab Bar Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

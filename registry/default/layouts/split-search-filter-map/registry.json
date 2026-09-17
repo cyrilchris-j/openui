@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-search-filter-map",
+  "type": "registry:layout",
+  "title": "Split Search Filter Map",
+  "description": "Airbnb-style discovery layout: facet filters on left, scrollable entity cards in center, interactive map on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-search-filter-map.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "search",
+    "map",
+    "discovery",
+    "airbnb",
+    "triptych"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "triptych-search-discovery",
+      "visualModel": "filter-cards-map-triptych",
+      "motionModel": "none",
+      "layoutModel": "three-column-discovery-shell",
+      "semanticPurpose": "location-discovery-search"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

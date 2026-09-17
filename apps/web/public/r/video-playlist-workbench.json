@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "video-playlist-workbench",
+  "type": "registry:block",
+  "title": "Video Playlist Workbench",
+  "description": "An educational video library block pairing an embedded video stage with an episodic queued playlist.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "video-playlist-workbench.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function VideoPlaylistWorkbench({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [active, setActive] = React.useState(0);\n\n  const playlist = [\n    { title: \"1. Core Philosophy of Design DNA\", duration: \"12m\" },\n    { title: \"2. Setting Up Zero-Dependency Primitives\", duration: \"18m\" },\n    { title: \"3. Verifying Schema with pnpm validate\", duration: \"14m\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"grid grid-cols-1 md:grid-cols-12 gap-6\">\n        <div className=\"md:col-span-8 bg-neutral-900 text-white rounded-xl h-56 flex items-center justify-center font-mono\">\n          [Playing: {playlist[active]?.title}]\n        </div>\n        <div className=\"md:col-span-4 space-y-2\">\n          <div className=\"font-bold text-neutral-900 dark:text-white mb-2\">Tutorial Series</div>\n          {playlist.map((item, idx) => (\n            <div\n              key={idx}\n              onClick={() => setActive(idx)}\n              className={cn(\n                \"p-3 rounded-lg border cursor-pointer transition-colors\",\n                active === idx ? \"border-emerald-600 bg-emerald-50/20 dark:bg-emerald-950/20 font-bold\" : \"border-neutral-200 dark:border-neutral-800\"\n              )}\n            >\n              <div>{item.title}</div>\n              <div className=\"text-neutral-400 text-[10px] mt-1\">{item.duration}</div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "aa76232664f22d997aed2ddcda26eb0596f2d547e02b0b56af05dfd4f902683b",
+      "sizeBytes": 1694
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { VideoPlaylistWorkbench } from \"./video-playlist-workbench\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <VideoPlaylistWorkbench />\n    </div>\n  );\n}\n",
+      "contentHash": "3ed78588a17169cacad96e15b6e91d207f52665f52adf3d57492f37ec2499e48",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "video",
+    "playlist",
+    "course",
+    "media",
+    "player"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "video-queue-selection-switching",
+      "visualModel": "video-stage-with-playlist-rail",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "course-video-workbench"
+    }
+  },
+  "url": "https://openui.dev/r/video-playlist-workbench.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Video Queue Selection Switching: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

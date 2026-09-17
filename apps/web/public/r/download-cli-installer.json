@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "download-cli-installer",
+  "type": "registry:section",
+  "title": "Download CLI Installer",
+  "description": "A command-line installation strip featuring curl, brew, and npm install tabs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "download-cli-installer.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DownloadCliInstaller({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-12 px-4 max-w-xl mx-auto font-mono text-xs\", className)} {...props}>\n      <div className=\"p-4 rounded-xl bg-neutral-950 text-neutral-100 border border-neutral-800 flex items-center justify-between\">\n        <div className=\"flex items-center gap-2 overflow-x-auto\">\n          <span className=\"text-neutral-500\">$</span>\n          <span className=\"text-emerald-400\">curl -fsSL https://openui.dev/install.sh | sh</span>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "fd51d4e207786eb3f8783e8d5cb6d27451a93b73b0e312e43a1446b59f036f6f",
+      "sizeBytes": 699
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DownloadCliInstaller } from \"./download-cli-installer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] flex items-center justify-center p-4 bg-neutral-900\">\n      <DownloadCliInstaller />\n    </div>\n  );\n}\n",
+      "contentHash": "0d1ef73192d6b8eb579aa1e7e91096074491807214817d8efaf738494750a05f",
+      "sizeBytes": 269
+    }
+  ],
+  "tags": [
+    "installer",
+    "cli",
+    "download",
+    "curl",
+    "homebrew"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "download-cli-installer-interaction",
+      "visualModel": "download-cli-installer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "download-cli-installer-section"
+    }
+  },
+  "url": "https://openui.dev/r/download-cli-installer.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Download Cli Installer Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

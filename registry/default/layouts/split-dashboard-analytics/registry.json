@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-dashboard-analytics",
+  "type": "registry:layout",
+  "title": "Split Dashboard Analytics",
+  "description": "Live operational telemetry layout with large timeseries chart area on left and realtime log stream on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-dashboard-analytics.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "analytics",
+    "dashboard",
+    "telemetry",
+    "split",
+    "logs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "analytics-chart-and-log-split",
+      "visualModel": "timeseries-and-log-ticker",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-analytics-split",
+      "semanticPurpose": "telemetry-analytics-workbench"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

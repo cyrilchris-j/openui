@@ -34,6 +34,7 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
     "none",
   );
   const filterValue = params.get("filter");
+  const subcategoryFilter = params.get("subcategory");
 
   const FACET_TO_DNA_KEY = {
     genre: "genre",
@@ -41,6 +42,18 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
     shape: "shapeLanguage",
     motion: "motionLanguage",
   } as const;
+
+  /** Subcategory facet, derived from what this category actually declares. */
+  const subcategories = React.useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const item of items) {
+      if (!item.subcategory) continue;
+      counts.set(item.subcategory, (counts.get(item.subcategory) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([value, count]) => ({ value, label: `${value} (${count})` }));
+  }, [items]);
 
   const facets = React.useMemo(() => {
     if (facet === "none") return [];
@@ -56,10 +69,14 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
   }, [items, facet]);
 
   const visible = React.useMemo(() => {
-    if (!filterValue || facet === "none") return items;
+    let result = items;
+    if (subcategoryFilter) {
+      result = result.filter((item) => item.subcategory === subcategoryFilter);
+    }
+    if (!filterValue || facet === "none") return result;
     const dnaKey = FACET_TO_DNA_KEY[facet];
-    return items.filter((item) => String(item.dna?.[dnaKey] ?? "") === filterValue);
-  }, [items, facet, filterValue]);
+    return result.filter((item) => String(item.dna?.[dnaKey] ?? "") === filterValue);
+  }, [items, facet, filterValue, subcategoryFilter]);
 
   if (!definition) {
     return (
@@ -114,8 +131,25 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
         />
         <p className="eyebrow self-start sm:self-auto text-graphite/80 text-[10px] sm:text-[11px]">
           {counts} {counts === 1 ? definition.noun : `${definition.noun}s`}
+          {subcategories.length > 0 ? ` · ${subcategories.length} subcategories` : ""}
         </p>
       </div>
+
+      {subcategories.length > 0 ? (
+        <div className="mt-3 sm:mt-5">
+          <SegmentedControl
+            label="Filter by subcategory"
+            value={subcategoryFilter ?? "__all__"}
+            onValueChange={(value) => {
+              const next = new URLSearchParams(params);
+              if (value === "__all__") next.delete("subcategory");
+              else next.set("subcategory", value);
+              setParams(next, { replace: true });
+            }}
+            options={[{ value: "__all__", label: "All" }, ...subcategories]}
+          />
+        </div>
+      ) : null}
 
       {facet !== "none" && facets.length > 0 ? (
         <div className="mt-3 sm:mt-5">
@@ -173,7 +207,7 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
       ) : (
         <div className="catalogue-grid mt-6 sm:mt-10">
           {visible.map((item, position) => (
-            <ResourceTile key={item.name} item={item} index={position + 1} />
+            <ResourceTile key={item.name} item={item} index={position + 1} withPreview />
           ))}
         </div>
       )}

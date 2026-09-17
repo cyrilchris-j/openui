@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "lasso-select-box",
+  "type": "registry:interaction",
+  "title": "Lasso Select Box",
+  "description": "A bounding rectangle drag selection tool highlighting and grouping multiple coordinate items within its active marquee.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "lasso-select-box.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "lasso",
+    "selection",
+    "marquee",
+    "box",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "selection",
+    "fingerprint": {
+      "interactionModel": "rectangular-marquee-selection",
+      "visualModel": "dashed-boundary-crosshair",
+      "motionModel": "coordinate-bounding-expansion",
+      "layoutModel": "freeform-canvas-stage",
+      "semanticPurpose": "multi-item-lasso-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

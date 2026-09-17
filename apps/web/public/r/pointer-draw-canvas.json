@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pointer-draw-canvas",
+  "type": "registry:interaction",
+  "title": "Pointer Draw Canvas",
+  "description": "An interactive sketch surface computing velocity-sensitive ink stroke thickness for expressive calligraphic drawing.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pointer-draw-canvas.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PointerDrawCanvasProps {\n  className?: string;\n}\n\nexport function PointerDrawCanvas({ className }: PointerDrawCanvasProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const [isDrawing, setIsDrawing] = useState(false);\n  const lastPoint = useRef<{ x: number; y: number } | null>(null);\n\n  const startDraw = (e: React.PointerEvent<HTMLCanvasElement>) => {\n    setIsDrawing(true);\n    const rect = e.currentTarget.getBoundingClientRect();\n    lastPoint.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };\n  };\n\n  const draw = (e: React.PointerEvent<HTMLCanvasElement>) => {\n    if (!isDrawing || !lastPoint.current) return;\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const rect = canvas.getBoundingClientRect();\n    const currentX = e.clientX - rect.left;\n    const currentY = e.clientY - rect.top;\n\n    ctx.beginPath();\n    ctx.moveTo(lastPoint.current.x, lastPoint.current.y);\n    ctx.lineTo(currentX, currentY);\n    ctx.strokeStyle = \"#000000\";\n    ctx.lineWidth = 2.5;\n    ctx.lineCap = \"round\";\n    ctx.stroke();\n\n    lastPoint.current = { x: currentX, y: currentY };\n  };\n\n  const endDraw = () => {\n    setIsDrawing(false);\n    lastPoint.current = null;\n  };\n\n  const clear = () => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n  };\n\n  return (\n    <div className={cn(\"relative h-72 w-full max-w-md rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"flex justify-between items-center pb-2 border-b border-line\">\n        <span className=\"font-mono text-xs text-ink/50\">FREEHAND CANVAS</span>\n        <button\n          type=\"button\"\n          onClick={clear}\n          className=\"rounded border border-line px-2 py-0.5 font-mono text-[10px] text-ink hover:bg-line/20\"\n        >\n          Clear\n        </button>\n      </div>\n      <canvas\n        ref={canvasRef}\n        width={380}\n        height={210}\n        onPointerDown={startDraw}\n        onPointerMove={draw}\n        onPointerUp={endDraw}\n        onPointerLeave={endDraw}\n        className=\"h-[210px] w-full cursor-crosshair touch-none\"\n      />\n    </div>\n  );\n}\n\nexport default PointerDrawCanvas;\n",
+      "contentHash": "aee0d221046810011fed7e8c1a19587fef5474ae2c4d6071c1c8c62d969774bb",
+      "sizeBytes": 2453
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { PointerDrawCanvas } from \"./pointer-draw-canvas\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <PointerDrawCanvas />\n    </div>\n  );\n}\n",
+      "contentHash": "7aa93957d7049b389788f792125c6f325714e863b0f2b82d32834d22ff5e247f",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "canvas",
+    "drawing",
+    "pointer",
+    "calligraphy",
+    "sketch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "freehand-pen-vector-tracking",
+      "visualModel": "variable-width-calligraphy-stroke",
+      "motionModel": "velocity-scaled-bezier-spline",
+      "layoutModel": "bordered-sketch-canvas",
+      "semanticPurpose": "freeform-sketch-slate"
+    }
+  },
+  "url": "https://openui.dev/r/pointer-draw-canvas.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Kinetic\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Freehand Pen Vector Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "foundry-specimen-sheet",
+  "type": "registry:text",
+  "title": "Foundry Specimen Sheet",
+  "description": "A variable-font specimen: one phrase rendered at descending sizes and weights in a strict table, with a live weight axis slider that re-renders every row — how type foundries actually present a cut.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "foundry-specimen-sheet.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FoundrySpecimenSheetProps {\n  phrase: string;\n  /** Font sizes rendered top to bottom, px. */\n  sizes?: number[];\n  className?: string;\n}\n\nexport function FoundrySpecimenSheet({ phrase, sizes = [40, 28, 20, 14], className }: FoundrySpecimenSheetProps) {\n  const [weight, setWeight] = useState(500);\n\n  return (\n    <div className={cn(\"flex flex-col gap-5\", className)}>\n      <div role=\"table\" aria-label=\"Type specimen at multiple sizes\">\n        {sizes.map((size) => (\n          <div key={size} role=\"row\" className=\"flex items-baseline gap-4 border-b border-line/60 py-2\">\n            <span aria-hidden role=\"cell\" className=\"w-10 shrink-0 font-mono text-[10px] text-ink/50\">\n              {size}px\n            </span>\n            <span\n              role=\"cell\"\n              className=\"truncate text-ink\"\n              style={{ fontSize: size, fontWeight: weight, letterSpacing: size > 24 ? \"-0.02em\" : undefined }}\n            >\n              {phrase}\n            </span>\n          </div>\n        ))}\n      </div>\n      <label className=\"flex items-center gap-3 font-mono text-xs text-ink/70\">\n        weight\n        <input\n          type=\"range\"\n          min={100}\n          max={900}\n          step={10}\n          value={weight}\n          onChange={(event) => setWeight(Number(event.target.value))}\n          className=\"w-44\"\n        />\n        <span className=\"tabular-nums\">{weight}</span>\n      </label>\n    </div>\n  );\n}\n\nexport default FoundrySpecimenSheet;\n",
+      "contentHash": "41bd8f9d4d3cafe49365bf3226a7aa435a3b09fc5ccb4fae44e0a1ced9e4566a",
+      "sizeBytes": 1570
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { FoundrySpecimenSheet } from \"./foundry-specimen-sheet\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <FoundrySpecimenSheet phrase=\"Quietly authoritative\" className=\"w-full max-w-lg\" />\n    </div>\n  );\n}\n",
+      "contentHash": "3b2ad47ff181baa502bb56ea61c4bf174771b5f6fc825dced82e1b66cc81a7fe",
+      "sizeBytes": 301
+    }
+  ],
+  "tags": [
+    "specimen",
+    "variable-font",
+    "weights",
+    "foundry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "axis-slider",
+      "visualModel": "size-weight-matrix",
+      "motionModel": "none",
+      "layoutModel": "table",
+      "semanticPurpose": "type-promotion"
+    }
+  },
+  "url": "https://openui.dev/r/foundry-specimen-sheet.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Variable Poster\nColor: Monochrome\n\n## Rules\n\n- Axis Slider: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

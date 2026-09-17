@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-tag-strip",
+  "type": "registry:component",
+  "title": "Badge Tag Strip",
+  "description": "A collection of metadata chips displaying category taxonomy tags with color category coding.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-tag-strip.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tags",
+    "badges",
+    "taxonomy",
+    "metadata",
+    "chips"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-metadata-tags",
+      "visualModel": "linear-taxonomy-pills",
+      "motionModel": "none",
+      "layoutModel": "horizontal-tag-strip",
+      "semanticPurpose": "taxonomy-metadata-strip"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "draggable-range-bubble",
+  "type": "registry:interaction",
+  "title": "Draggable Range Bubble",
+  "description": "A continuous range control where an elevated callout bubble floats dynamically over the dragged thumb handle.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "draggable-range-bubble.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DraggableRangeBubbleProps {\n  className?: string;\n}\n\nexport function DraggableRangeBubble({ className }: DraggableRangeBubbleProps) {\n  const [val, setVal] = useState(50);\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"relative mb-6\">\n        <div\n          className=\"absolute -top-7 rounded bg-ink px-2 py-0.5 font-mono text-[10px] font-bold text-paper shadow transition-all duration-75\"\n          style={{ left: `calc(${val}% - 12px)` }}\n        >\n          {val}\n        </div>\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"0\"\n        max=\"100\"\n        value={val}\n        onChange={(e) => setVal(parseInt(e.target.value, 10))}\n        className=\"w-full cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default DraggableRangeBubble;\n",
+      "contentHash": "2c0c245614355bc788cbbd7edb2e930ec6b24a2cc16aa8331e3cce7d0536d656",
+      "sizeBytes": 958
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DraggableRangeBubble } from \"./draggable-range-bubble\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <DraggableRangeBubble />\n    </div>\n  );\n}\n",
+      "contentHash": "55e05fe5b956f9ec04495960f7d2e0684093833240e9fd3b27685a070f2ed803",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "slider",
+    "bubble",
+    "tooltip",
+    "callout",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "dragged-callout-bubble",
+      "visualModel": "floating-numeric-capsule",
+      "motionModel": "slaved-thumb-tracking",
+      "layoutModel": "horizontal-callout-track",
+      "semanticPurpose": "continuous-range-callout"
+    }
+  },
+  "url": "https://openui.dev/r/draggable-range-bubble.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Dragged Callout Bubble: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

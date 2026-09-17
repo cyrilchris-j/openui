@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-tier-pricing-grid",
+  "type": "registry:layout",
+  "title": "Multi Tier Pricing Grid",
+  "description": "Three-tier pricing card layout featuring prominent central highlight for the recommended tier.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-tier-pricing-grid.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "pricing",
+    "tiers",
+    "subscription",
+    "cards",
+    "highlight"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "plan-tier-selection",
+      "visualModel": "three-tier-card-cluster",
+      "motionModel": "none",
+      "layoutModel": "three-column-pricing-grid",
+      "semanticPurpose": "subscription-pricing-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

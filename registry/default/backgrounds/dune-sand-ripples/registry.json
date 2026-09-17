@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dune-sand-ripples",
+  "type": "registry:background",
+  "title": "Dune Sand Ripples",
+  "description": "Sinusoidal natural wind-blown sand ripples reminiscent of Saharan desert dunes.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dune-sand-ripples.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "dune",
+    "sand",
+    "ripples",
+    "desert",
+    "organic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-dune-ripples",
+      "visualModel": "sinusoidal-sand-crests",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "desert-sand-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

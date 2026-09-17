@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "topographic-contour-lines",
+  "type": "registry:background",
+  "title": "Topographic Contour Lines",
+  "description": "Generative SVG topographic elevation contours reminiscent of geographic cartography maps.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "topographic-contour-lines.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TopographicContourLinesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function TopographicContourLines({ className, children, ...props }: TopographicContourLinesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\" viewBox=\"0 0 800 600\">\n        <path d=\"M0,100 Q200,50 400,120 T800,100\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M0,160 Q220,110 420,180 T800,160\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M0,240 Q250,190 450,260 T800,230\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M0,320 Q230,270 430,340 T800,310\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M0,400 Q270,350 470,420 T800,390\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M0,480 Q240,430 440,500 T800,470\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M0,560 Q260,510 460,580 T800,550\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "ac6cd55dc971a9a598feb7d196ca27903b40dd9e003f231280dd5256465587cd",
+      "sizeBytes": 1375
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { TopographicContourLines } from \"./topographic-contour-lines\";\n\nexport default function TopographicContourLinesDemo() {\n  return (\n    <TopographicContourLines className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Topographic Isobars</h3>\n        <p className=\"text-xs text-ink/60 mt-1\">Geographic elevation curves and natural topology.</p>\n      </div>\n    </TopographicContourLines>\n  );\n}\n",
+      "contentHash": "1dc325439a7a15dde08aa00b16b6adee028c8b51bbc9cd43b4ec89ac0d6c84bc",
+      "sizeBytes": 604
+    }
+  ],
+  "tags": [
+    "topographic",
+    "contours",
+    "elevation",
+    "map",
+    "lines"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-contour-backdrop",
+      "visualModel": "curved-elevation-isobars",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cartographic-elevation-texture"
+    }
+  },
+  "url": "https://openui.dev/r/topographic-contour-lines.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Soft\nMotion: None\nTypography: Humanist\nColor: Muted Earth\n\n## Rules\n\n- Passive Contour Backdrop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

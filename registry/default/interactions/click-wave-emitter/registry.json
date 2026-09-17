@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "click-wave-emitter",
+  "type": "registry:interaction",
+  "title": "Click Wave Emitter",
+  "description": "An omnidirectional pulse origin emitting expanding wave ripples outward upon any pointer down event.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "click-wave-emitter.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "ripple",
+    "wave",
+    "click",
+    "feedback",
+    "pulse"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "click-origin-wave-pulse",
+      "visualModel": "expanding-wave-front",
+      "motionModel": "radial-shockwave-decay",
+      "layoutModel": "touch-absorbent-pad",
+      "semanticPurpose": "sensory-wave-emitter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

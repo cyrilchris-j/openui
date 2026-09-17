@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dark-mode-theme-customizer",
+  "type": "registry:block",
+  "title": "Dark Mode Theme Customizer",
+  "description": "An interactive color palette modifier letting developers adjust primary hue, saturation, and export CSS variables.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dark-mode-theme-customizer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "theme",
+    "darkmode",
+    "colors",
+    "tokens",
+    "customizer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "theme",
+    "fingerprint": {
+      "interactionModel": "theme-hsl-token-manipulation",
+      "visualModel": "theme-color-palette-configurator",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "theme-token-customization"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

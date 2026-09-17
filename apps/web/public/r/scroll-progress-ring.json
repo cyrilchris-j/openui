@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-progress-ring",
+  "type": "registry:motion",
+  "title": "Scroll Progress Ring",
+  "description": "Reading progress drawn as an SVG ring around a fixed badge: the stroke fills clockwise with scroll progress, the percentage ticks in tabular numerals in the centre, and clicking it scrolls back to top.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-progress-ring.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollProgressRingProps {\n  size?: number;\n  className?: string;\n}\n\nexport function ScrollProgressRing({ size = 56, className }: ScrollProgressRingProps) {\n  const [progress, setProgress] = useState(0);\n\n  useEffect(() => {\n    const measure = () => {\n      const total = document.documentElement.scrollHeight - window.innerHeight;\n      setProgress(total > 0 ? Math.min(1, window.scrollY / total) : 0);\n    };\n    measure();\n    window.addEventListener(\"scroll\", measure, { passive: true });\n    window.addEventListener(\"resize\", measure);\n    return () => {\n      window.removeEventListener(\"scroll\", measure);\n      window.removeEventListener(\"resize\", measure);\n    };\n  }, []);\n\n  const radius = (size - 6) / 2;\n  const circumference = 2 * Math.PI * radius;\n\n  return (\n    <button\n      type=\"button\"\n      onClick={() => window.scrollTo({ top: 0, behavior: \"smooth\" })}\n      aria-label={`Scroll progress ${Math.round(progress * 100)}%. Click to return to top.`}\n      className={cn(\"cursor-pointer border-0 bg-transparent p-0\", className)}\n      style={{ width: size, height: size }}\n    >\n      <svg width={size} height={size} aria-hidden>\n        <circle cx={size / 2} cy={size / 2} r={radius} fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" opacity=\"0.15\" />\n        <circle\n          cx={size / 2}\n          cy={size / 2}\n          r={radius}\n          fill=\"none\"\n          stroke=\"#e2624a\"\n          strokeWidth=\"3\"\n          strokeLinecap=\"round\"\n          strokeDasharray={circumference}\n          strokeDashoffset={circumference * (1 - progress)}\n          transform={`rotate(-90 ${size / 2} ${size / 2})`}\n          style={{ transition: \"stroke-dashoffset 80ms linear\" }}\n        />\n      </svg>\n      <span aria-hidden className=\"absolute inset-0 flex items-center justify-center font-mono text-[10px] tabular-nums text-ink/70\">\n        {Math.round(progress * 100)}%\n      </span>\n    </button>\n  );\n}\n\nexport default ScrollProgressRing;\n",
+      "contentHash": "912d60616c4cc72580c363369b059839cb2b2132cfc1ea7a48478a3bc36afa4a",
+      "sizeBytes": 2068
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollProgressRing } from \"./scroll-progress-ring\";\n\nexport default function Demo() {\n  return (\n    <div className=\"relative min-h-[90vh] bg-paper p-10\">\n      <ScrollProgressRing className=\"fixed bottom-6 right-6 z-10 text-ink\" />\n      <p className=\"text-ink/70\">Scroll the page — the ring fills, click it to jump back.</p>\n      <div className=\"h-[80vh]\" />\n    </div>\n  );\n}\n",
+      "contentHash": "34553dc55f21f14ff0fa391ccce4017b757a3ae1f2da2f24086a94075a89627c",
+      "sizeBytes": 391
+    }
+  ],
+  "tags": [
+    "progress",
+    "ring",
+    "scroll",
+    "svg"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "svg-stroke-ring",
+      "motionModel": "scroll-linked-dashoffset",
+      "layoutModel": "floating",
+      "semanticPurpose": "reading-progress"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-progress-ring.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Scroll Progress Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "order-fulfillment-tracker",
+  "type": "registry:block",
+  "title": "Order Fulfillment Tracker",
+  "description": "A tracking status workbench showing delivery timeline, courier coordinates, and itemized packages.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "order-fulfillment-tracker.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "order",
+    "fulfillment",
+    "tracking",
+    "shipping",
+    "ecommerce"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "orders",
+    "fingerprint": {
+      "interactionModel": "shipment-tracking-stepper",
+      "visualModel": "package-fulfillment-timeline",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-fulfillment-status"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

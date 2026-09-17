@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pagination-stepper",
+  "type": "registry:component",
+  "title": "Pagination Stepper",
+  "description": "A page navigation stepper bar with previous/next buttons and active numeric page pill.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pagination-stepper.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "pagination",
+    "stepper",
+    "pages",
+    "navigation",
+    "table"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "page-index-advancement",
+      "visualModel": "stepped-pagination-bar",
+      "motionModel": "stepwise-page-increment",
+      "layoutModel": "horizontal-pagination-cluster",
+      "semanticPurpose": "table-page-navigator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

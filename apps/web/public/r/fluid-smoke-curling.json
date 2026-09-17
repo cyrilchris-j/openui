@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-smoke-curling",
+  "type": "registry:background",
+  "title": "Fluid Smoke Curling",
+  "description": "Curling delicate wisps of incense smoke rising and undulating in still air.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-smoke-curling.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface FluidSmokeCurlingProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function FluidSmokeCurling({ className, children, ...props }: FluidSmokeCurlingProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\" viewBox=\"0 0 400 600\">\n        <path d=\"M200 600 Q240 450 180 350 T220 150 Q230 50 200 0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" filter=\"blur(2px)\" />\n        <path d=\"M190 600 Q230 460 170 360 T210 160 Q220 60 190 0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" filter=\"blur(3px)\" />\n        <path d=\"M210 600 Q250 440 190 340 T230 140 Q240 40 210 0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" filter=\"blur(4px)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "b1fee15b7e80074489fc323070c0221bccd0fc207d2476ce2a2406090ff507c6",
+      "sizeBytes": 1035
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { FluidSmokeCurling } from \"./fluid-smoke-curling\";\n\nexport default function FluidSmokeCurlingDemo() {\n  return (\n    <FluidSmokeCurling className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Incense Smoke</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Delicate blurred laminar smoke wisps.</p>\n      </div>\n    </FluidSmokeCurling>\n  );\n}\n",
+      "contentHash": "a4a0dd6339a507d5359d947dad56163f97796ac133160fb531a1748697c44bfa",
+      "sizeBytes": 567
+    }
+  ],
+  "tags": [
+    "smoke",
+    "fluid",
+    "incense",
+    "ambient",
+    "curling"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-smoke-wisp",
+      "visualModel": "curling-smoke-ribbon",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "ambient-smoke-veil"
+    }
+  },
+  "url": "https://openui.dev/r/fluid-smoke-curling.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Passive Smoke Wisp: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

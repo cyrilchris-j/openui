@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rating-feedback-scale",
+  "type": "registry:component",
+  "title": "Rating Feedback Scale",
+  "description": "A 1-10 net promoter score rating scale with clickable score tiles and hover highlights.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rating-feedback-scale.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RatingFeedbackScaleProps {\n  className?: string;\n}\n\nexport function RatingFeedbackScale({ className }: RatingFeedbackScaleProps) {\n  const [score, setScore] = useState(8);\n\n  return (\n    <div className={cn(\"inline-flex flex-col gap-2 rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">SATISFACTION: {score}/10</span>\n      <div className=\"flex gap-1\">\n        {Array.from({ length: 10 }).map((_, i) => (\n          <button\n            key={i}\n            type=\"button\"\n            onClick={() => setScore(i + 1)}\n            className={cn(\n              \"h-8 w-8 rounded border font-mono text-xs font-bold transition-colors\",\n              score === i + 1 ? \"border-ink bg-ink text-paper\" : \"border-line text-ink hover:bg-line/20\"\n            )}\n          >\n            {i + 1}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default RatingFeedbackScale;\n",
+      "contentHash": "cca58006e260499884917587e8b04f49cf666afde3d225c359a47171eaf46a0e",
+      "sizeBytes": 1047
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { RatingFeedbackScale } from \"./rating-feedback-scale\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <RatingFeedbackScale />\n    </div>\n  );\n}\n",
+      "contentHash": "1fa7e022411f7db1d70a1eed358d1441505f12a5783e095ed5d2dcc729613dbf",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "rating",
+    "nps",
+    "scale",
+    "feedback",
+    "score"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "ten-point-scale-selection",
+      "visualModel": "numbered-tile-row",
+      "motionModel": "none",
+      "layoutModel": "horizontal-scale-array",
+      "semanticPurpose": "nps-feedback-selector"
+    }
+  },
+  "url": "https://openui.dev/r/rating-feedback-scale.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Ten Point Scale Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

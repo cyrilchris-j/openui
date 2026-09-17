@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "blind-deboss-toggle",
+  "type": "registry:text",
+  "title": "Blind Deboss Toggle",
+  "description": "A tactile switch rendered as typography: the word ON or OFF sits in a soft rubber pad and physically debosses on press — shadows invert, the glyph sinks — a state indicator you can feel with your eyes.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "blind-deboss-toggle.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BlindDebossToggleProps {\n  /** Initial state. */\n  defaultOn?: boolean;\n  onChange?: (on: boolean) => void;\n  className?: string;\n}\n\nexport function BlindDebossToggle({ defaultOn = false, onChange, className }: BlindDebossToggleProps) {\n  const [on, setOn] = useState(defaultOn);\n\n  const toggle = () => {\n    const next = !on;\n    setOn(next);\n    onChange?.(next);\n  };\n\n  return (\n    <button\n      type=\"button\"\n      role=\"switch\"\n      aria-checked={on}\n      onClick={toggle}\n      className={cn(\n        \"inline-flex items-center rounded-xl px-6 py-3 font-display text-lg transition-shadow duration-150\",\n        className,\n      )}\n      style={\n        on\n          ? {\n              background: \"#e7ddc9\",\n              color: \"#6b5d45\",\n              boxShadow: \"inset 3px 3px 6px rgba(0,0,0,0.25), inset -2px -2px 4px rgba(255,255,255,0.7)\",\n            }\n          : {\n              background: \"#f0e8d6\",\n              color: \"#8a7a5c\",\n              boxShadow: \"3px 3px 6px rgba(0,0,0,0.18), -2px -2px 4px rgba(255,255,255,0.8)\",\n            }\n      }\n    >\n      {on ? \"ON\" : \"OFF\"}\n    </button>\n  );\n}\n\nexport default BlindDebossToggle;\n",
+      "contentHash": "292e59ca97b78c34244a8ff059990f39de66ea0839da32ee4ae6a54e125f6306",
+      "sizeBytes": 1254
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BlindDebossToggle } from \"./blind-deboss-toggle\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center p-10\" style={{ background: \"#f0e8d6\" }}>\n      <BlindDebossToggle defaultOn />\n    </div>\n  );\n}\n",
+      "contentHash": "468fcfcd4f410e687922ded248ef8ef9cc63333b02f1a043c1f57debcc663158",
+      "sizeBytes": 268
+    }
+  ],
+  "tags": [
+    "toggle",
+    "deboss",
+    "tactile",
+    "state"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "press-toggle",
+      "visualModel": "inverted-shadow-deboss",
+      "motionModel": "press-sink-release",
+      "layoutModel": "inline",
+      "semanticPurpose": "binary-state"
+    }
+  },
+  "url": "https://openui.dev/r/blind-deboss-toggle.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Stack\nDensity: Dense\nShape: Soft\nMotion: Subtle\nTypography: Grotesk\nColor: Muted Earth\n\n## Rules\n\n- Press Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

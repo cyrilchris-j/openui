@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-recipe-card",
+  "type": "registry:layout",
+  "title": "Split Recipe Card",
+  "description": "Culinary recipe layout: ingredients checklist on left and sequential preparation instructions on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-recipe-card.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "recipe",
+    "ingredients",
+    "culinary",
+    "split",
+    "checklist"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "culinary-recipe-steps",
+      "visualModel": "ingredient-and-directions-split",
+      "motionModel": "none",
+      "layoutModel": "two-column-recipe-grid",
+      "semanticPurpose": "recipe-instruction-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

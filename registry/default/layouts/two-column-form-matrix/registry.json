@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-form-matrix",
+  "type": "registry:layout",
+  "title": "Two Column Form Matrix",
+  "description": "Enterprise form layout with instructional labels on left and matching input groups on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-form-matrix.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "forms",
+    "two-column",
+    "matrix",
+    "enterprise",
+    "inputs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "instructional-label-field-pair",
+      "visualModel": "enterprise-form-matrix",
+      "motionModel": "none",
+      "layoutModel": "two-column-form-grid",
+      "semanticPurpose": "enterprise-configuration-form"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

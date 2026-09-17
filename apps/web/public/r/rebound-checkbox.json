@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rebound-checkbox",
+  "type": "registry:motion",
+  "title": "Rebound Checkbox",
+  "description": "A mechanical checkbox whose border compresses elastically before springing an animated SVG checkmark into lock.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rebound-checkbox.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ReboundCheckboxProps {\n  label?: string;\n  className?: string;\n}\n\nexport function ReboundCheckbox({ label = \"Require cryptographic signature\", className }: ReboundCheckboxProps) {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <label className={cn(\"inline-flex items-center gap-3 cursor-pointer select-none\", className)}>\n      <div\n        onClick={() => setChecked((c) => !c)}\n        className={cn(\n          \"flex h-6 w-6 items-center justify-center rounded border transition-all duration-200\",\n          checked ? \"border-ink bg-ink scale-95\" : \"border-line bg-paper hover:border-ink\"\n        )}\n      >\n        {checked && (\n          <svg className=\"h-4 w-4 text-paper\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" strokeWidth={3}>\n            <path strokeLinecap=\"round\" strokeLinejoin=\"round\" d=\"M5 13l4 4L19 7\" />\n          </svg>\n        )}\n      </div>\n      <span className=\"font-mono text-xs text-ink\">{label}</span>\n    </label>\n  );\n}\n\nexport default ReboundCheckbox;\n",
+      "contentHash": "7c1dc747c8f14acf5d5da170dd31268faf48a1e704b240adf3fdd4eb83bd27b4",
+      "sizeBytes": 1109
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ReboundCheckbox } from \"./rebound-checkbox\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ReboundCheckbox />\n    </div>\n  );\n}\n",
+      "contentHash": "bfa1b6b91f94589d71fdf2be140345de17d7216d57189aad833dc68eef20837c",
+      "sizeBytes": 225
+    }
+  ],
+  "tags": [
+    "checkbox",
+    "controls",
+    "rebound",
+    "spring",
+    "svg"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "click-toggle-rebound",
+      "visualModel": "square-bordered-latch",
+      "motionModel": "svg-stroke-dash-spring",
+      "layoutModel": "inline-checkbox-label",
+      "semanticPurpose": "boolean-verification-latch"
+    }
+  },
+  "url": "https://openui.dev/r/rebound-checkbox.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Click Toggle Rebound: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

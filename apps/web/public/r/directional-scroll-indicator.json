@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "directional-scroll-indicator",
+  "type": "registry:interaction",
+  "title": "Directional Scroll Indicator",
+  "description": "An animated navigational arrow cue indicating the axis and distance remaining in an active viewport section.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "directional-scroll-indicator.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DirectionalScrollIndicatorProps {\n  className?: string;\n}\n\nexport function DirectionalScrollIndicator({ className }: DirectionalScrollIndicatorProps) {\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-2\", className)}>\n      <span className=\"font-mono text-[10px] text-ink/50 uppercase\">SCROLL FOR DETAILS</span>\n      <div className=\"flex h-8 w-8 items-center justify-center rounded-full border border-line bg-paper shadow-sm animate-bounce\">\n        ↓\n      </div>\n    </div>\n  );\n}\n\nexport default DirectionalScrollIndicator;\n",
+      "contentHash": "4f0f776a5ba9f92885acdf2f6279bb995930fefde641ab5f237955998b5842be",
+      "sizeBytes": 618
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DirectionalScrollIndicator } from \"./directional-scroll-indicator\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <DirectionalScrollIndicator />\n    </div>\n  );\n}\n",
+      "contentHash": "940be55ab67490c25ec690784cf2c17485989b7b9cff04a38dbc5f5383157412",
+      "sizeBytes": 259
+    }
+  ],
+  "tags": [
+    "scroll",
+    "indicator",
+    "arrow",
+    "cue",
+    "directional"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "viewport-direction-cue",
+      "visualModel": "pulsing-chevron-arrow",
+      "motionModel": "vertical-bounce-oscillation",
+      "layoutModel": "bottom-centered-arrow-cue",
+      "semanticPurpose": "scroll-affordance-cue"
+    }
+  },
+  "url": "https://openui.dev/r/directional-scroll-indicator.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Viewport Direction Cue: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

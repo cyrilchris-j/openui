@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mobile-push-notification-previewer",
+  "type": "registry:block",
+  "title": "Mobile Push Notification Previewer",
+  "description": "A mobile phone frame mockup visualizing iOS and Android push notifications with app badge counter.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mobile-push-notification-previewer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "push",
+    "notifications",
+    "mobile",
+    "preview",
+    "ios"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "mobile",
+    "fingerprint": {
+      "interactionModel": "push-notification-preview-toggle",
+      "visualModel": "smartphone-lockscreen-notification-mockup",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "mobile-notification-preview"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

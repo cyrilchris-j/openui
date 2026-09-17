@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "parallax-depth-cards",
+  "type": "registry:motion",
+  "title": "Parallax Depth Cards",
+  "description": "A trio of floating cards translating at differential Z-depth velocities as the user interacts with the container.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "parallax-depth-cards.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "parallax",
+    "cards",
+    "depth",
+    "scroll",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "container-scroll-depth-parallax",
+      "visualModel": "tiered-elevation-card-deck",
+      "motionModel": "differential-z-velocity",
+      "layoutModel": "layered-depth-composition",
+      "semanticPurpose": "multi-depth-showcase"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

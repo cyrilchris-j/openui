@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mosaic-gallery-grid",
+  "type": "registry:layout",
+  "title": "Mosaic Gallery Grid",
+  "description": "Staggered geometric visual gallery grid with varied aspect ratio image apertures and hover zoom bounds.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mosaic-gallery-grid.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MosaicGalleryGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MosaicGalleryGrid({ children, className, ...props }: MosaicGalleryGridProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto p-4 font-sans\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "2b062aa094d076ed765a3a93042b0f8b0b0ffe4478e84a8831a862669a4b92ce",
+      "sizeBytes": 428
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MosaicGalleryGrid } from \"./mosaic-gallery-grid\";\n\nexport default function MosaicGalleryGridDemo() {\n  return (\n    <MosaicGalleryGrid>\n      <div className=\"col-span-2 row-span-2 h-64 rounded-xl border border-line bg-surface/50 flex items-center justify-center font-mono text-xs\">\n        Feature Image 2x2\n      </div>\n      <div className=\"h-30 rounded-xl border border-line bg-surface/30 flex items-center justify-center font-mono text-xs\">\n        Tile 1x1\n      </div>\n      <div className=\"h-30 rounded-xl border border-line bg-surface/30 flex items-center justify-center font-mono text-xs\">\n        Tile 1x1\n      </div>\n      <div className=\"col-span-2 h-30 rounded-xl border border-line bg-surface/40 flex items-center justify-center font-mono text-xs\">\n        Panoramic Tile 2x1\n      </div>\n    </MosaicGalleryGrid>\n  );\n}\n",
+      "contentHash": "403d143ba55037fb7d0c9bbd3d91902f0577d1af9039e7c14adbb820c6182054",
+      "sizeBytes": 860
+    }
+  ],
+  "tags": [
+    "mosaic",
+    "gallery",
+    "grid",
+    "images",
+    "apertures"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "mosaic-aperture-presentation",
+      "visualModel": "staggered-aspect-mosaic",
+      "motionModel": "none",
+      "layoutModel": "mosaic-tile-matrix",
+      "semanticPurpose": "visual-gallery-mosaic"
+    }
+  },
+  "url": "https://openui.dev/r/mosaic-gallery-grid.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Mosaic\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Mosaic Aperture Presentation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

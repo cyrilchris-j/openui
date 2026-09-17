@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-region-latency-benchmarker",
+  "type": "registry:block",
+  "title": "Multi-region Latency Benchmarker",
+  "description": "An edge ping diagnostic utility testing real-time connection latencies against Frankfurt, Virginia, Tokyo, and Singapore.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-region-latency-benchmarker.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "latency",
+    "edge",
+    "ping",
+    "benchmark",
+    "network"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "ping-benchmark-execution",
+      "visualModel": "edge-region-ping-comparison-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "multi-region-latency-testing"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

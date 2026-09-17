@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "command-center-hud",
+  "type": "registry:layout",
+  "title": "Command Center HUD",
+  "description": "Cyberpunk operational network operations center (NOC) HUD with six synchronized telemetry widgets.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "command-center-hud.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CommandCenterHUDProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CommandCenterHUD({ children, className, ...props }: CommandCenterHUDProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-3 gap-3 p-4 max-w-5xl mx-auto font-mono text-xs bg-slate-950 text-emerald-400 rounded-2xl border border-emerald-500/30\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "a61fb9c397b578805365610928e3bd2558036129bbab77d81a65ae9a8a098741",
+      "sizeBytes": 504
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CommandCenterHUD } from \"./command-center-hud\";\n\nexport default function CommandCenterHUDDemo() {\n  return (\n    <CommandCenterHUD>\n      {[\"Core CPU\", \"Memory Bus\", \"Network I/O\", \"Edge Ping\", \"Worker Pods\", \"Security Gate\"].map((h) => (\n        <div key={h} className=\"p-3 rounded border border-emerald-500/20 bg-black/60\">\n          <div className=\"text-emerald-500/60 text-[10px] uppercase font-bold\">{h}</div>\n          <div className=\"text-sm font-bold text-emerald-400 mt-1\">NOMINAL [OK]</div>\n        </div>\n      ))}\n    </CommandCenterHUD>\n  );\n}\n",
+      "contentHash": "15acd6702ab7e072e0375bbc18f7f389be97dcf8b92902163ffba6c67e847d4d",
+      "sizeBytes": 581
+    }
+  ],
+  "tags": [
+    "hud",
+    "noc",
+    "cyberpunk",
+    "telemetry",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "noc-multi-tile-monitoring",
+      "visualModel": "six-cell-hud-cluster",
+      "motionModel": "none",
+      "layoutModel": "six-widget-hud-matrix",
+      "semanticPurpose": "network-operations-hud"
+    }
+  },
+  "url": "https://openui.dev/r/command-center-hud.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Noc Multi Tile Monitoring: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

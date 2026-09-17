@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "timeline-event-card",
+  "type": "registry:component",
+  "title": "Timeline Event Card",
+  "description": "An audit trail card tracking historical deployment and commit operations with author attribution.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "timeline-event-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TimelineEventCardProps {\n  title?: string;\n  author?: string;\n  time?: string;\n  commitHash?: string;\n  className?: string;\n}\n\nexport function TimelineEventCard({\n  title = \"Published Registry Index V2\",\n  author = \"cyrilchris-j\",\n  time = \"10m ago\",\n  commitHash = \"8fa21c0\",\n  className,\n}: TimelineEventCardProps) {\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-4 shadow-sm font-mono text-xs\", className)}>\n      <div className=\"flex justify-between items-center text-ink/50 text-[10px]\">\n        <span>{time}</span>\n        <span className=\"rounded bg-line/20 px-1.5 py-0.5\">{commitHash}</span>\n      </div>\n      <h5 className=\"font-bold text-ink mt-2\">{title}</h5>\n      <p className=\"mt-1 text-ink/70\">Authored by {author}</p>\n    </div>\n  );\n}\n\nexport default TimelineEventCard;\n",
+      "contentHash": "98d51e4bb6e4761b12a5dd9eea43e793396f1f30010f31639245840557f541d2",
+      "sizeBytes": 897
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { TimelineEventCard } from \"./timeline-event-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <TimelineEventCard />\n    </div>\n  );\n}\n",
+      "contentHash": "1abcc94d21d5e0cadc24d89c09a55983cd3d86dbed7e5ffaa57a6c79ae0041f3",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "timeline",
+    "audit",
+    "events",
+    "card",
+    "git"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "audit-event-inspection",
+      "visualModel": "chronological-event-slab",
+      "motionModel": "none",
+      "layoutModel": "vertical-event-card",
+      "semanticPurpose": "audit-trail-event-card"
+    }
+  },
+  "url": "https://openui.dev/r/timeline-event-card.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Audit Event Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

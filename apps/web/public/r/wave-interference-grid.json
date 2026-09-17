@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-interference-grid",
+  "type": "registry:background",
+  "title": "Wave Interference Grid",
+  "description": "Physical dual-source wave interference pattern with constructive and destructive wave crests.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-interference-grid.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface WaveInterferenceGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function WaveInterferenceGrid({ className, children, ...props }: WaveInterferenceGridProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let t = 0;\n\n    const render = () => {\n      canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;\n      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;\n      ctx.clearRect(0, 0, canvas.width, canvas.height);\n\n      const src1 = { x: canvas.width * 0.35, y: canvas.height * 0.5 };\n      const src2 = { x: canvas.width * 0.65, y: canvas.height * 0.5 };\n\n      ctx.strokeStyle = \"rgba(100, 116, 139, 0.2)\";\n      ctx.lineWidth = 1;\n\n      for (let r = 20; r < Math.max(canvas.width, canvas.height); r += 24) {\n        const rad = (r + t * 20) % Math.max(canvas.width, canvas.height);\n        ctx.beginPath();\n        ctx.arc(src1.x, src1.y, rad, 0, Math.PI * 2);\n        ctx.stroke();\n\n        ctx.beginPath();\n        ctx.arc(src2.x, src2.y, rad, 0, Math.PI * 2);\n        ctx.stroke();\n      }\n\n      t += 0.02;\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "af91ceac71f99e717c6fe2270ba2fe7bebba180815778389f9c45e1cad1c1f9d",
+      "sizeBytes": 1776
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { WaveInterferenceGrid } from \"./wave-interference-grid\";\n\nexport default function WaveInterferenceGridDemo() {\n  return (\n    <WaveInterferenceGrid className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Two-Slit Interference</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Dual-source coherent wave propagation rings.</p>\n      </div>\n    </WaveInterferenceGrid>\n  );\n}\n",
+      "contentHash": "97c2179a614b727d58446e41594786c5f603389e68d54fd451c0b7ba92e5411f",
+      "sizeBytes": 596
+    }
+  ],
+  "tags": [
+    "physics",
+    "interference",
+    "waves",
+    "canvas",
+    "ripple"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-physics",
+      "visualModel": "constructive-interference-ripples",
+      "motionModel": "dual-source-frequency-propagation",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "wave-optics-simulation"
+    }
+  },
+  "url": "https://openui.dev/r/wave-interference-grid.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Soft\nMotion: Kinetic\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Canvas Physics: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

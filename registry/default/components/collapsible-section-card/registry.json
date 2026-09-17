@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "collapsible-section-card",
+  "type": "registry:component",
+  "title": "Collapsible Section Card",
+  "description": "A surface card featuring a top disclosure header with an animated chevron toggle to collapse body contents.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "collapsible-section-card.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "card",
+    "collapsible",
+    "disclosure",
+    "accordion",
+    "section"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "cards",
+    "fingerprint": {
+      "interactionModel": "card-chevron-disclosure",
+      "visualModel": "bordered-collapsible-chassis",
+      "motionModel": "stepwise-body-collapse",
+      "layoutModel": "stacked-section-card",
+      "semanticPurpose": "collapsible-content-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

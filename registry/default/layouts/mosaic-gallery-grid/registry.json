@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mosaic-gallery-grid",
+  "type": "registry:layout",
+  "title": "Mosaic Gallery Grid",
+  "description": "Staggered geometric visual gallery grid with varied aspect ratio image apertures and hover zoom bounds.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mosaic-gallery-grid.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "mosaic",
+    "gallery",
+    "grid",
+    "images",
+    "apertures"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "mosaic-aperture-presentation",
+      "visualModel": "staggered-aspect-mosaic",
+      "motionModel": "none",
+      "layoutModel": "mosaic-tile-matrix",
+      "semanticPurpose": "visual-gallery-mosaic"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

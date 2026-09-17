@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sight-size-ruler",
+  "type": "registry:text",
+  "title": "Sight Size Ruler",
+  "description": "Specimen typography wrapped in a working ruler: cap-height, x-height and baseline rules are drawn to scale behind the glyphs, and hovering a rule calls out its name — type anatomy as an interactive diagram.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sight-size-ruler.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nconst RULES = [\n  { name: \"cap height\", top: \"0%\" },\n  { name: \"x-height\", top: \"24%\" },\n  { name: \"baseline\", top: \"76%\" },\n] as const;\n\nexport interface SightSizeRulerProps {\n  children: string;\n  /** Specimen size in px. */\n  size?: number;\n  className?: string;\n}\n\nexport function SightSizeRuler({ children, size = 96, className }: SightSizeRulerProps) {\n  const [active, setActive] = useState<string | null>(null);\n\n  return (\n    <figure className={cn(\"relative inline-block\", className)}>\n      <figcaption className=\"mb-3 font-mono text-xs uppercase tracking-widest text-ink/60\">\n        Sight-size · {size}px\n      </figcaption>\n      <div className=\"relative\" style={{ fontSize: size, lineHeight: 1 }}>\n        <span className=\"relative z-10 font-display text-ink\">{children}</span>\n        {RULES.map((rule) => (\n          <button\n            key={rule.name}\n            type=\"button\"\n            onMouseEnter={() => setActive(rule.name)}\n            onMouseLeave={() => setActive(null)}\n            onFocus={() => setActive(rule.name)}\n            onBlur={() => setActive(null)}\n            className=\"absolute left-0 right-0 border-0 bg-transparent p-0\"\n            style={{ top: `calc(${rule.top} + 0.14em)` }}\n            aria-label={`Show ${rule.name}`}\n          >\n            <span\n              className=\"block w-full border-t\"\n              style={{\n                borderColor: active === rule.name ? \"#e2624a\" : \"color-mix(in oklab, currentColor, transparent 72%)\",\n                borderStyle: rule.name === \"baseline\" ? \"solid\" : \"dashed\",\n              }}\n            />\n            <span\n              className=\"absolute right-0 -top-5 font-mono text-[10px] uppercase tracking-widest\"\n              style={{ opacity: active === rule.name ? 1 : 0, color: \"#e2624a\", transition: \"opacity 120ms ease\" }}\n            >\n              {rule.name}\n            </span>\n          </button>\n        ))}\n      </div>\n    </figure>\n  );\n}\n\nexport default SightSizeRuler;\n",
+      "contentHash": "93232d76866a543ba5c6c04b0afba002729fb2be2a7de42bdef36367e2aea482",
+      "sizeBytes": 2069
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SightSizeRuler } from \"./sight-size-ruler\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <SightSizeRuler>Hamburg</SightSizeRuler>\n    </div>\n  );\n}\n",
+      "contentHash": "417255e72169ee7cc803a8e9be93787325cad8de375e567455e1869e8f9e514a",
+      "sizeBytes": 246
+    }
+  ],
+  "tags": [
+    "specimen",
+    "anatomy",
+    "ruler",
+    "diagram"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "hover-callout",
+      "visualModel": "metric-rule-overlay",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "type-education"
+    }
+  },
+  "url": "https://openui.dev/r/sight-size-ruler.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Hover Callout: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "matrix-permission-table",
+  "type": "registry:component",
+  "title": "Matrix Permission Table",
+  "description": "Role-based access control grid with toggleable capability checkboxes across User, Manager, and Admin roles.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "matrix-permission-table.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Check, X } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MatrixPermissionTable({ className }: { className?: string }) {\n  const [matrix, setMatrix] = useState<Record<string, boolean>>({\n    \"read-viewer\": true,\n    \"read-editor\": true,\n    \"read-admin\": true,\n    \"write-viewer\": false,\n    \"write-editor\": true,\n    \"write-admin\": true,\n    \"delete-viewer\": false,\n    \"delete-editor\": false,\n    \"delete-admin\": true,\n  });\n\n  const toggle = (key: string) => {\n    setMatrix((prev) => ({ ...prev, [key]: !prev[key] }));\n  };\n\n  const perms = [\n    { id: \"read\", label: \"Read Assets\" },\n    { id: \"write\", label: \"Publish Updates\" },\n    { id: \"delete\", label: \"Purge Datasets\" },\n  ];\n  const roles = [\"viewer\", \"editor\", \"admin\"];\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-md w-full font-sans text-xs shadow-sm\", className)}>\n      <div className=\"text-xs font-semibold text-ink mb-3 font-mono\">RBAC Permission Matrix</div>\n      <table className=\"w-full border-collapse\">\n        <thead>\n          <tr className=\"border-b border-line text-ink/60 font-mono text-[11px]\">\n            <th className=\"text-left pb-2 font-normal\">Capability</th>\n            {roles.map((r) => (\n              <th key={r} className=\"text-center pb-2 uppercase font-normal\">{r}</th>\n            ))}\n          </tr>\n        </thead>\n        <tbody className=\"divide-y divide-line/60\">\n          {perms.map((p) => (\n            <tr key={p.id}>\n              <td className=\"py-2.5 text-ink font-medium\">{p.label}</td>\n              {roles.map((r) => {\n                const k = `${p.id}-${r}`;\n                const active = matrix[k];\n                return (\n                  <td key={r} className=\"text-center py-2.5\">\n                    <button\n                      type=\"button\"\n                      onClick={() => toggle(k)}\n                      className={cn(\n                        \"w-5 h-5 rounded border inline-flex items-center justify-center transition-colors\",\n                        active ? \"bg-accent border-accent text-white\" : \"border-line text-transparent hover:border-ink/40\"\n                      )}\n                    >\n                      <Check className=\"w-3 h-3\" />\n                    </button>\n                  </td>\n                );\n              })}\n            </tr>\n          ))}\n        </tbody>\n      </table>\n    </div>\n  );\n}\n",
+      "contentHash": "c2d87c649fcd32607c736fa3b36cb07265feb2bddb7395f1b72bfea0828af123",
+      "sizeBytes": 2476
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { MatrixPermissionTable } from \"./matrix-permission-table\";\n\nexport default function MatrixPermissionTableDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[260px]\">\n      <MatrixPermissionTable />\n    </div>\n  );\n}\n",
+      "contentHash": "678ee9ec34cb73a1f53a632ea7a72752f94316a25118e4d9a06897d250450582",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "rbac",
+    "permissions",
+    "table",
+    "roles",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "matrix-checkbox-toggle",
+      "visualModel": "role-permission-grid",
+      "motionModel": "none",
+      "layoutModel": "tabular-matrix-view",
+      "semanticPurpose": "rbac-access-assignment"
+    }
+  },
+  "url": "https://openui.dev/r/matrix-permission-table.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Matrix Checkbox Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hardware-edge-specs",
+  "type": "registry:section",
+  "title": "Hardware Edge Specs",
+  "description": "A bare-metal computing specifications overview showing NVMe IOPS, RAM allocation, and CPU isolates.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hardware-edge-specs.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function HardwareEdgeSpecs({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const specs = [\n    { label: \"NVMe Write IOPS\", val: \"1.2M IOPS\" },\n    { label: \"Memory Isolation\", val: \"128MB / V8 isolate\" },\n    { label: \"Network Bandwidth\", val: \"100 Gbps per cluster\" },\n    { label: \"Cold Start Latency\", val: \"0.4 ms\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-5xl mx-auto font-mono\", className)} {...props}>\n      <h3 className=\"text-xs uppercase tracking-widest text-neutral-400 font-bold mb-6\">Cluster Hardware</h3>\n      <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4\">\n        {specs.map((s) => (\n          <div key={s.label} className=\"p-4 border border-neutral-800 bg-neutral-950 text-neutral-100 rounded\">\n            <div className=\"text-[10px] text-neutral-500 uppercase\">{s.label}</div>\n            <div className=\"text-xl font-bold mt-1\">{s.val}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "f2e5f11f8bea922c41f2dc48ca7f17e9997285b62f0181900971ef0a3fc04801",
+      "sizeBytes": 1071
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { HardwareEdgeSpecs } from \"./hardware-edge-specs\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-900\">\n      <HardwareEdgeSpecs />\n    </div>\n  );\n}\n",
+      "contentHash": "f7bb437fdf7100c30a30afd0893c2eb455b55f876be942d794fd95b001b748d3",
+      "sizeBytes": 260
+    }
+  ],
+  "tags": [
+    "hardware",
+    "specs",
+    "bare-metal",
+    "edge",
+    "datacenter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hardware",
+    "fingerprint": {
+      "interactionModel": "hardware-edge-specs-interaction",
+      "visualModel": "hardware-edge-specs-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "hardware-edge-specs-section"
+    }
+  },
+  "url": "https://openui.dev/r/hardware-edge-specs.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Hardware Edge Specs Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

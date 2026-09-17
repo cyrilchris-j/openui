@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dashboard-shell-layout",
+  "type": "registry:layout",
+  "title": "Dashboard Shell Layout",
+  "description": "Modern web application dashboard framework with collapsible sidebar, top command bar, and fluid widget grid.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dashboard-shell-layout.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "dashboard",
+    "admin",
+    "shell",
+    "sidebar",
+    "workspace"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "collapsible-sidebar-workspace",
+      "visualModel": "dashboard-app-shell",
+      "motionModel": "none",
+      "layoutModel": "sidebar-and-canvas-stack",
+      "semanticPurpose": "dashboard-application-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

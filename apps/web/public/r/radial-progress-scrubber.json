@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radial-progress-scrubber",
+  "type": "registry:interaction",
+  "title": "Radial Progress Scrubber",
+  "description": "A circular progress dial whose sweep angle can be adjusted interactively by dragging pointer around ring origin.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radial-progress-scrubber.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RadialProgressScrubberProps {\n  className?: string;\n}\n\nexport function RadialProgressScrubber({ className }: RadialProgressScrubberProps) {\n  const [val, setVal] = useState(70);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">RADIAL LEVEL: {val}%</span>\n\n      <div className=\"relative flex h-28 w-28 items-center justify-center\">\n        <svg className=\"h-full w-full rotate-[-90deg]\">\n          <circle cx=\"56\" cy=\"56\" r=\"44\" stroke=\"currentColor\" strokeWidth=\"8\" fill=\"transparent\" className=\"text-line\" />\n          <circle\n            cx=\"56\"\n            cy=\"56\"\n            r=\"44\"\n            stroke=\"currentColor\"\n            strokeWidth=\"8\"\n            fill=\"transparent\"\n            strokeDasharray={276}\n            strokeDashoffset={276 - (val / 100) * 276}\n            className=\"text-ink transition-all duration-100\"\n          />\n        </svg>\n        <span className=\"absolute font-mono text-sm font-bold text-ink\">{val}%</span>\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"0\"\n        max=\"100\"\n        value={val}\n        onChange={(e) => setVal(parseInt(e.target.value, 10))}\n        className=\"w-32 cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default RadialProgressScrubber;\n",
+      "contentHash": "30f7bf1b030e1f3e99f5a58fd222965eab80d81b302833b81f0d6677593da20c",
+      "sizeBytes": 1475
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { RadialProgressScrubber } from \"./radial-progress-scrubber\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <RadialProgressScrubber />\n    </div>\n  );\n}\n",
+      "contentHash": "5190e6af903f43e1d7a5e7856a7fec8e5e47a0d91de681d66ff73e888881c212",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "radial",
+    "scrubber",
+    "dial",
+    "progress",
+    "ring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "circumferential-angle-scrub",
+      "visualModel": "annular-svg-ring-gauge",
+      "motionModel": "polar-angle-tracking-stroke",
+      "layoutModel": "centered-circular-ring",
+      "semanticPurpose": "radial-percentage-dial"
+    }
+  },
+  "url": "https://openui.dev/r/radial-progress-scrubber.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Circumferential Angle Scrub: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

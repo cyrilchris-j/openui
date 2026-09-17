@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "product-inventory-catalog",
+  "type": "registry:block",
+  "title": "Product Inventory Catalog",
+  "description": "An e-commerce stock management table showing product SKUs, inventory counts, and reorder triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "product-inventory-catalog.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ProductInventoryCatalog({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const items = [\n    { sku: \"OPUI-TEE-BLK\", name: \"Engineer Tee\", stock: 142, status: \"In Stock\" },\n    { sku: \"OPUI-HOOD-GRY\", name: \"Architecture Hoodie\", stock: 8, status: \"Low Stock\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-3\">Warehouse Stock</h3>\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden\">\n        {items.map((it) => (\n          <div key={it.sku} className=\"p-3 flex items-center justify-between\">\n            <div>\n              <span className=\"text-neutral-400\">{it.sku}</span>\n              <span className=\"font-bold text-neutral-900 dark:text-white ml-2\">{it.name}</span>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <span>{it.stock} units</span>\n              <span className={it.stock < 10 ? \"text-amber-500 font-bold\" : \"text-emerald-500 font-bold\"}>{it.status}</span>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "2b6a397cbbb27ed6b950afe85afbd8e909ccc83d6f35d4cdf237aea87e3c4ec8",
+      "sizeBytes": 1446
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { ProductInventoryCatalog } from \"./product-inventory-catalog\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <ProductInventoryCatalog />\n    </div>\n  );\n}\n",
+      "contentHash": "5ae1724be597ca1ffebe29df2e2af8def11474464cf8f0ca27d6f9b597088107",
+      "sizeBytes": 298
+    }
+  ],
+  "tags": [
+    "inventory",
+    "ecommerce",
+    "sku",
+    "stock",
+    "catalog"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "inventory-stock-management",
+      "visualModel": "product-sku-inventory-table",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-inventory-catalog"
+    }
+  },
+  "url": "https://openui.dev/r/product-inventory-catalog.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Inventory Stock Management: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

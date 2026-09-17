@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "crypto-wallet-transaction-card",
+  "type": "registry:block",
+  "title": "Crypto Wallet Transaction Card",
+  "description": "A web3 payment card showing wallet balance, network confirmation status, and transaction hash link.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "crypto-wallet-transaction-card.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "crypto",
+    "wallet",
+    "web3",
+    "finance",
+    "blockchain"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "finance",
+    "fingerprint": {
+      "interactionModel": "wallet-transfer-confirmation",
+      "visualModel": "crypto-balance-payment-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "crypto-wallet-transfers"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

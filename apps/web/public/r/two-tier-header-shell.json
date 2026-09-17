@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-tier-header-shell",
+  "type": "registry:layout",
+  "title": "Two Tier Header Shell",
+  "description": "Double-decker top header with global utility brand bar above and contextual navigation tabs below.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-tier-header-shell.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoTierHeaderShellProps extends React.HTMLAttributes<HTMLDivElement> {\n  brand?: React.ReactNode;\n  utilities?: React.ReactNode;\n  tabs?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function TwoTierHeaderShell({\n  brand,\n  utilities,\n  tabs,\n  children,\n  className,\n  ...props\n}: TwoTierHeaderShellProps) {\n  return (\n    <div className={cn(\"min-h-[360px] flex flex-col w-full bg-paper text-ink font-sans\", className)} {...props}>\n      <header className=\"border-b border-line shrink-0 bg-surface/30\">\n        <div className=\"flex items-center justify-between px-6 py-3 border-b border-line/60\">\n          <div className=\"font-bold text-sm\">{brand}</div>\n          <div className=\"flex items-center gap-2\">{utilities}</div>\n        </div>\n        <div className=\"px-6 py-2 flex items-center gap-4 text-xs font-mono\">{tabs}</div>\n      </header>\n      <main className=\"flex-1 p-6\">{children}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "52980ec26c927c7be7330d339501f7177b7245b0025f6d90935d0d8771374dd5",
+      "sizeBytes": 994
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoTierHeaderShell } from \"./two-tier-header-shell\";\n\nexport default function TwoTierHeaderShellDemo() {\n  return (\n    <div className=\"w-full border border-line rounded-xl overflow-hidden shadow-sm\">\n      <TwoTierHeaderShell\n        brand={<span>OPENUI CONSOLE</span>}\n        utilities={<span className=\"text-xs font-mono text-ink/60\">User: developer@openui.org</span>}\n        tabs={\n          <>\n            <span className=\"text-accent font-semibold border-b-2 border-accent pb-1\">Deployments</span>\n            <span className=\"text-ink/60\">Analytics</span>\n            <span className=\"text-ink/60\">Settings</span>\n          </>\n        }\n      >\n        <div className=\"p-4 rounded-lg bg-surface/30 border border-line text-xs font-mono\">\n          Tier 2 sub-navigation active viewport.\n        </div>\n      </TwoTierHeaderShell>\n    </div>\n  );\n}\n",
+      "contentHash": "c8a224837688a159eeaa9619922e13455c7b021706d24008e20a03dee56f3b76",
+      "sizeBytes": 881
+    }
+  ],
+  "tags": [
+    "header",
+    "twotier",
+    "shell",
+    "tabs",
+    "navigation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "double-decker-navigation",
+      "visualModel": "stacked-topbar-header",
+      "motionModel": "none",
+      "layoutModel": "top-tier-header-stack",
+      "semanticPurpose": "multi-tier-app-header"
+    }
+  },
+  "url": "https://openui.dev/r/two-tier-header-shell.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Double Decker Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

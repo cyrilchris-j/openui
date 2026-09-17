@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "orbit-ring-spinner",
+  "type": "registry:motion",
+  "title": "Orbit Ring Spinner",
+  "description": "A gyroscopic multi-axis ring loading spinner executing concentric orbital rotations with varying phase velocities.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "orbit-ring-spinner.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface OrbitRingSpinnerProps {\n  size?: number;\n  className?: string;\n}\n\nexport function OrbitRingSpinner({ size = 72, className }: OrbitRingSpinnerProps) {\n  return (\n    <div\n      className={cn(\"relative flex items-center justify-center\", className)}\n      style={{ width: size, height: size }}\n    >\n      {/* Outer Ring */}\n      <div className=\"absolute inset-0 rounded-full border-2 border-ink/20 border-t-ink animate-spin\" />\n      {/* Middle Ring */}\n      <div\n        className=\"absolute inset-2 rounded-full border-2 border-ink/20 border-b-ink animate-spin\"\n        style={{ animationDirection: \"reverse\", animationDuration: \"1.5s\" }}\n      />\n      {/* Inner Ring */}\n      <div\n        className=\"absolute inset-4 rounded-full border-2 border-ink/20 border-l-ink animate-spin\"\n        style={{ animationDuration: \"0.8s\" }}\n      />\n    </div>\n  );\n}\n\nexport default OrbitRingSpinner;\n",
+      "contentHash": "4c35d2b3b2e9fdb2ee3f2f807e0fe557da9fbeec508099c4282f4b23f02521f9",
+      "sizeBytes": 955
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { OrbitRingSpinner } from \"./orbit-ring-spinner\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <OrbitRingSpinner size={80} />\n    </div>\n  );\n}\n",
+      "contentHash": "2aabc8409baad94c5ee91349723741750fe28791f6146f1b95c69eb5c453d331",
+      "sizeBytes": 239
+    }
+  ],
+  "tags": [
+    "spinner",
+    "orbit",
+    "ring",
+    "gyroscope",
+    "loader"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "loaders",
+    "fingerprint": {
+      "interactionModel": "continuous-rotation-cycle",
+      "visualModel": "gimbal-ring-assembler",
+      "motionModel": "multi-axis-gyroscopic-spin",
+      "layoutModel": "centered-circular-spinner",
+      "semanticPurpose": "gyroscopic-loading-spinner"
+    }
+  },
+  "url": "https://openui.dev/r/orbit-ring-spinner.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Continuous Rotation Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

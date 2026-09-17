@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swipe-action-cell",
+  "type": "registry:interaction",
+  "title": "Swipe Action Cell",
+  "description": "A mobile-style list row that reveals quick delete and pin action drawers when swiped horizontally with rubberband drag bounds.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "swipe-action-cell.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "swipe",
+    "cell",
+    "actions",
+    "reveal",
+    "mobile"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "lateral-horizontal-swipe",
+      "visualModel": "bipartite-action-underlay",
+      "motionModel": "bounded-horizontal-displacement",
+      "layoutModel": "stacked-feed-row",
+      "semanticPurpose": "swipe-action-list-cell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

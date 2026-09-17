@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kanban-mini-column",
+  "type": "registry:component",
+  "title": "Kanban Mini Column",
+  "description": "Streamlined single-column task rack with item count pill, checkable items, and quick-add inline input.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kanban-mini-column.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "kanban",
+    "column",
+    "task",
+    "card",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "in-situ-task-addition-and-toggle",
+      "visualModel": "vertical-kanban-lane",
+      "motionModel": "none",
+      "layoutModel": "single-column-rail",
+      "semanticPurpose": "lightweight-task-column"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-reference-search",
+  "type": "registry:section",
+  "title": "API Reference Search",
+  "description": "A fast lookup interface allowing developers to filter endpoints, props, and design tokens.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-reference-search.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "api",
+    "search",
+    "reference",
+    "docs",
+    "lookup"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "api-reference-search-interaction",
+      "visualModel": "api-reference-search-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-reference-search-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

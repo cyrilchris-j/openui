@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-badge-pop",
+  "type": "registry:motion",
+  "title": "Elastic Badge Pop",
+  "description": "An interactive notification badge pill that squashes and springs into existence with vibrant rubberband momentum.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-badge-pop.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticBadgePopProps {\n  className?: string;\n  count?: number;\n}\n\nexport function ElasticBadgePop({ className, count = 12 }: ElasticBadgePopProps) {\n  const [val, setVal] = useState(count);\n  const [popping, setPopping] = useState(false);\n\n  const increment = () => {\n    setPopping(true);\n    setVal((v) => v + 1);\n    setTimeout(() => setPopping(false), 300);\n  };\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-3 rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <button\n        type=\"button\"\n        onClick={increment}\n        className=\"rounded-lg bg-ink px-4 py-2 font-mono text-xs font-semibold text-paper hover:opacity-90\"\n      >\n        Push Update\n      </button>\n\n      <span\n        className={cn(\n          \"inline-flex h-7 items-center justify-center rounded-full bg-red-500 px-2.5 font-mono text-xs font-bold text-white shadow-sm transition-transform duration-300\",\n          popping ? \"scale-125\" : \"scale-100\"\n        )}\n      >\n        +{val}\n      </span>\n    </div>\n  );\n}\n\nexport default ElasticBadgePop;\n",
+      "contentHash": "3d183293366b2c00f3f7964485ae2de1850b02d259736555324957aa8e037a82",
+      "sizeBytes": 1168
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticBadgePop } from \"./elastic-badge-pop\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ElasticBadgePop />\n    </div>\n  );\n}\n",
+      "contentHash": "583cac125f204d0e7870d313f6de9c8169e41eeabb98b51f68fdd6af79cf2729",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "badge",
+    "pop",
+    "spring",
+    "notification",
+    "pill"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "toggle-pill-pop",
+      "visualModel": "elastic-rubber-badge",
+      "motionModel": "squash-and-stretch-spring",
+      "layoutModel": "inline-pill-indicator",
+      "semanticPurpose": "notification-callout-badge"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-badge-pop.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Toggle Pill Pop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

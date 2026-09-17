@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "decrypt-text",
+  "type": "registry:text",
+  "title": "Decrypt Text",
+  "description": "Click-to-decrypt ciphertext: a button-styled text surface that re-runs a keyed glyph resolution on every activation, with run progress announced to screen readers and deterministic per-index glyphs.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "decrypt-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nconst CIPHER = \"ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&\";\n\n/** Stable pseudo-random from an index: same input, same glyph, always. */\nfunction keyedGlyph(index: number, salt: number): string {\n  const value = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453;\n  return CIPHER[Math.abs(Math.floor(value)) % CIPHER.length] ?? \"#\";\n}\n\nexport interface DecryptTextProps {\n  text: string;\n  /** Positions resolved per animation frame. */\n  rate?: number;\n  /** Re-runs the decryption; parent can trigger from anywhere. */\n  runToken?: number;\n  onDecrypted?: () => void;\n  className?: string;\n}\n\nexport function DecryptText({ text, rate = 1, runToken = 0, onDecrypted, className }: DecryptTextProps) {\n  const [output, setOutput] = useState(() =>\n    [...text].map((char, index) => (char === \" \" ? \" \" : keyedGlyph(index, 0))).join(\"\"),\n  );\n  const [status, setStatus] = useState<\"idle\" | \"running\" | \"done\">(\"idle\");\n  const frame = useRef<number | null>(null);\n\n  const run = useCallback(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setOutput(text);\n      setStatus(\"done\");\n      onDecrypted?.();\n      return;\n    }\n\n    let resolved = 0;\n    let salt = 0;\n    setStatus(\"running\");\n\n    const step = () => {\n      salt++;\n      resolved = Math.min(text.length, resolved + rate);\n      setOutput(\n        [...text]\n          .map((char, index) => {\n            if (char === \" \") return \" \";\n            if (index < resolved) return char;\n            return keyedGlyph(index, salt);\n          })\n          .join(\"\"),\n      );\n      if (resolved < text.length) {\n        frame.current = requestAnimationFrame(step);\n      } else {\n        setStatus(\"done\");\n        onDecrypted?.();\n      }\n    };\n\n    if (frame.current !== null) cancelAnimationFrame(frame.current);\n    frame.current = requestAnimationFrame(step);\n  }, [text, rate, onDecrypted]);\n\n  useEffect(() => {\n    if (runToken > 0) run();\n    return () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    };\n  }, [runToken, run]);\n\n  return (\n    <span\n      role=\"button\"\n      tabIndex={0}\n      aria-label={`Decrypt message: ${text}`}\n      className={cn(\n        \"inline-block cursor-pointer font-mono tabular-nums\",\n        \"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide\",\n        className,\n      )}\n      onClick={run}\n      onKeyDown={(event) => {\n        if (event.key === \"Enter\" || event.key === \" \") {\n          event.preventDefault();\n          run();\n        }\n      }}\n    >\n      {output}\n      <span aria-live=\"polite\" className=\"sr-only\">\n        {status === \"done\" ? \"Message decrypted\" : status === \"running\" ? \"Decrypting\" : \"Press to decrypt\"}\n      </span>\n    </span>\n  );\n}\n\nexport default DecryptText;\n",
+      "contentHash": "c677db4f0d26c9f76ae1516bea0173b750e2bcb3be1126f8418c16b9b57d4cbc",
+      "sizeBytes": 2913
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { useState } from \"react\";\nimport { DecryptText } from \"./decrypt-text\";\n\nexport default function Demo() {\n  const [run, setRun] = useState(1);\n  return (\n    <div className=\"flex min-h-[10rem] flex-col items-start justify-center gap-5 bg-ink p-10\">\n      <DecryptText\n        runToken={run}\n        text=\"ACCESS GRANTED\"\n        className=\"text-step-2 text-moss\"\n      />\n      <button\n        type=\"button\"\n        onClick={() => setRun((value) => value + 1)}\n        className=\"border border-line px-3 py-1.5 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-paper transition-colors hover:border-oxide hover:text-oxide\"\n      >\n        Re-run decryption\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "bc97302a25c24654145b63fd29966f8197d69c6622bdf2a617078a01193819ac",
+      "sizeBytes": 706
+    }
+  ],
+  "tags": [
+    "decrypt",
+    "cipher",
+    "terminal",
+    "click-triggered"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scramble",
+    "fingerprint": {
+      "interactionModel": "hover-scramble-resolve",
+      "visualModel": "matrix-glyph-substitution",
+      "motionModel": "frame-by-frame-settle",
+      "layoutModel": "inline-phrase",
+      "semanticPurpose": "cypherpunk-accent"
+    }
+  },
+  "url": "https://openui.dev/r/decrypt-text.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Click Rerun: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

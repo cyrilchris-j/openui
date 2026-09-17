@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-support-call-scheduler",
+  "type": "registry:block",
+  "title": "Customer Support Call Scheduler",
+  "description": "A VIP technical consultation reservation block with timezone selection and instant calendar invitation dispatch.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-support-call-scheduler.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CustomerSupportCallScheduler({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs text-center\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-2\">Book an Architecture Call</h3>\n      <p className=\"text-neutral-500 mb-6\">Schedule 30 minutes with an OpenUI core maintainer.</p>\n      <button type=\"button\" className=\"w-full py-2 bg-emerald-600 text-white font-semibold rounded-lg\">\n        Choose Date & Time →\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "67912fe1eb577ac84d51c9daf52c841ea6b388dc51f602994b588f6902d7a61b",
+      "sizeBytes": 782
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CustomerSupportCallScheduler } from \"./customer-support-call-scheduler\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CustomerSupportCallScheduler />\n    </div>\n  );\n}\n",
+      "contentHash": "b778ff4d7d2f8b1b4642167dff26210facdb4caf2210550b87ebee8a8f52bc42",
+      "sizeBytes": 314
+    }
+  ],
+  "tags": [
+    "support",
+    "booking",
+    "consultation",
+    "calendar",
+    "vip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "support",
+    "fingerprint": {
+      "interactionModel": "support-call-slot-reservation",
+      "visualModel": "consultation-booking-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "vip-support-consultation-booking"
+    }
+  },
+  "url": "https://openui.dev/r/customer-support-call-scheduler.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Support Call Slot Reservation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

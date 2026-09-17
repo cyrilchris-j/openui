@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "coordinate-crosshair-inspect",
+  "type": "registry:interaction",
+  "title": "Coordinate Crosshair Inspect",
+  "description": "A precision inspection canvas overlay drawing orthogonal crosshair guides with realtime coordinate readouts.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "coordinate-crosshair-inspect.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "crosshair",
+    "coordinates",
+    "inspection",
+    "reticle",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "orthogonal-reticle-scrub",
+      "visualModel": "cad-graticule-crosshair",
+      "motionModel": "instantaneous-coordinate-tracking",
+      "layoutModel": "bounded-inspection-frame",
+      "semanticPurpose": "cad-inspection-reticle"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

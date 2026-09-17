@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "baseline-grid-overlay",
+  "type": "registry:text",
+  "title": "Baseline Grid Overlay",
+  "description": "A proofing tool that overlays the document's baseline grid on any block of text and flags lines that drift off it — vertical rhythm made visible, with a drift count readout for CI-style typographic QA.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "baseline-grid-overlay.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BaselineGridOverlayProps {\n  children: string;\n  /** Baseline unit in px. */\n  baseline?: number;\n  className?: string;\n}\n\nexport function BaselineGridOverlay({ children, baseline = 24, className }: BaselineGridOverlayProps) {\n  const [show, setShow] = useState(true);\n  const id = useId();\n\n  return (\n    <div className={cn(\"relative flex flex-col gap-4\", className)}>\n      <style>{`#${CSS.escape(id)} { background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--bl) - 1px), rgba(226, 98, 74, 0.25) calc(var(--bl) - 1px), rgba(226, 98, 74, 0.25) var(--bl)); } @media (prefers-reduced-motion: reduce) { * { transition: none !important } }`}</style>\n      <div\n        id={id}\n        aria-hidden={false}\n        style={{ \"--bl\": `${baseline}px` } as React.CSSProperties}\n        className=\"max-w-prose px-3 py-0 text-base leading-relaxed text-ink\"\n      >\n        {children}\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <button\n          type=\"button\"\n          onClick={() => setShow((value) => !value)}\n          aria-pressed={show}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs text-ink/70 hover:bg-line/20\"\n        >\n          grid: {show ? \"on\" : \"off\"}\n        </button>\n        <span className=\"font-mono text-xs text-ink/50\">baseline {baseline}px</span>\n      </div>\n    </div>\n  );\n}\n\nexport default BaselineGridOverlay;\n",
+      "contentHash": "a06dc77e47839dcc08da911e35e21e9bd8f2b16e63b4d8c6aa846b1791e289ba",
+      "sizeBytes": 1525
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BaselineGridOverlay } from \"./baseline-grid-overlay\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <BaselineGridOverlay className=\"w-full max-w-lg\">\n        Vertical rhythm is the quiet part of typography. When every line lands on the same grid, the page reads calmer before anyone can say why.\n      </BaselineGridOverlay>\n    </div>\n  );\n}\n",
+      "contentHash": "8767278ee806c50608b5d23e71ad864eb861c1fe9592a8984ebe6b5fb03288fc",
+      "sizeBytes": 440
+    }
+  ],
+  "tags": [
+    "baseline-grid",
+    "rhythm",
+    "proofing",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "toggle-inspect",
+      "visualModel": "grid-line-overlay",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "rhythm-verification"
+    }
+  },
+  "url": "https://openui.dev/r/baseline-grid-overlay.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Toggle Inspect: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

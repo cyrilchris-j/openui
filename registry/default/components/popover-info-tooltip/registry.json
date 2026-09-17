@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "popover-info-tooltip",
+  "type": "registry:component",
+  "title": "Popover Info Tooltip",
+  "description": "An informational tooltip popover displaying extended metadata notes when hovering or clicking help triggers.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "popover-info-tooltip.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "popover",
+    "tooltip",
+    "help",
+    "info",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "overlays",
+    "fingerprint": {
+      "interactionModel": "hover-popover-callout",
+      "visualModel": "beveled-tooltip-balloon",
+      "motionModel": "none",
+      "layoutModel": "anchored-popover-box",
+      "semanticPurpose": "contextual-info-balloon"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

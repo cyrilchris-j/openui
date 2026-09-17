@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-stepper-flow",
+  "type": "registry:interaction",
+  "title": "Interactive Stepper Flow",
+  "description": "A linear wizard progress pipeline indicating completed milestones and clickable active checkpoints.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-stepper-flow.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveStepperFlowProps {\n  className?: string;\n}\n\nexport function InteractiveStepperFlow({ className }: InteractiveStepperFlowProps) {\n  const [step, setStep] = useState(1);\n  const steps = [\"Config\", \"Build\", \"Deploy\", \"Verify\"];\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex items-center gap-3\">\n        {steps.map((label, idx) => {\n          const isDone = idx < step;\n          const isCurrent = idx === step;\n          return (\n            <div key={label} className=\"flex items-center gap-2\">\n              <button\n                type=\"button\"\n                onClick={() => setStep(idx)}\n                className={cn(\n                  \"h-8 w-8 rounded-full font-mono text-xs font-bold transition-all\",\n                  isDone || isCurrent ? \"bg-ink text-paper\" : \"bg-line/20 text-ink/50\"\n                )}\n              >\n                {idx + 1}\n              </button>\n              {idx < steps.length - 1 && <div className=\"h-[2px] w-6 bg-line\" />}\n            </div>\n          );\n        })}\n      </div>\n      <span className=\"font-mono text-xs text-ink/60\">ACTIVE STEP: {steps[step]}</span>\n    </div>\n  );\n}\n\nexport default InteractiveStepperFlow;\n",
+      "contentHash": "9799e0067f1328979c96fef6266e93299dc9b671987e50e97233fd48b67cc6c3",
+      "sizeBytes": 1397
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { InteractiveStepperFlow } from \"./interactive-stepper-flow\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <InteractiveStepperFlow />\n    </div>\n  );\n}\n",
+      "contentHash": "b6638c5068155175968a1146355ec644c7b892e533fc23e98d560ba9ed413131",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "stepper",
+    "wizard",
+    "milestones",
+    "pipeline",
+    "flow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "selection",
+    "fingerprint": {
+      "interactionModel": "sequential-step-progression",
+      "visualModel": "beaded-pipeline-ribbon",
+      "motionModel": "stepwise-completion-fill",
+      "layoutModel": "horizontal-milestone-rail",
+      "semanticPurpose": "wizard-step-tracker"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-stepper-flow.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Sequential Step Progression: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

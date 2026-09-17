@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-compression",
+  "type": "registry:motion",
+  "title": "Scroll Compression",
+  "description": "A stack of panels that compresses together as the page scrolls — each layer's gap interpolates from loose to sealed based on scroll progress through the section, like a deck being squeezed shut.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-compression.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollCompressionProps {\n  panels: Array<{ title: string; body: string }>;\n  className?: string;\n}\n\nexport function ScrollCompression({ panels, className }: ScrollCompressionProps) {\n  const sectionRef = useRef<HTMLDivElement>(null);\n  const [progress, setProgress] = useState(0);\n\n  useEffect(() => {\n    const node = sectionRef.current;\n    if (!node) return;\n    const measure = () => {\n      const rect = node.getBoundingClientRect();\n      const total = rect.height - window.innerHeight;\n      setProgress(Math.max(0, Math.min(1, -rect.top / Math.max(total, 1))));\n    };\n    measure();\n    window.addEventListener(\"scroll\", measure, { passive: true });\n    window.addEventListener(\"resize\", measure);\n    return () => {\n      window.removeEventListener(\"scroll\", measure);\n      window.removeEventListener(\"resize\", measure);\n    };\n  }, []);\n\n  const gap = (1 - progress) * 48; // px between panels\n  const scaleStep = 0.04 * progress;\n\n  return (\n    <div ref={sectionRef} className={cn(\"relative\", className)} style={{ minHeight: \"220vh\" }}>\n      <div className=\"sticky top-0 flex h-screen flex-col items-center justify-center\">\n        <div\n          className=\"flex flex-col will-change-transform\"\n          style={{ gap: `${gap}px`, transition: \"gap 80ms linear\" }}\n        >\n          {panels.map((panel, index) => (\n            <div\n              key={index}\n              className=\"w-72 rounded-xl border border-line bg-paper p-5 shadow-lg\"\n              style={{\n                transform: `scale(${1 - index * scaleStep})`,\n                zIndex: panels.length - index,\n              }}\n            >\n              <p className=\"font-display text-lg text-ink\">{panel.title}</p>\n              <p className=\"mt-1 text-sm text-ink/70\">{panel.body}</p>\n            </div>\n          ))}\n        </div>\n        <p className=\"mt-8 font-mono text-xs text-ink/50\">scroll progress: {(progress * 100).toFixed(0)}%</p>\n      </div>\n    </div>\n  );\n}\n\nexport default ScrollCompression;\n",
+      "contentHash": "45c1d0cc9fdea7f9f4f654900895a63d1f290a4647ecff9f6d11f203541a3bde",
+      "sizeBytes": 2110
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollCompression } from \"./scroll-compression\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper\">\n      <div className=\"p-10 text-center text-ink/60\">Scroll down ↓</div>\n      <ScrollCompression\n        panels={[\n          { title: \"Signal\", body: \"The first panel holds the headline claim.\" },\n          { title: \"Proof\", body: \"The second carries the evidence.\" },\n          { title: \"Action\", body: \"The last one asks for the click.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "db86f6855458b0a48e84776b07d118bb625c630b63d424db2d771eb6efed909b",
+      "sizeBytes": 516
+    }
+  ],
+  "tags": [
+    "scroll",
+    "compress",
+    "stack",
+    "panels"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "gap-collapsing-stack",
+      "motionModel": "scroll-linked-gap-interpolation",
+      "layoutModel": "stack",
+      "semanticPurpose": "narrative-sequence"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-compression.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Scroll Progress Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

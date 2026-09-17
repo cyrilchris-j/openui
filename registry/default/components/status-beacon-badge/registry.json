@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "status-beacon-badge",
+  "type": "registry:component",
+  "title": "Status Beacon Badge",
+  "description": "An operational status badge pill featuring an animated pulsing radar dot and uptime latency telemetry.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "status-beacon-badge.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "beacon",
+    "badge",
+    "status",
+    "uptime",
+    "radar"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "telemetry-beacon-inspection",
+      "visualModel": "pulsing-radar-pill",
+      "motionModel": "annular-ping-oscillation",
+      "layoutModel": "compact-inline-beacon",
+      "semanticPurpose": "system-health-beacon"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

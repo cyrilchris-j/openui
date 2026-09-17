@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "click-sparkle-trail",
+  "type": "registry:interaction",
+  "title": "Click Sparkle Trail",
+  "description": "A playful click feedback system spawning miniature starburst vectors that scatter outward and twinkle away on click.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "click-sparkle-trail.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ClickSparkleTrailProps {\n  className?: string;\n}\n\nexport function ClickSparkleTrail({ className }: ClickSparkleTrailProps) {\n  const [sparks, setSparks] = useState<{ id: number; x: number; y: number }[]>([]);\n\n  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = e.clientX - rect.left;\n    const y = e.clientY - rect.top;\n    const newSpark = { id: Date.now(), x, y };\n    setSparks((prev) => [...prev.slice(-10), newSpark]);\n  };\n\n  return (\n    <div\n      onClick={handleClick}\n      className={cn(\n        \"relative h-64 w-full max-w-sm cursor-pointer overflow-hidden rounded-xl border border-line bg-paper p-6 select-none\",\n        className\n      )}\n    >\n      <div className=\"flex h-full flex-col items-center justify-center text-center\">\n        <span className=\"font-mono text-xs text-ink/50\">CLICK ANYWHERE</span>\n        <h4 className=\"font-display text-base font-bold text-ink\">Twinkle Sparkle Feedback</h4>\n      </div>\n\n      {sparks.map((s) => (\n        <span\n          key={s.id}\n          className=\"pointer-events-none absolute -ml-3 -mt-3 text-lg animate-ping text-amber-500\"\n          style={{ left: s.x, top: s.y }}\n        >\n          ✦\n        </span>\n      ))}\n    </div>\n  );\n}\n\nexport default ClickSparkleTrail;\n",
+      "contentHash": "3cc40f7f36408b530a3035d38bab20938ab971f43df48960c97e91256a1c6f21",
+      "sizeBytes": 1422
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ClickSparkleTrail } from \"./click-sparkle-trail\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <ClickSparkleTrail />\n    </div>\n  );\n}\n",
+      "contentHash": "ebe676c852249121c8c434efa67c996856ed9ae8d6934590e0328f1f15af92d7",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "sparkle",
+    "click",
+    "feedback",
+    "particles",
+    "twinkle"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "coordinate-click-burst",
+      "visualModel": "geometric-starburst-sparks",
+      "motionModel": "radial-twinkle-fadeout",
+      "layoutModel": "click-responsive-surface",
+      "semanticPurpose": "sensory-click-reward"
+    }
+  },
+  "url": "https://openui.dev/r/click-sparkle-trail.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Coordinate Click Burst: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

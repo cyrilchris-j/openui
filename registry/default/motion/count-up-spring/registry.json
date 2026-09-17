@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "count-up-spring",
+  "type": "registry:motion",
+  "title": "Count Up Spring",
+  "description": "Numeric tween driven by a spring, not an easing curve: the displayed value overshoots the target and settles, digits use tabular numerals so widths never jitter, and re-targeting mid-flight re-targets the spring without restart.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "count-up-spring.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "count",
+    "spring",
+    "number",
+    "tween"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "value-change-trigger",
+      "visualModel": "overshooting-numeral",
+      "motionModel": "spring-value-integrator",
+      "layoutModel": "inline",
+      "semanticPurpose": "metric-attention"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

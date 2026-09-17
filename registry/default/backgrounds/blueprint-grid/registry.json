@@ -5,15 +5,34 @@
   "title": "Blueprint Grid",
   "description": "A modular grid drawn with repeating gradients, exposing the baseline and column rhythm of the page as a visible structure rather than an invisible assumption.",
   "category": "backgrounds",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "blueprint-grid.tsx", "type": "registry:background" }],
-  "tags": ["surface", "grid", "technical"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "blueprint-grid.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "surface",
+    "grid",
+    "technical"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["pure-css", "no-requests", "theme-aware"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "pure-css",
+      "no-requests",
+      "theme-aware"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "technical",
       "macrostructure": "mosaic",
@@ -22,6 +41,13 @@
       "motionLanguage": "none",
       "typographyStyle": "monospace",
       "colorStrategy": "duotone"
+    },
+    "subcategory": "grid",
+    "fingerprint": {
+      "interactionModel": "passive-viewport",
+      "visualModel": "drafting-blueprint-cad",
+      "layoutModel": "full-bleed-underlay",
+      "semanticPurpose": "canvas-backdrop"
     }
   }
 }

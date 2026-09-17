@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-interrupt",
+  "type": "registry:motion",
+  "title": "Glitch Interrupt",
+  "description": "Random micro-glitches interrupt an otherwise calm element: RGB-split flickers, 1-frame clip slices and character substitutions fire on a seeded schedule, then the element returns to perfect stillness — decay, not a loop.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-interrupt.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "glitch",
+    "interrupt",
+    "rgb-split",
+    "chaos"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "experimental",
+    "fingerprint": {
+      "interactionModel": "seeded-random-interrupt",
+      "visualModel": "rgb-split-slices",
+      "motionModel": "burst-decay",
+      "layoutModel": "inline",
+      "semanticPurpose": "unsettling-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

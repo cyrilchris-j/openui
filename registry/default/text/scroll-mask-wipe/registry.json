@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-mask-wipe",
+  "type": "registry:text",
+  "title": "Scroll Mask Wipe",
+  "description": "A headline wiped open by the page's own scroll position: an inset clip-path tied to viewport progress means the reader, not a timer, controls how much of the statement is visible.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-mask-wipe.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "scroll-linked",
+    "mask",
+    "wipe",
+    "clip-path"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "scroll-progress",
+      "visualModel": "inset-clip",
+      "motionModel": "scroll-mapped-reveal",
+      "layoutModel": "full-bleed",
+      "semanticPurpose": "statement-reveal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

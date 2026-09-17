@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-card-preview-stack",
+  "type": "registry:interaction",
+  "title": "Hover Card Preview Stack",
+  "description": "A compact stack of document tiles that fans out radially on hover to show detailed preview thumbnails.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-card-preview-stack.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "hover",
+    "stack",
+    "cards",
+    "preview",
+    "fan"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-fanned-card-expansion",
+      "visualModel": "tiered-stacked-documents",
+      "motionModel": "angular-fan-spread",
+      "layoutModel": "centered-card-deck",
+      "semanticPurpose": "document-preview-stack"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

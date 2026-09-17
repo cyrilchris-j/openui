@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pricing-enterprise-inquiry",
+  "type": "registry:section",
+  "title": "Pricing Enterprise Inquiry",
+  "description": "A specialized contact banner tailored for enterprise buyers requiring custom VPC deployments and SOC2 packages.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pricing-enterprise-inquiry.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "enterprise",
+    "inquiry",
+    "pricing",
+    "custom",
+    "sla"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "pricing-enterprise-inquiry-interaction",
+      "visualModel": "pricing-enterprise-inquiry-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "pricing-enterprise-inquiry-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

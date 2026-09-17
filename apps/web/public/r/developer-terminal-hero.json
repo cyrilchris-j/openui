@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-terminal-hero",
+  "type": "registry:section",
+  "title": "Developer Terminal Hero",
+  "description": "Hero layout with code terminal on right showing instant pnpm install and validation commands.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-terminal-hero.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DeveloperTerminalHeroProps extends React.HTMLAttributes<HTMLElement> {\n  cmd?: string;\n}\n\nexport function DeveloperTerminalHero({\n  cmd = \"pnpm dlx @openui/cli add holy-grail-layout\",\n  className,\n  ...props\n}: DeveloperTerminalHeroProps) {\n  const [copied, setCopied] = useState(false);\n\n  const copy = () => {\n    navigator.clipboard.writeText(cmd);\n    setCopied(true);\n    setTimeout(() => setCopied(false), 2000);\n  };\n\n  return (\n    <section className={cn(\"py-16 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink grid grid-cols-1 lg:grid-cols-2 gap-8 items-center\", className)} {...props}>\n      <div>\n        <span className=\"font-mono text-xs text-accent font-bold uppercase\">Developer First</span>\n        <h1 className=\"text-3xl font-bold tracking-tight text-ink my-2\">Deploy directly into your codebase.</h1>\n        <p className=\"text-xs text-ink/70 leading-relaxed\">Single command imports. No remote runtime blackboxes.</p>\n      </div>\n\n      <div className=\"p-4 rounded-2xl border border-line bg-slate-950 text-white font-mono text-xs shadow-xl\">\n        <div className=\"flex items-center justify-between pb-3 border-b border-white/10 text-white/50 text-[10px]\">\n          <span>bash terminal</span>\n          <button type=\"button\" onClick={copy} className=\"hover:text-white transition-colors\">\n            {copied ? \"✓ Copied\" : \"Copy\"}\n          </button>\n        </div>\n        <div className=\"pt-3 text-emerald-400\">\n          <span className=\"text-white/40\">$ </span>\n          {cmd}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "13a456152ecf02ae76013ddde95375543a3f7b206900a07aaf9c3a5c59b0fcc0",
+      "sizeBytes": 1656
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DeveloperTerminalHero } from \"./developer-terminal-hero\";\n\nexport default function DeveloperTerminalHeroDemo() {\n  return <DeveloperTerminalHero />;\n}\n",
+      "contentHash": "4d971a4edb58a3fc58abf9b7c07994e987973dfd9dcc484a22dffa42848b8a0d",
+      "sizeBytes": 175
+    }
+  ],
+  "tags": [
+    "terminal",
+    "hero",
+    "developer",
+    "cli",
+    "install"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "heroes",
+    "fingerprint": {
+      "interactionModel": "copyable-terminal-hero",
+      "visualModel": "code-terminal-landing-hero",
+      "motionModel": "none",
+      "layoutModel": "split-terminal-banner",
+      "semanticPurpose": "developer-cli-hero"
+    }
+  },
+  "url": "https://openui.dev/r/developer-terminal-hero.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Copyable Terminal Hero: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

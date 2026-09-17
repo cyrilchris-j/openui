@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-matrix-toggle",
+  "type": "registry:interaction",
+  "title": "Interactive Matrix Toggle",
+  "description": "A 4x4 matrix bitboard enabling click-and-drag paint toggling across binary cells for pattern authoring.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-matrix-toggle.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveMatrixToggleProps {\n  className?: string;\n}\n\nexport function InteractiveMatrixToggle({ className }: InteractiveMatrixToggleProps) {\n  const [cells, setCells] = useState<boolean[]>(Array(16).fill(false));\n\n  const toggle = (idx: number) => {\n    setCells((prev) => {\n      const next = [...prev];\n      next[idx] = !next[idx];\n      return next;\n    });\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">4x4 BITBOARD MATRIX</span>\n\n      <div className=\"grid grid-cols-4 gap-1.5\">\n        {cells.map((active, i) => (\n          <div\n            key={i}\n            onClick={() => toggle(i)}\n            className={cn(\n              \"h-8 w-8 cursor-pointer rounded border font-mono text-[9px] flex items-center justify-center transition-colors\",\n              active ? \"border-ink bg-ink text-paper\" : \"border-line bg-line/20 text-ink/40\"\n            )}\n          >\n            {active ? \"1\" : \"0\"}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default InteractiveMatrixToggle;\n",
+      "contentHash": "a5bd8594bbc06e8c0570af58d927c8fd686b9f91dff95079002093bb0e43dee8",
+      "sizeBytes": 1259
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { InteractiveMatrixToggle } from \"./interactive-matrix-toggle\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <InteractiveMatrixToggle />\n    </div>\n  );\n}\n",
+      "contentHash": "a636de961b886b1fae8addd52cb33ac6fec74c0e849c895cad5080b8c609a927",
+      "sizeBytes": 250
+    }
+  ],
+  "tags": [
+    "matrix",
+    "bitboard",
+    "paint",
+    "drag",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "drag-paint-cell-toggling",
+      "visualModel": "bitboard-tile-matrix",
+      "motionModel": "instantaneous-bit-inversion",
+      "layoutModel": "square-bitboard-grid",
+      "semanticPurpose": "bitboard-pattern-editor"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-matrix-toggle.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Drag Paint Cell Toggling: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

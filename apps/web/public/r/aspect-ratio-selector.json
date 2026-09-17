@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "aspect-ratio-selector",
+  "type": "registry:component",
+  "title": "Aspect Ratio Selector",
+  "description": "Aspect ratio buttons (16:9, 4:3, 1:1, 9:16) with dynamic proportional preview frame.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "aspect-ratio-selector.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\ninterface RatioItem {\n  label: string;\n  w: number;\n  h: number;\n}\n\nconst RATIOS: RatioItem[] = [\n  { label: \"16:9\", w: 16, h: 9 },\n  { label: \"4:3\", w: 4, h: 3 },\n  { label: \"1:1\", w: 1, h: 1 },\n  { label: \"9:16\", w: 9, h: 16 },\n];\n\nexport function AspectRatioSelector({ className }: { className?: string }) {\n  const [selected, setSelected] = useState<RatioItem>(RATIOS[0]!);\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-xs w-full flex flex-col items-center font-mono shadow-sm\", className)}>\n      <div className=\"w-full h-36 bg-surface/50 rounded-lg flex items-center justify-center p-3 mb-4\">\n        <div\n          className=\"border-2 border-dashed border-accent bg-accent/10 rounded transition-all flex items-center justify-center text-accent text-xs font-bold\"\n          style={{\n            aspectRatio: `${selected.w} / ${selected.h}`,\n            maxHeight: \"100%\",\n            maxWidth: \"100%\",\n          }}\n        >\n          {selected.label}\n        </div>\n      </div>\n\n      <div className=\"flex items-center gap-1.5 w-full\">\n        {RATIOS.map((r) => (\n          <button\n            key={r.label}\n            type=\"button\"\n            onClick={() => setSelected(r)}\n            className={cn(\n              \"flex-1 py-1 rounded text-xs transition-colors\",\n              selected.label === r.label ? \"bg-accent text-white font-bold\" : \"bg-surface text-ink/70 hover:bg-line/40\"\n            )}\n          >\n            {r.label}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "2b2263ffa9875edad816400639db6dd231836a818d381511a075a8892239f5c5",
+      "sizeBytes": 1628
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { AspectRatioSelector } from \"./aspect-ratio-selector\";\n\nexport default function AspectRatioSelectorDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[250px]\">\n      <AspectRatioSelector />\n    </div>\n  );\n}\n",
+      "contentHash": "d6a51ee24c0f3d89628a5f20d12f050b75ad071b054bac83760999e55b726c0e",
+      "sizeBytes": 277
+    }
+  ],
+  "tags": [
+    "aspect-ratio",
+    "media",
+    "controls",
+    "frame",
+    "ratio"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "ratio-button-selection",
+      "visualModel": "proportional-bounding-box",
+      "motionModel": "none",
+      "layoutModel": "frame-with-ratio-strip",
+      "semanticPurpose": "canvas-ratio-picker"
+    }
+  },
+  "url": "https://openui.dev/r/aspect-ratio-selector.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Ratio Button Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "open-source-sponsor-tier",
+  "type": "registry:section",
+  "title": "Open Source Sponsor Tier",
+  "description": "A funding support section showing GitHub sponsorship levels for individual and enterprise backers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "open-source-sponsor-tier.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "sponsors",
+    "open-source",
+    "github",
+    "tiers",
+    "funding"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "community",
+    "fingerprint": {
+      "interactionModel": "open-source-sponsor-tier-interaction",
+      "visualModel": "open-source-sponsor-tier-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "open-source-sponsor-tier-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

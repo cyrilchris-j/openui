@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circuit-board-traces",
+  "type": "registry:background",
+  "title": "Circuit Board Traces",
+  "description": "Printed circuit board etched copper bus traces with 45-degree angle elbows and terminal pads.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circuit-board-traces.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CircuitBoardTracesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CircuitBoardTraces({ className, children, ...props }: CircuitBoardTracesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"pcb-pat\" width=\"100\" height=\"100\" patternUnits=\"userSpaceOnUse\">\n            <path d=\"M10 20 L50 20 L70 40 L90 40\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n            <circle cx=\"10\" cy=\"20\" r=\"3\" fill=\"currentColor\" />\n            <circle cx=\"90\" cy=\"40\" r=\"3\" fill=\"currentColor\" />\n            <path d=\"M20 80 L40 60 L80 60\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n            <circle cx=\"20\" cy=\"80\" r=\"3\" fill=\"currentColor\" />\n            <circle cx=\"80\" cy=\"60\" r=\"3\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#pcb-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "7d5d0bb90552410a2b2fb93bbe6eef59f8fbdd6456166984e389a0655ea7ba18",
+      "sizeBytes": 1238
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CircuitBoardTraces } from \"./circuit-board-traces\";\n\nexport default function CircuitBoardTracesDemo() {\n  return (\n    <CircuitBoardTraces className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Circuit Traces</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">PCB conductor traces and soldering contact vias.</p>\n      </div>\n    </CircuitBoardTraces>\n  );\n}\n",
+      "contentHash": "e7aa99ae7960b0cf87ae3aabb332af6677f6f6ae0194d8b9762b73619959131d",
+      "sizeBytes": 583
+    }
+  ],
+  "tags": [
+    "circuit",
+    "pcb",
+    "traces",
+    "hardware",
+    "technical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-schematic-backdrop",
+      "visualModel": "copper-bus-traces",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "pcb-schematic-texture"
+    }
+  },
+  "url": "https://openui.dev/r/circuit-board-traces.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Schematic Backdrop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

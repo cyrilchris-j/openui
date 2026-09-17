@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radial-beam-spotlight",
+  "type": "registry:background",
+  "title": "Radial Beam Spotlight",
+  "description": "An angled overhead conical beam spotlight illuminating the focal hero area against darkness.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radial-beam-spotlight.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface RadialBeamSpotlightProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function RadialBeamSpotlight({ className, children, ...props }: RadialBeamSpotlightProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[500px] pointer-events-none -z-10 opacity-35\"\n        style={{\n          background: \"radial-gradient(ellipse at top, rgba(56, 189, 248, 0.45) 0%, rgba(56, 189, 248, 0.05) 50%, transparent 70%)\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "4d7b1448270a99a74304909fea88dcfa2c49508a04a94ccd392d94ebd07c9814",
+      "sizeBytes": 740
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { RadialBeamSpotlight } from \"./radial-beam-spotlight\";\n\nexport default function RadialBeamSpotlightDemo() {\n  return (\n    <RadialBeamSpotlight className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-white\">Overhead Spotlight</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-sans\">Focused optical beam illuminating focal point.</p>\n      </div>\n    </RadialBeamSpotlight>\n  );\n}\n",
+      "contentHash": "909f5e00b44a210840cd8d8923757c013b2cb47550d4f2638b7a012972019e9d",
+      "sizeBytes": 598
+    }
+  ],
+  "tags": [
+    "spotlight",
+    "beam",
+    "ambient",
+    "lighting",
+    "hero"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-lighting-underlay",
+      "visualModel": "conic-spotlight-cone",
+      "motionModel": "none",
+      "layoutModel": "top-anchored-cone",
+      "semanticPurpose": "stage-spotlight-illumination"
+    }
+  },
+  "url": "https://openui.dev/r/radial-beam-spotlight.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Lighting Underlay: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-column-directory-list",
+  "type": "registry:layout",
+  "title": "Multi Column Directory List",
+  "description": "Four-column directory index for organizing extensive rosters of components, tags, or API endpoints.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-column-directory-list.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "directory",
+    "index",
+    "columns",
+    "tags",
+    "roster"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "directory-index-lookup",
+      "visualModel": "four-column-directory-matrix",
+      "motionModel": "none",
+      "layoutModel": "multi-column-index-grid",
+      "semanticPurpose": "directory-index-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

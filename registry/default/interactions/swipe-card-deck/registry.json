@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swipe-card-deck",
+  "type": "registry:interaction",
+  "title": "Swipe Card Deck",
+  "description": "A deck of stacked cards that can be dismissed by swiping left or right with angular velocity feedback.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "swipe-card-deck.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "swipe",
+    "cards",
+    "deck",
+    "tinder",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "lateral-deck-decision-swipe",
+      "visualModel": "bipartite-decision-card",
+      "motionModel": "angular-trajectory-ejection",
+      "layoutModel": "centered-decision-deck",
+      "semanticPurpose": "decision-card-swiper"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

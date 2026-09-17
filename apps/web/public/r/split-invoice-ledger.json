@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-invoice-ledger",
+  "type": "registry:layout",
+  "title": "Split Invoice Ledger",
+  "description": "Two-panel accounting billing invoice with client metadata on left and line-item totals on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-invoice-ledger.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitInvoiceLedgerProps extends React.HTMLAttributes<HTMLDivElement> {\n  clientInfo?: React.ReactNode;\n  lineItems?: React.ReactNode;\n}\n\nexport function SplitInvoiceLedger({ clientInfo, lineItems, className, ...props }: SplitInvoiceLedgerProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 gap-6 max-w-4xl mx-auto p-6 rounded-2xl border border-line bg-paper font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"md:col-span-4 border-b md:border-b-0 md:border-r border-line pb-4 md:pb-0 md:pr-6 space-y-3\">{clientInfo}</div>\n      <div className=\"md:col-span-8 space-y-4\">{lineItems}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "78b60ba97403e68d9a35bfb4bf95a19c9095718acf3131970353c57b86d1776d",
+      "sizeBytes": 718
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitInvoiceLedger } from \"./split-invoice-ledger\";\n\nexport default function SplitInvoiceLedgerDemo() {\n  return (\n    <SplitInvoiceLedger\n      clientInfo={\n        <div>\n          <div className=\"font-bold text-ink mb-1\">INVOICE #08492</div>\n          <div className=\"text-ink/60\">Client: DeepMind Core</div>\n          <div className=\"text-ink/60\">Date: 2026-09-18</div>\n        </div>\n      }\n      lineItems={\n        <div>\n          <div className=\"flex justify-between border-b border-line pb-2 font-bold\">\n            <span>Item Description</span>\n            <span>Amount</span>\n          </div>\n          <div className=\"flex justify-between py-2 text-ink/80 border-b border-line/50\">\n            <span>Registry Automation Infrastructure</span>\n            <span>$12,500.00</span>\n          </div>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "adff4265bdce118724de49294383be673a05e5b25c5774279b47a4b4e8cc72de",
+      "sizeBytes": 868
+    }
+  ],
+  "tags": [
+    "invoice",
+    "ledger",
+    "billing",
+    "split",
+    "accounting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "invoice-ledger-inspection",
+      "visualModel": "dual-column-invoice-sheet",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-invoice-split",
+      "semanticPurpose": "accounting-invoice-display"
+    }
+  },
+  "url": "https://openui.dev/r/split-invoice-ledger.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Invoice Ledger Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inbox-conversation-thread",
+  "type": "registry:block",
+  "title": "Inbox Conversation Thread",
+  "description": "A messaging conversation workspace with recipient headers, chat message bubbles, and rich message composer.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inbox-conversation-thread.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InboxConversationThread({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [messages, setMessages] = React.useState([\n    { from: \"Marcus\", text: \"Are all 800 manifests passing the catalog validator?\", time: \"14:20\" },\n    { from: \"You\", text: \"Yes! 0 duplicate fingerprints and 0 TypeScript errors.\", time: \"14:22\" },\n  ]);\n  const [input, setInput] = React.useState(\"\");\n\n  const handleSend = (e: React.FormEvent) => {\n    e.preventDefault();\n    if (!input.trim()) return;\n    setMessages((prev) => [...prev, { from: \"You\", text: input, time: \"Just now\" }]);\n    setInput(\"\");\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs flex flex-col h-[400px]\", className)} {...props}>\n      <div className=\"pb-3 border-b border-neutral-200 dark:border-neutral-800 font-semibold text-neutral-900 dark:text-white\">\n        #engineering-sync • 3 participants\n      </div>\n      <div className=\"flex-1 overflow-y-auto py-4 space-y-3\">\n        {messages.map((m, idx) => (\n          <div key={idx} className={cn(\"flex flex-col\", m.from === \"You\" ? \"items-end\" : \"items-start\")}>\n            <div className={cn(\"p-3 rounded-xl max-w-sm\", m.from === \"You\" ? \"bg-emerald-600 text-white\" : \"bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white\")}>\n              {m.text}\n            </div>\n            <span className=\"text-[10px] text-neutral-400 mt-1\">{m.time}</span>\n          </div>\n        ))}\n      </div>\n      <form onSubmit={handleSend} className=\"pt-3 border-t border-neutral-200 dark:border-neutral-800 flex gap-2\">\n        <input\n          type=\"text\"\n          value={input}\n          onChange={(e) => setInput(e.target.value)}\n          placeholder=\"Reply to thread...\"\n          className=\"flex-1 px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900\"\n        />\n        <button type=\"submit\" className=\"px-4 py-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-lg font-semibold\">\n          Send\n        </button>\n      </form>\n    </div>\n  );\n}\n",
+      "contentHash": "a153db1b90d34817d601ca71cbcb983c44aa35d5d0646c22f43422885d29d32c",
+      "sizeBytes": 2281
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { InboxConversationThread } from \"./inbox-conversation-thread\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[450px] p-4 flex items-center justify-center bg-neutral-50 dark:bg-neutral-900\">\n      <InboxConversationThread />\n    </div>\n  );\n}\n",
+      "contentHash": "3cd9a88585c64b50c4ba5e9ff512bc1f42ec803886a7b1ea68e76c223f2c5a51",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "chat",
+    "inbox",
+    "messaging",
+    "thread",
+    "conversation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "messaging",
+    "fingerprint": {
+      "interactionModel": "chat-message-send-and-scroll",
+      "visualModel": "threaded-conversation-inbox",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "direct-messaging-interface"
+    }
+  },
+  "url": "https://openui.dev/r/inbox-conversation-thread.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Chat Message Send And Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

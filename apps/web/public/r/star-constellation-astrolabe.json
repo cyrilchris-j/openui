@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "star-constellation-astrolabe",
+  "type": "registry:background",
+  "title": "Star Constellation Astrolabe",
+  "description": "Brass medieval Islamic navigational astrolabe with stereographic rete and star pointers.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "star-constellation-astrolabe.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StarConstellationAstrolabeProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function StarConstellationAstrolabe({ className, children, ...props }: StarConstellationAstrolabeProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          <circle cx=\"100\" cy=\"100\" r=\"85\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n          <circle cx=\"100\" cy=\"100\" r=\"60\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" strokeDasharray=\"3 2\" />\n          <circle cx=\"100\" cy=\"100\" r=\"35\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n          <line x1=\"15\" y1=\"100\" x2=\"185\" y2=\"100\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          <line x1=\"100\" y1=\"15\" x2=\"100\" y2=\"185\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          <polygon points=\"100,20 103,30 97,30\" fill=\"currentColor\" />\n          <polygon points=\"100,180 103,170 97,170\" fill=\"currentColor\" />\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "2ea230a3f270e460c66cf1719b84f4bed2973bca0047b0b9821208863400878e",
+      "sizeBytes": 1305
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { StarConstellationAstrolabe } from \"./star-constellation-astrolabe\";\n\nexport default function StarConstellationAstrolabeDemo() {\n  return (\n    <StarConstellationAstrolabe className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Navigation Astrolabe</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Ancient stereographic celestial rete coordinates.</p>\n      </div>\n    </StarConstellationAstrolabe>\n  );\n}\n",
+      "contentHash": "b3e891e4d0017ebf47db1fd9771da8cb100cb99a8e6f7722f87f97072d2e0def",
+      "sizeBytes": 631
+    }
+  ],
+  "tags": [
+    "astrolabe",
+    "navigation",
+    "stars",
+    "medieval",
+    "brass"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-astrolabe-grid",
+      "visualModel": "stereographic-rete-astrolabe",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "ancient-astrolabe-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/star-constellation-astrolabe.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: Muted Earth\n\n## Rules\n\n- Passive Astrolabe Grid: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

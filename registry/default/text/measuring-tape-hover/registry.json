@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "measuring-tape-hover",
+  "type": "registry:text",
+  "title": "Measuring Tape Hover",
+  "description": "Hover any word and a measuring tape slides out beneath it showing its rendered width in px and ch — a debugging instrument for kerning obsessives, implemented with real getBoundingClientRect measurement per word.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "measuring-tape-hover.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "measure",
+    "debug",
+    "width",
+    "ruler"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "hover-measure",
+      "visualModel": "width-callout-ruler",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "type-debugging"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

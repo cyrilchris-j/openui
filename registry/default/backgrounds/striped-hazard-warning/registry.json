@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "striped-hazard-warning",
+  "type": "registry:background",
+  "title": "Striped Hazard Warning",
+  "description": "High-contrast industrial warning hazard chevron stripes with bold diagonal banding.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "striped-hazard-warning.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "hazard",
+    "stripes",
+    "industrial",
+    "warning",
+    "diagonal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-industrial-hazard",
+      "visualModel": "hazard-diagonal-stripes",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "industrial-warning-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

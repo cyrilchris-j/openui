@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-type-reveal",
+  "type": "registry:motion",
+  "title": "Kinetic Type Reveal",
+  "description": "A mechanical typewriter entrance effect featuring physical carriage returns and vibrating strike-head impressions.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-type-reveal.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "typewriter",
+    "type",
+    "reveal",
+    "mechanical",
+    "text"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "character-carriage-advance",
+      "visualModel": "strikethrough-typewriter-line",
+      "motionModel": "stepped-character-typing",
+      "layoutModel": "inline-terminal-ribbon",
+      "semanticPurpose": "teletype-heading-reveal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

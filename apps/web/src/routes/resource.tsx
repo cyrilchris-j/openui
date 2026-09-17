@@ -74,6 +74,20 @@ export default function ResourcePage(): React.JSX.Element {
 
   const activeTab = searchParams.get("tab") ?? "preview";
   const previewView = searchParams.get("view") === "code" ? "code" : "preview";
+  const viewport = searchParams.get("viewport") ?? "full";
+
+  const VIEWPORT_WIDTHS: Record<string, string> = {
+    mobile: "390px",
+    tablet: "834px",
+    desktop: "full",
+    wide: "full",
+  };
+  const VIEWPORT_MAX: Record<string, string> = {
+    mobile: "390px",
+    tablet: "834px",
+    desktop: "100%",
+    wide: "1440px",
+  };
 
   useDocumentTitle(entry ? `${entry.title} — OpenUI Design Registry` : "Resource — OpenUI");
   useMetaDescription(entry?.description);
@@ -327,6 +341,37 @@ export default function ResourcePage(): React.JSX.Element {
               />
             </div>
 
+            {/* Viewport tester: the preview container width is constrained so
+                the resource's responsive behaviour is exercisable, not just
+                claimed. The choice lives in the URL like every other control. */}
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
+              <SegmentedControl
+                label="Viewport"
+                hideLabel
+                value={viewport}
+                onValueChange={(value) => {
+                  const next = new URLSearchParams(searchParams);
+                  if (value === "full") next.delete("viewport");
+                  else next.set("viewport", value);
+                  setSearchParams(next, { replace: true });
+                }}
+                options={[
+                  { value: "mobile", label: "Mobile" },
+                  { value: "tablet", label: "Tablet" },
+                  { value: "desktop", label: "Desktop" },
+                  { value: "wide", label: "Wide" },
+                ]}
+              />
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite">
+                {VIEWPORT_MAX[viewport] ?? "100%"} max-width
+              </p>
+            </div>
+
+            <div
+              className="mx-auto transition-[max-width] duration-normal motion-reduce:transition-none"
+              style={{ maxWidth: VIEWPORT_MAX[viewport] ?? "100%" }}
+            >
+
             <React.Suspense fallback={<SandboxSkeleton />}>
               {itemState.data ? (
                 <Sandbox item={itemState.data} view={previewView === "code" ? "split" : "preview"} />
@@ -340,6 +385,7 @@ export default function ResourcePage(): React.JSX.Element {
                 <SandboxSkeleton />
               )}
             </React.Suspense>
+            </div>
           </TabsContent>
 
           {/* Installation --------------------------------------------- */}

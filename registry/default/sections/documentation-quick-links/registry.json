@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "documentation-quick-links",
+  "type": "registry:section",
+  "title": "Documentation Quick Links",
+  "description": "A fast navigation strip offering direct deep links into foundational documentation topics.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "documentation-quick-links.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "docs",
+    "quick-links",
+    "navigation",
+    "guides",
+    "api"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "documentation-quick-links-interaction",
+      "visualModel": "documentation-quick-links-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "documentation-quick-links-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "rail",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

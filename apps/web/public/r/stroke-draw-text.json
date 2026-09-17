@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stroke-draw-text",
+  "type": "registry:text",
+  "title": "Stroke Draw Text",
+  "description": "An SVG path rendition of the headline whose strokes draw themselves via stroke-dashoffset on entering view; the DOM text stays present for accessibility while the drawn paths carry the visual.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "stroke-draw-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StrokeDrawTextProps {\n  children: string;\n  /** Seconds for the full draw. */\n  duration?: number;\n  /** Font size in px; the SVG scales to the text. */\n  size?: number;\n  className?: string;\n}\n\n/**\n * Stroke Draw Text\n *\n * Real path conversion requires the glyph outlines, which needs the font file.\n * This implementation renders the text into an SVG `<text>` and strokes it —\n * stroke-dasharray works on text elements in every evergreen browser, so the\n * draw effect works with whatever face the consumer sets, no font tooling.\n */\nexport function StrokeDrawText({ children, duration = 2.4, size = 64, className }: StrokeDrawTextProps) {\n  const { ref, inView } = useInView<HTMLSpanElement>({ once: true });\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const drawn = inView || Boolean(reduced);\n\n  return (\n    <span ref={ref} className={cn(\"inline-block\", className)} role=\"text\" aria-label={children}>\n      <svg\n        aria-hidden\n        width=\"100%\"\n        height={size * 1.3}\n        viewBox={`0 0 ${children.length * size * 0.62} ${size * 1.3}`}\n        style={{ overflow: \"visible\" }}\n      >\n        <text\n          x=\"0\"\n          y={size}\n          fontSize={size}\n          fill={drawn ? \"currentColor\" : \"transparent\"}\n          stroke=\"currentColor\"\n          strokeWidth={1.4}\n          style={{\n            strokeDasharray: 1400,\n            strokeDashoffset: drawn ? 0 : 1400,\n            transition: `stroke-dashoffset ${duration}s ease, fill ${duration}s ease ${duration * 0.6}s`,\n            fontFamily: \"inherit\",\n          }}\n        >\n          {children}\n        </text>\n      </svg>\n    </span>\n  );\n}\n\nexport default StrokeDrawText;\n",
+      "contentHash": "e9b6163a07f77d74075170fd3b30f65e670cb95710a11bbac60f70a64242e18c",
+      "sizeBytes": 1863
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { StrokeDrawText } from \"./stroke-draw-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <StrokeDrawText className=\"font-display text-ink\" size={56}>\n        Signature\n      </StrokeDrawText>\n    </div>\n  );\n}\n",
+      "contentHash": "dab757815ca452c3be2177dc773098a6850363c75f355bc6025aa83a1baf6577",
+      "sizeBytes": 308
+    }
+  ],
+  "tags": [
+    "svg",
+    "stroke",
+    "draw",
+    "handwriting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "svg-path-stroke",
+      "motionModel": "dash-offset-draw",
+      "layoutModel": "inline",
+      "semanticPurpose": "signature-reveal"
+    }
+  },
+  "url": "https://openui.dev/r/stroke-draw-text.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: Expressive\nTypography: Serif Display\nColor: Monochrome\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

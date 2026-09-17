@@ -5,15 +5,34 @@
   "title": "Copy Button",
   "description": "Copy-to-clipboard with real failure handling: a visible state change, a polite screen-reader announcement, a legacy fallback and no false success.",
   "category": "components",
-  "dependencies": ["react", "lucide-react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "copy-button.tsx", "type": "registry:component" }],
-  "tags": ["clipboard", "button", "announcement"],
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "copy-button.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "clipboard",
+    "button",
+    "announcement"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["screen-reader-announced", "graceful-failure"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "screen-reader-announced",
+      "graceful-failure"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "technical",
       "macrostructure": "stack",
@@ -22,6 +41,13 @@
       "motionLanguage": "subtle",
       "typographyStyle": "monospace",
       "colorStrategy": "accent-only"
+    },
+    "subcategory": "actions",
+    "fingerprint": {
+      "interactionModel": "clipboard-write-feedback",
+      "visualModel": "icon-swap-state",
+      "layoutModel": "compact-inline",
+      "semanticPurpose": "quick-copy"
     }
   }
 }

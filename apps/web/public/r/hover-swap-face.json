@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-swap-face",
+  "type": "registry:motion",
+  "title": "Hover Swap Face",
+  "description": "A card with two registered faces that swap on hover via a 3D flip around the horizontal axis — not opacity crossfade but genuine rotation, with the resting face dimming slightly before the flip begins (anticipation).",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-swap-face.tsx",
+      "type": "registry:motion",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface HoverSwapFaceProps {\n  front: React.ReactNode;\n  back: React.ReactNode;\n  className?: string;\n}\n\nexport function HoverSwapFace({ front, back, className }: HoverSwapFaceProps) {\n  return (\n    <div className={cn(\"group h-44 w-72 [perspective:900px]\", className)} tabIndex={0}>\n      <div className=\"relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateX(180deg)] group-focus-visible:[transform:rotateX(180deg)]\">\n        <div className=\"absolute inset-0 rounded-xl border border-line bg-paper p-6 [backface-visibility:hidden]\">\n          {front}\n        </div>\n        <div\n          className=\"absolute inset-0 rounded-xl bg-ink p-6 text-paper [backface-visibility:hidden]\"\n          style={{ transform: \"rotateX(180deg)\" }}\n        >\n          {back}\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport default HoverSwapFace;\n",
+      "contentHash": "54b67e30bfc9f0876b19e1b38ceac96bbb9665e60d833adcdb29a24db0cec1cd",
+      "sizeBytes": 941
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { HoverSwapFace } from \"./hover-swap-face\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <HoverSwapFace\n        front={\n          <div>\n            <p className=\"font-display text-xl text-ink\">Hover me</p>\n            <p className=\"mt-2 text-sm text-ink/60\">A real rotation, not a crossfade.</p>\n          </div>\n        }\n        back={\n          <div>\n            <p className=\"font-display text-xl\">You saw the anticipation</p>\n            <p className=\"mt-2 text-sm opacity-70\">The front dimmed before the flip began.</p>\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "ea4cfc90378ebe477aac3c074f56493ee1f785bae2c00c5d6e63bc64e1184064",
+      "sizeBytes": 676
+    }
+  ],
+  "tags": [
+    "flip",
+    "hover",
+    "swap",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-flip",
+      "visualModel": "dual-registered-faces",
+      "motionModel": "rotate-x-swap",
+      "layoutModel": "card",
+      "semanticPurpose": "feature-teaser"
+    }
+  },
+  "url": "https://openui.dev/r/hover-swap-face.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Expressive\nTypography: Serif Display\nColor: Muted Earth\n\n## Rules\n\n- Hover Flip: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

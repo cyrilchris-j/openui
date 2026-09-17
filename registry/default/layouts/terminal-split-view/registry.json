@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "terminal-split-view",
+  "type": "registry:layout",
+  "title": "Terminal Split View",
+  "description": "Side-by-side dual console panes for monitoring concurrent build logs and server output.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "terminal-split-view.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "terminal",
+    "console",
+    "logs",
+    "split",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "dual-terminal-monitoring",
+      "visualModel": "split-console-panes",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-terminal",
+      "semanticPurpose": "dual-terminal-console"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

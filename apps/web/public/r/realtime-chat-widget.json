@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "realtime-chat-widget",
+  "type": "registry:block",
+  "title": "Realtime Chat Widget",
+  "description": "A floating customer support chat widget with interactive conversation history and agent availability.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "realtime-chat-widget.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function RealtimeChatWidget({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-sm mx-auto p-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl text-xs\", className)} {...props}>\n      <div className=\"flex items-center gap-3 pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-3\">\n        <span className=\"h-2 w-2 rounded-full bg-emerald-500 animate-pulse\" />\n        <div>\n          <div className=\"font-bold text-neutral-900 dark:text-white\">OpenUI Support Desk</div>\n          <div className=\"text-neutral-400 text-[10px]\">Active now • Avg reply 2m</div>\n        </div>\n      </div>\n      <div className=\"h-36 overflow-y-auto space-y-2 p-1\">\n        <div className=\"p-2.5 rounded-lg bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300\">\n          Hi! How can we assist with your component configuration?\n        </div>\n      </div>\n      <input\n        type=\"text\"\n        placeholder=\"Type a message...\"\n        className=\"w-full mt-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "f7be9ba187f075995b28e2344df72d48392770a4670e5703710c8018e0e3e3db",
+      "sizeBytes": 1336
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { RealtimeChatWidget } from \"./realtime-chat-widget\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <RealtimeChatWidget />\n    </div>\n  );\n}\n",
+      "contentHash": "c36a2812d31edd66b5af035ce1da273ac136edbfbe40bfbb2ce1954cd00b75f3",
+      "sizeBytes": 283
+    }
+  ],
+  "tags": [
+    "chat",
+    "support",
+    "widget",
+    "realtime",
+    "messaging"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "messaging",
+    "fingerprint": {
+      "interactionModel": "chat-modal-message-input",
+      "visualModel": "floating-support-chat-widget",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-support-chat"
+    }
+  },
+  "url": "https://openui.dev/r/realtime-chat-widget.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Chat Modal Message Input: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-scroll-feature-showcase",
+  "type": "registry:layout",
+  "title": "Split Scroll Feature Showcase",
+  "description": "Marketing feature showcase with sticky illustrative canvas on left and sequential scrolling feature steps on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-scroll-feature-showcase.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "feature",
+    "showcase",
+    "sticky",
+    "scroll",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "sticky-graphic-scroll-steps",
+      "visualModel": "pin-on-scroll-showcase",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-feature-scroll",
+      "semanticPurpose": "feature-walkthrough-split"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

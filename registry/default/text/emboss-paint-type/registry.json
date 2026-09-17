@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "emboss-paint-type",
+  "type": "registry:text",
+  "title": "Emboss Paint Type",
+  "description": "Letterpress typography built from four stacked text-shadow layers on a single element — no images, no SVG — with the layer offsets derived from one custom property so the depth is themeable.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "emboss-paint-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "emboss",
+    "letterpress",
+    "shadow",
+    "paint"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "multi-shadow-paint",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

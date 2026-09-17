@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gesture-swipe-carousel",
+  "type": "registry:interaction",
+  "title": "Gesture Swipe Carousel",
+  "description": "A touch and pointer draggable item reel featuring momentum deceleration and discrete snapping indices.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gesture-swipe-carousel.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "carousel",
+    "swipe",
+    "reel",
+    "momentum",
+    "touch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "horizontal-swipe-carousel",
+      "visualModel": "linear-reel-slides",
+      "motionModel": "indexed-slide-snap",
+      "layoutModel": "horizontal-carousel-track",
+      "semanticPurpose": "touch-carousel-slider"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

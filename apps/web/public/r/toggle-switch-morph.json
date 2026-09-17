@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toggle-switch-morph",
+  "type": "registry:interaction",
+  "title": "Toggle Switch Morph",
+  "description": "A binary switch button whose round thumb squashes into a wide capsule during drag travel before snapping.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toggle-switch-morph.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ToggleSwitchMorphProps {\n  className?: string;\n}\n\nexport function ToggleSwitchMorph({ className }: ToggleSwitchMorphProps) {\n  const [on, setOn] = useState(false);\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-3 rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">LIVE TRACING</span>\n      <div\n        onClick={() => setOn((o) => !o)}\n        className={cn(\n          \"relative h-8 w-16 cursor-pointer rounded-full border border-line p-1 transition-colors duration-200\",\n          on ? \"bg-ink border-ink\" : \"bg-line/20\"\n        )}\n      >\n        <div\n          className={cn(\n            \"h-6 rounded-full bg-paper shadow-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]\",\n            on ? \"w-6 translate-x-8\" : \"w-6 translate-x-0\"\n          )}\n        />\n      </div>\n    </div>\n  );\n}\n\nexport default ToggleSwitchMorph;\n",
+      "contentHash": "9e2c630d17e3f6c73436d6c46eaef71741fb700a655a091d34e3f66707342b56",
+      "sizeBytes": 1032
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ToggleSwitchMorph } from \"./toggle-switch-morph\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ToggleSwitchMorph />\n    </div>\n  );\n}\n",
+      "contentHash": "4b06310a2fb51e9b7b1e26d24bb7d49ca7069e64c37f087581bd290ce0f89905",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "toggle",
+    "switch",
+    "morph",
+    "capsule",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "morphing-thumb-toggle",
+      "visualModel": "elastic-capsule-chassis",
+      "motionModel": "squash-and-stretch-travel",
+      "layoutModel": "inline-pill-chassis",
+      "semanticPurpose": "morphing-binary-switch"
+    }
+  },
+  "url": "https://openui.dev/r/toggle-switch-morph.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Morphing Thumb Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

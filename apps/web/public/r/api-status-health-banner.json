@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-status-health-banner",
+  "type": "registry:section",
+  "title": "API Status Health Banner",
+  "description": "A real-time edge system status banner reporting uptime percentages, latency metrics, and recent incident logs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-status-health-banner.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RegionStatus {\n  region: string;\n  status: \"Operational\" | \"Degraded\" | \"Maintenance\";\n  latency: string;\n}\n\nexport interface ApiStatusHealthBannerProps extends React.HTMLAttributes<HTMLElement> {\n  systemUptime?: string;\n  regions?: RegionStatus[];\n}\n\nconst DEFAULT_REGIONS: RegionStatus[] = [\n  { region: \"US-East (N. Virginia)\", status: \"Operational\", latency: \"14ms\" },\n  { region: \"EU-West (Frankfurt)\", status: \"Operational\", latency: \"18ms\" },\n  { region: \"AP-East (Tokyo)\", status: \"Operational\", latency: \"22ms\" },\n  { region: \"SA-East (São Paulo)\", status: \"Operational\", latency: \"38ms\" },\n];\n\nexport function ApiStatusHealthBanner({\n  systemUptime = \"99.998%\",\n  regions = DEFAULT_REGIONS,\n  className,\n  ...props\n}: ApiStatusHealthBannerProps) {\n  return (\n    <section className={cn(\"w-full py-8 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"border border-neutral-800 bg-neutral-950 rounded-xl p-5 text-neutral-100 font-mono\">\n        <div className=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800\">\n          <div className=\"flex items-center gap-3\">\n            <span className=\"relative flex h-3 w-3\">\n              <span className=\"animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75\" />\n              <span className=\"relative inline-flex rounded-full h-3 w-3 bg-emerald-500\" />\n            </span>\n            <span className=\"text-sm font-bold text-white tracking-wide\">\n              All Systems Operational\n            </span>\n          </div>\n          <div className=\"text-xs text-neutral-400\">\n            90-Day Rolling Uptime: <span className=\"text-emerald-400 font-bold\">{systemUptime}</span>\n          </div>\n        </div>\n\n        <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-xs\">\n          {regions.map((r) => (\n            <div key={r.region} className=\"p-3 rounded bg-neutral-900/60 border border-neutral-800/80\">\n              <div className=\"text-[10px] text-neutral-400 uppercase tracking-wider\">{r.region}</div>\n              <div className=\"text-emerald-400 font-semibold mt-1\">{r.status}</div>\n              <div className=\"text-[10px] text-neutral-500 mt-0.5 font-mono\">{r.latency} p95</div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "9261ebb62853ee284fc96737d0decb2137801f5760826742e6ef47ebd0131c0c",
+      "sizeBytes": 2463
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ApiStatusHealthBanner } from \"./api-status-health-banner\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-900\">\n      <ApiStatusHealthBanner />\n    </div>\n  );\n}\n",
+      "contentHash": "418f56535502bc6b741cc0d8e3869ab4f33679fa996a091a85dda5fc5acc43d4",
+      "sizeBytes": 273
+    }
+  ],
+  "tags": [
+    "api",
+    "status",
+    "uptime",
+    "health",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "api-status-health-banner-interaction",
+      "visualModel": "api-status-health-banner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-status-health-banner-section"
+    }
+  },
+  "url": "https://openui.dev/r/api-status-health-banner.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Api Status Health Banner Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

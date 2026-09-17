@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-sandbox-preview",
+  "type": "registry:section",
+  "title": "Developer Sandbox Preview",
+  "description": "An interactive code previewer section with tabbed code and live view toggles.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-sandbox-preview.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "sandbox",
+    "preview",
+    "code",
+    "interactive",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "developer-sandbox-preview-interaction",
+      "visualModel": "developer-sandbox-preview-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "developer-sandbox-preview-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "technical"
+    }
+  }
+}

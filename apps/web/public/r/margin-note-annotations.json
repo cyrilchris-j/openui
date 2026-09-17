@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "margin-note-annotations",
+  "type": "registry:text",
+  "title": "Margin Note Annotations",
+  "description": "Body text with superscript markers that open notes in the outer margin on wide viewports and inline expanders on narrow ones — a responsive recomposition of the scholarly annotation, not just a hidden block.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "margin-note-annotations.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MarginNoteAnnotationsProps {\n  body: string;\n  notes: Array<{ marker: string; note: string }>;\n  className?: string;\n}\n\nexport function MarginNoteAnnotations({ body, notes, className }: MarginNoteAnnotationsProps) {\n  const [open, setOpen] = useState<string | null>(null);\n\n  const renderBody = () => {\n    const parts = body.split(/\\[(\\d+)\\]/);\n    return parts.map((part: string, index: number) => {\n      if (index % 2 === 1) {\n        const note = notes.find((entry: { marker: string; note: string }) => entry.marker === part);\n        if (!note) return <span key={index}>{part}</span>;\n        return (\n          <button\n            key={index}\n            type=\"button\"\n            onClick={() => setOpen((current) => (current === part ? null : part))}\n            aria-expanded={open === part}\n            className=\"align-super text-xs font-semibold text-accent\"\n          >\n            [{part}]\n          </button>\n        );\n      }\n      return <span key={index}>{part}</span>;\n    });\n  };\n\n  return (\n    <div className={cn(\"grid gap-6 lg:grid-cols-[1fr_16rem]\", className)}>\n      <div className=\"text-base leading-relaxed text-ink\">\n        {renderBody()}\n        {notes.map((note: { marker: string; note: string }) => (\n          <span key={note.marker} className=\"lg:hidden\">\n            {open === note.marker && (\n              <span className=\"mt-3 block rounded-md border border-line bg-paper p-3 text-sm\">\n                <strong className=\"text-accent\">[{note.marker}]</strong> {note.note}\n              </span>\n            )}\n          </span>\n        ))}\n      </div>\n      <aside className=\"hidden lg:block\">\n        {notes.map((note: { marker: string; note: string }) => (\n          <p\n            key={note.marker}\n            className={cn(\n              \"mb-4 border-l-2 pl-3 text-sm leading-relaxed transition-colors\",\n              open === note.marker ? \"border-accent text-ink\" : \"border-line text-ink/60\",\n            )}\n          >\n            <strong className=\"text-accent\">[{note.marker}]</strong> {note.note}\n          </p>\n        ))}\n      </aside>\n    </div>\n  );\n}\n\nexport default MarginNoteAnnotations;\n",
+      "contentHash": "482c6a25245a5b57c4da8dba8dbab5359deb67427e58ce42c7a2be0ae472b118",
+      "sizeBytes": 2245
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { MarginNoteAnnotations } from \"./margin-note-annotations\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[16rem] bg-paper p-10\">\n      <MarginNoteAnnotations\n        body=\"Registries outlive frameworks[1], so metadata must be portable[2] and boring on purpose[3].\"\n        notes={[\n          { marker: \"1\", note: \"Frameworks churn; files on disk persist.\" },\n          { marker: \"2\", note: \"JSON over magic imports.\" },\n          { marker: \"3\", note: \"Boring metadata is debuggable metadata.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "ed1ac2c551973d6dadf99b3fae97f51b07ce84a517cc49a04ebe04ebc8eb2451",
+      "sizeBytes": 567
+    }
+  ],
+  "tags": [
+    "marginalia",
+    "footnotes",
+    "responsive",
+    "scholarly"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "click-expand-note",
+      "visualModel": "margin-anchored-notes",
+      "motionModel": "grid-reflow",
+      "layoutModel": "two-column-margins",
+      "semanticPurpose": "annotation"
+    }
+  },
+  "url": "https://openui.dev/r/margin-note-annotations.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Click Expand Note: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

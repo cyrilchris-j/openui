@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "card-deck-tabs",
+  "type": "registry:layout",
+  "title": "Card Deck Tabs",
+  "description": "Tabbed container layout where tab triggers swap between neatly stacked card sheets.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "card-deck-tabs.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "deck",
+    "sheets",
+    "stack",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "tab-card-deck-swapping",
+      "visualModel": "stacked-tab-panels",
+      "motionModel": "none",
+      "layoutModel": "stacked-tab-sheet",
+      "semanticPurpose": "tabbed-card-workbench"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

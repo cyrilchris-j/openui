@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "minimalist-footer-spread",
+  "type": "registry:section",
+  "title": "Minimalist Footer Spread",
+  "description": "Complete site footer with brand declaration, categorical link columns, license metadata, and status beacon.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "minimalist-footer-spread.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MinimalistFooterSpreadProps extends React.HTMLAttributes<HTMLElement> {\n  brand?: string;\n}\n\nexport function MinimalistFooterSpread({\n  brand = \"OPENUI DESIGN REGISTRY\",\n  className,\n  ...props\n}: MinimalistFooterSpreadProps) {\n  return (\n    <footer className={cn(\"border-t border-line py-12 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink text-xs\", className)} {...props}>\n      <div className=\"grid grid-cols-2 md:grid-cols-4 gap-8 mb-10\">\n        <div>\n          <div className=\"font-mono font-bold text-sm mb-3\">{brand}</div>\n          <p className=\"text-ink/60 leading-relaxed\">Exact 800-resource master catalogue.</p>\n        </div>\n        <div>\n          <div className=\"font-bold mb-3 font-mono\">Domains</div>\n          <div className=\"space-y-1.5 text-ink/60\">\n            <div>Components</div>\n            <div>Text</div>\n            <div>Motion</div>\n          </div>\n        </div>\n        <div>\n          <div className=\"font-bold mb-3 font-mono\">Architecture</div>\n          <div className=\"space-y-1.5 text-ink/60\">\n            <div>Design DNA</div>\n            <div>Fingerprints</div>\n            <div>Validation</div>\n          </div>\n        </div>\n        <div>\n          <div className=\"font-bold mb-3 font-mono\">License</div>\n          <div className=\"space-y-1.5 text-ink/60\">\n            <div>MIT License</div>\n            <div>GitHub Repository</div>\n          </div>\n        </div>\n      </div>\n      <div className=\"pt-6 border-t border-line/60 flex flex-col sm:flex-row justify-between text-[11px] font-mono text-ink/50\">\n        <span>© 2026 OpenUI Project. Built with mathematical rigor.</span>\n        <span className=\"text-emerald-600 font-semibold\">● All Systems Nominal</span>\n      </div>\n    </footer>\n  );\n}\n",
+      "contentHash": "51c9e2969917572d13d711c77113be81c5fa831a740b9ec4c720572442c0d73c",
+      "sizeBytes": 1816
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { MinimalistFooterSpread } from \"./minimalist-footer-spread\";\n\nexport default function MinimalistFooterSpreadDemo() {\n  return <MinimalistFooterSpread />;\n}\n",
+      "contentHash": "d29238cff825551b322658bd7d5233408b46cc6d380faca2569830d3206aefef",
+      "sizeBytes": 179
+    }
+  ],
+  "tags": [
+    "footer",
+    "sitemap",
+    "links",
+    "brand",
+    "legal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "footer",
+    "fingerprint": {
+      "interactionModel": "footer-sitemap-navigation",
+      "visualModel": "four-column-footer-spread",
+      "motionModel": "none",
+      "layoutModel": "columnar-footer-layout",
+      "semanticPurpose": "site-terminal-footer"
+    }
+  },
+  "url": "https://openui.dev/r/minimalist-footer-spread.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Footer Sitemap Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

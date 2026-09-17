@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "soundwave-equalizer-bars",
+  "type": "registry:background",
+  "title": "Soundwave Equalizer Bars",
+  "description": "Vertical acoustic equalizer spectral frequency bars running along the bottom edge.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "soundwave-equalizer-bars.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SoundwaveEqualizerBarsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function SoundwaveEqualizerBars({ className, children, ...props }: SoundwaveEqualizerBarsProps) {\n  const bars = [25, 45, 60, 85, 95, 70, 50, 40, 65, 80, 55, 30, 45, 75, 90, 60, 40, 25, 35, 55];\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-x-0 bottom-0 h-32 flex items-end justify-center gap-1.5 px-6 pointer-events-none opacity-15 -z-10\">\n        {bars.map((h, i) => (\n          <div\n            key={i}\n            className=\"flex-1 bg-currentColor rounded-t-sm\"\n            style={{ height: `${h}%` }}\n          />\n        ))}\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "bce8ea57fd46e40deacc52373bba62bc4d1929326c200b0cc07e4a713a35ec2c",
+      "sizeBytes": 880
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { SoundwaveEqualizerBars } from \"./soundwave-equalizer-bars\";\n\nexport default function SoundwaveEqualizerBarsDemo() {\n  return (\n    <SoundwaveEqualizerBars className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Equalizer Spectrum</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Acoustic frequency spectrum band underlay.</p>\n      </div>\n    </SoundwaveEqualizerBars>\n  );\n}\n",
+      "contentHash": "4bbb0de9af0a8cd4306be44b0230742fdb68e424735e4c1d272994708f857cd5",
+      "sizeBytes": 601
+    }
+  ],
+  "tags": [
+    "soundwave",
+    "audio",
+    "equalizer",
+    "frequency",
+    "bars"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-audio-equalizer",
+      "visualModel": "vertical-spectrum-columns",
+      "motionModel": "none",
+      "layoutModel": "bottom-pinned-equalizer",
+      "semanticPurpose": "audio-spectrum-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/soundwave-equalizer-bars.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Audio Equalizer: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

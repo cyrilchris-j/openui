@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-magnetic-pill",
+  "type": "registry:interaction",
+  "title": "Hover Magnetic Pill",
+  "description": "A compact tag chip that shifts coordinates toward cursor proximity with elastic rubberband pull.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-magnetic-pill.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "pill",
+    "magnetic",
+    "tag",
+    "chip",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pill-proximity-tracking",
+      "visualModel": "elastic-badge-capsule",
+      "motionModel": "damped-attractor-displacement",
+      "layoutModel": "isolated-badge-slot",
+      "semanticPurpose": "magnetic-tag-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

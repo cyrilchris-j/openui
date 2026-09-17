@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-color-token-previewer",
+  "type": "registry:section",
+  "title": "Interactive Color Token Previewer",
+  "description": "An interactive color swatching utility allowing developers to visualize theme token overrides.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-color-token-previewer.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "colors",
+    "tokens",
+    "previewer",
+    "theme",
+    "design-system"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "design-system",
+    "fingerprint": {
+      "interactionModel": "interactive-color-token-previewer-interaction",
+      "visualModel": "interactive-color-token-previewer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "interactive-color-token-previewer-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "swiss"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "linear-gradient-mesh",
+  "type": "registry:background",
+  "title": "Linear Gradient Mesh",
+  "description": "Smooth 4-corner multi-radial CSS mesh gradient blend for soft colorful backdrop glow.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "linear-gradient-mesh.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface LinearGradientMeshProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function LinearGradientMesh({ className, children, ...props }: LinearGradientMeshProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-25 -z-10\"\n        style={{\n          background: `\n            radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.4) 0px, transparent 50%),\n            radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.4) 0px, transparent 50%),\n            radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.4) 0px, transparent 50%),\n            radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.4) 0px, transparent 50%)\n          `,\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "821a08c8453822ea60f4a8fc9b3dc8ee5b7e051b8fa243c3703d3d84378ec8cc",
+      "sizeBytes": 936
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { LinearGradientMesh } from \"./linear-gradient-mesh\";\n\nexport default function LinearGradientMeshDemo() {\n  return (\n    <LinearGradientMesh className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">4-Corner Mesh</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Multi-anchor radial chromatic blend.</p>\n      </div>\n    </LinearGradientMesh>\n  );\n}\n",
+      "contentHash": "0eb5c1c4d1baf16f79932a8796f7a1ddcefc7687c70a5a3abf3567019b972d49",
+      "sizeBytes": 570
+    }
+  ],
+  "tags": [
+    "mesh",
+    "gradient",
+    "colors",
+    "ambient",
+    "modern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-gradient-backdrop",
+      "visualModel": "four-corner-mesh-blend",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "modern-mesh-gradient"
+    }
+  },
+  "url": "https://openui.dev/r/linear-gradient-mesh.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: None\nTypography: Grotesk\nColor: Duotone\n\n## Rules\n\n- Passive Gradient Backdrop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "security-audit-trail-stream",
+  "type": "registry:section",
+  "title": "Security Audit Trail Stream",
+  "description": "An immutable telemetry log stream tracking access controls, key rotations, and compliance checks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "security-audit-trail-stream.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "security",
+    "audit",
+    "stream",
+    "telemetry",
+    "logs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "security-audit-trail-stream-interaction",
+      "visualModel": "security-audit-trail-stream-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "security-audit-trail-stream-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "dense",
+      "genre": "technical"
+    }
+  }
+}

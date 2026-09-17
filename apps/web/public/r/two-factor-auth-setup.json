@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-factor-auth-setup",
+  "type": "registry:block",
+  "title": "Two-Factor Auth Setup",
+  "description": "A time-based one-time password (TOTP) setup card featuring authenticator QR placeholder and verification code field.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-factor-auth-setup.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function TwoFactorAuthSetup({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [code, setCode] = React.useState(\"\");\n  const [verified, setVerified] = React.useState(false);\n\n  return (\n    <div className={cn(\"w-full max-w-lg mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-2\">Enable Two-Factor Auth (TOTP)</h3>\n      <p className=\"text-neutral-500 mb-6\">Scan the QR code with 1Password, Google Authenticator, or Apple Passwords.</p>\n\n      <div className=\"h-32 w-32 mx-auto bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center font-mono text-neutral-400 text-[10px] mb-6\">\n        [QR CODE PLACEHOLDER]\n      </div>\n\n      {!verified ? (\n        <div className=\"space-y-3\">\n          <input\n            type=\"text\"\n            maxLength={6}\n            value={code}\n            onChange={(e) => setCode(e.target.value)}\n            placeholder=\"Enter 6-digit code\"\n            className=\"w-full text-center tracking-widest font-mono text-sm py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n          />\n          <button\n            type=\"button\"\n            onClick={() => code.length === 6 && setVerified(true)}\n            className=\"w-full py-2 bg-emerald-600 text-white font-semibold rounded-lg\"\n          >\n            Verify & Activate 2FA\n          </button>\n        </div>\n      ) : (\n        <div className=\"text-center p-3 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 font-bold\">\n          ✓ Two-Factor Authentication Activated!\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "contentHash": "b9360d3c6beee74d464033088290dd61d02c0e2d577b35fc9d66549d7f3beb36",
+      "sizeBytes": 1918
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { TwoFactorAuthSetup } from \"./two-factor-auth-setup\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <TwoFactorAuthSetup />\n    </div>\n  );\n}\n",
+      "contentHash": "f5a29e33e1e32a067a04c112785c135cb958085be4ad7e77ab6cea70a11ca78b",
+      "sizeBytes": 284
+    }
+  ],
+  "tags": [
+    "2fa",
+    "totp",
+    "security",
+    "mfa",
+    "auth"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "auth",
+    "fingerprint": {
+      "interactionModel": "totp-code-verification-setup",
+      "visualModel": "two-factor-authenticator-card",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "mfa-security-provisioning"
+    }
+  },
+  "url": "https://openui.dev/r/two-factor-auth-setup.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Totp Code Verification Setup: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

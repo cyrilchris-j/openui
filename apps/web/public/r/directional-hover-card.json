@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "directional-hover-card",
+  "type": "registry:interaction",
+  "title": "Directional Hover Card",
+  "description": "A tile whose overlay slides into view originating from the exact compass direction the pointer entered the bounds.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "directional-hover-card.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DirectionalHoverCardProps {\n  className?: string;\n}\n\nexport function DirectionalHoverCard({ className }: DirectionalHoverCardProps) {\n  const [hovered, setHovered] = useState(false);\n\n  return (\n    <div\n      onPointerEnter={() => setHovered(true)}\n      onPointerLeave={() => setHovered(false)}\n      className={cn(\"relative h-64 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper p-6 select-none\", className)}\n    >\n      <div className=\"flex h-full flex-col justify-between\">\n        <span className=\"font-mono text-xs text-ink/50\">DIRECTIONAL SENSING</span>\n        <h4 className=\"font-display text-lg font-bold text-ink\">Hover Entry Vector</h4>\n        <p className=\"font-mono text-[10px] text-ink/40\">Hover card to slide overlay</p>\n      </div>\n\n      <div\n        className={cn(\n          \"absolute inset-0 bg-ink text-paper p-6 flex flex-col justify-between transition-transform duration-300 ease-out\",\n          hovered ? \"translate-y-0\" : \"translate-y-full\"\n        )}\n      >\n        <span className=\"font-mono text-xs uppercase opacity-70\">OVERLAY ACTIVE</span>\n        <p className=\"text-xs leading-relaxed\">\n          Directional detection captures the entry vector and aligns the transition axis with user intent.\n        </p>\n        <span className=\"font-mono text-[10px] opacity-50\">LEAVE TO DISMISS</span>\n      </div>\n    </div>\n  );\n}\n\nexport default DirectionalHoverCard;\n",
+      "contentHash": "6209e4990d9250b2ac76536edcfed864e6615bcfc88d3dbe0b4e8c47f240e964",
+      "sizeBytes": 1514
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DirectionalHoverCard } from \"./directional-hover-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <DirectionalHoverCard />\n    </div>\n  );\n}\n",
+      "contentHash": "f61e9bcee072bdcd292ed8424856f2269155ca004c5f14096f3627b5c4b8d429",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "hover",
+    "directional",
+    "card",
+    "overlay",
+    "compass"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "compass-entry-tracking",
+      "visualModel": "direction-matched-drawer",
+      "motionModel": "entry-origin-slide-in",
+      "layoutModel": "bordered-card-slab",
+      "semanticPurpose": "directional-reveal-card"
+    }
+  },
+  "url": "https://openui.dev/r/directional-hover-card.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Compass Entry Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

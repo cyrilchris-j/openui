@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cybernetic-hex-shield",
+  "type": "registry:background",
+  "title": "Cybernetic Hex Shield",
+  "description": "Futuristic energy deflector force field shield with glowing cyan hexagonal barrier tiles.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cybernetic-hex-shield.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CyberneticHexShieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CyberneticHexShield({ className, children, ...props }: CyberneticHexShieldProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-cyan-400 overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-25 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"shield-hex\" width=\"40\" height=\"34.64\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"10,0 30,0 40,17.32 30,34.64 10,34.64 0,17.32\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#shield-hex)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "01b5d27774d9c26d26a44239295bcb67b84eb38dffdd06299d819186ea49b41e",
+      "sizeBytes": 922
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CyberneticHexShield } from \"./cybernetic-hex-shield\";\n\nexport default function CyberneticHexShieldDemo() {\n  return (\n    <CyberneticHexShield className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-cyan-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-cyan-400\">Force Field Shield</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Honeycomb deflector kinetic energy barrier.</p>\n      </div>\n    </CyberneticHexShield>\n  );\n}\n",
+      "contentHash": "24784d40d6ae9896f729e0f8645d28183cb2c09d867dae56aa2ddf6e9dbb0c0c",
+      "sizeBytes": 601
+    }
+  ],
+  "tags": [
+    "shield",
+    "scifi",
+    "forcefield",
+    "hex",
+    "cyber"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-deflector-shield",
+      "visualModel": "hexagonal-energy-barrier",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "energy-shield-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/cybernetic-hex-shield.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Deflector Shield: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

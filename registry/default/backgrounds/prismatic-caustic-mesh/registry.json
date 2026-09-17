@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "prismatic-caustic-mesh",
+  "type": "registry:background",
+  "title": "Prismatic Caustic Mesh",
+  "description": "Chromatic optical glass caustic refractions separating into spectral rainbow beams.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "prismatic-caustic-mesh.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "caustic",
+    "prismatic",
+    "optics",
+    "rainbow",
+    "glass"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-glass-caustics",
+      "visualModel": "prismatic-chromatic-refraction",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "crystal-caustics-layer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

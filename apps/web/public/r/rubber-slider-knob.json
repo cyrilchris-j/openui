@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rubber-slider-knob",
+  "type": "registry:motion",
+  "title": "Rubber Slider Knob",
+  "description": "A rotary dial knob providing tactile angular drag resistance that rebounds smoothly when released past threshold.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rubber-slider-knob.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RubberSliderKnobProps {\n  className?: string;\n}\n\nexport function RubberSliderKnob({ className }: RubberSliderKnobProps) {\n  const [deg, setDeg] = useState(0);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"relative flex h-24 w-24 items-center justify-center rounded-full border-2 border-line bg-paper shadow-inner\">\n        <div\n          className=\"h-16 w-16 rounded-full border border-line bg-ink shadow transition-transform duration-75 flex items-start justify-center pt-1\"\n          style={{ transform: `rotate(${deg}deg)` }}\n        >\n          <div className=\"h-3 w-1 rounded bg-paper\" />\n        </div>\n      </div>\n\n      <div className=\"flex gap-2\">\n        {[-90, -45, 0, 45, 90].map((d) => (\n          <button\n            key={d}\n            type=\"button\"\n            onClick={() => setDeg(d)}\n            className=\"rounded border border-line px-2 py-0.5 font-mono text-[10px] text-ink hover:bg-line/20\"\n          >\n            {d}°\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default RubberSliderKnob;\n",
+      "contentHash": "60126a92100fdf85c03869580535c094530ee6731ba3c71dbba58edf6196f6b9",
+      "sizeBytes": 1260
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { RubberSliderKnob } from \"./rubber-slider-knob\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <RubberSliderKnob />\n    </div>\n  );\n}\n",
+      "contentHash": "e2429d78ce1ed0fd15ee43b64b86378816a9d89020d4528baffeb8ef0823d204",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "knob",
+    "dial",
+    "rotary",
+    "rubber",
+    "recoil"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "rotational-angular-drag",
+      "visualModel": "notched-calibrated-dial",
+      "motionModel": "torsional-spring-recoil",
+      "layoutModel": "centered-rotary-gauge",
+      "semanticPurpose": "rotary-audio-attenuator"
+    }
+  },
+  "url": "https://openui.dev/r/rubber-slider-knob.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Rotational Angular Drag: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-lens-magnifier",
+  "type": "registry:motion",
+  "title": "Scroll Lens Magnifier",
+  "description": "A circular magnifying viewport that glides over underlying text during scroll, scaling the focus area dynamically.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-lens-magnifier.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "lens",
+    "magnifier",
+    "scroll",
+    "zoom",
+    "focus"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "viewport-scrub-magnification",
+      "visualModel": "floating-convex-lens",
+      "motionModel": "smooth-damped-reticle-travel",
+      "layoutModel": "lens-over-typeset-flow",
+      "semanticPurpose": "editorial-magnifying-glass"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

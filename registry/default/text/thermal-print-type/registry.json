@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "thermal-print-type",
+  "type": "registry:text",
+  "title": "Thermal Print Type",
+  "description": "Text emerges as if printed by a receipt printer: a hard clip line sweeps downward in steps while a dither mask fades in behind it, with the characteristic slight horizontal jitter of a misaligned head.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "thermal-print-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "thermal",
+    "receipt",
+    "dither",
+    "print"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "clip-line-plus-dither",
+      "motionModel": "stepped-sweep",
+      "layoutModel": "block",
+      "semanticPurpose": "narrative-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

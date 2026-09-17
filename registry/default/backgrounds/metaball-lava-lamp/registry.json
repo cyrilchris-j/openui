@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "metaball-lava-lamp",
+  "type": "registry:background",
+  "title": "Metaball Lava Lamp",
+  "description": "Rising and falling viscous wax liquid metaball blobs floating smoothly inside a heated column.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "metaball-lava-lamp.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "lava",
+    "metaball",
+    "canvas",
+    "wax",
+    "fluid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-lava",
+      "visualModel": "buoyant-wax-droplets",
+      "motionModel": "convective-thermal-buoyancy",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "lava-lamp-ambiance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

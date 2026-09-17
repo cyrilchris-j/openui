@@ -7,13 +7,27 @@
   "category": "themes",
   "dependencies": [],
   "registryDependencies": [],
-  "files": [{ "path": "industrial-mono.css", "type": "registry:theme", "target": "styles" }],
-  "tags": ["theme", "industrial", "dark"],
+  "files": [
+    {
+      "path": "industrial-mono.css",
+      "type": "registry:theme",
+      "target": "styles"
+    }
+  ],
+  "tags": [
+    "theme",
+    "industrial",
+    "dark"
+  ],
   "license": "MIT",
   "designSystem": "industrial-archive",
   "meta": {
     "difficulty": "starter",
-    "features": ["dark-first", "wcag-aa", "monospace"],
+    "features": [
+      "dark-first",
+      "wcag-aa",
+      "monospace"
+    ],
     "dna": {
       "genre": "industrial",
       "macrostructure": "mosaic",
@@ -22,6 +36,13 @@
       "motionLanguage": "mechanical",
       "typographyStyle": "monospace",
       "colorStrategy": "neon-on-dark"
+    },
+    "subcategory": "palette",
+    "fingerprint": {
+      "interactionModel": "terminal-contrast-tokens",
+      "visualModel": "monochrome-cad-slate-palette",
+      "layoutModel": "css-token-bundle",
+      "semanticPurpose": "industrial-theme-definition"
     }
   }
 }

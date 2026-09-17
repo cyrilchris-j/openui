@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-deep-dive-split",
+  "type": "registry:section",
+  "title": "Feature Deep Dive Split",
+  "description": "A two-sided feature spotlight pairing technical bullet points with interactive code mockups.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-deep-dive-split.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function FeatureDeepDiveSplit({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"grid grid-cols-1 md:grid-cols-12 gap-8 items-center\">\n        <div className=\"md:col-span-6\">\n          <span className=\"text-xs font-mono uppercase text-emerald-500 font-bold\">Deep Dive</span>\n          <h2 className=\"text-2xl md:text-3xl font-bold text-neutral-900 dark:text-neutral-100 mt-2\">\n            Zero-Runtime Design Invariants\n          </h2>\n          <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed\">\n            Every component declares strict constraints for typography, color strategy, and macrostructure to guarantee visual harmony across large teams.\n          </p>\n        </div>\n        <div className=\"md:col-span-6 p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 font-mono text-xs text-neutral-600 dark:text-neutral-300\">\n          [Verified Design DNA: 100% Type-Safe Contracts]\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "ec6728f1c36be378d59989acdff907d4ba9ac4b351eff36d3c5a92cd0061bbcc",
+      "sizeBytes": 1251
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { FeatureDeepDiveSplit } from \"./feature-deep-dive-split\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-white dark:bg-neutral-950\">\n      <FeatureDeepDiveSplit />\n    </div>\n  );\n}\n",
+      "contentHash": "35153237b084d3441c3710a499a76101544ed80d89b90a5963068469fd9af85f",
+      "sizeBytes": 284
+    }
+  ],
+  "tags": [
+    "feature",
+    "deep-dive",
+    "split",
+    "spotlight",
+    "specs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "feature-deep-dive-split-interaction",
+      "visualModel": "feature-deep-dive-split-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "feature-deep-dive-split-section"
+    }
+  },
+  "url": "https://openui.dev/r/feature-deep-dive-split.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Feature Deep Dive Split Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

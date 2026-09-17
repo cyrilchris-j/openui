@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ecommerce-checkout-wizard",
+  "type": "registry:block",
+  "title": "E-commerce Checkout Wizard",
+  "description": "A three-phase transaction wizard covering shipping address, payment method selection, and itemized order summary.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ecommerce-checkout-wizard.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "checkout",
+    "ecommerce",
+    "wizard",
+    "payment",
+    "cart"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "stepper-form-checkout-validation",
+      "visualModel": "cart-and-payment-summary-wizard",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "transactional-checkout-flow"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

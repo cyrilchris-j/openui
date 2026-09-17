@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "master-detail-split",
+  "type": "registry:layout",
+  "title": "Master Detail Split",
+  "description": "Side-by-side master/detail split with entity list on left and selected record preview on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "master-detail-split.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "master-detail",
+    "split",
+    "records",
+    "list",
+    "preview"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "master-detail-list-inspection",
+      "visualModel": "dual-pane-record-preview",
+      "motionModel": "none",
+      "layoutModel": "two-column-split",
+      "semanticPurpose": "record-detail-workbench"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "letter-slot-machine",
+  "type": "registry:text",
+  "title": "Letter Slot Machine",
+  "description": "Each letter is a clipped vertical reel of the full alphabet; changing the value spins every reel through a different number of stops, so the word resolves left-to-right like a payline landing.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "letter-slot-machine.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "slot",
+    "reel",
+    "spin",
+    "value"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "value-change-trigger",
+      "visualModel": "clipped-column-reels",
+      "motionModel": "cyclic-strip-spin",
+      "layoutModel": "inline",
+      "semanticPurpose": "value-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

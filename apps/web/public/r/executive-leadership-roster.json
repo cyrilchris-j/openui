@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "executive-leadership-roster",
+  "type": "registry:section",
+  "title": "Executive Leadership Roster",
+  "description": "An organizational leadership card display showcasing founder portraits, credentials, and social links.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "executive-leadership-roster.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface Leader {\n  name: string;\n  role: string;\n  bio: string;\n  avatarLetter: string;\n}\n\nexport interface ExecutiveLeadershipRosterProps extends React.HTMLAttributes<HTMLElement> {\n  leaders?: Leader[];\n}\n\nconst DEFAULT_LEADERS: Leader[] = [\n  { name: \"Cyril Chris\", role: \"Principal Architect\", bio: \"Former distributed systems engineer building zero-dependency web infrastructure.\", avatarLetter: \"C\" },\n  { name: \"Elena Rostova\", role: \"Lead Design Systems\", bio: \"Pioneered automated mathematical token contracts and accessible UI primitives.\", avatarLetter: \"E\" },\n  { name: \"Marcus Vance\", role: \"Verification & Rigor\", bio: \"Specialized in compiler validation, property testing, and deterministic schemas.\", avatarLetter: \"M\" },\n];\n\nexport function ExecutiveLeadershipRoster({\n  leaders = DEFAULT_LEADERS,\n  className,\n  ...props\n}: ExecutiveLeadershipRosterProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-12\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-neutral-400 font-bold\">\n          Leadership Team\n        </span>\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n          Guiding OpenUI's architectural standard\n        </h2>\n      </div>\n\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">\n        {leaders.map((leader) => (\n          <div\n            key={leader.name}\n            className=\"p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex flex-col justify-between text-center\"\n          >\n            <div>\n              <div className=\"h-16 w-16 mx-auto rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 flex items-center justify-center text-xl font-bold mb-4\">\n                {leader.avatarLetter}\n              </div>\n              <h3 className=\"text-base font-bold text-neutral-900 dark:text-neutral-100\">\n                {leader.name}\n              </h3>\n              <div className=\"text-xs font-mono text-neutral-500 mt-0.5\">\n                {leader.role}\n              </div>\n              <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed\">\n                {leader.bio}\n              </p>\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "4456dad00a9984d65399f25104cbdef8251a8e84321feb19578c78a0e60defc5",
+      "sizeBytes": 2527
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ExecutiveLeadershipRoster } from \"./executive-leadership-roster\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <ExecutiveLeadershipRoster />\n    </div>\n  );\n}\n",
+      "contentHash": "2060b40db439523a31f92ddc43d01bfcee3ea5ddfef17eabda4452008765c6aa",
+      "sizeBytes": 306
+    }
+  ],
+  "tags": [
+    "team",
+    "leadership",
+    "executives",
+    "founders",
+    "roster"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "team",
+    "fingerprint": {
+      "interactionModel": "executive-leadership-roster-interaction",
+      "visualModel": "executive-leadership-roster-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "executive-leadership-roster-section"
+    }
+  },
+  "url": "https://openui.dev/r/executive-leadership-roster.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Executive Leadership Roster Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

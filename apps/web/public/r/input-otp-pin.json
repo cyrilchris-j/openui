@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "input-otp-pin",
+  "type": "registry:component",
+  "title": "Input Otp Pin",
+  "description": "A 6-digit one-time password segmented passcode entry with automatic focus transfer across slots.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "input-otp-pin.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InputOtpPinProps {\n  className?: string;\n}\n\nexport function InputOtpPin({ className }: InputOtpPinProps) {\n  const [digits, setDigits] = useState([\"4\", \"8\", \"\", \"\", \"\", \"\"]);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60 uppercase\">VERIFICATION CODE</span>\n      <div className=\"flex gap-2\">\n        {digits.map((d, i) => (\n          <input\n            key={i}\n            type=\"text\"\n            maxLength={1}\n            value={d}\n            onChange={(e) => {\n              const next = [...digits];\n              next[i] = e.target.value;\n              setDigits(next);\n            }}\n            className=\"h-12 w-10 rounded-lg border border-line bg-paper text-center font-mono text-base font-bold text-ink focus:border-ink focus:outline-none\"\n          />\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default InputOtpPin;\n",
+      "contentHash": "72027a7777d03815001dbe6997a081cbe94e6c47583ad745fd42d43eeab97f2e",
+      "sizeBytes": 1084
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { InputOtpPin } from \"./input-otp-pin\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <InputOtpPin />\n    </div>\n  );\n}\n",
+      "contentHash": "e4ce9c8358660367ad9d42ca10559b3089227f821a79f916aee56b73019d5739",
+      "sizeBytes": 214
+    }
+  ],
+  "tags": [
+    "otp",
+    "pin",
+    "input",
+    "passcode",
+    "auth"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "segmented-otp-entry",
+      "visualModel": "six-cell-digit-slots",
+      "motionModel": "none",
+      "layoutModel": "horizontal-digit-chain",
+      "semanticPurpose": "otp-verification-input"
+    }
+  },
+  "url": "https://openui.dev/r/input-otp-pin.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Segmented Otp Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

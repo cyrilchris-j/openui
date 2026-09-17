@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "timeline-roadmap-stream",
+  "type": "registry:section",
+  "title": "Timeline Roadmap Stream",
+  "description": "Product roadmap stream showing past milestones achieved and upcoming releases.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "timeline-roadmap-stream.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "roadmap",
+    "timeline",
+    "milestones",
+    "releases",
+    "stream"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "roadmap",
+    "fingerprint": {
+      "interactionModel": "quarterly-roadmap-inspection",
+      "visualModel": "timeline-rail-milestones",
+      "motionModel": "none",
+      "layoutModel": "vertical-roadmap-rail",
+      "semanticPurpose": "product-roadmap-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

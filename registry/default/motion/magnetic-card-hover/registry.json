@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-card-hover",
+  "type": "registry:motion",
+  "title": "Magnetic Card Hover",
+  "description": "An elevation card that lifts and casts dynamic cast shadows while floating softly toward cursor position.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-card-hover.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "card",
+    "hover",
+    "shadow",
+    "magnetic",
+    "lift"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "hover-elevation-float",
+      "visualModel": "floating-surface-shadow",
+      "motionModel": "z-elevation-shadow-drift",
+      "layoutModel": "center-floating-slab",
+      "semanticPurpose": "tactile-card-elevation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

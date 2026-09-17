@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stroke-draw-text",
+  "type": "registry:text",
+  "title": "Stroke Draw Text",
+  "description": "An SVG path rendition of the headline whose strokes draw themselves via stroke-dashoffset on entering view; the DOM text stays present for accessibility while the drawn paths carry the visual.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "stroke-draw-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "svg",
+    "stroke",
+    "draw",
+    "handwriting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "svg-path-stroke",
+      "motionModel": "dash-offset-draw",
+      "layoutModel": "inline",
+      "semanticPurpose": "signature-reveal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-pull-card",
+  "type": "registry:interaction",
+  "title": "Elastic Pull Card",
+  "description": "A tethered specimen card that stretches from its anchor point with rubberband tension before snapping back.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-pull-card.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "card",
+    "pull",
+    "elastic",
+    "tension",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "tethered-pull-rebound",
+      "visualModel": "taut-elastic-slab",
+      "motionModel": "hookean-spring-restitution",
+      "layoutModel": "center-anchored-card",
+      "semanticPurpose": "tactile-pull-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-editor-diff-viewer",
+  "type": "registry:layout",
+  "title": "Split Editor Diff Viewer",
+  "description": "Side-by-side code diff viewer layout with line number gutters and addition/deletion styling.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-editor-diff-viewer.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitEditorDiffViewerProps extends React.HTMLAttributes<HTMLDivElement> {\n  original?: React.ReactNode;\n  modified?: React.ReactNode;\n}\n\nexport function SplitEditorDiffViewer({ original, modified, className, ...props }: SplitEditorDiffViewerProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 w-full border border-line rounded-xl overflow-hidden font-mono text-xs bg-paper\", className)} {...props}>\n      <div className=\"p-4 border-b md:border-b-0 md:border-r border-line bg-red-500/5\">{original}</div>\n      <div className=\"p-4 bg-emerald-500/5\">{modified}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "75d731c61f7e51cce76f30d711a5bce878b8cc1540dbe4776d893815eeaf43c2",
+      "sizeBytes": 670
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitEditorDiffViewer } from \"./split-editor-diff-viewer\";\n\nexport default function SplitEditorDiffViewerDemo() {\n  return (\n    <SplitEditorDiffViewer\n      original={<div>- const version = \"0.9.4\";</div>}\n      modified={<div>+ const version = \"1.0.0\";</div>}\n    />\n  );\n}\n",
+      "contentHash": "954bead393028835f7456ec78045c3e4e39ba7810eeeb47caef912cf61305a97",
+      "sizeBytes": 300
+    }
+  ],
+  "tags": [
+    "diff",
+    "git",
+    "editor",
+    "code",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "diff-line-gutter-inspection",
+      "visualModel": "dual-pane-diff-viewer",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-code-diff",
+      "semanticPurpose": "code-diff-inspection-stage"
+    }
+  },
+  "url": "https://openui.dev/r/split-editor-diff-viewer.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Diff Line Gutter Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

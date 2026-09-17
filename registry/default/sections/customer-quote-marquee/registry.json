@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-quote-marquee",
+  "type": "registry:section",
+  "title": "Customer Quote Marquee",
+  "description": "A continuous sliding ribbon of authentic customer reviews and developer commendations.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-quote-marquee.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "marquee",
+    "quotes",
+    "reviews",
+    "social-proof",
+    "ribbon"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "testimonials",
+    "fingerprint": {
+      "interactionModel": "customer-quote-marquee-interaction",
+      "visualModel": "customer-quote-marquee-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "customer-quote-marquee-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

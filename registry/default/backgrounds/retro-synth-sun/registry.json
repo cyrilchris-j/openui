@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "retro-synth-sun",
+  "type": "registry:background",
+  "title": "Retro Synth Sun",
+  "description": "Classic 80s outrun synthwave sun silhouette with horizontal sliced blind cutouts.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "retro-synth-sun.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "synthwave",
+    "sun",
+    "retro",
+    "80s",
+    "outrun"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-outrun-sun",
+      "visualModel": "sliced-horizontal-sun-disc",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "synthwave-sunset-disc"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

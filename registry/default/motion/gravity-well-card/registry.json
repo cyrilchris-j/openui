@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gravity-well-card",
+  "type": "registry:motion",
+  "title": "Gravity Well Card",
+  "description": "An interactive card where orbital canvas particles accelerate inward toward the pointer like miniature stellar matter.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gravity-well-card.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "gravity",
+    "physics",
+    "particles",
+    "canvas",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "pointer-orbital-attraction",
+      "visualModel": "newtonian-particle-mesh",
+      "motionModel": "gravitational-inverse-square",
+      "layoutModel": "card-centered-canvas",
+      "semanticPurpose": "astronomy-physics-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

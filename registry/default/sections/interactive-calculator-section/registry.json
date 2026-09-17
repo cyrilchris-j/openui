@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-calculator-section",
+  "type": "registry:section",
+  "title": "Interactive Calculator Section",
+  "description": "ROI developer hours savings calculator with interactive team size slider and live annual savings output.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-calculator-section.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "calculator",
+    "roi",
+    "savings",
+    "interactive",
+    "slider"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "calculator",
+    "fingerprint": {
+      "interactionModel": "roi-slider-calculation",
+      "visualModel": "input-slider-and-savings-kpi",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-calculator-section",
+      "semanticPurpose": "roi-savings-estimator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

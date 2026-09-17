@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "social-proof-logo-cloud",
+  "type": "registry:section",
+  "title": "Social Proof Logo Cloud",
+  "description": "Monochromatic partner/customer logo cloud with trust header and active installation count.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "social-proof-logo-cloud.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "logos",
+    "partners",
+    "social-proof",
+    "trust",
+    "brands"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "social-proof",
+    "fingerprint": {
+      "interactionModel": "passive-brand-cloud",
+      "visualModel": "monochromatic-logo-ribbon",
+      "motionModel": "none",
+      "layoutModel": "horizontal-partner-strip",
+      "semanticPurpose": "client-trust-showcase"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

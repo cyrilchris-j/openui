@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-diagonal-gallery",
+  "type": "registry:layout",
+  "title": "Hero Diagonal Gallery",
+  "description": "Skewed ribbon of rotated image cards drifting diagonally behind landing hero typography.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-diagonal-gallery.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HeroDiagonalGalleryProps extends React.HTMLAttributes<HTMLDivElement> {\n  headline?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function HeroDiagonalGallery({ headline, children, className, ...props }: HeroDiagonalGalleryProps) {\n  return (\n    <div className={cn(\"relative min-h-[360px] w-full rounded-2xl border border-line bg-paper overflow-hidden p-8 flex items-center font-sans\", className)} {...props}>\n      <div className=\"max-w-md z-10\">{headline}</div>\n      <div className=\"absolute right-0 top-0 bottom-0 w-1/2 flex gap-4 -rotate-12 translate-x-12 opacity-40 pointer-events-none\">\n        {children}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "fb151a053f1152e891fb84dd5a05c421af72d4dc681f762bfde0ead81c7003ac",
+      "sizeBytes": 721
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { HeroDiagonalGallery } from \"./hero-diagonal-gallery\";\n\nexport default function HeroDiagonalGalleryDemo() {\n  return (\n    <HeroDiagonalGallery\n      headline={\n        <div className=\"space-y-2\">\n          <h1 className=\"text-xl font-bold text-ink\">Modern Component Architecture</h1>\n          <p className=\"text-xs text-ink/70\">800 unique resources categorized into 8 domains.</p>\n        </div>\n      }\n    >\n      <div className=\"w-32 h-64 rounded-xl border border-line bg-surface/80 shrink-0\" />\n      <div className=\"w-32 h-64 rounded-xl border border-line bg-surface/80 shrink-0\" />\n    </HeroDiagonalGallery>\n  );\n}\n",
+      "contentHash": "fcb0e36a0b3cb6354f89b9b9f3ffb46916f9b24d41d2c69eae9d916b15ac9561",
+      "sizeBytes": 647
+    }
+  ],
+  "tags": [
+    "hero",
+    "diagonal",
+    "gallery",
+    "ribbon",
+    "skew"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "diagonal-ribbon-hero",
+      "visualModel": "skewed-image-stream-hero",
+      "motionModel": "none",
+      "layoutModel": "skewed-strip-underlay",
+      "semanticPurpose": "cinematic-diagonal-hero"
+    }
+  },
+  "url": "https://openui.dev/r/hero-diagonal-gallery.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Split\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Diagonal Ribbon Hero: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

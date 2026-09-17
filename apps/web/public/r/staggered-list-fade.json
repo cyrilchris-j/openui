@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-list-fade",
+  "type": "registry:motion",
+  "title": "Staggered List Fade",
+  "description": "A cascade of record items fading and sliding sequentially into position upon trigger with incremental delays.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-list-fade.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StaggeredListFadeProps {\n  className?: string;\n}\n\nexport function StaggeredListFade({ className }: StaggeredListFadeProps) {\n  const [visible, setVisible] = useState(true);\n  const items = [\"Production Cluster Alpha\", \"Replica Set Frankfurt\", \"Edge CDN Workers\", \"Database Secondary\"];\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-5 shadow-sm\", className)}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-line mb-3\">\n        <span className=\"font-mono text-xs text-ink/60\">INFRASTRUCTURE</span>\n        <button\n          type=\"button\"\n          onClick={() => {\n            setVisible(false);\n            setTimeout(() => setVisible(true), 150);\n          }}\n          className=\"font-mono text-[10px] text-ink hover:underline\"\n        >\n          Reload\n        </button>\n      </div>\n\n      <div className=\"space-y-2\">\n        {items.map((item, idx) => (\n          <div\n            key={item}\n            className={cn(\n              \"rounded-lg border border-line bg-line/10 p-3 font-mono text-xs text-ink transition-all duration-300\",\n              visible ? \"opacity-100 translate-y-0\" : \"opacity-0 translate-y-3\"\n            )}\n            style={{ transitionDelay: `${idx * 60}ms` }}\n          >\n            {item}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default StaggeredListFade;\n",
+      "contentHash": "44b598b80b3393f6079addddf30be74e9631d2e37fd0723481f7dd38754a40c7",
+      "sizeBytes": 1493
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { StaggeredListFade } from \"./staggered-list-fade\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <StaggeredListFade />\n    </div>\n  );\n}\n",
+      "contentHash": "1fb6b84d044f87953156830617fa8ce2350acd8a8ec8aab6c8f51dac38c5838d",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "list",
+    "stagger",
+    "fade",
+    "entrance",
+    "cascade"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "viewport-stagger-fade",
+      "visualModel": "sequential-record-stack",
+      "motionModel": "incremental-delay-translation",
+      "layoutModel": "vertical-stacked-records",
+      "semanticPurpose": "content-feed-staggerer"
+    }
+  },
+  "url": "https://openui.dev/r/staggered-list-fade.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Viewport Stagger Fade: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

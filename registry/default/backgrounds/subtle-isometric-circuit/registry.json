@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "subtle-isometric-circuit",
+  "type": "registry:background",
+  "title": "Subtle Isometric Circuit",
+  "description": "Axonometric electronic circuit bus with three-dimensional perspective traces.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "subtle-isometric-circuit.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "isometric",
+    "circuit",
+    "pcb",
+    "axonometric",
+    "hardware"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-isometric-circuit",
+      "visualModel": "axonometric-pcb-traces",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "isometric-circuit-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "calendar-month-grid",
+  "type": "registry:layout",
+  "title": "Calendar Month Grid",
+  "description": "Seven-column calendar monthly schedule matrix with weekday header row and date cells.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "calendar-month-grid.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "calendar",
+    "schedule",
+    "month",
+    "grid",
+    "planner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "monthly-calendar-cell-inspection",
+      "visualModel": "seven-column-day-matrix",
+      "motionModel": "none",
+      "layoutModel": "seven-column-calendar-grid",
+      "semanticPurpose": "monthly-schedule-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

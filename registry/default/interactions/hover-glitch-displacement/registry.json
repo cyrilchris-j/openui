@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-glitch-displacement",
+  "type": "registry:interaction",
+  "title": "Hover Glitch Displacement",
+  "description": "An image surface that triggers chromatic aberration and horizontal slice displacements under pointer interaction.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-glitch-displacement.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "glitch",
+    "displacement",
+    "hover",
+    "aberration",
+    "cyberpunk"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-glitch-activation",
+      "visualModel": "rgb-split-scanlines",
+      "motionModel": "pseudo-random-slice-jitter",
+      "layoutModel": "isolated-glitch-viewport",
+      "semanticPurpose": "cypherpunk-glitch-surface"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "symmetric",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

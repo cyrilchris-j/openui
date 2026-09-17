@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "crm-customer-contact-card",
+  "type": "registry:block",
+  "title": "CRM Customer Contact Card",
+  "description": "A customer relationship management overview featuring deal pipeline status, company info, and call log notes.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "crm-customer-contact-card.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "crm",
+    "customer",
+    "contact",
+    "deals",
+    "sales"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "crm",
+    "fingerprint": {
+      "interactionModel": "deal-pipeline-stage-selection",
+      "visualModel": "customer-dossier-card",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "crm-contact-record"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

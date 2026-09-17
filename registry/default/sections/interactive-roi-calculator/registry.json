@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-roi-calculator",
+  "type": "registry:section",
+  "title": "Interactive ROI Calculator",
+  "description": "A dynamic financial modeling calculator with interactive sliders for engineers, compute savings, and annual ROI projections.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-roi-calculator.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "calculator",
+    "roi",
+    "savings",
+    "finance",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "calculator",
+    "fingerprint": {
+      "interactionModel": "interactive-roi-calculator-interaction",
+      "visualModel": "interactive-roi-calculator-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "interactive-roi-calculator-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "technical"
+    }
+  }
+}

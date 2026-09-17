@@ -5,15 +5,34 @@
   "title": "Scroll Reveal",
   "description": "IntersectionObserver reveal with staggered children, one observer per instance, unobserve-on-reveal, and a reduced-motion path that shows content immediately.",
   "category": "motion",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "scroll-reveal.tsx", "type": "registry:motion" }],
-  "tags": ["scroll", "reveal", "intersection-observer"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-reveal.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "reveal",
+    "intersection-observer"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["reduced-motion-safe", "no-layout-shift", "one-shot"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "reduced-motion-safe",
+      "no-layout-shift",
+      "one-shot"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "editorial",
       "macrostructure": "asymmetric",
@@ -22,6 +41,14 @@
       "motionLanguage": "subtle",
       "typographyStyle": "grotesk",
       "colorStrategy": "monochrome"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "intersection-threshold-trigger",
+      "visualModel": "mask-unclip-rise",
+      "motionModel": "staggered-vertical-lift",
+      "layoutModel": "flow-child-wrapper",
+      "semanticPurpose": "story-entrance"
     }
   }
 }

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stagger-cascade",
+  "type": "registry:motion",
+  "title": "Stagger Cascade",
+  "description": "Child elements enter in sequence where each successive delay is computed from the previous child's actual animation end (not a fixed step) — cascades that stay correct even when children have different durations.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "stagger-cascade.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "stagger",
+    "cascade",
+    "sequence",
+    "entrance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "child-sequence-entrance",
+      "motionModel": "measured-chained-delays",
+      "layoutModel": "stack",
+      "semanticPurpose": "list-entrance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

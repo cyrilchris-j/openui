@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "support-faq-knowledge-hub",
+  "type": "registry:block",
+  "title": "Support FAQ Knowledge Hub",
+  "description": "A customer documentation support hub featuring categorized topic tiles and instant search filtering.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "support-faq-knowledge-hub.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "faq",
+    "support",
+    "knowledge-hub",
+    "help",
+    "docs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "support",
+    "fingerprint": {
+      "interactionModel": "knowledge-base-topic-navigation",
+      "visualModel": "categorized-faq-hub-grid",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "self-service-support-hub"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

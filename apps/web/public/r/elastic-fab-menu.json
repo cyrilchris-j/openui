@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-fab-menu",
+  "type": "registry:motion",
+  "title": "Elastic Fab Menu",
+  "description": "A floating action button erupting into a fan of child action buttons with spring overshoot upon toggle.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-fab-menu.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticFabMenuProps {\n  className?: string;\n}\n\nexport function ElasticFabMenu({ className }: ElasticFabMenuProps) {\n  const [open, setOpen] = useState(false);\n  const actions = [\"✎\", \"📎\", \"★\"];\n\n  return (\n    <div className={cn(\"relative h-64 w-full max-w-sm rounded-xl border border-line bg-paper p-6\", className)}>\n      <div className=\"absolute bottom-6 right-6 flex flex-col-reverse items-center gap-3\">\n        <button\n          type=\"button\"\n          onClick={() => setOpen((o) => !o)}\n          className={cn(\n            \"flex h-14 w-14 items-center justify-center rounded-full bg-ink text-xl text-paper shadow-xl transition-transform duration-300\",\n            open ? \"rotate-45\" : \"rotate-0\"\n          )}\n        >\n          +\n        </button>\n\n        {actions.map((act, i) => (\n          <button\n            key={i}\n            type=\"button\"\n            className={cn(\n              \"flex h-10 w-10 items-center justify-center rounded-full border border-line bg-paper text-sm text-ink shadow-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]\",\n              open ? \"scale-100 opacity-100 translate-y-0\" : \"scale-0 opacity-0 translate-y-8\"\n            )}\n            style={{ transitionDelay: `${i * 40}ms` }}\n          >\n            {act}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default ElasticFabMenu;\n",
+      "contentHash": "63133efa82f4a1a8efd3f569b920d26d43515559249bbf44e4ce716c9af91a0c",
+      "sizeBytes": 1473
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticFabMenu } from \"./elastic-fab-menu\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <ElasticFabMenu />\n    </div>\n  );\n}\n",
+      "contentHash": "b6c5e7b18621553ada6ebd2165078cdb8c505929d42c225ab87a2aa09ee354a9",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "fab",
+    "floating",
+    "menu",
+    "radial",
+    "actions"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "radial-fab-explosion",
+      "visualModel": "floating-action-cluster",
+      "motionModel": "spring-radial-fanout",
+      "layoutModel": "corner-pinned-fab",
+      "semanticPurpose": "floating-action-speed-dial"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-fab-menu.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Radial Fab Explosion: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-satisfaction-metric",
+  "type": "registry:section",
+  "title": "Customer Satisfaction Metric",
+  "description": "A single bold CSAT metric display highlighting developer happiness and net promoter ratings.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-satisfaction-metric.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "csat",
+    "metric",
+    "satisfaction",
+    "stats",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "customer-satisfaction-metric-interaction",
+      "visualModel": "customer-satisfaction-metric-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-satisfaction-metric-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "brutalist"
+    }
+  }
+}

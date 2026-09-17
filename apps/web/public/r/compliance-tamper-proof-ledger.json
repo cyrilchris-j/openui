@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compliance-tamper-proof-ledger",
+  "type": "registry:block",
+  "title": "Compliance Tamper-Proof Ledger",
+  "description": "A cryptographic Merkle tree audit log displaying chained block hashes and automated immutability verification.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compliance-tamper-proof-ledger.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ComplianceTamperProofLedger({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-white mb-3\">Tamper-Proof Merkle Ledger</h3>\n      <div className=\"space-y-2 text-[11px]\">\n        <div className=\"p-3 bg-neutral-900 rounded border border-neutral-800 flex justify-between\">\n          <span>Block #48201</span>\n          <span className=\"text-emerald-400\">hash: 9a204b... Verified ✓</span>\n        </div>\n        <div className=\"p-3 bg-neutral-900 rounded border border-neutral-800 flex justify-between\">\n          <span>Block #48202</span>\n          <span className=\"text-emerald-400\">hash: f4810c... Verified ✓</span>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "4a40762f44bd6098792287322a07682a5fcecfe91201c923bdc07cc88e85dd18",
+      "sizeBytes": 1000
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { ComplianceTamperProofLedger } from \"./compliance-tamper-proof-ledger\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-900\">\n      <ComplianceTamperProofLedger />\n    </div>\n  );\n}\n",
+      "contentHash": "b799bb1004c095799c7dd1d15d2e85062d3e1dbed699cf0ded87dc455a7e156c",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "compliance",
+    "ledger",
+    "merkle",
+    "sha256",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "compliance",
+    "fingerprint": {
+      "interactionModel": "merkle-hash-chain-verification",
+      "visualModel": "cryptographic-ledger-block-view",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "immutable-audit-ledger"
+    }
+  },
+  "url": "https://openui.dev/r/compliance-tamper-proof-ledger.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Merkle Hash Chain Verification: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

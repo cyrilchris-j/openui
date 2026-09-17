@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ecommerce-product-stage",
+  "type": "registry:layout",
+  "title": "Ecommerce Product Stage",
+  "description": "Product detail stage with vertical image thumbnail rack, central visualizer, and checkout panel.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ecommerce-product-stage.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface EcommerceProductStageProps extends React.HTMLAttributes<HTMLDivElement> {\n  gallery?: React.ReactNode;\n  details?: React.ReactNode;\n}\n\nexport function EcommerceProductStage({ gallery, details, className, ...props }: EcommerceProductStageProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <div className=\"lg:col-span-7\">{gallery}</div>\n      <div className=\"lg:col-span-5 space-y-4\">{details}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "e77b64c1fceff5a645ba6ed0325d564aef473cdb8a84a24d20a7b081235c1360",
+      "sizeBytes": 588
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { EcommerceProductStage } from \"./ecommerce-product-stage\";\n\nexport default function EcommerceProductStageDemo() {\n  return (\n    <EcommerceProductStage\n      gallery={<div className=\"aspect-square w-full rounded-2xl border border-line bg-surface/40 flex items-center justify-center font-mono text-xs\">Product Viewport</div>}\n      details={\n        <div>\n          <h1 className=\"text-xl font-bold text-ink\">Modular Mechanical Keyboard</h1>\n          <p className=\"text-base font-bold font-mono text-accent my-2\">$189.00</p>\n          <button type=\"button\" className=\"w-full py-2 rounded-xl bg-accent text-white font-mono text-xs font-bold\">Add to Cart</button>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "72f41e4e186e60723644041296a975052a9c3e9518b8812d53f11331d81b7bb3",
+      "sizeBytes": 722
+    }
+  ],
+  "tags": [
+    "ecommerce",
+    "product",
+    "store",
+    "thumbnails",
+    "checkout"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "product-gallery-and-buy-box",
+      "visualModel": "thumbnail-stage-and-actions",
+      "motionModel": "none",
+      "layoutModel": "three-tier-product-stage",
+      "semanticPurpose": "ecommerce-product-detail-layout"
+    }
+  },
+  "url": "https://openui.dev/r/ecommerce-product-stage.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Split\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Product Gallery And Buy Box: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

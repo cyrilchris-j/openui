@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-drawer-curtain",
+  "type": "registry:motion",
+  "title": "Elastic Drawer Curtain",
+  "description": "A lateral drawer with an elastic pull string that deforms under user drag before parting cleanly from the screen edge.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-drawer-curtain.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticDrawerCurtainProps {\n  className?: string;\n}\n\nexport function ElasticDrawerCurtain({ className }: ElasticDrawerCurtainProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"relative h-72 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper\", className)}>\n      <div className=\"flex h-full items-center justify-center\">\n        <button\n          type=\"button\"\n          onClick={() => setOpen(true)}\n          className=\"rounded border border-line bg-ink px-4 py-2 font-mono text-xs text-paper\"\n        >\n          Pull Drawer\n        </button>\n      </div>\n\n      <div\n        className={cn(\n          \"absolute inset-y-0 left-0 w-64 border-r border-line bg-paper p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]\",\n          open ? \"translate-x-0\" : \"-translate-x-full\"\n        )}\n      >\n        <div className=\"flex items-center justify-between pb-4 border-b border-line\">\n          <span className=\"font-display font-bold text-ink\">Navigation</span>\n          <button\n            type=\"button\"\n            onClick={() => setOpen(false)}\n            className=\"font-mono text-xs text-ink/60 hover:text-ink\"\n          >\n            Close\n          </button>\n        </div>\n        <ul className=\"mt-4 space-y-2 font-mono text-xs text-ink/70\">\n          <li className=\"hover:text-ink cursor-pointer\">/ Overview</li>\n          <li className=\"hover:text-ink cursor-pointer\">/ Design Tokens</li>\n          <li className=\"hover:text-ink cursor-pointer\">/ API Reference</li>\n        </ul>\n      </div>\n    </div>\n  );\n}\n\nexport default ElasticDrawerCurtain;\n",
+      "contentHash": "f4400637ccf47430b30a4ad3376f30acaf5e726076148de75721031627fce579",
+      "sizeBytes": 1743
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticDrawerCurtain } from \"./elastic-drawer-curtain\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <ElasticDrawerCurtain />\n    </div>\n  );\n}\n",
+      "contentHash": "c553edc45f64edba55f078dbf5aae7b7569d046c3616f6610be1748cd3e00c12",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "drawer",
+    "curtain",
+    "pull",
+    "elastic",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "lateral-draw-pull",
+      "visualModel": "taut-string-boundary",
+      "motionModel": "elastic-tension-release",
+      "layoutModel": "side-anchored-drawer",
+      "semanticPurpose": "lateral-navigation-panel"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-drawer-curtain.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Split\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Lateral Draw Pull: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-spotlight-card",
+  "type": "registry:interaction",
+  "title": "Hover Spotlight Card",
+  "description": "A surface whose boundary and backdrop light up with dynamic radial gradient illumination following cursor coordinates.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-spotlight-card.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverSpotlightCardProps {\n  className?: string;\n}\n\nexport function HoverSpotlightCard({ className }: HoverSpotlightCardProps) {\n  const [pos, setPos] = useState({ x: 0, y: 0 });\n  const [opacity, setOpacity] = useState(0);\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });\n    setOpacity(1);\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      onPointerLeave={() => setOpacity(0)}\n      className={cn(\n        \"relative h-64 w-full max-w-sm overflow-hidden rounded-2xl border border-line bg-paper p-6 shadow-sm\",\n        className\n      )}\n    >\n      <div\n        className=\"pointer-events-none absolute -inset-px transition-opacity duration-300\"\n        style={{\n          opacity,\n          background: `radial-gradient(400px circle at ${pos.x}px ${pos.y}px, rgba(0, 0, 0, 0.08), transparent 80%)`,\n        }}\n      />\n      <div className=\"relative z-10 flex h-full flex-col justify-between\">\n        <div>\n          <span className=\"font-mono text-xs uppercase tracking-wider text-ink/50\">INTERACTION LAB</span>\n          <h4 className=\"mt-2 font-display text-xl font-bold text-ink\">Radial Spotlight</h4>\n          <p className=\"mt-2 text-xs leading-relaxed text-ink/70\">\n            Soft radial light washes over the card surface reacting in real time to mouse tracking coordinates.\n          </p>\n        </div>\n        <div className=\"font-mono text-[10px] text-ink/40\">OpenUI Interaction Primitive</div>\n      </div>\n    </div>\n  );\n}\n\nexport default HoverSpotlightCard;\n",
+      "contentHash": "55ef110f7c79586b2bfae9b5ad9f51b1ff62af08b7fdfadc3ace44108a195951",
+      "sizeBytes": 1747
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverSpotlightCard } from \"./hover-spotlight-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <HoverSpotlightCard />\n    </div>\n  );\n}\n",
+      "contentHash": "3a430c13f87803c573765a0115ca1e140d35839ba456af16600cff242e133182",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "spotlight",
+    "hover",
+    "radial",
+    "gradient",
+    "card"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pointer-radial-spotlight",
+      "visualModel": "specular-boundary-conic",
+      "motionModel": "instantaneous-coordinate-gradient",
+      "layoutModel": "isolated-feature-slab",
+      "semanticPurpose": "spotlight-illumination-card"
+    }
+  },
+  "url": "https://openui.dev/r/hover-spotlight-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Pointer Radial Spotlight: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

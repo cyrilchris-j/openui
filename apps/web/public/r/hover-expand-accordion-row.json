@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-expand-accordion-row",
+  "type": "registry:interaction",
+  "title": "Hover Expand Accordion Row",
+  "description": "A compact feed row list that expands active disclosure content smoothly on cursor hover.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-expand-accordion-row.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverExpandAccordionRowProps {\n  className?: string;\n}\n\nexport function HoverExpandAccordionRow({ className }: HoverExpandAccordionRowProps) {\n  const [hovered, setHovered] = useState<number | null>(0);\n  const rows = [\n    { title: \"Deterministic Build Graph\", body: \"Every package resolves immutable content addresses.\" },\n    { title: \"Zero-Overhead Bundler\", body: \"Shared ES module trees deduplicated at boundary.\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-4 shadow-sm divide-y divide-line\", className)}>\n      {rows.map((row, i) => (\n        <div\n          key={row.title}\n          onPointerEnter={() => setHovered(i)}\n          className=\"py-3 cursor-pointer\"\n        >\n          <h5 className=\"font-display font-bold text-sm text-ink\">{row.title}</h5>\n          {hovered === i && (\n            <p className=\"mt-1 font-mono text-xs text-ink/70\">{row.body}</p>\n          )}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default HoverExpandAccordionRow;\n",
+      "contentHash": "7feb9799a51a9b4204d365203ad04502d950fa989abede542ca8a2809de29a8e",
+      "sizeBytes": 1122
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverExpandAccordionRow } from \"./hover-expand-accordion-row\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <HoverExpandAccordionRow />\n    </div>\n  );\n}\n",
+      "contentHash": "14cc05a49f4e5ac08638c49ff47afa8af0c5a92e31b920d473f952654a5a2368",
+      "sizeBytes": 251
+    }
+  ],
+  "tags": [
+    "accordion",
+    "hover",
+    "disclosure",
+    "feed",
+    "expand"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-accordion-disclosure",
+      "visualModel": "vertical-collapsible-slabs",
+      "motionModel": "smooth-height-expansion",
+      "layoutModel": "stacked-feed-accordion",
+      "semanticPurpose": "hover-disclosure-row"
+    }
+  },
+  "url": "https://openui.dev/r/hover-expand-accordion-row.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Hover Accordion Disclosure: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

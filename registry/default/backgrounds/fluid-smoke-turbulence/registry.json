@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-smoke-turbulence",
+  "type": "registry:background",
+  "title": "Fluid Smoke Turbulence",
+  "description": "Navier-Stokes fluid dynamic smoke vortex currents swirling realistically on animated canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-smoke-turbulence.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "fluid",
+    "smoke",
+    "turbulence",
+    "vortex",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-fluid-vortex",
+      "visualModel": "turbulent-smoke-eddies",
+      "motionModel": "navier-stokes-vorticity",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "fluid-turbulence-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "humanist",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

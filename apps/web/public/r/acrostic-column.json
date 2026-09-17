@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "acrostic-column",
+  "type": "registry:text",
+  "title": "Acrostic Column",
+  "description": "A poem whose initial letters spell a hidden word down the left edge: the initials column is emphasised, hovering it lights the full acrostic, and a reveal toggle confirms the message — a medieval device implemented as a responsive layout.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "acrostic-column.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface AcrosticColumnProps {\n  /** The hidden word; each letter heads one line. */\n  hidden: string;\n  /** Line bodies; lines[i] follows hidden[i]. Extra lines allowed. */\n  lines: string[];\n  className?: string;\n}\n\nexport function AcrosticColumn({ hidden, lines, className }: AcrosticColumnProps) {\n  const [lit, setLit] = useState(false);\n  const [revealed, setRevealed] = useState(false);\n  const letters = [...hidden.toUpperCase()];\n\n  return (\n    <figure className={cn(\"flex max-w-md flex-col gap-3\", className)}>\n      <div\n        className=\"grid gap-y-1.5\"\n        style={{ gridTemplateColumns: \"2rem 1fr\" }}\n        onMouseEnter={() => setLit(true)}\n        onMouseLeave={() => setLit(false)}\n        role=\"group\"\n        aria-label={`Acrostic poem. Hidden word: ${hidden}.`}\n      >\n        {lines.map((line, index) => {\n          const initial = letters[index];\n          return (\n            <FragmentRow key={index} row={index + 1}>\n              <span\n                aria-hidden\n                className=\"select-none text-right font-display text-lg font-semibold transition-colors duration-300\"\n                style={{\n                  gridColumn: 1,\n                  color: lit && initial ? \"#e2624a\" : initial ? \"var(--openui-ink, #1c1c1e)\" : \"transparent\",\n                }}\n              >\n                {initial ?? \"\"}\n              </span>\n              <span className=\"font-display text-lg leading-relaxed text-ink/85\" style={{ gridColumn: 2 }}>\n                {line || \"\\u00A0\"}\n              </span>\n            </FragmentRow>\n          );\n        })}\n      </div>\n      <figcaption className=\"flex items-center gap-3\">\n        <button\n          type=\"button\"\n          onClick={() => setRevealed((value) => !value)}\n          aria-pressed={revealed}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs text-ink/70 hover:bg-line/20\"\n        >\n          {revealed ? `message: ${hidden}` : \"reveal message\"}\n        </button>\n      </figcaption>\n    </figure>\n  );\n}\n\nfunction FragmentRow({ row, children }: { row: number; children: React.ReactNode }) {\n  return (\n    <div className=\"contents\" style={{ gridRow: row }}>\n      {children}\n    </div>\n  );\n}\n\nexport default AcrosticColumn;\n",
+      "contentHash": "c818a2d074e56de958b1af641dcb02c2877f499a22bbbb7d5ac8a9084cea8b8b",
+      "sizeBytes": 2335
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { AcrosticColumn } from \"./acrostic-column\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <AcrosticColumn\n        hidden=\"REGISTRY\"\n        lines={[\n          \"Records what frameworks abandon,\",\n          \"Entries with names, not vibes,\",\n          \"Guarded by a schema's firm handshake,\",\n          \"Indexed so search can find the truth,\",\n          \"Signed by contributors across the world,\",\n          \"Trusted because the machine checked it,\",\n          \"Reusable by anyone, forever,\",\n          \"Yours to fork, break, and mend.\",\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "d928d18dc9c643e213757841c247a6f8c4512f0682b5600fa57bcf238ded2064",
+      "sizeBytes": 669
+    }
+  ],
+  "tags": [
+    "acrostic",
+    "hidden",
+    "initials",
+    "poetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "hover-reveal-message",
+      "visualModel": "initials-column-lockup",
+      "motionModel": "column-illumination",
+      "layoutModel": "two-column-margins",
+      "semanticPurpose": "hidden-message"
+    }
+  },
+  "url": "https://openui.dev/r/acrostic-column.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: Accent Only\n\n## Rules\n\n- Hover Reveal Message: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

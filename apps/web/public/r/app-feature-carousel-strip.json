@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "app-feature-carousel-strip",
+  "type": "registry:section",
+  "title": "App Feature Carousel Strip",
+  "description": "A horizontally scrollable feature card carousel highlighting key workflow moments.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "app-feature-carousel-strip.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function AppFeatureCarouselStrip({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const items = [\n    { title: \"One-Click Scaffolding\", desc: \"Materialize code in 100ms\" },\n    { title: \"Design DNA Invariants\", desc: \"Mathematical layout bounds\" },\n    { title: \"Zero Dependency Core\", desc: \"Zero runtime npm bloat\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-5xl mx-auto\", className)} {...props}>\n      <h3 className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-6\">Workflow Accelerators</h3>\n      <div className=\"flex gap-4 overflow-x-auto pb-4\">\n        {items.map((it) => (\n          <div key={it.title} className=\"min-w-[260px] p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n            <h4 className=\"text-sm font-semibold text-neutral-900 dark:text-white\">{it.title}</h4>\n            <p className=\"text-xs text-neutral-500 mt-1\">{it.desc}</p>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "737bba55cc58eef8a032d5a22c9d5eeb7aff7dfd2a4487b8bdadb28875b8e4b0",
+      "sizeBytes": 1113
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { AppFeatureCarouselStrip } from \"./app-feature-carousel-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <AppFeatureCarouselStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "8cb88894b8f3932e339244f8a9de83d6e17b0644f0ca512b29db96b5bc20f5c7",
+      "sizeBytes": 299
+    }
+  ],
+  "tags": [
+    "carousel",
+    "strip",
+    "features",
+    "workflow",
+    "scroll"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "app-feature-carousel-strip-interaction",
+      "visualModel": "app-feature-carousel-strip-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "app-feature-carousel-strip-section"
+    }
+  },
+  "url": "https://openui.dev/r/app-feature-carousel-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Rail\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- App Feature Carousel Strip Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

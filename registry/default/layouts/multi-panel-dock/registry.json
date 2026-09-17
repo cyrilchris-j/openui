@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-panel-dock",
+  "type": "registry:layout",
+  "title": "Multi Panel Dock",
+  "description": "IDE layout with main coding editor above and collapsible developer console drawer docked below.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-panel-dock.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "dock",
+    "console",
+    "terminal",
+    "ide",
+    "panels"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "dockable-console-drawer",
+      "visualModel": "editor-with-bottom-dock",
+      "motionModel": "none",
+      "layoutModel": "vertical-dock-split",
+      "semanticPurpose": "docked-developer-console"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

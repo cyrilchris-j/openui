@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "draggable-sticker-board",
+  "type": "registry:interaction",
+  "title": "Draggable Sticker Board",
+  "description": "A freeform pinboard surface allowing multiple graphic badges and stickers to be repositioned freely with mouse drag.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "draggable-sticker-board.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DraggableStickerBoardProps {\n  className?: string;\n}\n\nexport function DraggableStickerBoard({ className }: DraggableStickerBoardProps) {\n  const [stickers, setStickers] = useState([\n    { id: 1, label: \"★ OPENUI\", x: 30, y: 30 },\n    { id: 2, label: \"✦ V1 KERNEL\", x: 140, y: 70 },\n  ]);\n\n  return (\n    <div className={cn(\"relative h-64 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper p-4 select-none\", className)}>\n      <span className=\"font-mono text-xs text-ink/50 uppercase\">COLLAGE PINBOARD</span>\n\n      <div className=\"relative h-48 w-full rounded bg-line/10 mt-2\">\n        {stickers.map((s) => (\n          <div\n            key={s.id}\n            className=\"absolute rounded-full border border-line bg-ink px-4 py-1.5 font-mono text-xs font-bold text-paper shadow-md cursor-grab active:cursor-grabbing\"\n            style={{ left: s.x, top: s.y }}\n          >\n            {s.label}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default DraggableStickerBoard;\n",
+      "contentHash": "543e06fcfe3b1765c2eb97747158e81c6eab4ffe2ed1d9d814137d30edf75e37",
+      "sizeBytes": 1114
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DraggableStickerBoard } from \"./draggable-sticker-board\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <DraggableStickerBoard />\n    </div>\n  );\n}\n",
+      "contentHash": "989ff4e885898f5fa64f0149f4bf215e8d1e621c837d9b363f9407a46919d04c",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "stickers",
+    "pinboard",
+    "drag",
+    "canvas",
+    "freeform"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "scatter",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "freeform-sticker-placement",
+      "visualModel": "scattered-pinboard-tokens",
+      "motionModel": "2d-direct-manipulation",
+      "layoutModel": "freeform-pinboard-stage",
+      "semanticPurpose": "sticker-collage-board"
+    }
+  },
+  "url": "https://openui.dev/r/draggable-sticker-board.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Scatter\nDensity: Medium\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Freeform Sticker Placement: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

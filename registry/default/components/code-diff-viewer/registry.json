@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-diff-viewer",
+  "type": "registry:component",
+  "title": "Code Diff Viewer",
+  "description": "A line-by-line syntax diff viewer formatting added and deleted lines with green and red gutter tags.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-diff-viewer.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "diff",
+    "code",
+    "git",
+    "syntax",
+    "viewer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "line-diff-inspection",
+      "visualModel": "gutter-tagged-diff-block",
+      "motionModel": "none",
+      "layoutModel": "tabular-diff-terminal",
+      "semanticPurpose": "code-diff-inspector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

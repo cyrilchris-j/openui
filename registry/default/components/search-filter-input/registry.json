@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "search-filter-input",
+  "type": "registry:component",
+  "title": "Search Filter Input",
+  "description": "An input field with search magnifying glass prefix, clear button, and keyboard shortcut badge affordance.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "search-filter-input.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "search",
+    "input",
+    "filter",
+    "keyboard",
+    "affordance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "input-field-query-entry",
+      "visualModel": "prefixed-search-chassis",
+      "motionModel": "none",
+      "layoutModel": "horizontal-input-bar",
+      "semanticPurpose": "search-query-field"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

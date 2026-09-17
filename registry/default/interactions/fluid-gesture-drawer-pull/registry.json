@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-gesture-drawer-pull",
+  "type": "registry:interaction",
+  "title": "Fluid Gesture Drawer Pull",
+  "description": "A lateral slide-out drawer whose edge tab bulges elastically outward during pull gesture like liquid rubber.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-gesture-drawer-pull.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "drawer",
+    "fluid",
+    "pull",
+    "gesture",
+    "rubber"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "viscoelastic-tab-drawer-pull",
+      "visualModel": "bulging-lateral-tab",
+      "motionModel": "viscous-edge-deformation",
+      "layoutModel": "side-anchored-chassis",
+      "semanticPurpose": "fluid-gesture-drawer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

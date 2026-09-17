@@ -263,6 +263,11 @@ export function indexEntryToSummary(entry: RegistryIndexEntry): ResourceSummary 
     author: null,
     latestVersion: null,
     tags: entry.tags,
+    subcategory: entry.subcategory ?? null,
+    // Spread into a plain record: the fingerprint is a closed interface, but
+    // consumers treat it as an open string map so new axes can be added without
+    // a breaking change to the domain type.
+    fingerprint: entry.fingerprint ? { ...entry.fingerprint } : null,
     design: {
       genre: entry.dna?.genre ?? null,
       macrostructure: entry.dna?.macrostructure ?? null,

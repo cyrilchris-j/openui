@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hypnotic-spiral-vortex",
+  "type": "registry:background",
+  "title": "Hypnotic Spiral Vortex",
+  "description": "Rotating Archimedean logarithmic spiral vortex drawing focal attention inward.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hypnotic-spiral-vortex.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "spiral",
+    "vortex",
+    "hypnotic",
+    "archimedean",
+    "optical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-spiral-geometry",
+      "visualModel": "archimedean-spiral-vortex",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "hypnotic-focal-vortex"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

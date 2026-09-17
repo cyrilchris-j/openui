@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toggle-switch-card",
+  "type": "registry:component",
+  "title": "Toggle Switch Card",
+  "description": "A settings tile row containing descriptive label copy paired with a boolean toggle switch.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toggle-switch-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ToggleSwitchCardProps {\n  title?: string;\n  description?: string;\n  className?: string;\n}\n\nexport function ToggleSwitchCard({\n  title = \"Telemetry Broadcast\",\n  description = \"Share anonymous build performance metrics\",\n  className,\n}: ToggleSwitchCardProps) {\n  const [enabled, setEnabled] = useState(true);\n\n  return (\n    <div className={cn(\"flex w-full max-w-sm items-center justify-between rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"pr-4\">\n        <h5 className=\"font-display text-sm font-bold text-ink\">{title}</h5>\n        <p className=\"mt-0.5 font-mono text-[10px] text-ink/60\">{description}</p>\n      </div>\n\n      <div\n        onClick={() => setEnabled((e) => !e)}\n        className={cn(\n          \"relative h-6 w-11 cursor-pointer rounded-full border border-line p-0.5 transition-colors\",\n          enabled ? \"bg-ink\" : \"bg-line/20\"\n        )}\n      >\n        <div\n          className={cn(\n            \"h-5 w-5 rounded-full bg-paper shadow-sm transition-transform duration-200\",\n            enabled ? \"translate-x-5\" : \"translate-x-0\"\n          )}\n        />\n      </div>\n    </div>\n  );\n}\n\nexport default ToggleSwitchCard;\n",
+      "contentHash": "e604aaa3226c8b8ee95f8b507c87e00a7183139c6eba34eace4a47d85e9ca986",
+      "sizeBytes": 1280
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ToggleSwitchCard } from \"./toggle-switch-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ToggleSwitchCard />\n    </div>\n  );\n}\n",
+      "contentHash": "17ea98eb45b79444500fabdd1610d565c76be6c2ac54d401a4ad057baeb17e46",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "toggle",
+    "switch",
+    "settings",
+    "tile",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "setting-tile-toggle",
+      "visualModel": "setting-row-chassis",
+      "motionModel": "lateral-switch-slide",
+      "layoutModel": "horizontal-setting-tile",
+      "semanticPurpose": "preference-toggle-card"
+    }
+  },
+  "url": "https://openui.dev/r/toggle-switch-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Setting Tile Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-benefit-checklist",
+  "type": "registry:section",
+  "title": "Feature Benefit Checklist",
+  "description": "A bulleted value proposition section highlighting zero-lock-in, strict TypeScript, and accessibility.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-benefit-checklist.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function FeatureBenefitChecklist({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const benefits = [\n    \"No runtime wrappers or sealed black-box dependencies\",\n    \"Full source copy directly in your own repository\",\n    \"100% compliant with WAI-ARIA and screen readers\",\n    \"Automated type-checking across 800 certified items\",\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-3xl mx-auto\", className)} {...props}>\n      <h3 className=\"text-2xl font-bold text-center text-neutral-900 dark:text-white mb-6\">Designed for Production</h3>\n      <div className=\"space-y-3\">\n        {benefits.map((b) => (\n          <div key={b} className=\"flex items-center gap-3 p-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs\">\n            <span className=\"text-emerald-500 font-bold\">✓</span>\n            <span className=\"text-neutral-700 dark:text-neutral-300 font-medium\">{b}</span>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "63dd4f17458434d2677d15090806b9ffc364e4312d19b8887fb7dbe2095aaf24",
+      "sizeBytes": 1115
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { FeatureBenefitChecklist } from \"./feature-benefit-checklist\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <FeatureBenefitChecklist />\n    </div>\n  );\n}\n",
+      "contentHash": "10a31e9e3ae04276bb26362e19692f23c5726280a32b093e2a570bb343cda7e4",
+      "sizeBytes": 300
+    }
+  ],
+  "tags": [
+    "checklist",
+    "benefits",
+    "features",
+    "value",
+    "list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "feature-benefit-checklist-interaction",
+      "visualModel": "feature-benefit-checklist-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "feature-benefit-checklist-section"
+    }
+  },
+  "url": "https://openui.dev/r/feature-benefit-checklist.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Feature Benefit Checklist Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

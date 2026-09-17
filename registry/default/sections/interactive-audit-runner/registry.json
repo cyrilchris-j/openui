@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-audit-runner",
+  "type": "registry:section",
+  "title": "Interactive Audit Runner",
+  "description": "A simulated accessibility and schema verification runner displaying live diagnostic ticks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-audit-runner.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "audit",
+    "runner",
+    "verification",
+    "diagnostics",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "verification",
+    "fingerprint": {
+      "interactionModel": "interactive-audit-runner-interaction",
+      "visualModel": "interactive-audit-runner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-audit-runner-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

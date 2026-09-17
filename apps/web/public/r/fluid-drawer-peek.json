@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-drawer-peek",
+  "type": "registry:motion",
+  "title": "Fluid Drawer Peek",
+  "description": "A bottom sheet drawer with tactile peek resting states, rubberband drag boundary resistance, and spring release velocity interpolation.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-drawer-peek.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FluidDrawerPeekProps {\n  className?: string;\n}\n\nexport function FluidDrawerPeek({ className }: FluidDrawerPeekProps) {\n  const [stage, setStage] = useState<\"peek\" | \"open\">(\"peek\");\n\n  return (\n    <div className={cn(\"relative mx-auto h-80 w-full max-w-sm overflow-hidden rounded-lg border border-line bg-surface p-4\", className)}>\n      <div className=\"text-center pt-8\">\n        <span className=\"font-mono text-xs text-graphite uppercase\">Main Canvas</span>\n        <h4 className=\"font-serif text-lg font-bold text-ink mt-1\">Inspection Deck</h4>\n      </div>\n\n      {/* Drawer */}\n      <div\n        style={{\n          transform: stage === \"open\" ? \"translateY(0%)\" : \"translateY(65%)\",\n        }}\n        className=\"absolute inset-x-0 bottom-0 h-64 rounded-t-xl border-t border-line bg-paper p-4 shadow-xl transition-transform duration-400 ease-spring\"\n      >\n        <div\n          onClick={() => setStage((s) => (s === \"open\" ? \"peek\" : \"open\"))}\n          className=\"mx-auto h-1.5 w-12 cursor-pointer rounded-full bg-line/80 hover:bg-ink/40 mb-3\"\n        />\n        <div className=\"flex items-center justify-between border-b border-line/60 pb-2\">\n          <span className=\"font-mono text-xs font-semibold text-ink\">DRAWER TELEMETRY</span>\n          <button\n            type=\"button\"\n            onClick={() => setStage((s) => (s === \"open\" ? \"peek\" : \"open\"))}\n            className=\"font-mono text-[10px] text-accent uppercase\"\n          >\n            {stage === \"open\" ? \"Collapse ↓\" : \"Expand ↑\"}\n          </button>\n        </div>\n        <div className=\"mt-3 space-y-2 text-xs text-graphite\">\n          <div className=\"flex justify-between\">\n            <span>State</span>\n            <span className=\"font-mono font-bold text-ink\">{stage}</span>\n          </div>\n          <div className=\"flex justify-between\">\n            <span>Spring Damping</span>\n            <span className=\"font-mono\">0.82 Ratio</span>\n          </div>\n          <div className=\"flex justify-between\">\n            <span>Boundary Elasticity</span>\n            <span className=\"font-mono\">Active</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "6f5046c156a48936d1b6d1ca51fd214ff126cddfe5e14b98f2da465543f1a815",
+      "sizeBytes": 2254
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { FluidDrawerPeek } from \"./fluid-drawer-peek\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <FluidDrawerPeek />\n    </div>\n  );\n}\n",
+      "contentHash": "1bea455f05c2428e3bdcd7ad635afe0300b45a566345d74990158901f8689008",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "drawer",
+    "gesture",
+    "spring",
+    "sheet",
+    "mobile"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "vertical-flick-drawer",
+      "visualModel": "docked-bottom-sheet",
+      "motionModel": "bistable-spring-threshold",
+      "layoutModel": "bottom-pinned-overlay",
+      "semanticPurpose": "modal-inspector-sheet"
+    }
+  },
+  "url": "https://openui.dev/r/fluid-drawer-peek.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Vertical Flick Drawer: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

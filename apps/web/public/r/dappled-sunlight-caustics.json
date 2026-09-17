@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dappled-sunlight-caustics",
+  "type": "registry:background",
+  "title": "Dappled Sunlight Caustics",
+  "description": "Subtle forest canopy or water ripple dappled lighting caustics with soft blurred highlights.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dappled-sunlight-caustics.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DappledSunlightCausticsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function DappledSunlightCaustics({ className, children, ...props }: DappledSunlightCausticsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 pointer-events-none -z-10 opacity-20\">\n        <div\n          className=\"w-full h-full\"\n          style={{\n            background: \"radial-gradient(circle at 30% 30%, currentColor 0%, transparent 60%), radial-gradient(circle at 70% 60%, currentColor 0%, transparent 50%)\",\n            filter: \"blur(40px)\",\n          }}\n        />\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "589fee243c9587afbd3188c0da3f9f03c6022787d59f8f5bef6a62aaa19f5b26",
+      "sizeBytes": 828
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { DappledSunlightCaustics } from \"./dappled-sunlight-caustics\";\n\nexport default function DappledSunlightCausticsDemo() {\n  return (\n    <DappledSunlightCaustics className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Canopy Light</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Dappled organic sunbeam caustic diffusion.</p>\n      </div>\n    </DappledSunlightCaustics>\n  );\n}\n",
+      "contentHash": "a2eac6e2165b25974a8c21963d42e084a9fbe9537e7582d1d58b5b841ef27a76",
+      "sizeBytes": 601
+    }
+  ],
+  "tags": [
+    "sunlight",
+    "caustics",
+    "ambient",
+    "canopy",
+    "lighting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-caustic-lighting",
+      "visualModel": "dappled-sunlight-mask",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "natural-sunlight-caustics"
+    }
+  },
+  "url": "https://openui.dev/r/dappled-sunlight-caustics.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Humanist\nColor: Muted Earth\n\n## Rules\n\n- Passive Caustic Lighting: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

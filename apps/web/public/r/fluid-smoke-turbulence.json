@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-smoke-turbulence",
+  "type": "registry:background",
+  "title": "Fluid Smoke Turbulence",
+  "description": "Navier-Stokes fluid dynamic smoke vortex currents swirling realistically on animated canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-smoke-turbulence.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FluidSmokeTurbulenceProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function FluidSmokeTurbulence({ className, children, ...props }: FluidSmokeTurbulenceProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    let t = 0;\n    const render = () => {\n      ctx.fillStyle = \"rgba(255, 255, 255, 0.05)\";\n      ctx.fillRect(0, 0, w, h);\n\n      ctx.strokeStyle = \"rgba(100, 116, 139, 0.15)\";\n      ctx.lineWidth = 1.5;\n\n      for (let i = 0; i < 4; i++) {\n        ctx.beginPath();\n        for (let x = 0; x < w; x += 15) {\n          const y = h * 0.5 + Math.sin(x * 0.008 + t + i) * 50 * Math.cos(t * 0.5);\n          if (x === 0) ctx.moveTo(x, y);\n          else ctx.lineTo(x, y);\n        }\n        ctx.stroke();\n      }\n\n      t += 0.015;\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "a54374c541f4cd9fc5926ed8033691d6946d618b5fb901b69fbf56575f0ede85",
+      "sizeBytes": 1619
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { FluidSmokeTurbulence } from \"./fluid-smoke-turbulence\";\n\nexport default function FluidSmokeTurbulenceDemo() {\n  return (\n    <FluidSmokeTurbulence className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Turbulent Eddy Current</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Navier-Stokes fluid dynamic smoke eddies.</p>\n      </div>\n    </FluidSmokeTurbulence>\n  );\n}\n",
+      "contentHash": "c6a7ec10e523e8d97161d53fb3199103fefc322ffb856f70aa4e263982ddf79d",
+      "sizeBytes": 594
+    }
+  ],
+  "tags": [
+    "fluid",
+    "smoke",
+    "turbulence",
+    "vortex",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "humanist",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-fluid-vortex",
+      "visualModel": "turbulent-smoke-eddies",
+      "motionModel": "navier-stokes-vorticity",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "fluid-turbulence-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/fluid-smoke-turbulence.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Kinetic\nTypography: Humanist\nColor: High Contrast\n\n## Rules\n\n- Passive Fluid Vortex: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-color-palette-bar",
+  "type": "registry:interaction",
+  "title": "Interactive Color Palette Bar",
+  "description": "A swatch ribbon allowing rapid clipboard copying of theme hex values with instant visual feedback.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-color-palette-bar.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "colors",
+    "palette",
+    "swatch",
+    "copy",
+    "clipboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "click-swatch-copy-action",
+      "visualModel": "partitioned-hex-ribbon",
+      "motionModel": "transient-badge-alert",
+      "layoutModel": "horizontal-swatch-bar",
+      "semanticPurpose": "color-clipboard-copy-tray"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

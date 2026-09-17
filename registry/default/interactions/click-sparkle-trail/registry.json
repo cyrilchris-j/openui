@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "click-sparkle-trail",
+  "type": "registry:interaction",
+  "title": "Click Sparkle Trail",
+  "description": "A playful click feedback system spawning miniature starburst vectors that scatter outward and twinkle away on click.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "click-sparkle-trail.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "sparkle",
+    "click",
+    "feedback",
+    "particles",
+    "twinkle"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "coordinate-click-burst",
+      "visualModel": "geometric-starburst-sparks",
+      "motionModel": "radial-twinkle-fadeout",
+      "layoutModel": "click-responsive-surface",
+      "semanticPurpose": "sensory-click-reward"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

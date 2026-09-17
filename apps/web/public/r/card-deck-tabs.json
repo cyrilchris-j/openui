@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "card-deck-tabs",
+  "type": "registry:layout",
+  "title": "Card Deck Tabs",
+  "description": "Tabbed container layout where tab triggers swap between neatly stacked card sheets.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "card-deck-tabs.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CardDeckTabsProps extends React.HTMLAttributes<HTMLDivElement> {\n  tabs?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function CardDeckTabs({ tabs, children, className, ...props }: CardDeckTabsProps) {\n  return (\n    <div className={cn(\"max-w-xl mx-auto font-sans text-xs\", className)} {...props}>\n      <div className=\"flex gap-2 mb-2 px-2\">{tabs}</div>\n      <div className=\"p-6 rounded-2xl border border-line bg-paper shadow-sm\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "df6fbb92a3df34bbd643f3e7193d5021d9179c46ec99d9e214d1b503f227dbc2",
+      "sizeBytes": 544
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CardDeckTabs } from \"./card-deck-tabs\";\n\nexport default function CardDeckTabsDemo() {\n  return (\n    <CardDeckTabs\n      tabs={\n        <>\n          <button type=\"button\" className=\"px-3 py-1 rounded-t-lg bg-paper border-t border-x border-line font-bold text-accent\">Active Tab</button>\n          <button type=\"button\" className=\"px-3 py-1 text-ink/60\">Alternate Tab</button>\n        </>\n      }\n    >\n      <div className=\"text-ink/80\">Swappable card sheet viewport contents.</div>\n    </CardDeckTabs>\n  );\n}\n",
+      "contentHash": "e728a3ece53a41c09b32bffa11f6a260cf85dd419030eb4e096b9b872e5e62c9",
+      "sizeBytes": 534
+    }
+  ],
+  "tags": [
+    "tabs",
+    "deck",
+    "sheets",
+    "stack",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "tab-card-deck-swapping",
+      "visualModel": "stacked-tab-panels",
+      "motionModel": "none",
+      "layoutModel": "stacked-tab-sheet",
+      "semanticPurpose": "tabbed-card-workbench"
+    }
+  },
+  "url": "https://openui.dev/r/card-deck-tabs.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Tab Card Deck Swapping: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

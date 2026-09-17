@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "laser-scan-bar",
+  "type": "registry:background",
+  "title": "Laser Scan Bar",
+  "description": "Sweeping horizontal crimson laser line simulating a security barcode optical scanner.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "laser-scan-bar.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "laser",
+    "scanner",
+    "barcode",
+    "security",
+    "crimson"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-laser-scan",
+      "visualModel": "sweeping-crimson-beam",
+      "motionModel": "vertical-bounce-sweep",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "security-laser-scanner"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

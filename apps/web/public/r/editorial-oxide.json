@@ -39,7 +39,14 @@
       "dark-mode",
       "wcag-aa",
       "serif-display"
-    ]
+    ],
+    "subcategory": "palette",
+    "fingerprint": {
+      "interactionModel": "theme-variable-tokens",
+      "visualModel": "warm-oxide-editorial-palette",
+      "layoutModel": "css-custom-properties-scope",
+      "semanticPurpose": "editorial-color-theme"
+    }
   },
   "url": "https://openui.dev/r/editorial-oxide.json"
 }

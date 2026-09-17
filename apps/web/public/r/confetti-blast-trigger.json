@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "confetti-blast-trigger",
+  "type": "registry:motion",
+  "title": "Confetti Blast Trigger",
+  "description": "A celebratory burst of multi-colored vector fragments detonating outward on click with gravity falloff.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "confetti-blast-trigger.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ConfettiBlastTriggerProps {\n  className?: string;\n}\n\nexport function ConfettiBlastTrigger({ className }: ConfettiBlastTriggerProps) {\n  const [particles, setParticles] = useState<{ id: number; x: number; y: number; color: string }[]>([]);\n\n  const blast = () => {\n    const colors = [\"#ef4444\", \"#3b82f6\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\"];\n    const next = Array.from({ length: 24 }, (_, i) => ({\n      id: Date.now() + i,\n      x: (Math.random() - 0.5) * 120,\n      y: (Math.random() - 0.5) * 120 - 40,\n      color: colors[i % colors.length] ?? \"#ef4444\",\n    }));\n    setParticles(next);\n    setTimeout(() => setParticles([]), 800);\n  };\n\n  return (\n    <div className={cn(\"relative flex h-48 w-full max-w-sm items-center justify-center rounded-xl border border-line bg-paper p-6\", className)}>\n      <button\n        type=\"button\"\n        onClick={blast}\n        className=\"relative z-10 rounded-lg bg-ink px-5 py-2.5 font-medium text-paper shadow-md active:scale-95\"\n      >\n        Complete Goal\n      </button>\n\n      {particles.map((p) => (\n        <span\n          key={p.id}\n          className=\"pointer-events-none absolute h-2 w-2 rounded-sm transition-all duration-700 ease-out\"\n          style={{\n            backgroundColor: p.color,\n            transform: `translate(${p.x}px, ${p.y}px)`,\n            opacity: 0.8,\n          }}\n        />\n      ))}\n    </div>\n  );\n}\n\nexport default ConfettiBlastTrigger;\n",
+      "contentHash": "3f7b0bf62494ab6d43ebe7a543ad502bc356bd32461df3473efec6acc1db47e8",
+      "sizeBytes": 1516
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ConfettiBlastTrigger } from \"./confetti-blast-trigger\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <ConfettiBlastTrigger />\n    </div>\n  );\n}\n",
+      "contentHash": "c5d2cca638e8bc705ec2a85b3f7a8ff451d8deb8d56790a5ca1e9a1701ec44e4",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "confetti",
+    "particles",
+    "blast",
+    "celebrate",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "click-detonation-blast",
+      "visualModel": "geometric-confetti-shards",
+      "motionModel": "radial-drag-gravity-drift",
+      "layoutModel": "button-anchored-canvas",
+      "semanticPurpose": "celebratory-completion-burst"
+    }
+  },
+  "url": "https://openui.dev/r/confetti-blast-trigger.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Expressive\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Click Detonation Blast: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

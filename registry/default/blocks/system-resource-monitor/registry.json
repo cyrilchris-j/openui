@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-resource-monitor",
+  "type": "registry:block",
+  "title": "System Resource Monitor",
+  "description": "An operational infrastructure monitor tracking live CPU load, RAM allocation, and edge node health.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-resource-monitor.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "system",
+    "monitor",
+    "cpu",
+    "memory",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "realtime-telemetry-monitoring",
+      "visualModel": "system-load-gauges",
+      "motionModel": "mechanical",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "edge-infrastructure-monitoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -50,6 +50,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "responsive-type-scale",
+      "visualModel": "tight-tracked-display-serif",
+      "layoutModel": "block-flow",
+      "semanticPurpose": "section-headline"
     }
   },
   "url": "https://openui.dev/r/editorial-heading.json",

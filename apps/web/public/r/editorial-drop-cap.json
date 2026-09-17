@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-drop-cap",
+  "type": "registry:text",
+  "title": "Editorial Drop Cap",
+  "description": "A true initial letter: the first character sits in a measured float spanning a fixed number of text lines, with a hanging indent recomputed from the glyph's actual advance width, not a guessed ch value.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-drop-cap.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface EditorialDropCapProps {\n  /** Body copy; the first character becomes the initial. */\n  text: string;\n  /** How many body lines the initial spans. */\n  lines?: number;\n  className?: string;\n}\n\nexport function EditorialDropCap({ text, lines = 3, className }: EditorialDropCapProps) {\n  const initialRef = useRef<HTMLSpanElement>(null);\n  const [offset, setOffset] = useState(0);\n  const [reduced, setReduced] = useState(false);\n\n  // The indent is measured from the rendered glyph rather than assumed from\n  // the ch unit, which is wrong for proportional faces — a serif C is not one ch wide.\n  useEffect(() => {\n    setReduced(window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches ?? false);\n    const initial = initialRef.current;\n    if (!initial) return;\n    const measure = () => setOffset(initial.getBoundingClientRect().width);\n    measure();\n    const observer = typeof ResizeObserver !== \"undefined\" ? new ResizeObserver(measure) : null;\n    observer?.observe(initial);\n    return () => observer?.disconnect();\n  }, [text]);\n\n  const [first, ...rest] = text;\n  const body = rest.join(\"\");\n\n  return (\n    <p className={cn(\"prose-measure text-[0.95rem] leading-[1.7] text-graphite\", className)}>\n      <span\n        ref={initialRef}\n        aria-hidden={reduced}\n        className=\"float-left mr-3 select-none font-display text-ink\"\n        style={{\n          fontSize: `calc(${lines} * 1.7em)`,\n          lineHeight: \"0.82\",\n          paddingTop: \"0.04em\",\n        }}\n      >\n        {first}\n      </span>\n      <span className={reduced ? \"inline\" : undefined} style={{ marginLeft: reduced ? 0 : -offset / 2 }}>\n        {body}\n      </span>\n    </p>\n  );\n}\n\nexport default EditorialDropCap;\n",
+      "contentHash": "b1593e62f746cbb52d863fe219d2b468334cd2994d372ed825437d6023a71236",
+      "sizeBytes": 1828
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { EditorialDropCap } from \"./editorial-drop-cap\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper p-10\">\n      <EditorialDropCap\n        lines={3}\n        text=\"Typography is the craft of endowing human language with a durable visual form, and a page that opens with a measured initial is making a promise about the care inside.\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "b004daaf0c755da0002afd55a648e757c9af456be4f7fd07c45963b9d84757dc",
+      "sizeBytes": 390
+    }
+  ],
+  "tags": [
+    "drop-cap",
+    "editorial",
+    "initial",
+    "float"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "prose-typeset-flow",
+      "visualModel": "two-line-flourished-initial",
+      "layoutModel": "float-left-hanging-capital",
+      "semanticPurpose": "article-prologue-anchor"
+    }
+  },
+  "url": "https://openui.dev/r/editorial-drop-cap.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

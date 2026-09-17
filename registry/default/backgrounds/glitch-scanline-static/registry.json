@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-scanline-static",
+  "type": "registry:background",
+  "title": "Glitch Scanline Static",
+  "description": "Cathode-ray tube CRT monitor horizontal scanlines with subtle chromatic aberration bands.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-scanline-static.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "crt",
+    "scanlines",
+    "glitch",
+    "retro",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-crt-scanlines",
+      "visualModel": "horizontal-raster-scanlines",
+      "motionModel": "subtle-flicker-shiver",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "crt-television-raster"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

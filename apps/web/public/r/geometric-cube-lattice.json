@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-cube-lattice",
+  "type": "registry:background",
+  "title": "Geometric Cube Lattice",
+  "description": "Escher-inspired 3D tumbling isometric cubes optical illusion pattern.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-cube-lattice.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface GeometricCubeLatticeProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GeometricCubeLattice({ className, children, ...props }: GeometricCubeLatticeProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"cubes-pat\" width=\"60\" height=\"104\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"30,0 60,17 60,52 30,35\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"30,0 0,17 0,52 30,35\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"30,35 60,52 30,69 0,52\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"30,69 60,86 60,121 30,104\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"30,69 0,86 0,121 30,104\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#cubes-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "853911c289735431c706a51e8794d8dc2b2b8d394d0db1eacad9f353c177ba84",
+      "sizeBytes": 1316
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GeometricCubeLattice } from \"./geometric-cube-lattice\";\n\nexport default function GeometricCubeLatticeDemo() {\n  return (\n    <GeometricCubeLattice className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Isometric Cubes</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Tumbling isometric cube geometric illusion.</p>\n      </div>\n    </GeometricCubeLattice>\n  );\n}\n",
+      "contentHash": "c0edec56504c6526efd992c1893e729b1687222aef85d370b11b1191ef7508c6",
+      "sizeBytes": 589
+    }
+  ],
+  "tags": [
+    "cubes",
+    "escher",
+    "illusion",
+    "isometric",
+    "geometric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-cube-illusion",
+      "visualModel": "isometric-cube-tessellation",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "isometric-cube-texture"
+    }
+  },
+  "url": "https://openui.dev/r/geometric-cube-lattice.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Cube Illusion: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

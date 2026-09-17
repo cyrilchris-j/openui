@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "smart-search-command-palette",
+  "type": "registry:block",
+  "title": "Smart Search Command Palette",
+  "description": "A keyboard-accessible modal command palette supporting fuzzy action execution and shortcut cues.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "smart-search-command-palette.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SmartSearchCommandPalette({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [query, setQuery] = React.useState(\"\");\n\n  const actions = [\n    { label: \"Browse 800 Catalog Resources\", category: \"Navigation\", key: \"G C\" },\n    { label: \"Run Validation: pnpm validate:catalog\", category: \"DevOps\", key: \"⌘ V\" },\n    { label: \"Create New API Secret\", category: \"Security\", key: \"⌘ K\" },\n  ];\n\n  const filtered = actions.filter((a) => a.label.toLowerCase().includes(query.toLowerCase()));\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl font-mono text-xs\", className)} {...props}>\n      <input\n        type=\"text\"\n        value={query}\n        onChange={(e) => setQuery(e.target.value)}\n        placeholder=\"Type a command or search resource...\"\n        className=\"w-full px-3 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 mb-3 focus:outline-none\"\n      />\n      <div className=\"space-y-1\">\n        {filtered.map((a) => (\n          <div key={a.label} className=\"p-2.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center justify-between cursor-pointer\">\n            <span className=\"text-neutral-900 dark:text-white\">{a.label}</span>\n            <span className=\"px-2 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-[10px] text-neutral-500\">{a.key}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "1f69e01ab99eced09edaf73c95e11121aea9be60df9fb6020632e8021e7614e4",
+      "sizeBytes": 1640
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { SmartSearchCommandPalette } from \"./smart-search-command-palette\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <SmartSearchCommandPalette />\n    </div>\n  );\n}\n",
+      "contentHash": "8216d36c3255d229ef565a9d8bcff62c1bb9313363a5b4e57dff9f39afa2001f",
+      "sizeBytes": 305
+    }
+  ],
+  "tags": [
+    "command-palette",
+    "search",
+    "shortcuts",
+    "actions",
+    "fuzzy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "search",
+    "fingerprint": {
+      "interactionModel": "fuzzy-command-palette-keyboard-nav",
+      "visualModel": "floating-omnisearch-modal",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "global-action-launcher"
+    }
+  },
+  "url": "https://openui.dev/r/smart-search-command-palette.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Fuzzy Command Palette Keyboard Nav: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-terms-agreement",
+  "type": "registry:layout",
+  "title": "Split Terms Agreement",
+  "description": "Legal consent layout: scrollable terms of service text on left with consent checkbox action box on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-terms-agreement.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "terms",
+    "legal",
+    "consent",
+    "agreement",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "legal-consent-review",
+      "visualModel": "scrollable-terms-and-consent",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-terms-agreement",
+      "semanticPurpose": "terms-agreement-dialog"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

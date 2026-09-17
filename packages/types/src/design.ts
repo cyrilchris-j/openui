@@ -98,6 +98,41 @@ export interface DesignDna {
 }
 
 /**
+ * The behavioural fingerprint of a resource.
+ *
+ * Where the DNA axes describe *how a resource looks*, the fingerprint describes
+ * *how it behaves and is built*: its interaction model, its rendering
+ * technique, its motion mechanism, its layout strategy and its semantic job.
+ * Two resources with the same DNA but different fingerprints are genuinely
+ * different resources; two that share both are duplicate ideas.
+ *
+ * Every field is a lowercase slug so the uniqueness engine can compare
+ * fingerprints deterministically.
+ */
+export interface ResourceFingerprint {
+  /** How the user engages with it, e.g. `pointer-attraction`, `scroll-linked`. */
+  interactionModel?: string;
+  /** The rendering/composition technique, e.g. `canvas-particles`, `css-grid`. */
+  visualModel?: string;
+  /** The animation mechanism, e.g. `spring-follow`, `intersection-stagger`. */
+  motionModel?: string;
+  /** Structural strategy, e.g. `inline`, `overlay-stack`, `split-ratio`. */
+  layoutModel?: string;
+  /** The job it does in an interface, e.g. `primary-cta`, `data-scan`. */
+  semanticPurpose?: string;
+}
+
+/** The fingerprint fields that participate in uniqueness comparison. */
+export const FINGERPRINT_AXES = [
+  "interactionModel",
+  "visualModel",
+  "motionModel",
+  "layoutModel",
+  "semanticPurpose",
+] as const;
+export type FingerprintAxis = (typeof FINGERPRINT_AXES)[number];
+
+/**
  * Machine-readable form of a `design.md` file. `rules` are prose instructions
  * that AI tools are expected to obey; `avoid` lists the specific patterns the
  * design system considers slop.

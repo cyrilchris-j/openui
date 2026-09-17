@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-documentation-explorer",
+  "type": "registry:block",
+  "title": "API Documentation Explorer",
+  "description": "An interactive API reference explorer with HTTP method badges (GET, POST), parameter tables, and live response simulation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-documentation-explorer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "api",
+    "docs",
+    "explorer",
+    "openapi",
+    "endpoints"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "api-endpoint-try-it-out-request",
+      "visualModel": "openapi-interactive-specification-viewer",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "api-specification-inspection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

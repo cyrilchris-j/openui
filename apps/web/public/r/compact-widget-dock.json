@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compact-widget-dock",
+  "type": "registry:layout",
+  "title": "Compact Widget Dock",
+  "description": "Four-column compact widget bar docked to the bottom of the active viewport.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compact-widget-dock.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CompactWidgetDockProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CompactWidgetDock({ children, className, ...props }: CompactWidgetDockProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 sm:grid-cols-4 gap-3 p-3 rounded-2xl border border-line bg-paper/90 backdrop-blur-md shadow-lg max-w-3xl mx-auto font-mono text-xs\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "e13dc172fec014528a9e72b09081fc83734be6a76f19ae0b4e034a7d0e07ee2d",
+      "sizeBytes": 506
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CompactWidgetDock } from \"./compact-widget-dock\";\n\nexport default function CompactWidgetDockDemo() {\n  return (\n    <CompactWidgetDock>\n      {[\"RAM: 42%\", \"CPU: 18%\", \"NET: 80Mbps\", \"TEMP: 38°C\"].map((w) => (\n        <div key={w} className=\"p-2 rounded bg-surface/50 text-center font-bold text-ink\">\n          {w}\n        </div>\n      ))}\n    </CompactWidgetDock>\n  );\n}\n",
+      "contentHash": "6986485f66148f7801a43eea041dfa403b4e2f941e899b13c88fb29787759430",
+      "sizeBytes": 397
+    }
+  ],
+  "tags": [
+    "dock",
+    "widgets",
+    "telemetry",
+    "bottom",
+    "bar"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "viewport-bottom-dock-scan",
+      "visualModel": "four-slot-widget-dock",
+      "motionModel": "none",
+      "layoutModel": "horizontal-bottom-dock",
+      "semanticPurpose": "bottom-pinned-widget-rack"
+    }
+  },
+  "url": "https://openui.dev/r/compact-widget-dock.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Viewport Bottom Dock Scan: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

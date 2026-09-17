@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "three-tier-pricing-table",
+  "type": "registry:layout",
+  "title": "Three Tier Pricing Table",
+  "description": "Comparative SaaS pricing table layout with vertical plan columns and horizontal feature checkmark rows.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "three-tier-pricing-table.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "pricing",
+    "table",
+    "tiers",
+    "subscription",
+    "plans"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "three-tier-plan-matrix",
+      "visualModel": "columnar-pricing-table",
+      "motionModel": "none",
+      "layoutModel": "tabular-plan-columns",
+      "semanticPurpose": "subscription-plan-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

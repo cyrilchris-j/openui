@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ticker-tape-deltas",
+  "type": "registry:text",
+  "title": "Ticker Tape Deltas",
+  "description": "A stock-quote tape: symbols scroll horizontally while up/down deltas render as triangle glyphs with tabular numerals, ticking live values and flashing the cell background on change like a trading terminal.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ticker-tape-deltas.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TickerQuote {\n  symbol: string;\n  value: number;\n  /** Change since previous tick. */\n  delta: number;\n}\n\nexport interface TickerTapeDeltasProps {\n  /** Base quotes; values random-walk every tick. */\n  quotes: Array<{ symbol: string; value: number }>;\n  tickMs?: number;\n  className?: string;\n}\n\nexport function TickerTapeDeltas({ quotes, tickMs = 1200, className }: TickerTapeDeltasProps) {\n  const [live, setLive] = useState<TickerQuote[]>(() =>\n    quotes.map((quote) => ({ ...quote, delta: 0 })),\n  );\n  const flash = useRef(new Map<string, \"up\" | \"down\">());\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n    const timer = window.setInterval(() => {\n      setLive((current) =>\n        current.map((quote) => {\n          const drift = (Math.random() - 0.5) * quote.value * 0.02;\n          const next = Math.max(0.01, quote.value + drift);\n          const delta = next - quote.value;\n          flash.current.set(quote.symbol, delta >= 0 ? \"up\" : \"down\");\n          return { ...quote, value: Number(next.toFixed(2)), delta: Number(delta.toFixed(2)) };\n        }),\n      );\n    }, tickMs);\n    return () => window.clearInterval(timer);\n  }, [tickMs]);\n\n  const doubled = [...live, ...live];\n\n  return (\n    <div className={cn(\"overflow-hidden rounded-lg border border-line bg-ink py-2\", className)} role=\"status\" aria-label=\"Live quotes\">\n      <div\n        aria-hidden\n        className=\"flex w-max gap-8 px-4\"\n        style={{ animation: \"openui-tape 18s linear infinite\" }}\n      >\n        {doubled.map((quote, index) => {\n          const flashState = flash.current.get(quote.symbol);\n          return (\n            <span key={index} className=\"flex items-baseline gap-2 font-mono text-sm whitespace-nowrap\">\n              <span className=\"font-semibold text-paper/90\">{quote.symbol}</span>\n              <span className=\"tabular-nums text-paper/70\">{quote.value.toFixed(2)}</span>\n              <span className={cn(\"flex items-center gap-0.5 tabular-nums\", quote.delta >= 0 ? \"text-emerald-400\" : \"text-red-400\")}>\n                <span aria-hidden>{quote.delta >= 0 ? \"▲\" : \"▼\"}</span>\n                {Math.abs(quote.delta).toFixed(2)}\n              </span>\n              {flashState && (\n                <span\n                  className=\"pointer-events-none absolute inset-0 rounded\"\n                  style={{ background: flashState === \"up\" ? \"rgba(52,211,153,0.14)\" : \"rgba(248,113,113,0.14)\" }}\n                />\n              )}\n            </span>\n          );\n        })}\n      </div>\n      <style>{`@keyframes openui-tape { from { transform: translateX(0) } to { transform: translateX(-50%) } } @media (prefers-reduced-motion: reduce) { div { animation: none !important } }`}</style>\n    </div>\n  );\n}\n\nexport default TickerTapeDeltas;\n",
+      "contentHash": "bc53952602b97ad7a2af5d47061b281ba91102529eb1b7fd8ce28232b8b0c2c1",
+      "sizeBytes": 2931
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { TickerTapeDeltas } from \"./ticker-tape-deltas\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <TickerTapeDeltas\n        className=\"w-full max-w-lg\"\n        quotes={[\n          { symbol: \"OPEN\", value: 42.8 },\n          { symbol: \"REGI\", value: 12.35 },\n          { symbol: \"META\", value: 8.9 },\n          { symbol: \"GLYP\", value: 104.2 },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "d12fa333a16064615ebfff5ce0ea5dadcd155c15435ca4fef2904504651d27f0",
+      "sizeBytes": 474
+    }
+  ],
+  "tags": [
+    "ticker",
+    "quotes",
+    "deltas",
+    "live"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "scrolling-quote-tape",
+      "motionModel": "marquee-with-flash",
+      "layoutModel": "rail",
+      "semanticPurpose": "market-data"
+    }
+  },
+  "url": "https://openui.dev/r/ticker-tape-deltas.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Duotone\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

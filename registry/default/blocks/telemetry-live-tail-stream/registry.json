@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "telemetry-live-tail-stream",
+  "type": "registry:block",
+  "title": "Telemetry Live Tail Stream",
+  "description": "A streaming log terminal with pause/resume controls, log severity filters, and auto-scrolling telemetry.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "telemetry-live-tail-stream.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "telemetry",
+    "logs",
+    "stream",
+    "console",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "streaming-log-tail-pause-resume",
+      "visualModel": "console-log-streaming-window",
+      "motionModel": "mechanical",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "edge-log-tail-streaming"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "dense",
+      "genre": "technical"
+    }
+  }
+}

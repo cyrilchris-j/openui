@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-feedback-nps-widget",
+  "type": "registry:block",
+  "title": "User Feedback NPS Widget",
+  "description": "A compact customer satisfaction widget featuring 0-10 Net Promoter Score selection and qualitative feedback field.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-feedback-nps-widget.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "nps",
+    "feedback",
+    "rating",
+    "survey",
+    "widget"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "nps-score-rating-submission",
+      "visualModel": "compact-floating-feedback-panel",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-satisfaction-scoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

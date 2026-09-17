@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pan-and-zoom-stage",
+  "type": "registry:layout",
+  "title": "Pan and Zoom Stage",
+  "description": "Infinite 2D spatial canvas layout with corner mini-map locator viewport radar.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pan-and-zoom-stage.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface PanAndZoomStageProps extends React.HTMLAttributes<HTMLDivElement> {\n  minimap?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function PanAndZoomStage({ minimap, children, className, ...props }: PanAndZoomStageProps) {\n  return (\n    <div className={cn(\"relative w-full h-80 bg-paper text-ink overflow-hidden border border-line rounded-xl\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center -z-10\">{children}</div>\n      {minimap && <div className=\"absolute bottom-3 right-3 p-1.5 rounded-lg border border-line bg-paper/90 shadow-md\">{minimap}</div>}\n    </div>\n  );\n}\n",
+      "contentHash": "a996581ecb06746894cfb530ec4e9fdd3cf1fed8652755b51f73a17e34bd5bd8",
+      "sizeBytes": 690
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { PanAndZoomStage } from \"./pan-and-zoom-stage\";\n\nexport default function PanAndZoomStageDemo() {\n  return (\n    <PanAndZoomStage\n      minimap={\n        <div className=\"w-24 h-16 bg-surface/80 rounded border border-line/50 flex items-center justify-center font-mono text-[9px] text-ink/60\">\n          Mini-map\n        </div>\n      }\n    >\n      <div className=\"font-mono text-xs text-ink/50\">Spatial Canvas Infinite Stage</div>\n    </PanAndZoomStage>\n  );\n}\n",
+      "contentHash": "2d5923bb4e525e4ed23a967ba224ac23300f5899549dc86da72825587152794a",
+      "sizeBytes": 481
+    }
+  ],
+  "tags": [
+    "canvas",
+    "spatial",
+    "pan",
+    "zoom",
+    "minimap"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "spatial-canvas-minimap",
+      "visualModel": "infinite-stage-with-locator",
+      "motionModel": "none",
+      "layoutModel": "canvas-with-anchored-radar",
+      "semanticPurpose": "spatial-node-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/pan-and-zoom-stage.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Spatial Canvas Minimap: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

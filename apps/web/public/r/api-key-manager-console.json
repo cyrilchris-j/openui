@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-key-manager-console",
+  "type": "registry:block",
+  "title": "API Key Manager Console",
+  "description": "A secret key lifecycle manager featuring token masking, creation modals, copy confirmation, and revocation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-key-manager-console.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ApiKeyManagerConsole({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [keys, setKeys] = React.useState([\n    { id: \"key_1\", name: \"Production Gateway\", token: \"opui_live_8f92a1...\", created: \"2026-08-14\" },\n    { id: \"key_2\", name: \"CI/CD Test Runner\", token: \"opui_test_3c4e1b...\", created: \"2026-09-01\" },\n  ]);\n\n  const revokeKey = (id: string) => {\n    setKeys((prev) => prev.filter((k) => k.id !== id));\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-2xl font-mono text-xs\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-4 border-b border-neutral-800\">\n        <div>\n          <h3 className=\"text-sm font-bold text-white\">API Authentication Keys</h3>\n          <p className=\"text-neutral-400 text-[11px] mt-0.5\">Never expose production secrets in client bundles.</p>\n        </div>\n        <button type=\"button\" className=\"px-3 py-1.5 rounded bg-emerald-600 text-white font-bold text-[11px]\">\n          Create Secret\n        </button>\n      </div>\n\n      <div className=\"divide-y divide-neutral-800 mt-2\">\n        {keys.map((k) => (\n          <div key={k.id} className=\"py-3 flex items-center justify-between\">\n            <div>\n              <div className=\"font-bold text-white\">{k.name}</div>\n              <div className=\"text-emerald-400 text-[11px] mt-0.5\">{k.token}</div>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <span className=\"text-neutral-500 text-[10px]\">{k.created}</span>\n              <button type=\"button\" onClick={() => revokeKey(k.id)} className=\"text-rose-400 hover:underline text-[11px]\">\n                Revoke\n              </button>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "5414c622b37b300bc29d073aa6a9a0b0c2ba3907242683d9c5c43143a519243f",
+      "sizeBytes": 1935
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { ApiKeyManagerConsole } from \"./api-key-manager-console\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-900\">\n      <ApiKeyManagerConsole />\n    </div>\n  );\n}\n",
+      "contentHash": "2d8e0406a6906ed8cb2a93354e1713c18531c70483536e966fa7684aaee6bec4",
+      "sizeBytes": 270
+    }
+  ],
+  "tags": [
+    "api-keys",
+    "secrets",
+    "tokens",
+    "security",
+    "credentials"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "token-generation-and-revocation",
+      "visualModel": "security-credentials-console",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-credential-lifecycle"
+    }
+  },
+  "url": "https://openui.dev/r/api-key-manager-console.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Token Generation And Revocation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

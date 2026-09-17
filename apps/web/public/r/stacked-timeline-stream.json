@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stacked-timeline-stream",
+  "type": "registry:layout",
+  "title": "Stacked Timeline Stream",
+  "description": "Single-column vertical activity feed with avatar indicators and connecting timeline guides.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stacked-timeline-stream.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StackedTimelineStreamProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function StackedTimelineStream({ children, className, ...props }: StackedTimelineStreamProps) {\n  return (\n    <div className={cn(\"max-w-md mx-auto p-4 space-y-4 font-sans text-xs\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "2bece5a37d37b81c293139afd4da6590a541379cf9751260176fa028fbd6abba",
+      "sizeBytes": 419
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { StackedTimelineStream } from \"./stacked-timeline-stream\";\n\nexport default function StackedTimelineStreamDemo() {\n  return (\n    <StackedTimelineStream>\n      <div className=\"flex gap-3 items-start\">\n        <div className=\"w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-[10px] font-bold\">AG</div>\n        <div className=\"flex-1 p-3 rounded-lg border border-line bg-surface/30\">\n          <div className=\"font-semibold text-ink\">Built 100 Backgrounds</div>\n          <div className=\"text-[10px] text-ink/50 mt-0.5 font-mono\">2 mins ago</div>\n        </div>\n      </div>\n    </StackedTimelineStream>\n  );\n}\n",
+      "contentHash": "41e4f83d8c70f3fe9d3c91d575d8689fe3fc0fcf88c63aabbf9024b66fcaf347",
+      "sizeBytes": 662
+    }
+  ],
+  "tags": [
+    "timeline",
+    "activity",
+    "stream",
+    "feed",
+    "stack"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "activity-stream-scroll",
+      "visualModel": "vertical-timeline-wire",
+      "motionModel": "none",
+      "layoutModel": "single-column-timeline-stack",
+      "semanticPurpose": "activity-audit-stream"
+    }
+  },
+  "url": "https://openui.dev/r/stacked-timeline-stream.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Activity Stream Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "beta-waitlist-card",
+  "type": "registry:section",
+  "title": "Beta Waitlist Card",
+  "description": "An early-access invite card with real-time waitlist counter and instant confirmation state.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "beta-waitlist-card.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "waitlist",
+    "beta",
+    "invite",
+    "signup",
+    "form"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "beta-waitlist-card-interaction",
+      "visualModel": "beta-waitlist-card-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "beta-waitlist-card-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

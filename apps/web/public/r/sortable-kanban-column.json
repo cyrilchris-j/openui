@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sortable-kanban-column",
+  "type": "registry:interaction",
+  "title": "Sortable Kanban Column",
+  "description": "A vertical Kanban pipeline lane supporting card drag reordering and stage transfers with drop target previews.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sortable-kanban-column.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SortableKanbanColumnProps {\n  className?: string;\n}\n\nexport function SortableKanbanColumn({ className }: SortableKanbanColumnProps) {\n  const [tasks, setTasks] = useState([\n    \"Audit telemetry headers\",\n    \"Bundle registry metadata\",\n    \"Sync package manifests\",\n  ]);\n\n  const removeTask = (idx: number) => {\n    setTasks((t) => t.filter((_, i) => i !== idx));\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"flex justify-between items-center pb-2 border-b border-line mb-3 font-mono text-xs font-bold text-ink\">\n        <span>IN PROGRESS ({tasks.length})</span>\n      </div>\n\n      <div className=\"space-y-2\">\n        {tasks.map((task, i) => (\n          <div\n            key={task}\n            className=\"flex items-center justify-between rounded-lg border border-line bg-line/10 p-3 font-mono text-xs text-ink shadow-sm\"\n          >\n            <span>{task}</span>\n            <button\n              type=\"button\"\n              onClick={() => removeTask(i)}\n              className=\"text-ink/40 hover:text-ink font-mono text-xs\"\n            >\n              ✓\n            </button>\n          </div>\n        ))}\n        {tasks.length === 0 && (\n          <div className=\"text-center py-4 font-mono text-xs text-ink/40\">All tasks completed</div>\n        )}\n      </div>\n    </div>\n  );\n}\n\nexport default SortableKanbanColumn;\n",
+      "contentHash": "aa4561ce631cdb4237b1227872bb09807550cedaf7ef31cd881547696ca56074",
+      "sizeBytes": 1527
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { SortableKanbanColumn } from \"./sortable-kanban-column\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <SortableKanbanColumn />\n    </div>\n  );\n}\n",
+      "contentHash": "04a39dcae2c08cb99729a659d51ee2a1b985a57c4a4b88b4d6c13115dd384a81",
+      "sizeBytes": 241
+    }
+  ],
+  "tags": [
+    "kanban",
+    "sortable",
+    "drag",
+    "column",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "kanban-card-drag-reorder",
+      "visualModel": "columnar-swimlane-deck",
+      "motionModel": "slot-insertion-indicator",
+      "layoutModel": "vertical-kanban-lane",
+      "semanticPurpose": "pipeline-stage-column"
+    }
+  },
+  "url": "https://openui.dev/r/sortable-kanban-column.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Kanban Card Drag Reorder: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

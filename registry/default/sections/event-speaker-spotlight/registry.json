@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "event-speaker-spotlight",
+  "type": "registry:section",
+  "title": "Event Speaker Spotlight",
+  "description": "A showcase cards section highlighting conference keynote speakers and presentation summaries.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "event-speaker-spotlight.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "speakers",
+    "event",
+    "conference",
+    "keynote",
+    "spotlight"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "events",
+    "fingerprint": {
+      "interactionModel": "event-speaker-spotlight-interaction",
+      "visualModel": "event-speaker-spotlight-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "event-speaker-spotlight-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "medium",
+      "genre": "swiss"
+    }
+  }
+}

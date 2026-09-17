@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-pull-card",
+  "type": "registry:interaction",
+  "title": "Elastic Pull Card",
+  "description": "A tethered specimen card that stretches from its anchor point with rubberband tension before snapping back.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-pull-card.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticPullCardProps {\n  className?: string;\n}\n\nexport function ElasticPullCard({ className }: ElasticPullCardProps) {\n  const [pull, setPull] = useState(0);\n\n  return (\n    <div className={cn(\"flex flex-col items-center justify-center gap-4 rounded-xl border border-line bg-paper p-8\", className)}>\n      <div\n        className=\"rounded-xl border border-line bg-paper p-6 shadow-md transition-transform duration-100 ease-out\"\n        style={{ transform: `translateY(${pull}px)` }}\n      >\n        <span className=\"font-mono text-[10px] text-ink/50 uppercase\">TETHERED ANCHOR</span>\n        <h4 className=\"mt-1 font-display font-bold text-ink\">Hookean Tension Pull</h4>\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"-40\"\n        max=\"40\"\n        value={pull}\n        onChange={(e) => setPull(parseInt(e.target.value, 10))}\n        onPointerUp={() => setPull(0)}\n        className=\"w-36 cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default ElasticPullCard;\n",
+      "contentHash": "a3aa37202b2bc385b7fd9f655509f38efd4d36165e3355aaf9a7584addf3b17e",
+      "sizeBytes": 1086
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ElasticPullCard } from \"./elastic-pull-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ElasticPullCard />\n    </div>\n  );\n}\n",
+      "contentHash": "171fdbeb01115f5ddbd14519d77d11a218429f0342cce21e16d79b834d3e2ea3",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "card",
+    "pull",
+    "elastic",
+    "tension",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "tethered-pull-rebound",
+      "visualModel": "taut-elastic-slab",
+      "motionModel": "hookean-spring-restitution",
+      "layoutModel": "center-anchored-card",
+      "semanticPurpose": "tactile-pull-card"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-pull-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Tethered Pull Rebound: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-eyedropper-loupe",
+  "type": "registry:interaction",
+  "title": "Color Eyedropper Loupe",
+  "description": "An interactive sampling loupe displaying pixel grid magnification and instantaneous hex readouts.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-eyedropper-loupe.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "eyedropper",
+    "loupe",
+    "color",
+    "hex",
+    "picker"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "loupe-color-sampling",
+      "visualModel": "reticle-color-well",
+      "motionModel": "instantaneous-reticle-positioning",
+      "layoutModel": "overlaid-eyedropper-optic",
+      "semanticPurpose": "pixel-color-sampler"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

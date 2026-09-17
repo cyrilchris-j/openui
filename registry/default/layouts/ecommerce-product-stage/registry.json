@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ecommerce-product-stage",
+  "type": "registry:layout",
+  "title": "Ecommerce Product Stage",
+  "description": "Product detail stage with vertical image thumbnail rack, central visualizer, and checkout panel.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ecommerce-product-stage.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "ecommerce",
+    "product",
+    "store",
+    "thumbnails",
+    "checkout"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "product-gallery-and-buy-box",
+      "visualModel": "thumbnail-stage-and-actions",
+      "motionModel": "none",
+      "layoutModel": "three-tier-product-stage",
+      "semanticPurpose": "ecommerce-product-detail-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

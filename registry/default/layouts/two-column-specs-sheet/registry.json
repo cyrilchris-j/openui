@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-specs-sheet",
+  "type": "registry:layout",
+  "title": "Two Column Specs Sheet",
+  "description": "Clean specification layout for hardware or software documentation with bold key/value grid.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-specs-sheet.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "specs",
+    "hardware",
+    "table",
+    "technical",
+    "sheet"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "technical-spec-lookup",
+      "visualModel": "two-column-key-value-sheet",
+      "motionModel": "none",
+      "layoutModel": "tabular-key-value-grid",
+      "semanticPurpose": "hardware-specification-sheet"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

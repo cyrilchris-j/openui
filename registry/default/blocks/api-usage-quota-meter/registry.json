@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-usage-quota-meter",
+  "type": "registry:block",
+  "title": "API Usage Quota Meter",
+  "description": "A developer usage quota tracker presenting monthly API limits, current burn rate, and alert thresholds.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-usage-quota-meter.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "quota",
+    "usage",
+    "meter",
+    "billing",
+    "api"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "billing",
+    "fingerprint": {
+      "interactionModel": "quota-usage-monitoring",
+      "visualModel": "threshold-meter-progress-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-quota-consumption-tracking"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

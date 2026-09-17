@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "abstract-geometric-mandala",
+  "type": "registry:background",
+  "title": "Abstract Geometric Mandala",
+  "description": "Contemporary vector sacred mandala with clean concentric polygon rings and precision starbursts.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "abstract-geometric-mandala.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "mandala",
+    "geometric",
+    "sacred",
+    "vector",
+    "modern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-modern-mandala",
+      "visualModel": "concentric-polygon-mandala",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "modern-mandala-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

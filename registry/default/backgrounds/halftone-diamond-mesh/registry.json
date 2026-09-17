@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "halftone-diamond-mesh",
+  "type": "registry:background",
+  "title": "Halftone Diamond Mesh",
+  "description": "Rhombus diamond-shaped screen printing halftone dots scaled across a diagonal angle matrix.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "halftone-diamond-mesh.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "halftone",
+    "diamond",
+    "rhombus",
+    "print",
+    "screen"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-diamond-halftone",
+      "visualModel": "rhomboid-raster-dots",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "diamond-halftone-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

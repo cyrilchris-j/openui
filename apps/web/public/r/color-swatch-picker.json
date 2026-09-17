@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-swatch-picker",
+  "type": "registry:component",
+  "title": "Color Swatch Picker",
+  "description": "A compact matrix palette picker allowing color tone selection with checkmark indicators.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-swatch-picker.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ColorSwatchPickerProps {\n  className?: string;\n}\n\nexport function ColorSwatchPicker({ className }: ColorSwatchPickerProps) {\n  const colors = [\"#000000\", \"#4f46e5\", \"#0ea5e9\", \"#10b981\", \"#f59e0b\", \"#ef4444\"];\n  const [active, setActive] = useState(colors[0]);\n\n  return (\n    <div className={cn(\"inline-flex flex-col gap-3 rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">THEME TONE: {active}</span>\n      <div className=\"flex gap-2\">\n        {colors.map((c) => (\n          <button\n            key={c}\n            type=\"button\"\n            onClick={() => setActive(c)}\n            className=\"flex h-8 w-8 items-center justify-center rounded-lg border border-black/10 shadow-sm transition-transform active:scale-90\"\n            style={{ backgroundColor: c }}\n          >\n            {active === c && <span className=\"text-white text-xs font-bold\">✓</span>}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default ColorSwatchPicker;\n",
+      "contentHash": "853332348c281c387d70a215572333e7de79e9ac04d5160be5464bf58b597af4",
+      "sizeBytes": 1128
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ColorSwatchPicker } from \"./color-swatch-picker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ColorSwatchPicker />\n    </div>\n  );\n}\n",
+      "contentHash": "ac08e8c853193ba35aa47ce75dae3486636f372b04bb5f85ce22028173d892b1",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "color",
+    "picker",
+    "palette",
+    "swatches",
+    "tokens"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "swatch-selection-click",
+      "visualModel": "tessellated-color-chips",
+      "motionModel": "none",
+      "layoutModel": "grid-swatch-array",
+      "semanticPurpose": "theme-color-selector"
+    }
+  },
+  "url": "https://openui.dev/r/color-swatch-picker.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Swatch Selection Click: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

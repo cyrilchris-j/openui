@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "polka-dot-pop",
+  "type": "registry:background",
+  "title": "Polka Dot Pop",
+  "description": "Crisp staggered modern polka dots with alternating row offsets for playful editorial headers.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "polka-dot-pop.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface PolkaDotPopProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function PolkaDotPop({ className, children, ...props }: PolkaDotPopProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"polka-pat\" width=\"32\" height=\"32\" patternUnits=\"userSpaceOnUse\">\n            <circle cx=\"8\" cy=\"8\" r=\"3\" fill=\"currentColor\" />\n            <circle cx=\"24\" cy=\"24\" r=\"3\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#polka-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "319cb9772d360cdfc9f940436accc8cf35239812249f30a2c1751af4214e4620",
+      "sizeBytes": 884
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { PolkaDotPop } from \"./polka-dot-pop\";\n\nexport default function PolkaDotPopDemo() {\n  return (\n    <PolkaDotPop className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Staggered Polka</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Dual row offset dot pattern.</p>\n      </div>\n    </PolkaDotPop>\n  );\n}\n",
+      "contentHash": "72c0c62a17ebc6e4ddff537f2eebff39ef16f9ede0719cfaaeb15ad50a7a7532",
+      "sizeBytes": 529
+    }
+  ],
+  "tags": [
+    "polka",
+    "dots",
+    "pop",
+    "playful",
+    "pattern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-staggered-dots",
+      "visualModel": "staggered-polka-pattern",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "playful-dot-wallpaper"
+    }
+  },
+  "url": "https://openui.dev/r/polka-dot-pop.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Pill\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Staggered Dots: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

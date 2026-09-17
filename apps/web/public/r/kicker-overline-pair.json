@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kicker-overline-pair",
+  "type": "registry:text",
+  "title": "Kicker Overline Pair",
+  "description": "The magazine pairing: a tracked-out uppercase kicker over a display headline, locked to a shared baseline grid with an optically-weighted rule between them — one component that enforces the editorial relationship.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kicker-overline-pair.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface KickerOverlinePairProps {\n  kicker: string;\n  headline: string;\n  /** Rule colour between kicker and headline. */\n  rule?: string;\n  className?: string;\n}\n\nexport function KickerOverlinePair({ kicker, headline, rule = \"currentColor\", className }: KickerOverlinePairProps) {\n  return (\n    <header className={cn(\"flex flex-col\", className)}>\n      <p className=\"font-mono text-xs uppercase tracking-[0.28em] text-ink/60\">{kicker}</p>\n      <span aria-hidden className=\"my-3 h-px w-16\" style={{ background: rule, opacity: 0.5 }} />\n      <h2 className=\"font-display text-step-4 leading-[1.04] text-ink\">{headline}</h2>\n    </header>\n  );\n}\n\nexport default KickerOverlinePair;\n",
+      "contentHash": "56ec10ca4df62b1f3ce6cb33c40a2453c975ce8e3ec1a82aa280ed5e82829a42",
+      "sizeBytes": 723
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { KickerOverlinePair } from \"./kicker-overline-pair\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <KickerOverlinePair kicker=\"Field Notes\" headline=\"Metadata is the product\" className=\"max-w-lg\" />\n    </div>\n  );\n}\n",
+      "contentHash": "e41becb660de509724bffac60b275988a7ff1cccbf4a71dc36fb065f270b95ba",
+      "sizeBytes": 313
+    }
+  ],
+  "tags": [
+    "kicker",
+    "overline",
+    "headline",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "kicker-rule-headline-lockup",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "section-opener"
+    }
+  },
+  "url": "https://openui.dev/r/kicker-overline-pair.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

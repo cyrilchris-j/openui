@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "abstract-geometric-mandala",
+  "type": "registry:background",
+  "title": "Abstract Geometric Mandala",
+  "description": "Contemporary vector sacred mandala with clean concentric polygon rings and precision starbursts.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "abstract-geometric-mandala.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AbstractGeometricMandalaProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function AbstractGeometricMandala({ className, children, ...props }: AbstractGeometricMandalaProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-15 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          <circle cx=\"100\" cy=\"100\" r=\"85\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          {[0, 30, 60, 90, 120, 150].map((deg) => (\n            <rect\n              key={deg}\n              x=\"50\"\n              y=\"50\"\n              width=\"100\"\n              height=\"100\"\n              fill=\"none\"\n              stroke=\"currentColor\"\n              strokeWidth=\"0.75\"\n              transform={`rotate(${deg} 100 100)`}\n            />\n          ))}\n          <circle cx=\"100\" cy=\"100\" r=\"20\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "d59a71f81589a5c5f63cae331f14846b98a8a0ea80f56420830337ba17f78577",
+      "sizeBytes": 1211
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { AbstractGeometricMandala } from \"./abstract-geometric-mandala\";\n\nexport default function AbstractGeometricMandalaDemo() {\n  return (\n    <AbstractGeometricMandala className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Concentric Rosette</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Multi-angle rotational square mandala.</p>\n      </div>\n    </AbstractGeometricMandala>\n  );\n}\n",
+      "contentHash": "cc603930263462a75617a1200d98f8a694802396b7e41a5a400d01b1c8d2d315",
+      "sizeBytes": 607
+    }
+  ],
+  "tags": [
+    "mandala",
+    "geometric",
+    "sacred",
+    "vector",
+    "modern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-modern-mandala",
+      "visualModel": "concentric-polygon-mandala",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "modern-mandala-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/abstract-geometric-mandala.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Modern Mandala: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

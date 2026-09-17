@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-split-reveal",
+  "type": "registry:motion",
+  "title": "Elastic Split Reveal",
+  "description": "A split-screen curtain reveal dividing a surface along a central diagonal or horizontal axis with rubberband overshoot on trigger.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-split-reveal.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "curtain",
+    "split",
+    "reveal",
+    "elastic",
+    "transition"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "toggle-split-parting",
+      "visualModel": "bisected-shutter-panels",
+      "motionModel": "bipartite-spring-parting",
+      "layoutModel": "two-half-covering-curtain",
+      "semanticPurpose": "canvas-content-unveil"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

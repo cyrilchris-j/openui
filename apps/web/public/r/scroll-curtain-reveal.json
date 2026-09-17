@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-curtain-reveal",
+  "type": "registry:motion",
+  "title": "Scroll Curtain Reveal",
+  "description": "A dual-leaf curtain mechanism that parts horizontally across the viewport as the user scrolls, unveiling underlying content.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-curtain-reveal.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollCurtainRevealProps {\n  progress?: number;\n  className?: string;\n}\n\nexport function ScrollCurtainReveal({ progress: controlledProgress, className }: ScrollCurtainRevealProps) {\n  const [internalProgress, setInternalProgress] = useState(0.3);\n  const progress = controlledProgress ?? internalProgress;\n\n  return (\n    <div className={cn(\"relative h-80 w-full overflow-hidden rounded-xl border border-line bg-paper\", className)}>\n      <div className=\"absolute inset-0 flex flex-col items-center justify-center p-6 text-center\">\n        <span className=\"font-mono text-xs uppercase tracking-widest text-ink/60\">Unveiled Surface</span>\n        <h3 className=\"mt-2 font-display text-2xl font-bold text-ink\">Hidden Architecture</h3>\n        <p className=\"mt-1 max-w-sm text-sm text-ink/70\">The curtain parts smoothly as progress advances from edge to edge.</p>\n      </div>\n\n      {/* Left Leaf */}\n      <div\n        className=\"absolute inset-y-0 left-0 bg-ink transition-transform duration-100 ease-out\"\n        style={{\n          width: \"50%\",\n          transform: `translateX(${-progress * 100}%)`,\n        }}\n      >\n        <div className=\"absolute right-4 top-1/2 -translate-y-1/2 font-mono text-xs text-paper/40\">LEFT LEAF</div>\n      </div>\n\n      {/* Right Leaf */}\n      <div\n        className=\"absolute inset-y-0 right-0 bg-ink transition-transform duration-100 ease-out\"\n        style={{\n          width: \"50%\",\n          transform: `translateX(${progress * 100}%)`,\n        }}\n      >\n        <div className=\"absolute left-4 top-1/2 -translate-y-1/2 font-mono text-xs text-paper/40\">RIGHT LEAF</div>\n      </div>\n\n      {/* Manual scrubber overlay if uncontrolled */}\n      {controlledProgress === undefined && (\n        <div className=\"absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-line/40 bg-paper/90 px-4 py-1.5 shadow-sm backdrop-blur\">\n          <input\n            type=\"range\"\n            min=\"0\"\n            max=\"1\"\n            step=\"0.01\"\n            value={internalProgress}\n            onChange={(e) => setInternalProgress(parseFloat(e.target.value))}\n            className=\"h-1.5 w-32 cursor-pointer accent-ink\"\n          />\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default ScrollCurtainReveal;\n",
+      "contentHash": "4cd18264ad90d9fa5372693b6cc39600c96bf1abc43be577f698f778bad96eba",
+      "sizeBytes": 2352
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollCurtainReveal } from \"./scroll-curtain-reveal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <ScrollCurtainReveal className=\"max-w-md\" />\n    </div>\n  );\n}\n",
+      "contentHash": "185c05b36fb0cb0b1326778bcb6a4d82ef61678681921f2561b631dd4d385245",
+      "sizeBytes": 259
+    }
+  ],
+  "tags": [
+    "scroll",
+    "curtain",
+    "reveal",
+    "transition",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "wheel-scrubbed-reveal",
+      "visualModel": "bisected-shutter-leaves",
+      "motionModel": "linear-scroll-displacement",
+      "layoutModel": "full-bleed-curtain",
+      "semanticPurpose": "dramatic-section-gate"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-curtain-reveal.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Split\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Wheel Scrubbed Reveal: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

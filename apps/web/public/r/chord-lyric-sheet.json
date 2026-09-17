@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chord-lyric-sheet",
+  "type": "registry:text",
+  "title": "Chord Lyric Sheet",
+  "description": "Song sheet typography: chord names float above lyrics in a monospace grid with exact column alignment, chord lines tint, and tapping a chord plays nothing but shows its fingering in a popover — alignment typography as musical notation.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chord-lyric-sheet.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ChordLine {\n  chords?: Array<{ name: string; column: number }>;\n  lyric: string;\n}\n\nexport interface ChordLyricSheetProps {\n  title: string;\n  lines: ChordLine[];\n  /** Fingering lookup shown in the popover. */\n  fingerings?: Record<string, string>;\n  className?: string;\n}\n\nexport function ChordLyricSheet({ title, lines, fingerings = {}, className }: ChordLyricSheetProps) {\n  const [active, setActive] = useState<string | null>(null);\n\n  return (\n    <div className={cn(\"max-w-prose font-mono text-sm\", className)}>\n      <h2 className=\"mb-4 text-base font-semibold tracking-wide text-ink\">{title}</h2>\n      {lines.map((line, index) => (\n        <div key={index} className=\"mb-3 whitespace-pre\" aria-label={`${(line.chords ?? []).map((chord) => chord.name).join(\" \")} ${line.lyric}`}>\n          {line.chords && (\n            <div aria-hidden className=\"relative h-5 text-accent\">\n              {line.chords.map((chord, chordIndex) => (\n                <span\n                  key={chordIndex}\n                  role=\"button\"\n                  tabIndex={0}\n                  aria-label={`chord ${chord.name}`}\n                  onClick={(event) => {\n                    event.stopPropagation();\n                    setActive(active === chord.name ? null : chord.name);\n                  }}\n                  onKeyDown={(event) => {\n                    if (event.key === \"Enter\" || event.key === \" \") {\n                      event.preventDefault();\n                      setActive(active === chord.name ? null : chord.name);\n                    }\n                  }}\n                  className=\"cursor-pointer font-semibold hover:underline\"\n                  style={{ position: \"absolute\", left: `${chord.column}ch` }}\n                >\n                  {chord.name}\n                </span>\n              ))}\n            </div>\n          )}\n          <div className=\"text-ink/85\">{line.lyric || \"\\u00A0\"}</div>\n        </div>\n      ))}\n      {active && fingerings[active] && (\n        <p className=\"mt-2 inline-block rounded border border-line bg-paper px-3 py-1.5 text-xs text-ink\" role=\"status\">\n          <strong className=\"text-accent\">{active}</strong> · {fingerings[active]}\n        </p>\n      )}\n    </div>\n  );\n}\n\nexport default ChordLyricSheet;\n",
+      "contentHash": "0ed212d4abcd8daaf79487a91c04c4b7ac25c36218b210c580da7f06b2baec99",
+      "sizeBytes": 2358
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ChordLyricSheet } from \"./chord-lyric-sheet\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <ChordLyricSheet\n        title=\"Registry Blues\"\n        fingerings={{ G: \"3-2-0-0-0-3\", C: \"x-3-2-0-1-0\", D: \"x-x-0-2-3-2\" }}\n        lines={[\n          { chords: [{ name: \"G\", column: 0 }], lyric: \"Woke up this morning, opened up the repo\" },\n          { chords: [{ name: \"C\", column: 8 }], lyric: \"eight hundred components staring back at me\" },\n          { chords: [{ name: \"D\", column: 4 }, { name: \"G\", column: 14 }], lyric: \"  said one schema to rule them all\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "fae671755c3d5be6acde1f422bd49224baf531e45207886dc90eae629d69e5fa",
+      "sizeBytes": 697
+    }
+  ],
+  "tags": [
+    "chords",
+    "lyrics",
+    "monospace",
+    "music"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "tap-chord-popover",
+      "visualModel": "column-aligned-chords",
+      "motionModel": "none",
+      "layoutModel": "monospace-grid",
+      "semanticPurpose": "musical-score"
+    }
+  },
+  "url": "https://openui.dev/r/chord-lyric-sheet.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Tap Chord Popover: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

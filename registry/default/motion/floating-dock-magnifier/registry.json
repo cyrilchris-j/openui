@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "floating-dock-magnifier",
+  "type": "registry:motion",
+  "title": "Floating Dock Magnifier",
+  "description": "A desktop navigation dock where individual icon targets scale smoothly using a Gaussian proximity curve as pointer glides across.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "floating-dock-magnifier.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "dock",
+    "magnifier",
+    "gaussian",
+    "proximity",
+    "icons"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "gaussian-proximity-scale",
+      "visualModel": "docked-horizontal-shelf",
+      "motionModel": "bell-curve-expansion",
+      "layoutModel": "bottom-anchored-dock",
+      "semanticPurpose": "app-launcher-dock"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

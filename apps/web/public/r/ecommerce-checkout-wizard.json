@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ecommerce-checkout-wizard",
+  "type": "registry:block",
+  "title": "E-commerce Checkout Wizard",
+  "description": "A three-phase transaction wizard covering shipping address, payment method selection, and itemized order summary.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ecommerce-checkout-wizard.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function EcommerceCheckoutWizard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [step, setStep] = React.useState<1 | 2 | 3>(1);\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-4 border-b border-neutral-200 dark:border-neutral-800 mb-6\">\n        <h3 className=\"text-base font-bold text-neutral-900 dark:text-white\">Secure Checkout</h3>\n        <div className=\"flex gap-2 font-mono\">\n          {[1, 2, 3].map((s) => (\n            <span key={s} className={cn(\"h-6 w-6 rounded-full flex items-center justify-center font-bold\", step === s ? \"bg-emerald-600 text-white\" : \"bg-neutral-100 dark:bg-neutral-800 text-neutral-400\")}>\n              {s}\n            </span>\n          ))}\n        </div>\n      </div>\n\n      <div className=\"grid grid-cols-1 md:grid-cols-12 gap-8\">\n        <div className=\"md:col-span-7 space-y-4\">\n          {step === 1 && (\n            <div>\n              <h4 className=\"font-bold text-sm text-neutral-900 dark:text-white mb-3\">1. Shipping Details</h4>\n              <input type=\"text\" placeholder=\"Full Address\" className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 mb-2\" />\n              <button type=\"button\" onClick={() => setStep(2)} className=\"px-4 py-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-lg font-semibold\">\n                Continue to Payment →\n              </button>\n            </div>\n          )}\n          {step === 2 && (\n            <div>\n              <h4 className=\"font-bold text-sm text-neutral-900 dark:text-white mb-3\">2. Payment Method</h4>\n              <div className=\"p-3 border border-emerald-500 rounded-lg bg-emerald-50/20 mb-3\">Credit Card (Stripe Checkout Verified)</div>\n              <button type=\"button\" onClick={() => setStep(3)} className=\"px-4 py-2 bg-emerald-600 text-white rounded-lg font-semibold\">\n                Review Order →\n              </button>\n            </div>\n          )}\n          {step === 3 && (\n            <div>\n              <h4 className=\"font-bold text-sm text-neutral-900 dark:text-white mb-3\">3. Final Confirmation</h4>\n              <p className=\"text-neutral-500 mb-4\">Click below to authorize $199.00 payment.</p>\n              <button type=\"button\" onClick={() => alert(\"Order placed!\")} className=\"w-full py-2.5 bg-emerald-600 text-white font-bold rounded-lg\">\n                Complete Purchase ($199.00)\n              </button>\n            </div>\n          )}\n        </div>\n\n        <div className=\"md:col-span-5 p-4 rounded-xl bg-neutral-50 dark:bg-neutral-900 font-mono\">\n          <div className=\"font-bold text-neutral-900 dark:text-white mb-2\">Order Summary</div>\n          <div className=\"flex justify-between py-1 border-b border-neutral-200 dark:border-neutral-800\">\n            <span>OpenUI Pro License</span>\n            <span className=\"font-bold\">$199.00</span>\n          </div>\n          <div className=\"flex justify-between pt-3 font-bold text-neutral-900 dark:text-white\">\n            <span>Total</span>\n            <span>$199.00</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "824260585d0ee899a4b84b6524cf1b28cd7a87de582826225c079449973e4ae2",
+      "sizeBytes": 3435
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { EcommerceCheckoutWizard } from \"./ecommerce-checkout-wizard\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[450px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <EcommerceCheckoutWizard />\n    </div>\n  );\n}\n",
+      "contentHash": "902bde2f4c1adfb87c976f3664003f8c5edeae77849bbbcc20b522d3eb792096",
+      "sizeBytes": 298
+    }
+  ],
+  "tags": [
+    "checkout",
+    "ecommerce",
+    "wizard",
+    "payment",
+    "cart"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "stepper-form-checkout-validation",
+      "visualModel": "cart-and-payment-summary-wizard",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "transactional-checkout-flow"
+    }
+  },
+  "url": "https://openui.dev/r/ecommerce-checkout-wizard.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Stepper Form Checkout Validation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

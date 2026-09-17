@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "starfield-warp-speed",
+  "type": "registry:background",
+  "title": "Starfield Warp Speed",
+  "description": "Canvas 3D starfield simulation with stars accelerating toward the camera creating a hyperspace warp effect.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "starfield-warp-speed.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StarfieldWarpSpeedProps extends React.HTMLAttributes<HTMLDivElement> {\n  starCount?: number;\n  speed?: number;\n  children?: React.ReactNode;\n}\n\nexport function StarfieldWarpSpeed({\n  starCount = 120,\n  speed = 4,\n  className,\n  children,\n  ...props\n}: StarfieldWarpSpeedProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    const stars = Array.from({ length: starCount }, () => ({\n      x: (Math.random() - 0.5) * w,\n      y: (Math.random() - 0.5) * h,\n      z: Math.random() * w,\n    }));\n\n    const render = () => {\n      ctx.fillStyle = \"rgba(10, 10, 15, 0.25)\";\n      ctx.fillRect(0, 0, w, h);\n      const cx = w / 2;\n      const cy = h / 2;\n\n      ctx.fillStyle = \"#ffffff\";\n      for (const s of stars) {\n        s.z -= speed;\n        if (s.z <= 0) {\n          s.z = w;\n          s.x = (Math.random() - 0.5) * w;\n          s.y = (Math.random() - 0.5) * h;\n        }\n        const k = 128 / s.z;\n        const px = s.x * k + cx;\n        const py = s.y * k + cy;\n        if (px >= 0 && px <= w && py >= 0 && py <= h) {\n          const sz = Math.max(1, (1 - s.z / w) * 2.5);\n          ctx.beginPath();\n          ctx.arc(px, py, sz, 0, Math.PI * 2);\n          ctx.fill();\n        }\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, [starCount, speed]);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "720a366f71fa7ba65ebd3d7ab1e441135511ff39b415e23c0728e4701db531bc",
+      "sizeBytes": 2058
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { StarfieldWarpSpeed } from \"./starfield-warp-speed\";\n\nexport default function StarfieldWarpSpeedDemo() {\n  return (\n    <StarfieldWarpSpeed className=\"min-h-[280px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-white\">Hyperspace Velocity</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">3D radial star acceleration canvas.</p>\n      </div>\n    </StarfieldWarpSpeed>\n  );\n}\n",
+      "contentHash": "419b5e667876f5be6fdd738516299e39fe2ca1b0b6703c82c374687a245d0985",
+      "sizeBytes": 583
+    }
+  ],
+  "tags": [
+    "starfield",
+    "warp",
+    "hyperspace",
+    "canvas",
+    "stars"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-warp",
+      "visualModel": "radial-hyperspace-streaks",
+      "motionModel": "center-outward-acceleration",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "hyperspace-travel-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/starfield-warp-speed.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Canvas Warp: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kicker-overline-pair",
+  "type": "registry:text",
+  "title": "Kicker Overline Pair",
+  "description": "The magazine pairing: a tracked-out uppercase kicker over a display headline, locked to a shared baseline grid with an optically-weighted rule between them — one component that enforces the editorial relationship.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kicker-overline-pair.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "kicker",
+    "overline",
+    "headline",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "kicker-rule-headline-lockup",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "section-opener"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

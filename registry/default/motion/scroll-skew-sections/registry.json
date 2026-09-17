@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-skew-sections",
+  "type": "registry:motion",
+  "title": "Scroll Skew Sections",
+  "description": "Alternating sections skew in opposing directions with scroll velocity — even sections lean forward, odd sections lean back, creating a shear wave through the page that flattens when scrolling stops.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-skew-sections.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "skew",
+    "scroll",
+    "shear",
+    "sections"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "alternating-skew-planes",
+      "motionModel": "velocity-shear-opposing",
+      "layoutModel": "stack",
+      "semanticPurpose": "kinetic-sections"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

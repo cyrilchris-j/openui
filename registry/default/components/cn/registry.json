@@ -5,7 +5,10 @@
   "title": "Class Name Merge",
   "description": "The className helper every OpenUI resource uses: conditional classes with Tailwind conflict resolution, so consumers can always override styling.",
   "category": "components",
-  "dependencies": ["clsx", "tailwind-merge"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
   "registryDependencies": [],
   "files": [
     {
@@ -14,10 +17,23 @@
       "target": "lib"
     }
   ],
-  "tags": ["utility", "tailwind"],
+  "tags": [
+    "utility",
+    "tailwind"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["zero-runtime-overhead"]
+    "features": [
+      "zero-runtime-overhead"
+    ],
+    "subcategory": "general",
+    "fingerprint": {
+      "interactionModel": "standard-event",
+      "visualModel": "openui-token-aesthetic",
+      "motionModel": "subtle-spring",
+      "layoutModel": "responsive-flow",
+      "semanticPurpose": "ui-component"
+    }
   }
 }

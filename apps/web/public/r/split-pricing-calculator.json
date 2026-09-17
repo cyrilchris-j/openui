@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-pricing-calculator",
+  "type": "registry:layout",
+  "title": "Split Pricing Calculator",
+  "description": "Interactive billing estimator: range slider inputs on left with dynamic calculated total breakdown on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-pricing-calculator.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitPricingCalculatorProps extends React.HTMLAttributes<HTMLDivElement> {\n  controls?: React.ReactNode;\n  receipt?: React.ReactNode;\n}\n\nexport function SplitPricingCalculator({ controls, receipt, className, ...props }: SplitPricingCalculatorProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto p-6 rounded-2xl border border-line bg-paper font-sans shadow-sm\", className)} {...props}>\n      <div className=\"space-y-4\">{controls}</div>\n      <div className=\"p-6 rounded-xl border border-line bg-surface/30 font-mono text-xs space-y-3\">{receipt}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "b81dfe3631dbc763e07c06a7b11588597fa78cbed067914648d69d26e6e84bb2",
+      "sizeBytes": 679
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitPricingCalculator } from \"./split-pricing-calculator\";\n\nexport default function SplitPricingCalculatorDemo() {\n  return (\n    <SplitPricingCalculator\n      controls={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink\">Estimate Cloud Compute</h3>\n          <p className=\"text-xs text-ink/60 mt-1\">Adjust server instances and storage quotas.</p>\n        </div>\n      }\n      receipt={\n        <div>\n          <div className=\"text-ink/60\">Estimated Monthly Total</div>\n          <div className=\"text-2xl font-bold text-accent mt-1\">$142.50</div>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "eaa210f8f061a0a8ba20b9be688113cc23f990f57ad551d566d7bf559340c811",
+      "sizeBytes": 625
+    }
+  ],
+  "tags": [
+    "pricing",
+    "calculator",
+    "slider",
+    "estimator",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "interactive-cost-estimation",
+      "visualModel": "slider-and-cost-receipt",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-calculator",
+      "semanticPurpose": "pricing-estimation-workbench"
+    }
+  },
+  "url": "https://openui.dev/r/split-pricing-calculator.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Interactive Cost Estimation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "concentric-elliptic-orbits",
+  "type": "registry:background",
+  "title": "Concentric Elliptic Orbits",
+  "description": "Keplerian orbital mechanics planetary ellipses intersecting around gravitational focal points.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "concentric-elliptic-orbits.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "orbits",
+    "astronomy",
+    "kepler",
+    "ellipses",
+    "space"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-kepler-orbits",
+      "visualModel": "intersecting-orbital-ellipses",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "astronomy-orbital-mechanics"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

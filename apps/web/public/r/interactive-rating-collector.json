@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-rating-collector",
+  "type": "registry:section",
+  "title": "Interactive Rating Collector",
+  "description": "An instant user feedback mechanism with star selections and submit validation.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-rating-collector.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InteractiveRatingCollector({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [rating, setRating] = React.useState(0);\n  const [done, setDone] = React.useState(false);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-md mx-auto text-center\", className)} {...props}>\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 bg-white dark:bg-neutral-950\">\n        <h4 className=\"text-base font-bold text-neutral-900 dark:text-white\">How was your experience?</h4>\n        {!done ? (\n          <div className=\"mt-4 flex justify-center gap-2 text-2xl cursor-pointer\">\n            {[1, 2, 3, 4, 5].map((star) => (\n              <button\n                key={star}\n                type=\"button\"\n                onClick={() => {\n                  setRating(star);\n                  setDone(true);\n                }}\n                className={star <= rating ? \"text-amber-400\" : \"text-neutral-300 dark:text-neutral-700\"}\n              >\n                ★\n              </button>\n            ))}\n          </div>\n        ) : (\n          <div className=\"text-xs text-emerald-500 font-bold mt-4\">Thank you for your rating!</div>\n        )}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "002b0ec21029e95dd3a9811ec49e05ddd575dd6dfdee8366cdeaf85719178645",
+      "sizeBytes": 1329
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveRatingCollector } from \"./interactive-rating-collector\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <InteractiveRatingCollector />\n    </div>\n  );\n}\n",
+      "contentHash": "ee1e10d9e52193957e0d42cdc79ed6eb21555da40f47ece232df5a82b20065a3",
+      "sizeBytes": 309
+    }
+  ],
+  "tags": [
+    "rating",
+    "feedback",
+    "collector",
+    "reviews",
+    "stars"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reviews",
+    "fingerprint": {
+      "interactionModel": "interactive-rating-collector-interaction",
+      "visualModel": "interactive-rating-collector-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-rating-collector-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-rating-collector.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Interactive Rating Collector Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

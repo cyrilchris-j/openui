@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-roi-calculator",
+  "type": "registry:section",
+  "title": "Interactive ROI Calculator",
+  "description": "A dynamic financial modeling calculator with interactive sliders for engineers, compute savings, and annual ROI projections.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-roi-calculator.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveRoiCalculatorProps extends React.HTMLAttributes<HTMLElement> {\n  defaultEngineers?: number;\n  defaultHourlyRate?: number;\n}\n\nexport function InteractiveRoiCalculator({\n  defaultEngineers = 12,\n  defaultHourlyRate = 95,\n  className,\n  ...props\n}: InteractiveRoiCalculatorProps) {\n  const [engineers, setEngineers] = React.useState(defaultEngineers);\n  const [hourlyRate, setHourlyRate] = React.useState(defaultHourlyRate);\n\n  // Assumptions: Each engineer saves ~6 hours per week on boilerplate UI and maintenance\n  const hoursSavedPerYear = engineers * 6 * 48;\n  const annualSavings = Math.round(hoursSavedPerYear * hourlyRate);\n  const sprintDaysSaved = Math.round((hoursSavedPerYear / 8) / 10);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 md:p-10 shadow-sm\">\n        {/* Controls */}\n        <div className=\"lg:col-span-6 space-y-6\">\n          <div>\n            <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n              Engineering Velocity\n            </span>\n            <h2 className=\"text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n              Calculate team savings\n            </h2>\n            <p className=\"text-xs text-neutral-500 dark:text-neutral-400 mt-1\">\n              Adjust team size and average loaded engineering cost to see projected annual returns.\n            </p>\n          </div>\n\n          <div className=\"space-y-4 font-mono text-xs\">\n            <div>\n              <div className=\"flex justify-between text-neutral-700 dark:text-neutral-300 mb-1\">\n                <span>Frontend / Fullstack Engineers</span>\n                <span className=\"font-bold text-neutral-900 dark:text-neutral-100\">{engineers} engineers</span>\n              </div>\n              <input\n                type=\"range\"\n                min=\"1\"\n                max=\"100\"\n                value={engineers}\n                onChange={(e) => setEngineers(Number(e.target.value))}\n                className=\"w-full accent-emerald-500 cursor-pointer\"\n              />\n            </div>\n\n            <div>\n              <div className=\"flex justify-between text-neutral-700 dark:text-neutral-300 mb-1\">\n                <span>Average Loaded Rate ($/hr)</span>\n                <span className=\"font-bold text-neutral-900 dark:text-neutral-100\">${hourlyRate}/hr</span>\n              </div>\n              <input\n                type=\"range\"\n                min=\"40\"\n                max=\"250\"\n                step=\"5\"\n                value={hourlyRate}\n                onChange={(e) => setHourlyRate(Number(e.target.value))}\n                className=\"w-full accent-emerald-500 cursor-pointer\"\n              />\n            </div>\n          </div>\n        </div>\n\n        {/* Projections */}\n        <div className=\"lg:col-span-6 bg-neutral-50 dark:bg-neutral-900 p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 text-center font-mono\">\n          <div className=\"text-xs uppercase text-neutral-500 tracking-wider\">\n            Estimated Annual Dollar Savings\n          </div>\n          <div className=\"text-4xl md:text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2\">\n            ${annualSavings.toLocaleString()}\n          </div>\n          <div className=\"grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-800 text-xs\">\n            <div>\n              <div className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100\">\n                {hoursSavedPerYear.toLocaleString()} hrs\n              </div>\n              <div className=\"text-[11px] text-neutral-500 mt-0.5\">Dev time unlocked</div>\n            </div>\n            <div>\n              <div className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100\">\n                {sprintDaysSaved} sprints\n              </div>\n              <div className=\"text-[11px] text-neutral-500 mt-0.5\">Velocity gained</div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "74cf33ac29ff13048f365e109752c473cc0f3493696fe720129701540952566f",
+      "sizeBytes": 4355
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveRoiCalculator } from \"./interactive-roi-calculator\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900/50\">\n      <InteractiveRoiCalculator />\n    </div>\n  );\n}\n",
+      "contentHash": "ce7d95bf03f413b192e2c0386c1bc4a0d41e0ddc7f16d32888828574c8f101b9",
+      "sizeBytes": 304
+    }
+  ],
+  "tags": [
+    "calculator",
+    "roi",
+    "savings",
+    "finance",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "calculator",
+    "fingerprint": {
+      "interactionModel": "interactive-roi-calculator-interaction",
+      "visualModel": "interactive-roi-calculator-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "interactive-roi-calculator-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-roi-calculator.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Interactive Roi Calculator Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

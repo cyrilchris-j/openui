@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sales-pipeline-stage-funnel",
+  "type": "registry:block",
+  "title": "Sales Pipeline Stage Funnel",
+  "description": "A conversion stage funnel visualizing visitor-to-customer conversion percentages across the pipeline.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sales-pipeline-stage-funnel.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "funnel",
+    "sales",
+    "pipeline",
+    "conversion",
+    "metrics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "analytics",
+    "fingerprint": {
+      "interactionModel": "funnel-conversion-rate-breakdown",
+      "visualModel": "stepped-sales-funnel-bars",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "revenue-funnel-analytics"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

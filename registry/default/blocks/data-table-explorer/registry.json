@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "data-table-explorer",
+  "type": "registry:block",
+  "title": "Data Table Explorer",
+  "description": "An interactive paginated table with real-time text query filtering, sortable column headers, and row selection.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "data-table-explorer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "table",
+    "data-table",
+    "pagination",
+    "search",
+    "sorting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data-table",
+    "fingerprint": {
+      "interactionModel": "search-sort-pagination-table",
+      "visualModel": "enterprise-tabular-explorer",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "tabular-data-inspection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

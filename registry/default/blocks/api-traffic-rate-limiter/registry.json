@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-traffic-rate-limiter",
+  "type": "registry:block",
+  "title": "API Traffic Rate Limiter",
+  "description": "An edge rate limiting rule configurator managing requests-per-minute ceilings, burst limits, and CIDR blocks.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-traffic-rate-limiter.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "rate-limiting",
+    "traffic",
+    "security",
+    "firewall",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "rate-limit-slider-configuration",
+      "visualModel": "firewall-throttling-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "edge-traffic-rate-limiting"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

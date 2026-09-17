@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "expandable-data-row",
+  "type": "registry:component",
+  "title": "Expandable Data Row",
+  "description": "A ledger row that expands on click to reveal detailed JSON payload keys and network latency metrics.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "expandable-data-row.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "row",
+    "expandable",
+    "data",
+    "table",
+    "ledger"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "row-disclosure-toggle",
+      "visualModel": "ruled-ledger-row",
+      "motionModel": "stepwise-accordion-open",
+      "layoutModel": "stacked-data-row",
+      "semanticPurpose": "data-payload-inspector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

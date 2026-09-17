@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "breadcrumbs-slash-trail",
+  "type": "registry:component",
+  "title": "Breadcrumbs Slash Trail",
+  "description": "An accessible trail of hierarchy waypoints separated by slash delimiters indicating current route depth.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "breadcrumbs-slash-trail.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BreadcrumbsSlashTrailProps {\n  items?: string[];\n  className?: string;\n}\n\nexport function BreadcrumbsSlashTrail({\n  items = [\"Registry\", \"Components\", \"Breadcrumbs\"],\n  className,\n}: BreadcrumbsSlashTrailProps) {\n  return (\n    <nav className={cn(\"flex items-center gap-2 font-mono text-xs\", className)}>\n      {items.map((item, idx) => {\n        const isLast = idx === items.length - 1;\n        return (\n          <div key={item} className=\"flex items-center gap-2\">\n            <span className={cn(isLast ? \"font-bold text-ink\" : \"text-ink/60 hover:text-ink cursor-pointer\")}>\n              {item}\n            </span>\n            {!isLast && <span className=\"text-ink/40\">/</span>}\n          </div>\n        );\n      })}\n    </nav>\n  );\n}\n\nexport default BreadcrumbsSlashTrail;\n",
+      "contentHash": "737395bea1bd5600e2cdd977e8f6e8edb72eb8bad71b34c7afe073e335a9e50a",
+      "sizeBytes": 843
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { BreadcrumbsSlashTrail } from \"./breadcrumbs-slash-trail\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <BreadcrumbsSlashTrail />\n    </div>\n  );\n}\n",
+      "contentHash": "8d0b87a928310086fddea7ed3660b0441c22e8dd9622f6a241147938b8dc39f0",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "breadcrumbs",
+    "navigation",
+    "trail",
+    "slash",
+    "hierarchy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "hierarchical-wayfinding",
+      "visualModel": "slash-separated-trail",
+      "motionModel": "none",
+      "layoutModel": "horizontal-inline-trail",
+      "semanticPurpose": "route-breadcrumb-trail"
+    }
+  },
+  "url": "https://openui.dev/r/breadcrumbs-slash-trail.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Hierarchical Wayfinding: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

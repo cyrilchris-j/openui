@@ -5,15 +5,34 @@
   "title": "Grain Background",
   "description": "A film-grain surface generated from a single inline SVG turbulence filter, tuned by two custom properties, with a print-safe density and no image request.",
   "category": "backgrounds",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "grain-background.tsx", "type": "registry:background" }],
-  "tags": ["surface", "grain", "noise"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "grain-background.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "surface",
+    "grain",
+    "noise"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["zero-requests", "print-safe", "colour-agnostic"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "zero-requests",
+      "print-safe",
+      "colour-agnostic"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "industrial",
       "macrostructure": "full-bleed",
@@ -22,6 +41,13 @@
       "motionLanguage": "none",
       "typographyStyle": "monospace",
       "colorStrategy": "monochrome"
+    },
+    "subcategory": "texture",
+    "fingerprint": {
+      "interactionModel": "passive-viewport",
+      "visualModel": "photographic-film-grain",
+      "layoutModel": "fixed-noise-overlay",
+      "semanticPurpose": "editorial-backdrop"
     }
   }
 }

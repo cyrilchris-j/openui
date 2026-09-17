@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bento-modular-grid",
+  "type": "registry:layout",
+  "title": "Bento Modular Grid",
+  "description": "Bento box modular 12-column dashboard layout with dynamic cell spans and harmonic cell paddings.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bento-modular-grid.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BentoModularGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function BentoModularGrid({ children, className, ...props }: BentoModularGridProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto p-4 font-sans\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "73c9e9d493e5ab437f6cda5540a8a885955f70a20c5e8f875f80ce2439568c6c",
+      "sizeBytes": 425
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { BentoModularGrid } from \"./bento-modular-grid\";\n\nexport default function BentoModularGridDemo() {\n  return (\n    <BentoModularGrid>\n      <div className=\"md:col-span-2 p-6 rounded-2xl border border-line bg-surface/30\">\n        <h3 className=\"text-sm font-bold text-ink\">Primary Metric Hub</h3>\n        <p className=\"text-xs text-ink/60 mt-1\">Wide spanning bento card for complex visualizations.</p>\n      </div>\n      <div className=\"p-6 rounded-2xl border border-line bg-surface/30\">\n        <h3 className=\"text-sm font-bold text-ink\">Status Beacon</h3>\n        <p className=\"text-xs text-ink/60 mt-1\">Single column status card.</p>\n      </div>\n      <div className=\"p-6 rounded-2xl border border-line bg-surface/30\">\n        <h3 className=\"text-sm font-bold text-ink\">Action Panel</h3>\n        <p className=\"text-xs text-ink/60 mt-1\">Secondary interaction card.</p>\n      </div>\n      <div className=\"md:col-span-2 p-6 rounded-2xl border border-line bg-surface/30\">\n        <h3 className=\"text-sm font-bold text-ink\">Telemetry Stream</h3>\n        <p className=\"text-xs text-ink/60 mt-1\">Double column bottom card.</p>\n      </div>\n    </BentoModularGrid>\n  );\n}\n",
+      "contentHash": "2c40ba552aab51d09cb97704593364bf95a84e58bea355f5422bf276576ae54f",
+      "sizeBytes": 1189
+    }
+  ],
+  "tags": [
+    "bento",
+    "grid",
+    "modular",
+    "cards",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "bento-modular-tiling",
+      "visualModel": "asymmetric-tile-mosaic",
+      "motionModel": "none",
+      "layoutModel": "twelve-column-mosaic",
+      "semanticPurpose": "feature-showcase-mosaic"
+    }
+  },
+  "url": "https://openui.dev/r/bento-modular-grid.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Bento Modular Tiling: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

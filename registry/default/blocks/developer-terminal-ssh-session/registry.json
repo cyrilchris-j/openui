@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-terminal-ssh-session",
+  "type": "registry:block",
+  "title": "Developer Terminal SSH Session",
+  "description": "A browser-based remote shell console emulator displaying active connection authentication and status output.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-terminal-ssh-session.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "ssh",
+    "terminal",
+    "shell",
+    "console",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "ssh-terminal-command-execution",
+      "visualModel": "browser-ssh-shell-window",
+      "motionModel": "mechanical",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "remote-shell-terminal-session"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "dense",
+      "genre": "technical"
+    }
+  }
+}

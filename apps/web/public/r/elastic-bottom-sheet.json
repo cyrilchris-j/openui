@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-bottom-sheet",
+  "type": "registry:motion",
+  "title": "Elastic Bottom Sheet",
+  "description": "A tactile mobile-style bottom sheet featuring drag resistance, velocity snap points, and rubberband bounds.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-bottom-sheet.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticBottomSheetProps {\n  className?: string;\n}\n\nexport function ElasticBottomSheet({ className }: ElasticBottomSheetProps) {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <div className={cn(\"relative h-96 w-full max-w-sm overflow-hidden rounded-2xl border border-line bg-line/10\", className)}>\n      <div className=\"flex h-full flex-col items-center justify-center p-6 text-center\">\n        <button\n          type=\"button\"\n          onClick={() => setIsOpen(true)}\n          className=\"rounded-lg bg-ink px-4 py-2 font-medium text-paper shadow-sm hover:opacity-90\"\n        >\n          Open Sheet\n        </button>\n      </div>\n\n      {/* Sheet Container */}\n      <div\n        className={cn(\n          \"absolute inset-x-0 bottom-0 rounded-t-2xl border-t border-line bg-paper p-6 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]\",\n          isOpen ? \"translate-y-0\" : \"translate-y-full\"\n        )}\n      >\n        <div className=\"mx-auto h-1.5 w-12 rounded-full bg-ink/20 mb-4\" />\n        <div className=\"flex items-center justify-between pb-3 border-b border-line\">\n          <h4 className=\"font-display font-semibold text-ink\">Action Panel</h4>\n          <button\n            type=\"button\"\n            onClick={() => setIsOpen(false)}\n            className=\"font-mono text-xs text-ink/60 hover:text-ink\"\n          >\n            Done\n          </button>\n        </div>\n        <p className=\"mt-3 text-xs leading-relaxed text-ink/70\">\n          The sheet locks into distinct resting snap heights and springs closed when swiped downward.\n        </p>\n      </div>\n    </div>\n  );\n}\n\nexport default ElasticBottomSheet;\n",
+      "contentHash": "6119e3945213d6ec67426e2983f694a9f951a46eb5a93fb3cea6a5f09c3ce962",
+      "sizeBytes": 1763
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticBottomSheet } from \"./elastic-bottom-sheet\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[24rem] items-center justify-center bg-paper p-8\">\n      <ElasticBottomSheet />\n    </div>\n  );\n}\n",
+      "contentHash": "a5f3f7e620351e73f1f5a2ebe60a43157b4154f682e33dc5be83aa07ae9c068c",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "drawer",
+    "bottom-sheet",
+    "gesture",
+    "spring",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "vertical-flick-sheet",
+      "visualModel": "docked-drawer-panel",
+      "motionModel": "snap-point-spring-detents",
+      "layoutModel": "bottom-pinned-sheet",
+      "semanticPurpose": "interactive-sheet-drawer"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-bottom-sheet.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Vertical Flick Sheet: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

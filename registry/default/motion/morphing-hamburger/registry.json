@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "morphing-hamburger",
+  "type": "registry:motion",
+  "title": "Morphing Hamburger",
+  "description": "The three-bar icon that becomes an X through genuine morphing: bars are separate elements whose rotations and translations interpolate through a shared keyframe timeline, so the middle bar thins and fades while the outer bars cross precisely.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "morphing-hamburger.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "hamburger",
+    "icon",
+    "morph",
+    "menu"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "page",
+    "fingerprint": {
+      "interactionModel": "click-toggle",
+      "visualModel": "three-bar-cross-morph",
+      "motionModel": "keyframe-interpolation",
+      "layoutModel": "inline",
+      "semanticPurpose": "menu-toggle"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

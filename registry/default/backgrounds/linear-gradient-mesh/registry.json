@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "linear-gradient-mesh",
+  "type": "registry:background",
+  "title": "Linear Gradient Mesh",
+  "description": "Smooth 4-corner multi-radial CSS mesh gradient blend for soft colorful backdrop glow.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "linear-gradient-mesh.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "mesh",
+    "gradient",
+    "colors",
+    "ambient",
+    "modern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-gradient-backdrop",
+      "visualModel": "four-corner-mesh-blend",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "modern-mesh-gradient"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "duotone"
+    }
+  }
+}

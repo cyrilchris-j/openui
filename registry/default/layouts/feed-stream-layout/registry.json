@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feed-stream-layout",
+  "type": "registry:layout",
+  "title": "Feed Stream Layout",
+  "description": "Three-column social feed layout with central chronological stream flanked by navigation and trends.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feed-stream-layout.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "feed",
+    "stream",
+    "social",
+    "timeline",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "social-stream-timeline",
+      "visualModel": "central-feed-flanked-rails",
+      "motionModel": "none",
+      "layoutModel": "three-column-feed-grid",
+      "semanticPurpose": "chronological-stream-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

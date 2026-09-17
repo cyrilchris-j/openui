@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "file-metadata-inspector",
+  "type": "registry:block",
+  "title": "File Metadata Inspector",
+  "description": "A binary file inspector drawer presenting MIME types, SHA-256 integrity checksums, and dimensions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "file-metadata-inspector.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "file",
+    "metadata",
+    "sha256",
+    "checksum",
+    "mime"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "files",
+    "fingerprint": {
+      "interactionModel": "metadata-inspection-and-hash-copy",
+      "visualModel": "asset-properties-sidebar",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "file-integrity-verification"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

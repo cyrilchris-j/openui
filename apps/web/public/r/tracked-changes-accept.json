@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tracked-changes-accept",
+  "type": "registry:text",
+  "title": "Tracked Changes Accept",
+  "description": "A paragraph with tracked insertions and deletions (like a legal review) plus per-change Accept/Reject controls — accepting morphs the text in place with a colour fade, rejecting strikes it out permanently.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tracked-changes-accept.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport type Segment =\n  | { kind: \"text\"; text: string }\n  | { kind: \"change\"; id: string; insert: string; remove: string };\n\nexport interface TrackedChangesAcceptProps {\n  segments: Segment[];\n  className?: string;\n}\n\ntype Decision = \"pending\" | \"accepted\" | \"rejected\";\n\nexport function TrackedChangesAccept({ segments, className }: TrackedChangesAcceptProps) {\n  const [decisions, setDecisions] = useState<Record<string, Decision>>({});\n\n  return (\n    <div className={cn(\"flex max-w-prose flex-col gap-5\", className)}>\n      <p className=\"text-lg leading-loose text-ink\">\n        {segments.map((segment, index) => {\n          if (segment.kind === \"text\") return <span key={index}>{segment.text} </span>;\n          const decision = decisions[segment.id] ?? \"pending\";\n          return (\n            <span key={index} className=\"whitespace-nowrap\">\n              {decision !== \"accepted\" && (\n                <span\n                  className=\"text-red-600 line-through decoration-red-400/70\"\n                  style={{ opacity: decision === \"rejected\" ? 0.45 : 1 }}\n                >\n                  {segment.remove}\n                </span>\n              )}\n              {decision !== \"rejected\" && (\n                <span\n                  className=\"text-emerald-700 underline decoration-emerald-400/70\"\n                  style={{ opacity: decision === \"accepted\" ? 1 : 0.85, transition: \"opacity 400ms ease\" }}\n                >\n                  {segment.insert}\n                </span>\n              )}{\" \"}\n            </span>\n          );\n        })}\n      </p>\n      <div className=\"flex flex-wrap gap-2\">\n        {segments.filter((segment) => segment.kind === \"change\").map((segment) => {\n          if (segment.kind !== \"change\") return null;\n          const decision = decisions[segment.id] ?? \"pending\";\n          return (\n            <span key={segment.id} className=\"inline-flex items-center gap-1 rounded border border-line px-2 py-1 font-mono text-xs\">\n              <span className=\"max-w-[9rem] truncate text-ink/60\">{segment.insert}</span>\n              <button\n                type=\"button\"\n                onClick={() => setDecisions((current) => ({ ...current, [segment.id]: \"accepted\" }))}\n                aria-label={`Accept ${segment.insert}`}\n                className={cn(\"rounded px-1 hover:bg-emerald-500/10\", decision === \"accepted\" && \"text-emerald-600\")}\n              >\n                ✓\n              </button>\n              <button\n                type=\"button\"\n                onClick={() => setDecisions((current) => ({ ...current, [segment.id]: \"rejected\" }))}\n                aria-label={`Reject ${segment.insert}`}\n                className={cn(\"rounded px-1 hover:bg-red-500/10\", decision === \"rejected\" && \"text-red-600\")}\n              >\n                ✗\n              </button>\n            </span>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n\nexport default TrackedChangesAccept;\n",
+      "contentHash": "caa2d2eed6c1e52f8189471c5fb6fc7bbc9e56469070b779c2955203a45f52d9",
+      "sizeBytes": 3027
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { TrackedChangesAccept } from \"./tracked-changes-accept\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <TrackedChangesAccept\n        className=\"w-full max-w-xl\"\n        segments={[\n          { kind: \"text\", text: \"The registry\" },\n          { kind: \"change\", id: \"c1\", remove: \"might\", insert: \"must\" },\n          { kind: \"text\", text: \"validate every resource before it is\" },\n          { kind: \"change\", id: \"c2\", remove: \"shown\", insert: \"published\" },\n          { kind: \"text\", text: \"to the catalogue.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "c7b7331061bbb62cf2f1a46c8827fcf81518361d37c5aec3320e961bfbc916d3",
+      "sizeBytes": 645
+    }
+  ],
+  "tags": [
+    "editing",
+    "review",
+    "accept",
+    "legal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "per-change-accept",
+      "visualModel": "inline-edit-marks",
+      "motionModel": "colour-fade-morph",
+      "layoutModel": "block",
+      "semanticPurpose": "document-review"
+    }
+  },
+  "url": "https://openui.dev/r/tracked-changes-accept.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Humanist\nColor: Duotone\n\n## Rules\n\n- Per Change Accept: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

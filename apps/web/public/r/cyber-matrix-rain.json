@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cyber-matrix-rain",
+  "type": "registry:background",
+  "title": "Cyber Matrix Rain",
+  "description": "HTML5 Canvas falling green/cyan glyph characters stream inspired by classic cyberpunk terminal screens.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cyber-matrix-rain.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CyberMatrixRainProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CyberMatrixRain({ className, children, ...props }: CyberMatrixRainProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    const resize = () => {\n      canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;\n      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;\n    };\n    resize();\n\n    const chars = \"0123456789ABCDEF$#@*<>{}[]%^&\";\n    const fontSize = 14;\n    const columns = Math.floor(canvas.width / fontSize);\n    const drops: number[] = Array.from({ length: columns }, () => Math.random() * -50);\n\n    const render = () => {\n      ctx.fillStyle = \"rgba(0, 0, 0, 0.08)\";\n      ctx.fillRect(0, 0, canvas.width, canvas.height);\n      ctx.fillStyle = \"#10b981\";\n      ctx.font = `${fontSize}px monospace`;\n\n      for (let i = 0; i < drops.length; i++) {\n        const text = chars[Math.floor(Math.random() * chars.length)] ?? \"0\";\n        const x = i * fontSize;\n        const y = (drops[i] ?? 0) * fontSize;\n\n        ctx.fillText(text, x, y);\n        if (y > canvas.height && Math.random() > 0.975) {\n          drops[i] = 0;\n        }\n        drops[i] = (drops[i] ?? 0) + 1;\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    window.addEventListener(\"resize\", resize);\n\n    return () => {\n      cancelAnimationFrame(animId);\n      window.removeEventListener(\"resize\", resize);\n    };\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-black text-white overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none opacity-40 -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "df63caf839954443b5f0fa8579b91b1d832b578ece83296a98d0956f25658c81",
+      "sizeBytes": 2041
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CyberMatrixRain } from \"./cyber-matrix-rain\";\n\nexport default function CyberMatrixRainDemo() {\n  return (\n    <CyberMatrixRain className=\"min-h-[280px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-emerald-500/40 bg-black/80 backdrop-blur-md shadow-lg text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-emerald-400\">Cyber Rain Stream</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Terminal data stream raining glyphs.</p>\n      </div>\n    </CyberMatrixRain>\n  );\n}\n",
+      "contentHash": "a770288daafdc6e4ba57ee9f634bb8e79c91d223fde2ce49e71cf4d35d6568ac",
+      "sizeBytes": 579
+    }
+  ],
+  "tags": [
+    "matrix",
+    "rain",
+    "cyberpunk",
+    "canvas",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-render",
+      "visualModel": "falling-code-rain",
+      "motionModel": "constant-stream-drop",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cyberpunk-matrix-stream"
+    }
+  },
+  "url": "https://openui.dev/r/cyber-matrix-rain.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Canvas Render: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

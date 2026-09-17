@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cookie-consent-script-blocker",
+  "type": "registry:block",
+  "title": "Cookie Consent Script Blocker",
+  "description": "An automated script blocking inspector showing which third-party tags are held pending explicit consent.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cookie-consent-script-blocker.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "privacy",
+    "scripts",
+    "consent",
+    "gdpr",
+    "blocking"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "privacy",
+    "fingerprint": {
+      "interactionModel": "script-dependency-block-audit",
+      "visualModel": "tag-blocker-status-panel",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "script-blocking-consent-audit"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

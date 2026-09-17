@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circuit-matrix-nexus",
+  "type": "registry:background",
+  "title": "Circuit Matrix Nexus",
+  "description": "Glowing cyan/emerald circuit junction nodes pulsing at critical power grid intersections.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circuit-matrix-nexus.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CircuitMatrixNexusProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CircuitMatrixNexus({ className, children, ...props }: CircuitMatrixNexusProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-cyan-400 overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-20 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"nexus-pat\" width=\"60\" height=\"60\" patternUnits=\"userSpaceOnUse\">\n            <line x1=\"0\" y1=\"30\" x2=\"60\" y2=\"30\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"30\" y1=\"0\" x2=\"30\" y2=\"60\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <circle cx=\"30\" cy=\"30\" r=\"3\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#nexus-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "6fd8a994977fb4650c5907d22600d603c721533ab90ad07c55ef5f592b7e2544",
+      "sizeBytes": 1031
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CircuitMatrixNexus } from \"./circuit-matrix-nexus\";\n\nexport default function CircuitMatrixNexusDemo() {\n  return (\n    <CircuitMatrixNexus className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-cyan-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-cyan-400\">Power Nexus Grid</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Orthogonal bus junctions with node terminals.</p>\n      </div>\n    </CircuitMatrixNexus>\n  );\n}\n",
+      "contentHash": "82e4b71cd89fae6b60f5f5e514ea71ccc51e7f065c8262735486a67f9ffe4190",
+      "sizeBytes": 596
+    }
+  ],
+  "tags": [
+    "nexus",
+    "matrix",
+    "circuit",
+    "junction",
+    "glow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-nexus-glow",
+      "visualModel": "junction-node-matrix",
+      "motionModel": "subtle-nodal-pulse",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cybernetic-nexus-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/circuit-matrix-nexus.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Nexus Glow: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

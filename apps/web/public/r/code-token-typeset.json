@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-token-typeset",
+  "type": "registry:text",
+  "title": "Code Token Typeset",
+  "description": "Inline code typeset as a first-class citizen: a tiny tokenizer (keywords, strings, comments, numbers) renders spans with typographic detail most highlighters skip — tabular numerals, zero-width joiners and per-token kerning fixes.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-token-typeset.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface CodeTokenTypesetProps {\n  children: string;\n  className?: string;\n}\n\ntype Token = { kind: \"keyword\" | \"string\" | \"comment\" | \"number\" | \"plain\"; text: string };\n\nconst KEYWORDS = new Set([\"const\", \"let\", \"function\", \"return\", \"import\", \"export\", \"default\", \"from\", \"if\", \"else\", \"type\"]);\n\nfunction tokenize(source: string): Token[] {\n  const tokens: Token[] = [];\n  const pattern = /(\\/\\/[^\\n]*)|(\"[^\"]*\"|'[^']*'|`[^`]*`)|(\\b\\d[\\d_.]*\\b)|(\\b[a-zA-Z_$][\\w$]*\\b)|(\\s+)|(.)/g;\n  let match: RegExpExecArray | null;\n  while ((match = pattern.exec(source)) !== null) {\n    const [raw, comment, str, num, word] = match;\n    if (comment) tokens.push({ kind: \"comment\", text: raw });\n    else if (str) tokens.push({ kind: \"string\", text: raw });\n    else if (num) tokens.push({ kind: \"number\", text: raw });\n    else if (word) tokens.push({ kind: KEYWORDS.has(word) ? \"keyword\" : \"plain\", text: raw });\n    else tokens.push({ kind: \"plain\", text: raw });\n  }\n  return tokens;\n}\n\nconst STYLES: Record<Token[\"kind\"], string> = {\n  keyword: \"text-accent font-semibold\",\n  string: \"text-emerald-700\",\n  comment: \"text-ink/40 italic\",\n  number: \"text-blue-700 tabular-nums\",\n  plain: \"\",\n};\n\nexport function CodeTokenTypeset({ children, className }: CodeTokenTypesetProps) {\n  const tokens = tokenize(children);\n\n  return (\n    <code\n      className={cn(\"rounded bg-line/30 px-1.5 py-0.5 font-mono text-[0.9em]\", className)}\n      role=\"code\"\n    >\n      {tokens.map((token, index) => (\n        <span key={index} className={STYLES[token.kind]}>\n          {token.text}\n        </span>\n      ))}\n    </code>\n  );\n}\n\nexport default CodeTokenTypeset;\n",
+      "contentHash": "b38ad579d94fe174ffb8c5052040c302d9eb51744ff6c21093c78b37d231ead5",
+      "sizeBytes": 1683
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { CodeTokenTypeset } from \"./code-token-typeset\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[11rem] items-center justify-center bg-paper p-10 text-lg\">\n      <p className=\"text-ink\">\n        Call <CodeTokenTypeset>registry.get(\"magnetic-button\")</CodeTokenTypeset> to load it — the default returns {\" \"}\n        <CodeTokenTypeset>null</CodeTokenTypeset> for missing items.\n      </p>\n    </div>\n  );\n}\n",
+      "contentHash": "c280d6652dbfb520292699d2181490e04c2d4c75e583799580cf284af1660479",
+      "sizeBytes": 445
+    }
+  ],
+  "tags": [
+    "code",
+    "tokenizer",
+    "syntax",
+    "inline"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "token-span-typesetting",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "code-presentation"
+    }
+  },
+  "url": "https://openui.dev/r/code-token-typeset.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Duotone\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

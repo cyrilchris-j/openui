@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-radio-pill",
+  "type": "registry:motion",
+  "title": "Elastic Radio Pill",
+  "description": "A segmented radio pill whose active highlight stretches horizontally before snapping into place with spring momentum.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-radio-pill.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "radio",
+    "pill",
+    "elastic",
+    "controls",
+    "segmented"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "radio-select-pill",
+      "visualModel": "elastic-bounding-capsule",
+      "motionModel": "viscoelastic-pill-travel",
+      "layoutModel": "horizontal-pill-group",
+      "semanticPurpose": "segmented-choice-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

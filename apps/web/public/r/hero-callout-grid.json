@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-callout-grid",
+  "type": "registry:layout",
+  "title": "Hero Callout Grid",
+  "description": "Three-card callout feature layout with elevated centerpiece highlighting the premier value proposition.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-callout-grid.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HeroCalloutGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function HeroCalloutGrid({ children, className, ...props }: HeroCalloutGridProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto p-4 font-sans items-center\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "f7948561fc3ed40e6557319bdc20bddcc43ca7b4f82c6842b606f81f4116a282",
+      "sizeBytes": 435
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { HeroCalloutGrid } from \"./hero-callout-grid\";\n\nexport default function HeroCalloutGridDemo() {\n  return (\n    <HeroCalloutGrid>\n      <div className=\"p-6 rounded-2xl border border-line bg-surface/30 text-xs\">Feature A</div>\n      <div className=\"p-8 rounded-2xl border-2 border-accent bg-paper shadow-md text-xs\">Featured Hub</div>\n      <div className=\"p-6 rounded-2xl border border-line bg-surface/30 text-xs\">Feature C</div>\n    </HeroCalloutGrid>\n  );\n}\n",
+      "contentHash": "ce1fb1d8bb2bf5e583a9b2fc5335d52e96df5c161904d2755181e119ba72960b",
+      "sizeBytes": 482
+    }
+  ],
+  "tags": [
+    "hero",
+    "callout",
+    "grid",
+    "features",
+    "highlight"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "callout-feature-inspection",
+      "visualModel": "elevated-center-triptych",
+      "motionModel": "none",
+      "layoutModel": "three-card-callout-matrix",
+      "semanticPurpose": "feature-callout-rack"
+    }
+  },
+  "url": "https://openui.dev/r/hero-callout-grid.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Callout Feature Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

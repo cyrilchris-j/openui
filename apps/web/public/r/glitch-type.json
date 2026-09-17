@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-type",
+  "type": "registry:text",
+  "title": "Glitch Type",
+  "description": "Burst-based glitching, not a permanent loop: on an interval the text fires a 3-frame RGB channel split with clip-path slicing, then rests clean — the disturbance reads as an event, not wallpaper.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-type.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\n/** Deterministic slice values so bursts look composed, not random noise. */\nconst SLICES = [\n  { top: \"12%\", shift: -6 },\n  { top: \"38%\", shift: 5 },\n  { top: \"64%\", shift: -3 },\n  { top: \"86%\", shift: 8 },\n];\n\nexport interface GlitchTypeProps {\n  children: string;\n  /** Average rest time between bursts in ms. */\n  everyMs?: number;\n  className?: string;\n}\n\nexport function GlitchType({ children, everyMs = 4200, className }: GlitchTypeProps) {\n  const [bursting, setBursting] = useState(false);\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n    let timeout: number | undefined;\n    let reset: number | undefined;\n\n    const schedule = () => {\n      timeout = window.setTimeout(() => {\n        setBursting(true);\n        reset = window.setTimeout(() => {\n          setBursting(false);\n          schedule();\n        }, 180);\n      }, everyMs + Math.random() * everyMs * 0.6);\n    };\n\n    schedule();\n    return () => {\n      window.clearTimeout(timeout);\n      window.clearTimeout(reset);\n    };\n  }, [everyMs]);\n\n  return (\n    <span className={cn(\"relative inline-block select-none\", className)} role=\"text\" aria-label={children}>\n      <span aria-hidden className=\"relative inline-block\">\n        {children}\n        {bursting\n          ? SLICES.map((slice, index) => (\n              <span\n                key={index}\n                className=\"absolute inset-0\"\n                style={{\n                  clipPath: `polygon(0 ${slice.top}, 100% ${slice.top}, 100% calc(${slice.top} + 14%), 0 calc(${slice.top} + 14%))`,\n                  transform: `translateX(${slice.shift}px)`,\n                  color: index % 2 === 0 ? \"#ff2d55\" : \"#00e5ff\",\n                  mixBlendMode: \"screen\",\n                }}\n              >\n                {children}\n              </span>\n            ))\n          : null}\n      </span>\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default GlitchType;\n",
+      "contentHash": "c5ef6e62d833303f8eda28ab6735507a1603733e9005c25c388e9c8679ffb30c",
+      "sizeBytes": 2070
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { GlitchType } from \"./glitch-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-ink p-10\">\n      <GlitchType className=\"font-mono text-step-3 uppercase tracking-[0.2em] text-paper\">\n        Signal Lost\n      </GlitchType>\n    </div>\n  );\n}\n",
+      "contentHash": "8e7f4764783a80bd205126f7f720ae4c3d2145b9ecd87c1543bb8fb432411a0e",
+      "sizeBytes": 319
+    }
+  ],
+  "tags": [
+    "glitch",
+    "rgb-split",
+    "burst",
+    "clip-path"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "interval-burst",
+      "visualModel": "channel-split",
+      "motionModel": "burst-then-rest",
+      "layoutModel": "inline",
+      "semanticPurpose": "attention-signal"
+    }
+  },
+  "url": "https://openui.dev/r/glitch-type.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Stack\nDensity: Dense\nShape: Cut\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Interval Burst: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

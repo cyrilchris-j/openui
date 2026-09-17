@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circular-aperture-diaphragm",
+  "type": "registry:background",
+  "title": "Circular Aperture Diaphragm",
+  "description": "Mechanical camera lens iris aperture diaphragm blades forming an optical polygonal opening.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circular-aperture-diaphragm.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CircularApertureDiaphragmProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CircularApertureDiaphragm({ className, children, ...props }: CircularApertureDiaphragmProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-15 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          <circle cx=\"100\" cy=\"100\" r=\"85\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n          {[0, 60, 120, 180, 240, 300].map((deg) => (\n            <line\n              key={deg}\n              x1=\"100\"\n              y1=\"15\"\n              x2=\"160\"\n              y2=\"135\"\n              stroke=\"currentColor\"\n              strokeWidth=\"1\"\n              transform={`rotate(${deg} 100 100)`}\n            />\n          ))}\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "a0de2d8ba7c9296fcad935af9ed1bceea32f89e7fcbbf31543bb3fc6c13810ec",
+      "sizeBytes": 1089
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CircularApertureDiaphragm } from \"./circular-aperture-diaphragm\";\n\nexport default function CircularApertureDiaphragmDemo() {\n  return (\n    <CircularApertureDiaphragm className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Camera Lens Iris</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Mechanical 6-blade photographic diaphragm.</p>\n      </div>\n    </CircularApertureDiaphragm>\n  );\n}\n",
+      "contentHash": "deb112c189797da21f7c1d67680354c793d6b138eeba421b9fc1c7ca9bd3061f",
+      "sizeBytes": 614
+    }
+  ],
+  "tags": [
+    "aperture",
+    "lens",
+    "camera",
+    "diaphragm",
+    "optics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-camera-aperture",
+      "visualModel": "overlapping-iris-blades",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "photographic-aperture-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/circular-aperture-diaphragm.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Camera Aperture: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

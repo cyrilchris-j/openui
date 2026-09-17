@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "page-wipe-transition",
+  "type": "registry:motion",
+  "title": "Page Wipe Transition",
+  "description": "A full-bleed panel wipes across the viewport in two phases — an entering panel covers with an accelerated ease, the new content is swapped beneath it, then the panel exits slower with deceleration, mimicking an editor's cut.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "page-wipe-transition.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "page",
+    "wipe",
+    "transition",
+    "curtain"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "page",
+    "fingerprint": {
+      "interactionModel": "navigate-trigger",
+      "visualModel": "full-bleed-curtain",
+      "motionModel": "two-phase-wipe",
+      "layoutModel": "full-bleed",
+      "semanticPurpose": "route-transition"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

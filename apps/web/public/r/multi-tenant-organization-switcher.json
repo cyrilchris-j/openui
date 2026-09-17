@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-tenant-organization-switcher",
+  "type": "registry:block",
+  "title": "Multi-tenant Organization Switcher",
+  "description": "An enterprise workspace dropdown selector supporting team switching, plan badges, and tenant creation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-tenant-organization-switcher.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MultiTenantOrganizationSwitcher({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [activeOrg, setActiveOrg] = React.useState(\"OpenUI Core\");\n\n  const orgs = [\n    { name: \"OpenUI Core\", plan: \"Enterprise\" },\n    { name: \"Personal Prototypes\", plan: \"Starter\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-xs mx-auto p-4 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-lg text-xs\", className)} {...props}>\n      <div className=\"font-bold text-neutral-400 text-[10px] uppercase mb-2\">Active Workspace</div>\n      <div className=\"space-y-1\">\n        {orgs.map((o) => (\n          <div\n            key={o.name}\n            onClick={() => setActiveOrg(o.name)}\n            className={cn(\n              \"p-2.5 rounded-lg flex items-center justify-between cursor-pointer transition-colors\",\n              activeOrg === o.name ? \"bg-neutral-100 dark:bg-neutral-800 font-bold\" : \"hover:bg-neutral-50 dark:hover:bg-neutral-900 text-neutral-600 dark:text-neutral-400\"\n            )}\n          >\n            <span>{o.name}</span>\n            <span className=\"font-mono text-[10px] text-neutral-400\">{o.plan}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "dc2bef78d5c785128a60d285f44af0a0218e2e400ef5ea2caeb7e31f7213bbd0",
+      "sizeBytes": 1344
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { MultiTenantOrganizationSwitcher } from \"./multi-tenant-organization-switcher\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <MultiTenantOrganizationSwitcher />\n    </div>\n  );\n}\n",
+      "contentHash": "b8f884aad99726a763ea581d1c73d65066f766969ba6873745fbabf7a71e8984",
+      "sizeBytes": 323
+    }
+  ],
+  "tags": [
+    "tenants",
+    "workspace",
+    "organizations",
+    "teams",
+    "switcher"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "organization-tenant-selection",
+      "visualModel": "multitenant-workspace-dropdown",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "organization-context-switching"
+    }
+  },
+  "url": "https://openui.dev/r/multi-tenant-organization-switcher.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Organization Tenant Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

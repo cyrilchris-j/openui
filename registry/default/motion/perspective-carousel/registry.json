@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "perspective-carousel",
+  "type": "registry:motion",
+  "title": "Perspective Carousel",
+  "description": "A 3D revolving cylindrical carousel rotating items across an elliptical perspective plane on click.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "perspective-carousel.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "carousel",
+    "3d",
+    "perspective",
+    "cylinder",
+    "revolving"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "stepped-carousel-rotation",
+      "visualModel": "cylindrical-ring-array",
+      "motionModel": "orbital-cylinder-spin",
+      "layoutModel": "perspective-3d-stage",
+      "semanticPurpose": "3d-product-carousel"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dynamic-island-morph",
+  "type": "registry:motion",
+  "title": "Dynamic Island Morph",
+  "description": "A compact floating pill header that morphs smoothly into a wide notification panel upon incoming state event.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dynamic-island-morph.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "island",
+    "morph",
+    "notification",
+    "pill",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "notifications",
+    "fingerprint": {
+      "interactionModel": "expandable-island-capsule",
+      "visualModel": "black-pill-aperture",
+      "motionModel": "interpolated-aspect-expansion",
+      "layoutModel": "top-pinned-capsule",
+      "semanticPurpose": "dynamic-status-capsule"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

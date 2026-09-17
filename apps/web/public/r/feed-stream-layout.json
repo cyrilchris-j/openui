@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feed-stream-layout",
+  "type": "registry:layout",
+  "title": "Feed Stream Layout",
+  "description": "Three-column social feed layout with central chronological stream flanked by navigation and trends.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feed-stream-layout.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface FeedStreamLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  nav?: React.ReactNode;\n  feed?: React.ReactNode;\n  aside?: React.ReactNode;\n}\n\nexport function FeedStreamLayout({ nav, feed, aside, className, ...props }: FeedStreamLayoutProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 gap-6 max-w-6xl mx-auto p-4 font-sans items-start\", className)} {...props}>\n      {nav && <nav className=\"md:col-span-3 border-r border-line p-3 hidden md:block\">{nav}</nav>}\n      <main className=\"md:col-span-6 space-y-4\">{feed}</main>\n      {aside && <aside className=\"md:col-span-3 border-l border-line p-3 hidden lg:block\">{aside}</aside>}\n    </div>\n  );\n}\n",
+      "contentHash": "2cb194b627cdf0343cef1531839ad342500482543f5d3b018e462b878e2df80a",
+      "sizeBytes": 745
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { FeedStreamLayout } from \"./feed-stream-layout\";\n\nexport default function FeedStreamLayoutDemo() {\n  return (\n    <FeedStreamLayout\n      nav={<div className=\"font-mono text-xs text-ink/70\">Feed Channels</div>}\n      feed={\n        <div className=\"space-y-3\">\n          <div className=\"p-4 rounded-xl border border-line bg-paper text-xs\">Update #1 from Agent Node</div>\n          <div className=\"p-4 rounded-xl border border-line bg-paper text-xs\">Update #2 from Agent Node</div>\n        </div>\n      }\n      aside={<div className=\"font-mono text-xs text-ink/70\">Trending Topics</div>}\n    />\n  );\n}\n",
+      "contentHash": "ff46c58d4557c04f8b86c8fd8a4e58d67e715f2580739499b2f6324efd6e0e27",
+      "sizeBytes": 623
+    }
+  ],
+  "tags": [
+    "feed",
+    "stream",
+    "social",
+    "timeline",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "social-stream-timeline",
+      "visualModel": "central-feed-flanked-rails",
+      "motionModel": "none",
+      "layoutModel": "three-column-feed-grid",
+      "semanticPurpose": "chronological-stream-shell"
+    }
+  },
+  "url": "https://openui.dev/r/feed-stream-layout.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Social Stream Timeline: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

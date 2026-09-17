@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cursor-trail-ribbon",
+  "type": "registry:motion",
+  "title": "Cursor Trail Ribbon",
+  "description": "A fading ribbon that follows the pointer as a polyline of recent positions rendered on canvas with quadratic smoothing — width and opacity taper along the trail's age, decaying to nothing when the pointer stops.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cursor-trail-ribbon.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "cursor",
+    "trail",
+    "canvas",
+    "ribbon"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "experimental",
+    "fingerprint": {
+      "interactionModel": "pointer-history",
+      "visualModel": "canvas-smoothed-polyline",
+      "motionModel": "age-tapered-decay",
+      "layoutModel": "overlay",
+      "semanticPurpose": "pointer-delight"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

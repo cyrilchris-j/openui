@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "crypto-wallet-transaction-card",
+  "type": "registry:block",
+  "title": "Crypto Wallet Transaction Card",
+  "description": "A web3 payment card showing wallet balance, network confirmation status, and transaction hash link.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "crypto-wallet-transaction-card.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CryptoWalletTransactionCard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-sm mx-auto p-6 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-2xl font-mono text-xs shadow-xl\", className)} {...props}>\n      <div className=\"text-neutral-400 text-[10px] uppercase\">Wallet Balance</div>\n      <div className=\"text-2xl font-bold text-white mt-1\">4.8210 ETH</div>\n      <div className=\"text-neutral-400 text-[11px] mt-0.5\">≈ $12,480.20 USD</div>\n      <div className=\"my-4 p-3 rounded bg-neutral-900 border border-neutral-800 text-[11px] text-emerald-400\">\n        Status: Confirmed (Block #19842010)\n      </div>\n      <button type=\"button\" className=\"w-full py-2 bg-emerald-600 text-white font-bold rounded-lg\">\n        Send Transaction\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "e981fb011727ab6ea6389ca0bf6148d9661f61bd30c959a597f32611da4b5304",
+      "sizeBytes": 948
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CryptoWalletTransactionCard } from \"./crypto-wallet-transaction-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-900\">\n      <CryptoWalletTransactionCard />\n    </div>\n  );\n}\n",
+      "contentHash": "9391af069d1ced854fccb3229f4b583061737865a89f3db416059366c14d1a2e",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "crypto",
+    "wallet",
+    "web3",
+    "finance",
+    "blockchain"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "finance",
+    "fingerprint": {
+      "interactionModel": "wallet-transfer-confirmation",
+      "visualModel": "crypto-balance-payment-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "crypto-wallet-transfers"
+    }
+  },
+  "url": "https://openui.dev/r/crypto-wallet-transaction-card.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Wallet Transfer Confirmation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

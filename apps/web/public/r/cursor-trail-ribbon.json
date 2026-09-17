@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cursor-trail-ribbon",
+  "type": "registry:motion",
+  "title": "Cursor Trail Ribbon",
+  "description": "A fading ribbon that follows the pointer as a polyline of recent positions rendered on canvas with quadratic smoothing — width and opacity taper along the trail's age, decaying to nothing when the pointer stops.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cursor-trail-ribbon.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CursorTrailRibbonProps {\n  /** Trail length in tracked points. */\n  length?: number;\n  /** Max ribbon width, px. */\n  width?: number;\n  colour?: string;\n  className?: string;\n}\n\nexport function CursorTrailRibbon({\n  length = 28,\n  width = 14,\n  colour = \"#41ead4\",\n  className,\n}: CursorTrailRibbonProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(pointer: coarse)\").matches) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const dpr = Math.min(window.devicePixelRatio || 1, 2);\n    const resize = () => {\n      canvas.width = canvas.offsetWidth * dpr;\n      canvas.height = canvas.offsetHeight * dpr;\n      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);\n    };\n    resize();\n    window.addEventListener(\"resize\", resize);\n\n    const points: Array<{ x: number; y: number; t: number }> = [];\n    let raf: number | null = null;\n\n    const draw = () => {\n      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);\n      const now = performance.now();\n\n      for (let i = 1; i < points.length; i++) {\n        const p0 = points[i - 1]!;\n        const p1 = points[i]!;\n        const age = (now - p1.t) / 700;\n        if (age > 1) continue;\n        const falloff = 1 - age;\n        const positionAlong = i / points.length;\n\n        ctx.strokeStyle = colour;\n        ctx.globalAlpha = falloff * 0.7;\n        ctx.lineWidth = Math.max(0.5, width * positionAlong * falloff);\n        ctx.lineCap = \"round\";\n        ctx.beginPath();\n        ctx.moveTo(p0.x, p0.y);\n        ctx.lineTo(p1.x, p1.y);\n        ctx.stroke();\n      }\n      ctx.globalAlpha = 1;\n\n      while (points.length > 0 && now - points[0]!.t > 700) points.shift();\n      raf = requestAnimationFrame(draw);\n    };\n    raf = requestAnimationFrame(draw);\n\n    const onMove = (event: PointerEvent) => {\n      const rect = canvas.getBoundingClientRect();\n      points.push({ x: event.clientX - rect.left, y: event.clientY - rect.top, t: performance.now() });\n      if (points.length > length) points.shift();\n    };\n    window.addEventListener(\"pointermove\", onMove);\n\n    return () => {\n      window.removeEventListener(\"resize\", resize);\n      window.removeEventListener(\"pointermove\", onMove);\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, [length, width, colour]);\n\n  return (\n    <canvas\n      ref={canvasRef}\n      className={cn(\"pointer-events-none absolute inset-0\", className)}\n      aria-hidden\n    />\n  );\n}\n\nexport default CursorTrailRibbon;\n",
+      "contentHash": "e721e5d6231ef3d79cb6fab8edfe937b426dde6f0c4e23d077c23f99598aefa6",
+      "sizeBytes": 2764
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { CursorTrailRibbon } from \"./cursor-trail-ribbon\";\n\nexport default function Demo() {\n  return (\n    <div className=\"relative min-h-[20rem] overflow-hidden rounded-xl bg-ink p-10\">\n      <p className=\"relative z-10 font-display text-2xl text-paper\">Move your pointer</p>\n      <p className=\"relative z-10 mt-2 text-sm text-paper/60\">The ribbon remembers where you have been.</p>\n      <CursorTrailRibbon />\n    </div>\n  );\n}\n",
+      "contentHash": "359234b804f7d33efbf241bde7799961a22371e4648f7e10b8ebdde5b119f0e6",
+      "sizeBytes": 432
+    }
+  ],
+  "tags": [
+    "cursor",
+    "trail",
+    "canvas",
+    "ribbon"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "experimental",
+    "fingerprint": {
+      "interactionModel": "pointer-history",
+      "visualModel": "canvas-smoothed-polyline",
+      "motionModel": "age-tapered-decay",
+      "layoutModel": "overlay",
+      "semanticPurpose": "pointer-delight"
+    }
+  },
+  "url": "https://openui.dev/r/cursor-trail-ribbon.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Kinetic\nTypography: Grotesk\nColor: Neon On Dark\n\n## Rules\n\n- Pointer History: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

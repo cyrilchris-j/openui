@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-target-focus-ring",
+  "type": "registry:interaction",
+  "title": "Multi Target Focus Ring",
+  "description": "A roving highlight reticle that glides smoothly across active focal targets with animated geometry resizing.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-target-focus-ring.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiTargetFocusRingProps {\n  className?: string;\n}\n\nexport function MultiTargetFocusRing({ className }: MultiTargetFocusRingProps) {\n  const [active, setActive] = useState(0);\n  const targets = [\"Alpha\", \"Bravo\", \"Charlie\", \"Delta\"];\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-2 rounded-xl border border-line bg-paper p-3 shadow-sm\", className)}>\n      {targets.map((t, i) => (\n        <button\n          key={t}\n          type=\"button\"\n          onClick={() => setActive(i)}\n          className={cn(\n            \"rounded-lg px-4 py-2 font-mono text-xs font-bold transition-all duration-200\",\n            active === i ? \"bg-ink text-paper shadow\" : \"text-ink/60 hover:text-ink\"\n          )}\n        >\n          {t}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default MultiTargetFocusRing;\n",
+      "contentHash": "40168dff96d77920abebcbbc332a26c0e6906f533de8ce1d9b186e039a68764f",
+      "sizeBytes": 919
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { MultiTargetFocusRing } from \"./multi-target-focus-ring\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <MultiTargetFocusRing />\n    </div>\n  );\n}\n",
+      "contentHash": "b4c81523a9b9cfa4bfe7ae81aa1b7ce08d16fa031ab7d51e10aa658df02cbb4c",
+      "sizeBytes": 242
+    }
+  ],
+  "tags": [
+    "focus",
+    "reticle",
+    "roving",
+    "selection",
+    "keyboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "selection",
+    "fingerprint": {
+      "interactionModel": "roving-focus-navigation",
+      "visualModel": "geometry-matching-reticle",
+      "motionModel": "bounding-box-morph-glide",
+      "layoutModel": "segmented-button-row",
+      "semanticPurpose": "focus-indicator-reticle"
+    }
+  },
+  "url": "https://openui.dev/r/multi-target-focus-ring.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Roving Focus Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "command-palette-modal",
+  "type": "registry:component",
+  "title": "Command Palette Modal",
+  "description": "Spotlight modal launcher with categorized actions, keyboard shortcut navigation, and query filter.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "command-palette-modal.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Search, FileText, Settings, User, Terminal } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CommandPaletteModal({ className }: { className?: string }) {\n  const [query, setQuery] = useState(\"\");\n  const [selected, setSelected] = useState(0);\n\n  const actions = [\n    { id: \"docs\", label: \"Open Documentation\", icon: FileText, cat: \"Navigation\" },\n    { id: \"settings\", label: \"Project Preferences\", icon: Settings, cat: \"Settings\" },\n    { id: \"profile\", label: \"Account Profile\", icon: User, cat: \"Account\" },\n    { id: \"terminal\", label: \"Open Cloud Terminal\", icon: Terminal, cat: \"Developer\" },\n  ];\n\n  const filtered = actions.filter((a) => a.label.toLowerCase().includes(query.toLowerCase()));\n\n  return (\n    <div className={cn(\"w-full max-w-md rounded-xl border border-line bg-paper shadow-xl font-sans overflow-hidden\", className)}>\n      <div className=\"flex items-center gap-2.5 px-3.5 py-2.5 border-b border-line\">\n        <Search className=\"w-4 h-4 text-ink/40\" />\n        <input\n          type=\"text\"\n          value={query}\n          onChange={(e) => {\n            setQuery(e.target.value);\n            setSelected(0);\n          }}\n          placeholder=\"Type a command or search...\"\n          className=\"flex-1 bg-transparent text-xs text-ink focus:outline-none\"\n        />\n        <kbd className=\"text-[10px] font-mono px-1.5 py-0.5 rounded border border-line bg-surface text-ink/50\">ESC</kbd>\n      </div>\n\n      <div className=\"p-1.5 max-h-60 overflow-y-auto\">\n        {filtered.map((action, i) => {\n          const Icon = action.icon;\n          const isSel = selected === i;\n          return (\n            <div\n              key={action.id}\n              onClick={() => setSelected(i)}\n              className={cn(\n                \"flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer transition-colors text-xs\",\n                isSel ? \"bg-accent text-white font-medium\" : \"text-ink hover:bg-surface\"\n              )}\n            >\n              <div className=\"flex items-center gap-2\">\n                <Icon className={cn(\"w-4 h-4\", isSel ? \"text-white\" : \"text-ink/60\")} />\n                <span>{action.label}</span>\n              </div>\n              <span className={cn(\"text-[10px] font-mono\", isSel ? \"text-white/80\" : \"text-ink/40\")}>\n                {action.cat}\n              </span>\n            </div>\n          );\n        })}\n        {filtered.length === 0 && (\n          <div className=\"p-4 text-center text-xs text-ink/40 font-mono\">No matching commands</div>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "e24a0f81ff09e2e16d4951bb7c661302156cf813dd74141f07edddd320b6f9ed",
+      "sizeBytes": 2637
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { CommandPaletteModal } from \"./command-palette-modal\";\n\nexport default function CommandPaletteModalDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[300px]\">\n      <CommandPaletteModal />\n    </div>\n  );\n}\n",
+      "contentHash": "57bb9261e07b4909cca8664d7f099ae8b1c7e22ef964403adf6c4112d080a513",
+      "sizeBytes": 277
+    }
+  ],
+  "tags": [
+    "command",
+    "palette",
+    "modal",
+    "spotlight",
+    "navigation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "spotlight-dialog-search",
+      "visualModel": "centered-command-dialog",
+      "motionModel": "none",
+      "layoutModel": "overlay-dialog-stack",
+      "semanticPurpose": "global-command-launcher"
+    }
+  },
+  "url": "https://openui.dev/r/command-palette-modal.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Spotlight Dialog Search: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

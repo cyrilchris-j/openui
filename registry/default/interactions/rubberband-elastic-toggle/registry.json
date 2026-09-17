@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rubberband-elastic-toggle",
+  "type": "registry:interaction",
+  "title": "Rubberband Elastic Toggle",
+  "description": "A mechanical binary toggle switch that deforms elastically under drag displacement before snapping closed.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rubberband-elastic-toggle.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "toggle",
+    "rubberband",
+    "switch",
+    "drag",
+    "elastic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "elastic-thumb-drag-toggle",
+      "visualModel": "elongating-pill-cavity",
+      "motionModel": "snap-to-edge-viscoelastic",
+      "layoutModel": "inline-switch-housing",
+      "semanticPurpose": "viscoelastic-switch-toggle"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "smart-document-tagger",
+  "type": "registry:block",
+  "title": "Smart Document Tagger",
+  "description": "An automated keyword and category tagger allowing content editors to categorize resources quickly.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "smart-document-tagger.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SmartDocumentTagger({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [tags, setTags] = React.useState([\"react-19\", \"tailwind-v4\", \"zero-dependency\"]);\n\n  const removeTag = (t: string) => {\n    setTags((prev) => prev.filter((x) => x !== t));\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-3\">Resource Tags</h3>\n      <div className=\"flex flex-wrap gap-2\">\n        {tags.map((t) => (\n          <span key={t} className=\"px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-mono text-[11px] flex items-center gap-1.5\">\n            <span>{t}</span>\n            <button type=\"button\" onClick={() => removeTag(t)} className=\"text-neutral-400 hover:text-neutral-900 dark:hover:text-white\">\n              ✕\n            </button>\n          </span>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "4e597961dcdb61213f3dc7c4998b88bfabf786374c37ff9f2d53294b9b004294",
+      "sizeBytes": 1179
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { SmartDocumentTagger } from \"./smart-document-tagger\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <SmartDocumentTagger />\n    </div>\n  );\n}\n",
+      "contentHash": "bfe2eb159bc08f377db57fac01139adf7f8767de4f2c009dc71fee79aaf4b5ee",
+      "sizeBytes": 286
+    }
+  ],
+  "tags": [
+    "tags",
+    "tagger",
+    "categorization",
+    "taxonomy",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editor",
+    "fingerprint": {
+      "interactionModel": "tag-addition-and-removal",
+      "visualModel": "interactive-pill-tagger-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "document-tag-categorization"
+    }
+  },
+  "url": "https://openui.dev/r/smart-document-tagger.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Tag Addition And Removal: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

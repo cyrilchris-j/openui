@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "avatar-badge-group",
+  "type": "registry:component",
+  "title": "Avatar Badge Group",
+  "description": "A compact overlapping avatar stack with live online presence status dots and overflow collaborator count.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "avatar-badge-group.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AvatarBadgeGroupProps {\n  users?: { name: string; online: boolean }[];\n  className?: string;\n}\n\nexport function AvatarBadgeGroup({\n  users = [\n    { name: \"Linus\", online: true },\n    { name: \"Ada\", online: true },\n    { name: \"Grace\", online: false },\n  ],\n  className,\n}: AvatarBadgeGroupProps) {\n  return (\n    <div className={cn(\"inline-flex items-center\", className)}>\n      <div className=\"flex -space-x-2\">\n        {users.map((u) => (\n          <div key={u.name} className=\"relative group\">\n            <div className=\"flex h-10 w-10 items-center justify-center rounded-full border-2 border-paper bg-ink text-xs font-bold text-paper shadow-sm\">\n              {u.name[0]}\n            </div>\n            {u.online && (\n              <span className=\"absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-paper bg-emerald-500\" />\n            )}\n          </div>\n        ))}\n      </div>\n      <span className=\"ml-3 font-mono text-xs text-ink/60\">+4 contributors</span>\n    </div>\n  );\n}\n\nexport default AvatarBadgeGroup;\n",
+      "contentHash": "4329feea119172f6db6804293cca2c76b6a078a21dbece0238baaeda7f4f4c90",
+      "sizeBytes": 1102
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { AvatarBadgeGroup } from \"./avatar-badge-group\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <AvatarBadgeGroup />\n    </div>\n  );\n}\n",
+      "contentHash": "7faeb89efdedbb7c3a85a5a40102e56121090dcb66adade102474fc17fa78bd5",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "avatar",
+    "group",
+    "collaborators",
+    "stack",
+    "presence"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "avatar-cluster-inspection",
+      "visualModel": "overlapping-avatar-rings",
+      "motionModel": "micro-avatar-hover-lift",
+      "layoutModel": "horizontal-avatar-chain",
+      "semanticPurpose": "team-presence-cluster"
+    }
+  },
+  "url": "https://openui.dev/r/avatar-badge-group.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Avatar Cluster Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

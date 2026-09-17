@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "team-culture-photo-strip",
+  "type": "registry:section",
+  "title": "Team Culture Photo Strip",
+  "description": "An organizational culture overview displaying collaborative principles and distributed squad values.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "team-culture-photo-strip.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "culture",
+    "team",
+    "values",
+    "work",
+    "people"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "culture",
+    "fingerprint": {
+      "interactionModel": "team-culture-photo-strip-interaction",
+      "visualModel": "team-culture-photo-strip-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "team-culture-photo-strip-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth",
+      "shapeLanguage": "soft",
+      "density": "medium",
+      "genre": "editorial"
+    }
+  }
+}

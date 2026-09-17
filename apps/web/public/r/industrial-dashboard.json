@@ -53,6 +53,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "analytics",
+    "fingerprint": {
+      "interactionModel": "multi-panel-monitor",
+      "visualModel": "dense-data-instrumentation",
+      "layoutModel": "grid-command-center",
+      "semanticPurpose": "system-observability"
     }
   },
   "url": "https://openui.dev/r/industrial-dashboard.json",

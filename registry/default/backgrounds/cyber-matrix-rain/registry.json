@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cyber-matrix-rain",
+  "type": "registry:background",
+  "title": "Cyber Matrix Rain",
+  "description": "HTML5 Canvas falling green/cyan glyph characters stream inspired by classic cyberpunk terminal screens.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cyber-matrix-rain.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "matrix",
+    "rain",
+    "cyberpunk",
+    "canvas",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-render",
+      "visualModel": "falling-code-rain",
+      "motionModel": "constant-stream-drop",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cyberpunk-matrix-stream"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bayer-matrix-dither",
+  "type": "registry:background",
+  "title": "Bayer Matrix Dither",
+  "description": "Ordered 4x4 Bayer dithering matrix pattern simulating classic Mac 1-bit bitmap graphics.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bayer-matrix-dither.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "bayer",
+    "dither",
+    "bitmap",
+    "retro",
+    "mac"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-bayer-dither",
+      "visualModel": "ordered-threshold-matrix",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "one-bit-dithering-mask"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

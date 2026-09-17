@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-cursor-halo",
+  "type": "registry:motion",
+  "title": "Magnetic Cursor Halo",
+  "description": "An ethereal circular reticle that trails pointer coordinates with damped inertia and expands on interactive target hover.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-cursor-halo.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "cursor",
+    "halo",
+    "reticle",
+    "inertia",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "cursor",
+    "fingerprint": {
+      "interactionModel": "pointer-lag-tracking",
+      "visualModel": "concentric-halo-reticle",
+      "motionModel": "damped-spring-follower",
+      "layoutModel": "floating-cursor-wrapper",
+      "semanticPurpose": "focus-cursor-enhancer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

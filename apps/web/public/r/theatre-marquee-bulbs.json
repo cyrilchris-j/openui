@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "theatre-marquee-bulbs",
+  "type": "registry:text",
+  "title": "Theatre Marquee Bulbs",
+  "description": "A theatre sign where the border is a string of chasing light bulbs (CSS radial dots animating in sequence) around the lettering — the chase runs the perimeter while the text stays still, unlike every other marquee.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "theatre-marquee-bulbs.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface TheatreMarqueeBulbsProps {\n  children: string;\n  /** Seconds for one bulb to travel the full border. */\n  chaseSeconds?: number;\n  className?: string;\n}\n\nexport function TheatreMarqueeBulbs({ children, chaseSeconds = 2.4, className }: TheatreMarqueeBulbsProps) {\n  return (\n    <span className={cn(\"relative inline-block select-none\", className)} role=\"text\" aria-label={children}>\n      <span\n        aria-hidden\n        className=\"pointer-events-none absolute -inset-3 rounded-lg\"\n        style={{\n          background: `repeating-conic-gradient(from 0deg, #ffd98a 0deg 6deg, transparent 6deg 24deg)`,\n          animation: `openui-chase ${chaseSeconds}s steps(15) infinite`,\n          maskImage: \"radial-gradient(circle, black 3px, transparent 3.5px)\",\n          WebkitMaskImage: \"radial-gradient(circle, black 3px, transparent 3.5px)\",\n          maskSize: \"24px 24px\",\n          WebkitMaskSize: \"24px 24px\",\n          filter: \"drop-shadow(0 0 6px rgba(255, 200, 100, 0.8))\",\n        }}\n      />\n      <span\n        aria-hidden\n        className=\"relative z-10 block rounded-lg bg-[#241a12] px-8 py-4 font-display text-step-2 tracking-wide text-amber-200\"\n        style={{ textShadow: \"0 0 12px rgba(255, 190, 90, 0.55), 0 0 32px rgba(255, 160, 40, 0.3)\" }}\n      >\n        {children}\n      </span>\n      <style>{`@keyframes openui-chase { to { transform: rotate(360deg) } } @media (prefers-reduced-motion: reduce) { span { animation: none !important } }`}</style>\n    </span>\n  );\n}\n\nexport default TheatreMarqueeBulbs;\n",
+      "contentHash": "b5a94d9d6d2e7144eb67caa2faef346504cb496ef8c689dad8cb33c567dc6954",
+      "sizeBytes": 1572
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { TheatreMarqueeBulbs } from \"./theatre-marquee-bulbs\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-[#120d09] p-10\">\n      <TheatreMarqueeBulbs>NOW SHOWING</TheatreMarqueeBulbs>\n    </div>\n  );\n}\n",
+      "contentHash": "4986e41650059c62c1d921f3b4b7473f23ac9a09fd10e3b2e50c8c6db1f34a8b",
+      "sizeBytes": 274
+    }
+  ],
+  "tags": [
+    "marquee",
+    "bulbs",
+    "chase",
+    "theatre"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "perimeter-bulb-chase",
+      "motionModel": "sequential-phase-border",
+      "layoutModel": "framed",
+      "semanticPurpose": "signage"
+    }
+  },
+  "url": "https://openui.dev/r/theatre-marquee-bulbs.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Mosaic\nDensity: Dense\nShape: Rounded\nMotion: Kinetic\nTypography: Serif Display\nColor: Neon On Dark\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

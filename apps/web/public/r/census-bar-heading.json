@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "census-bar-heading",
+  "type": "registry:text",
+  "title": "Census Bar Heading",
+  "description": "A headline where each word carries a data bar underneath whose width encodes a value — typography and chart fused into one element, so a sentence can literally show its own distribution.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "census-bar-heading.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CensusBarHeadingProps {\n  /** Words with the value each bar encodes. */\n  words: Array<{ word: string; value: number }>;\n  /** Colour of the bars. */\n  bar?: string;\n  className?: string;\n}\n\nexport function CensusBarHeading({ words, bar = \"#e2624a\", className }: CensusBarHeadingProps) {\n  const { ref, inView } = useInView<HTMLHeadingElement>({ once: true });\n  const max = Math.max(...words.map((entry) => entry.value), 1);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const grown = inView || Boolean(reduced);\n\n  return (\n    <h2 ref={ref} className={cn(\"flex flex-wrap items-end gap-x-4 gap-y-3\", className)} aria-label={words.map((entry) => entry.word).join(\" \")}>\n      {words.map((entry, index) => (\n        <span key={index} aria-hidden className=\"group inline-flex flex-col\">\n          <span className=\"font-display leading-none\">{entry.word}</span>\n          <span className=\"mt-1.5 h-1.5 w-full bg-line/40\">\n            <span\n              className=\"block h-full\"\n              title={String(entry.value)}\n              style={{\n                width: grown ? `${(entry.value / max) * 100}%` : \"0%\",\n                background: bar,\n                transition: `width 700ms cubic-bezier(0.2, 0, 0, 1) ${index * 90}ms`,\n              }}\n            />\n          </span>\n          <span className=\"sr-only\">{entry.value}</span>\n        </span>\n      ))}\n    </h2>\n  );\n}\n\nexport default CensusBarHeading;\n",
+      "contentHash": "0457f1120a6240cf6bd0603920e07216bbb464df364e493a1dd72b9184c5e3aa",
+      "sizeBytes": 1609
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { CensusBarHeading } from \"./census-bar-heading\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <CensusBarHeading\n        words={[\n          { word: \"Fast\", value: 92 },\n          { word: \"small\", value: 41 },\n          { word: \"proven\", value: 78 },\n        ]}\n        className=\"text-step-3 text-ink\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "b2851412969f818e29b8c9095e2164195acea66c480b4193323115619e796e1c",
+      "sizeBytes": 425
+    }
+  ],
+  "tags": [
+    "chart",
+    "data",
+    "bars",
+    "heading"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "hover-readout",
+      "visualModel": "glyph-plus-bar-fusion",
+      "motionModel": "grow-in-view",
+      "layoutModel": "inline",
+      "semanticPurpose": "data-headline"
+    }
+  },
+  "url": "https://openui.dev/r/census-bar-heading.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Rail\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Hover Readout: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

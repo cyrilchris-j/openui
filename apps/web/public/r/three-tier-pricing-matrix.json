@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "three-tier-pricing-matrix",
+  "type": "registry:section",
+  "title": "Three Tier Pricing Matrix",
+  "description": "SaaS subscription pricing section with monthly/yearly billing toggle and highlighted recommended tier.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "three-tier-pricing-matrix.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ThreeTierPricingMatrixProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n  subtitle?: string;\n}\n\nexport function ThreeTierPricingMatrix({\n  title = \"Transparent, Predictable Plans\",\n  subtitle = \"Start for free with open source components, upgrade for team synchronization.\",\n  className,\n  ...props\n}: ThreeTierPricingMatrixProps) {\n  const [annual, setAnnual] = useState(true);\n\n  return (\n    <section className={cn(\"py-16 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <div className=\"text-center max-w-xl mx-auto mb-10\">\n        <h2 className=\"text-2xl sm:text-3xl font-bold tracking-tight text-ink\">{title}</h2>\n        <p className=\"text-xs sm:text-sm text-ink/60 mt-2\">{subtitle}</p>\n        <div className=\"inline-flex items-center gap-2 p-1 mt-6 rounded-full border border-line bg-surface text-xs font-mono\">\n          <button\n            type=\"button\"\n            onClick={() => setAnnual(false)}\n            className={cn(\"px-3 py-1 rounded-full transition-colors\", !annual ? \"bg-accent text-white font-bold\" : \"text-ink/70\")}\n          >\n            Monthly\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setAnnual(true)}\n            className={cn(\"px-3 py-1 rounded-full transition-colors\", annual ? \"bg-accent text-white font-bold\" : \"text-ink/70\")}\n          >\n            Yearly (Save 20%)\n          </button>\n        </div>\n      </div>\n\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6 items-center\">\n        <div className=\"p-6 rounded-2xl border border-line bg-paper shadow-xs\">\n          <div className=\"font-bold text-sm text-ink\">Community</div>\n          <div className=\"text-2xl font-bold font-mono text-ink my-3\">$0</div>\n          <p className=\"text-xs text-ink/60 mb-4\">Complete 800 open-source resources with MIT license.</p>\n          <button type=\"button\" className=\"w-full py-2 rounded-xl border border-line bg-surface text-xs font-mono font-semibold\">Start Free</button>\n        </div>\n\n        <div className=\"p-8 rounded-3xl border-2 border-accent bg-paper shadow-xl relative\">\n          <span className=\"absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-accent text-white text-[10px] font-mono font-bold uppercase\">\n            Recommended\n          </span>\n          <div className=\"font-bold text-base text-ink\">Pro Architect</div>\n          <div className=\"text-3xl font-bold font-mono text-ink my-3\">\n            {annual ? \"$24\" : \"$29\"}<span className=\"text-xs font-normal text-ink/60\">/mo</span>\n          </div>\n          <p className=\"text-xs text-ink/60 mb-6\">Automated design token pipelines and private registry hosting.</p>\n          <button type=\"button\" className=\"w-full py-2.5 rounded-xl bg-accent text-white text-xs font-mono font-bold hover:bg-accent/90 shadow-sm\">\n            Upgrade to Pro\n          </button>\n        </div>\n\n        <div className=\"p-6 rounded-2xl border border-line bg-paper shadow-xs\">\n          <div className=\"font-bold text-sm text-ink\">Enterprise</div>\n          <div className=\"text-2xl font-bold font-mono text-ink my-3\">Custom</div>\n          <p className=\"text-xs text-ink/60 mb-4\">Dedicated VPC instances and bespoke design DNA governance.</p>\n          <button type=\"button\" className=\"w-full py-2 rounded-xl border border-line bg-surface text-xs font-mono font-semibold\">Contact Sales</button>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "ce5a70044f463b0347191bb73980b5c5421b71968c09dd2dc2f31235663f7ef9",
+      "sizeBytes": 3559
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ThreeTierPricingMatrix } from \"./three-tier-pricing-matrix\";\n\nexport default function ThreeTierPricingMatrixDemo() {\n  return <ThreeTierPricingMatrix />;\n}\n",
+      "contentHash": "af61ebde020fd1623cdaae903a5f5aa187756b969f8ae5a58b2ea4b616a2b016",
+      "sizeBytes": 180
+    }
+  ],
+  "tags": [
+    "pricing",
+    "tiers",
+    "saas",
+    "subscription",
+    "plans"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "billing-interval-toggle",
+      "visualModel": "three-tier-card-comparison",
+      "motionModel": "none",
+      "layoutModel": "three-column-pricing-matrix",
+      "semanticPurpose": "saas-subscription-section"
+    }
+  },
+  "url": "https://openui.dev/r/three-tier-pricing-matrix.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Billing Interval Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

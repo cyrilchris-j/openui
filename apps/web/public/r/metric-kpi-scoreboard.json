@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "metric-kpi-scoreboard",
+  "type": "registry:layout",
+  "title": "Metric KPI Scoreboard",
+  "description": "High-impact executive scoreboard banner displaying primary business KPIs across a single horizontal strip.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "metric-kpi-scoreboard.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MetricKPIScoreboardProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MetricKPIScoreboard({ children, className, ...props }: MetricKPIScoreboardProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-2xl border border-line bg-surface/30 max-w-5xl mx-auto font-mono text-xs\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "ba8dd67ddd2aa01b409f04cc05a45c8db0225abba77288aa0b2f11432ba57ae4",
+      "sizeBytes": 487
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MetricKPIScoreboard } from \"./metric-kpi-scoreboard\";\n\nexport default function MetricKPIScoreboardDemo() {\n  return (\n    <MetricKPIScoreboard>\n      <div><span className=\"text-ink/60\">ARR</span><div className=\"text-lg font-bold text-ink mt-1\">$4.2M</div></div>\n      <div><span className=\"text-ink/60\">Active Users</span><div className=\"text-lg font-bold text-ink mt-1\">128.4K</div></div>\n      <div><span className=\"text-ink/60\">Retention</span><div className=\"text-lg font-bold text-accent mt-1\">94.8%</div></div>\n      <div><span className=\"text-ink/60\">NPS Score</span><div className=\"text-lg font-bold text-emerald-600 mt-1\">+72</div></div>\n    </MetricKPIScoreboard>\n  );\n}\n",
+      "contentHash": "444b2231fcc6e6c1144740b6333eceaad5dc4df58ffbd04fbb037075de30727f",
+      "sizeBytes": 705
+    }
+  ],
+  "tags": [
+    "kpi",
+    "scoreboard",
+    "metrics",
+    "executive",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "executive-scoreboard-scan",
+      "visualModel": "single-strip-kpi-scoreboard",
+      "motionModel": "none",
+      "layoutModel": "horizontal-metric-strip",
+      "semanticPurpose": "executive-telemetry-banner"
+    }
+  },
+  "url": "https://openui.dev/r/metric-kpi-scoreboard.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Executive Scoreboard Scan: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

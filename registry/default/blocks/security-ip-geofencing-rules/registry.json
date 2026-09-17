@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "security-ip-geofencing-rules",
+  "type": "registry:block",
+  "title": "Security IP Geofencing Rules",
+  "description": "A country-based edge geofencing rule controller allowing developers to allow or block inbound CIDR traffic.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "security-ip-geofencing-rules.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "geofence",
+    "firewall",
+    "security",
+    "ip",
+    "edge"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "geofence-country-rule-toggle",
+      "visualModel": "geofence-policy-table",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ip-geofence-firewall"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

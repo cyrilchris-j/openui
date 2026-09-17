@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chapter-numeral-roman",
+  "type": "registry:text",
+  "title": "Chapter Numeral Roman",
+  "description": "Chapter openers with an oversized roman numeral set behind the title as a ghost layer — the numeral clips through the heading on scroll using a background-attached gradient, so text passes over it like a watermark.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chapter-numeral-roman.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "roman",
+    "numeral",
+    "ghost",
+    "chapter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "scroll-clip",
+      "visualModel": "ghost-numeral-underlay",
+      "motionModel": "parallax-clip",
+      "layoutModel": "layered",
+      "semanticPurpose": "chapter-opener"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

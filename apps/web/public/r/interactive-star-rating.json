@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-star-rating",
+  "type": "registry:interaction",
+  "title": "Interactive Star Rating",
+  "description": "A precision review star rating component calculating fractional hover preview and locked rating state.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-star-rating.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveStarRatingProps {\n  className?: string;\n}\n\nexport function InteractiveStarRating({ className }: InteractiveStarRatingProps) {\n  const [rating, setRating] = useState(4);\n  const [hovered, setHovered] = useState<number | null>(null);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">RATING: {hovered ?? rating} / 5</span>\n\n      <div className=\"flex gap-2\">\n        {[1, 2, 3, 4, 5].map((star) => (\n          <button\n            key={star}\n            type=\"button\"\n            onPointerEnter={() => setHovered(star)}\n            onPointerLeave={() => setHovered(null)}\n            onClick={() => setRating(star)}\n            className=\"text-2xl transition-transform hover:scale-125\"\n          >\n            {star <= (hovered ?? rating) ? \"★\" : \"☆\"}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default InteractiveStarRating;\n",
+      "contentHash": "b9361f25fc80fb2391d68ad490cebd057c54574c85e559dc4720131420e7f6c0",
+      "sizeBytes": 1112
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { InteractiveStarRating } from \"./interactive-star-rating\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <InteractiveStarRating />\n    </div>\n  );\n}\n",
+      "contentHash": "bad473b78d1020eb7e07388ecfb82d4e61359d5bc7c08a03a8cb4453adbf70fe",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "star",
+    "rating",
+    "review",
+    "pointer",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "hover-preview-star-rating",
+      "visualModel": "five-star-rating-row",
+      "motionModel": "stepwise-rating-highlight",
+      "layoutModel": "horizontal-star-line",
+      "semanticPurpose": "star-rating-input"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-star-rating.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Hover Preview Star Rating: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

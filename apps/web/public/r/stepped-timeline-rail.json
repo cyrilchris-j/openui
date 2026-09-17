@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepped-timeline-rail",
+  "type": "registry:component",
+  "title": "Stepped Timeline Rail",
+  "description": "A vertical progress timeline connecting milestone nodes with status descriptions.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepped-timeline-rail.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SteppedTimelineRailProps {\n  className?: string;\n}\n\nexport function SteppedTimelineRail({ className }: SteppedTimelineRailProps) {\n  const steps = [\n    { title: \"Init Workspace\", done: true },\n    { title: \"Validate Schemas\", done: true },\n    { title: \"Compile Registry\", done: false },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-xs font-mono text-xs space-y-3\", className)}>\n      {steps.map((s, idx) => (\n        <div key={s.title} className=\"flex items-center gap-3\">\n          <div className={cn(\"h-6 w-6 rounded-full border flex items-center justify-center text-[10px] font-bold\", s.done ? \"border-ink bg-ink text-paper\" : \"border-line text-ink/40\")}>\n            {idx + 1}\n          </div>\n          <span className={cn(s.done ? \"font-bold text-ink\" : \"text-ink/50\")}>{s.title}</span>\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default SteppedTimelineRail;\n",
+      "contentHash": "56b8ee555a878f1f81d14e4267385b6ec5d45159aff91eb2f283de6019b1eeb5",
+      "sizeBytes": 948
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SteppedTimelineRail } from \"./stepped-timeline-rail\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SteppedTimelineRail />\n    </div>\n  );\n}\n",
+      "contentHash": "6697f6d9c84f46b892789ccb751acb5d4d1a62d265cb3575f6b8c124e7ce7f8a",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "timeline",
+    "rail",
+    "milestones",
+    "vertical",
+    "progress"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "vertical-timeline-inspection",
+      "visualModel": "connected-milestone-rail",
+      "motionModel": "none",
+      "layoutModel": "vertical-rail-stepper",
+      "semanticPurpose": "vertical-timeline-display"
+    }
+  },
+  "url": "https://openui.dev/r/stepped-timeline-rail.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Vertical Timeline Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

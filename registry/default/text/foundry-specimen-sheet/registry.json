@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "foundry-specimen-sheet",
+  "type": "registry:text",
+  "title": "Foundry Specimen Sheet",
+  "description": "A variable-font specimen: one phrase rendered at descending sizes and weights in a strict table, with a live weight axis slider that re-renders every row — how type foundries actually present a cut.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "foundry-specimen-sheet.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "specimen",
+    "variable-font",
+    "weights",
+    "foundry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "axis-slider",
+      "visualModel": "size-weight-matrix",
+      "motionModel": "none",
+      "layoutModel": "table",
+      "semanticPurpose": "type-promotion"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

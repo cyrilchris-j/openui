@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "form-survey-builder",
+  "type": "registry:block",
+  "title": "Form Survey Builder",
+  "description": "An interactive questionnaire block with multi-type questions, progress tracking, and submission summaries.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "form-survey-builder.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function FormSurveyBuilder({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [satisfaction, setSatisfaction] = React.useState<number | null>(null);\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-2\">Developer Experience Survey</h3>\n      <p className=\"text-neutral-500 mb-6\">How seamless was your experience installing OpenUI registry components?</p>\n\n      <div className=\"flex justify-between gap-2 mb-6\">\n        {[1, 2, 3, 4, 5].map((val) => (\n          <button\n            key={val}\n            type=\"button\"\n            onClick={() => setSatisfaction(val)}\n            className={cn(\n              \"h-12 flex-1 rounded-xl border font-bold font-mono text-sm transition-colors\",\n              satisfaction === val ? \"bg-emerald-600 text-white border-emerald-600\" : \"border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900\"\n            )}\n          >\n            {val}\n          </button>\n        ))}\n      </div>\n\n      <button type=\"button\" disabled={!satisfaction} className=\"w-full py-2.5 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 rounded-lg font-semibold disabled:opacity-40\">\n        Submit Feedback\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "cbae96ffe94029d35b74917016984f0bade21c41abcdf89dabb5aa86aecd34df",
+      "sizeBytes": 1537
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { FormSurveyBuilder } from \"./form-survey-builder\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <FormSurveyBuilder />\n    </div>\n  );\n}\n",
+      "contentHash": "f35b2dfcac5a336cc947c64ba5239b94b52cb232433fb32bc35d917faa89c95b",
+      "sizeBytes": 280
+    }
+  ],
+  "tags": [
+    "survey",
+    "form",
+    "questions",
+    "feedback",
+    "builder"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "survey-question-response-flow",
+      "visualModel": "card-based-survey-wizard",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-survey-collection"
+    }
+  },
+  "url": "https://openui.dev/r/form-survey-builder.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Survey Question Response Flow: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "physics-pendulum-dial",
+  "type": "registry:motion",
+  "title": "Physics Pendulum Dial",
+  "description": "An angular balance indicator suspended from a top pivot that swings with gravitational restoring torque and damped oscillations when pulled.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "physics-pendulum-dial.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "pendulum",
+    "physics",
+    "dial",
+    "gravity",
+    "gauge"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "rotational-drag-release",
+      "visualModel": "pivoted-plumb-bob",
+      "motionModel": "damped-angular-harmonic-oscillator",
+      "layoutModel": "vertically-suspended-gauge",
+      "semanticPurpose": "angle-tilt-meter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

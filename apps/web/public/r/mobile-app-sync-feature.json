@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mobile-app-sync-feature",
+  "type": "registry:section",
+  "title": "Mobile App Sync Feature",
+  "description": "An omnichannel app showcase card highlighting iOS and Android synchronization with QR code download.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mobile-app-sync-feature.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MobileAppSyncFeatureProps extends React.HTMLAttributes<HTMLElement> {\n  headline?: string;\n  description?: string;\n}\n\nexport function MobileAppSyncFeature({\n  headline = \"Your workspace synced everywhere, offline-first\",\n  description = \"Review telemetry, approve pull requests, and monitor production health checks straight from your pocket with native biometric access.\",\n  className,\n  ...props\n}: MobileAppSyncFeatureProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 p-8 md:p-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-center\">\n        <div className=\"md:col-span-7\">\n          <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n            Companion Apps\n          </span>\n          <h2 className=\"text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-2\">\n            {headline}\n          </h2>\n          <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed\">\n            {description}\n          </p>\n\n          <div className=\"mt-6 flex flex-wrap gap-3\">\n            <button\n              type=\"button\"\n              className=\"px-4 py-2.5 rounded-xl bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 text-xs font-semibold\"\n            >\n              Download on App Store\n            </button>\n            <button\n              type=\"button\"\n              className=\"px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs font-semibold\"\n            >\n              Get it on Google Play\n            </button>\n          </div>\n        </div>\n\n        <div className=\"md:col-span-5 flex justify-center\">\n          <div className=\"p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-center shadow-md\">\n            <div className=\"h-32 w-32 mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center font-mono text-[10px] text-neutral-400\">\n              [QR CODE SYNC]\n            </div>\n            <div className=\"text-xs font-mono text-neutral-500 mt-3\">Scan to instant install</div>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "08f3938905aad4c8c552a015d023009c704dd17eb784d3106b97b5a79ad7c140",
+      "sizeBytes": 2529
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { MobileAppSyncFeature } from \"./mobile-app-sync-feature\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-white dark:bg-neutral-900/40\">\n      <MobileAppSyncFeature />\n    </div>\n  );\n}\n",
+      "contentHash": "f1116a2c8e9668bfa28f7be6007b533318c3efe76d9e7678ebb28d9b2531b8c4",
+      "sizeBytes": 287
+    }
+  ],
+  "tags": [
+    "mobile",
+    "app",
+    "ios",
+    "android",
+    "sync"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "mobile",
+    "fingerprint": {
+      "interactionModel": "mobile-app-sync-feature-interaction",
+      "visualModel": "mobile-app-sync-feature-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "mobile-app-sync-feature-section"
+    }
+  },
+  "url": "https://openui.dev/r/mobile-app-sync-feature.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Mobile App Sync Feature Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

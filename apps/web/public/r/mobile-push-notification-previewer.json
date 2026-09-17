@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mobile-push-notification-previewer",
+  "type": "registry:block",
+  "title": "Mobile Push Notification Previewer",
+  "description": "A mobile phone frame mockup visualizing iOS and Android push notifications with app badge counter.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mobile-push-notification-previewer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MobilePushNotificationPreviewer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-sm mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-xl text-xs\", className)} {...props}>\n      <div className=\"p-3.5 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm\">\n        <div className=\"flex items-center justify-between text-[10px] text-neutral-400 mb-1\">\n          <span className=\"font-bold text-neutral-900 dark:text-white\">OPENUI REGISTRY</span>\n          <span>Now</span>\n        </div>\n        <div className=\"font-bold text-neutral-900 dark:text-white\">Release v2.4 Verified</div>\n        <div className=\"text-neutral-600 dark:text-neutral-400 mt-0.5\">800 components passing all automated tests.</div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "28c4db41468d4d616770933a52087278a7abde412e6917051ca5030286d35e6e",
+      "sizeBytes": 1009
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { MobilePushNotificationPreviewer } from \"./mobile-push-notification-previewer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <MobilePushNotificationPreviewer />\n    </div>\n  );\n}\n",
+      "contentHash": "7047996d70bddb8a381e00268e0690482b938adddd14f6788a3f8c606ab5bb02",
+      "sizeBytes": 323
+    }
+  ],
+  "tags": [
+    "push",
+    "notifications",
+    "mobile",
+    "preview",
+    "ios"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "mobile",
+    "fingerprint": {
+      "interactionModel": "push-notification-preview-toggle",
+      "visualModel": "smartphone-lockscreen-notification-mockup",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "mobile-notification-preview"
+    }
+  },
+  "url": "https://openui.dev/r/mobile-push-notification-previewer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Push Notification Preview Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

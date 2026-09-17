@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "input-otp-pin",
+  "type": "registry:component",
+  "title": "Input Otp Pin",
+  "description": "A 6-digit one-time password segmented passcode entry with automatic focus transfer across slots.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "input-otp-pin.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "otp",
+    "pin",
+    "input",
+    "passcode",
+    "auth"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "segmented-otp-entry",
+      "visualModel": "six-cell-digit-slots",
+      "motionModel": "none",
+      "layoutModel": "horizontal-digit-chain",
+      "semanticPurpose": "otp-verification-input"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

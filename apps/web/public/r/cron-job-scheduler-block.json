@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cron-job-scheduler-block",
+  "type": "registry:block",
+  "title": "Cron Job Scheduler Block",
+  "description": "A recurring task scheduler with 5-field cron syntax parser, human-readable translation, and trigger actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cron-job-scheduler-block.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CronJobSchedulerBlock({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [expr, setExpr] = React.useState(\"0 * * * *\");\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-4\">Recurring Job Config</h3>\n      <div className=\"space-y-4\">\n        <div>\n          <label className=\"block text-neutral-400 text-[11px] mb-1\">Cron Expression (UTC)</label>\n          <input\n            type=\"text\"\n            value={expr}\n            onChange={(e) => setExpr(e.target.value)}\n            className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white font-bold\"\n          />\n        </div>\n        <div className=\"p-3 bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-lg\">\n          Translates to: Runs every hour at minute 0.\n        </div>\n        <button type=\"button\" className=\"w-full py-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold rounded-lg\">\n          Schedule Job\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "a8e10bc82bc5e92e3e5e8314bb17c5c3ac59a49b117640b704d23d11e90caedd",
+      "sizeBytes": 1462
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CronJobSchedulerBlock } from \"./cron-job-scheduler-block\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CronJobSchedulerBlock />\n    </div>\n  );\n}\n",
+      "contentHash": "22d985135630a55d2f7d0abb616967db0ff820265a3a2e3c8cf5ad1ab665462e",
+      "sizeBytes": 293
+    }
+  ],
+  "tags": [
+    "cron",
+    "scheduler",
+    "jobs",
+    "devops",
+    "automation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "cron-expression-input-and-trigger",
+      "visualModel": "scheduled-job-timeline-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "scheduled-cron-task-execution"
+    }
+  },
+  "url": "https://openui.dev/r/cron-job-scheduler-block.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Cron Expression Input And Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

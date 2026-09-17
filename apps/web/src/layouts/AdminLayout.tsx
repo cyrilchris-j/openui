@@ -1,6 +1,6 @@
-import { BarChart3, FileWarning, Gauge, ScrollText, Inbox, Users } from "lucide-react";
+import { BarChart3, FileWarning, Gauge, Layers, ScrollText, Inbox, Users } from "lucide-react";
 import * as React from "react";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useLocation } from "react-router";
 
 import { Button, EmptyState, Skeleton, StatusPill } from "@openui/ui";
 
@@ -21,6 +21,7 @@ import { SignInPanel } from "../components/SignInPanel.js";
  */
 const NAV = [
   { to: "/admin", label: "Overview", icon: Gauge, end: true },
+  { to: "/admin/catalogue", label: "Catalogue", icon: Layers },
   { to: "/admin/submissions", label: "Submissions", icon: Inbox },
   { to: "/admin/resources", label: "Resources", icon: ScrollText },
   { to: "/admin/reports", label: "Reports", icon: FileWarning },
@@ -32,7 +33,13 @@ export function AdminLayout(): React.JSX.Element {
   const { user, initialising, enabled } = useAuth();
   const isModerator = useHasRole("moderator");
 
+  // Route awareness: the catalogue dashboard reads published artifacts only, so
+  // it is public by design — the layout must not gate it behind moderation.
+  const location = useLocation();
+  const isPublicRoute = location.pathname === "/admin/catalogue";
+
   if (!enabled) {
+    if (isPublicRoute) return <Outlet />;
     return (
       <div className="shell py-20">
         <EmptyState
@@ -54,6 +61,7 @@ export function AdminLayout(): React.JSX.Element {
   }
 
   if (!user) {
+    if (isPublicRoute) return <Outlet />;
     return (
       <div className="shell py-20">
         <SignInPanel title="Sign in to moderate" description="Moderation requires an account with the moderator or administrator role." />
@@ -62,6 +70,7 @@ export function AdminLayout(): React.JSX.Element {
   }
 
   if (!isModerator) {
+    if (isPublicRoute) return <Outlet />;
     return (
       <div className="shell py-20">
         <EmptyState
@@ -88,7 +97,7 @@ export function AdminLayout(): React.JSX.Element {
     <div className="shell py-10">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-5">
         <div>
-          <p className="eyebrow">Moderation</p>
+          <p className="eyebrow">{isPublicRoute ? "Registry health" : "Moderation"}</p>
           <h1 className="mt-2 font-display text-step-3 tracking-tight">Registry operations</h1>
         </div>
         <StatusPill tone={user.role === "admin" ? "critical" : "warning"}>

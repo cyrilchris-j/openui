@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "openui-registry-sync-workbench",
+  "type": "registry:block",
+  "title": "OpenUI Registry Sync Workbench",
+  "description": "An air-gapped private registry synchronizer checking upstream catalog parity and security advisories.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "openui-registry-sync-workbench.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "registry",
+    "sync",
+    "airgapped",
+    "mirror",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "registry-sync-audit-execution",
+      "visualModel": "airgapped-mirror-synchronizer",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "private-registry-synchronization"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

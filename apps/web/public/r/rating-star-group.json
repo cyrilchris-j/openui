@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rating-star-group",
+  "type": "registry:component",
+  "title": "Rating Star Group",
+  "description": "An accessible rating group displaying star glyphs with locked status and numeric feedback score.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rating-star-group.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RatingStarGroupProps {\n  initialRating?: number;\n  className?: string;\n}\n\nexport function RatingStarGroup({ initialRating = 4, className }: RatingStarGroupProps) {\n  const [rating, setRating] = useState(initialRating);\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-3 rounded-xl border border-line bg-paper p-3 shadow-sm\", className)}>\n      <div className=\"flex gap-1 text-ink\">\n        {[1, 2, 3, 4, 5].map((star) => (\n          <button\n            key={star}\n            type=\"button\"\n            onClick={() => setRating(star)}\n            className=\"text-lg transition-transform active:scale-90\"\n          >\n            {star <= rating ? \"★\" : \"☆\"}\n          </button>\n        ))}\n      </div>\n      <span className=\"font-mono text-xs font-bold text-ink\">{rating}.0 / 5.0</span>\n    </div>\n  );\n}\n\nexport default RatingStarGroup;\n",
+      "contentHash": "7f96b97ab584faafc23baabf39ba1acfa2f9561976cc663aaabfe6fe81acd28d",
+      "sizeBytes": 955
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { RatingStarGroup } from \"./rating-star-group\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <RatingStarGroup />\n    </div>\n  );\n}\n",
+      "contentHash": "dc2140595f00d0db6f4faf67c1f4d7320da2f550eefef9fb2328be25327df5ba",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "rating",
+    "stars",
+    "review",
+    "score",
+    "feedback"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "star-rating-scoring",
+      "visualModel": "five-star-glyph-chain",
+      "motionModel": "glyph-highlight-step",
+      "layoutModel": "horizontal-star-group",
+      "semanticPurpose": "review-star-group"
+    }
+  },
+  "url": "https://openui.dev/r/rating-star-group.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Star Rating Scoring: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

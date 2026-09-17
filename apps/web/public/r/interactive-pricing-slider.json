@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-pricing-slider",
+  "type": "registry:section",
+  "title": "Interactive Pricing Slider",
+  "description": "A continuous slider calculating monthly cost based on active user seats with automated volume discount tiers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-pricing-slider.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InteractivePricingSlider({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [seats, setSeats] = React.useState(15);\n\n  const pricePerSeat = seats > 50 ? 12 : seats > 20 ? 15 : 19;\n  const total = seats * pricePerSeat;\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-xl mx-auto text-center\", className)} {...props}>\n      <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n        Seat Volume\n      </span>\n      <h2 className=\"text-2xl font-bold text-neutral-900 dark:text-neutral-100 mt-1\">\n        Pay as your engineering squad grows\n      </h2>\n\n      <div className=\"mt-8 p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm\">\n        <div className=\"flex justify-between items-baseline\">\n          <span className=\"text-sm font-semibold text-neutral-700 dark:text-neutral-300\">Active Team Seats</span>\n          <span className=\"text-2xl font-bold font-mono text-neutral-900 dark:text-neutral-100\">{seats} seats</span>\n        </div>\n\n        <input\n          type=\"range\"\n          min=\"1\"\n          max=\"100\"\n          value={seats}\n          onChange={(e) => setSeats(Number(e.target.value))}\n          className=\"w-full mt-4 accent-emerald-500 cursor-pointer\"\n        />\n\n        <div className=\"mt-6 pt-6 border-t border-neutral-100 dark:border-neutral-800 flex items-baseline justify-between\">\n          <div className=\"text-left\">\n            <div className=\"text-xs text-neutral-400\">Total Billed Monthly</div>\n            <div className=\"text-3xl font-extrabold text-neutral-900 dark:text-neutral-100\">${total}/mo</div>\n          </div>\n          <button\n            type=\"button\"\n            className=\"px-4 py-2 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 text-xs font-semibold\"\n          >\n            Start Free Trial\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "ad6f2feba910dc0b985d10ab2beacd471a73122807f2ca2c36ec354d8a9aba9d",
+      "sizeBytes": 2096
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractivePricingSlider } from \"./interactive-pricing-slider\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <InteractivePricingSlider />\n    </div>\n  );\n}\n",
+      "contentHash": "5a646c937c8b40905195276bd054e2af79033c346efdc1f187c59014bb907c86",
+      "sizeBytes": 303
+    }
+  ],
+  "tags": [
+    "pricing",
+    "slider",
+    "seats",
+    "calculator",
+    "billing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "interactive-pricing-slider-interaction",
+      "visualModel": "interactive-pricing-slider-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-pricing-slider-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-pricing-slider.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Interactive Pricing Slider Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

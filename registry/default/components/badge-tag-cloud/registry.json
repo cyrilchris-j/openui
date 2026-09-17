@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-tag-cloud",
+  "type": "registry:component",
+  "title": "Badge Tag Cloud",
+  "description": "A wrapping cloud of metadata badge chips providing taxonomy labels.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-tag-cloud.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tags",
+    "cloud",
+    "badges",
+    "chips",
+    "taxonomy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-tag-cloud",
+      "visualModel": "wrapping-pill-matrix",
+      "motionModel": "none",
+      "layoutModel": "flex-wrapping-cloud",
+      "semanticPurpose": "taxonomy-cloud-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

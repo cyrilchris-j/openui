@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pinch-zoom-viewport",
+  "type": "registry:interaction",
+  "title": "Pinch Zoom Viewport",
+  "description": "A 2D interactive canvas stage supporting stepped wheel zoom and click-drag panning across high-density artwork.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pinch-zoom-viewport.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PinchZoomViewportProps {\n  className?: string;\n}\n\nexport function PinchZoomViewport({ className }: PinchZoomViewportProps) {\n  const [scale, setScale] = useState(1);\n  const [pan, setPan] = useState({ x: 0, y: 0 });\n\n  return (\n    <div className={cn(\"relative h-72 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper p-4 select-none\", className)}>\n      <div className=\"flex justify-between items-center pb-2 border-b border-line mb-4\">\n        <span className=\"font-mono text-xs text-ink/60\">ZOOM: {Math.round(scale * 100)}%</span>\n        <div className=\"flex gap-1.5\">\n          <button\n            type=\"button\"\n            onClick={() => setScale((s) => Math.max(0.5, s - 0.25))}\n            className=\"rounded border border-line px-2 py-0.5 font-mono text-xs text-ink hover:bg-line/20\"\n          >\n            -\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setScale((s) => Math.min(2.5, s + 0.25))}\n            className=\"rounded border border-line px-2 py-0.5 font-mono text-xs text-ink hover:bg-line/20\"\n          >\n            +\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => {\n              setScale(1);\n              setPan({ x: 0, y: 0 });\n            }}\n            className=\"rounded border border-line px-2 py-0.5 font-mono text-xs text-ink hover:bg-line/20\"\n          >\n            Reset\n          </button>\n        </div>\n      </div>\n\n      <div className=\"relative h-48 w-full overflow-hidden rounded-lg bg-line/10 flex items-center justify-center\">\n        <div\n          className=\"transition-transform duration-150 ease-out\"\n          style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})` }}\n        >\n          <div className=\"h-24 w-36 rounded-lg border-2 border-ink bg-paper p-3 shadow-md flex flex-col justify-between\">\n            <span className=\"font-mono text-[9px] text-ink/50\">TARGET VECTOR</span>\n            <div className=\"h-2 w-full bg-ink rounded-full\" />\n            <div className=\"font-mono text-[9px] text-ink/40\">1920 x 1080 MATRIX</div>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport default PinchZoomViewport;\n",
+      "contentHash": "b883e8e6354f4afcb9ca3543ce00965d21a99a160c40d2813934374520d2a236",
+      "sizeBytes": 2304
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { PinchZoomViewport } from \"./pinch-zoom-viewport\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <PinchZoomViewport />\n    </div>\n  );\n}\n",
+      "contentHash": "a52636046658cf001405d00e9ed41a0aaabad5d1a3d053b56735a9f136130710",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "zoom",
+    "pinch",
+    "pan",
+    "viewport",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "viewport-pan-and-zoom",
+      "visualModel": "nested-coordinate-grid",
+      "motionModel": "scaled-matrix-transformation",
+      "layoutModel": "bounded-viewport-stage",
+      "semanticPurpose": "cad-inspection-viewport"
+    }
+  },
+  "url": "https://openui.dev/r/pinch-zoom-viewport.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Viewport Pan And Zoom: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

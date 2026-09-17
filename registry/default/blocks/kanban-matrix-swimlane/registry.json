@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kanban-matrix-swimlane",
+  "type": "registry:block",
+  "title": "Kanban Matrix Swimlane",
+  "description": "A two-axis project board organizing engineering tasks by milestone rows and delivery columns.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kanban-matrix-swimlane.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "kanban",
+    "swimlane",
+    "matrix",
+    "tasks",
+    "management"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "kanban",
+    "fingerprint": {
+      "interactionModel": "swimlane-task-status-tracking",
+      "visualModel": "multilane-kanban-matrix",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "complex-project-task-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stat-counter-badge",
+  "type": "registry:component",
+  "title": "Stat Counter Badge",
+  "description": "A metric badge displaying live numerical count with delta arrow indicator.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stat-counter-badge.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "stat",
+    "counter",
+    "badge",
+    "metrics",
+    "kpi"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "kpi-counter-display",
+      "visualModel": "numeric-pill-badge",
+      "motionModel": "none",
+      "layoutModel": "inline-stat-badge",
+      "semanticPurpose": "metric-counter-badge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

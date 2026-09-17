@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bionic-emphasis-text",
+  "type": "registry:text",
+  "title": "Bionic Emphasis Text",
+  "description": "Reading-aid typography that bolds the leading fragment of every word at a set attention ratio, guiding the eye through long paragraphs without changing a single word — a genuine legibility system, not decoration.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bionic-emphasis-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "bionic",
+    "reading",
+    "legibility",
+    "emphasis"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "fragment-weighting",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "reading-assistance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

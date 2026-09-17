@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "enterprise-security-pillar",
+  "type": "registry:section",
+  "title": "Enterprise Security Pillar",
+  "description": "A regulatory compliance and security architecture banner showcasing audit readiness, key badges, and technical assurances.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "enterprise-security-pillar.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "security",
+    "compliance",
+    "soc2",
+    "enterprise",
+    "trust"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "trust",
+    "fingerprint": {
+      "interactionModel": "enterprise-security-pillar-interaction",
+      "visualModel": "enterprise-security-pillar-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "enterprise-security-pillar-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "industrial"
+    }
+  }
+}

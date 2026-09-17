@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "serverless-function-logs",
+  "type": "registry:block",
+  "title": "Serverless Function Logs",
+  "description": "An edge serverless function invocation console reporting execution duration, memory consumption, and cold start metrics.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "serverless-function-logs.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ServerlessFunctionLogs({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-neutral-800 mb-3\">\n        <span className=\"text-white font-bold\">edge-handler: GET /api/v2/items</span>\n        <span className=\"text-emerald-400\">Duration: 4.2ms</span>\n      </div>\n      <div className=\"space-y-1 text-neutral-300\">\n        <div>[2026-09-18T00:12:00Z] START RequestId: 8f92a10b</div>\n        <div>[2026-09-18T00:12:00Z] MEMORY: 32MB / 128MB Isolate</div>\n        <div>[2026-09-18T00:12:00Z] END RequestId: 8f92a10b (Cold start: 0ms)</div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "9b9e94ef440fe1f6b97ce97c0eb52acfb6aa352c11c66db51c194bd98e45a3da",
+      "sizeBytes": 940
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { ServerlessFunctionLogs } from \"./serverless-function-logs\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-900\">\n      <ServerlessFunctionLogs />\n    </div>\n  );\n}\n",
+      "contentHash": "f1f6760d1896acd5676a6faa6cfe53246f52c8c76216903587e95dc3bd50c6a5",
+      "sizeBytes": 275
+    }
+  ],
+  "tags": [
+    "serverless",
+    "functions",
+    "logs",
+    "edge",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "serverless-execution-log-streaming",
+      "visualModel": "edge-function-invocation-ledger",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "serverless-function-telemetry"
+    }
+  },
+  "url": "https://openui.dev/r/serverless-function-logs.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Serverless Execution Log Streaming: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

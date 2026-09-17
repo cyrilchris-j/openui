@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "product-inventory-catalog",
+  "type": "registry:block",
+  "title": "Product Inventory Catalog",
+  "description": "An e-commerce stock management table showing product SKUs, inventory counts, and reorder triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "product-inventory-catalog.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "inventory",
+    "ecommerce",
+    "sku",
+    "stock",
+    "catalog"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "inventory-stock-management",
+      "visualModel": "product-sku-inventory-table",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-inventory-catalog"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

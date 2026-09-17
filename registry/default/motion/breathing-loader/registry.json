@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "breathing-loader",
+  "type": "registry:motion",
+  "title": "Breathing Loader",
+  "description": "A loader that breathes instead of spins: concentric rings expand and contract on offset sine phases with opacity tied to the exhale — calm by design, with a minutes-elapsed counter for long operations.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "breathing-loader.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "loader",
+    "breathing",
+    "rings",
+    "calm"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "phase-offset-rings",
+      "motionModel": "sine-scale-opacity",
+      "layoutModel": "radial",
+      "semanticPurpose": "loading-calm"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

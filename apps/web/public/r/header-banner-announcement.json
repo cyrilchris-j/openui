@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "header-banner-announcement",
+  "type": "registry:layout",
+  "title": "Header Banner Announcement",
+  "description": "Dismissable high-visibility notice banner pinned directly above the primary site navigation header.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "header-banner-announcement.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HeaderBannerAnnouncementProps extends React.HTMLAttributes<HTMLDivElement> {\n  banner?: React.ReactNode;\n  navbar?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function HeaderBannerAnnouncement({\n  banner,\n  navbar,\n  children,\n  className,\n  ...props\n}: HeaderBannerAnnouncementProps) {\n  return (\n    <div className={cn(\"w-full border border-line rounded-xl overflow-hidden bg-paper font-sans\", className)} {...props}>\n      {banner && <div className=\"p-2 bg-accent text-white text-center text-xs font-mono font-semibold\">{banner}</div>}\n      {navbar && <div className=\"p-4 border-b border-line flex items-center justify-between\">{navbar}</div>}\n      <main className=\"p-6\">{children}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "4070a80576a393794c18391b10a3bdd639c4b73d30dca0690ff6763b77fdd37f",
+      "sizeBytes": 790
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { HeaderBannerAnnouncement } from \"./header-banner-announcement\";\n\nexport default function HeaderBannerAnnouncementDemo() {\n  return (\n    <HeaderBannerAnnouncement\n      banner={<span>🚀 OpenUI v1.0.0 is officially released! 800 working resources live.</span>}\n      navbar={<span className=\"font-bold text-sm\">OPENUI</span>}\n    >\n      <div className=\"text-xs text-ink/70\">Main page hero content under header.</div>\n    </HeaderBannerAnnouncement>\n  );\n}\n",
+      "contentHash": "dbd19ee9c8dba381c4e752d9333173d51289614cbda15bf30684cbac53930178",
+      "sizeBytes": 482
+    }
+  ],
+  "tags": [
+    "banner",
+    "announcement",
+    "notice",
+    "header",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "top-announcement-dismissal",
+      "visualModel": "stacked-banner-and-navbar",
+      "motionModel": "none",
+      "layoutModel": "banner-above-navbar-stack",
+      "semanticPurpose": "global-announcement-shell"
+    }
+  },
+  "url": "https://openui.dev/r/header-banner-announcement.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Top Announcement Dismissal: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

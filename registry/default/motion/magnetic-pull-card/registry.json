@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-pull-card",
+  "type": "registry:motion",
+  "title": "Magnetic Pull Card",
+  "description": "A card surface that feels magnetic attraction toward the pointer with dual-stage translation and 3D rotational tilt governed by Hooke's law.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-pull-card.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "card",
+    "magnetic",
+    "tilt",
+    "spring",
+    "physics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-attraction",
+      "visualModel": "bordered-specimen-slab",
+      "motionModel": "damped-hookean-spring-attractor",
+      "layoutModel": "card-container",
+      "semanticPurpose": "interactive-feature-tile"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

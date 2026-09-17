@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stats-telemetry-banner",
+  "type": "registry:section",
+  "title": "Stats Telemetry Banner",
+  "description": "Numeric telemetry showcase highlighting scale metrics: 800 components, 14 packages, 0 errors.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stats-telemetry-banner.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "stats",
+    "telemetry",
+    "metrics",
+    "kpi",
+    "numbers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "telemetry-stat-scan",
+      "visualModel": "metric-counter-strip",
+      "motionModel": "none",
+      "layoutModel": "four-column-stat-banner",
+      "semanticPurpose": "scale-proof-telemetry"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

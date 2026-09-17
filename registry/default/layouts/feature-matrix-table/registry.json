@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-matrix-table",
+  "type": "registry:layout",
+  "title": "Feature Matrix Table",
+  "description": "Structured comparison grid contrasting product features across Starter, Pro, and Enterprise tiers.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-matrix-table.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "pricing",
+    "matrix",
+    "comparison",
+    "table",
+    "tiers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "pricing-tier-comparison",
+      "visualModel": "feature-check-matrix",
+      "motionModel": "none",
+      "layoutModel": "tabular-feature-grid",
+      "semanticPurpose": "plan-comparison-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

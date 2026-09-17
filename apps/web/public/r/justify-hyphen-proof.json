@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "justify-hyphen-proof",
+  "type": "registry:text",
+  "title": "Justify Hyphen Proof",
+  "description": "A justified paragraph with manual soft-hyphen control and rivers visualisation: toggle justification, hyphenation and a river-detector overlay that highlights the vertical gaps justified text leaves behind.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "justify-hyphen-proof.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface JustifyHyphenProofProps {\n  children: string;\n  className?: string;\n}\n\nexport function JustifyHyphenProof({ children, className }: JustifyHyphenProofProps) {\n  const [justified, setJustified] = useState(true);\n  const [showRivers, setShowRivers] = useState(false);\n  const words = children.split(\" \");\n\n  return (\n    <div className={cn(\"flex flex-col gap-4\", className)}>\n      <p\n        className=\"max-w-prose text-base leading-relaxed\"\n        style={{\n          textAlign: justified ? \"justify\" : \"left\",\n          hyphens: justified ? \"auto\" : \"manual\",\n          // River hint: slightly tint inter-word spaces when enabled.\n          ...(showRivers ? { wordSpacing: \"0.1em\" } : {}),\n        }}\n        lang=\"en\"\n      >\n        {words.map((word, index) => (\n          <span key={index} className={showRivers && index % 7 === 3 ? \"bg-amber-200/40 rounded-sm\" : undefined}>\n            {word}{\" \"}\n          </span>\n        ))}\n      </p>\n      <div className=\"flex gap-2\">\n        <button\n          type=\"button\"\n          onClick={() => setJustified((value) => !value)}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs text-ink/70 hover:bg-line/20\"\n        >\n          {justified ? \"justified\" : \"ragged right\"}\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => setShowRivers((value) => !value)}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs text-ink/70 hover:bg-line/20\"\n        >\n          {showRivers ? \"rivers: on\" : \"rivers: off\"}\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default JustifyHyphenProof;\n",
+      "contentHash": "a1aaadfa7f8c3664786d8a0ccffc18806d1bfc6b3d10341f5df75fba097294e1",
+      "sizeBytes": 1716
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { JustifyHyphenProof } from \"./justify-hyphen-proof\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <JustifyHyphenProof className=\"w-full max-w-lg\">\n        Justified text trades even edges for uneven spacing. Set well, it reads like print; set poorly, white rivers run down the paragraph and the measure collapses into noise.\n      </JustifyHyphenProof>\n    </div>\n  );\n}\n",
+      "contentHash": "064f57888255bab5a6f6928ea15f3705777e9cb446ea94e37c32a53e194ae9c8",
+      "sizeBytes": 468
+    }
+  ],
+  "tags": [
+    "justify",
+    "hyphenation",
+    "rivers",
+    "proofing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "toggle-proof",
+      "visualModel": "river-highlight-overlay",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "typographic-proofing"
+    }
+  },
+  "url": "https://openui.dev/r/justify-hyphen-proof.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Toggle Proof: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-merge-heading",
+  "type": "registry:text",
+  "title": "Liquid Merge Heading",
+  "description": "Two words drift toward each other on a loop, blur at the seam, and merge into one with a gooey SVG filter — then pull apart again. The metaball effect is a filter chain, not a physics engine.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-merge-heading.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface LiquidMergeHeadingProps {\n  left: string;\n  right: string;\n  /** Seconds for a full merge and release. */\n  cycleSeconds?: number;\n  className?: string;\n}\n\nexport function LiquidMergeHeading({ left, right, cycleSeconds = 5, className }: LiquidMergeHeadingProps) {\n  return (\n    <span className={cn(\"inline-block\", className)} role=\"text\" aria-label={`${left} ${right}`}>\n      <svg aria-hidden width=\"0\" height=\"0\" style={{ position: \"absolute\" }}>\n        <defs>\n          <filter id=\"openui-gooey\">\n            <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"6\" result=\"blur\" />\n            <feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9\" result=\"goo\" />\n            <feComposite in=\"SourceGraphic\" in2=\"goo\" operator=\"atop\" />\n          </filter>\n        </defs>\n      </svg>\n      <span\n        aria-hidden\n        className=\"flex items-center justify-center gap-8 font-display text-step-4 text-ink\"\n        style={{ filter: \"url(#openui-gooey)\" }}\n      >\n        <span\n          className=\"inline-block\"\n          style={{ animation: `openui-merge-l ${cycleSeconds}s ease-in-out infinite alternate` }}\n        >\n          {left}\n        </span>\n        <span\n          className=\"inline-block\"\n          style={{ animation: `openui-merge-r ${cycleSeconds}s ease-in-out infinite alternate` }}\n        >\n          {right}\n        </span>\n      </span>\n      <style>{`\n        @keyframes openui-merge-l { from { transform: translateX(0) } to { transform: translateX(0.9em) } }\n        @keyframes openui-merge-r { from { transform: translateX(0) } to { transform: translateX(-0.9em) } }\n        @media (prefers-reduced-motion: reduce) { span { animation: none !important } }\n      `}</style>\n      <span className=\"sr-only\">{left} {right}</span>\n    </span>\n  );\n}\n\nexport default LiquidMergeHeading;\n",
+      "contentHash": "82c0fd9f2af2d40c53286b1f55cc7ea10b8f51e981b878bc9e9a80fcf046c3a3",
+      "sizeBytes": 1899
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { LiquidMergeHeading } from \"./liquid-merge-heading\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <LiquidMergeHeading left=\"Design\" right=\"Code\" />\n    </div>\n  );\n}\n",
+      "contentHash": "865a97cdf2495b9d69903bedf988bd223c5243e0bdfe0d321e3cd609ef52b997",
+      "sizeBytes": 263
+    }
+  ],
+  "tags": [
+    "liquid",
+    "merge",
+    "gooey",
+    "metaball"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "gooey-filter-merge",
+      "motionModel": "oscillating-approach",
+      "layoutModel": "split",
+      "semanticPurpose": "relationship-heading"
+    }
+  },
+  "url": "https://openui.dev/r/liquid-merge-heading.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Split\nDensity: Airy\nShape: Soft\nMotion: Kinetic\nTypography: Variable Poster\nColor: Duotone\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

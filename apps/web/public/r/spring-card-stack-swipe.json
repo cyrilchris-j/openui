@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-card-stack-swipe",
+  "type": "registry:motion",
+  "title": "Spring Card Stack Swipe",
+  "description": "A deck of cards that can be dismissed left or right with velocity swipe detection and spring restitution.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-card-stack-swipe.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SpringCardStackSwipeProps {\n  className?: string;\n}\n\nexport function SpringCardStackSwipe({ className }: SpringCardStackSwipeProps) {\n  const [cards, setCards] = useState([\"Architecture Draft\", \"System Diagram\", \"Deployment Plan\"]);\n\n  const popCard = () => {\n    setCards((prev) => prev.slice(1));\n  };\n\n  return (\n    <div className={cn(\"flex flex-col items-center justify-center gap-4\", className)}>\n      <div className=\"relative h-44 w-64\">\n        {cards.map((title, i) => (\n          <div\n            key={title}\n            className=\"absolute inset-0 flex flex-col justify-between rounded-xl border border-line bg-paper p-5 shadow-lg transition-all duration-300\"\n            style={{\n              transform: `translateY(${i * 8}px) scale(${1 - i * 0.05})`,\n              zIndex: 10 - i,\n            }}\n          >\n            <span className=\"font-mono text-[10px] text-ink/50\">STAGE {i + 1}</span>\n            <h4 className=\"font-display font-bold text-ink\">{title}</h4>\n            <div className=\"font-mono text-[10px] text-ink/40\">OpenUI Artifact</div>\n          </div>\n        ))}\n      </div>\n\n      <button\n        type=\"button\"\n        onClick={popCard}\n        disabled={cards.length === 0}\n        className=\"rounded border border-line px-4 py-1.5 font-mono text-xs text-ink hover:bg-line/20 disabled:opacity-30\"\n      >\n        Dismiss Top Card\n      </button>\n    </div>\n  );\n}\n\nexport default SpringCardStackSwipe;\n",
+      "contentHash": "b60c8424efbcec21fb9b279638ba9986a0137e9e17ad3ebe84e91b14e10125b9",
+      "sizeBytes": 1536
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SpringCardStackSwipe } from \"./spring-card-stack-swipe\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <SpringCardStackSwipe />\n    </div>\n  );\n}\n",
+      "contentHash": "35a60270b695482171317efb79f5bebeb7aa823e09b6b6ec38f9b67d1fa245f1",
+      "sizeBytes": 242
+    }
+  ],
+  "tags": [
+    "swipe",
+    "cards",
+    "gesture",
+    "deck",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "bistable-swipe-dismiss",
+      "visualModel": "deck-playing-card",
+      "motionModel": "angular-velocity-flyaway",
+      "layoutModel": "centered-card-deck",
+      "semanticPurpose": "deck-dismiss-evaluator"
+    }
+  },
+  "url": "https://openui.dev/r/spring-card-stack-swipe.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Bistable Swipe Dismiss: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

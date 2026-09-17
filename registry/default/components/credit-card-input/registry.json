@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "credit-card-input",
+  "type": "registry:component",
+  "title": "Credit Card Input",
+  "description": "Segmented credit card entry with card issuer brand indicator, space grouping, and expiry date format.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "credit-card-input.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "card",
+    "payment",
+    "forms",
+    "input",
+    "validation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "formatted-numeric-card-entry",
+      "visualModel": "card-brand-badge-field",
+      "motionModel": "none",
+      "layoutModel": "card-payment-form",
+      "semanticPurpose": "payment-card-input"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

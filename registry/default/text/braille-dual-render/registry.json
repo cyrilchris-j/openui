@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "braille-dual-render",
+  "type": "registry:text",
+  "title": "Braille Dual Render",
+  "description": "Renders a phrase in both Latin type and Unicode braille side by side, with per-cell dot animation on value change and real screen-reader behaviour (Latin spoken, braille aria-hidden decoration).",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "braille-dual-render.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "braille",
+    "accessible",
+    "dual",
+    "dot-matrix"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "value-sync",
+      "visualModel": "dual-script-render",
+      "motionModel": "dot-cascade",
+      "layoutModel": "stacked",
+      "semanticPurpose": "inclusive-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

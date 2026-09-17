@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "action-sheet-popover",
+  "type": "registry:component",
+  "title": "Action Sheet Popover",
+  "description": "A popover action menu with icons and destructive confirmation button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "action-sheet-popover.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ActionSheetPopoverProps {\n  className?: string;\n}\n\nexport function ActionSheetPopover({ className }: ActionSheetPopoverProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"relative inline-block font-mono text-xs\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setOpen((o) => !o)}\n        className=\"rounded-lg border border-line bg-paper px-4 py-2 font-bold text-ink shadow-sm hover:bg-line/20\"\n      >\n        Actions ▾\n      </button>\n\n      {open && (\n        <div className=\"absolute top-full mt-1.5 w-44 rounded-xl border border-line bg-paper p-1.5 shadow-xl z-20 space-y-1\">\n          <div className=\"px-3 py-1.5 hover:bg-line/20 rounded cursor-pointer text-ink\">Inspect Item</div>\n          <div className=\"px-3 py-1.5 hover:bg-line/20 rounded cursor-pointer text-ink\">Export Bundle</div>\n          <div className=\"border-t border-line my-1\" />\n          <div className=\"px-3 py-1.5 hover:bg-red-500/10 text-red-600 font-bold rounded cursor-pointer\">\n            Archive Item\n          </div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default ActionSheetPopover;\n",
+      "contentHash": "c452df034c623601289befa2bd74b237c2dfa0e900d3783bc7e450033104de15",
+      "sizeBytes": 1239
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ActionSheetPopover } from \"./action-sheet-popover\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ActionSheetPopover />\n    </div>\n  );\n}\n",
+      "contentHash": "94d028b7f99ec87ad7039e67824219ca07a5ae1fa0037c8a9eda0f5d28878e84",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "action-sheet",
+    "popover",
+    "menu",
+    "destructive",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "overlays",
+    "fingerprint": {
+      "interactionModel": "popover-action-menu-choice",
+      "visualModel": "bordered-action-box",
+      "motionModel": "none",
+      "layoutModel": "anchored-action-popover",
+      "semanticPurpose": "action-popover-sheet"
+    }
+  },
+  "url": "https://openui.dev/r/action-sheet-popover.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Popover Action Menu Choice: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

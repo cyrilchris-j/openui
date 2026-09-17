@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keycap-shortcut-row",
+  "type": "registry:component",
+  "title": "Keycap Shortcut Row",
+  "description": "A reference list row showing keyboard keys and description text for cheat sheets.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keycap-shortcut-row.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "shortcuts",
+    "keyboard",
+    "keycap",
+    "cheatsheet",
+    "hotkey"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-shortcut-reference",
+      "visualModel": "ruled-hotkey-table",
+      "motionModel": "none",
+      "layoutModel": "horizontal-shortcut-row",
+      "semanticPurpose": "keyboard-cheatsheet-row"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

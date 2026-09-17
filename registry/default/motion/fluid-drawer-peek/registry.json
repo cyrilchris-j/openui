@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-drawer-peek",
+  "type": "registry:motion",
+  "title": "Fluid Drawer Peek",
+  "description": "A bottom sheet drawer with tactile peek resting states, rubberband drag boundary resistance, and spring release velocity interpolation.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-drawer-peek.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "drawer",
+    "gesture",
+    "spring",
+    "sheet",
+    "mobile"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "vertical-flick-drawer",
+      "visualModel": "docked-bottom-sheet",
+      "motionModel": "bistable-spring-threshold",
+      "layoutModel": "bottom-pinned-overlay",
+      "semanticPurpose": "modal-inspector-sheet"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

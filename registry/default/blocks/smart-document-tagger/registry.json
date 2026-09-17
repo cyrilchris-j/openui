@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "smart-document-tagger",
+  "type": "registry:block",
+  "title": "Smart Document Tagger",
+  "description": "An automated keyword and category tagger allowing content editors to categorize resources quickly.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "smart-document-tagger.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "tags",
+    "tagger",
+    "categorization",
+    "taxonomy",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "editor",
+    "fingerprint": {
+      "interactionModel": "tag-addition-and-removal",
+      "visualModel": "interactive-pill-tagger-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "document-tag-categorization"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "pill",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "press-release-banner",
+  "type": "registry:section",
+  "title": "Press Release Banner",
+  "description": "An announcement strip with news badge, press headline, read link, and dismiss action.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "press-release-banner.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PressReleaseBannerProps extends React.HTMLAttributes<HTMLElement> {\n  tag?: string;\n  message?: string;\n  actionText?: string;\n}\n\nexport function PressReleaseBanner({\n  tag = \"ANNOUNCEMENT\",\n  message = \"OpenUI announces completion of 800 certified open-source resources with automated verification.\",\n  actionText = \"Read the release →\",\n  className,\n  ...props\n}: PressReleaseBannerProps) {\n  const [visible, setVisible] = React.useState(true);\n\n  if (!visible) return null;\n\n  return (\n    <section\n      className={cn(\n        \"w-full bg-neutral-900 text-white py-3 px-4 md:px-8 border-b border-neutral-800\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"max-w-6xl mx-auto flex items-center justify-between gap-4 text-xs\">\n        <div className=\"flex items-center gap-3 overflow-hidden\">\n          <span className=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500 text-black shrink-0\">\n            {tag}\n          </span>\n          <span className=\"truncate text-neutral-300 font-medium\">\n            {message}\n          </span>\n          <a href=\"#press\" className=\"text-emerald-400 font-semibold hover:underline shrink-0 hidden sm:inline\">\n            {actionText}\n          </a>\n        </div>\n        <button\n          type=\"button\"\n          onClick={() => setVisible(false)}\n          className=\"text-neutral-400 hover:text-white text-sm shrink-0\"\n          aria-label=\"Dismiss banner\"\n        >\n          ✕\n        </button>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "4b4ffdde0b106c4993171a22f4fa9b65bb1343be607a27002aa0a4c787076336",
+      "sizeBytes": 1616
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { PressReleaseBanner } from \"./press-release-banner\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full bg-neutral-950 min-h-[150px] flex items-center justify-center\">\n      <PressReleaseBanner />\n    </div>\n  );\n}\n",
+      "contentHash": "4b6d1acb979d67a688db1e4a8e4a60df11ce36ef5b8245965cf892fe65a9f22f",
+      "sizeBytes": 259
+    }
+  ],
+  "tags": [
+    "banner",
+    "press",
+    "announcement",
+    "news",
+    "cta"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "announcements",
+    "fingerprint": {
+      "interactionModel": "press-release-banner-interaction",
+      "visualModel": "press-release-banner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "press-release-banner-section"
+    }
+  },
+  "url": "https://openui.dev/r/press-release-banner.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Press Release Banner Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

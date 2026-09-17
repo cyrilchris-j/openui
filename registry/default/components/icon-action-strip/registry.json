@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "icon-action-strip",
+  "type": "registry:component",
+  "title": "Icon Action Strip",
+  "description": "A vertical docked icon toolbar providing quick navigation shortcuts with active indicator highlights.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "icon-action-strip.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "icon",
+    "toolbar",
+    "sidebar",
+    "navigation",
+    "strip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "rail-icon-selection",
+      "visualModel": "vertical-rail-strip",
+      "motionModel": "none",
+      "layoutModel": "docked-rail-strip",
+      "semanticPurpose": "side-rail-navigation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

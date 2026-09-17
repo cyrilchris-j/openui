@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "concentric-radar-rings",
+  "type": "registry:background",
+  "title": "Concentric Radar Rings",
+  "description": "Expanding concentric circles with crosshair range finders creating a tactical radar sweep ambiance.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "concentric-radar-rings.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "radar",
+    "concentric",
+    "circles",
+    "ambient",
+    "tactical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-radar-ambiance",
+      "visualModel": "concentric-range-rings",
+      "motionModel": "subtle-pulsing-rings",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "telemetry-radar-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

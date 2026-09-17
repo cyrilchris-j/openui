@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "smart-search-command-palette",
+  "type": "registry:block",
+  "title": "Smart Search Command Palette",
+  "description": "A keyboard-accessible modal command palette supporting fuzzy action execution and shortcut cues.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "smart-search-command-palette.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "command-palette",
+    "search",
+    "shortcuts",
+    "actions",
+    "fuzzy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "search",
+    "fingerprint": {
+      "interactionModel": "fuzzy-command-palette-keyboard-nav",
+      "visualModel": "floating-omnisearch-modal",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "global-action-launcher"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

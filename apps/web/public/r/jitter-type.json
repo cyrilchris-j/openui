@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "jitter-type",
+  "type": "registry:text",
+  "title": "Jitter Type",
+  "description": "Seeded per-glyph jitter on a coarse grid: each character offsets by a quantised random amount that re-rolls on an offbeat interval, so the field feels alive without a full-time animation loop.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "jitter-type.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\n/** Quantise to a 2px grid so jitter reads as typeset, not shaky-cam. */\nfunction seededOffset(seed: number): { x: number; y: number } {\n  const value = Math.sin(seed * 91.7) * 10_000;\n  const fraction = value - Math.floor(value);\n  const angle = fraction * Math.PI * 2;\n  return {\n    x: Math.round(Math.cos(angle) * 4),\n    y: Math.round(Math.sin(angle) * 3),\n  };\n}\n\nexport interface JitterTypeProps {\n  children: string;\n  /** Milliseconds between jitter re-rolls. */\n  interval?: number;\n  className?: string;\n}\n\nexport function JitterType({ children, interval = 900, className }: JitterTypeProps) {\n  const [tick, setTick] = useState(0);\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n    const timer = window.setInterval(() => setTick((value) => value + 1), interval);\n    return () => window.clearInterval(timer);\n  }, [interval]);\n\n  return (\n    <span className={cn(\"inline-block\", className)} role=\"text\" aria-label={children}>\n      {[...children].map((char, index) => {\n        const offset = tick === 0 ? { x: 0, y: 0 } : seededOffset(index * 13.7 + tick * 7.3);\n        return (\n          <span\n            key={`${index}-${char}`}\n            aria-hidden\n            className=\"inline-block will-change-transform motion-reduce:transform-none\"\n            style={{\n              transform: `translate(${offset.x}px, ${offset.y}px)`,\n              transition: \"transform 120ms steps(3)\",\n            }}\n          >\n            {char === \" \" ? \"\\u00A0\" : char}\n          </span>\n        );\n      })}\n    </span>\n  );\n}\n\nexport default JitterType;\n",
+      "contentHash": "3121feffe3d57161018ac1e896f89b3fb2f4f229a3b4eeedaa7740e0e97890aa",
+      "sizeBytes": 1707
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { JitterType } from \"./jitter-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <JitterType className=\"font-display text-step-4 uppercase text-ink\">Static</JitterType>\n    </div>\n  );\n}\n",
+      "contentHash": "78c0f71cf646abcd152521f3cd3d0b96a012a65fad30b8b5a476dc31d2363622",
+      "sizeBytes": 284
+    }
+  ],
+  "tags": [
+    "jitter",
+    "noise",
+    "seeded",
+    "poster"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "scatter",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "interval-quantised",
+      "visualModel": "seeded-offset-field",
+      "motionModel": "quantised-jump",
+      "layoutModel": "inline",
+      "semanticPurpose": "poster-energy"
+    }
+  },
+  "url": "https://openui.dev/r/jitter-type.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Scatter\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- Interval Quantised: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

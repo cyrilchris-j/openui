@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-tab-indicator",
+  "type": "registry:motion",
+  "title": "Fluid Tab Indicator",
+  "description": "A segmented tab bar featuring a liquid underline that stretches and snaps between targets with non-linear spring physics.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-tab-indicator.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "navigation",
+    "fluid",
+    "spring",
+    "indicator"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "tabs",
+    "fingerprint": {
+      "interactionModel": "click-select-tab",
+      "visualModel": "elastic-underline-pill",
+      "motionModel": "asymmetric-stretching-glide",
+      "layoutModel": "horizontal-inline-tabs",
+      "semanticPurpose": "view-switcher-rail"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

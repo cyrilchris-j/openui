@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "isometric-mesh",
+  "type": "registry:background",
+  "title": "Isometric Mesh",
+  "description": "An angled 30-degree isometric rhomboid mesh background reminiscent of architectural axonometrics.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "isometric-mesh.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "isometric",
+    "mesh",
+    "rhombus",
+    "architecture",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-isometric-canvas",
+      "visualModel": "rhomboid-isometric-plane",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "architectural-mesh-layer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

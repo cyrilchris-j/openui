@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "floating-dock-magnifier",
+  "type": "registry:motion",
+  "title": "Floating Dock Magnifier",
+  "description": "A desktop navigation dock where individual icon targets scale smoothly using a Gaussian proximity curve as pointer glides across.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "floating-dock-magnifier.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FloatingDockMagnifierProps {\n  className?: string;\n}\n\nexport function FloatingDockMagnifier({ className }: FloatingDockMagnifierProps) {\n  const [mouseX, setMouseX] = useState<number | null>(null);\n  const icons = [\"⌘\", \"⌥\", \"⇧\", \"⌃\", \"⎋\", \"⏎\"];\n\n  return (\n    <div\n      onPointerMove={(e) => {\n        const rect = e.currentTarget.getBoundingClientRect();\n        setMouseX(e.clientX - rect.left);\n      }}\n      onPointerLeave={() => setMouseX(null)}\n      className={cn(\"inline-flex items-end gap-3 rounded-2xl border border-line bg-paper/80 p-3 shadow-xl backdrop-blur\", className)}\n    >\n      {icons.map((icon, idx) => {\n        const iconCenter = idx * 52 + 24;\n        const dist = mouseX !== null ? Math.abs(mouseX - iconCenter) : 999;\n        const scale = mouseX !== null ? Math.max(1, 1.8 - dist / 80) : 1;\n\n        return (\n          <div\n            key={idx}\n            className=\"flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-paper shadow-sm font-mono text-base font-bold text-ink transition-transform duration-75\"\n            style={{\n              transform: `scale(${scale})`,\n              transformOrigin: \"bottom center\",\n            }}\n          >\n            {icon}\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default FloatingDockMagnifier;\n",
+      "contentHash": "db82baeed623d24bb6b8da4ba9c6587c24bb8cc4eb9f5c4ce44489548c70c0ca",
+      "sizeBytes": 1428
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { FloatingDockMagnifier } from \"./floating-dock-magnifier\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <FloatingDockMagnifier />\n    </div>\n  );\n}\n",
+      "contentHash": "4750d9662ad5a50a7064ce8d0b8813018a1c89afe86eb5edafb55feec6e54af2",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "dock",
+    "magnifier",
+    "gaussian",
+    "proximity",
+    "icons"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "gaussian-proximity-scale",
+      "visualModel": "docked-horizontal-shelf",
+      "motionModel": "bell-curve-expansion",
+      "layoutModel": "bottom-anchored-dock",
+      "semanticPurpose": "app-launcher-dock"
+    }
+  },
+  "url": "https://openui.dev/r/floating-dock-magnifier.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Kinetic\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Gaussian Proximity Scale: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

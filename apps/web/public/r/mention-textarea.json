@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mention-textarea",
+  "type": "registry:component",
+  "title": "Mention Textarea",
+  "description": "Smart text input with @ mention trigger popover, member lookup, and automatic pill replacement.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mention-textarea.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState, useRef } from \"react\";\nimport { AtSign, User } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MentionTextarea({ className }: { className?: string }) {\n  const [text, setText] = useState(\"\");\n  const [showMentions, setShowMentions] = useState(false);\n  const users = [\"alex.morgan\", \"clara.oswald\", \"devon.reed\", \"elena.rostova\"];\n\n  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {\n    const val = e.target.value;\n    setText(val);\n    if (val.endsWith(\"@\")) {\n      setShowMentions(true);\n    } else if (showMentions && !val.includes(\"@\")) {\n      setShowMentions(false);\n    }\n  };\n\n  const insertMention = (username: string) => {\n    setText((prev) => prev.slice(0, prev.lastIndexOf(\"@\")) + `@${username} `);\n    setShowMentions(false);\n  };\n\n  return (\n    <div className={cn(\"relative max-w-sm w-full font-sans text-xs\", className)}>\n      <div className=\"relative rounded-lg border border-line bg-paper focus-within:border-accent p-2.5 shadow-sm\">\n        <textarea\n          rows={3}\n          value={text}\n          onChange={handleChange}\n          placeholder=\"Write a message... Type @ to mention a team member\"\n          className=\"w-full bg-transparent resize-none text-ink focus:outline-none\"\n        />\n        <div className=\"flex items-center justify-between mt-2 pt-2 border-t border-line text-[11px] text-ink/50 font-mono\">\n          <span className=\"flex items-center gap-1\">\n            <AtSign className=\"w-3 h-3\" /> mention\n          </span>\n          <span>{text.length} chars</span>\n        </div>\n      </div>\n\n      {showMentions && (\n        <div className=\"absolute left-2 bottom-full mb-1 w-48 rounded-lg border border-line bg-paper shadow-lg p-1 z-20\">\n          <div className=\"text-[10px] font-mono text-ink/40 px-2 py-1 uppercase\">Members</div>\n          {users.map((u) => (\n            <button\n              key={u}\n              type=\"button\"\n              onClick={() => insertMention(u)}\n              className=\"w-full flex items-center gap-2 px-2 py-1.5 rounded hover:bg-surface text-ink text-left transition-colors\"\n            >\n              <User className=\"w-3.5 h-3.5 text-accent\" />\n              <span>{u}</span>\n            </button>\n          ))}\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "contentHash": "8f396e0a894a5701c0b3a0cca9c984d573a5b6a3df5ba1eec0bcc68379c400fa",
+      "sizeBytes": 2316
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { MentionTextarea } from \"./mention-textarea\";\n\nexport default function MentionTextareaDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[240px]\">\n      <MentionTextarea />\n    </div>\n  );\n}\n",
+      "contentHash": "9416f745033cc023f690b392d26dfc79ecb6cf898b02601b861056a7128ee188",
+      "sizeBytes": 260
+    }
+  ],
+  "tags": [
+    "mention",
+    "textarea",
+    "forms",
+    "input",
+    "collaborator"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "character-triggered-popover-lookup",
+      "visualModel": "anchored-suggestion-popover",
+      "motionModel": "none",
+      "layoutModel": "text-input-with-overlay",
+      "semanticPurpose": "member-mention-input"
+    }
+  },
+  "url": "https://openui.dev/r/mention-textarea.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Character Triggered Popover Lookup: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

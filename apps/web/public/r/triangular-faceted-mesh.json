@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "triangular-faceted-mesh",
+  "type": "registry:background",
+  "title": "Triangular Faceted Mesh",
+  "description": "Low-poly faceted Delaunay triangulation mesh creating geometric architectural depth.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "triangular-faceted-mesh.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TriangularFacetedMeshProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function TriangularFacetedMesh({ className, children, ...props }: TriangularFacetedMeshProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"tri-mesh-pat\" width=\"60\" height=\"52\" patternUnits=\"userSpaceOnUse\">\n            <path d=\"M0 0 L30 52 L60 0 Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <path d=\"M30 52 L60 0 L90 52 Z\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#tri-mesh-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "8443f61c77f3219a8c3ccb3d36fc6b29ffb2781bb6d34c58565c0c9f6c36264b",
+      "sizeBytes": 984
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { TriangularFacetedMesh } from \"./triangular-faceted-mesh\";\n\nexport default function TriangularFacetedMeshDemo() {\n  return (\n    <TriangularFacetedMesh className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Faceted Triangles</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Delaunay triangulation crystal facets.</p>\n      </div>\n    </TriangularFacetedMesh>\n  );\n}\n",
+      "contentHash": "94d75944d36d77979a529e80db650faf0af549a056b8a49ff389a1dde124615d",
+      "sizeBytes": 591
+    }
+  ],
+  "tags": [
+    "triangles",
+    "delaunay",
+    "mesh",
+    "faceted",
+    "lowpoly"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-polyhedral-canvas",
+      "visualModel": "faceted-triangulation",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "low-poly-surface-texture"
+    }
+  },
+  "url": "https://openui.dev/r/triangular-faceted-mesh.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Geometric\nColor: High Contrast\n\n## Rules\n\n- Passive Polyhedral Canvas: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

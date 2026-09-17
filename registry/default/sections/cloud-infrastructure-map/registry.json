@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cloud-infrastructure-map",
+  "type": "registry:section",
+  "title": "Cloud Infrastructure Map",
+  "description": "A geographical edge location matrix displaying active points of presence, latency pings, and redundancy.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cloud-infrastructure-map.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "cloud",
+    "map",
+    "edge",
+    "latency",
+    "infrastructure"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "infrastructure",
+    "fingerprint": {
+      "interactionModel": "cloud-infrastructure-map-interaction",
+      "visualModel": "cloud-infrastructure-map-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "cloud-infrastructure-map-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

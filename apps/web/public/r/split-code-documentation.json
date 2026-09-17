@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-code-documentation",
+  "type": "registry:layout",
+  "title": "Split Code Documentation",
+  "description": "Stripe-style API documentation layout with prose documentation on left and companion code examples on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-code-documentation.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitCodeDocumentationProps extends React.HTMLAttributes<HTMLDivElement> {\n  prose?: React.ReactNode;\n  code?: React.ReactNode;\n}\n\nexport function SplitCodeDocumentation({ prose, code, className, ...props }: SplitCodeDocumentationProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-2 min-h-[360px] w-full border border-line rounded-xl overflow-hidden font-sans\", className)} {...props}>\n      <div className=\"p-6 bg-paper space-y-3\">{prose}</div>\n      <div className=\"p-6 bg-slate-950 text-white font-mono text-xs overflow-x-auto\">{code}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "59f14a978cbfe6eb2e7ee713f0919ea91a134cf4a977fe48690f5e1fa7764f99",
+      "sizeBytes": 649
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitCodeDocumentation } from \"./split-code-documentation\";\n\nexport default function SplitCodeDocumentationDemo() {\n  return (\n    <SplitCodeDocumentation\n      prose={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink\">Fetch Registry Item</h3>\n          <p className=\"text-xs text-ink/60 mt-1\">Retrieves JSON manifest and source payload.</p>\n        </div>\n      }\n      code={<div>curl -s https://openui.design/r/holy-grail-layout.json</div>}\n    />\n  );\n}\n",
+      "contentHash": "ff3458ca8a1c7365d90a73dcf828c3994120ef2bbfe61f2e0009d4893eae7819",
+      "sizeBytes": 499
+    }
+  ],
+  "tags": [
+    "api",
+    "docs",
+    "code",
+    "split",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "prose-and-code-dual-scroll",
+      "visualModel": "stripe-style-api-docs",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-doc-halves",
+      "semanticPurpose": "api-reference-layout"
+    }
+  },
+  "url": "https://openui.dev/r/split-code-documentation.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Prose And Code Dual Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

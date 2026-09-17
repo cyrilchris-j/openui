@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-snippet-box",
+  "type": "registry:component",
+  "title": "Code Snippet Box",
+  "description": "A terminal code block container providing syntax presentation, command copy action, and verified toast state.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-snippet-box.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CodeSnippetBoxProps {\n  code?: string;\n  className?: string;\n}\n\nexport function CodeSnippetBox({\n  code = \"pnpm add @openui/registry-schema\",\n  className,\n}: CodeSnippetBoxProps) {\n  const [copied, setCopied] = useState(false);\n\n  const copy = () => {\n    setCopied(true);\n    setTimeout(() => setCopied(false), 1500);\n  };\n\n  return (\n    <div className={cn(\"flex w-full max-w-sm items-center justify-between rounded-xl border border-line bg-ink text-paper p-3 font-mono text-xs shadow-md\", className)}>\n      <span className=\"truncate pr-3\">{code}</span>\n      <button\n        type=\"button\"\n        onClick={copy}\n        className=\"rounded bg-paper/20 px-2 py-1 text-[10px] font-bold hover:bg-paper/30 transition-colors\"\n      >\n        {copied ? \"COPIED\" : \"COPY\"}\n      </button>\n    </div>\n  );\n}\n\nexport default CodeSnippetBox;\n",
+      "contentHash": "834eea826c774107207f9f793454385d828175aefd5ebef8a87928fb6b83a59b",
+      "sizeBytes": 933
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { CodeSnippetBox } from \"./code-snippet-box\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <CodeSnippetBox />\n    </div>\n  );\n}\n",
+      "contentHash": "abc573ff4720f9728c3274b99d3b43b61ccc024ce0651b9fa34ac4f7e9db858f",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "code",
+    "snippet",
+    "copy",
+    "terminal",
+    "box"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "code-clipboard-copy",
+      "visualModel": "dark-terminal-block",
+      "motionModel": "none",
+      "layoutModel": "terminal-snippet-box",
+      "semanticPurpose": "command-snippet-display"
+    }
+  },
+  "url": "https://openui.dev/r/code-snippet-box.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Code Clipboard Copy: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-metrics-bento",
+  "type": "registry:section",
+  "title": "System Metrics Bento",
+  "description": "A bento-style telemetry board displaying memory usage, throughput, and cluster worker health.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-metrics-bento.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "bento",
+    "metrics",
+    "telemetry",
+    "system",
+    "monitoring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "system-metrics-bento-interaction",
+      "visualModel": "system-metrics-bento-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "system-metrics-bento-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

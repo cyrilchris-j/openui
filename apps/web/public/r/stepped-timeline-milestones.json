@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepped-timeline-milestones",
+  "type": "registry:interaction",
+  "title": "Stepped Timeline Milestones",
+  "description": "A chronological milestone rail snapping to historical date nodes with informational card tooltips.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepped-timeline-milestones.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SteppedTimelineMilestonesProps {\n  className?: string;\n}\n\nexport function SteppedTimelineMilestones({ className }: SteppedTimelineMilestonesProps) {\n  const [station, setStation] = useState(1);\n  const years = [\"2024\", \"2025\", \"2026\", \"2027\"];\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex justify-between font-mono text-xs text-ink/60 mb-4\">\n        <span>ROADMAP YEAR</span>\n        <span className=\"font-bold text-ink\">{years[station]}</span>\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"0\"\n        max={years.length - 1}\n        value={station}\n        onChange={(e) => setStation(parseInt(e.target.value, 10))}\n        className=\"w-full cursor-pointer accent-ink\"\n      />\n\n      <div className=\"flex justify-between font-mono text-[10px] text-ink/40 mt-2\">\n        {years.map((y) => (\n          <span key={y}>{y}</span>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default SteppedTimelineMilestones;\n",
+      "contentHash": "7ed5a5a30f0fffee567e7b260e579f876c93f540a63bdefea10abca368bd5ce5",
+      "sizeBytes": 1127
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { SteppedTimelineMilestones } from \"./stepped-timeline-milestones\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <SteppedTimelineMilestones />\n    </div>\n  );\n}\n",
+      "contentHash": "f504a56023da1d3d4efed0a614409ac1a974a3631a5efdb26a160d1782578a42",
+      "sizeBytes": 256
+    }
+  ],
+  "tags": [
+    "timeline",
+    "milestones",
+    "chronological",
+    "rail",
+    "stepped"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "milestone-notch-snapping",
+      "visualModel": "chronological-station-track",
+      "motionModel": "stepwise-station-advance",
+      "layoutModel": "horizontal-milestone-track",
+      "semanticPurpose": "chronological-station-scrubber"
+    }
+  },
+  "url": "https://openui.dev/r/stepped-timeline-milestones.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Milestone Notch Snapping: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

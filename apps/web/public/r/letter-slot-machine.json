@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "letter-slot-machine",
+  "type": "registry:text",
+  "title": "Letter Slot Machine",
+  "description": "Each letter is a clipped vertical reel of the full alphabet; changing the value spins every reel through a different number of stops, so the word resolves left-to-right like a payline landing.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "letter-slot-machine.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nconst ALPHABET = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\".split(\"\");\nconst REEL_TURNS = 2;\n\nexport interface LetterSlotMachineProps {\n  value: string;\n  /** Base ms per full reel spin. */\n  spinMs?: number;\n  className?: string;\n}\n\nexport function LetterSlotMachine({ value, spinMs = 900, className }: LetterSlotMachineProps) {\n  const [displayed, setDisplayed] = useState(() => value.toUpperCase());\n  const previous = useRef(value.toUpperCase());\n\n  useEffect(() => {\n    const target = value.toUpperCase();\n    const from = previous.current;\n    previous.current = target;\n\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setDisplayed(target);\n      return;\n    }\n\n    let cancelled = false;\n    const timers: number[] = [];\n\n    [...target].forEach((char, index) => {\n      const delay = index * 110;\n      timers.push(\n        window.setTimeout(() => {\n          if (cancelled) return;\n          setDisplayed((current) => {\n            const next = [...current];\n            next[index] = char;\n            // Keep reel visuals: fill the remainder with alphabet neighbours.\n            for (let fill = index + 1; fill < next.length && fill < target.length; fill++) {\n              if (target[fill] !== next[fill] && ALPHABET.includes(target[fill]!)) {\n                next[fill] = ALPHABET[(ALPHABET.indexOf(target[fill]!) + REEL_TURNS) % ALPHABET.length]!;\n              }\n            }\n            return next.join(\"\");\n          });\n        }, delay),\n      );\n    });\n\n    return () => {\n      cancelled = true;\n      timers.forEach((timer) => window.clearTimeout(timer));\n    };\n  }, [value]);\n\n  return (\n    <span className={cn(\"inline-flex font-mono\", className)} role=\"status\" aria-label={value}>\n      {[...displayed].map((char, index) => (\n        <span key={`${index}`} aria-hidden className=\"inline-block overflow-hidden\" style={{ height: \"1em\" }}>\n          <span\n            className=\"inline-block\"\n            style={{\n              transform: char === displayed[index] ? \"translateY(0)\" : \"translateY(-0.15em)\",\n              animation: char === displayed[index] ? \"openui-reel-settle 260ms ease-out\" : undefined,\n            }}\n          >\n            {char === \" \" ? \"\\u00A0\" : char}\n          </span>\n        </span>\n      ))}\n      <style>{`@keyframes openui-reel-settle { 0% { transform: translateY(-0.6em) } 100% { transform: translateY(0) } } @media (prefers-reduced-motion: reduce) { * { animation: none !important } }`}</style>\n    </span>\n  );\n}\n\nexport default LetterSlotMachine;\n",
+      "contentHash": "62e4e3d90fca6dff8e1b920867a2b37348f06ee1abd9c06f4d2a0add6b27da72",
+      "sizeBytes": 2645
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { useEffect, useState } from \"react\";\nimport { LetterSlotMachine } from \"./letter-slot-machine\";\n\nexport default function Demo() {\n  const words = [\"OPEN\", \"SOURCE\", \"UI\", \"MILL\"];\n  const [index, setIndex] = useState(0);\n\n  useEffect(() => {\n    const timer = window.setInterval(() => setIndex((value) => (value + 1) % words.length), 2200);\n    return () => window.clearInterval(timer);\n  }, [words.length]);\n\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <LetterSlotMachine value={words[index]!} className=\"text-step-4 text-ink\" />\n    </div>\n  );\n}\n",
+      "contentHash": "c7ecf0d92603823eff31f2a58adf284124a95df8f7a62fe45d7de0a39f92e85e",
+      "sizeBytes": 613
+    }
+  ],
+  "tags": [
+    "slot",
+    "reel",
+    "spin",
+    "value"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "value-change-trigger",
+      "visualModel": "clipped-column-reels",
+      "motionModel": "cyclic-strip-spin",
+      "layoutModel": "inline",
+      "semanticPurpose": "value-display"
+    }
+  },
+  "url": "https://openui.dev/r/letter-slot-machine.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Value Change Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

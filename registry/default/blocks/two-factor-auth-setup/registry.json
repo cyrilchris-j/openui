@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-factor-auth-setup",
+  "type": "registry:block",
+  "title": "Two-Factor Auth Setup",
+  "description": "A time-based one-time password (TOTP) setup card featuring authenticator QR placeholder and verification code field.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-factor-auth-setup.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "2fa",
+    "totp",
+    "security",
+    "mfa",
+    "auth"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "auth",
+    "fingerprint": {
+      "interactionModel": "totp-code-verification-setup",
+      "visualModel": "two-factor-authenticator-card",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "mfa-security-provisioning"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

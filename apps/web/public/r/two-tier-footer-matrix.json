@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-tier-footer-matrix",
+  "type": "registry:layout",
+  "title": "Two Tier Footer Matrix",
+  "description": "Enterprise site footer with comprehensive multi-column link directory and bottom copyright/status bar.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-tier-footer-matrix.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoTierFooterMatrixProps extends React.HTMLAttributes<HTMLDivElement> {\n  columns?: React.ReactNode;\n  legal?: React.ReactNode;\n}\n\nexport function TwoTierFooterMatrix({ columns, legal, className, ...props }: TwoTierFooterMatrixProps) {\n  return (\n    <footer className={cn(\"w-full border-t border-line bg-paper text-ink font-sans\", className)} {...props}>\n      <div className=\"max-w-5xl mx-auto p-8 border-b border-line/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs\">{columns}</div>\n      <div className=\"max-w-5xl mx-auto px-8 py-4 flex flex-col sm:flex-row justify-between text-[11px] text-ink/60 font-mono\">{legal}</div>\n    </footer>\n  );\n}\n",
+      "contentHash": "417507ebe07883ae68af60475e94c67eb28f2b06befcdffa56876c460cda51dd",
+      "sizeBytes": 713
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoTierFooterMatrix } from \"./two-tier-footer-matrix\";\n\nexport default function TwoTierFooterMatrixDemo() {\n  return (\n    <TwoTierFooterMatrix\n      columns={\n        <>\n          <div><span className=\"font-bold\">Ecosystem</span><div className=\"mt-2 space-y-1 text-ink/60\"><div>Components</div><div>Motion</div></div></div>\n          <div><span className=\"font-bold\">Resources</span><div className=\"mt-2 space-y-1 text-ink/60\"><div>Documentation</div><div>Fingerprints</div></div></div>\n          <div><span className=\"font-bold\">Community</span><div className=\"mt-2 space-y-1 text-ink/60\"><div>GitHub</div><div>Discussions</div></div></div>\n          <div><span className=\"font-bold\">Status</span><div className=\"mt-2 text-emerald-600 font-mono\">100% Operational</div></div>\n        </>\n      }\n      legal={\n        <>\n          <span>© 2026 OpenUI Project. All rights reserved.</span>\n          <span>MIT License • Verified Registry</span>\n        </>\n      }\n    />\n  );\n}\n",
+      "contentHash": "fdf492f703b3a53b2f75c05357f5d4a5db39163cd3c703fc5f7ff864ea5989b3",
+      "sizeBytes": 1005
+    }
+  ],
+  "tags": [
+    "footer",
+    "sitemap",
+    "links",
+    "matrix",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "sitemap-link-navigation",
+      "visualModel": "two-tier-link-matrix-footer",
+      "motionModel": "none",
+      "layoutModel": "columnar-footer-matrix",
+      "semanticPurpose": "global-sitemap-footer"
+    }
+  },
+  "url": "https://openui.dev/r/two-tier-footer-matrix.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Sitemap Link Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

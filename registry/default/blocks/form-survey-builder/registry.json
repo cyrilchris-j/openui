@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "form-survey-builder",
+  "type": "registry:block",
+  "title": "Form Survey Builder",
+  "description": "An interactive questionnaire block with multi-type questions, progress tracking, and submission summaries.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "form-survey-builder.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "survey",
+    "form",
+    "questions",
+    "feedback",
+    "builder"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "survey-question-response-flow",
+      "visualModel": "card-based-survey-wizard",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-survey-collection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "command-menu-bar",
+  "type": "registry:component",
+  "title": "Command Menu Bar",
+  "description": "A compact horizontal action ribbon containing tool buttons, key shortcuts, and divider rules.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "command-menu-bar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CommandMenuBarProps {\n  className?: string;\n}\n\nexport function CommandMenuBar({ className }: CommandMenuBarProps) {\n  const actions = [\n    { label: \"Cut\", key: \"⌘X\" },\n    { label: \"Copy\", key: \"⌘C\" },\n    { label: \"Paste\", key: \"⌘V\" },\n    { label: \"Format\", key: \"⌥F\" },\n  ];\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-1 rounded-xl border border-line bg-paper p-1.5 shadow-sm\", className)}>\n      {actions.map((act) => (\n        <button\n          key={act.label}\n          type=\"button\"\n          className=\"flex items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-xs text-ink hover:bg-line/20 transition-colors\"\n        >\n          <span>{act.label}</span>\n          <span className=\"rounded bg-line/30 px-1 py-0.5 text-[9px] text-ink/50\">{act.key}</span>\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default CommandMenuBar;\n",
+      "contentHash": "df22d05af1ba16e40fd856440c5f48e8ac7ce6a5dd8b2e574fdc2e7599c6e0ac",
+      "sizeBytes": 937
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { CommandMenuBar } from \"./command-menu-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <CommandMenuBar />\n    </div>\n  );\n}\n",
+      "contentHash": "305cc9de2093362f2af3ed1a76dfba8476e54cc5b5486d34b9f27aaae3ef21cf",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "toolbar",
+    "menu",
+    "command",
+    "buttons",
+    "shortcuts"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "toolbar-action-invocation",
+      "visualModel": "divided-toolbar-rack",
+      "motionModel": "none",
+      "layoutModel": "horizontal-toolbar-strip",
+      "semanticPurpose": "document-tool-ribbon"
+    }
+  },
+  "url": "https://openui.dev/r/command-menu-bar.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Toolbar Action Invocation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

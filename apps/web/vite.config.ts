@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { fileURLToPath, URL } from "node:url";
 
 import mdx from "@mdx-js/rollup";
@@ -26,9 +27,49 @@ export default defineConfig({
     react(),
   ],
   resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+    alias: [
+      // Registry-internal imports first: registry sources use the consumer
+      // alias convention (`@/lib/cn`, `@/hooks/<hook>`), and inside registry
+      // sources those must resolve to the registry's own items — the same
+      // mapping scripts/typecheck-registry.ts performs. Regex + `$1` works
+      // because Vite aliases apply via String.replace semantics.
+      {
+        find: /^@\/lib\/cn$/,
+        replacement: fileURLToPath(new URL("../../registry/default/components/cn/cn.ts", import.meta.url)),
+      },
+      {
+        // `@/hooks/<name>` appears twice in the target path (directory and
+        // file base name), so a plain $1 replacement cannot build it; a find
+        // function can. Vite calls customFilter for every id it resolves.
+        find: ((source: string) => /^@\/hooks\/(use-[a-z0-9-]+)$/.test(source)) as unknown as RegExp,
+        replacement: "",
+        async customResolver(source: string) {
+          const hookName = /^@\/hooks\/(use-[a-z0-9-]+)$/.exec(source)?.[1];
+          if (!hookName) return null;
+          return fileURLToPath(
+            new URL(`../../registry/default/components/${hookName}/${hookName}.ts`, import.meta.url),
+          );
+        },
+      },
+      // Registry sources, for the generated mount tests: demos import their
+      // own item's source with the same relative convention they ship with.
+      {
+        find: "@registry",
+        replacement: fileURLToPath(new URL("../../registry", import.meta.url)),
+      },
+      // The app's own alias. Registry resources are written to import
+      // `@/lib/cn` (mapped above), the CLI rewrites it on install, and app
+      // source uses `@/` for everything else.
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    ],
+  },
+  test: {
+    environment: "jsdom",
+    include: ["src/**/*.test.{ts,tsx}"],
+    setupFiles: ["src/test/setup.ts"],
   },
   server: {
     port: 5173,
@@ -64,4 +105,4 @@ export default defineConfig({
     // such global, so it is defined away at build time.
     "process.env": "{}",
   },
-});
+} as any);

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keycap-shortcut-row",
+  "type": "registry:component",
+  "title": "Keycap Shortcut Row",
+  "description": "A reference list row showing keyboard keys and description text for cheat sheets.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keycap-shortcut-row.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface KeycapShortcutRowProps {\n  action?: string;\n  shortcut?: string[];\n  className?: string;\n}\n\nexport function KeycapShortcutRow({\n  action = \"Rebuild Registry Index\",\n  shortcut = [\"⌘\", \"⇧\", \"R\"],\n  className,\n}: KeycapShortcutRowProps) {\n  return (\n    <div className={cn(\"flex w-full max-w-sm items-center justify-between rounded-xl border border-line bg-paper p-3 font-mono text-xs\", className)}>\n      <span className=\"text-ink font-semibold\">{action}</span>\n      <div className=\"flex gap-1\">\n        {shortcut.map((k) => (\n          <span key={k} className=\"rounded border border-line bg-line/10 px-2 py-0.5 font-bold text-ink\">\n            {k}\n          </span>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default KeycapShortcutRow;\n",
+      "contentHash": "cc29cb4df956bebdb267db2600e07409b4bcd981f76d6d6f648f80869690f2a8",
+      "sizeBytes": 813
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { KeycapShortcutRow } from \"./keycap-shortcut-row\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <KeycapShortcutRow />\n    </div>\n  );\n}\n",
+      "contentHash": "709bd5870c8a70906cd530d22d8bad77e88a8e2673dfc39f98858b93eff63761",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "shortcuts",
+    "keyboard",
+    "keycap",
+    "cheatsheet",
+    "hotkey"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-shortcut-reference",
+      "visualModel": "ruled-hotkey-table",
+      "motionModel": "none",
+      "layoutModel": "horizontal-shortcut-row",
+      "semanticPurpose": "keyboard-cheatsheet-row"
+    }
+  },
+  "url": "https://openui.dev/r/keycap-shortcut-row.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Shortcut Reference: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

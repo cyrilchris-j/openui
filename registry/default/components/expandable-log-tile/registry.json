@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "expandable-log-tile",
+  "type": "registry:component",
+  "title": "Expandable Log Tile",
+  "description": "A telemetry log row expanding stack trace payloads on click.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "expandable-log-tile.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "log",
+    "telemetry",
+    "expandable",
+    "trace",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "log-trace-disclosure",
+      "visualModel": "dark-terminal-row",
+      "motionModel": "none",
+      "layoutModel": "stacked-log-tile",
+      "semanticPurpose": "log-event-tile"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

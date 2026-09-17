@@ -43,6 +43,15 @@ export function AccountMenu(): React.JSX.Element {
   const [error, setError] = React.useState<string | null>(null);
   const isStaff = useHasRole("moderator");
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const errorDesc = params.get("error_description") ?? params.get("error");
+    if (errorDesc) {
+      setError(decodeURIComponent(errorDesc.replace(/\+/g, " ")));
+      setDialogOpen(true);
+    }
+  }, []);
+
   if (!enabled) {
     return (
       <Button

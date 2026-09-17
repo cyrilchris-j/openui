@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "media-asset-gallery",
+  "type": "registry:block",
+  "title": "Media Asset Gallery",
+  "description": "A digital media library grid featuring thumbnail previews, resolution chips, and selection checkboxes.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "media-asset-gallery.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MediaAssetGallery({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const assets = [\n    { title: \"hero-poster.png\", res: \"3840x2160\", size: \"1.8 MB\" },\n    { title: \"brand-symbol.svg\", res: \"Vector\", size: \"16 KB\" },\n    { title: \"product-mockup.webp\", res: \"1920x1080\", size: \"420 KB\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-4\">Media Library</h3>\n      <div className=\"grid grid-cols-1 sm:grid-cols-3 gap-4\">\n        {assets.map((a) => (\n          <div key={a.title} className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900\">\n            <div className=\"h-28 rounded-lg bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center font-mono text-neutral-400 text-[10px]\">\n              [IMAGE PREVIEW]\n            </div>\n            <div className=\"font-semibold text-neutral-900 dark:text-white mt-2 truncate\">{a.title}</div>\n            <div className=\"flex justify-between text-neutral-400 text-[11px] mt-1\">\n              <span>{a.res}</span>\n              <span>{a.size}</span>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "2c134bb414f51e8169b75b79e01d008e574377b1f40dec6c28c809d93fa3c1b5",
+      "sizeBytes": 1485
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { MediaAssetGallery } from \"./media-asset-gallery\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <MediaAssetGallery />\n    </div>\n  );\n}\n",
+      "contentHash": "fd6eb7ca666fc0b6aa6eae3ce61c6cfa2e5aa3e9cc835105a5da80dc7bc1470a",
+      "sizeBytes": 280
+    }
+  ],
+  "tags": [
+    "media",
+    "gallery",
+    "images",
+    "assets",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "gallery-thumbnail-selection",
+      "visualModel": "responsive-image-asset-grid",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "media-asset-management"
+    }
+  },
+  "url": "https://openui.dev/r/media-asset-gallery.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Gallery Thumbnail Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

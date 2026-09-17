@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dns-record-management-table",
+  "type": "registry:block",
+  "title": "DNS Record Management Table",
+  "description": "A domain routing table managing A, CNAME, and TXT records with TTL durations and verification checks.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dns-record-management-table.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DnsRecordManagementTable({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const records = [\n    { type: \"A\", host: \"@\", value: \"76.76.21.21\", ttl: \"3600\" },\n    { type: \"CNAME\", host: \"www\", value: \"cname.openui.dev\", ttl: \"3600\" },\n    { type: \"TXT\", host: \"_dmarc\", value: \"v=DMARC1; p=reject;\", ttl: \"300\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-4\">DNS Routing Matrix</h3>\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden\">\n        <div className=\"grid grid-cols-12 bg-neutral-50 dark:bg-neutral-900 p-2.5 font-bold text-neutral-400\">\n          <div className=\"col-span-2\">Type</div>\n          <div className=\"col-span-3\">Host</div>\n          <div className=\"col-span-5\">Value</div>\n          <div className=\"col-span-2 text-right\">TTL</div>\n        </div>\n        {records.map((r, idx) => (\n          <div key={idx} className=\"grid grid-cols-12 p-2.5 items-center\">\n            <div className=\"col-span-2 font-bold text-emerald-600 dark:text-emerald-400\">{r.type}</div>\n            <div className=\"col-span-3 text-neutral-900 dark:text-white\">{r.host}</div>\n            <div className=\"col-span-5 text-neutral-500 truncate\">{r.value}</div>\n            <div className=\"col-span-2 text-right text-neutral-400\">{r.ttl}s</div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "1769915d5584c6e5ef628b437b8ecd9f2904f7be3cb17529ae8f480fbe52daaf",
+      "sizeBytes": 1750
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DnsRecordManagementTable } from \"./dns-record-management-table\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DnsRecordManagementTable />\n    </div>\n  );\n}\n",
+      "contentHash": "4c40a6fc57b93ba760c535591b56b08af3d56733eb84a3406d7d6187c6a835c2",
+      "sizeBytes": 302
+    }
+  ],
+  "tags": [
+    "dns",
+    "domains",
+    "records",
+    "devops",
+    "cname"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "dns-record-row-management",
+      "visualModel": "domain-nameserver-table",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "dns-configuration-console"
+    }
+  },
+  "url": "https://openui.dev/r/dns-record-management-table.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Dns Record Row Management: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

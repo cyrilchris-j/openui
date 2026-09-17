@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "community-forum-digest",
+  "type": "registry:section",
+  "title": "Community Forum Digest",
+  "description": "A snapshot of top community forum threads with author avatars, response counts, and upvotes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "community-forum-digest.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "community",
+    "forum",
+    "threads",
+    "discussions",
+    "social"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "community",
+    "fingerprint": {
+      "interactionModel": "community-forum-digest-interaction",
+      "visualModel": "community-forum-digest-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "community-forum-digest-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

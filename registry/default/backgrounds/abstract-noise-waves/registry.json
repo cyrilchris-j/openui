@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "abstract-noise-waves",
+  "type": "registry:background",
+  "title": "Abstract Noise Waves",
+  "description": "Layered undulating sine wave ribbons flowing smoothly across an animated HTML5 canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "abstract-noise-waves.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "waves",
+    "noise",
+    "sine",
+    "canvas",
+    "abstract"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-waves",
+      "visualModel": "undulating-sine-ribbons",
+      "motionModel": "continuous-wave-flow",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "organic-wave-animation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

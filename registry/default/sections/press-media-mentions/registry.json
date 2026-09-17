@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "press-media-mentions",
+  "type": "registry:section",
+  "title": "Press Media Mentions",
+  "description": "Curated press clippings and editorial soundbites from leading engineering publications.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "press-media-mentions.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "press",
+    "media",
+    "news",
+    "quotes",
+    "social-proof"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "social-proof",
+    "fingerprint": {
+      "interactionModel": "press-quote-inspection",
+      "visualModel": "clipping-editorial-grid",
+      "motionModel": "none",
+      "layoutModel": "three-column-press-rack",
+      "semanticPurpose": "press-media-quotes"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

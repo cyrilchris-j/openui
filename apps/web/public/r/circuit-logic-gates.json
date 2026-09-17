@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circuit-logic-gates",
+  "type": "registry:background",
+  "title": "Circuit Logic Gates",
+  "description": "Digital schematic diagram with Boolean logic gates (AND, OR, XOR) interconnected by signal nets.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circuit-logic-gates.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CircuitLogicGatesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CircuitLogicGates({ className, children, ...props }: CircuitLogicGatesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"gates-pat\" width=\"100\" height=\"60\" patternUnits=\"userSpaceOnUse\">\n            <path d=\"M10 20 L25 20 M10 40 L25 40 M25 15 L35 15 A15 15 0 0 1 35 45 L25 45 Z M50 30 L70 30\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <circle cx=\"70\" cy=\"30\" r=\"2\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#gates-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "30a4a29cdfbf4d516e4e99642dcc294d55f36ad17443db54b6fa8ac97b8eb68f",
+      "sizeBytes": 999
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CircuitLogicGates } from \"./circuit-logic-gates\";\n\nexport default function CircuitLogicGatesDemo() {\n  return (\n    <CircuitLogicGates className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Boolean Logic Gates</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Digital AND/OR schematic gate arrays.</p>\n      </div>\n    </CircuitLogicGates>\n  );\n}\n",
+      "contentHash": "92298fff0e50133e0dbae6bf5c8adf2ccaa783efc39e805843e669adb63f56c5",
+      "sizeBytes": 572
+    }
+  ],
+  "tags": [
+    "logic",
+    "gates",
+    "schematic",
+    "boolean",
+    "circuit"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-logic-schematic",
+      "visualModel": "boolean-gate-diagram",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "logic-schematic-texture"
+    }
+  },
+  "url": "https://openui.dev/r/circuit-logic-gates.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Logic Schematic: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

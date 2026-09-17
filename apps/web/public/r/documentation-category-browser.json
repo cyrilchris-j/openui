@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "documentation-category-browser",
+  "type": "registry:section",
+  "title": "Documentation Category Browser",
+  "description": "A categorized developer documentation grid featuring search filter and deep-link reference indexes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "documentation-category-browser.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DocCategory {\n  title: string;\n  description: string;\n  articlesCount: number;\n  topics: string[];\n}\n\nexport interface DocumentationCategoryBrowserProps extends React.HTMLAttributes<HTMLElement> {\n  categories?: DocCategory[];\n}\n\nconst DEFAULT_CATEGORIES: DocCategory[] = [\n  {\n    title: \"Getting Started\",\n    description: \"Install instructions, configuration files, and quickstart boilerplates.\",\n    articlesCount: 8,\n    topics: [\"Installation\", \"CLI Configuration\", \"Folder Structure\", \"TypeScript Setup\"],\n  },\n  {\n    title: \"Registry Architecture\",\n    description: \"Learn how the decentralized schema and registry packaging format operates.\",\n    articlesCount: 14,\n    topics: [\"Design DNA Tokens\", \"Schema Validation\", \"Materialization\", \"Air-gapped Installs\"],\n  },\n  {\n    title: \"Component Primitives\",\n    description: \"Accessibility guidelines, ARIA attributes, and keyboard navigation contracts.\",\n    articlesCount: 22,\n    topics: [\"Focus Management\", \"Reduced Motion\", \"Screen Readers\", \"Slots & Polymorphism\"],\n  },\n  {\n    title: \"Deployment & CI\",\n    description: \"Automate build-time verification with GitHub Actions and edge proxies.\",\n    articlesCount: 6,\n    topics: [\"Vercel Integration\", \"Docker Containers\", \"S3 Backed Registries\", \"Version Bumps\"],\n  },\n];\n\nexport function DocumentationCategoryBrowser({\n  categories = DEFAULT_CATEGORIES,\n  className,\n  ...props\n}: DocumentationCategoryBrowserProps) {\n  const [query, setQuery] = React.useState(\"\");\n\n  const filtered = categories.filter((c) =>\n    c.title.toLowerCase().includes(query.toLowerCase()) ||\n    c.description.toLowerCase().includes(query.toLowerCase()) ||\n    c.topics.some((t) => t.toLowerCase().includes(query.toLowerCase()))\n  );\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4\">\n        <div>\n          <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n            Knowledge Base\n          </span>\n          <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n            Explore Documentation\n          </h2>\n        </div>\n        <div className=\"w-full md:w-72\">\n          <input\n            type=\"text\"\n            placeholder=\"Filter guides & topics...\"\n            value={query}\n            onChange={(e) => setQuery(e.target.value)}\n            className=\"w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-emerald-500\"\n          />\n        </div>\n      </div>\n\n      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n        {filtered.map((cat) => (\n          <div\n            key={cat.title}\n            className=\"p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors\"\n          >\n            <div className=\"flex items-center justify-between\">\n              <h3 className=\"text-lg font-bold text-neutral-900 dark:text-neutral-100\">\n                {cat.title}\n              </h3>\n              <span className=\"text-xs font-mono text-neutral-400\">\n                {cat.articlesCount} guides\n              </span>\n            </div>\n            <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2\">\n              {cat.description}\n            </p>\n            <div className=\"mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800 flex flex-wrap gap-2\">\n              {cat.topics.map((topic) => (\n                <span\n                  key={topic}\n                  className=\"text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300\"\n                >\n                  {topic}\n                </span>\n              ))}\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "8fde1208bfbff9beb226db2667205eb4b663bca692a4183d9fcc383fed1c7c66",
+      "sizeBytes": 4215
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DocumentationCategoryBrowser } from \"./documentation-category-browser\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <DocumentationCategoryBrowser />\n    </div>\n  );\n}\n",
+      "contentHash": "d9f08499985106c62cefd00b2350dd6fc13b5487b3fea0dac547f50ecca58c14",
+      "sizeBytes": 315
+    }
+  ],
+  "tags": [
+    "docs",
+    "documentation",
+    "browser",
+    "guides",
+    "api"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "documentation-category-browser-interaction",
+      "visualModel": "documentation-category-browser-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "documentation-category-browser-section"
+    }
+  },
+  "url": "https://openui.dev/r/documentation-category-browser.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Documentation Category Browser Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

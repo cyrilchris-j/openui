@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-text",
+  "type": "registry:text",
+  "title": "Wave Text",
+  "description": "Each glyph rides a sine wave with a phase offset from its position, producing a travelling swell through the word; implemented with per-character spans and a shared animation-delay variable.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useMemo } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface WaveTextProps {\n  text: string;\n  /** Wave duration in seconds for a full cycle. */\n  duration?: number;\n  /** Vertical travel in em. */\n  amplitude?: number;\n  className?: string;\n}\n\nexport function WaveText({ text, duration = 2.4, amplitude = 0.35, className }: WaveTextProps) {\n  const words = useMemo(() => text.split(\" \"), [text]);\n\n  if (typeof window !== \"undefined\" && window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n    return <span className={className}>{text}</span>;\n  }\n\n  let index = 0;\n  return (\n    <span className={cn(\"inline-block\", className)} aria-label={text} role=\"text\">\n      {words.map((word, wordPosition) => (\n        <span key={wordPosition} aria-hidden className=\"inline-block whitespace-nowrap\">\n          {[...word].map((char) => {\n            const delay = index * 0.09;\n            index++;\n            return (\n              <span\n                key={`${char}-${delay}`}\n                className=\"inline-block motion-reduce:transform-none\"\n                style={{\n                  animation: `openui-wave ${duration}s ease-in-out ${delay}s infinite`,\n                  [\"--wave-amplitude\" as string]: `${amplitude}em`,\n                }}\n              >\n                {char}\n              </span>\n            );\n          })}\n          {wordPosition < words.length - 1 ? <span> </span> : null}\n        </span>\n      ))}\n      <style>{`@keyframes openui-wave { 0%,100% { transform: translateY(0) } 50% { transform: translateY(calc(var(--wave-amplitude) * -1)) } } @media (prefers-reduced-motion: reduce) { [style] { animation: none !important } }`}</style>\n    </span>\n  );\n}\n\nexport default WaveText;\n",
+      "contentHash": "87af61ff47e176e3d79c242e9a8938a5c3e6188f553495b2db9aed74e0344cea",
+      "sizeBytes": 1759
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { WaveText } from \"./wave-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] items-center justify-center bg-paper p-10\">\n      <WaveText text=\"Riding the baseline\" className=\"font-display text-step-3 text-ink\" />\n    </div>\n  );\n}\n",
+      "contentHash": "2941ae321e901222671018a3e01b282898e694af189f3759d5d5cfbf9eb15944",
+      "sizeBytes": 278
+    }
+  ],
+  "tags": [
+    "wave",
+    "sine",
+    "stagger",
+    "kinetic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "geometric",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "glyph-spans",
+      "motionModel": "phase-offset-sine",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-accent"
+    }
+  },
+  "url": "https://openui.dev/r/wave-text.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Airy\nShape: Soft\nMotion: Expressive\nTypography: Geometric\nColor: Duotone\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

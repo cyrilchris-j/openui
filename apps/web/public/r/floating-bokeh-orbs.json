@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "floating-bokeh-orbs",
+  "type": "registry:background",
+  "title": "Floating Bokeh Orbs",
+  "description": "Soft cinematic out-of-focus luminous bokeh orbs drifting lazily in deep field perspective.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "floating-bokeh-orbs.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface FloatingBokehOrbsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function FloatingBokehOrbs({ className, children, ...props }: FloatingBokehOrbsProps) {\n  const orbs = [\n    { size: 180, top: \"10%\", left: \"15%\", color: \"bg-indigo-500/20\" },\n    { size: 240, top: \"45%\", left: \"60%\", color: \"bg-fuchsia-500/20\" },\n    { size: 140, top: \"70%\", left: \"25%\", color: \"bg-cyan-500/20\" },\n    { size: 200, top: \"20%\", left: \"75%\", color: \"bg-amber-500/15\" },\n  ];\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 pointer-events-none -z-10\">\n        {orbs.map((orb, i) => (\n          <div\n            key={i}\n            className={cn(\"absolute rounded-full blur-2xl transition-all duration-1000\", orb.color)}\n            style={{\n              width: `${orb.size}px`,\n              height: `${orb.size}px`,\n              top: orb.top,\n              left: orb.left,\n            }}\n          />\n        ))}\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "5c9c8a4641d26f14d835c278883773ede6aa7fe56c9dc17d6b4535d341111f01",
+      "sizeBytes": 1182
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { FloatingBokehOrbs } from \"./floating-bokeh-orbs\";\n\nexport default function FloatingBokehOrbsDemo() {\n  return (\n    <FloatingBokehOrbs className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-white\">Cinematic Bokeh</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-sans\">Soft luminous focal discs with deep blur.</p>\n      </div>\n    </FloatingBokehOrbs>\n  );\n}\n",
+      "contentHash": "f1953664da3f97ff3f3e5d9627fabc6611482459806364042d2ac70848b02f43",
+      "sizeBytes": 580
+    }
+  ],
+  "tags": [
+    "bokeh",
+    "orbs",
+    "cinematic",
+    "ambient",
+    "blur"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-bokeh-ambiance",
+      "visualModel": "defocused-light-discs",
+      "motionModel": "subtle-floating-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cinematic-bokeh-atmosphere"
+    }
+  },
+  "url": "https://openui.dev/r/floating-bokeh-orbs.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: Neon On Dark\n\n## Rules\n\n- Passive Bokeh Ambiance: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

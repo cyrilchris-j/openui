@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mega-sitemap-footer",
+  "type": "registry:section",
+  "title": "Mega Sitemap Footer",
+  "description": "A comprehensive multi-column site directory footer with legal links, social handles, and system status indicator.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mega-sitemap-footer.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "footer",
+    "sitemap",
+    "navigation",
+    "directory",
+    "legal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "mega-sitemap-footer-interaction",
+      "visualModel": "mega-sitemap-footer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "mega-sitemap-footer-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

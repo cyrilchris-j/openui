@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "podcast-episode-stage",
+  "type": "registry:section",
+  "title": "Podcast Episode Stage",
+  "description": "A featured multimedia stage showcasing podcast interviews, interactive progress scrubbers, and guest credentials.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "podcast-episode-stage.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "podcast",
+    "media",
+    "audio",
+    "interview",
+    "episode"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "podcast-episode-stage-interaction",
+      "visualModel": "podcast-episode-stage-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "podcast-episode-stage-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

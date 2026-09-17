@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "openui-registry-sync-workbench",
+  "type": "registry:block",
+  "title": "OpenUI Registry Sync Workbench",
+  "description": "An air-gapped private registry synchronizer checking upstream catalog parity and security advisories.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "openui-registry-sync-workbench.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function OpenuiRegistrySyncWorkbench({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-4\">\n        <span className=\"font-bold text-neutral-900 dark:text-white\">Registry Mirror Status</span>\n        <span className=\"text-emerald-500 font-bold\">In Parity (800 / 800)</span>\n      </div>\n      <div className=\"p-3 rounded bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 mb-4\">\n        Local mirror is synchronized with upstream openui-registry v2.4.0.\n      </div>\n      <button type=\"button\" className=\"w-full py-2 bg-emerald-600 text-white font-bold rounded-lg\">\n        Trigger Mirror Verification Check\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "c62a2ad0b6ed751a5fb96ff9394c3470e1c4a46e9725f4b88abb628348936842",
+      "sizeBytes": 1093
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { OpenuiRegistrySyncWorkbench } from \"./openui-registry-sync-workbench\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <OpenuiRegistrySyncWorkbench />\n    </div>\n  );\n}\n",
+      "contentHash": "31c98e48d39052ccfa2de27ecaa4093e912d0fbe1da7282978b50ad4159d2e2c",
+      "sizeBytes": 311
+    }
+  ],
+  "tags": [
+    "registry",
+    "sync",
+    "airgapped",
+    "mirror",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "registry-sync-audit-execution",
+      "visualModel": "airgapped-mirror-synchronizer",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "private-registry-synchronization"
+    }
+  },
+  "url": "https://openui.dev/r/openui-registry-sync-workbench.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Registry Sync Audit Execution: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

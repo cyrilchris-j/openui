@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-profile-settings-hub",
+  "type": "registry:block",
+  "title": "User Profile Settings Hub",
+  "description": "A complete profile preferences block featuring avatar editing, account security, and notification preference controls.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-profile-settings-hub.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "profile",
+    "settings",
+    "account",
+    "avatar",
+    "preferences"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "settings",
+    "fingerprint": {
+      "interactionModel": "form-state-management-and-avatar-picker",
+      "visualModel": "profile-account-settings-form",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "user-account-management"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

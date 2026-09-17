@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "moire-interference-mesh",
+  "type": "registry:background",
+  "title": "Moiré Interference Mesh",
+  "description": "Two overlapping slightly rotated line gratings creating an optical moiré ripple pattern.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "moire-interference-mesh.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MoireInterferenceMeshProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MoireInterferenceMesh({ className, children, ...props }: MoireInterferenceMeshProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 pointer-events-none opacity-20 -z-10\">\n        <div\n          className=\"absolute inset-0\"\n          style={{\n            backgroundImage: \"linear-gradient(to right, currentColor 1px, transparent 1px)\",\n            backgroundSize: \"8px 8px\",\n          }}\n        />\n        <div\n          className=\"absolute inset-0 origin-center rotate-3\"\n          style={{\n            backgroundImage: \"linear-gradient(to right, currentColor 1px, transparent 1px)\",\n            backgroundSize: \"8px 8px\",\n          }}\n        />\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "0335c8014c658aba5183f07944c574f1d2369817c34401e2776fa3ccb3332cfe",
+      "sizeBytes": 1007
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { MoireInterferenceMesh } from \"./moire-interference-mesh\";\n\nexport default function MoireInterferenceMeshDemo() {\n  return (\n    <MoireInterferenceMesh className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Moiré Interference</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Superimposed grating angles producing interference waves.</p>\n      </div>\n    </MoireInterferenceMesh>\n  );\n}\n",
+      "contentHash": "c0724f6a5f9250b3f47af7e6d886f993562a7f998bebbb9bd95a3f332c8bdff5",
+      "sizeBytes": 612
+    }
+  ],
+  "tags": [
+    "moire",
+    "optical",
+    "interference",
+    "pattern",
+    "illusion"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-optical-illusion",
+      "visualModel": "dual-lattice-moire",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "optical-moire-effect"
+    }
+  },
+  "url": "https://openui.dev/r/moire-interference-mesh.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Passive Optical Illusion: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

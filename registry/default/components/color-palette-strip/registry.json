@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-palette-strip",
+  "type": "registry:component",
+  "title": "Color Palette Strip",
+  "description": "A continuous color tone preview strip showing primary, secondary, and accent theme tokens.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-palette-strip.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "colors",
+    "palette",
+    "tokens",
+    "preview",
+    "strip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-color-strip",
+      "visualModel": "gradient-token-strip",
+      "motionModel": "none",
+      "layoutModel": "horizontal-palette-strip",
+      "semanticPurpose": "color-theme-token-strip"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

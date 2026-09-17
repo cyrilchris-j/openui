@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "range-slider-dual-thumbs",
+  "type": "registry:interaction",
+  "title": "Range Slider Dual Thumbs",
+  "description": "A min-max dual handle range slider guaranteeing non-overlapping bounds across a shared track rail.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "range-slider-dual-thumbs.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "slider",
+    "dual",
+    "range",
+    "min-max",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "dual-thumb-range-selection",
+      "visualModel": "bounded-interval-track",
+      "motionModel": "clamped-non-overlapping-travel",
+      "layoutModel": "horizontal-interval-rail",
+      "semanticPurpose": "bounded-numeric-window"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

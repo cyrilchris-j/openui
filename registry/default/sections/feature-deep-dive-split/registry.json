@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-deep-dive-split",
+  "type": "registry:section",
+  "title": "Feature Deep Dive Split",
+  "description": "A two-sided feature spotlight pairing technical bullet points with interactive code mockups.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-deep-dive-split.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "feature",
+    "deep-dive",
+    "split",
+    "spotlight",
+    "specs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "feature-deep-dive-split-interaction",
+      "visualModel": "feature-deep-dive-split-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "feature-deep-dive-split-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

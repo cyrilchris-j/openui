@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "webhook-delivery-inspector",
+  "type": "registry:block",
+  "title": "Webhook Delivery Inspector",
+  "description": "An HTTP webhook dispatch log displaying payload digests, status codes (200, 500), and retry action triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "webhook-delivery-inspector.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "webhooks",
+    "http",
+    "api",
+    "payload",
+    "retry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "webhooks",
+    "fingerprint": {
+      "interactionModel": "webhook-event-inspection-and-retry",
+      "visualModel": "http-delivery-status-ledger",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "webhook-monitoring-console"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

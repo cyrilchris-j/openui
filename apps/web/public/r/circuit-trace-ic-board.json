@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circuit-trace-ic-board",
+  "type": "registry:background",
+  "title": "Circuit Trace IC Board",
+  "description": "Dense microchip surface mount component bus traces with fine wire-bonded pinouts.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circuit-trace-ic-board.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CircuitTraceICBoardProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CircuitTraceICBoard({ className, children, ...props }: CircuitTraceICBoardProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-emerald-400 overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-20 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"ic-pat\" width=\"80\" height=\"80\" patternUnits=\"userSpaceOnUse\">\n            <rect x=\"25\" y=\"25\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"10\" y1=\"30\" x2=\"25\" y2=\"30\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"10\" y1=\"40\" x2=\"25\" y2=\"40\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"10\" y1=\"50\" x2=\"25\" y2=\"50\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"55\" y1=\"30\" x2=\"70\" y2=\"30\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"55\" y1=\"40\" x2=\"70\" y2=\"40\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"55\" y1=\"50\" x2=\"70\" y2=\"50\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#ic-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "f9b6be8eddeb0b88bb0f5a4fadd4df46b8d3a53d1f2a7cc448c2468a7e3990f5",
+      "sizeBytes": 1440
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CircuitTraceICBoard } from \"./circuit-trace-ic-board\";\n\nexport default function CircuitTraceICBoardDemo() {\n  return (\n    <CircuitTraceICBoard className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-emerald-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-emerald-400\">Integrated Circuit Die</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Microchip package with wire-bond lead pins.</p>\n      </div>\n    </CircuitTraceICBoard>\n  );\n}\n",
+      "contentHash": "181d0b4b4383c952b997dca2f51a50bd9bef4c3f2327016b84bd981c9f0f767f",
+      "sizeBytes": 612
+    }
+  ],
+  "tags": [
+    "ic",
+    "microchip",
+    "silicon",
+    "pcb",
+    "bus"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-silicon-microchip",
+      "visualModel": "ic-pinout-die-traces",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "microchip-die-texture"
+    }
+  },
+  "url": "https://openui.dev/r/circuit-trace-ic-board.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Silicon Microchip: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

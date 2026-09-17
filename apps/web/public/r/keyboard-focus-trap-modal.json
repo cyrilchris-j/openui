@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-focus-trap-modal",
+  "type": "registry:interaction",
+  "title": "Keyboard Focus Trap Modal",
+  "description": "An accessible modal dialog containing an active keyboard focus loop that traps tab key cycles.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-focus-trap-modal.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KeyboardFocusTrapModalProps {\n  className?: string;\n}\n\nexport function KeyboardFocusTrapModal({ className }: KeyboardFocusTrapModalProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setOpen(true)}\n        className=\"rounded border border-line bg-ink px-4 py-2 font-mono text-xs text-paper shadow\"\n      >\n        Open Focus Trap Dialog\n      </button>\n\n      {open && (\n        <div className=\"rounded-xl border border-line bg-paper p-6 shadow-xl w-72 space-y-3\">\n          <h4 className=\"font-mono text-xs font-bold text-ink\">Focus Trapped Scope</h4>\n          <input\n            type=\"text\"\n            placeholder=\"Field A\"\n            className=\"w-full rounded border border-line p-1 font-mono text-xs\"\n          />\n          <button\n            type=\"button\"\n            onClick={() => setOpen(false)}\n            className=\"w-full rounded bg-ink py-1 font-mono text-xs text-paper\"\n          >\n            Dismiss\n          </button>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default KeyboardFocusTrapModal;\n",
+      "contentHash": "ee17d1fd8604792ce756341315545ccb09d175ba6b4f72dbf63f0251f117c83f",
+      "sizeBytes": 1270
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { KeyboardFocusTrapModal } from \"./keyboard-focus-trap-modal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <KeyboardFocusTrapModal />\n    </div>\n  );\n}\n",
+      "contentHash": "1891a2402cf4832923e3306a13fa6cdbe4018354fadb2a66c71fda2fff2e3d8e",
+      "sizeBytes": 248
+    }
+  ],
+  "tags": [
+    "focus-trap",
+    "modal",
+    "keyboard",
+    "accessibility",
+    "dialog"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "trapped-tab-cycle",
+      "visualModel": "modal-chassis-bounds",
+      "motionModel": "bounded-focus-loop",
+      "layoutModel": "centered-dialog-box",
+      "semanticPurpose": "focus-trapped-dialog"
+    }
+  },
+  "url": "https://openui.dev/r/keyboard-focus-trap-modal.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Trapped Tab Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

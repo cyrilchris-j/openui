@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-button-cluster",
+  "type": "registry:motion",
+  "title": "Magnetic Button Cluster",
+  "description": "An array of navigation pills that displace collectively toward cursor proximity with inverted spring tension.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-button-cluster.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticButtonClusterProps {\n  className?: string;\n}\n\nexport function MagneticButtonCluster({ className }: MagneticButtonClusterProps) {\n  const [offset, setOffset] = useState({ x: 0, y: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = (e.clientX - (rect.left + rect.width / 2)) * 0.15;\n    const y = (e.clientY - (rect.top + rect.height / 2)) * 0.15;\n    setOffset({ x, y });\n  };\n\n  const handlePointerLeave = () => {\n    setOffset({ x: 0, y: 0 });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      onPointerLeave={handlePointerLeave}\n      className={cn(\"flex items-center justify-center gap-3 p-10 rounded-xl border border-line bg-paper\", className)}\n    >\n      {[\"Documentation\", \"GitHub\", \"Components\"].map((label, idx) => (\n        <button\n          key={label}\n          type=\"button\"\n          style={{\n            transform: `translate(${offset.x * (idx + 1) * 0.6}px, ${offset.y * (idx + 1) * 0.6}px)`,\n          }}\n          className=\"rounded-full border border-line bg-paper px-4 py-2 text-xs font-semibold text-ink shadow-sm transition-transform duration-100 ease-out hover:bg-line/20\"\n        >\n          {label}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default MagneticButtonCluster;\n",
+      "contentHash": "da54d024b9ff63553ca2c948420ddeb54164996de945f55795b9736e77057ce0",
+      "sizeBytes": 1438
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MagneticButtonCluster } from \"./magnetic-button-cluster\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <MagneticButtonCluster />\n    </div>\n  );\n}\n",
+      "contentHash": "c8bf6e26551f20f510101dbd67818ec26fa007a638205cf0f6954371a83fef67",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "magnetic",
+    "buttons",
+    "cluster",
+    "spring",
+    "cursor"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "cursor",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-displacement",
+      "visualModel": "constellation-pill-cluster",
+      "motionModel": "inverse-square-displacement",
+      "layoutModel": "centered-pill-group",
+      "semanticPurpose": "interactive-cta-cluster"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-button-cluster.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Pointer Proximity Displacement: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

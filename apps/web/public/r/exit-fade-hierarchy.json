@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "exit-fade-hierarchy",
+  "type": "registry:motion",
+  "title": "Exit Fade Hierarchy",
+  "description": "Content exits in reverse importance order: the least important elements fade first, headings hold longest — a choreography where the eye keeps its anchor while everything else dissolves around it.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "exit-fade-hierarchy.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ExitFadeHierarchyProps {\n  /** Elements ordered by importance: last in the array exits first. */\n  children: React.ReactNode[];\n  className?: string;\n}\n\nexport function ExitFadeHierarchy({ children, className }: ExitFadeHierarchyProps) {\n  const [exiting, setExiting] = useState(false);\n  const count = children.length;\n\n  return (\n    <div className={cn(\"flex flex-col gap-4\", className)}>\n      <div aria-hidden={exiting} style={{ opacity: exiting ? undefined : 1 }}>\n        {children.map((child, index) => {\n          // Importance = position; the most important (index 0) exits last.\n          const delay = (count - 1 - index) * 140;\n          return (\n            <div\n              key={index}\n              className=\"mb-3\"\n              style={{\n                opacity: exiting ? 0 : 1,\n                transform: exiting ? \"translateY(6px)\" : \"translateY(0)\",\n                transition: `opacity 420ms ease ${delay}ms, transform 420ms ease ${delay}ms`,\n              }}\n            >\n              {child}\n            </div>\n          );\n        })}\n      </div>\n      <button\n        type=\"button\"\n        onClick={() => setExiting((value) => !value)}\n        className=\"self-start rounded-md border border-line px-3 py-1.5 font-mono text-xs text-ink/70 hover:bg-line/20\"\n      >\n        {exiting ? \"restore\" : \"exit hierarchy\"}\n      </button>\n    </div>\n  );\n}\n\nexport default ExitFadeHierarchy;\n",
+      "contentHash": "370f813b70f292e596c92469e6a08e88dbaed19372254d54c21a9c4828f00ea3",
+      "sizeBytes": 1510
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ExitFadeHierarchy } from \"./exit-fade-hierarchy\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <ExitFadeHierarchy className=\"w-80\">\n        <p className=\"font-display text-xl text-ink\">The headline holds</p>\n        <p className=\"text-sm text-ink/70\">Supporting copy follows it out.</p>\n        <p className=\"text-xs text-ink/50\">Footnotes dissolve first.</p>\n      </ExitFadeHierarchy>\n    </div>\n  );\n}\n",
+      "contentHash": "27ce7c533a1395539c9fb2fa1369f8aa1a2a7132667b206edcc139140c9206ff",
+      "sizeBytes": 503
+    }
+  ],
+  "tags": [
+    "exit",
+    "hierarchy",
+    "choreography",
+    "fade"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "exit",
+    "fingerprint": {
+      "interactionModel": "exit-sequence",
+      "visualModel": "importance-ordered-fade",
+      "motionModel": "reverse-priority-stagger",
+      "layoutModel": "stack",
+      "semanticPurpose": "transition-out"
+    }
+  },
+  "url": "https://openui.dev/r/exit-fade-hierarchy.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Exit Sequence: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-drop-kanban-board",
+  "type": "registry:interaction",
+  "title": "Drag Drop Kanban Board",
+  "description": "A compact multi-lane task board allowing cards to transition between stages with active target ghosting.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-drop-kanban-board.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DragDropKanbanBoardProps {\n  className?: string;\n}\n\nexport function DragDropKanbanBoard({ className }: DragDropKanbanBoardProps) {\n  const [todo, setTodo] = useState([\"Verify DNA\", \"Typecheck Registry\"]);\n  const [done, setDone] = useState([\"Draft Batch Specs\"]);\n\n  const advance = (item: string) => {\n    setTodo((t) => t.filter((i) => i !== item));\n    setDone((d) => [...d, item]);\n  };\n\n  return (\n    <div className={cn(\"grid grid-cols-2 gap-3 w-full max-w-md rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"space-y-2\">\n        <span className=\"font-mono text-[10px] text-ink/50 uppercase\">BACKLOG</span>\n        {todo.map((item) => (\n          <div\n            key={item}\n            onClick={() => advance(item)}\n            className=\"rounded border border-line bg-line/10 p-2 font-mono text-xs cursor-pointer hover:border-ink\"\n          >\n            {item} →\n          </div>\n        ))}\n      </div>\n\n      <div className=\"space-y-2 border-l border-line pl-3\">\n        <span className=\"font-mono text-[10px] text-emerald-600 font-bold uppercase\">COMPLETED</span>\n        {done.map((item) => (\n          <div key={item} className=\"rounded border border-line bg-paper p-2 font-mono text-xs text-ink/60\">\n            ✓ {item}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default DragDropKanbanBoard;\n",
+      "contentHash": "81f4635c48b462091b7d34008693e5b15cad50ea908a62638d34ebf9f9155086",
+      "sizeBytes": 1476
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DragDropKanbanBoard } from \"./drag-drop-kanban-board\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <DragDropKanbanBoard />\n    </div>\n  );\n}\n",
+      "contentHash": "30982be19e8ead22c619689a772a8696d338fa7f3f023dcbd60f60d3e63dc0cf",
+      "sizeBytes": 239
+    }
+  ],
+  "tags": [
+    "kanban",
+    "board",
+    "drag-drop",
+    "swimlane",
+    "triage"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "multi-lane-kanban-triage",
+      "visualModel": "dual-lane-board-deck",
+      "motionModel": "swimlane-transfer-reorder",
+      "layoutModel": "horizontal-lane-board",
+      "semanticPurpose": "dual-lane-triage-board"
+    }
+  },
+  "url": "https://openui.dev/r/drag-drop-kanban-board.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Multi Lane Kanban Triage: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

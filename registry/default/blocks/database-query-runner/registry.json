@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "database-query-runner",
+  "type": "registry:block",
+  "title": "Database Query Runner",
+  "description": "An SQL workbench featuring query input, execution benchmark timer, and structured result record grid.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "database-query-runner.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "sql",
+    "database",
+    "query",
+    "tables",
+    "records"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "database",
+    "fingerprint": {
+      "interactionModel": "sql-query-execution-and-results-grid",
+      "visualModel": "database-console-workbench",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "database-query-inspection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

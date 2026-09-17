@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "coordinate-reticle-tracker",
+  "type": "registry:interaction",
+  "title": "Coordinate Reticle Tracker",
+  "description": "A precision HUD targeting scope displaying delta distance and polar theta relative to center crosshair.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "coordinate-reticle-tracker.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "reticle",
+    "hud",
+    "crosshair",
+    "coordinates",
+    "tracking"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "polar-target-telemetry",
+      "visualModel": "hud-concentric-graticule",
+      "motionModel": "continuous-telemetry-readout",
+      "layoutModel": "centered-reticle-box",
+      "semanticPurpose": "targeting-telemetry-reticle"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

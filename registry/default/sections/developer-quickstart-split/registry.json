@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-quickstart-split",
+  "type": "registry:section",
+  "title": "Developer Quickstart Split",
+  "description": "A two-column section pairing developer installation steps with copyable terminal snippets and flags.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-quickstart-split.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "developer",
+    "quickstart",
+    "terminal",
+    "code",
+    "installation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "developer-quickstart-split-interaction",
+      "visualModel": "developer-quickstart-split-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "developer-quickstart-split-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

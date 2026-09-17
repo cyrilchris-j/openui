@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-avatar-fan",
+  "type": "registry:motion",
+  "title": "Staggered Avatar Fan",
+  "description": "A compact deck of overlapping user avatars that fans out radially on hover with proportional rotational offsets.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-avatar-fan.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "avatars",
+    "fan",
+    "deck",
+    "radial",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "hover-radial-spread",
+      "visualModel": "fanned-playing-card-deck",
+      "motionModel": "angular-stagger-fanning",
+      "layoutModel": "compact-avatar-cluster",
+      "semanticPurpose": "collaborator-fanout-deck"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

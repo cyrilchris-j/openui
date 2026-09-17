@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "subtle-grid-paper",
+  "type": "registry:background",
+  "title": "Subtle Grid Paper",
+  "description": "Classic drafting quadrant grid paper with fine square divisions and major index lines.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "subtle-grid-paper.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SubtleGridPaperProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function SubtleGridPaper({ className, children, ...props }: SubtleGridPaperProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-20 -z-10\"\n        style={{\n          backgroundImage: `\n            linear-gradient(to right, currentColor 1px, transparent 1px),\n            linear-gradient(to bottom, currentColor 1px, transparent 1px)\n          `,\n          backgroundSize: \"20px 20px\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "21d0fe0fde34c59acb0f3f0898b1712379a403248ed8046dc951e9591d70da08",
+      "sizeBytes": 772
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { SubtleGridPaper } from \"./subtle-grid-paper\";\n\nexport default function SubtleGridPaperDemo() {\n  return (\n    <SubtleGridPaper className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Drafting Grid Paper</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Quad-ruled engineering millimetric paper.</p>\n      </div>\n    </SubtleGridPaper>\n  );\n}\n",
+      "contentHash": "94d05e8c5362113fad649c7126a642d1311e72a2e67c3097e2f116a320619ed4",
+      "sizeBytes": 566
+    }
+  ],
+  "tags": [
+    "drafting",
+    "paper",
+    "grid",
+    "engineering",
+    "notebook"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-graph-paper",
+      "visualModel": "quad-ruled-drafting-paper",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "engineering-drafting-grid"
+    }
+  },
+  "url": "https://openui.dev/r/subtle-grid-paper.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Graph Paper: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

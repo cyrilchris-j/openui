@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inline-swap-sentence",
+  "type": "registry:text",
+  "title": "Inline Swap Sentence",
+  "description": "A sentence with one clickable word that cycles through alternatives on click — a live copy-testing widget where the sentence grammar stays intact and the swapped word rolls in with a vertical slide.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inline-swap-sentence.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InlineSwapSentenceProps {\n  /** Split as [before, SWAP, after]; the middle is the cycling word. */\n  before: string;\n  after: string;\n  options: string[];\n  className?: string;\n}\n\nexport function InlineSwapSentence({ before, after, options, className }: InlineSwapSentenceProps) {\n  const [index, setIndex] = useState(0);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  return (\n    <p className={cn(\"max-w-prose text-lg\", className)}>\n      {before}{\" \"}\n      <button\n        type=\"button\"\n        onClick={() => setIndex((value) => (value + 1) % options.length)}\n        className=\"relative inline-flex overflow-hidden border-0 bg-transparent p-0 font-semibold text-accent underline decoration-wavy underline-offset-4\"\n        aria-label={`Alternative for word: ${options.join(\", \")}`}\n      >\n        <span\n          aria-hidden\n          key={index}\n          style={{\n            display: \"inline-block\",\n            animation: reduced ? undefined : \"openui-swap-in 280ms cubic-bezier(0.2, 0, 0, 1)\",\n          }}\n        >\n          {options[index]}\n        </span>\n      </button>{\" \"}\n      {after}\n      <style>{`@keyframes openui-swap-in { 0% { transform: translateY(0.7em); opacity: 0 } 100% { transform: translateY(0); opacity: 1 } }`}</style>\n      <span className=\"sr-only\">{options[index]}</span>\n    </p>\n  );\n}\n\nexport default InlineSwapSentence;\n",
+      "contentHash": "80a798608c5a670be73d41177dfae167326252df11eaa5e85643d09e15447507",
+      "sizeBytes": 1542
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { InlineSwapSentence } from \"./inline-swap-sentence\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[11rem] items-center justify-center bg-paper p-10\">\n      <InlineSwapSentence\n        before=\"Design systems should feel\"\n        after=\"to the people who use them.\"\n        options={[\"inevitable\", \"honest\", \"quick\", \"yours\"]}\n        className=\"text-ink\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "56ccfd117b5cf659a9a2adec723a4ab523a9c635c98f02237c4c292821c60d98",
+      "sizeBytes": 420
+    }
+  ],
+  "tags": [
+    "swap",
+    "cycle",
+    "copy",
+    "inline"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "click-cycle",
+      "visualModel": "inline-slot-swap",
+      "motionModel": "vertical-slide",
+      "layoutModel": "inline",
+      "semanticPurpose": "copy-exploration"
+    }
+  },
+  "url": "https://openui.dev/r/inline-swap-sentence.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Stack\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Click Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

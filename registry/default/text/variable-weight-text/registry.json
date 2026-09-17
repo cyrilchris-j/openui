@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "variable-weight-text",
+  "type": "registry:text",
+  "title": "Variable Weight Text",
+  "description": "Per-glyph font-variation weight driven by distance to the pointer, so the word swells under the cursor like a pressure field; falls back to a static mid weight without a pointer.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "variable-weight-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "variable-font",
+    "weight",
+    "pointer",
+    "typography"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-weight",
+      "visualModel": "axis-animation",
+      "motionModel": "distance-falloff",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

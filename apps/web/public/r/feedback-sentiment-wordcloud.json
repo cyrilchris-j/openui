@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feedback-sentiment-wordcloud",
+  "type": "registry:block",
+  "title": "Feedback Sentiment Wordcloud",
+  "description": "An aggregated customer sentiment visualization highlighting dominant feedback keywords and approval score.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feedback-sentiment-wordcloud.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function FeedbackSentimentWordcloud({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const words = [\n    { text: \"fast\", size: \"text-2xl font-bold text-emerald-600\" },\n    { text: \"zero-dependencies\", size: \"text-xl font-bold text-neutral-900 dark:text-white\" },\n    { text: \"clean\", size: \"text-lg text-emerald-500\" },\n    { text: \"type-safe\", size: \"text-xl font-bold text-neutral-800 dark:text-neutral-200\" },\n    { text: \"flexible\", size: \"text-base text-neutral-500\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-lg mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl text-center shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-4\">Customer Sentiment Summary</h3>\n      <div className=\"flex flex-wrap items-center justify-center gap-4 py-4\">\n        {words.map((w) => (\n          <span key={w.text} className={w.size}>\n            {w.text}\n          </span>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "1da05947a51f9062a16330971b5633440bafebf241b992e6f5816b8afb0dc3a2",
+      "sizeBytes": 1140
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { FeedbackSentimentWordcloud } from \"./feedback-sentiment-wordcloud\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <FeedbackSentimentWordcloud />\n    </div>\n  );\n}\n",
+      "contentHash": "6d7e20045a1e9eb988fd5c35cc03bce673e3e7ff33fd194f74102be4bbcf26c7",
+      "sizeBytes": 307
+    }
+  ],
+  "tags": [
+    "sentiment",
+    "feedback",
+    "wordcloud",
+    "keywords",
+    "nps"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "scatter",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "sentiment-tag-cloud-inspection",
+      "visualModel": "keyword-frequency-cloud",
+      "motionModel": "subtle",
+      "layoutModel": "scatter-layout",
+      "semanticPurpose": "customer-sentiment-analysis"
+    }
+  },
+  "url": "https://openui.dev/r/feedback-sentiment-wordcloud.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Scatter\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Sentiment Tag Cloud Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

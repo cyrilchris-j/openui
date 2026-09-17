@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "enterprise-security-pillar",
+  "type": "registry:section",
+  "title": "Enterprise Security Pillar",
+  "description": "A regulatory compliance and security architecture banner showcasing audit readiness, key badges, and technical assurances.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "enterprise-security-pillar.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SecurityPillarItem {\n  code: string;\n  name: string;\n  auditPeriod: string;\n  status: \"Certified\" | \"Verified\" | \"Compliant\";\n}\n\nexport interface EnterpriseSecurityPillarProps extends React.HTMLAttributes<HTMLElement> {\n  headline?: string;\n  description?: string;\n  pillars?: SecurityPillarItem[];\n}\n\nconst DEFAULT_PILLARS: SecurityPillarItem[] = [\n  { code: \"SOC-2-TYPE-II\", name: \"Security & Confidentiality\", auditPeriod: \"2025 Annual Audit\", status: \"Certified\" },\n  { code: \"ISO-27001\", name: \"Information Security Management\", auditPeriod: \"Accredited Bureau\", status: \"Certified\" },\n  { code: \"HIPAA-BAA\", name: \"Health Data Protection\", auditPeriod: \"End-to-End Encrypted\", status: \"Compliant\" },\n  { code: \"GDPR-APPR\", name: \"Data Sovereignty & EU Storage\", auditPeriod: \"Frankfurt / Dublin\", status: \"Verified\" },\n];\n\nexport function EnterpriseSecurityPillar({\n  headline = \"Bank-grade enterprise security by default\",\n  description = \"Every line of code and packet stream adheres to strict zero-trust operational protocols audited by third parties.\",\n  pillars = DEFAULT_PILLARS,\n  className,\n  ...props\n}: EnterpriseSecurityPillarProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"grid grid-cols-1 lg:grid-cols-12 gap-10 items-center\">\n        <div className=\"lg:col-span-5\">\n          <span className=\"text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold\">\n            Assurance & Governance\n          </span>\n          <h2 className=\"text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-2\">\n            {headline}\n          </h2>\n          <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed\">\n            {description}\n          </p>\n          <div className=\"mt-6 flex items-center gap-3 text-xs font-mono text-neutral-500\">\n            <span className=\"h-2 w-2 rounded-full bg-emerald-500\" />\n            Live penetration test results updated daily\n          </div>\n        </div>\n\n        <div className=\"lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4\">\n          {pillars.map((pillar) => (\n            <div\n              key={pillar.code}\n              className=\"p-5 border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 rounded-lg flex flex-col justify-between\"\n            >\n              <div>\n                <div className=\"flex items-center justify-between\">\n                  <span className=\"text-xs font-mono font-bold text-neutral-900 dark:text-neutral-100\">\n                    {pillar.code}\n                  </span>\n                  <span className=\"text-[10px] font-mono uppercase px-2 py-0.5 bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded\">\n                    {pillar.status}\n                  </span>\n                </div>\n                <div className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2 font-medium\">\n                  {pillar.name}\n                </div>\n              </div>\n              <div className=\"text-[10px] font-mono text-neutral-400 mt-4 pt-3 border-t border-neutral-200 dark:border-neutral-800\">\n                {pillar.auditPeriod}\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "eb1a4dddb58169cdd39cdc19b149a6d4c710d0a7167abfae52ea3683a840c75e",
+      "sizeBytes": 3452
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { EnterpriseSecurityPillar } from \"./enterprise-security-pillar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-white dark:bg-neutral-950\">\n      <EnterpriseSecurityPillar />\n    </div>\n  );\n}\n",
+      "contentHash": "48d077010ab8aaa386530415e4979ef60e426cb83ae02d0f4bfebeda4d2d793b",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "security",
+    "compliance",
+    "soc2",
+    "enterprise",
+    "trust"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "trust",
+    "fingerprint": {
+      "interactionModel": "enterprise-security-pillar-interaction",
+      "visualModel": "enterprise-security-pillar-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "enterprise-security-pillar-section"
+    }
+  },
+  "url": "https://openui.dev/r/enterprise-security-pillar.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Condensed\nColor: Monochrome\n\n## Rules\n\n- Enterprise Security Pillar Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

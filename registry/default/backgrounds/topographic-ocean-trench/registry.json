@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "topographic-ocean-trench",
+  "type": "registry:background",
+  "title": "Topographic Ocean Trench",
+  "description": "Deep bathymetric submarine trench isobaths illustrating ocean floor abyssal contours.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "topographic-ocean-trench.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "bathymetric",
+    "ocean",
+    "trench",
+    "submarine",
+    "contours"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-bathymetric-chart",
+      "visualModel": "abyssal-trench-isobaths",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "ocean-depth-contour-layer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

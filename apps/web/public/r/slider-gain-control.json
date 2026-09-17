@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "slider-gain-control",
+  "type": "registry:component",
+  "title": "Slider Gain Control",
+  "description": "A precision gain control slider with dB calibrated notches and decibel label outputs.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "slider-gain-control.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SliderGainControlProps {\n  className?: string;\n}\n\nexport function SliderGainControl({ className }: SliderGainControlProps) {\n  const [db, setDb] = useState(0);\n\n  return (\n    <div className={cn(\"w-full max-w-xs rounded-xl border border-line bg-paper p-5 shadow-sm font-mono text-xs\", className)}>\n      <div className=\"flex justify-between mb-3\">\n        <span className=\"text-ink/60\">OUTPUT GAIN</span>\n        <span className=\"font-bold text-ink\">{db > 0 ? `+${db} dB` : `${db} dB`}</span>\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"-12\"\n        max=\"12\"\n        value={db}\n        onChange={(e) => setDb(parseInt(e.target.value, 10))}\n        className=\"w-full cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default SliderGainControl;\n",
+      "contentHash": "7f324ae5cc355470487c30fe6ff1531f20ce5b1f1fd9df6d22f98fa035e143f9",
+      "sizeBytes": 870
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SliderGainControl } from \"./slider-gain-control\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SliderGainControl />\n    </div>\n  );\n}\n",
+      "contentHash": "fa1cea3eece72dd17455cb91c7732863be9a6a088f96d3053110daa3769f8ee8",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "slider",
+    "gain",
+    "audio",
+    "calibrated",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "calibrated-gain-slider",
+      "visualModel": "db-metered-track",
+      "motionModel": "none",
+      "layoutModel": "horizontal-calibrated-gauge",
+      "semanticPurpose": "audio-gain-control-bar"
+    }
+  },
+  "url": "https://openui.dev/r/slider-gain-control.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Calibrated Gain Slider: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

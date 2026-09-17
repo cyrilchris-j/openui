@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "three-column-social-dashboard",
+  "type": "registry:layout",
+  "title": "Three Column Social Dashboard",
+  "description": "Three-tier social dashboard layout: user mini profile on left, central stream, and right suggestions.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "three-column-social-dashboard.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "social",
+    "dashboard",
+    "three-column",
+    "community",
+    "stream"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "three-column-social-feed",
+      "visualModel": "profile-feed-suggestions-triptych",
+      "motionModel": "none",
+      "layoutModel": "three-column-social-layout",
+      "semanticPurpose": "community-feed-dashboard"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

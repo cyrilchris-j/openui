@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-screen-billboard",
+  "type": "registry:layout",
+  "title": "Split Screen Billboard",
+  "description": "Full-viewport 50/50 split layout with sticky visual showcase on left and scrollable narrative on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-screen-billboard.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "split",
+    "billboard",
+    "sticky",
+    "showcase",
+    "viewport"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "sticky-billboard-split",
+      "visualModel": "half-screen-sticky-stage",
+      "motionModel": "none",
+      "layoutModel": "dual-viewport-halves",
+      "semanticPurpose": "product-showcase-split"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

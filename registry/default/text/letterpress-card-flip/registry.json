@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "letterpress-card-flip",
+  "type": "registry:text",
+  "title": "Letterpress Card Flip",
+  "description": "A business card with letterpress-printed type that flips in 3D on click to reveal contact details on the reverse — two independent letterpress faces, real transform-style 3D, and keyboard focus parity.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "letterpress-card-flip.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "card",
+    "flip",
+    "3d",
+    "letterpress"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "click-flip-3d",
+      "visualModel": "dual-face-letterpress",
+      "motionModel": "rotate-y-swap",
+      "layoutModel": "card",
+      "semanticPurpose": "identity-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

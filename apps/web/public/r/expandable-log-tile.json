@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "expandable-log-tile",
+  "type": "registry:component",
+  "title": "Expandable Log Tile",
+  "description": "A telemetry log row expanding stack trace payloads on click.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "expandable-log-tile.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ExpandableLogTileProps {\n  className?: string;\n}\n\nexport function ExpandableLogTile({ className }: ExpandableLogTileProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"w-full max-w-md rounded-xl border border-line bg-paper overflow-hidden font-mono text-xs shadow-sm\", className)}>\n      <div\n        onClick={() => setOpen((o) => !o)}\n        className=\"flex items-center justify-between p-3.5 cursor-pointer hover:bg-line/10\"\n      >\n        <span className=\"text-emerald-600 font-bold\">[INFO] 200 OK</span>\n        <span className=\"text-ink/60\">GET /r/components/button.json</span>\n        <span>{open ? \"▲\" : \"▼\"}</span>\n      </div>\n      {open && (\n        <div className=\"border-t border-line bg-ink text-paper p-3 text-[10px] space-y-0.5\">\n          <div>timestamp: 2026-09-17T23:59:00Z</div>\n          <div>latency: 18ms</div>\n          <div>region: fra1</div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default ExpandableLogTile;\n",
+      "contentHash": "050da9a1f9f8981620ff2198a518ae16e47a1e186c73c3e8c02d0645baa310e5",
+      "sizeBytes": 1085
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ExpandableLogTile } from \"./expandable-log-tile\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ExpandableLogTile />\n    </div>\n  );\n}\n",
+      "contentHash": "c098956323be12747c8361777ddb1740817f591e2b8c5262cf1390b335bacaf1",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "log",
+    "telemetry",
+    "expandable",
+    "trace",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "log-trace-disclosure",
+      "visualModel": "dark-terminal-row",
+      "motionModel": "none",
+      "layoutModel": "stacked-log-tile",
+      "semanticPurpose": "log-event-tile"
+    }
+  },
+  "url": "https://openui.dev/r/expandable-log-tile.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Log Trace Disclosure: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

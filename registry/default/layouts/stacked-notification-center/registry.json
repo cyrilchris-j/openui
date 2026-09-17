@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stacked-notification-center",
+  "type": "registry:layout",
+  "title": "Stacked Notification Center",
+  "description": "Chronological notification feed with filter tabs and mark-all-read action header.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stacked-notification-center.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "notifications",
+    "feed",
+    "alerts",
+    "inbox",
+    "stack"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "notification-inbox-scroll",
+      "visualModel": "stacked-alert-cards",
+      "motionModel": "none",
+      "layoutModel": "single-column-inbox-stack",
+      "semanticPurpose": "notification-center-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

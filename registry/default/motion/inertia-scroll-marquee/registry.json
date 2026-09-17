@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inertia-scroll-marquee",
+  "type": "registry:motion",
+  "title": "Inertia Scroll Marquee",
+  "description": "A dual-strip ticker banner with interactive swipe flick: dragging alters translation velocity, settling back smoothly to baseline crawl velocity.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inertia-scroll-marquee.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "marquee",
+    "inertia",
+    "scroll",
+    "velocity",
+    "ticker"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "drag-acceleration-glide",
+      "visualModel": "infinite-tape-strip",
+      "motionModel": "momentum-decay-to-baseline",
+      "layoutModel": "horizontal-overflow-ribbon",
+      "semanticPurpose": "continuous-feature-ticker"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-compliance-badges",
+  "type": "registry:section",
+  "title": "Audit Compliance Badges",
+  "description": "Enterprise compliance certifications rack displaying SOC 2 Type II, ISO 27001, GDPR, and HIPAA compliance.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audit-compliance-badges.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AuditComplianceBadgesProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n}\n\nexport function AuditComplianceBadges({\n  title = \"ENTERPRISE COMPLIANCE & GOVERNANCE\",\n  className,\n  ...props\n}: AuditComplianceBadgesProps) {\n  const badges = [\n    { title: \"SOC 2 Type II\", desc: \"Security & Confidentiality\" },\n    { title: \"ISO / IEC 27001\", desc: \"Information Security\" },\n    { title: \"GDPR Compliant\", desc: \"EU Data Sovereignty\" },\n    { title: \"HIPAA Ready\", desc: \"Health Data Protection\" },\n  ];\n\n  return (\n    <section className={cn(\"py-12 px-6 max-w-5xl mx-auto font-mono text-xs bg-paper text-ink text-center\", className)} {...props}>\n      <div className=\"font-bold text-[11px] text-ink/50 tracking-wider uppercase mb-6\">{title}</div>\n      <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4\">\n        {badges.map((b) => (\n          <div key={b.title} className=\"p-4 rounded-xl border border-line bg-surface/30 text-center\">\n            <div className=\"w-8 h-8 rounded-full bg-emerald-500/15 text-emerald-600 font-bold flex items-center justify-center mx-auto mb-2 text-xs\">\n              ✓\n            </div>\n            <div className=\"font-bold text-ink\">{b.title}</div>\n            <div className=\"text-[10px] text-ink/60 mt-0.5 font-sans\">{b.desc}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "39bff44f05d1972e978744cef928a7211c21cfa20e7fbc9f2e9d8acfc4ad4d13",
+      "sizeBytes": 1418
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { AuditComplianceBadges } from \"./audit-compliance-badges\";\n\nexport default function AuditComplianceBadgesDemo() {\n  return <AuditComplianceBadges />;\n}\n",
+      "contentHash": "4bba57dc85f77320ff348d76928e9aa9251ebaeeb4e5a8a3890696e61ccfda75",
+      "sizeBytes": 175
+    }
+  ],
+  "tags": [
+    "compliance",
+    "security",
+    "soc2",
+    "gdpr",
+    "trust"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "trust",
+    "fingerprint": {
+      "interactionModel": "security-badge-verification",
+      "visualModel": "four-badge-compliance-rack",
+      "motionModel": "none",
+      "layoutModel": "horizontal-compliance-strip",
+      "semanticPurpose": "enterprise-compliance-display"
+    }
+  },
+  "url": "https://openui.dev/r/audit-compliance-badges.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Security Badge Verification: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

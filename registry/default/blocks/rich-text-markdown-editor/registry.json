@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rich-text-markdown-editor",
+  "type": "registry:block",
+  "title": "Rich Text Markdown Editor",
+  "description": "A dual-pane markdown document authoring tool with formatting toolbar buttons and live preview pane.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rich-text-markdown-editor.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "markdown",
+    "editor",
+    "wysiwyg",
+    "writing",
+    "docs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "editor",
+    "fingerprint": {
+      "interactionModel": "markdown-live-preview-split",
+      "visualModel": "dual-pane-document-editor",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "markdown-document-authoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

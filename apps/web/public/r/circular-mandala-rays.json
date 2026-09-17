@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circular-mandala-rays",
+  "type": "registry:background",
+  "title": "Circular Mandala Rays",
+  "description": "Hypnotic sacred geometry kaleidoscope mandala rings with 12-fold rotational symmetry.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circular-mandala-rays.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CircularMandalaRaysProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CircularMandalaRays({ className, children, ...props }: CircularMandalaRaysProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-15 -z-10\">\n        <svg className=\"w-[600px] h-[600px]\" viewBox=\"0 0 200 200\">\n          {Array.from({ length: 12 }).map((_, i) => (\n            <ellipse\n              key={i}\n              cx=\"100\"\n              cy=\"100\"\n              rx=\"80\"\n              ry=\"25\"\n              fill=\"none\"\n              stroke=\"currentColor\"\n              strokeWidth=\"0.75\"\n              transform={`rotate(${i * 15} 100 100)`}\n            />\n          ))}\n          <circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n          <circle cx=\"100\" cy=\"100\" r=\"40\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "1518e3e97998578c09ec95a8023b4cb2537e5281f526daba894327333380f612",
+      "sizeBytes": 1203
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CircularMandalaRays } from \"./circular-mandala-rays\";\n\nexport default function CircularMandalaRaysDemo() {\n  return (\n    <CircularMandalaRays className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Sacred Mandala</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">12-fold geometric rotational rosette rings.</p>\n      </div>\n    </CircularMandalaRays>\n  );\n}\n",
+      "contentHash": "058fb94181566a23d00a28049860d4019ef88031477e748ba858ae84af6c3a59",
+      "sizeBytes": 584
+    }
+  ],
+  "tags": [
+    "mandala",
+    "kaleidoscope",
+    "symmetry",
+    "geometry",
+    "circular"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-mandala-symmetry",
+      "visualModel": "twelve-fold-sacred-geometry",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "kaleidoscope-mandala-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/circular-mandala-rays.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Soft\nMotion: Subtle\nTypography: Serif Display\nColor: Muted Earth\n\n## Rules\n\n- Passive Mandala Symmetry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

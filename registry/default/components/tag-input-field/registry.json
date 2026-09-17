@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tag-input-field",
+  "type": "registry:component",
+  "title": "Tag Input Field",
+  "description": "An input container creating removable keyword tag pills upon enter key press or comma delimiter.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tag-input-field.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tags",
+    "input",
+    "chips",
+    "pills",
+    "keywords"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "tag-creation-entry",
+      "visualModel": "pill-chip-input-tray",
+      "motionModel": "none",
+      "layoutModel": "horizontal-tag-field",
+      "semanticPurpose": "keyword-tag-creator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

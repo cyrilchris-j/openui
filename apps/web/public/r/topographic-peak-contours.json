@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "topographic-peak-contours",
+  "type": "registry:background",
+  "title": "Topographic Peak Contours",
+  "description": "Mountain summit peak with concentric topological elevation rings and elevation benchmarks.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "topographic-peak-contours.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TopographicPeakContoursProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function TopographicPeakContours({ className, children, ...props }: TopographicPeakContoursProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 400\">\n        <path d=\"M 300 200 m -40, 0 a 40,25 0 1,0 80,0 a 40,25 0 1,0 -80,0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <path d=\"M 300 200 m -70, 0 a 70,45 0 1,0 140,0 a 70,45 0 1,0 -140,0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <path d=\"M 300 200 m -110, 0 a 110,70 0 1,0 220,0 a 110,70 0 1,0 -220,0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.2\" />\n        <path d=\"M 300 200 m -160, 0 a 160,105 0 1,0 320,0 a 160,105 0 1,0 -320,0\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <circle cx=\"300\" cy=\"200\" r=\"2\" fill=\"currentColor\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "8476bf7ab5a51bfb968fe11feb1b05bdbfe101f0a7dd7c6e96f4f8047452b3aa",
+      "sizeBytes": 1202
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { TopographicPeakContours } from \"./topographic-peak-contours\";\n\nexport default function TopographicPeakContoursDemo() {\n  return (\n    <TopographicPeakContours className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Summit Peak Isobars</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">High-altitude alpine topographic peak contours.</p>\n      </div>\n    </TopographicPeakContours>\n  );\n}\n",
+      "contentHash": "2582b0322833643c6ac875ea252cb1340b31fc734e82d5afc4e44de8fdfa8480",
+      "sizeBytes": 612
+    }
+  ],
+  "tags": [
+    "peak",
+    "summit",
+    "topographic",
+    "mountain",
+    "elevation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-mountain-peak",
+      "visualModel": "concentric-summit-isobars",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "mountain-elevation-map"
+    }
+  },
+  "url": "https://openui.dev/r/topographic-peak-contours.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Soft\nMotion: None\nTypography: Humanist\nColor: Muted Earth\n\n## Rules\n\n- Passive Mountain Peak: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

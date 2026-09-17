@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gradient-outline-type",
+  "type": "registry:text",
+  "title": "Gradient Outline Type",
+  "description": "Display text rendered as a gradient stroke with a transparent fill, layered twice — a wide soft pass under a crisp narrow pass — so the outline reads as an object rather than a filter.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gradient-outline-type.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface GradientOutlineTypeProps {\n  children: string;\n  /** Start colour, any CSS colour. */\n  from?: string;\n  /** End colour, any CSS colour. */\n  to?: string;\n  className?: string;\n}\n\n/**\n * Gradient Outline Type\n *\n * Two stacked paint passes: `-webkit-text-stroke` cannot have a gradient, so\n * the wide pass uses a background-clipped copy at low opacity and the crisp\n * pass carries the actual stroke. The fill stays transparent so the surface\n * behind shows through — that is the point.\n */\nexport function GradientOutlineType({\n  children,\n  from = \"hsl(13 76% 45%)\",\n  to = \"hsl(214 60% 45%)\",\n  className,\n}: GradientOutlineTypeProps) {\n  return (\n    <span className={cn(\"relative inline-block font-display leading-none\", className)}>\n      <span\n        aria-hidden\n        className=\"absolute inset-0 select-none opacity-40 blur-[2px]\"\n        style={{\n          backgroundImage: `linear-gradient(120deg, ${from}, ${to})`,\n          WebkitBackgroundClip: \"text\",\n          backgroundClip: \"text\",\n          color: \"transparent\",\n          WebkitTextStroke: \"3px transparent\",\n        }}\n      >\n        {children}\n      </span>\n      <span\n        aria-hidden\n        className=\"relative\"\n        style={{\n          WebkitTextStroke: `1.5px transparent`,\n          backgroundImage: `linear-gradient(120deg, ${from}, ${to})`,\n          WebkitBackgroundClip: \"text\",\n          backgroundClip: \"text\",\n          color: \"transparent\",\n        }}\n      >\n        {children}\n      </span>\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default GradientOutlineType;\n",
+      "contentHash": "65c036699700382ab06b7667df5d8fac3ef240bab0bc4a3bdb57d594f47fc527",
+      "sizeBytes": 1648
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { GradientOutlineType } from \"./gradient-outline-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <GradientOutlineType className=\"text-step-5 tracking-tight\">\n        OUTLINE\n      </GradientOutlineType>\n    </div>\n  );\n}\n",
+      "contentHash": "390e1ba13c7f159f010a68d69c2fccc58e086ff0653e4150c3c91ed4895a0db2",
+      "sizeBytes": 321
+    }
+  ],
+  "tags": [
+    "outline",
+    "stroke",
+    "gradient",
+    "display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stylized",
+    "fingerprint": {
+      "interactionModel": "animated-sheen-sweep",
+      "visualModel": "conic-spectrum-stroke",
+      "motionModel": "continuous-gradient-shift",
+      "layoutModel": "display-heading",
+      "semanticPurpose": "high-contrast-display"
+    }
+  },
+  "url": "https://openui.dev/r/gradient-outline-type.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Variable Poster\nColor: Duotone\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

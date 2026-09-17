@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-replace-text",
+  "type": "registry:text",
+  "title": "Hover Replace Text",
+  "description": "Two stacked labels that cross-fade and slide on hover with a directional bias from the pointer's entry side; tap toggles on touch, and keyboard focus triggers the same swap.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-replace-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverReplaceTextProps {\n  /** Label shown at rest. */\n  base: string;\n  /** Label revealed on hover, focus or tap. */\n  alt: string;\n  href?: string;\n  className?: string;\n}\n\nexport function HoverReplaceText({ base, alt, href = \"#\", className }: HoverReplaceTextProps) {\n  const [active, setActive] = useState(false);\n  const [direction, setDirection] = useState<\"up\" | \"down\">(\"up\");\n  const enteredFromTop = useRef<boolean | null>(null);\n\n  const handleEnter = (event: React.PointerEvent<HTMLAnchorElement>) => {\n    const rect = event.currentTarget.getBoundingClientRect();\n    const fromTop = event.clientY - rect.top < rect.height / 2;\n    enteredFromTop.current = fromTop;\n    setDirection(fromTop ? \"up\" : \"down\");\n    setActive(true);\n  };\n\n  const swapTransition =\n    \"transform 220ms cubic-bezier(0.2, 0, 0, 1), opacity 220ms ease\";\n\n  return (\n    <a\n      href={href}\n      className={cn(\"group relative inline-block overflow-hidden align-baseline\", className)}\n      onPointerEnter={handleEnter}\n      onPointerLeave={() => setActive(false)}\n      onFocus={() => setActive(true)}\n      onBlur={() => setActive(false)}\n      onClick={(event) => {\n        // Touch: first tap swaps, second tap follows the link.\n        if (enteredFromTop.current === null) {\n          event.preventDefault();\n          setActive((value) => !value);\n        }\n      }}\n    >\n      <span className=\"relative inline-grid\" style={{ minWidth: \"1ch\" }} aria-label={`${base} — ${alt}`}>\n        <span\n          aria-hidden\n          className=\"col-start-1 row-start-1 text-ink\"\n          style={{\n            transform: active ? `translateY(${direction === \"up\" ? \"-100%\" : \"100%\"})` : \"translateY(0)\",\n            opacity: active ? 0 : 1,\n            transition: swapTransition,\n          }}\n        >\n          {base}\n        </span>\n        <span\n          aria-hidden\n          className=\"col-start-1 row-start-1 text-oxide\"\n          style={{\n            transform: active\n              ? \"translateY(0)\"\n              : `translateY(${direction === \"up\" ? \"100%\" : \"-100%\"})`,\n            opacity: active ? 1 : 0,\n            transition: swapTransition,\n          }}\n        >\n          {alt}\n        </span>\n      </span>\n    </a>\n  );\n}\n\nexport default HoverReplaceText;\n",
+      "contentHash": "3e54251962a2a2dae8f4783cc361a15a9d2149555a06e20ff69024d152a1168f",
+      "sizeBytes": 2375
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { HoverReplaceText } from \"./hover-replace-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] flex-col items-center justify-center gap-6 bg-paper p-10\">\n      <HoverReplaceText base=\"Read the essay\" alt=\"12 minute read\" className=\"font-display text-step-2 text-ink\" />\n      <HoverReplaceText base=\"Install the CLI\" alt=\"pnpm dlx openui\" className=\"font-mono text-[0.9rem] text-ink\" />\n    </div>\n  );\n}\n",
+      "contentHash": "2e95bfd3eef40b53a89f367d2fdb4a095e72c074a1374d0cae216eb5c96bf0cb",
+      "sizeBytes": 451
+    }
+  ],
+  "tags": [
+    "hover",
+    "swap",
+    "cross-fade",
+    "link"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-hover-crossfade",
+      "visualModel": "dual-state-word-swap",
+      "motionModel": "vertical-slide-swap",
+      "layoutModel": "inline-phrase",
+      "semanticPurpose": "playful-cta-hover"
+    }
+  },
+  "url": "https://openui.dev/r/hover-replace-text.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Expressive\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Hover Swap: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-compliance-dashboard",
+  "type": "registry:block",
+  "title": "Audit Compliance Dashboard",
+  "description": "An enterprise regulatory readiness dashboard showing SOC2, ISO 27001, and HIPAA control checks with evidence logs.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audit-compliance-dashboard.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function AuditComplianceDashboard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const controls = [\n    { code: \"CC6.1\", name: \"Logical Perimeter Security\", status: \"Passed\", auditor: \"Verified\" },\n    { code: \"CC7.2\", name: \"Automated Vulnerability Scans\", status: \"Passed\", auditor: \"Verified\" },\n    { code: \"CC8.1\", name: \"Tamper-Evident Change Logs\", status: \"Passed\", auditor: \"Verified\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-800\">\n        <div>\n          <h3 className=\"text-base font-bold text-neutral-900 dark:text-white\">SOC 2 Type II Conformance</h3>\n          <p className=\"text-neutral-500 text-[11px] mt-0.5\">38 of 38 audit controls certified.</p>\n        </div>\n        <span className=\"px-3 py-1 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold\">\n          100% AUDIT READY\n        </span>\n      </div>\n\n      <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800 mt-3\">\n        {controls.map((c) => (\n          <div key={c.code} className=\"py-3 flex items-center justify-between\">\n            <div>\n              <span className=\"font-bold text-neutral-900 dark:text-white\">{c.code}</span>\n              <span className=\"text-neutral-600 dark:text-neutral-400 ml-3\">{c.name}</span>\n            </div>\n            <span className=\"text-emerald-600 dark:text-emerald-400 font-bold\">✓ {c.status}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "09907bbdf439de2e97669d9072c6194e2319daadf4547886a211cba848af8e32",
+      "sizeBytes": 1835
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { AuditComplianceDashboard } from \"./audit-compliance-dashboard\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <AuditComplianceDashboard />\n    </div>\n  );\n}\n",
+      "contentHash": "f76ef7d2bb131f1dbbbe01abc192af8e014411d58574cda3befb45a852f20dfc",
+      "sizeBytes": 301
+    }
+  ],
+  "tags": [
+    "compliance",
+    "soc2",
+    "iso27001",
+    "hipaa",
+    "audit"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "compliance",
+    "fingerprint": {
+      "interactionModel": "compliance-controls-checklist-tracker",
+      "visualModel": "audit-readiness-assurance-gauge",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "enterprise-security-compliance"
+    }
+  },
+  "url": "https://openui.dev/r/audit-compliance-dashboard.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Compliance Controls Checklist Tracker: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

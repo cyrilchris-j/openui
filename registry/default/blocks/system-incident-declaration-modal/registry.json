@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-incident-declaration-modal",
+  "type": "registry:block",
+  "title": "System Incident Declaration Modal",
+  "description": "An emergency incident declaration modal with severity tiers (P0, P1, P2), impact scope, and status broadcast checkbox.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-incident-declaration-modal.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "incident",
+    "devops",
+    "modal",
+    "alerts",
+    "sre"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "incident-declaration-dispatch",
+      "visualModel": "emergency-response-declaration-modal",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "emergency-incident-declaration"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

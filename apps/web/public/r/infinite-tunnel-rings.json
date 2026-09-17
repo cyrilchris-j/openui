@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "infinite-tunnel-rings",
+  "type": "registry:background",
+  "title": "Infinite Tunnel Rings",
+  "description": "Concentric perspective square portal frames receding into an infinite central corridor.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "infinite-tunnel-rings.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface InfiniteTunnelRingsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function InfiniteTunnelRings({ className, children, ...props }: InfiniteTunnelRingsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          {[10, 25, 45, 70, 95].map((s) => (\n            <rect\n              key={s}\n              x={100 - s}\n              y={100 - s}\n              width={s * 2}\n              height={s * 2}\n              fill=\"none\"\n              stroke=\"currentColor\"\n              strokeWidth=\"1\"\n            />\n          ))}\n          <line x1=\"5\" y1=\"5\" x2=\"90\" y2=\"90\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n          <line x1=\"195\" y1=\"5\" x2=\"110\" y2=\"90\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n          <line x1=\"5\" y1=\"195\" x2=\"90\" y2=\"110\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n          <line x1=\"195\" y1=\"195\" x2=\"110\" y2=\"110\" stroke=\"currentColor\" strokeWidth=\"0.75\" />\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "d12e85a31d9dc92d8126579856c6a62a7e26fed3ffbd47b828b5bc8e233ed5d0",
+      "sizeBytes": 1327
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { InfiniteTunnelRings } from \"./infinite-tunnel-rings\";\n\nexport default function InfiniteTunnelRingsDemo() {\n  return (\n    <InfiniteTunnelRings className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Corridor Tunnel</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Deep perspective receding structural frames.</p>\n      </div>\n    </InfiniteTunnelRings>\n  );\n}\n",
+      "contentHash": "8243e27453bcb12f6ba40ee456827cb1032f2f3c9d466fedee66888b7d8ca0fc",
+      "sizeBytes": 585
+    }
+  ],
+  "tags": [
+    "tunnel",
+    "portal",
+    "perspective",
+    "infinite",
+    "corridor"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-infinite-tunnel",
+      "visualModel": "receding-square-frames",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "infinite-portal-tunnel"
+    }
+  },
+  "url": "https://openui.dev/r/infinite-tunnel-rings.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Infinite Tunnel: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

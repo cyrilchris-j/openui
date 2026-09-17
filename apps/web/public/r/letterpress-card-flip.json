@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "letterpress-card-flip",
+  "type": "registry:text",
+  "title": "Letterpress Card Flip",
+  "description": "A business card with letterpress-printed type that flips in 3D on click to reveal contact details on the reverse — two independent letterpress faces, real transform-style 3D, and keyboard focus parity.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "letterpress-card-flip.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface LetterpressCardFlipProps {\n  name: string;\n  role: string;\n  contact: string;\n  className?: string;\n}\n\nexport function LetterpressCardFlip({ name, role, contact, className }: LetterpressCardFlipProps) {\n  const [flipped, setFlipped] = useState(false);\n\n  const face = \"absolute inset-0 flex flex-col justify-center rounded-lg p-6 [backface-visibility:hidden]\";\n\n  return (\n    <button\n      type=\"button\"\n      onClick={() => setFlipped((value) => !value)}\n      aria-pressed={flipped}\n      aria-label={`Business card for ${name}. ${flipped ? \"Showing contact.\" : \"Click to flip.\"}`}\n      className={cn(\n        \"relative block h-44 w-72 cursor-pointer border-0 bg-transparent p-0 outline-none focus-visible:ring-2 focus-visible:ring-accent\",\n        className,\n      )}\n      style={{ perspective: 1000 }}\n    >\n      <span\n        aria-hidden\n        className=\"absolute inset-0 transition-transform duration-500 [transform-style:preserve-3d]\"\n        style={{ transform: flipped ? \"rotateY(180deg)\" : \"rotateY(0deg)\" }}\n      >\n        <span\n          className={face}\n          style={{\n            background: \"#f6f1e7\",\n            color: \"#3d342a\",\n            boxShadow: \"0 10px 24px rgba(0,0,0,0.14)\",\n            textShadow: \"0 1px 0 rgba(255,255,255,0.9), 0 -1px 0 rgba(0,0,0,0.18)\",\n          }}\n        >\n          <span className=\"font-display text-2xl\">{name}</span>\n          <span className=\"mt-1 font-mono text-xs uppercase tracking-[0.22em] opacity-60\">{role}</span>\n          <span className=\"mt-6 font-mono text-[10px] uppercase tracking-widest opacity-40\">click to flip</span>\n        </span>\n        <span\n          className={face}\n          style={{\n            background: \"#2e2a24\",\n            color: \"#f6f1e7\",\n            boxShadow: \"0 10px 24px rgba(0,0,0,0.24)\",\n            textShadow: \"0 1px 0 rgba(0,0,0,0.6), 0 -1px 0 rgba(255,255,255,0.08)\",\n            transform: \"rotateY(180deg)\",\n          }}\n        >\n          <span className=\"font-mono text-sm\">{contact}</span>\n          <span className=\"mt-4 font-mono text-[10px] uppercase tracking-widest opacity-50\">openui · est. 2026</span>\n        </span>\n      </span>\n    </button>\n  );\n}\n\nexport default LetterpressCardFlip;\n",
+      "contentHash": "b05844125ec6aa1a9b8cc5a4b3cc1a086346e5d96e29c5fb262ad683a12272d5",
+      "sizeBytes": 2314
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { LetterpressCardFlip } from \"./letterpress-card-flip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center p-10\" style={{ background: \"#e9e2d3\" }}>\n      <LetterpressCardFlip name=\"Mira Chen\" role=\"Registry Steward\" contact=\"mira@openui.dev\" />\n    </div>\n  );\n}\n",
+      "contentHash": "6dd3fe60b348ff4c197a5a1a0e652e9f3ba0c35df21665a118c41b9ab8d3b94e",
+      "sizeBytes": 331
+    }
+  ],
+  "tags": [
+    "card",
+    "flip",
+    "3d",
+    "letterpress"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "click-flip-3d",
+      "visualModel": "dual-face-letterpress",
+      "motionModel": "rotate-y-swap",
+      "layoutModel": "card",
+      "semanticPurpose": "identity-card"
+    }
+  },
+  "url": "https://openui.dev/r/letterpress-card-flip.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Serif Display\nColor: Muted Earth\n\n## Rules\n\n- Click Flip 3d: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

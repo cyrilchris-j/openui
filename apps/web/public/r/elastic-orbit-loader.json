@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-orbit-loader",
+  "type": "registry:motion",
+  "title": "Elastic Orbit Loader",
+  "description": "A celestial loading spinner featuring multi-satellite nodes orbiting an elliptical nucleus with gravitational acceleration at periapsis and spring-tethered lag.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-orbit-loader.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticOrbitLoaderProps {\n  size?: number;\n  speed?: number;\n  className?: string;\n}\n\nexport function ElasticOrbitLoader({ size = 160, speed = 1, className }: ElasticOrbitLoaderProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let rafId: number;\n    let t = 0;\n    const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n\n    const satellites = [\n      { a: size * 0.38, b: size * 0.18, speed: 1.2 * speed, color: \"#161616\", size: 5 },\n      { a: size * 0.26, b: size * 0.36, speed: -0.9 * speed, color: \"#e84c3d\", size: 4 },\n      { a: size * 0.44, b: size * 0.28, speed: 0.7 * speed, color: \"#6e6e6e\", size: 3.5 },\n    ];\n\n    const draw = () => {\n      ctx.clearRect(0, 0, size, size);\n      const cx = size / 2;\n      const cy = size / 2;\n\n      // Draw nucleus\n      ctx.beginPath();\n      ctx.arc(cx, cy, 7, 0, Math.PI * 2);\n      ctx.fillStyle = \"#161616\";\n      ctx.fill();\n\n      satellites.forEach((sat, idx) => {\n        // Orbital trajectory\n        ctx.beginPath();\n        ctx.ellipse(cx, cy, sat.a, sat.b, idx * 0.8, 0, Math.PI * 2);\n        ctx.strokeStyle = \"rgba(180, 180, 180, 0.25)\";\n        ctx.lineWidth = 1;\n        ctx.stroke();\n\n        // Position with Keplerian variable speed\n        const angle = t * sat.speed + idx * 2.1;\n        const currentSpeedMult = 1 + 0.3 * Math.sin(angle);\n        const effectiveAngle = reduced ? idx * 2 : angle * currentSpeedMult;\n\n        const cosRot = Math.cos(idx * 0.8);\n        const sinRot = Math.sin(idx * 0.8);\n        const unrotX = sat.a * Math.cos(effectiveAngle);\n        const unrotY = sat.b * Math.sin(effectiveAngle);\n\n        const x = cx + (unrotX * cosRot - unrotY * sinRot);\n        const y = cy + (unrotX * sinRot + unrotY * cosRot);\n\n        ctx.beginPath();\n        ctx.arc(x, y, sat.size, 0, Math.PI * 2);\n        ctx.fillStyle = sat.color;\n        ctx.fill();\n      });\n\n      if (!reduced) {\n        t += 0.02;\n        rafId = requestAnimationFrame(draw);\n      }\n    };\n\n    draw();\n    return () => cancelAnimationFrame(rafId);\n  }, [size, speed]);\n\n  return (\n    <div className={cn(\"inline-flex items-center justify-center p-4\", className)}>\n      <canvas ref={canvasRef} width={size} height={size} className=\"block\" />\n    </div>\n  );\n}\n",
+      "contentHash": "c3a588b57bdcffef1d97bf5205f2528bad342220f86302f5128810066c20ca3c",
+      "sizeBytes": 2521
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticOrbitLoader } from \"./elastic-orbit-loader\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] flex-col items-center justify-center gap-4 bg-paper p-8\">\n      <ElasticOrbitLoader size={180} />\n      <span className=\"font-mono text-xs uppercase tracking-widest text-graphite\">\n        Synchronizing Orbital State\n      </span>\n    </div>\n  );\n}\n",
+      "contentHash": "cd9a7e65c25ea8298e1826debaf45e08453f332fab7630694299f92b92bb2ee1",
+      "sizeBytes": 394
+    }
+  ],
+  "tags": [
+    "loader",
+    "orbital",
+    "physics",
+    "planets"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "orbital",
+    "fingerprint": {
+      "interactionModel": "continuous-playback",
+      "visualModel": "concentric-orbital-traces",
+      "motionModel": "keplerian-gravitational-orbit",
+      "layoutModel": "centered-fixed-aspect",
+      "semanticPurpose": "loading-progress-indicator"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-orbit-loader.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Kinetic\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Continuous Playback: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

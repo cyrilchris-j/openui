@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "employee-onboarding-progress-tray",
+  "type": "registry:block",
+  "title": "Employee Onboarding Progress Tray",
+  "description": "An HR and IT provisioning tracker managing laptop shipping, GitHub team access, and SSO credentialing.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "employee-onboarding-progress-tray.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "employee",
+    "onboarding",
+    "hr",
+    "it",
+    "provisioning"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "team",
+    "fingerprint": {
+      "interactionModel": "employee-provisioning-checklist",
+      "visualModel": "it-onboarding-status-tray",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "employee-provisioning-tracking"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

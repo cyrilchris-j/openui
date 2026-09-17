@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "numeric-spinner-input",
+  "type": "registry:component",
+  "title": "Numeric Spinner Input",
+  "description": "A text field with integrated stepper chevron buttons for integer increments.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "numeric-spinner-input.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "spinner",
+    "input",
+    "stepper",
+    "controls",
+    "numeric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "spinner-stepper-entry",
+      "visualModel": "chevron-stepper-box",
+      "motionModel": "none",
+      "layoutModel": "compact-spinner-input",
+      "semanticPurpose": "numeric-spinner-field"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

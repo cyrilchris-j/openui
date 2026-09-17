@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gravity-bounce-badge",
+  "type": "registry:motion",
+  "title": "Gravity Bounce Badge",
+  "description": "A notification counter token dropping into screen space and settling via damped harmonic bouncing.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gravity-bounce-badge.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "bounce",
+    "gravity",
+    "badge",
+    "token",
+    "physics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "trigger-drop-bounce",
+      "visualModel": "elastic-rubber-orb",
+      "motionModel": "damped-gravity-rebound",
+      "layoutModel": "free-falling-badge",
+      "semanticPurpose": "drop-in-status-counter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

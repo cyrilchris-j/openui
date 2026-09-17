@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "isometric-shelf-grid",
+  "type": "registry:layout",
+  "title": "Isometric Shelf Grid",
+  "description": "Angled 3D isometric display shelf layout showcasing product cards or 3D assets.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "isometric-shelf-grid.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface IsometricShelfGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function IsometricShelfGrid({ children, className, ...props }: IsometricShelfGridProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto p-6 font-sans [perspective:600px]\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "11a65d2407afeb0bd471de8ca20eec839b23dd5af4766ca9be8cd063e6648930",
+      "sizeBytes": 451
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { IsometricShelfGrid } from \"./isometric-shelf-grid\";\n\nexport default function IsometricShelfGridDemo() {\n  return (\n    <IsometricShelfGrid>\n      {[1, 2, 3].map((s) => (\n        <div key={s} className=\"p-6 rounded-xl border border-line bg-surface/50 shadow-md [transform:rotateX(10deg)_rotateY(-5deg)]\">\n          <div className=\"font-mono text-xs font-bold text-accent\">Artifact #{s}</div>\n          <p className=\"text-xs text-ink/60 mt-1\">Isometric showcase shelf display card.</p>\n        </div>\n      ))}\n    </IsometricShelfGrid>\n  );\n}\n",
+      "contentHash": "476cf1c620b22b9661556bb621023396e22750c209af58502258d0104993f157",
+      "sizeBytes": 566
+    }
+  ],
+  "tags": [
+    "isometric",
+    "shelf",
+    "showcase",
+    "cards",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "isometric-shelf-presentation",
+      "visualModel": "angled-showcase-tier",
+      "motionModel": "none",
+      "layoutModel": "isometric-shelf-matrix",
+      "semanticPurpose": "isometric-product-display"
+    }
+  },
+  "url": "https://openui.dev/r/isometric-shelf-grid.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Isometric Shelf Presentation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

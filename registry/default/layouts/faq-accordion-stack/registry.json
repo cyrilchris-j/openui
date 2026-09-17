@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "faq-accordion-stack",
+  "type": "registry:layout",
+  "title": "FAQ Accordion Stack",
+  "description": "Centered frequently asked questions layout with tidy stacked disclosure containers.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "faq-accordion-stack.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "faq",
+    "accordion",
+    "disclosure",
+    "stack",
+    "support"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "faq-disclosure-stack",
+      "visualModel": "stacked-question-panels",
+      "motionModel": "none",
+      "layoutModel": "single-column-faq-stack",
+      "semanticPurpose": "faq-disclosure-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

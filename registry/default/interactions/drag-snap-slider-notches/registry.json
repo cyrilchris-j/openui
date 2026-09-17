@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-snap-slider-notches",
+  "type": "registry:interaction",
+  "title": "Drag Snap Slider Notches",
+  "description": "A continuous range track with discrete notched stations providing magnetic snap detents upon slider release.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-snap-slider-notches.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "slider",
+    "notches",
+    "snap",
+    "detents",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "calibrated-notch-snapping",
+      "visualModel": "graduated-gauge-notches",
+      "motionModel": "detent-capture-glide",
+      "layoutModel": "horizontal-notched-track",
+      "semanticPurpose": "notched-interval-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

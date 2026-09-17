@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-code-fold",
+  "type": "registry:interaction",
+  "title": "Interactive Code Fold",
+  "description": "A syntax code container allowing nested blocks to fold and reveal on click with line range indicators.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-code-fold.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "code",
+    "fold",
+    "syntax",
+    "gutter",
+    "collapse"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "gutter-fold-toggle",
+      "visualModel": "numbered-syntax-gutter",
+      "motionModel": "discrete-line-elision",
+      "layoutModel": "tabular-code-block",
+      "semanticPurpose": "code-block-folder"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

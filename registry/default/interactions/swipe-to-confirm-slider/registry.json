@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swipe-to-confirm-slider",
+  "type": "registry:interaction",
+  "title": "Swipe to Confirm Slider",
+  "description": "A swipe-to-unlock horizontal action latch requiring full channel traversal to commit irreversible actions.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "swipe-to-confirm-slider.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "slider",
+    "swipe",
+    "confirm",
+    "unlock",
+    "latch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "full-stroke-latch-swipe",
+      "visualModel": "retained-rail-chassis",
+      "motionModel": "threshold-locked-travel",
+      "layoutModel": "horizontal-action-latch",
+      "semanticPurpose": "commit-authorization-slider"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

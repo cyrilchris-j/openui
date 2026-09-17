@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tracked-changes-accept",
+  "type": "registry:text",
+  "title": "Tracked Changes Accept",
+  "description": "A paragraph with tracked insertions and deletions (like a legal review) plus per-change Accept/Reject controls — accepting morphs the text in place with a colour fade, rejecting strikes it out permanently.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tracked-changes-accept.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "editing",
+    "review",
+    "accept",
+    "legal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "per-change-accept",
+      "visualModel": "inline-edit-marks",
+      "motionModel": "colour-fade-morph",
+      "layoutModel": "block",
+      "semanticPurpose": "document-review"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "duotone"
+    }
+  }
+}

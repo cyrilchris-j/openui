@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "use-reduced-motion",
+  "type": "registry:hook",
+  "title": "Use Reduced Motion",
+  "description": "A hook that subscribes to prefers-reduced-motion and reports whether the user asked for reduced motion, so resources can replace animation with state changes.",
+  "category": "components",
+  "dependencies": ["react"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "use-reduced-motion.ts",
+      "type": "registry:hook",
+      "target": "hooks"
+    }
+  ],
+  "tags": ["hook", "motion", "accessibility"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hooks",
+    "fingerprint": {
+      "interactionModel": "media-query-subscription",
+      "visualModel": "none",
+      "motionModel": "reduction-signal",
+      "layoutModel": "inline",
+      "semanticPurpose": "accessibility"
+    },
+    "features": ["zero-dependency", "ssr-safe"]
+  }
+}

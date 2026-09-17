@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "orbit-satellite-badge",
+  "type": "registry:motion",
+  "title": "Orbit Satellite Badge",
+  "description": "A small circular notification satellite executing continuous Keplerian orbit around an icon container.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "orbit-satellite-badge.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "satellite",
+    "orbit",
+    "badge",
+    "notification",
+    "circle"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "indicators",
+    "fingerprint": {
+      "interactionModel": "keplerian-satellite-revolution",
+      "visualModel": "orbiting-status-dot",
+      "motionModel": "circular-orbital-path",
+      "layoutModel": "icon-centered-satellite",
+      "semanticPurpose": "continuous-satellite-beacon"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "shimmer-skeleton-loader",
+  "type": "registry:motion",
+  "title": "Shimmer Skeleton Loader",
+  "description": "An ethereal wireframe content placeholder swept continuously by an angled light sheen gradient during loading.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "shimmer-skeleton-loader.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ShimmerSkeletonLoaderProps {\n  className?: string;\n}\n\nexport function ShimmerSkeletonLoader({ className }: ShimmerSkeletonLoaderProps) {\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-6 space-y-4 shadow-sm\", className)}>\n      <div className=\"h-6 w-3/4 rounded bg-line/40 relative overflow-hidden\">\n        <div className=\"absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-paper/60 to-transparent\" />\n      </div>\n      <div className=\"h-4 w-full rounded bg-line/30 relative overflow-hidden\">\n        <div className=\"absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-paper/60 to-transparent\" />\n      </div>\n      <div className=\"h-4 w-5/6 rounded bg-line/30 relative overflow-hidden\">\n        <div className=\"absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-paper/60 to-transparent\" />\n      </div>\n    </div>\n  );\n}\n\nexport default ShimmerSkeletonLoader;\n",
+      "contentHash": "4b2152625873de74b4953ad0bf352c5d3a455bc2a2ca3c1a88c1af200f563eb9",
+      "sizeBytes": 1132
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ShimmerSkeletonLoader } from \"./shimmer-skeleton-loader\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <ShimmerSkeletonLoader />\n    </div>\n  );\n}\n",
+      "contentHash": "20c61f834ce73b557a8410dd959f20fd5c9bb61b1bc0b1bafa9ea98dc59752dc",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "skeleton",
+    "loader",
+    "shimmer",
+    "wireframe",
+    "gradient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "loaders",
+    "fingerprint": {
+      "interactionModel": "continuous-sheen-sweep",
+      "visualModel": "linear-gradient-sheen",
+      "motionModel": "constant-velocity-light-sweep",
+      "layoutModel": "content-placeholder-wireframe",
+      "semanticPurpose": "skeleton-loading-wireframe"
+    }
+  },
+  "url": "https://openui.dev/r/shimmer-skeleton-loader.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Continuous Sheen Sweep: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

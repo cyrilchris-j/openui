@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "variable-weight-text",
+  "type": "registry:text",
+  "title": "Variable Weight Text",
+  "description": "Per-glyph font-variation weight driven by distance to the pointer, so the word swells under the cursor like a pressure field; falls back to a static mid weight without a pointer.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "variable-weight-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface VariableWeightTextProps {\n  text: string;\n  /** Weight at rest, 100–900 depending on the face. */\n  baseWeight?: number;\n  /** Weight at zero distance. */\n  peakWeight?: number;\n  /** Falloff radius in px. */\n  radius?: number;\n  className?: string;\n}\n\nexport function VariableWeightText({\n  text,\n  baseWeight = 300,\n  peakWeight = 800,\n  radius = 120,\n  className,\n}: VariableWeightTextProps) {\n  const containerRef = useRef<HTMLSpanElement>(null);\n  const glyphRefs = useRef<Array<HTMLSpanElement | null>>([]);\n  const frame = useRef<number | null>(null);\n  const [enabled, setEnabled] = useState(false);\n\n  useEffect(() => {\n    const fine = window.matchMedia?.(\"(pointer: fine)\");\n    const reduced = window.matchMedia?.(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setEnabled(Boolean(fine?.matches) && !reduced?.matches);\n    update();\n    fine?.addEventListener?.(\"change\", update);\n    return () => fine?.removeEventListener?.(\"change\", update);\n  }, []);\n\n  useEffect(\n    () => () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    },\n    [],\n  );\n\n  const applyWeights = useCallback(\n    (pointerX: number | null) => {\n      for (const [index, glyph] of glyphRefs.current.entries()) {\n        if (!glyph) continue;\n        if (!enabled || pointerX === null) {\n          glyph.style.fontVariationSettings = `\"wght\" ${baseWeight}`;\n          continue;\n        }\n        const rect = glyph.getBoundingClientRect();\n        const distance = Math.abs(pointerX - (rect.left + rect.width / 2));\n        const falloff = Math.max(0, 1 - distance / radius);\n        const weight = Math.round(baseWeight + (peakWeight - baseWeight) * falloff * falloff);\n        glyph.style.fontVariationSettings = `\"wght\" ${weight}`;\n      }\n    },\n    [baseWeight, enabled, peakWeight, radius],\n  );\n\n  const handleMove = (event: React.PointerEvent<HTMLSpanElement>) => {\n    const x = event.clientX;\n    if (frame.current !== null) cancelAnimationFrame(frame.current);\n    frame.current = requestAnimationFrame(() => applyWeights(x));\n  };\n\n  return (\n    <span\n      ref={containerRef}\n      className={cn(\"select-none\", className)}\n      style={{ fontVariationSettings: `\"wght\" ${baseWeight}` }}\n      onPointerMove={handleMove}\n      onPointerLeave={() => applyWeights(null)}\n      aria-label={text}\n      role=\"text\"\n    >\n      {[...text].map((char, index) => (\n        <span\n          key={`${char}-${index}`}\n          aria-hidden\n          // eslint-disable-next-line no-return-assign\n          ref={(element) => {\n            glyphRefs.current[index] = element;\n          }}\n          className=\"inline-block will-change-[font-variation-settings]\"\n          style={{ transition: \"font-variation-settings 120ms ease-out\" }}\n        >\n          {char === \" \" ? \"\\u00A0\" : char}\n        </span>\n      ))}\n    </span>\n  );\n}\n\nexport default VariableWeightText;\n",
+      "contentHash": "33a5b5332b13dee5a48dca37d9aac3fa6c9b4fa25bbb078056473ae71bba1b7c",
+      "sizeBytes": 3030
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { VariableWeightText } from \"./variable-weight-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] items-center justify-center bg-paper p-10\">\n      <VariableWeightText\n        text=\"PRESSURE\"\n        className=\"font-sans text-step-4 tracking-tight text-ink\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "f0223ab5d3f1cb2a9fdfeb36a547a223b191a06abe453c8a2b930ea4578a3bf8",
+      "sizeBytes": 332
+    }
+  ],
+  "tags": [
+    "variable-font",
+    "weight",
+    "pointer",
+    "typography"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-weight",
+      "visualModel": "axis-animation",
+      "motionModel": "distance-falloff",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    }
+  },
+  "url": "https://openui.dev/r/variable-weight-text.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Rail\nDensity: Airy\nShape: Sharp\nMotion: Expressive\nTypography: Variable Poster\nColor: Monochrome\n\n## Rules\n\n- Pointer Proximity Weight: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

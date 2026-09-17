@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "coupon-discount-manager",
+  "type": "registry:block",
+  "title": "Coupon Discount Manager",
+  "description": "An e-commerce promotional discount code creator managing active promo percentages, usages, and expiry dates.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "coupon-discount-manager.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CouponDiscountManager({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const coupons = [\n    { code: \"LAUNCH800\", discount: \"20% OFF\", used: 142, status: \"Active\" },\n    { code: \"STUDENT50\", discount: \"50% OFF\", used: 890, status: \"Active\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-4 border-b border-neutral-200 dark:border-neutral-800 mb-4\">\n        <h3 className=\"font-bold text-neutral-900 dark:text-white\">Active Promo Discounts</h3>\n        <button type=\"button\" className=\"px-3 py-1 bg-emerald-600 text-white rounded font-bold text-[11px]\">\n          Create Code\n        </button>\n      </div>\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden\">\n        {coupons.map((c) => (\n          <div key={c.code} className=\"p-3 flex items-center justify-between\">\n            <div>\n              <span className=\"font-bold text-neutral-900 dark:text-white\">{c.code}</span>\n              <span className=\"text-emerald-600 dark:text-emerald-400 ml-3 font-semibold\">{c.discount}</span>\n            </div>\n            <span className=\"text-neutral-400\">{c.used} redemptions</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "56bd9f455f58d6ec8f0bdcb66ed53aeff2866e9bbc074216d557c9cec2ffd9b3",
+      "sizeBytes": 1587
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CouponDiscountManager } from \"./coupon-discount-manager\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CouponDiscountManager />\n    </div>\n  );\n}\n",
+      "contentHash": "bad4572fa04b579429b7c95ccad141cd7ce26e34efaebb90c824d6651bc40f74",
+      "sizeBytes": 292
+    }
+  ],
+  "tags": [
+    "coupons",
+    "discounts",
+    "ecommerce",
+    "promo",
+    "billing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "discount-code-creation-and-table",
+      "visualModel": "promo-coupon-manager",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-coupon-management"
+    }
+  },
+  "url": "https://openui.dev/r/coupon-discount-manager.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Discount Code Creation And Table: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

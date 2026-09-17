@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compliance-tamper-proof-ledger",
+  "type": "registry:block",
+  "title": "Compliance Tamper-Proof Ledger",
+  "description": "A cryptographic Merkle tree audit log displaying chained block hashes and automated immutability verification.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compliance-tamper-proof-ledger.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "compliance",
+    "ledger",
+    "merkle",
+    "sha256",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "compliance",
+    "fingerprint": {
+      "interactionModel": "merkle-hash-chain-verification",
+      "visualModel": "cryptographic-ledger-block-view",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "immutable-audit-ledger"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

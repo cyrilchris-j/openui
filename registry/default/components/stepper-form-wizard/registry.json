@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepper-form-wizard",
+  "type": "registry:component",
+  "title": "Stepper Form Wizard",
+  "description": "Multi-step navigation bar with completed checkmarks, current step indicator, and next/previous controls.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepper-form-wizard.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "stepper",
+    "wizard",
+    "navigation",
+    "form",
+    "steps"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "sequential-wizard-stepping",
+      "visualModel": "stepper-rail-nodes",
+      "motionModel": "none",
+      "layoutModel": "horizontal-node-train",
+      "semanticPurpose": "form-wizard-flow"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

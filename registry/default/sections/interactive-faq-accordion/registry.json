@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-faq-accordion",
+  "type": "registry:section",
+  "title": "Interactive FAQ Accordion",
+  "description": "Frequently asked questions section with tidy stacked disclosures and animated chevron toggles.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-faq-accordion.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "faq",
+    "accordion",
+    "questions",
+    "support",
+    "answers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "faq",
+    "fingerprint": {
+      "interactionModel": "faq-disclosure-toggle",
+      "visualModel": "stacked-faq-panels",
+      "motionModel": "none",
+      "layoutModel": "centered-faq-stack",
+      "semanticPurpose": "faq-question-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "pointer-history-tracking",
+      "visualModel": "fade-attenuated-bead-ribbon",
+      "motionModel": "lagged-particle-follow",
+      "layoutModel": "viewport-overlay",
+      "semanticPurpose": "pointer-accentuation"
     }
   },
   "url": "https://openui.dev/r/cursor-trail.json",

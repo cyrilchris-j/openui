@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gradient-outline-type",
+  "type": "registry:text",
+  "title": "Gradient Outline Type",
+  "description": "Display text rendered as a gradient stroke with a transparent fill, layered twice — a wide soft pass under a crisp narrow pass — so the outline reads as an object rather than a filter.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gradient-outline-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "outline",
+    "stroke",
+    "gradient",
+    "display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stylized",
+    "fingerprint": {
+      "interactionModel": "animated-sheen-sweep",
+      "visualModel": "conic-spectrum-stroke",
+      "motionModel": "continuous-gradient-shift",
+      "layoutModel": "display-heading",
+      "semanticPurpose": "high-contrast-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    }
+  }
+}

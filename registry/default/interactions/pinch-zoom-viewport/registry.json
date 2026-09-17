@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pinch-zoom-viewport",
+  "type": "registry:interaction",
+  "title": "Pinch Zoom Viewport",
+  "description": "A 2D interactive canvas stage supporting stepped wheel zoom and click-drag panning across high-density artwork.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pinch-zoom-viewport.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "zoom",
+    "pinch",
+    "pan",
+    "viewport",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "viewport-pan-and-zoom",
+      "visualModel": "nested-coordinate-grid",
+      "motionModel": "scaled-matrix-transformation",
+      "layoutModel": "bounded-viewport-stage",
+      "semanticPurpose": "cad-inspection-viewport"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

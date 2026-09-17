@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "app-settings-rail",
+  "type": "registry:layout",
+  "title": "App Settings Rail",
+  "description": "Categorical vertical navigation rail on left with scrollable configuration sections on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "app-settings-rail.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AppSettingsRailProps extends React.HTMLAttributes<HTMLDivElement> {\n  nav?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function AppSettingsRail({ nav, children, className, ...props }: AppSettingsRailProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 gap-6 max-w-4xl mx-auto p-4 font-sans items-start\", className)} {...props}>\n      {nav && <nav className=\"md:col-span-4 border-r border-line p-3 space-y-1\">{nav}</nav>}\n      <main className=\"md:col-span-8 p-3 space-y-6\">{children}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "f3465793397f65ecc8a263311ad16010f8e3a7a09e3482b3c05e224f65521536",
+      "sizeBytes": 611
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { AppSettingsRail } from \"./app-settings-rail\";\n\nexport default function AppSettingsRailDemo() {\n  return (\n    <AppSettingsRail\n      nav={\n        <div className=\"text-xs space-y-1\">\n          <div className=\"p-2 rounded bg-accent/15 text-accent font-semibold\">General</div>\n          <div className=\"p-2 rounded text-ink/70 hover:bg-surface\">Team Members</div>\n          <div className=\"p-2 rounded text-ink/70 hover:bg-surface\">API Credentials</div>\n        </div>\n      }\n    >\n      <div>\n        <h3 className=\"text-sm font-bold text-ink mb-1\">Organization Profile</h3>\n        <p className=\"text-xs text-ink/60 mb-3\">Manage public workspace presence and security tokens.</p>\n        <div className=\"p-3 rounded-lg border border-line bg-surface/30 text-xs font-mono\">Workspace: openui-core</div>\n      </div>\n    </AppSettingsRail>\n  );\n}\n",
+      "contentHash": "8d5ba6349da8ef7002356d856b1f932bc7d6398ea599ff6090dcc736789597e6",
+      "sizeBytes": 868
+    }
+  ],
+  "tags": [
+    "settings",
+    "rail",
+    "preferences",
+    "config",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "settings-category-rail",
+      "visualModel": "left-category-nav-rail",
+      "motionModel": "none",
+      "layoutModel": "rail-and-content-pane",
+      "semanticPurpose": "application-settings-shell"
+    }
+  },
+  "url": "https://openui.dev/r/app-settings-rail.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Settings Category Rail: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

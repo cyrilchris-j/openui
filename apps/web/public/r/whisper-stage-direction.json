@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "whisper-stage-direction",
+  "type": "registry:text",
+  "title": "Whisper Stage Direction",
+  "description": "Play-script typography where italic stage directions sit inset from the speech, character names are tracked caps on their own line, and clicking a direction highlights the affected character's next line — theatre markup made navigable.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "whisper-stage-direction.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport type ScriptLine =\n  | { kind: \"speech\"; character: string; text: string }\n  | { kind: \"direction\"; text: string; involves?: string };\n\nexport interface WhisperStageDirectionProps {\n  script: ScriptLine[];\n  className?: string;\n}\n\nexport function WhisperStageDirection({ script, className }: WhisperStageDirectionProps) {\n  const [focus, setFocus] = useState<string | null>(null);\n\n  return (\n    <div className={cn(\"max-w-prose space-y-4\", className)}>\n      {script.map((line, index) =>\n        line.kind === \"direction\" ? (\n          <button\n            key={index}\n            type=\"button\"\n            onClick={() => setFocus((current) => (current === line.involves ? null : line.involves ?? null))}\n            className={cn(\n              \"block w-full cursor-pointer border-0 bg-transparent p-0 pl-10 text-left text-sm italic transition-colors\",\n              focus && line.involves === focus ? \"text-accent\" : \"text-ink/55\",\n            )}\n          >\n            ({line.text})\n          </button>\n        ) : (\n          <div key={index} className={cn(\"transition-opacity\", focus && line.character !== focus ? \"opacity-50\" : \"opacity-100\")}>\n            <p className=\"pl-10 font-mono text-xs uppercase tracking-[0.24em] text-ink\">{line.character}</p>\n            <p className=\"pl-4 text-base leading-relaxed text-ink/90\">{line.text}</p>\n          </div>\n        ),\n      )}\n    </div>\n  );\n}\n\nexport default WhisperStageDirection;\n",
+      "contentHash": "7a64c4e5415ef3e5a34e25b2998c7b1d03d37627859e4e1ca44556abec65408e",
+      "sizeBytes": 1528
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { WhisperStageDirection } from \"./whisper-stage-direction\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <WhisperStageDirection\n        className=\"w-full max-w-lg\"\n        script={[\n          { kind: \"direction\", text: \"A registry office. Rain on the window.\", involves: \"all\" },\n          { kind: \"speech\", character: \"author\", text: \"I have eight hundred resources and no catalogue.\" },\n          { kind: \"direction\", text: \"Steward does not look up.\", involves: \"steward\" },\n          { kind: \"speech\", character: \"steward\", text: \"Then you have eight hundred rumours. Validate them.\" },\n          { kind: \"speech\", character: \"author\", text: \"How?\" },\n          { kind: \"direction\", text: \"Steward slides a schema across the desk.\", involves: \"steward\" },\n          { kind: \"speech\", character: \"steward\", text: \"One field at a time.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "a98900c317c05a807b5ebf2f3498c849187033c11fa5a2eb4172759d98de46bc",
+      "sizeBytes": 976
+    }
+  ],
+  "tags": [
+    "script",
+    "stage-direction",
+    "theatre",
+    "dialogue"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "click-highlight-cast",
+      "visualModel": "inset-direction-blocks",
+      "motionModel": "highlight-link",
+      "layoutModel": "script",
+      "semanticPurpose": "dramatic-text"
+    }
+  },
+  "url": "https://openui.dev/r/whisper-stage-direction.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Click Highlight Cast: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

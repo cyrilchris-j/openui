@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bidi-mirror-type",
+  "type": "registry:text",
+  "title": "Bidi Mirror Type",
+  "description": "A dual-direction type specimen: the same phrase rendered LTR and RTL simultaneously, with per-glyph mirroring toggle and automatic dir attribute handling — a working tool for checking internationalised typography.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bidi-mirror-type.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BidiMirrorTypeProps {\n  /** Left-to-right phrase. */\n  ltr: string;\n  /** Right-to-left phrase (rendered with dir=\"rtl\"). */\n  rtl: string;\n  className?: string;\n}\n\nexport function BidiMirrorType({ ltr, rtl, className }: BidiMirrorTypeProps) {\n  const [mirrored, setMirrored] = useState(false);\n\n  return (\n    <div className={cn(\"flex flex-col gap-5\", className)}>\n      <div className=\"grid gap-6 sm:grid-cols-2\">\n        <div>\n          <p className=\"mb-1 font-mono text-[10px] uppercase tracking-widest text-ink/50\">dir=ltr</p>\n          <p dir=\"ltr\" className=\"text-2xl text-ink\">\n            {ltr}\n          </p>\n        </div>\n        <div>\n          <p className=\"mb-1 font-mono text-[10px] uppercase tracking-widest text-ink/50\">dir=rtl</p>\n          <p dir={mirrored ? \"ltr\" : \"rtl\"} className=\"text-2xl text-ink\">\n            {rtl}\n          </p>\n        </div>\n      </div>\n      <button\n        type=\"button\"\n        onClick={() => setMirrored((value) => !value)}\n        className=\"self-start rounded border border-line px-2 py-1 font-mono text-xs text-ink/70 hover:bg-line/20\"\n      >\n        {mirrored ? \"restore rtl\" : \"force ltr on rtl copy\"}\n      </button>\n    </div>\n  );\n}\n\nexport default BidiMirrorType;\n",
+      "contentHash": "558e4e2a333353afc1f6e77c684f4b10a298da97cc5f0fc980f4d7aaef1fa1e8",
+      "sizeBytes": 1325
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BidiMirrorType } from \"./bidi-mirror-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <BidiMirrorType ltr=\"Open source for everyone\" rtl=\"مفتوح المصدر للجميع\" />\n    </div>\n  );\n}\n",
+      "contentHash": "52a55d449f16be99d8127ab1170a3df53da6f3917130e96e3b31fa9e11a401f0",
+      "sizeBytes": 298
+    }
+  ],
+  "tags": [
+    "bidi",
+    "rtl",
+    "i18n",
+    "specimen"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "toggle-mirror",
+      "visualModel": "dual-direction-render",
+      "motionModel": "none",
+      "layoutModel": "split",
+      "semanticPurpose": "i18n-verification"
+    }
+  },
+  "url": "https://openui.dev/r/bidi-mirror-type.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Split\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Toggle Mirror: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

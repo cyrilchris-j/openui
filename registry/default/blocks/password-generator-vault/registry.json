@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "password-generator-vault",
+  "type": "registry:block",
+  "title": "Password Generator Vault",
+  "description": "A cryptographic password generator with customizable length slider, character toggles, and copy confirmation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "password-generator-vault.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "password",
+    "generator",
+    "security",
+    "vault",
+    "crypto"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "random-password-generation-slider",
+      "visualModel": "credential-vault-generator-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "credential-entropy-generator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

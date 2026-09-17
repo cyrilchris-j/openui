@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "origami-crease-lines",
+  "type": "registry:background",
+  "title": "Origami Crease Lines",
+  "description": "Geometric folding crease lines inspired by Japanese Miura-ori paper engineering patterns.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "origami-crease-lines.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface OrigamiCreaseLinesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function OrigamiCreaseLines({ className, children, ...props }: OrigamiCreaseLinesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"origami-pat\" width=\"50\" height=\"40\" patternUnits=\"userSpaceOnUse\">\n            <path d=\"M0 0 L25 20 L50 0 M25 20 L25 40 M0 40 L25 20 L50 40\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" strokeDasharray=\"3 2\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#origami-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "d68a046cfd4a1fb2392fbac17a44990d71d284423d4843b32484222cd567ab81",
+      "sizeBytes": 930
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { OrigamiCreaseLines } from \"./origami-crease-lines\";\n\nexport default function OrigamiCreaseLinesDemo() {\n  return (\n    <OrigamiCreaseLines className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Miura-Ori Creases</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Origami fold lines and valley tessellations.</p>\n      </div>\n    </OrigamiCreaseLines>\n  );\n}\n",
+      "contentHash": "74b64f1a4daccc55dc0213ad72b95747537c5fb9df3e69765637a1085ae52ff8",
+      "sizeBytes": 582
+    }
+  ],
+  "tags": [
+    "origami",
+    "crease",
+    "folding",
+    "japanese",
+    "paper"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-crease-texture",
+      "visualModel": "angled-folding-creases",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "paper-folding-geometry"
+    }
+  },
+  "url": "https://openui.dev/r/origami-crease-lines.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Crease Texture: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-tag-strip",
+  "type": "registry:component",
+  "title": "Badge Tag Strip",
+  "description": "A collection of metadata chips displaying category taxonomy tags with color category coding.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-tag-strip.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BadgeTagStripProps {\n  tags?: string[];\n  className?: string;\n}\n\nexport function BadgeTagStrip({\n  tags = [\"TypeScript\", \"React 19\", \"Tailwind\", \"Design DNA\"],\n  className,\n}: BadgeTagStripProps) {\n  return (\n    <div className={cn(\"inline-flex flex-wrap gap-1.5\", className)}>\n      {tags.map((t) => (\n        <span\n          key={t}\n          className=\"rounded-full border border-line bg-line/10 px-3 py-0.5 font-mono text-[10px] font-semibold text-ink\"\n        >\n          {t}\n        </span>\n      ))}\n    </div>\n  );\n}\n\nexport default BadgeTagStrip;\n",
+      "contentHash": "01f0858f3beedc489779f1421be0a394136e6a74b466c162a1b0065b817d7709",
+      "sizeBytes": 620
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { BadgeTagStrip } from \"./badge-tag-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <BadgeTagStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "19b644b1acfffb4adae47045fe5394edc017fb63665ee5c9ceb370ccff2c5f13",
+      "sizeBytes": 220
+    }
+  ],
+  "tags": [
+    "tags",
+    "badges",
+    "taxonomy",
+    "metadata",
+    "chips"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-metadata-tags",
+      "visualModel": "linear-taxonomy-pills",
+      "motionModel": "none",
+      "layoutModel": "horizontal-tag-strip",
+      "semanticPurpose": "taxonomy-metadata-strip"
+    }
+  },
+  "url": "https://openui.dev/r/badge-tag-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Metadata Tags: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

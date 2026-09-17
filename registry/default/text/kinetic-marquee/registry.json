@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-marquee",
+  "type": "registry:text",
+  "title": "Kinetic Marquee",
+  "description": "A continuous text band whose speed responds to scroll velocity — faster scrolling accelerates the ticker and skews it proportionally, settling back to base speed when scrolling stops.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-marquee.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "marquee",
+    "scroll-velocity",
+    "skew",
+    "ticker"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity",
+      "visualModel": "repeating-band",
+      "motionModel": "velocity-coupled-translate",
+      "layoutModel": "full-bleed-rail",
+      "semanticPurpose": "announcement-band"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "condensed",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "emboss-paint-type",
+  "type": "registry:text",
+  "title": "Emboss Paint Type",
+  "description": "Letterpress typography built from four stacked text-shadow layers on a single element — no images, no SVG — with the layer offsets derived from one custom property so the depth is themeable.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "emboss-paint-type.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface EmbossPaintTypeProps {\n  children: string;\n  /** Base colour of the type. */\n  color?: string;\n  /** Paper colour behind it; drives the highlight and shadow tints. */\n  paper?: string;\n  /** Emboss depth in px. */\n  depth?: number;\n  className?: string;\n}\n\n/**\n * Emboss Paint Type\n *\n * The four shadows, in paint order: a light highlight up-left, a dark occlusion\n * down-right, a mid blur to seat the glyph, and a near-contact hairline. Every\n * offset is `depth * factor`, so `--emboss-depth` re-tunes the whole effect.\n */\nexport function EmbossPaintType({\n  children,\n  color = \"#b9a58c\",\n  paper = \"#f3ede2\",\n  depth = 2,\n  className,\n}: EmbossPaintTypeProps) {\n  return (\n    <span\n      className={cn(\"inline-block select-none font-display leading-none\", className)}\n      role=\"text\"\n      aria-label={children}\n      style={{\n        color,\n        textShadow: [\n          `-${depth}px -${depth}px 0 color-mix(in oklab, ${paper}, white 26%)`,\n          `${depth}px ${depth}px 0 color-mix(in oklab, ${paper}, black 42%)`,\n          `0 0 ${depth * 3}px color-mix(in oklab, ${paper}, black 18%)`,\n          `0 1px 0 color-mix(in oklab, ${color}, black 30%)`,\n        ].join(\", \"),\n      }}\n      aria-hidden\n    >\n      {children}\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default EmbossPaintType;\n",
+      "contentHash": "a5798d750856cf9bd66f828615315a6f5e49161ccccdb70e251f87e41d813345",
+      "sizeBytes": 1390
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { EmbossPaintType } from \"./emboss-paint-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center p-10\" style={{ background: \"#f3ede2\" }}>\n      <EmbossPaintType className=\"text-step-5 tracking-tight\">Pressed</EmbossPaintType>\n    </div>\n  );\n}\n",
+      "contentHash": "a6e9b77932496247beed82d6dc490d8015127f3a2c22f70a3a4bb7cd7858a544",
+      "sizeBytes": 314
+    }
+  ],
+  "tags": [
+    "emboss",
+    "letterpress",
+    "shadow",
+    "paint"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "multi-shadow-paint",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-statement"
+    }
+  },
+  "url": "https://openui.dev/r/emboss-paint-type.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Stack\nDensity: Dense\nShape: Soft\nMotion: None\nTypography: Serif Display\nColor: Muted Earth\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

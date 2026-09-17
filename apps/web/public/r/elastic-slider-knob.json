@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-slider-knob",
+  "type": "registry:interaction",
+  "title": "Elastic Slider Knob",
+  "description": "A rotary dial providing resistance that springs back to zero origin when user releases dragging pressure.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-slider-knob.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticSliderKnobProps {\n  className?: string;\n}\n\nexport function ElasticSliderKnob({ className }: ElasticSliderKnobProps) {\n  const [angle, setAngle] = useState(0);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">SPRING RECOIL JOG: {angle}°</span>\n\n      <div className=\"relative flex h-24 w-24 items-center justify-center rounded-full border-2 border-line bg-line/20\">\n        <div\n          className=\"h-16 w-16 rounded-full border border-line bg-ink shadow-md transition-transform duration-200 ease-out flex items-start justify-center pt-1\"\n          style={{ transform: `rotate(${angle}deg)` }}\n        >\n          <div className=\"h-3 w-1 bg-paper rounded\" />\n        </div>\n      </div>\n\n      <div className=\"flex gap-2\">\n        <button\n          type=\"button\"\n          onClick={() => {\n            setAngle(-60);\n            setTimeout(() => setAngle(0), 200);\n          }}\n          className=\"rounded border border-line px-3 py-1 font-mono text-xs hover:bg-line/20\"\n        >\n          Jog Left\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => {\n            setAngle(60);\n            setTimeout(() => setAngle(0), 200);\n          }}\n          className=\"rounded border border-line px-3 py-1 font-mono text-xs hover:bg-line/20\"\n        >\n          Jog Right\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default ElasticSliderKnob;\n",
+      "contentHash": "f8de2833be7df1715ef262205feb11afec2176014da003767f4325fd0fd7bf2f",
+      "sizeBytes": 1636
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { ElasticSliderKnob } from \"./elastic-slider-knob\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <ElasticSliderKnob />\n    </div>\n  );\n}\n",
+      "contentHash": "266c94370c6751b83941b0dc9f73b6d8a0ab8cdaeeff5cddd9d369e4f6574fcd",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "knob",
+    "dial",
+    "spring",
+    "recoil",
+    "rotary"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "springback-rotary-dial",
+      "visualModel": "concentric-recoil-knob",
+      "motionModel": "torsional-zero-snap",
+      "layoutModel": "centered-rotary-gauge",
+      "semanticPurpose": "springback-jog-wheel"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-slider-knob.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Springback Rotary Dial: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

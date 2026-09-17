@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-faq-accordion",
+  "type": "registry:section",
+  "title": "Interactive FAQ Accordion",
+  "description": "Frequently asked questions section with tidy stacked disclosures and animated chevron toggles.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-faq-accordion.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FAQItem {\n  q: string;\n  a: string;\n}\n\nexport interface InteractiveFAQAccordionProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n  items?: FAQItem[];\n}\n\nexport function InteractiveFAQAccordion({\n  title = \"Frequently Asked Questions\",\n  items = [\n    {\n      q: \"How does OpenUI enforce the 800-resource contract?\",\n      a: \"Every resource belongs to one of eight countable categories (100 each) and is validated by automated CLI tests. If any category drops below 100 or contains duplicate fingerprints, the build fails.\",\n    },\n    {\n      q: \"Do I need to install heavy component libraries?\",\n      a: \"No. Every resource is standalone with zero external UI dependencies. You simply copy-paste or install via the OpenUI CLI.\",\n    },\n    {\n      q: \"What is Design DNA?\",\n      a: \"Design DNA defines closed algebraic enums for macrostructure, motionLanguage, typographyStyle, colorStrategy, shapeLanguage, and density.\",\n    },\n  ],\n  className,\n  ...props\n}: InteractiveFAQAccordionProps) {\n  const [open, setOpen] = useState<number | null>(0);\n\n  return (\n    <section className={cn(\"py-16 px-6 max-w-3xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <h2 className=\"text-2xl sm:text-3xl font-bold tracking-tight text-ink text-center mb-10\">{title}</h2>\n      <div className=\"space-y-3\">\n        {items.map((item, idx) => {\n          const isOpen = open === idx;\n          return (\n            <div key={item.q} className=\"rounded-2xl border border-line bg-paper overflow-hidden transition-colors shadow-xs\">\n              <button\n                type=\"button\"\n                onClick={() => setOpen(isOpen ? null : idx)}\n                className=\"w-full p-5 text-left font-bold text-sm text-ink flex items-center justify-between gap-4\"\n              >\n                <span>{item.q}</span>\n                <span className=\"font-mono text-base text-ink/40\">{isOpen ? \"−\" : \"+\"}</span>\n              </button>\n              {isOpen && (\n                <div className=\"px-5 pb-5 text-xs text-ink/70 leading-relaxed border-t border-line/50 pt-3\">\n                  {item.a}\n                </div>\n              )}\n            </div>\n          );\n        })}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "1b53113df09d49c8ee4414118f2027214467d09d69bc0a58cc3bf9636aaab472",
+      "sizeBytes": 2339
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveFAQAccordion } from \"./interactive-faq-accordion\";\n\nexport default function InteractiveFAQAccordionDemo() {\n  return <InteractiveFAQAccordion />;\n}\n",
+      "contentHash": "1c61d0ca60e6ef723528d93394bb68a78373e6519c6f40e1ec7a6fab5a7f106f",
+      "sizeBytes": 183
+    }
+  ],
+  "tags": [
+    "faq",
+    "accordion",
+    "questions",
+    "support",
+    "answers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "faq",
+    "fingerprint": {
+      "interactionModel": "faq-disclosure-toggle",
+      "visualModel": "stacked-faq-panels",
+      "motionModel": "none",
+      "layoutModel": "centered-faq-stack",
+      "semanticPurpose": "faq-question-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-faq-accordion.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Faq Disclosure Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

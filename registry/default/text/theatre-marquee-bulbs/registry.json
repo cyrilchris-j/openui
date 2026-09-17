@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "theatre-marquee-bulbs",
+  "type": "registry:text",
+  "title": "Theatre Marquee Bulbs",
+  "description": "A theatre sign where the border is a string of chasing light bulbs (CSS radial dots animating in sequence) around the lettering — the chase runs the perimeter while the text stays still, unlike every other marquee.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "theatre-marquee-bulbs.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "marquee",
+    "bulbs",
+    "chase",
+    "theatre"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "perimeter-bulb-chase",
+      "motionModel": "sequential-phase-border",
+      "layoutModel": "framed",
+      "semanticPurpose": "signage"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/lib/cn": ["./default/components/cn/cn.ts"],
+      "@/hooks/use-in-view": ["./default/components/use-in-view/use-in-view.ts"],
+      "@/hooks/use-canvas-loop": ["./default/components/use-canvas-loop/use-canvas-loop.ts"],
+      "@/hooks/use-reduced-motion": ["./default/components/use-reduced-motion/use-reduced-motion.ts"]
+    }
+  },
+  "include": ["default/**/*.ts", "default/**/*.tsx"]
+}

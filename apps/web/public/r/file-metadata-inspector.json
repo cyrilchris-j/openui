@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "file-metadata-inspector",
+  "type": "registry:block",
+  "title": "File Metadata Inspector",
+  "description": "A binary file inspector drawer presenting MIME types, SHA-256 integrity checksums, and dimensions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "file-metadata-inspector.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function FileMetadataInspector({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-3\">\n        Asset Integrity Inspector\n      </h3>\n      <div className=\"space-y-2 text-[11px]\">\n        <div className=\"flex justify-between\">\n          <span className=\"text-neutral-500\">File Name</span>\n          <span className=\"font-bold text-neutral-900 dark:text-white\">registry.tar.gz</span>\n        </div>\n        <div className=\"flex justify-between\">\n          <span className=\"text-neutral-500\">MIME Type</span>\n          <span>application/gzip</span>\n        </div>\n        <div className=\"flex justify-between\">\n          <span className=\"text-neutral-500\">Byte Size</span>\n          <span>4,290,140 B (4.1 MB)</span>\n        </div>\n        <div className=\"pt-2 border-t border-neutral-200 dark:border-neutral-800\">\n          <span className=\"text-neutral-500\">SHA-256 Hash</span>\n          <div className=\"text-emerald-600 dark:text-emerald-400 font-bold truncate mt-0.5\">\n            8f92a10b48c2e91048f029a81234bcfe8192\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "56d1219fcae70d0ab73494582fe028df38a6121216c6eea5af32dde4bad07f8c",
+      "sizeBytes": 1516
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { FileMetadataInspector } from \"./file-metadata-inspector\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <FileMetadataInspector />\n    </div>\n  );\n}\n",
+      "contentHash": "90fb01cb1b4625954611efcabc75fcad6b7484d4003d9c4c67f46641befe1797",
+      "sizeBytes": 292
+    }
+  ],
+  "tags": [
+    "file",
+    "metadata",
+    "sha256",
+    "checksum",
+    "mime"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "files",
+    "fingerprint": {
+      "interactionModel": "metadata-inspection-and-hash-copy",
+      "visualModel": "asset-properties-sidebar",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "file-integrity-verification"
+    }
+  },
+  "url": "https://openui.dev/r/file-metadata-inspector.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Metadata Inspection And Hash Copy: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

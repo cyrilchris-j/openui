@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-repel-field",
+  "type": "registry:motion",
+  "title": "Magnetic Repel Field",
+  "description": "The anti-magnet: grid tiles flee the pointer with force proportional to proximity, then spring back with damped oscillation — a field of objects that keeps its shape only when you leave it alone.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-repel-field.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "repel",
+    "grid",
+    "field",
+    "spring-back"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pointer-repel",
+      "visualModel": "displaced-grid-tiles",
+      "motionModel": "spring-return-oscillation",
+      "layoutModel": "grid",
+      "semanticPurpose": "playful-grid"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "strobe-grid-dots",
+  "type": "registry:background",
+  "title": "Strobe Grid Dots",
+  "description": "Periodic dot grid matrix with alternating concentric strobe rings.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "strobe-grid-dots.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StrobeGridDotsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function StrobeGridDots({ className, children, ...props }: StrobeGridDotsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-20 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"strobe-pat\" width=\"30\" height=\"30\" patternUnits=\"userSpaceOnUse\">\n            <circle cx=\"15\" cy=\"15\" r=\"2\" fill=\"currentColor\" />\n            <circle cx=\"15\" cy=\"15\" r=\"5\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"0.5\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#strobe-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "7640f6b08d4b75de7faa3e6b113fb35dab89496a6e7ed184f30b4b424b897a8e",
+      "sizeBytes": 929
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { StrobeGridDots } from \"./strobe-grid-dots\";\n\nexport default function StrobeGridDotsDemo() {\n  return (\n    <StrobeGridDots className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Strobe Dots Array</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Target dots surrounded by fine rings.</p>\n      </div>\n    </StrobeGridDots>\n  );\n}\n",
+      "contentHash": "4946fccb2936ef7b43d282e6f61c41c4244a72097a9cc9b4802945083295f368",
+      "sizeBytes": 555
+    }
+  ],
+  "tags": [
+    "strobe",
+    "dots",
+    "grid",
+    "optical",
+    "matrix"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-strobe-dots",
+      "visualModel": "concentric-strobe-matrix",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "stroboscopic-grid-texture"
+    }
+  },
+  "url": "https://openui.dev/r/strobe-grid-dots.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Strobe Dots: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "beta-waitlist-card",
+  "type": "registry:section",
+  "title": "Beta Waitlist Card",
+  "description": "An early-access invite card with real-time waitlist counter and instant confirmation state.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "beta-waitlist-card.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function BetaWaitlistCard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [email, setEmail] = React.useState(\"\");\n  const [joined, setJoined] = React.useState(false);\n\n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault();\n    if (email.includes(\"@\")) setJoined(true);\n  };\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-lg mx-auto text-center\", className)} {...props}>\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 bg-white dark:bg-neutral-950 shadow-sm\">\n        <h3 className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100\">Join Private Registry Beta</h3>\n        <p className=\"text-xs text-neutral-500 mt-2\">Get access to private mirror syncs and enterprise teams features.</p>\n\n        {!joined ? (\n          <form onSubmit={handleSubmit} className=\"mt-6 flex gap-2\">\n            <input\n              type=\"email\"\n              value={email}\n              onChange={(e) => setEmail(e.target.value)}\n              placeholder=\"you@company.com\"\n              required\n              className=\"flex-1 px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n            />\n            <button type=\"submit\" className=\"px-4 py-2 rounded-lg text-xs font-semibold bg-emerald-600 text-white\">\n              Join Waitlist\n            </button>\n          </form>\n        ) : (\n          <div className=\"mt-6 p-3 rounded bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 text-xs font-medium\">\n            You're #1,492 on the waitlist! We will be in touch soon.\n          </div>\n        )}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "782133e2abee9a44256e7ab226fd60ab89a2ce615f08e5fedc6613b3f0624c6f",
+      "sizeBytes": 1831
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { BetaWaitlistCard } from \"./beta-waitlist-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <BetaWaitlistCard />\n    </div>\n  );\n}\n",
+      "contentHash": "896883b5939ccdcb6f83d7f8de989f3ba4a04cfd3619ca670b27f940cbb22373",
+      "sizeBytes": 279
+    }
+  ],
+  "tags": [
+    "waitlist",
+    "beta",
+    "invite",
+    "signup",
+    "form"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "beta-waitlist-card-interaction",
+      "visualModel": "beta-waitlist-card-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "beta-waitlist-card-section"
+    }
+  },
+  "url": "https://openui.dev/r/beta-waitlist-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Beta Waitlist Card Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "banner-alert-box",
+  "type": "registry:component",
+  "title": "Banner Alert Box",
+  "description": "A system warning alert banner with contextual icon, status description, and dismissal button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "banner-alert-box.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "alert",
+    "banner",
+    "warning",
+    "notification",
+    "feedback"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "dismissible-alert-inspection",
+      "visualModel": "bordered-alert-callout",
+      "motionModel": "none",
+      "layoutModel": "full-width-alert-banner",
+      "semanticPurpose": "system-status-alert"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

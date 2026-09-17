@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-status-health-banner",
+  "type": "registry:section",
+  "title": "API Status Health Banner",
+  "description": "A real-time edge system status banner reporting uptime percentages, latency metrics, and recent incident logs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-status-health-banner.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "api",
+    "status",
+    "uptime",
+    "health",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "api-status-health-banner-interaction",
+      "visualModel": "api-status-health-banner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-status-health-banner-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

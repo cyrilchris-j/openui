@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-stretch-text",
+  "type": "registry:text",
+  "title": "Elastic Stretch Text",
+  "description": "Glyphs stretch horizontally away from the pointer like a material with tension, using scaleX with an overshoot curve on release; the stretch is per-glyph so the word deforms, not just moves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-stretch-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticStretchTextProps {\n  text: string;\n  /** Maximum horizontal stretch at the pointer position. */\n  maxStretch?: number;\n  /** Falloff radius in px. */\n  radius?: number;\n  className?: string;\n}\n\nexport function ElasticStretchText({\n  text,\n  maxStretch = 1.9,\n  radius = 110,\n  className,\n}: ElasticStretchTextProps) {\n  const containerRef = useRef<HTMLSpanElement>(null);\n  const glyphRefs = useRef<Array<HTMLSpanElement | null>>([]);\n  const frame = useRef<number | null>(null);\n  const [enabled, setEnabled] = useState(false);\n\n  useEffect(() => {\n    const fine = window.matchMedia?.(\"(pointer: fine)\");\n    const reduced = window.matchMedia?.(\"(prefers-reduced-motion: reduce)\");\n    setEnabled(Boolean(fine?.matches) && !reduced?.matches);\n  }, []);\n\n  useEffect(\n    () => () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    },\n    [],\n  );\n\n  const apply = useCallback(\n    (pointerX: number | null) => {\n      for (const [index, glyph] of glyphRefs.current.entries()) {\n        if (!glyph) continue;\n        if (!enabled || pointerX === null) {\n          glyph.style.transform = \"scaleX(1)\";\n          continue;\n        }\n        const rect = glyph.getBoundingClientRect();\n        const distance = Math.abs(pointerX - (rect.left + rect.width / 2));\n        const falloff = Math.max(0, 1 - distance / radius);\n        glyph.style.transform = `scaleX(${1 + (maxStretch - 1) * falloff})`;\n      }\n    },\n    [enabled, maxStretch, radius],\n  );\n\n  const handleMove = (event: React.PointerEvent<HTMLSpanElement>) => {\n    const x = event.clientX;\n    if (frame.current !== null) cancelAnimationFrame(frame.current);\n    frame.current = requestAnimationFrame(() => apply(x));\n  };\n\n  return (\n    <span\n      ref={containerRef}\n      className={cn(\"select-none\", className)}\n      onPointerMove={handleMove}\n      onPointerLeave={() => apply(null)}\n      aria-label={text}\n      role=\"text\"\n    >\n      {[...text].map((char, index) => (\n        <span\n          key={`${char}-${index}`}\n          aria-hidden\n          ref={(element) => {\n            glyphRefs.current[index] = element;\n          }}\n          className=\"inline-block will-change-transform motion-reduce:transform-none\"\n          style={{ transformOrigin: \"center\", transition: \"transform 260ms cubic-bezier(0.3, 1.6, 0.4, 1)\" }}\n        >\n          {char === \" \" ? \"\\u00A0\" : char}\n        </span>\n      ))}\n    </span>\n  );\n}\n\nexport default ElasticStretchText;\n",
+      "contentHash": "6897cec930ba9d788946f9a7741128065c2838819a2ab1ce8c2dfcd8a4239c9b",
+      "sizeBytes": 2600
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ElasticStretchText } from \"./elastic-stretch-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <ElasticStretchText text=\"STRETCH\" className=\"font-display text-step-4 tracking-tight text-ink\" />\n    </div>\n  );\n}\n",
+      "contentHash": "ec489e2b67ddfbc82486deb414210e5411a7c1e4bb6fb0833cdbf787aa228234",
+      "sizeBytes": 312
+    }
+  ],
+  "tags": [
+    "elastic",
+    "stretch",
+    "pointer",
+    "deform"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "geometric",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-deform",
+      "visualModel": "glyph-scale-field",
+      "motionModel": "overshoot-release",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-accent"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-stretch-text.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Airy\nShape: Soft\nMotion: Expressive\nTypography: Geometric\nColor: Duotone\n\n## Rules\n\n- Pointer Deform: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

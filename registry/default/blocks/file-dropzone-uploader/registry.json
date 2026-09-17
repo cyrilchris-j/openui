@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "file-dropzone-uploader",
+  "type": "registry:block",
+  "title": "File Dropzone Uploader",
+  "description": "A drag-and-drop file staging area with visual dropzone, active upload progress, and file list preview.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "file-dropzone-uploader.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "uploader",
+    "dropzone",
+    "files",
+    "drag-drop",
+    "progress"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "files",
+    "fingerprint": {
+      "interactionModel": "drag-and-drop-upload-staging",
+      "visualModel": "dashed-dropzone-progress-tray",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "file-upload-pipeline"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

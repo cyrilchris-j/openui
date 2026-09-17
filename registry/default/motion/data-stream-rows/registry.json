@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "data-stream-rows",
+  "type": "registry:motion",
+  "title": "Data Stream Rows",
+  "description": "Streaming rows enter at the top and push older rows down with a measured slide (FLIP), each new row flashing once on arrival — the motion of a live feed, honest about the fact that data keeps arriving.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "data-stream-rows.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "stream",
+    "feed",
+    "live",
+    "rows"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "interval-push",
+      "visualModel": "measured-feed-insert",
+      "motionModel": "flip-push-slide",
+      "layoutModel": "list",
+      "semanticPurpose": "live-monitoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-column-directory-list",
+  "type": "registry:layout",
+  "title": "Multi Column Directory List",
+  "description": "Four-column directory index for organizing extensive rosters of components, tags, or API endpoints.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-column-directory-list.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiColumnDirectoryListProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MultiColumnDirectoryList({ children, className, ...props }: MultiColumnDirectoryListProps) {\n  return (\n    <div className={cn(\"grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto p-4 font-mono text-xs\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "577dd6af11525f1f057e61f988b56721d3b933b3fb76f62318a489f2015f8d86",
+      "sizeBytes": 457
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MultiColumnDirectoryList } from \"./multi-column-directory-list\";\n\nexport default function MultiColumnDirectoryListDemo() {\n  return (\n    <MultiColumnDirectoryList>\n      {[\"Components\", \"Text\", \"Motion\", \"Interactions\", \"Backgrounds\", \"Layouts\", \"Sections\", \"Blocks\"].map((c) => (\n        <div key={c} className=\"p-2.5 rounded border border-line bg-surface/30\">\n          <div className=\"font-bold text-ink\">{c}</div>\n          <div className=\"text-[10px] text-ink/60 mt-0.5\">100 Items (100%)</div>\n        </div>\n      ))}\n    </MultiColumnDirectoryList>\n  );\n}\n",
+      "contentHash": "4eafffc47e4de5c00324d9d2aab1ac4d5fe007f5405af255235500c9fff04dc1",
+      "sizeBytes": 588
+    }
+  ],
+  "tags": [
+    "directory",
+    "index",
+    "columns",
+    "tags",
+    "roster"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "directory-index-lookup",
+      "visualModel": "four-column-directory-matrix",
+      "motionModel": "none",
+      "layoutModel": "multi-column-index-grid",
+      "semanticPurpose": "directory-index-display"
+    }
+  },
+  "url": "https://openui.dev/r/multi-column-directory-list.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Directory Index Lookup: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

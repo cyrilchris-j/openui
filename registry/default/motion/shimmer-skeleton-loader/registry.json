@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "shimmer-skeleton-loader",
+  "type": "registry:motion",
+  "title": "Shimmer Skeleton Loader",
+  "description": "An ethereal wireframe content placeholder swept continuously by an angled light sheen gradient during loading.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "shimmer-skeleton-loader.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "skeleton",
+    "loader",
+    "shimmer",
+    "wireframe",
+    "gradient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "loaders",
+    "fingerprint": {
+      "interactionModel": "continuous-sheen-sweep",
+      "visualModel": "linear-gradient-sheen",
+      "motionModel": "constant-velocity-light-sweep",
+      "layoutModel": "content-placeholder-wireframe",
+      "semanticPurpose": "skeleton-loading-wireframe"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

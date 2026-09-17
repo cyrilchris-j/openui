@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "led-dot-matrix-text",
+  "type": "registry:text",
+  "title": "LED Dot Matrix Text",
+  "description": "Real dot-matrix rendering: a 5×7 bitmap font map draws each character as a grid of glowing dots on canvas — with per-dot bokeh, row scanlines and a scrolling mode that shifts the bitmap like a station display.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "led-dot-matrix-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\n/** 5×7 bitmap font for A-Z, 0-9, space (columns, LSB top). */\nconst FONT: Record<string, number[]> = {\n  A: [0x1f, 0x11, 0x11, 0x1f, 0x11, 0x11, 0x11],\n  B: [0x1e, 0x11, 0x11, 0x1e, 0x11, 0x11, 0x1e],\n  C: [0x0e, 0x11, 0x10, 0x10, 0x10, 0x11, 0x0e],\n  D: [0x1e, 0x11, 0x11, 0x11, 0x11, 0x11, 0x1e],\n  E: [0x1f, 0x10, 0x10, 0x1e, 0x10, 0x10, 0x1f],\n  F: [0x1f, 0x10, 0x10, 0x1e, 0x10, 0x10, 0x10],\n  G: [0x0e, 0x11, 0x10, 0x17, 0x11, 0x11, 0x0f],\n  H: [0x11, 0x11, 0x11, 0x1f, 0x11, 0x11, 0x11],\n  I: [0x0e, 0x04, 0x04, 0x04, 0x04, 0x04, 0x0e],\n  J: [0x07, 0x02, 0x02, 0x02, 0x02, 0x12, 0x0c],\n  K: [0x11, 0x12, 0x14, 0x18, 0x14, 0x12, 0x11],\n  L: [0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x1f],\n  M: [0x11, 0x1b, 0x15, 0x15, 0x11, 0x11, 0x11],\n  N: [0x11, 0x19, 0x15, 0x13, 0x11, 0x11, 0x11],\n  O: [0x0e, 0x11, 0x11, 0x11, 0x11, 0x11, 0x0e],\n  P: [0x1f, 0x11, 0x11, 0x1f, 0x10, 0x10, 0x10],\n  Q: [0x0e, 0x11, 0x11, 0x11, 0x15, 0x12, 0x0d],\n  R: [0x1f, 0x11, 0x11, 0x1f, 0x14, 0x12, 0x11],\n  S: [0x0f, 0x10, 0x10, 0x0e, 0x01, 0x01, 0x1e],\n  T: [0x1f, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04],\n  U: [0x11, 0x11, 0x11, 0x11, 0x11, 0x11, 0x0e],\n  V: [0x11, 0x11, 0x11, 0x11, 0x11, 0x0a, 0x04],\n  W: [0x11, 0x11, 0x11, 0x15, 0x15, 0x15, 0x0a],\n  X: [0x11, 0x11, 0x0a, 0x04, 0x0a, 0x11, 0x11],\n  Y: [0x11, 0x11, 0x0a, 0x04, 0x04, 0x04, 0x04],\n  Z: [0x1f, 0x01, 0x02, 0x04, 0x08, 0x10, 0x1f],\n  \" \": [0, 0, 0, 0, 0, 0, 0],\n};\n\nexport interface LedDotMatrixTextProps {\n  children: string;\n  /** Scroll speed in columns per second; 0 = static. */\n  scroll?: number;\n  className?: string;\n}\n\nexport function LedDotMatrixText({ children, scroll = 14, className }: LedDotMatrixTextProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    const dpr = Math.min(window.devicePixelRatio || 1, 2);\n    const dot = 8;\n    const gap = 3;\n    const rows = 7;\n    const text = children.toUpperCase();\n    const cols = text.length * 6;\n\n    canvas.width = (cols * (dot + gap)) * dpr;\n    canvas.height = (rows * (dot + gap)) * dpr;\n    ctx.scale(dpr, dpr);\n\n    let offset = 0;\n    let raf: number | null = null;\n    let last = performance.now();\n\n    const draw = (now: number) => {\n      const dt = (now - last) / 1000;\n      last = now;\n      if (scroll > 0 && !reduced) offset = (offset + scroll * dt) % cols;\n\n      ctx.clearRect(0, 0, canvas.width, canvas.height);\n      const totalCols = cols;\n      for (let index = 0; index < text.length; index++) {\n        const glyph = FONT[text[index] ?? \" \"] ?? FONT[\" \"]!;\n        for (let col = 0; col < 5; col++) {\n          const logical = (index * 6 + col - Math.floor(offset) + totalCols * 2) % totalCols;\n          const bits = glyph[col] ?? 0;\n          for (let row = 0; row < rows; row++) {\n            if ((bits >> (rows - 1 - row)) & 1) {\n              const x = logical * (dot + gap);\n              const y = row * (dot + gap);\n              ctx.fillStyle = \"#ff5c39\";\n              ctx.shadowColor = \"#ff5c39\";\n              ctx.shadowBlur = 6;\n              ctx.beginPath();\n              ctx.arc(x + dot / 2, y + dot / 2, dot / 2.4, 0, Math.PI * 2);\n              ctx.fill();\n            }\n          }\n        }\n      }\n      if (scroll > 0 && !reduced) raf = requestAnimationFrame(draw);\n    };\n\n    raf = requestAnimationFrame(draw);\n    return () => {\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, [children, scroll, reduced]);\n\n  return (\n    <canvas\n      ref={canvasRef}\n      className={cn(\"rounded-lg bg-[#140a06] p-3\", className)}\n      style={{ width: \"100%\", maxWidth: 480, imageRendering: \"auto\" }}\n      role=\"img\"\n      aria-label={children}\n    />\n  );\n}\n\nexport default LedDotMatrixText;\n",
+      "contentHash": "4829a59520db2077290366d564d3a35a121e7cc7059be498381fe50485db045f",
+      "sizeBytes": 4026
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { LedDotMatrixText } from \"./led-dot-matrix-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <LedDotMatrixText scroll={0}>OPEN 24/7</LedDotMatrixText>\n    </div>\n  );\n}\n",
+      "contentHash": "a4cf4c1c1a3f2705289851a36de19e30bbff14b499c8cdafc73ea41c72e4ecc1",
+      "sizeBytes": 268
+    }
+  ],
+  "tags": [
+    "led",
+    "dot-matrix",
+    "bitmap",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "bitmap-scroll",
+      "visualModel": "canvas-dot-font",
+      "motionModel": "pixel-scroll",
+      "layoutModel": "rail",
+      "semanticPurpose": "status-display"
+    }
+  },
+  "url": "https://openui.dev/r/led-dot-matrix-text.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Dense\nShape: Rounded\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Bitmap Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

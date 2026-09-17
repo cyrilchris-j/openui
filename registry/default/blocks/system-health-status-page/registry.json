@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-health-status-page",
+  "type": "registry:block",
+  "title": "System Health Status Page",
+  "description": "A complete service health status board displaying global edge availability, incident timeline, and uptime bars.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-health-status-page.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "status",
+    "health",
+    "uptime",
+    "services",
+    "incidents"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "status",
+    "fingerprint": {
+      "interactionModel": "system-status-indicator-monitoring",
+      "visualModel": "uptime-history-status-board",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "service-uptime-status"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

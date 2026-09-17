@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pagination-dot-bar",
+  "type": "registry:component",
+  "title": "Pagination Dot Bar",
+  "description": "Carousel pagination indicator with an elongated active capsule dot reflecting view index.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pagination-dot-bar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PaginationDotBarProps {\n  total?: number;\n  className?: string;\n}\n\nexport function PaginationDotBar({ total = 4, className }: PaginationDotBarProps) {\n  const [active, setActive] = useState(0);\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-2\", className)}>\n      {Array.from({ length: total }).map((_, i) => (\n        <button\n          key={i}\n          type=\"button\"\n          onClick={() => setActive(i)}\n          className={cn(\n            \"h-2 rounded-full transition-all duration-200\",\n            active === i ? \"w-6 bg-ink\" : \"w-2 bg-line hover:bg-ink/50\"\n          )}\n        />\n      ))}\n    </div>\n  );\n}\n\nexport default PaginationDotBar;\n",
+      "contentHash": "9c0d0d4032a3d9205e7464250fabbdcde72f4a11f87c6743fc58ebbe1688f936",
+      "sizeBytes": 767
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { PaginationDotBar } from \"./pagination-dot-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <PaginationDotBar />\n    </div>\n  );\n}\n",
+      "contentHash": "e5a47db436daa81c30b62fab1e145cb705aa8f3c2f0975f28e88db4b063888a9",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "pagination",
+    "dots",
+    "carousel",
+    "indicators",
+    "navigation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "pagination-dot-selection",
+      "visualModel": "beaded-dot-row",
+      "motionModel": "none",
+      "layoutModel": "horizontal-dot-chain",
+      "semanticPurpose": "carousel-dot-indicator"
+    }
+  },
+  "url": "https://openui.dev/r/pagination-dot-bar.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Pagination Dot Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

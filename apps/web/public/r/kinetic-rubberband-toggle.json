@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-rubberband-toggle",
+  "type": "registry:motion",
+  "title": "Kinetic Rubberband Toggle",
+  "description": "A switch control whose pill thumb elongates and squashes during travel, simulating high-elasticity rubber before snapping into rest shape.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-rubberband-toggle.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KineticRubberbandToggleProps {\n  defaultChecked?: boolean;\n  onChange?: (checked: boolean) => void;\n  className?: string;\n}\n\nexport function KineticRubberbandToggle({\n  defaultChecked = false,\n  onChange,\n  className,\n}: KineticRubberbandToggleProps) {\n  const [checked, setChecked] = useState(defaultChecked);\n  const [animating, setAnimating] = useState(false);\n\n  const toggle = () => {\n    setAnimating(true);\n    const next = !checked;\n    setChecked(next);\n    onChange?.(next);\n    setTimeout(() => setAnimating(false), 380);\n  };\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-3\", className)}>\n      <button\n        type=\"button\"\n        role=\"switch\"\n        aria-checked={checked}\n        onClick={toggle}\n        className={cn(\n          \"relative h-8 w-16 rounded-pill border p-1 transition-colors duration-300\",\n          checked ? \"border-ink bg-ink\" : \"border-line bg-surface\",\n        )}\n      >\n        <span\n          className={cn(\n            \"block h-6 rounded-pill transition-all duration-300 ease-spring\",\n            checked ? \"bg-paper\" : \"bg-ink\",\n            animating ? \"w-10\" : \"w-6\",\n            checked ? \"translate-x-8\" : \"translate-x-0\",\n          )}\n        />\n      </button>\n      <span className=\"font-mono text-xs text-graphite uppercase\">\n        {checked ? \"Online\" : \"Standby\"}\n      </span>\n    </div>\n  );\n}\n",
+      "contentHash": "4fd1ecde392bea8dbd0a1df81ccf51dd4ed950a67540aee8312091d2ba6dc6d9",
+      "sizeBytes": 1467
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { KineticRubberbandToggle } from \"./kinetic-rubberband-toggle\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-10\">\n      <KineticRubberbandToggle />\n    </div>\n  );\n}\n",
+      "contentHash": "45e94438b38a02e16ec3ea8323590636e6b0700fb8035c598c9031bd443ee24b",
+      "sizeBytes": 251
+    }
+  ],
+  "tags": [
+    "toggle",
+    "switch",
+    "rubberband",
+    "morph",
+    "physics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "click-drag-snap-toggle",
+      "visualModel": "elastic-elongating-capsule",
+      "motionModel": "viscoelastic-squash-stretch",
+      "layoutModel": "inline-pill-rail",
+      "semanticPurpose": "boolean-state-switch"
+    }
+  },
+  "url": "https://openui.dev/r/kinetic-rubberband-toggle.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Click Drag Snap Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

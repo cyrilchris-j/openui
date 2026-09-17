@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-node-graph-layout",
+  "type": "registry:layout",
+  "title": "Interactive Node Graph Layout",
+  "description": "Full-bleed spatial node graph workflow stage with top tool strip and floating canvas controls.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-node-graph-layout.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveNodeGraphLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  toolbar?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function InteractiveNodeGraphLayout({ toolbar, children, className, ...props }: InteractiveNodeGraphLayoutProps) {\n  return (\n    <div className={cn(\"relative w-full h-80 rounded-2xl border border-line bg-surface/20 overflow-hidden font-mono text-xs\", className)} {...props}>\n      {toolbar && <div className=\"absolute top-3 left-3 z-10 p-1.5 rounded-lg border border-line bg-paper/90 shadow-sm flex items-center gap-2\">{toolbar}</div>}\n      <div className=\"absolute inset-0 flex items-center justify-center -z-10\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "50051152727e049675a001b3b45278232c4aed8b74d4deffc5af3734b2f54bef",
+      "sizeBytes": 763
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { InteractiveNodeGraphLayout } from \"./interactive-node-graph-layout\";\n\nexport default function InteractiveNodeGraphLayoutDemo() {\n  return (\n    <InteractiveNodeGraphLayout toolbar={<span>+ Add Node | 🔍 100%</span>}>\n      <div className=\"text-ink/40\">Directed Acyclic Graph Canvas</div>\n    </InteractiveNodeGraphLayout>\n  );\n}\n",
+      "contentHash": "8e3f8e4977c7e419853e17ce676cc1922c485f49936cae03944ce60ccd0033ea",
+      "sizeBytes": 355
+    }
+  ],
+  "tags": [
+    "node",
+    "graph",
+    "workflow",
+    "canvas",
+    "spatial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "node-graph-canvas-stage",
+      "visualModel": "graph-stage-with-controls",
+      "motionModel": "none",
+      "layoutModel": "canvas-with-floating-controls",
+      "semanticPurpose": "visual-programming-stage"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-node-graph-layout.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Node Graph Canvas Stage: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

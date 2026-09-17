@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-velocity-blur-hero",
+  "type": "registry:motion",
+  "title": "Scroll Velocity Blur Hero",
+  "description": "A hero whose letters gain directional blur proportional to scroll speed and settle crisp at rest — using a stacked text-shadow trick instead of filter blur so it stays GPU-cheap even on long pages.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-velocity-blur-hero.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollVelocityBlurHeroProps {\n  children: string;\n  className?: string;\n}\n\nexport function ScrollVelocityBlurHero({ children, className }: ScrollVelocityBlurHeroProps) {\n  const ref = useRef<HTMLHeadingElement>(null);\n\n  useEffect(() => {\n    const node = ref.current;\n    if (!node) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    let lastY = window.scrollY;\n    let lastT = performance.now();\n    let raf: number | null = null;\n    let velocity = 0;\n\n    const tick = () => {\n      const now = performance.now();\n      const dy = window.scrollY - lastY;\n      const dt = Math.max(1, now - lastT);\n      lastY = window.scrollY;\n      lastT = now;\n      velocity += ((dy / dt) * 16 - velocity) * 0.2;\n\n      const intensity = Math.min(Math.abs(velocity) / 30, 1);\n      const direction = velocity >= 0 ? 1 : -1;\n      const spread = intensity * 6;\n      // Directional ghosting via stacked shadows — no filter, no repaint storm.\n      node.style.textShadow =\n        spread > 0.2\n          ? Array.from({ length: 5 }, (_, index) => {\n              const offset = (index + 1) * spread * 0.6 * direction;\n              return `0 ${offset.toFixed(1)}px 2px rgba(28,28,30,${(0.25 - index * 0.05).toFixed(2)})`;\n            }).join(\", \")\n          : \"none\";\n\n      raf = requestAnimationFrame(tick);\n    };\n    raf = requestAnimationFrame(tick);\n    return () => {\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, []);\n\n  return (\n    <h1 ref={ref} className={cn(\"font-display\", className)}>\n      {children}\n    </h1>\n  );\n}\n\nexport default ScrollVelocityBlurHero;\n",
+      "contentHash": "bacd167d82089e8b3b3f3655ffb285f8ea31449a560dfff21c646688ca459dbe",
+      "sizeBytes": 1730
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollVelocityBlurHero } from \"./scroll-velocity-blur-hero\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[80vh] bg-paper p-10\">\n      <ScrollVelocityBlurHero className=\"text-step-6 text-ink\">Motion has a direction</ScrollVelocityBlurHero>\n      <p className=\"mt-6 max-w-prose text-ink/70\">Scroll fast — the headline ghosts along your velocity. Stop — it snaps crisp.</p>\n      <div className=\"h-[60vh]\" />\n    </div>\n  );\n}\n",
+      "contentHash": "52173369d268541296e78a6f561f83708c399843d3591b51ea0da84478c96a28",
+      "sizeBytes": 464
+    }
+  ],
+  "tags": [
+    "blur",
+    "hero",
+    "velocity",
+    "shadow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "shadow-blur-text",
+      "motionModel": "speed-coupled-shadow",
+      "layoutModel": "block",
+      "semanticPurpose": "hero-feedback"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-velocity-blur-hero.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: Kinetic\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- Scroll Velocity Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

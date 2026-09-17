@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "paper-origami-plane",
+  "type": "registry:background",
+  "title": "Paper Origami Plane",
+  "description": "Diagonal isometric tessellated paper dart planes soaring across a minimalist backdrop.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "paper-origami-plane.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface PaperOrigamiPlaneProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function PaperOrigamiPlane({ className, children, ...props }: PaperOrigamiPlaneProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"plane-pat\" width=\"60\" height=\"60\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"10,50 30,10 50,50 30,40\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"30\" y1=\"10\" x2=\"30\" y2=\"40\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#plane-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "c6a16d85253cd56f2285209b2ea6f0e4b41f34e7ea83bece25d6da4ca9e58c1a",
+      "sizeBytes": 972
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { PaperOrigamiPlane } from \"./paper-origami-plane\";\n\nexport default function PaperOrigamiPlaneDemo() {\n  return (\n    <PaperOrigamiPlane className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Origami Airplanes</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Ascending paper dart flight squadron.</p>\n      </div>\n    </PaperOrigamiPlane>\n  );\n}\n",
+      "contentHash": "9624c3974df12827d7fd4c733c3be0664c98ef6b655b0da623d7ee961ad829ae",
+      "sizeBytes": 570
+    }
+  ],
+  "tags": [
+    "origami",
+    "airplane",
+    "paper",
+    "flight",
+    "minimal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-origami-fleet",
+      "visualModel": "tessellated-paper-airplanes",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "paper-airplane-texture"
+    }
+  },
+  "url": "https://openui.dev/r/paper-origami-plane.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Origami Fleet: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

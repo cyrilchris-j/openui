@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-magazine-grid",
+  "type": "registry:layout",
+  "title": "Editorial Magazine Grid",
+  "description": "Swiss editorial typography grid with hero lede column, multi-column prose flow, and pull-quote sidebars.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-magazine-grid.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "editorial",
+    "magazine",
+    "swiss",
+    "prose",
+    "typography"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "passive-magazine-columns",
+      "visualModel": "asymmetric-editorial-columns",
+      "motionModel": "none",
+      "layoutModel": "asymmetric-grid-flow",
+      "semanticPurpose": "longform-editorial-reading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

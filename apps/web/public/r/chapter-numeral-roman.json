@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chapter-numeral-roman",
+  "type": "registry:text",
+  "title": "Chapter Numeral Roman",
+  "description": "Chapter openers with an oversized roman numeral set behind the title as a ghost layer — the numeral clips through the heading on scroll using a background-attached gradient, so text passes over it like a watermark.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chapter-numeral-roman.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ChapterNumeralRomanProps {\n  /** Chapter number, converted to roman numerals. */\n  chapter: number;\n  title: string;\n  className?: string;\n}\n\nfunction roman(num: number): string {\n  const table: Array<[number, string]> = [\n    [1000, \"M\"], [900, \"CM\"], [500, \"D\"], [400, \"CD\"],\n    [100, \"C\"], [90, \"XC\"], [50, \"L\"], [40, \"XL\"],\n    [10, \"X\"], [9, \"IX\"], [5, \"V\"], [4, \"IV\"], [1, \"I\"],\n  ];\n  let value = num;\n  let out = \"\";\n  for (const [amount, glyph] of table) {\n    while (value >= amount) {\n      out += glyph;\n      value -= amount;\n    }\n  }\n  return out;\n}\n\nexport function ChapterNumeralRoman({ chapter, title, className }: ChapterNumeralRomanProps) {\n  const numeral = roman(chapter);\n\n  return (\n    <header className={cn(\"relative overflow-hidden py-14\", className)}>\n      <span\n        aria-hidden\n        className=\"pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-display leading-none text-ink/[0.06]\"\n        style={{ fontSize: \"clamp(8rem, 22vw, 16rem)\" }}\n      >\n        {numeral}\n      </span>\n      <div className=\"relative z-10 text-center\">\n        <p className=\"font-mono text-xs uppercase tracking-[0.3em] text-accent\">Chapter {chapter}</p>\n        <h2 className=\"mt-3 font-display text-step-4 text-ink\">{title}</h2>\n      </div>\n    </header>\n  );\n}\n\nexport default ChapterNumeralRoman;\n",
+      "contentHash": "69882cebc50feb2babd26ca131b37961b2aba0b1d3ed82880f09df1667311cf0",
+      "sizeBytes": 1427
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ChapterNumeralRoman } from \"./chapter-numeral-roman\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[18rem] bg-paper\">\n      <ChapterNumeralRoman chapter={7} title=\"The Registry Chapter\" />\n    </div>\n  );\n}\n",
+      "contentHash": "4fc5fd292a18c99165df22d8043131551043cd9fbfae75bb5348034b8ccd68c7",
+      "sizeBytes": 242
+    }
+  ],
+  "tags": [
+    "roman",
+    "numeral",
+    "ghost",
+    "chapter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "scroll-clip",
+      "visualModel": "ghost-numeral-underlay",
+      "motionModel": "parallax-clip",
+      "layoutModel": "layered",
+      "semanticPurpose": "chapter-opener"
+    }
+  },
+  "url": "https://openui.dev/r/chapter-numeral-roman.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: Monochrome\n\n## Rules\n\n- Scroll Clip: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

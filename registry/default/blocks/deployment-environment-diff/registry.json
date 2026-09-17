@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "deployment-environment-diff",
+  "type": "registry:block",
+  "title": "Deployment Environment Diff",
+  "description": "A side-by-side environment inspector comparing staging vs production configuration variables.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "deployment-environment-diff.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "env",
+    "diff",
+    "devops",
+    "staging",
+    "production"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "env-variable-diff-comparison",
+      "visualModel": "side-by-side-config-diff",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "environment-variable-comparison"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

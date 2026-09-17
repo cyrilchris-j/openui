@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compact-inspector-pane",
+  "type": "registry:layout",
+  "title": "Compact Inspector Pane",
+  "description": "CAD/3D modeling application layout: scene tree on left, canvas in center, and property inspector on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compact-inspector-pane.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CompactInspectorPaneProps extends React.HTMLAttributes<HTMLDivElement> {\n  sceneTree?: React.ReactNode;\n  viewport?: React.ReactNode;\n  inspector?: React.ReactNode;\n}\n\nexport function CompactInspectorPane({\n  sceneTree,\n  viewport,\n  inspector,\n  className,\n  ...props\n}: CompactInspectorPaneProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 min-h-[360px] w-full border border-line rounded-xl overflow-hidden font-mono text-xs\", className)} {...props}>\n      <div className=\"md:col-span-3 border-r border-line p-3 bg-surface/30 hidden md:block\">{sceneTree}</div>\n      <div className=\"md:col-span-6 p-4 flex items-center justify-center bg-paper\">{viewport}</div>\n      <div className=\"md:col-span-3 border-l border-line p-3 bg-surface/30 hidden lg:block\">{inspector}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "542ace5a3e0a20b7d3f3aec2d8dd1c2b17bc772a9e1af459968e06c5ffdf78dc",
+      "sizeBytes": 882
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CompactInspectorPane } from \"./compact-inspector-pane\";\n\nexport default function CompactInspectorPaneDemo() {\n  return (\n    <CompactInspectorPane\n      sceneTree={<div>Root Node<br />└ Camera<br />└ Mesh #1</div>}\n      viewport={<div className=\"text-ink/40\">3D Interactive Viewport</div>}\n      inspector={<div>Transform<br />X: 0.00<br />Y: 1.50<br />Z: -4.20</div>}\n    />\n  );\n}\n",
+      "contentHash": "ffac8116c24b38f1ef90e09edcc41d34a6c2c1a790b5eaf35b5e0d958f61a721",
+      "sizeBytes": 412
+    }
+  ],
+  "tags": [
+    "inspector",
+    "cad",
+    "3d",
+    "tools",
+    "properties"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "cad-three-pane-inspector",
+      "visualModel": "scene-viewport-property-triptych",
+      "motionModel": "none",
+      "layoutModel": "three-column-workbench",
+      "semanticPurpose": "3d-editor-workbench"
+    }
+  },
+  "url": "https://openui.dev/r/compact-inspector-pane.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Cad Three Pane Inspector: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

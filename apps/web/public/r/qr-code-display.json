@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "qr-code-display",
+  "type": "registry:component",
+  "title": "QR Code Display",
+  "description": "Scanable matrix card with copyable URL link, simulated SVG matrix pattern, and download action button.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "qr-code-display.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { QrCode, Copy, Check } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function QrCodeDisplay({ className }: { className?: string }) {\n  const [copied, setCopied] = useState(false);\n  const targetUrl = \"https://openui.design/r/qr-code-display\";\n\n  const copy = () => {\n    navigator.clipboard.writeText(targetUrl);\n    setCopied(true);\n    setTimeout(() => setCopied(false), 1500);\n  };\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-xs w-full flex flex-col items-center font-sans shadow-sm\", className)}>\n      <div className=\"p-3 bg-white rounded-lg border border-line/60 shadow-xs mb-3\">\n        <div className=\"w-32 h-32 grid grid-cols-6 gap-1 bg-black p-2 rounded\">\n          {Array.from({ length: 36 }).map((_, i) => (\n            <div\n              key={i}\n              className={cn(\n                \"rounded-[1px]\",\n                (i % 2 === 0 || i % 5 === 0) && i !== 14 ? \"bg-white\" : \"bg-black\"\n              )}\n            />\n          ))}\n        </div>\n      </div>\n\n      <div className=\"text-xs font-semibold text-ink mb-1\">Scan with Camera</div>\n      <div className=\"text-[11px] font-mono text-ink/50 mb-3 text-center truncate max-w-[200px]\">{targetUrl}</div>\n\n      <button\n        type=\"button\"\n        onClick={copy}\n        className=\"w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg border border-line bg-surface hover:bg-line/40 text-xs font-mono text-ink transition-colors\"\n      >\n        {copied ? <Check className=\"w-3.5 h-3.5 text-emerald-500\" /> : <Copy className=\"w-3.5 h-3.5\" />}\n        <span>{copied ? \"Link Copied!\" : \"Copy URL\"}</span>\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "71fdffca07adf9b1d8d6eae5cd0d0d965ffa0219eeda8e8d78133e22d2b49142",
+      "sizeBytes": 1733
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { QrCodeDisplay } from \"./qr-code-display\";\n\nexport default function QrCodeDisplayDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[260px]\">\n      <QrCodeDisplay />\n    </div>\n  );\n}\n",
+      "contentHash": "9362b6a8836618a7e22f870553f03c9b2734100b90057ee870794bb2d9d06cb3",
+      "sizeBytes": 253
+    }
+  ],
+  "tags": [
+    "qr",
+    "code",
+    "share",
+    "mobile",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "url-qr-presentation",
+      "visualModel": "matrix-barcode-frame",
+      "motionModel": "none",
+      "layoutModel": "card-centered-matrix",
+      "semanticPurpose": "quick-mobile-handoff"
+    }
+  },
+  "url": "https://openui.dev/r/qr-code-display.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Url Qr Presentation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

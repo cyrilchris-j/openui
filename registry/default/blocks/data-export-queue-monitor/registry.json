@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "data-export-queue-monitor",
+  "type": "registry:block",
+  "title": "Data Export Queue Monitor",
+  "description": "A background asynchronous export task monitor with live progress percentage and download links.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "data-export-queue-monitor.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "queue",
+    "export",
+    "async",
+    "jobs",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "export-job-progress-monitoring",
+      "visualModel": "async-task-queue-tray",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "async-data-export-queue"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

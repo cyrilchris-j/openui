@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-feature-comparison",
+  "type": "registry:section",
+  "title": "Interactive Feature Comparison",
+  "description": "A comprehensive side-by-side comparison table contrasting OpenUI with legacy UI libraries across specs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-feature-comparison.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ComparisonRow {\n  feature: string;\n  openui: string | boolean;\n  legacy: string | boolean;\n}\n\nexport interface InteractiveFeatureComparisonProps extends React.HTMLAttributes<HTMLElement> {\n  rows?: ComparisonRow[];\n}\n\nconst DEFAULT_ROWS: ComparisonRow[] = [\n  { feature: \"Bundle Cost\", openui: \"Zero runtime dependencies\", legacy: \"250kb+ bundled node_modules\" },\n  { feature: \"Code Ownership\", openui: \"Full local copy in your src/\", legacy: \"Locked in node_modules\" },\n  { feature: \"Type Safety\", openui: \"Strict TypeScript zero 'any'\", legacy: \"Loosely typed or any casts\" },\n  { feature: \"Design Invariants\", openui: \"Machine-verifiable Design DNA\", legacy: \"Ad-hoc inline styles\" },\n  { feature: \"Next.js 15+ Native\", openui: \"Server Actions & React 19 Ready\", legacy: \"Client-only wrappers required\" },\n];\n\nexport function InteractiveFeatureComparison({\n  rows = DEFAULT_ROWS,\n  className,\n  ...props\n}: InteractiveFeatureComparisonProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100\">\n          Why architects choose OpenUI\n        </h2>\n        <p className=\"text-xs text-neutral-500 mt-2\">\n          Compare our decentralized registry design against traditional centralized npm UI libraries.\n        </p>\n      </div>\n\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-950\">\n        <div className=\"grid grid-cols-12 bg-neutral-100 dark:bg-neutral-900 p-4 font-mono text-xs font-bold border-b border-neutral-200 dark:border-neutral-800\">\n          <div className=\"col-span-4 text-neutral-500 uppercase\">Capability</div>\n          <div className=\"col-span-4 text-emerald-600 dark:text-emerald-400\">OpenUI Registry</div>\n          <div className=\"col-span-4 text-neutral-400\">Legacy UI Libraries</div>\n        </div>\n\n        <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800 text-xs\">\n          {rows.map((row, idx) => (\n            <div key={idx} className=\"grid grid-cols-12 p-4 items-center\">\n              <div className=\"col-span-4 font-medium text-neutral-900 dark:text-neutral-100\">\n                {row.feature}\n              </div>\n              <div className=\"col-span-4 font-semibold text-emerald-600 dark:text-emerald-400\">\n                {typeof row.openui === \"boolean\" ? (row.openui ? \"✓ Yes\" : \"✕ No\") : row.openui}\n              </div>\n              <div className=\"col-span-4 text-neutral-500\">\n                {typeof row.legacy === \"boolean\" ? (row.legacy ? \"✓ Yes\" : \"✕ No\") : row.legacy}\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "47451dce43973897b4ef5ec0e9c74d85eca529383027f24b3bcc2c9598d0bd34",
+      "sizeBytes": 2942
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveFeatureComparison } from \"./interactive-feature-comparison\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <InteractiveFeatureComparison />\n    </div>\n  );\n}\n",
+      "contentHash": "bb9ab34a6de47fed52f6455f35519b7807e09c141a35f258a439371197e7a405",
+      "sizeBytes": 315
+    }
+  ],
+  "tags": [
+    "comparison",
+    "features",
+    "versus",
+    "specs",
+    "table"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "comparison",
+    "fingerprint": {
+      "interactionModel": "interactive-feature-comparison-interaction",
+      "visualModel": "interactive-feature-comparison-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-feature-comparison-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-feature-comparison.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Interactive Feature Comparison Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

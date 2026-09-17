@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-image-zoom-crosshair",
+  "type": "registry:interaction",
+  "title": "Hover Image Zoom Crosshair",
+  "description": "An inspection preview optic that tracks cursor coordinate pixels and displays calibrated crosshair graticules.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-image-zoom-crosshair.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "zoom",
+    "crosshair",
+    "inspection",
+    "hover",
+    "optic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "coordinate-crosshair-tracking",
+      "visualModel": "calibrated-reticle-graticule",
+      "motionModel": "orthogonal-line-translation",
+      "layoutModel": "bounded-crosshair-canvas",
+      "semanticPurpose": "pixel-inspection-crosshair"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

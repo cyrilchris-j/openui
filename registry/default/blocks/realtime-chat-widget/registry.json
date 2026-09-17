@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "realtime-chat-widget",
+  "type": "registry:block",
+  "title": "Realtime Chat Widget",
+  "description": "A floating customer support chat widget with interactive conversation history and agent availability.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "realtime-chat-widget.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "chat",
+    "support",
+    "widget",
+    "realtime",
+    "messaging"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "messaging",
+    "fingerprint": {
+      "interactionModel": "chat-modal-message-input",
+      "visualModel": "floating-support-chat-widget",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-support-chat"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

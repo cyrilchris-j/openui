@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radial-compass-rose",
+  "type": "registry:background",
+  "title": "Radial Compass Rose",
+  "description": "Nautical mariner 16-point navigation star compass rose with degree graduation ticks.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radial-compass-rose.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface RadialCompassRoseProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function RadialCompassRose({ className, children, ...props }: RadialCompassRoseProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 -z-10\">\n        <svg className=\"w-[500px] h-[500px]\" viewBox=\"0 0 200 200\">\n          <circle cx=\"100\" cy=\"100\" r=\"90\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          <circle cx=\"100\" cy=\"100\" r=\"82\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"0.5\" strokeDasharray=\"1 3\" />\n          <polygon points=\"100,10 106,90 100,85 94,90\" fill=\"currentColor\" />\n          <polygon points=\"100,190 106,110 100,115 94,110\" fill=\"currentColor\" />\n          <polygon points=\"10,100 90,106 85,100 90,94\" fill=\"currentColor\" />\n          <polygon points=\"190,100 110,106 115,100 110,94\" fill=\"currentColor\" />\n        </svg>\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "3f39ae47a13933ec733fd7a27a2694ac4f0fe268002d0066906ea708d547f77c",
+      "sizeBytes": 1170
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { RadialCompassRose } from \"./radial-compass-rose\";\n\nexport default function RadialCompassRoseDemo() {\n  return (\n    <RadialCompassRose className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-ink\">Nautical Compass</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Classic marine cartographic navigation star.</p>\n      </div>\n    </RadialCompassRose>\n  );\n}\n",
+      "contentHash": "5ce7afbd8b50a3482935ceab4d30eae1278c8ea6c9563b4215367ddf3e4662b0",
+      "sizeBytes": 577
+    }
+  ],
+  "tags": [
+    "compass",
+    "nautical",
+    "navigation",
+    "mariner",
+    "star"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-compass-rose",
+      "visualModel": "sixteen-point-nautical-star",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "nautical-cartography-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/radial-compass-rose.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Passive Compass Rose: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

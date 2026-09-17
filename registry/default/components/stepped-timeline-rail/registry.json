@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepped-timeline-rail",
+  "type": "registry:component",
+  "title": "Stepped Timeline Rail",
+  "description": "A vertical progress timeline connecting milestone nodes with status descriptions.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepped-timeline-rail.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "timeline",
+    "rail",
+    "milestones",
+    "vertical",
+    "progress"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "vertical-timeline-inspection",
+      "visualModel": "connected-milestone-rail",
+      "motionModel": "none",
+      "layoutModel": "vertical-rail-stepper",
+      "semanticPurpose": "vertical-timeline-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

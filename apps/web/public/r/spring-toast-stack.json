@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-toast-stack",
+  "type": "registry:motion",
+  "title": "Spring Toast Stack",
+  "description": "A cascade of alert cards stacked behind one another that eject smoothly when dismissed using hookean spring dynamics.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-toast-stack.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SpringToastStackProps {\n  className?: string;\n}\n\nexport function SpringToastStack({ className }: SpringToastStackProps) {\n  const [toasts, setToasts] = useState([\n    { id: 1, title: \"Deployment successful\", time: \"just now\" },\n    { id: 2, title: \"Registry cache cleared\", time: \"2m ago\" },\n    { id: 3, title: \"New access key provisioned\", time: \"5m ago\" },\n  ]);\n\n  const dismiss = (id: number) => {\n    setToasts((prev) => prev.filter((t) => t.id !== id));\n  };\n\n  return (\n    <div className={cn(\"relative h-64 w-full max-w-sm rounded-xl border border-line bg-paper p-6\", className)}>\n      <div className=\"relative h-full flex flex-col justify-end\">\n        {toasts.map((toast, idx) => {\n          const revIdx = toasts.length - 1 - idx;\n          return (\n            <div\n              key={toast.id}\n              className=\"absolute inset-x-0 bottom-0 flex items-center justify-between rounded-xl border border-line bg-paper p-4 shadow-lg transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]\"\n              style={{\n                transform: `translateY(-${revIdx * 14}px) scale(${1 - revIdx * 0.05})`,\n                zIndex: idx,\n              }}\n            >\n              <div>\n                <p className=\"text-xs font-semibold text-ink\">{toast.title}</p>\n                <p className=\"font-mono text-[10px] text-ink/50\">{toast.time}</p>\n              </div>\n              <button\n                type=\"button\"\n                onClick={() => dismiss(toast.id)}\n                className=\"font-mono text-xs text-ink/40 hover:text-ink\"\n              >\n                ✕\n              </button>\n            </div>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n\nexport default SpringToastStack;\n",
+      "contentHash": "21a8a78acd5f045e8fb02eb4bd347deab4009678b8ba12b814b4b1d121b4f3ca",
+      "sizeBytes": 1832
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SpringToastStack } from \"./spring-toast-stack\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <SpringToastStack />\n    </div>\n  );\n}\n",
+      "contentHash": "6bf5058c582d62a6fa51d4a08629708baca1332d944302b97bf0d5d67660ad3e",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "toast",
+    "notifications",
+    "spring",
+    "stack",
+    "eject"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "notifications",
+    "fingerprint": {
+      "interactionModel": "dismiss-eject-card",
+      "visualModel": "cascading-deck-toasts",
+      "motionModel": "spring-ejection-flyaway",
+      "layoutModel": "bottom-right-anchor-deck",
+      "semanticPurpose": "stacked-alert-feed"
+    }
+  },
+  "url": "https://openui.dev/r/spring-toast-stack.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Dismiss Eject Card: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

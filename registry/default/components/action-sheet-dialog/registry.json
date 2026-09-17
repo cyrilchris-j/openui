@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "action-sheet-dialog",
+  "type": "registry:component",
+  "title": "Action Sheet Dialog",
+  "description": "A bottom action sheet confirmation overlay displaying a list of options with a separate cancel button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "action-sheet-dialog.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "action-sheet",
+    "dialog",
+    "modal",
+    "options",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "overlays",
+    "fingerprint": {
+      "interactionModel": "action-sheet-modal-selection",
+      "visualModel": "docked-action-options",
+      "motionModel": "none",
+      "layoutModel": "centered-action-sheet",
+      "semanticPurpose": "confirmation-action-sheet"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

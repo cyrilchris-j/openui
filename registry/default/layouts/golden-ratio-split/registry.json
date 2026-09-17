@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "golden-ratio-split",
+  "type": "registry:layout",
+  "title": "Golden Ratio Split",
+  "description": "Proportional layout based on the classic 1.618 golden ratio for natural visual balance.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "golden-ratio-split.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "golden-ratio",
+    "fibonacci",
+    "split",
+    "editorial",
+    "balance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "golden-ratio-balance",
+      "visualModel": "phi-proportional-split",
+      "motionModel": "none",
+      "layoutModel": "phi-two-column-split",
+      "semanticPurpose": "harmonic-golden-split"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

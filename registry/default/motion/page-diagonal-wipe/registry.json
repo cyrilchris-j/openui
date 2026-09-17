@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "page-diagonal-wipe",
+  "type": "registry:motion",
+  "title": "Page Diagonal Wipe",
+  "description": "A 45-degree angled clip-path diagonal wipe sweeping across the screen boundary on section change.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "page-diagonal-wipe.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "wipe",
+    "diagonal",
+    "transition",
+    "clip-path",
+    "page"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "angled-mask-reveal",
+      "visualModel": "diagonal-45deg-shutter",
+      "motionModel": "polygon-clip-translation",
+      "layoutModel": "full-viewport-mask",
+      "semanticPurpose": "diagonal-section-shutter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

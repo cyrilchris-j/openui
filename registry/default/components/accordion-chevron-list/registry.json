@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "accordion-chevron-list",
+  "type": "registry:component",
+  "title": "Accordion Chevron List",
+  "description": "A vertical list of stacked question and answer disclosures with animated chevron indicators.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "accordion-chevron-list.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "accordion",
+    "faq",
+    "disclosure",
+    "chevron",
+    "list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "accordion-chevron-toggle",
+      "visualModel": "stacked-ruled-disclosures",
+      "motionModel": "stepwise-content-expansion",
+      "layoutModel": "vertical-accordion-flow",
+      "semanticPurpose": "faq-disclosure-stack"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bayer-matrix-dither",
+  "type": "registry:background",
+  "title": "Bayer Matrix Dither",
+  "description": "Ordered 4x4 Bayer dithering matrix pattern simulating classic Mac 1-bit bitmap graphics.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bayer-matrix-dither.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BayerMatrixDitherProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function BayerMatrixDither({ className, children, ...props }: BayerMatrixDitherProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-10 -z-10\"\n        style={{\n          backgroundImage: \"radial-gradient(currentColor 1px, transparent 1px), radial-gradient(currentColor 1px, transparent 1px)\",\n          backgroundSize: \"8px 8px\",\n          backgroundPosition: \"0 0, 4px 4px\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "d9b803fcb1a830cf5f35a9517af238b92bc74c215c10477ea66929de8b3c54c9",
+      "sizeBytes": 765
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { BayerMatrixDither } from \"./bayer-matrix-dither\";\n\nexport default function BayerMatrixDitherDemo() {\n  return (\n    <BayerMatrixDither className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Bayer Ordered Dither</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Classic 1-bit threshold quantization grid.</p>\n      </div>\n    </BayerMatrixDither>\n  );\n}\n",
+      "contentHash": "ed67eb383fdd62986c438e712f4c75b264de240b9946752d802a5c90cd7e225d",
+      "sizeBytes": 578
+    }
+  ],
+  "tags": [
+    "bayer",
+    "dither",
+    "bitmap",
+    "retro",
+    "mac"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-bayer-dither",
+      "visualModel": "ordered-threshold-matrix",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "one-bit-dithering-mask"
+    }
+  },
+  "url": "https://openui.dev/r/bayer-matrix-dither.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Passive Bayer Dither: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

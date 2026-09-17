@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-testimonial-spotlight",
+  "type": "registry:section",
+  "title": "Customer Testimonial Spotlight",
+  "description": "A focused executive testimonial spotlight highlighting quote, corporate logo, and verified impact metrics.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-testimonial-spotlight.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "testimonial",
+    "spotlight",
+    "quote",
+    "social-proof",
+    "customer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "testimonials",
+    "fingerprint": {
+      "interactionModel": "customer-testimonial-spotlight-interaction",
+      "visualModel": "customer-testimonial-spotlight-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-testimonial-spotlight-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth",
+      "shapeLanguage": "soft",
+      "density": "airy",
+      "genre": "editorial"
+    }
+  }
+}

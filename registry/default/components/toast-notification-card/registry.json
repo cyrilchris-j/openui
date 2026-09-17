@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toast-notification-card",
+  "type": "registry:component",
+  "title": "Toast Notification Card",
+  "description": "A self-contained alert toast banner displaying action state, timestamp, and instant dismiss button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toast-notification-card.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "toast",
+    "notification",
+    "alert",
+    "feedback",
+    "card"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "dismissible-toast-alert",
+      "visualModel": "pill-toast-banner",
+      "motionModel": "none",
+      "layoutModel": "compact-toast-card",
+      "semanticPurpose": "transient-toast-notice"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

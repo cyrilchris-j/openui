@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "soundwave-radial-pulse",
+  "type": "registry:background",
+  "title": "Soundwave Radial Pulse",
+  "description": "Circular audio sonar pulses emanating radially outward like acoustic underwater echolocation.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "soundwave-radial-pulse.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "sonar",
+    "pulse",
+    "acoustic",
+    "echolocation",
+    "soundwave"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-sonar-pulse",
+      "visualModel": "pulsing-echolocation-rings",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "sonar-pulse-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

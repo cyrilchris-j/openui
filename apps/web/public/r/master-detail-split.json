@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "master-detail-split",
+  "type": "registry:layout",
+  "title": "Master Detail Split",
+  "description": "Side-by-side master/detail split with entity list on left and selected record preview on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "master-detail-split.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MasterDetailSplitProps extends React.HTMLAttributes<HTMLDivElement> {\n  master?: React.ReactNode;\n  detail?: React.ReactNode;\n}\n\nexport function MasterDetailSplit({ master, detail, className, ...props }: MasterDetailSplitProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 min-h-[360px] w-full border border-line rounded-xl overflow-hidden font-sans\", className)} {...props}>\n      <div className=\"md:col-span-4 border-b md:border-b-0 md:border-r border-line p-3 bg-surface/20\">{master}</div>\n      <div className=\"md:col-span-8 p-6 bg-paper\">{detail}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "9648328837c730281d5056c9d8845fbeae3f32fbb518102ae4747cd935fae09d",
+      "sizeBytes": 665
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MasterDetailSplit } from \"./master-detail-split\";\n\nexport default function MasterDetailSplitDemo() {\n  return (\n    <MasterDetailSplit\n      master={\n        <div className=\"space-y-1 text-xs\">\n          <div className=\"p-2 rounded bg-accent/15 text-accent font-semibold\">Incident #1042 — Auth Spike</div>\n          <div className=\"p-2 rounded text-ink/70 hover:bg-surface\">Incident #1041 — DB Replica Lag</div>\n          <div className=\"p-2 rounded text-ink/70 hover:bg-surface\">Incident #1040 — Edge Cache Miss</div>\n        </div>\n      }\n      detail={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink\">Incident #1042: Authentication Anomaly</h3>\n          <p className=\"text-xs text-ink/60 mt-1\">Severity: High • Region: US-East-1 • Resolved</p>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "0e8b365167f121359e540179760e96c01140021b5a1e46541d29808ca5d7fe89",
+      "sizeBytes": 839
+    }
+  ],
+  "tags": [
+    "master-detail",
+    "split",
+    "records",
+    "list",
+    "preview"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "master-detail-list-inspection",
+      "visualModel": "dual-pane-record-preview",
+      "motionModel": "none",
+      "layoutModel": "two-column-split",
+      "semanticPurpose": "record-detail-workbench"
+    }
+  },
+  "url": "https://openui.dev/r/master-detail-split.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Master Detail List Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "halftone-diamond-mesh",
+  "type": "registry:background",
+  "title": "Halftone Diamond Mesh",
+  "description": "Rhombus diamond-shaped screen printing halftone dots scaled across a diagonal angle matrix.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "halftone-diamond-mesh.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HalftoneDiamondMeshProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function HalftoneDiamondMesh({ className, children, ...props }: HalftoneDiamondMeshProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"dia-half-pat\" width=\"24\" height=\"24\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"12,6 18,12 12,18 6,12\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#dia-half-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "e54f8cccc7f25dba454ee482f83798bc8eaf8b7c2575a14ee2293b5a17cd4653",
+      "sizeBytes": 861
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { HalftoneDiamondMesh } from \"./halftone-diamond-mesh\";\n\nexport default function HalftoneDiamondMeshDemo() {\n  return (\n    <HalftoneDiamondMesh className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Diamond Halftone</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Rhomboid halftone screening matrix.</p>\n      </div>\n    </HalftoneDiamondMesh>\n  );\n}\n",
+      "contentHash": "937a7d6ba42f97ff2e136520566460d6fbbfd4b1398b98e5124fbbf09f69b5ea",
+      "sizeBytes": 577
+    }
+  ],
+  "tags": [
+    "halftone",
+    "diamond",
+    "rhombus",
+    "print",
+    "screen"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-diamond-halftone",
+      "visualModel": "rhomboid-raster-dots",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "diamond-halftone-texture"
+    }
+  },
+  "url": "https://openui.dev/r/halftone-diamond-mesh.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Condensed\nColor: High Contrast\n\n## Rules\n\n- Passive Diamond Halftone: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

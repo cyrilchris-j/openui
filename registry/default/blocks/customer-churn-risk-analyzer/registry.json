@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-churn-risk-analyzer",
+  "type": "registry:block",
+  "title": "Customer Churn Risk Analyzer",
+  "description": "An AI telemetry analyzer tracking client engagement decline, health score metrics, and retention triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-churn-risk-analyzer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "churn",
+    "retention",
+    "crm",
+    "health-score",
+    "analytics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "crm",
+    "fingerprint": {
+      "interactionModel": "churn-risk-scoring-drilldown",
+      "visualModel": "predictive-customer-risk-gauge",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-retention-scoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

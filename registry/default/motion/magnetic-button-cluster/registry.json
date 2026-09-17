@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-button-cluster",
+  "type": "registry:motion",
+  "title": "Magnetic Button Cluster",
+  "description": "An array of navigation pills that displace collectively toward cursor proximity with inverted spring tension.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-button-cluster.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "magnetic",
+    "buttons",
+    "cluster",
+    "spring",
+    "cursor"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "cursor",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-displacement",
+      "visualModel": "constellation-pill-cluster",
+      "motionModel": "inverse-square-displacement",
+      "layoutModel": "centered-pill-group",
+      "semanticPurpose": "interactive-cta-cluster"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "metaball-lava-lamp",
+  "type": "registry:background",
+  "title": "Metaball Lava Lamp",
+  "description": "Rising and falling viscous wax liquid metaball blobs floating smoothly inside a heated column.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "metaball-lava-lamp.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MetaballLavaLampProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MetaballLavaLamp({ className, children, ...props }: MetaballLavaLampProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    const blobs = Array.from({ length: 8 }, () => ({\n      x: Math.random() * w,\n      y: Math.random() * h,\n      r: Math.random() * 40 + 30,\n      vy: (Math.random() - 0.5) * 0.8,\n    }));\n\n    const render = () => {\n      ctx.fillStyle = \"#090d16\";\n      ctx.fillRect(0, 0, w, h);\n\n      for (const b of blobs) {\n        b.y += b.vy;\n        if (b.y < -50) b.y = h + 50;\n        if (b.y > h + 50) b.y = -50;\n\n        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);\n        grad.addColorStop(0, \"rgba(244, 63, 94, 0.4)\");\n        grad.addColorStop(1, \"rgba(244, 63, 94, 0)\");\n        ctx.fillStyle = grad;\n        ctx.beginPath();\n        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);\n        ctx.fill();\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "64a9a2d1178892bfa6c401d8153fa52ae2f807458ed7ba1aec3ee9095528069d",
+      "sizeBytes": 1814
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { MetaballLavaLamp } from \"./metaball-lava-lamp\";\n\nexport default function MetaballLavaLampDemo() {\n  return (\n    <MetaballLavaLamp className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-rose-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-rose-400\">Thermal Lava Lamp</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-sans\">Buoyant wax convective liquid metaball flow.</p>\n      </div>\n    </MetaballLavaLamp>\n  );\n}\n",
+      "contentHash": "35bef56467ff602f5ba613e180db1636780f1a754a73fdd060228e2febf1c31e",
+      "sizeBytes": 586
+    }
+  ],
+  "tags": [
+    "lava",
+    "metaball",
+    "canvas",
+    "wax",
+    "fluid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-lava",
+      "visualModel": "buoyant-wax-droplets",
+      "motionModel": "convective-thermal-buoyancy",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "lava-lamp-ambiance"
+    }
+  },
+  "url": "https://openui.dev/r/metaball-lava-lamp.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Kinetic\nTypography: Grotesk\nColor: Neon On Dark\n\n## Rules\n\n- Passive Canvas Lava: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

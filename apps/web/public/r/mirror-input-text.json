@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mirror-input-text",
+  "type": "registry:text",
+  "title": "Mirror Input Text",
+  "description": "A display line that mirrors whatever the user types into a real input, character-aligned and caret-synced — the foundation for terminal UIs, live captions and autofill previews, built as one composable primitive.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mirror-input-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MirrorInputTextProps {\n  placeholder?: string;\n  /** Mask input as a password field while still mirroring length. */\n  mask?: boolean;\n  className?: string;\n}\n\nexport function MirrorInputText({ placeholder = \"Type something…\", mask = false, className }: MirrorInputTextProps) {\n  const [value, setValue] = useState(\"\");\n\n  return (\n    <div className={cn(\"flex flex-col gap-3\", className)}>\n      <input\n        type={mask ? \"password\" : \"text\"}\n        value={value}\n        onChange={(event) => setValue(event.target.value)}\n        placeholder={placeholder}\n        className=\"w-full rounded-md border border-line bg-paper px-3 py-2 font-mono text-sm text-ink outline-none focus-visible:ring-2 focus-visible:ring-accent\"\n      />\n      <p className=\"font-mono text-step-2 text-ink\" role=\"status\" aria-label={`You typed: ${value}`} aria-live=\"polite\">\n        <span aria-hidden>{mask ? \"\\u2022\".repeat(value.length) : value}</span>\n        <span\n          aria-hidden\n          className=\"ml-0.5 inline-block h-[1em] w-[2px] translate-y-[0.15em] bg-accent\"\n          style={{ animation: \"openui-mirror-caret 1.1s steps(1) infinite\" }}\n        />\n      </p>\n      <style>{`@keyframes openui-mirror-caret { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } } @media (prefers-reduced-motion: reduce) { span { animation: none !important } }`}</style>\n    </div>\n  );\n}\n\nexport default MirrorInputText;\n",
+      "contentHash": "ac42ac13eb4048f746dc720e5f35ed146290de195ba8e9e307db878e942cbe7d",
+      "sizeBytes": 1498
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { MirrorInputText } from \"./mirror-input-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <MirrorInputText className=\"w-full max-w-md\" />\n    </div>\n  );\n}\n",
+      "contentHash": "2ae4f2f2255628cbfc228206211a0333762149c2d013acc7a10edfe970b20f7b",
+      "sizeBytes": 255
+    }
+  ],
+  "tags": [
+    "input",
+    "mirror",
+    "live",
+    "primitive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "input-mirror",
+      "visualModel": "aligned-display-copy",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "live-echo"
+    }
+  },
+  "url": "https://openui.dev/r/mirror-input-text.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Input Mirror: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

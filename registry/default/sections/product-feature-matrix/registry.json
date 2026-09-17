@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "product-feature-matrix",
+  "type": "registry:section",
+  "title": "Product Feature Matrix",
+  "description": "A comprehensive checklist matrix detailing features across Free, Team, and Enterprise deployment tiers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "product-feature-matrix.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "matrix",
+    "features",
+    "plans",
+    "pricing",
+    "table"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "product-feature-matrix-interaction",
+      "visualModel": "product-feature-matrix-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "product-feature-matrix-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "swiss"
+    }
+  }
+}

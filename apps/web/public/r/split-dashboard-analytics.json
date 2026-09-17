@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-dashboard-analytics",
+  "type": "registry:layout",
+  "title": "Split Dashboard Analytics",
+  "description": "Live operational telemetry layout with large timeseries chart area on left and realtime log stream on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-dashboard-analytics.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitDashboardAnalyticsProps extends React.HTMLAttributes<HTMLDivElement> {\n  chart?: React.ReactNode;\n  logs?: React.ReactNode;\n}\n\nexport function SplitDashboardAnalytics({ chart, logs, className, ...props }: SplitDashboardAnalyticsProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-12 gap-4 max-w-5xl mx-auto p-4 font-mono text-xs\", className)} {...props}>\n      <div className=\"lg:col-span-8 p-4 rounded-xl border border-line bg-surface/30 min-h-[260px] flex items-center justify-center\">{chart}</div>\n      <div className=\"lg:col-span-4 p-4 rounded-xl border border-line bg-surface/30 space-y-2\">{logs}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "6f1aeb3399d40042ec07a3e0322a12e637073416b10fd83f5e05bd5c66581121",
+      "sizeBytes": 718
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitDashboardAnalytics } from \"./split-dashboard-analytics\";\n\nexport default function SplitDashboardAnalyticsDemo() {\n  return (\n    <SplitDashboardAnalytics\n      chart={<div>Timeseries Telemetry Graph</div>}\n      logs={<div>[12:04] Deployment Sync Complete<br />[12:03] Healthcheck 200 OK</div>}\n    />\n  );\n}\n",
+      "contentHash": "7a30a096afadb5b3d914365756355a5451b5385fab48d0a471fb8f30b07dac9f",
+      "sizeBytes": 338
+    }
+  ],
+  "tags": [
+    "analytics",
+    "dashboard",
+    "telemetry",
+    "split",
+    "logs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "analytics-chart-and-log-split",
+      "visualModel": "timeseries-and-log-ticker",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-analytics-split",
+      "semanticPurpose": "telemetry-analytics-workbench"
+    }
+  },
+  "url": "https://openui.dev/r/split-dashboard-analytics.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Analytics Chart And Log Split: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

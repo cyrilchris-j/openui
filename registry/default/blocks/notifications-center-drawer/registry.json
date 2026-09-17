@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "notifications-center-drawer",
+  "type": "registry:block",
+  "title": "Notifications Center Drawer",
+  "description": "A slide-out alerts drawer featuring unread count badges, clear actions, and categorized notification items.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "notifications-center-drawer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "notifications",
+    "alerts",
+    "drawer",
+    "unread",
+    "badge"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "notifications",
+    "fingerprint": {
+      "interactionModel": "notification-tray-mark-read",
+      "visualModel": "slideout-activity-alerts-tray",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "user-system-notifications"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

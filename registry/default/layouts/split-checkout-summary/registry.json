@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-checkout-summary",
+  "type": "registry:layout",
+  "title": "Split Checkout Summary",
+  "description": "Ecommerce checkout layout with customer details/shipping on left and order ledger summary on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-checkout-summary.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "checkout",
+    "cart",
+    "summary",
+    "ecommerce",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "checkout-order-summary-split",
+      "visualModel": "shipping-and-order-summary",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-checkout-grid",
+      "semanticPurpose": "checkout-order-review"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

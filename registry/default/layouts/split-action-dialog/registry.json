@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-action-dialog",
+  "type": "registry:layout",
+  "title": "Split Action Dialog",
+  "description": "Two-column modal dialog shell with brand illustration on left and action form on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-action-dialog.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "dialog",
+    "modal",
+    "split",
+    "shell",
+    "actions"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "split-dialog-interaction",
+      "visualModel": "dual-column-modal",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-dialog",
+      "semanticPurpose": "dialog-action-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

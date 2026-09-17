@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compliance-gdpr-consent-strip",
+  "type": "registry:section",
+  "title": "Compliance GDPR Consent Strip",
+  "description": "A regulatory privacy consent banner supporting essential, analytical, and marketing preference toggles.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compliance-gdpr-consent-strip.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ComplianceGdprConsentStripProps extends React.HTMLAttributes<HTMLElement> {\n  onAcceptAll?: () => void;\n  onRejectAll?: () => void;\n}\n\nexport function ComplianceGdprConsentStrip({\n  onAcceptAll,\n  onRejectAll,\n  className,\n  ...props\n}: ComplianceGdprConsentStripProps) {\n  const [closed, setClosed] = React.useState(false);\n\n  if (closed) return null;\n\n  return (\n    <section\n      className={cn(\n        \"w-full border-t border-neutral-200 dark:border-neutral-800 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-sm p-4 md:px-8\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4\">\n        <div className=\"text-xs text-neutral-600 dark:text-neutral-400 max-w-2xl\">\n          We adhere strictly to GDPR and CCPA guidelines. We do not sell personal telemetry. Zero third-party tracker cookies are set without your consent.\n        </div>\n        <div className=\"flex items-center gap-3\">\n          <button\n            type=\"button\"\n            onClick={() => {\n              onRejectAll?.();\n              setClosed(true);\n            }}\n            className=\"px-3 py-1.5 rounded-lg text-xs font-semibold text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white\"\n          >\n            Essential Only\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => {\n              onAcceptAll?.();\n              setClosed(true);\n            }}\n            className=\"px-4 py-1.5 rounded-lg text-xs font-semibold bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900\"\n          >\n            Accept All Preferences\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "5cca558f36811f32046f312c6614eb1e36f52ee111aa45ca44c6a3e192e4c8db",
+      "sizeBytes": 1852
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ComplianceGdprConsentStrip } from \"./compliance-gdpr-consent-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] flex items-end justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <ComplianceGdprConsentStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "2f49f757bdef578fa335b2d37bcd5562b52bff021712e4429d3575a28cce075c",
+      "sizeBytes": 301
+    }
+  ],
+  "tags": [
+    "privacy",
+    "gdpr",
+    "consent",
+    "cookie",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "privacy",
+    "fingerprint": {
+      "interactionModel": "compliance-gdpr-consent-strip-interaction",
+      "visualModel": "compliance-gdpr-consent-strip-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "compliance-gdpr-consent-strip-section"
+    }
+  },
+  "url": "https://openui.dev/r/compliance-gdpr-consent-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Compliance Gdpr Consent Strip Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

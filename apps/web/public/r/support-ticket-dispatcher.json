@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "support-ticket-dispatcher",
+  "type": "registry:section",
+  "title": "Support Ticket Dispatcher",
+  "description": "A support request section pairing support channel cards with a quick message form.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "support-ticket-dispatcher.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SupportTicketDispatcher({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [submitted, setSubmitted] = React.useState(false);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"grid grid-cols-1 md:grid-cols-12 gap-8\">\n        <div className=\"md:col-span-5\">\n          <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n            Assistance\n          </span>\n          <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n            Talk to engineering support\n          </h2>\n          <p className=\"text-xs text-neutral-500 mt-2 leading-relaxed\">\n            Our core team responds directly to technical inquiries, architecture reviews, and registry bugs.\n          </p>\n          <div className=\"mt-6 space-y-2 text-xs font-mono text-neutral-600 dark:text-neutral-400\">\n            <div>✉ support@openui.dev</div>\n            <div>⚡ Discord: #registry-support</div>\n          </div>\n        </div>\n\n        <div className=\"md:col-span-7 bg-white dark:bg-neutral-950 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800\">\n          {!submitted ? (\n            <form\n              onSubmit={(e) => {\n                e.preventDefault();\n                setSubmitted(true);\n              }}\n              className=\"space-y-4 text-xs\"\n            >\n              <div>\n                <label className=\"block font-medium text-neutral-700 dark:text-neutral-300 mb-1\">Email</label>\n                <input\n                  type=\"email\"\n                  required\n                  placeholder=\"engineer@company.com\"\n                  className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n                />\n              </div>\n              <div>\n                <label className=\"block font-medium text-neutral-700 dark:text-neutral-300 mb-1\">Topic</label>\n                <input\n                  type=\"text\"\n                  required\n                  placeholder=\"e.g. Design DNA schema question\"\n                  className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n                />\n              </div>\n              <button\n                type=\"submit\"\n                className=\"w-full py-2.5 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 font-semibold\"\n              >\n                Send Request\n              </button>\n            </form>\n          ) : (\n            <div className=\"text-center py-8 text-xs text-emerald-600 dark:text-emerald-400 font-medium\">\n              Thank you! An engineer will reply within 4 hours.\n            </div>\n          )}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "094610d12469637c9d7f0c550ea12a731858fe710cc732a6e29182a4bae6d092",
+      "sizeBytes": 3073
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { SupportTicketDispatcher } from \"./support-ticket-dispatcher\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <SupportTicketDispatcher />\n    </div>\n  );\n}\n",
+      "contentHash": "9899adefac86aebc6e5ee3075d536ce890836fe72450fff15afc7057b7b93058",
+      "sizeBytes": 300
+    }
+  ],
+  "tags": [
+    "contact",
+    "support",
+    "helpdesk",
+    "form",
+    "tickets"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "support",
+    "fingerprint": {
+      "interactionModel": "support-ticket-dispatcher-interaction",
+      "visualModel": "support-ticket-dispatcher-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "support-ticket-dispatcher-section"
+    }
+  },
+  "url": "https://openui.dev/r/support-ticket-dispatcher.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Support Ticket Dispatcher Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

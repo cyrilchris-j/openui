@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multilingual-locale-selector",
+  "type": "registry:section",
+  "title": "Multilingual Locale Selector",
+  "description": "International geographic region selector section with interactive continent pills and currency selector.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multilingual-locale-selector.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "locale",
+    "language",
+    "international",
+    "multilingual",
+    "selector"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "footer",
+    "fingerprint": {
+      "interactionModel": "locale-region-selection",
+      "visualModel": "language-continent-picker",
+      "motionModel": "none",
+      "layoutModel": "centered-locale-rack",
+      "semanticPurpose": "internationalization-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

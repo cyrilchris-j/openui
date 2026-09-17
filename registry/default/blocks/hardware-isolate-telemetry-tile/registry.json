@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hardware-isolate-telemetry-tile",
+  "type": "registry:block",
+  "title": "Hardware Isolate Telemetry Tile",
+  "description": "An isolated V8 runtime memory gauge showing heap allocations and garbage collection duration.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hardware-isolate-telemetry-tile.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "v8",
+    "isolate",
+    "heap",
+    "memory",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "isolate-resource-telemetry-gauge",
+      "visualModel": "v8-memory-heap-tile",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "v8-isolate-heap-monitoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

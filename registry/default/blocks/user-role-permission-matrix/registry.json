@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-role-permission-matrix",
+  "type": "registry:block",
+  "title": "User Role Permission Matrix",
+  "description": "An enterprise access control table defining read, write, and delete permissions per team persona.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-role-permission-matrix.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "permissions",
+    "roles",
+    "rbac",
+    "security",
+    "matrix"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "permission-checkbox-toggling",
+      "visualModel": "crud-permission-matrix-grid",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "rbac-access-permissions"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

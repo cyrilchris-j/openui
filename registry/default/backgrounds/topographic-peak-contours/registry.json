@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "topographic-peak-contours",
+  "type": "registry:background",
+  "title": "Topographic Peak Contours",
+  "description": "Mountain summit peak with concentric topological elevation rings and elevation benchmarks.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "topographic-peak-contours.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "peak",
+    "summit",
+    "topographic",
+    "mountain",
+    "elevation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-mountain-peak",
+      "visualModel": "concentric-summit-isobars",
+      "motionModel": "none",
+      "layoutModel": "center-anchored-radial",
+      "semanticPurpose": "mountain-elevation-map"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

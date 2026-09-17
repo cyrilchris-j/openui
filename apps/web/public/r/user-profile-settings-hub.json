@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-profile-settings-hub",
+  "type": "registry:block",
+  "title": "User Profile Settings Hub",
+  "description": "A complete profile preferences block featuring avatar editing, account security, and notification preference controls.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-profile-settings-hub.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function UserProfileSettingsHub({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [name, setName] = React.useState(\"Elena Rostova\");\n  const [email, setEmail] = React.useState(\"elena@openui.dev\");\n  const [emailAlerts, setEmailAlerts] = React.useState(true);\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 space-y-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"border-b border-neutral-200 dark:border-neutral-800 pb-4\">\n        <h3 className=\"text-lg font-bold text-neutral-900 dark:text-white\">Account Settings</h3>\n        <p className=\"text-neutral-500 mt-0.5\">Manage your personal profile and security configurations.</p>\n      </div>\n\n      <div className=\"flex items-center gap-4\">\n        <div className=\"h-16 w-16 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-bold\">\n          ER\n        </div>\n        <div>\n          <button type=\"button\" className=\"px-3 py-1.5 rounded-lg border border-neutral-300 dark:border-neutral-700 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900\">\n            Change Photo\n          </button>\n          <div className=\"text-[10px] text-neutral-400 mt-1\">JPG or PNG up to 2MB</div>\n        </div>\n      </div>\n\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">\n        <div>\n          <label className=\"block font-medium text-neutral-700 dark:text-neutral-300 mb-1\">Full Name</label>\n          <input\n            type=\"text\"\n            value={name}\n            onChange={(e) => setName(e.target.value)}\n            className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n          />\n        </div>\n        <div>\n          <label className=\"block font-medium text-neutral-700 dark:text-neutral-300 mb-1\">Email Address</label>\n          <input\n            type=\"email\"\n            value={email}\n            onChange={(e) => setEmail(e.target.value)}\n            className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n          />\n        </div>\n      </div>\n\n      <div className=\"pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between\">\n        <div>\n          <div className=\"font-semibold text-neutral-900 dark:text-white\">Email Digest Alerts</div>\n          <div className=\"text-neutral-500 text-[11px]\">Receive weekly telemetry and security digests.</div>\n        </div>\n        <input\n          type=\"checkbox\"\n          checked={emailAlerts}\n          onChange={(e) => setEmailAlerts(e.target.checked)}\n          className=\"h-4 w-4 accent-emerald-600 rounded cursor-pointer\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "79a4986f835d843e7fa59ab8f8bec3785a447627e3da8177ee6d6ec5c978f115",
+      "sizeBytes": 2991
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { UserProfileSettingsHub } from \"./user-profile-settings-hub\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <UserProfileSettingsHub />\n    </div>\n  );\n}\n",
+      "contentHash": "21ec0affb9636c4d86fa80e3b3188d902ee2b3c8d96203c6bf2ae52b23cc0b3b",
+      "sizeBytes": 296
+    }
+  ],
+  "tags": [
+    "profile",
+    "settings",
+    "account",
+    "avatar",
+    "preferences"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "settings",
+    "fingerprint": {
+      "interactionModel": "form-state-management-and-avatar-picker",
+      "visualModel": "profile-account-settings-form",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "user-account-management"
+    }
+  },
+  "url": "https://openui.dev/r/user-profile-settings-hub.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Form State Management And Avatar Picker: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-tier-navbar-brand",
+  "type": "registry:layout",
+  "title": "Two Tier Navbar Brand",
+  "description": "Two-level navigation header with persistent top utility strip and main navigation bar below.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-tier-navbar-brand.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoTierNavbarBrandProps extends React.HTMLAttributes<HTMLDivElement> {\n  topStrip?: React.ReactNode;\n  mainNav?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function TwoTierNavbarBrand({ topStrip, mainNav, children, className, ...props }: TwoTierNavbarBrandProps) {\n  return (\n    <div className={cn(\"w-full border border-line rounded-xl overflow-hidden font-sans bg-paper\", className)} {...props}>\n      <div className=\"p-2 bg-surface/50 border-b border-line flex justify-between px-6 text-[11px] font-mono text-ink/60\">{topStrip}</div>\n      <header className=\"p-4 border-b border-line flex items-center justify-between px-6\">{mainNav}</header>\n      <main className=\"p-6\">{children}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "7d31bee975d08781e2614d027b851cd2c967807efa1972f479a147f12515c8fb",
+      "sizeBytes": 788
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoTierNavbarBrand } from \"./two-tier-navbar-brand\";\n\nexport default function TwoTierNavbarBrandDemo() {\n  return (\n    <TwoTierNavbarBrand\n      topStrip={<span>Status: Operational • Global CDN Edge</span>}\n      mainNav={<span className=\"font-bold text-sm\">OPENUI REGISTRY</span>}\n    >\n      <div className=\"text-xs text-ink/70\">Main content area below double-decker navbar.</div>\n    </TwoTierNavbarBrand>\n  );\n}\n",
+      "contentHash": "cf206d7a0e35d313d4b61b9894e763e1c96b9bb3c30c62754a28697acd2da2ba",
+      "sizeBytes": 443
+    }
+  ],
+  "tags": [
+    "navbar",
+    "brand",
+    "header",
+    "navigation",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "two-tier-navbar-navigation",
+      "visualModel": "double-decker-navbar",
+      "motionModel": "none",
+      "layoutModel": "stacked-navbar-rows",
+      "semanticPurpose": "global-branding-navbar"
+    }
+  },
+  "url": "https://openui.dev/r/two-tier-navbar-brand.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Two Tier Navbar Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

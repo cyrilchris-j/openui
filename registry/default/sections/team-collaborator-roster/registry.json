@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "team-collaborator-roster",
+  "type": "registry:section",
+  "title": "Team Collaborator Roster",
+  "description": "Team profile grid showcasing principal architects, designers, and systems engineers.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "team-collaborator-roster.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "team",
+    "roster",
+    "collaborators",
+    "people",
+    "profiles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "team",
+    "fingerprint": {
+      "interactionModel": "team-member-inspection",
+      "visualModel": "avatar-card-cluster",
+      "motionModel": "none",
+      "layoutModel": "multi-column-member-grid",
+      "semanticPurpose": "team-member-showcase"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

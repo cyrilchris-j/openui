@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "executive-leadership-roster",
+  "type": "registry:section",
+  "title": "Executive Leadership Roster",
+  "description": "An organizational leadership card display showcasing founder portraits, credentials, and social links.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "executive-leadership-roster.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "team",
+    "leadership",
+    "executives",
+    "founders",
+    "roster"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "team",
+    "fingerprint": {
+      "interactionModel": "executive-leadership-roster-interaction",
+      "visualModel": "executive-leadership-roster-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "executive-leadership-roster-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

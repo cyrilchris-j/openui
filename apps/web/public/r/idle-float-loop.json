@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "idle-float-loop",
+  "type": "registry:motion",
+  "title": "Idle Float Loop",
+  "description": "Multi-element idle float where each child bobs on its own sine wave with independent amplitude, period and phase — a still-life that breathes, with the entire system pausing via one reduced-motion check.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "idle-float-loop.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FloatChild {\n  content: React.ReactNode;\n  /** Vertical amplitude, px. */\n  amplitude?: number;\n  /** Seconds per bob. */\n  periodSeconds?: number;\n  /** Phase offset in radians. */\n  phase?: number;\n}\n\nexport interface IdleFloatLoopProps {\n  children: FloatChild[];\n  className?: string;\n}\n\nexport function IdleFloatLoop({ children, className }: IdleFloatLoopProps) {\n  const refs = useRef<Array<HTMLDivElement | null>>([]);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    if (reduced) return;\n    let raf: number | null = null;\n    const start = performance.now();\n\n    const tick = (now: number) => {\n      const elapsed = (now - start) / 1000;\n      children.forEach((child, index) => {\n        const node = refs.current[index];\n        if (!node) return;\n        const amplitude = child.amplitude ?? 10;\n        const period = child.periodSeconds ?? 4;\n        const phase = child.phase ?? index * 1.3;\n        const y = Math.sin((elapsed / period) * Math.PI * 2 + phase) * amplitude;\n        const tilt = Math.cos((elapsed / period) * Math.PI * 2 + phase) * 1.5;\n        node.style.transform = `translateY(${y.toFixed(2)}px) rotate(${tilt.toFixed(2)}deg)`;\n      });\n      raf = requestAnimationFrame(tick);\n    };\n    raf = requestAnimationFrame(tick);\n    return () => {\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, [children, reduced]);\n\n  return (\n    <div className={cn(\"flex items-center justify-center gap-8\", className)}>\n      {children.map((child, index) => (\n        <div\n          key={index}\n          ref={(node) => {\n            refs.current[index] = node;\n          }}\n          aria-hidden={typeof child.content === \"string\"}\n          className=\"will-change-transform\"\n        >\n          {child.content}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default IdleFloatLoop;\n",
+      "contentHash": "0484261157dd80a49d5ffda465fcdf9dd745830d47aa75949018f9fc0c0f26b6",
+      "sizeBytes": 2029
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { IdleFloatLoop } from \"./idle-float-loop\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <IdleFloatLoop\n        children={[\n          { content: \"🎈\", amplitude: 14, periodSeconds: 3.4 },\n          { content: \"☁️\", amplitude: 8, periodSeconds: 5, phase: 1.4 },\n          { content: \"🪁\", amplitude: 18, periodSeconds: 4.2, phase: 2.6 },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "d52f1b7a90599c3566068bec34b5f1456f1ec2d69f354b7e050d37d1043d12a7",
+      "sizeBytes": 479
+    }
+  ],
+  "tags": [
+    "float",
+    "idle",
+    "sine",
+    "breathing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "scatter",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "pastel"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "phase-offset-bobbing",
+      "motionModel": "sine-wave-superposition",
+      "layoutModel": "scatter",
+      "semanticPurpose": "ambient-life"
+    }
+  },
+  "url": "https://openui.dev/r/idle-float-loop.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Scatter\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Humanist\nColor: Pastel\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

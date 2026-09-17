@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-notification-counter",
+  "type": "registry:component",
+  "title": "Badge Notification Counter",
+  "description": "A compact count badge pill capping high values with plus suffixes for unread notifications.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-notification-counter.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "badge",
+    "counter",
+    "notifications",
+    "pill",
+    "unread"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "notification-count-badge",
+      "visualModel": "circular-badge-pill",
+      "motionModel": "none",
+      "layoutModel": "inline-badge-callout",
+      "semanticPurpose": "unread-notification-badge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-drawer-curtain",
+  "type": "registry:motion",
+  "title": "Elastic Drawer Curtain",
+  "description": "A lateral drawer with an elastic pull string that deforms under user drag before parting cleanly from the screen edge.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-drawer-curtain.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "drawer",
+    "curtain",
+    "pull",
+    "elastic",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "lateral-draw-pull",
+      "visualModel": "taut-string-boundary",
+      "motionModel": "elastic-tension-release",
+      "layoutModel": "side-anchored-drawer",
+      "semanticPurpose": "lateral-navigation-panel"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

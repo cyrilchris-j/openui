@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-card-stack-swipe",
+  "type": "registry:motion",
+  "title": "Spring Card Stack Swipe",
+  "description": "A deck of cards that can be dismissed left or right with velocity swipe detection and spring restitution.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-card-stack-swipe.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "swipe",
+    "cards",
+    "gesture",
+    "deck",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "bistable-swipe-dismiss",
+      "visualModel": "deck-playing-card",
+      "motionModel": "angular-velocity-flyaway",
+      "layoutModel": "centered-card-deck",
+      "semanticPurpose": "deck-dismiss-evaluator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

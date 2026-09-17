@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "circular-type",
+  "type": "registry:text",
+  "title": "Circular Type",
+  "description": "Text set on an SVG circular path that rotates continuously while the centre stays readable — a seal or stamp composition, with circumference-matched font sizing so the ring always closes cleanly.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "circular-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "circular",
+    "svg",
+    "textpath",
+    "stamp"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "path",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "svg-path-glyphs",
+      "motionModel": "orbit-rotation",
+      "layoutModel": "ring",
+      "semanticPurpose": "badge-statement"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "badge-pill-status",
+  "type": "registry:component",
+  "title": "Badge Pill Status",
+  "description": "A compact status capsule token with colored state indicators for verified, pending, and degraded states.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge-pill-status.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "badge",
+    "pill",
+    "status",
+    "capsule",
+    "token"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "status-capsule-token",
+      "visualModel": "pill-status-dot",
+      "motionModel": "none",
+      "layoutModel": "inline-pill-capsule",
+      "semanticPurpose": "resource-status-badge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

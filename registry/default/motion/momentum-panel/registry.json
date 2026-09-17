@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "momentum-panel",
+  "type": "registry:motion",
+  "title": "Momentum Panel",
+  "description": "A draggable panel that keeps its release velocity: throw it and it coasts with friction, bounces off container edges with restitution, and comes to rest where physics puts it — gesture + inertia in one primitive.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "momentum-panel.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "drag",
+    "momentum",
+    "inertia",
+    "bounce"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "drag-throw",
+      "visualModel": "free-floating-panel",
+      "motionModel": "friction-coast-restitution",
+      "layoutModel": "free-canvas",
+      "semanticPurpose": "playful-panel"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

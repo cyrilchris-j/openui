@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "values-culture-manifesto",
+  "type": "registry:section",
+  "title": "Values Culture Manifesto",
+  "description": "An architectural engineering principles board articulating rigor, speed, open-source stewardship, and craft.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "values-culture-manifesto.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "values",
+    "manifesto",
+    "principles",
+    "culture",
+    "philosophy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "culture",
+    "fingerprint": {
+      "interactionModel": "values-culture-manifesto-interaction",
+      "visualModel": "values-culture-manifesto-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "values-culture-manifesto-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth",
+      "shapeLanguage": "soft",
+      "density": "medium",
+      "genre": "editorial"
+    }
+  }
+}

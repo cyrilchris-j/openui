@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "open-source-sponsor-tier",
+  "type": "registry:section",
+  "title": "Open Source Sponsor Tier",
+  "description": "A funding support section showing GitHub sponsorship levels for individual and enterprise backers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "open-source-sponsor-tier.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function OpenSourceSponsorTier({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const tiers = [\n    { name: \"Backer\", price: \"$10/mo\", desc: \"Support ongoing maintenance\" },\n    { name: \"Sponsor\", price: \"$50/mo\", desc: \"Logo on README & docs\" },\n    { name: \"Enterprise Partner\", price: \"$500/mo\", desc: \"Direct priority issue triage\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-4xl mx-auto text-center\", className)} {...props}>\n      <h3 className=\"text-2xl font-bold text-neutral-900 dark:text-white mb-6\">Support Open Source</h3>\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n        {tiers.map((t) => (\n          <div key={t.name} className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n            <h4 className=\"text-sm font-bold text-neutral-900 dark:text-white\">{t.name}</h4>\n            <div className=\"text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-1\">{t.price}</div>\n            <p className=\"text-xs text-neutral-500 mt-2\">{t.desc}</p>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "3d2ae11a2f3bd84c621da5bd2117acd9ca0a4bbfc234f6f20688bf5a1738d691",
+      "sizeBytes": 1226
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { OpenSourceSponsorTier } from \"./open-source-sponsor-tier\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <OpenSourceSponsorTier />\n    </div>\n  );\n}\n",
+      "contentHash": "e0bf2cb411098185f8111bc20c409f9ad8424b7496f8f8b8c80661fb8aeff87f",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "sponsors",
+    "open-source",
+    "github",
+    "tiers",
+    "funding"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "community",
+    "fingerprint": {
+      "interactionModel": "open-source-sponsor-tier-interaction",
+      "visualModel": "open-source-sponsor-tier-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "open-source-sponsor-tier-section"
+    }
+  },
+  "url": "https://openui.dev/r/open-source-sponsor-tier.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Open Source Sponsor Tier Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "holy-grail-layout",
+  "type": "registry:layout",
+  "title": "Holy Grail Layout",
+  "description": "Classic five-region web shell with header, persistent navigation sidebar, main content, contextual aside, and footer.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "holy-grail-layout.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HolyGrailLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  header?: React.ReactNode;\n  nav?: React.ReactNode;\n  main?: React.ReactNode;\n  aside?: React.ReactNode;\n  footer?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function HolyGrailLayout({\n  header,\n  nav,\n  main,\n  aside,\n  footer,\n  children,\n  className,\n  ...props\n}: HolyGrailLayoutProps) {\n  return (\n    <div className={cn(\"min-h-screen flex flex-col bg-paper text-ink font-sans\", className)} {...props}>\n      {header && <header className=\"border-b border-line p-4 shrink-0 bg-surface/50\">{header}</header>}\n      <div className=\"flex-1 flex flex-col md:flex-row\">\n        {nav && <nav className=\"w-full md:w-56 border-b md:border-b-0 md:border-r border-line p-4 shrink-0 bg-surface/20\">{nav}</nav>}\n        <main className=\"flex-1 p-6 min-w-0\">{main || children}</main>\n        {aside && <aside className=\"w-full md:w-64 border-t md:border-t-0 md:border-l border-line p-4 shrink-0 bg-surface/20\">{aside}</aside>}\n      </div>\n      {footer && <footer className=\"border-t border-line p-4 shrink-0 bg-surface/50 text-xs text-ink/60\">{footer}</footer>}\n    </div>\n  );\n}\n",
+      "contentHash": "b83e9bb5290f85132b6805fe73192e470eeed3189bf00c530e4c643463648f56",
+      "sizeBytes": 1221
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { HolyGrailLayout } from \"./holy-grail-layout\";\n\nexport default function HolyGrailLayoutDemo() {\n  return (\n    <div className=\"w-full border border-line rounded-xl overflow-hidden shadow-sm\">\n      <HolyGrailLayout\n        header={<div className=\"font-mono text-xs font-bold\">Header System Bar</div>}\n        nav={<div className=\"font-mono text-xs text-ink/70\">Navigation Drawer</div>}\n        main={\n          <div>\n            <h2 className=\"text-sm font-bold text-ink mb-1\">Primary Article Viewport</h2>\n            <p className=\"text-xs text-ink/60\">Fluid responsive central layout column.</p>\n          </div>\n        }\n        aside={<div className=\"font-mono text-xs text-ink/70\">Context Aside</div>}\n        footer={<div className=\"font-mono text-xs\">Footer Navigation & Copyright</div>}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "a7da9b4cc1d76ee458b13cc60e8c7e21bd5f012be7f54547ec055308b3ea6a62",
+      "sizeBytes": 846
+    }
+  ],
+  "tags": [
+    "layout",
+    "holygrail",
+    "shell",
+    "sidebar",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "responsive-five-box-shell",
+      "visualModel": "holy-grail-wireframe",
+      "motionModel": "none",
+      "layoutModel": "five-region-grid",
+      "semanticPurpose": "application-root-shell"
+    }
+  },
+  "url": "https://openui.dev/r/holy-grail-layout.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Split\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Responsive Five Box Shell: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

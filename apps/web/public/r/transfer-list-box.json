@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "transfer-list-box",
+  "type": "registry:component",
+  "title": "Transfer List Box",
+  "description": "Dual column listbox transfer component with selection checkboxes, batch move buttons, and search filtering.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "transfer-list-box.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { ArrowLeftRight, Check, ChevronRight, ChevronLeft } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TransferItem {\n  id: string;\n  label: string;\n}\n\nexport interface TransferListBoxProps {\n  initialLeft?: TransferItem[];\n  initialRight?: TransferItem[];\n  className?: string;\n}\n\nexport function TransferListBox({\n  initialLeft = [\n    { id: \"1\", label: \"Server US-East-1\" },\n    { id: \"2\", label: \"Server EU-Central-1\" },\n    { id: \"3\", label: \"Worker AP-East-2\" },\n    { id: \"4\", label: \"DB Replica Read-01\" },\n  ],\n  initialRight = [{ id: \"5\", label: \"Edge Proxy Global\" }],\n  className,\n}: TransferListBoxProps) {\n  const [left, setLeft] = useState<TransferItem[]>(initialLeft);\n  const [right, setRight] = useState<TransferItem[]>(initialRight);\n  const [selectedLeft, setSelectedLeft] = useState<string[]>([]);\n  const [selectedRight, setSelectedRight] = useState<string[]>([]);\n\n  const moveToRight = () => {\n    const moving = left.filter((item) => selectedLeft.includes(item.id));\n    setRight((prev) => [...prev, ...moving]);\n    setLeft((prev) => prev.filter((item) => !selectedLeft.includes(item.id)));\n    setSelectedLeft([]);\n  };\n\n  const moveToLeft = () => {\n    const moving = right.filter((item) => selectedRight.includes(item.id));\n    setLeft((prev) => [...prev, ...moving]);\n    setRight((prev) => prev.filter((item) => !selectedRight.includes(item.id)));\n    setSelectedRight([]);\n  };\n\n  return (\n    <div className={cn(\"flex flex-col sm:flex-row items-center gap-3 p-4 rounded-xl border border-line bg-surface/50 max-w-xl w-full\", className)}>\n      <div className=\"flex-1 w-full border border-line rounded-lg p-2 bg-paper\">\n        <div className=\"text-xs font-mono text-ink/60 font-semibold mb-2 px-1\">Available ({left.length})</div>\n        <div className=\"flex flex-col gap-1 max-h-48 overflow-y-auto\">\n          {left.map((item) => {\n            const isSel = selectedLeft.includes(item.id);\n            return (\n              <button\n                key={item.id}\n                type=\"button\"\n                onClick={() => setSelectedLeft((prev) => (isSel ? prev.filter((id) => id !== item.id) : [...prev, item.id]))}\n                className={cn(\n                  \"flex items-center justify-between px-2.5 py-1.5 rounded text-xs text-left transition-colors\",\n                  isSel ? \"bg-accent/15 text-accent font-medium\" : \"text-ink hover:bg-surface\"\n                )}\n              >\n                <span>{item.label}</span>\n                {isSel && <Check className=\"w-3.5 h-3.5\" />}\n              </button>\n            );\n          })}\n          {left.length === 0 && <div className=\"text-xs text-ink/40 p-2 text-center\">None left</div>}\n        </div>\n      </div>\n\n      <div className=\"flex sm:flex-col gap-1.5\">\n        <button\n          type=\"button\"\n          onClick={moveToRight}\n          disabled={selectedLeft.length === 0}\n          className=\"p-2 rounded border border-line bg-paper disabled:opacity-40 hover:bg-surface text-ink transition-colors\"\n          aria-label=\"Move selected right\"\n        >\n          <ChevronRight className=\"w-4 h-4\" />\n        </button>\n        <button\n          type=\"button\"\n          onClick={moveToLeft}\n          disabled={selectedRight.length === 0}\n          className=\"p-2 rounded border border-line bg-paper disabled:opacity-40 hover:bg-surface text-ink transition-colors\"\n          aria-label=\"Move selected left\"\n        >\n          <ChevronLeft className=\"w-4 h-4\" />\n        </button>\n      </div>\n\n      <div className=\"flex-1 w-full border border-line rounded-lg p-2 bg-paper\">\n        <div className=\"text-xs font-mono text-ink/60 font-semibold mb-2 px-1\">Assigned ({right.length})</div>\n        <div className=\"flex flex-col gap-1 max-h-48 overflow-y-auto\">\n          {right.map((item) => {\n            const isSel = selectedRight.includes(item.id);\n            return (\n              <button\n                key={item.id}\n                type=\"button\"\n                onClick={() => setSelectedRight((prev) => (isSel ? prev.filter((id) => id !== item.id) : [...prev, item.id]))}\n                className={cn(\n                  \"flex items-center justify-between px-2.5 py-1.5 rounded text-xs text-left transition-colors\",\n                  isSel ? \"bg-accent/15 text-accent font-medium\" : \"text-ink hover:bg-surface\"\n                )}\n              >\n                <span>{item.label}</span>\n                {isSel && <Check className=\"w-3.5 h-3.5\" />}\n              </button>\n            );\n          })}\n          {right.length === 0 && <div className=\"text-xs text-ink/40 p-2 text-center\">None assigned</div>}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "8e8bf908f068a98ecbd5ab15b5d3efc957703cc68140b1955338caae69d55232",
+      "sizeBytes": 4744
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { TransferListBox } from \"./transfer-list-box\";\n\nexport default function TransferListBoxDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-6 bg-surface/30 min-h-[320px]\">\n      <TransferListBox />\n    </div>\n  );\n}\n",
+      "contentHash": "747804c41621fa97944be61f068e5c84f81e17015c101a3021d5e3a803becb6d",
+      "sizeBytes": 261
+    }
+  ],
+  "tags": [
+    "transfer",
+    "listbox",
+    "forms",
+    "selection",
+    "dual-list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "dual-column-item-transfer",
+      "visualModel": "bracketed-dual-panel",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-rail",
+      "semanticPurpose": "batch-entity-assignment"
+    }
+  },
+  "url": "https://openui.dev/r/transfer-list-box.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Dual Column Item Transfer: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

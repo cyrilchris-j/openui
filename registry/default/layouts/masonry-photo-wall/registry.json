@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "masonry-photo-wall",
+  "type": "registry:layout",
+  "title": "Masonry Photo Wall",
+  "description": "Seamless zero-gutter photo grid with dense visual interlocking image apertures.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "masonry-photo-wall.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "photo",
+    "wall",
+    "masonry",
+    "seamless",
+    "gallery"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "dense-photowall-mosaic",
+      "visualModel": "seamless-photo-tessellation",
+      "motionModel": "none",
+      "layoutModel": "zero-gutter-masonry",
+      "semanticPurpose": "immersive-photo-wall"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

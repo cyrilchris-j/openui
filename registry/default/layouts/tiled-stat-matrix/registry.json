@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tiled-stat-matrix",
+  "type": "registry:layout",
+  "title": "Tiled Stat Matrix",
+  "description": "Four-column metric telemetry dashboard grid with uniform gutters and responsive wrapping.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tiled-stat-matrix.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "stats",
+    "matrix",
+    "telemetry",
+    "kpi",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "stat-tile-telemetry-scan",
+      "visualModel": "four-column-kpi-rack",
+      "motionModel": "none",
+      "layoutModel": "symmetric-four-tile-grid",
+      "semanticPurpose": "kpi-metric-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

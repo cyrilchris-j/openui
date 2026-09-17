@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-reveal-matrix",
+  "type": "registry:interaction",
+  "title": "Hover Reveal Matrix",
+  "description": "A matrix grid of tiles where individual cells light up with proximity bloom as mouse travels over the array.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-reveal-matrix.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "matrix",
+    "grid",
+    "hover",
+    "bloom",
+    "cells"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "grid-cell-proximity-illumination",
+      "visualModel": "matrix-tile-array",
+      "motionModel": "instantaneous-alpha-fadeout",
+      "layoutModel": "uniform-grid-mosaic",
+      "semanticPurpose": "proximity-grid-sensor"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

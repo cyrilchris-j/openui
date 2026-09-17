@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compact-inspector-pane",
+  "type": "registry:layout",
+  "title": "Compact Inspector Pane",
+  "description": "CAD/3D modeling application layout: scene tree on left, canvas in center, and property inspector on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compact-inspector-pane.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "inspector",
+    "cad",
+    "3d",
+    "tools",
+    "properties"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "cad-three-pane-inspector",
+      "visualModel": "scene-viewport-property-triptych",
+      "motionModel": "none",
+      "layoutModel": "three-column-workbench",
+      "semanticPurpose": "3d-editor-workbench"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

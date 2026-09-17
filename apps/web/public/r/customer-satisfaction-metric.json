@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-satisfaction-metric",
+  "type": "registry:section",
+  "title": "Customer Satisfaction Metric",
+  "description": "A single bold CSAT metric display highlighting developer happiness and net promoter ratings.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-satisfaction-metric.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CustomerSatisfactionMetric({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-3xl mx-auto text-center font-mono\", className)} {...props}>\n      <div className=\"border-4 border-neutral-900 dark:border-neutral-100 p-8 bg-white dark:bg-neutral-950\">\n        <div className=\"text-6xl md:text-8xl font-black text-neutral-900 dark:text-neutral-100\">98.4%</div>\n        <div className=\"text-xs uppercase tracking-widest text-neutral-500 mt-2\">Customer Satisfaction Score</div>\n        <div className=\"text-[11px] text-neutral-400 mt-1\">Surveyed across 1,200 verified enterprise teams</div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "725091b58fa9db6433e0926cbd7777b2c05739d7e749220bf6b0892f7610c6b7",
+      "sizeBytes": 791
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CustomerSatisfactionMetric } from \"./customer-satisfaction-metric\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <CustomerSatisfactionMetric />\n    </div>\n  );\n}\n",
+      "contentHash": "d14ab6e5e396d06ea013e6d72fb30683ad0e760b386808435b2ce33eb5f17b7c",
+      "sizeBytes": 307
+    }
+  ],
+  "tags": [
+    "csat",
+    "metric",
+    "satisfaction",
+    "stats",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "customer-satisfaction-metric-interaction",
+      "visualModel": "customer-satisfaction-metric-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "customer-satisfaction-metric-section"
+    }
+  },
+  "url": "https://openui.dev/r/customer-satisfaction-metric.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Customer Satisfaction Metric Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

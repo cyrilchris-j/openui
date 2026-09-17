@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "physics-rope-pulley",
+  "type": "registry:motion",
+  "title": "Physics Rope Pulley",
+  "description": "Two masses connected over a frictionless circular pulley simulating Newtonian gravity exchange when one is dragged.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "physics-rope-pulley.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "pulley",
+    "rope",
+    "physics",
+    "gravity",
+    "mass"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "counterweight-displacement-pull",
+      "visualModel": "suspended-pulley-rigging",
+      "motionModel": "newtonian-tension-exchange",
+      "layoutModel": "symmetric-pulley-rig",
+      "semanticPurpose": "physics-pulley-demonstrator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

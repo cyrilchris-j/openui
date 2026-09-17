@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-search-filter-map",
+  "type": "registry:layout",
+  "title": "Split Search Filter Map",
+  "description": "Airbnb-style discovery layout: facet filters on left, scrollable entity cards in center, interactive map on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-search-filter-map.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitSearchFilterMapProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"results\"> {\n  filters?: React.ReactNode;\n  results?: React.ReactNode;\n  map?: React.ReactNode;\n}\n\nexport function SplitSearchFilterMap({ filters, results, map, className, ...props }: SplitSearchFilterMapProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 min-h-[380px] w-full border border-line rounded-2xl overflow-hidden font-sans text-xs\", className)} {...props}>\n      <aside className=\"md:col-span-3 border-r border-line p-3 bg-surface/20 hidden md:block\">{filters}</aside>\n      <main className=\"md:col-span-5 p-4 overflow-y-auto space-y-3 bg-paper\">{results}</main>\n      <div className=\"md:col-span-4 bg-surface/40 p-4 hidden lg:flex items-center justify-center border-l border-line\">{map}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "126487f8c39908e2f66f40ec4fcfd5d2185e3c929a38006d6be81b1d083bbecc",
+      "sizeBytes": 889
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitSearchFilterMap } from \"./split-search-filter-map\";\n\nexport default function SplitSearchFilterMapDemo() {\n  return (\n    <SplitSearchFilterMap\n      filters={<div>Filter Facets</div>}\n      results={<div className=\"p-3 rounded-lg border border-line bg-surface/30\">Listing Item A</div>}\n      map={<div className=\"font-mono text-ink/60\">Spatial Map</div>}\n    />\n  );\n}\n",
+      "contentHash": "01aa029b2aacb07db96b78d397a9908c046217c5953964f89e0dcb764487a88a",
+      "sizeBytes": 398
+    }
+  ],
+  "tags": [
+    "search",
+    "map",
+    "discovery",
+    "airbnb",
+    "triptych"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "triptych-search-discovery",
+      "visualModel": "filter-cards-map-triptych",
+      "motionModel": "none",
+      "layoutModel": "three-column-discovery-shell",
+      "semanticPurpose": "location-discovery-search"
+    }
+  },
+  "url": "https://openui.dev/r/split-search-filter-map.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Triptych Search Discovery: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

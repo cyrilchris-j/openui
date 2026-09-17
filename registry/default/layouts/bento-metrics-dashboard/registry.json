@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bento-metrics-dashboard",
+  "type": "registry:layout",
+  "title": "Bento Metrics Dashboard",
+  "description": "Analytics bento box layout coordinating charts, tables, KPIs, and regional status panels.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bento-metrics-dashboard.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "bento",
+    "metrics",
+    "analytics",
+    "dashboard",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "bento-telemetry-scan",
+      "visualModel": "modular-metric-tiles",
+      "motionModel": "none",
+      "layoutModel": "mosaic-telemetry-matrix",
+      "semanticPurpose": "bento-analytics-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

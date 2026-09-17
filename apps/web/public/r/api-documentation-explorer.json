@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-documentation-explorer",
+  "type": "registry:block",
+  "title": "API Documentation Explorer",
+  "description": "An interactive API reference explorer with HTTP method badges (GET, POST), parameter tables, and live response simulation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-documentation-explorer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ApiDocumentationExplorer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center gap-3 pb-3 border-b border-neutral-800 mb-4\">\n        <span className=\"px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px]\">GET</span>\n        <span className=\"font-bold text-white\">/api/v2/registry/item/[slug]</span>\n      </div>\n      <div className=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n        <div className=\"p-3 bg-neutral-900 rounded border border-neutral-800\">\n          <div className=\"font-bold text-neutral-400 mb-2\">Request Parameters</div>\n          <div className=\"text-emerald-400\">slug: string (required)</div>\n        </div>\n        <div className=\"p-3 bg-neutral-900 rounded border border-neutral-800\">\n          <div className=\"font-bold text-neutral-400 mb-2\">Response 200 OK</div>\n          <div className=\"text-neutral-300\">&#123; \"name\": \"button\", \"status\": \"verified\" &#125;</div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "c3b0e261a42e71483534a7606db58b2b275cf00fccb38fd6c210878b0d816723",
+      "sizeBytes": 1283
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { ApiDocumentationExplorer } from \"./api-documentation-explorer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-900\">\n      <ApiDocumentationExplorer />\n    </div>\n  );\n}\n",
+      "contentHash": "a8c5e4621d39f28ee78aa21b0db239b8444c5e7929a8ed89cd3997b27f37a79c",
+      "sizeBytes": 281
+    }
+  ],
+  "tags": [
+    "api",
+    "docs",
+    "explorer",
+    "openapi",
+    "endpoints"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "documentation",
+    "fingerprint": {
+      "interactionModel": "api-endpoint-try-it-out-request",
+      "visualModel": "openapi-interactive-specification-viewer",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "api-specification-inspection"
+    }
+  },
+  "url": "https://openui.dev/r/api-documentation-explorer.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Api Endpoint Try It Out Request: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

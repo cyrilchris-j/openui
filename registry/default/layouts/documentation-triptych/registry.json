@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "documentation-triptych",
+  "type": "registry:layout",
+  "title": "Documentation Triptych",
+  "description": "Three-pane technical documentation layout: directory tree sidebar, main article, and table of contents rail.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "documentation-triptych.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "docs",
+    "documentation",
+    "triptych",
+    "toc",
+    "sidebar"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "three-pane-doc-navigation",
+      "visualModel": "triptych-doc-wireframe",
+      "motionModel": "none",
+      "layoutModel": "three-column-split",
+      "semanticPurpose": "documentation-site-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-text",
+  "type": "registry:text",
+  "title": "Wave Text",
+  "description": "Each glyph rides a sine wave with a phase offset from its position, producing a travelling swell through the word; implemented with per-character spans and a shared animation-delay variable.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "wave",
+    "sine",
+    "stagger",
+    "kinetic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "glyph-spans",
+      "motionModel": "phase-offset-sine",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "geometric",
+      "colorStrategy": "duotone"
+    }
+  }
+}

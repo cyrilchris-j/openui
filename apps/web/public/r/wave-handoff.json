@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-handoff",
+  "type": "registry:motion",
+  "title": "Wave Handoff",
+  "description": "Two rows of content hand off motion to each other: as the top row settles, its last element's exit velocity is inherited by the first element of the next row — energy conservation applied to entrance choreography.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-handoff.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface WaveHandoffProps {\n  rows: string[][];\n  className?: string;\n}\n\nexport function WaveHandoff({ rows, className }: WaveHandoffProps) {\n  const [revealed, setRevealed] = useState(0);\n  const total = rows.reduce((sum, row) => sum + row.length, 0);\n  const timers = useRef<number[]>([]);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    if (reduced) {\n      setRevealed(total);\n      return;\n    }\n    let delay = 0;\n    rows.forEach((row, rowIndex) => {\n      row.forEach((_, itemIndex) => {\n        // Each row's items accelerate (handoff builds momentum), then the\n        // next row inherits a faster cadence.\n        const rowCadence = Math.max(90, 260 - rowIndex * 60);\n        delay += itemIndex === 0 ? 0 : rowCadence;\n        timers.current.push(window.setTimeout(() => setRevealed((value) => value + 1), delay));\n      });\n      delay += 120; // handoff pause between rows\n    });\n    return () => {\n      timers.current.forEach((timer) => window.clearTimeout(timer));\n      timers.current = [];\n    };\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [reduced]);\n\n  let runningIndex = 0;\n\n  return (\n    <div className={cn(\"flex flex-col gap-4\", className)}>\n      {rows.map((row, rowIndex) => (\n        <div key={rowIndex} className=\"flex flex-wrap gap-2\">\n          {row.map((item) => {\n            const mine = runningIndex++;\n            const visible = mine < revealed;\n            const fromLeft = rowIndex % 2 === 0;\n            return (\n              <span\n                key={`${rowIndex}-${mine}`}\n                aria-hidden={!visible}\n                className=\"rounded-lg border border-line bg-paper px-4 py-2 text-ink\"\n                style={{\n                  opacity: visible ? 1 : 0,\n                  transform: visible\n                    ? \"translateX(0)\"\n                    : `translateX(${fromLeft ? -24 : 24}px)`,\n                  transition: \"opacity 240ms ease, transform 380ms cubic-bezier(0.2, 0, 0, 1)\",\n                }}\n              >\n                {item}\n              </span>\n            );\n          })}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default WaveHandoff;\n",
+      "contentHash": "96f3f69f18cb23d01c21a5c74223254e71aada1f91fa51a87da85d32700f3619",
+      "sizeBytes": 2357
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { WaveHandoff } from \"./wave-handoff\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <WaveHandoff\n        className=\"max-w-lg\"\n        rows={[\n          [\"author\", \"schema\", \"validate\"],\n          [\"mount\", \"index\"],\n          [\"install\", \"compose\", \"ship\"],\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "84cc4214b5d97079c2378a9cfbdc677461ad5d77812f9614e4311624bbd8cd16",
+      "sizeBytes": 392
+    }
+  ],
+  "tags": [
+    "handoff",
+    "wave",
+    "momentum",
+    "sequence"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "sequence-handoff",
+      "visualModel": "row-to-row-transfer",
+      "motionModel": "inherited-velocity",
+      "layoutModel": "stack",
+      "semanticPurpose": "narrative-entrance"
+    }
+  },
+  "url": "https://openui.dev/r/wave-handoff.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Sequence Handoff: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-auth-layout",
+  "type": "registry:layout",
+  "title": "Split Auth Layout",
+  "description": "Authentication layout with graphic mural banner on one side and clean authentication dialog on the other.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-auth-layout.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitAuthLayoutProps extends React.HTMLAttributes<HTMLDivElement> {\n  mural?: React.ReactNode;\n  form?: React.ReactNode;\n}\n\nexport function SplitAuthLayout({ mural, form, className, ...props }: SplitAuthLayoutProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-2 min-h-[380px] w-full border border-line rounded-2xl overflow-hidden font-sans\", className)} {...props}>\n      <div className=\"p-8 bg-surface/50 border-b lg:border-b-0 lg:border-r border-line flex items-center justify-center\">{mural}</div>\n      <div className=\"p-8 flex items-center justify-center bg-paper\">{form}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "4978a93b6dbbc13c4738fa1c556a288d8f59258326b8fc52d461500d5839dd25",
+      "sizeBytes": 688
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitAuthLayout } from \"./split-auth-layout\";\n\nexport default function SplitAuthLayoutDemo() {\n  return (\n    <SplitAuthLayout\n      mural={<div className=\"font-mono text-xs text-ink/60\">OpenUI Design Ecosystem</div>}\n      form={\n        <div className=\"w-full max-w-xs space-y-3\">\n          <div className=\"text-sm font-bold text-ink\">Welcome back</div>\n          <input type=\"email\" placeholder=\"name@company.com\" className=\"w-full px-3 py-1.5 rounded border border-line text-xs font-mono bg-paper\" />\n          <button type=\"button\" className=\"w-full py-1.5 rounded bg-accent text-white font-mono text-xs\">Sign In</button>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "c2ea9239beaa556e84f9f8165da6818dfb1883d33f00edfeb0397f496d4fd41e",
+      "sizeBytes": 688
+    }
+  ],
+  "tags": [
+    "auth",
+    "login",
+    "signup",
+    "split",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "authentication-flow-split",
+      "visualModel": "mural-and-auth-form",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-auth-halves",
+      "semanticPurpose": "authentication-screen-shell"
+    }
+  },
+  "url": "https://openui.dev/r/split-auth-layout.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Authentication Flow Split: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

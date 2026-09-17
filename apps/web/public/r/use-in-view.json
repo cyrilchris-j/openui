@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "use-in-view",
+  "type": "registry:hook",
+  "title": "Use In View",
+  "description": "An IntersectionObserver hook with once-mode for lazy activation, automatic disconnect on unmount, and a pre-mount false so SSR and hydration agree.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "use-in-view.ts",
+      "type": "registry:hook",
+      "target": "hooks",
+      "content": "import { useEffect, useRef, useState } from \"react\";\n\n/**\n * use-in-view\n *\n * An IntersectionObserver hook with three properties the registry relies on:\n *\n *  - `once` mode unobserves after the first intersection, which is what the\n *    catalogue's lazy previews use to stop paying for offscreen work;\n *  - the observer is disconnected on unmount and when the element changes;\n *  - it reports `false` before mount so SSR and hydration agree.\n */\nexport interface UseInViewOptions {\n  /** Stop observing after the first intersection. */\n  once?: boolean;\n  /** Fraction of the element that must be visible, 0–1. */\n  threshold?: number;\n  /** Margin around the viewport root, e.g. `\"100px\"`. */\n  rootMargin?: string;\n}\n\nexport function useInView<Element extends HTMLElement>(\n  options: UseInViewOptions = {},\n): { ref: React.RefObject<Element | null>; inView: boolean } {\n  const { once = false, threshold = 0, rootMargin = \"0px\" } = options;\n  const ref = useRef<Element>(null);\n  const [inView, setInView] = useState(false);\n\n  useEffect(() => {\n    const element = ref.current;\n    if (!element || typeof IntersectionObserver === \"undefined\") return;\n\n    const observer = new IntersectionObserver(\n      ([entry]) => {\n        if (!entry) return;\n        if (entry.isIntersecting) {\n          setInView(true);\n          if (once) observer.unobserve(element);\n        } else if (!once) {\n          setInView(false);\n        }\n      },\n      { threshold, rootMargin },\n    );\n\n    observer.observe(element);\n    return () => observer.disconnect();\n  }, [once, threshold, rootMargin]);\n\n  return { ref, inView };\n}\n\nexport default useInView;\n",
+      "contentHash": "8a59675aab956c5a56e6d2771d9f1d6120a1d21672bb477b62efcc41547ba1ff",
+      "sizeBytes": 1651
+    }
+  ],
+  "tags": [
+    "hook",
+    "intersection-observer",
+    "performance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": [
+      "zero-dependency",
+      "ssr-safe"
+    ],
+    "subcategory": "hooks",
+    "fingerprint": {
+      "interactionModel": "visibility-observer",
+      "visualModel": "none",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "lazy-activation"
+    }
+  },
+  "url": "https://openui.dev/r/use-in-view.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Default to `once: true` for expensive children; the observer exists to stop\n  offscreen work, not add it.\n- Disconnect on unmount is mandatory; a leaked observer keeps every observed\n  element alive.\n\n## Avoid\n\n- Polling `getBoundingClientRect` on scroll when this hook gives the same\n  answer for free.\n"
+}

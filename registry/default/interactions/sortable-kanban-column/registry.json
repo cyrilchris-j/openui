@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sortable-kanban-column",
+  "type": "registry:interaction",
+  "title": "Sortable Kanban Column",
+  "description": "A vertical Kanban pipeline lane supporting card drag reordering and stage transfers with drop target previews.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sortable-kanban-column.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "kanban",
+    "sortable",
+    "drag",
+    "column",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "kanban-card-drag-reorder",
+      "visualModel": "columnar-swimlane-deck",
+      "motionModel": "slot-insertion-indicator",
+      "layoutModel": "vertical-kanban-lane",
+      "semanticPurpose": "pipeline-stage-column"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

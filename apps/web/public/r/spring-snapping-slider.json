@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spring-snapping-slider",
+  "type": "registry:motion",
+  "title": "Spring Snapping Slider",
+  "description": "A numeric range control where the thumb glides with simulated mass and snaps toward discrete notched positions via magnetic spring detents.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spring-snapping-slider.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SpringSnappingSliderProps {\n  min?: number;\n  max?: number;\n  step?: number;\n  defaultValue?: number;\n  onChange?: (val: number) => void;\n  className?: string;\n}\n\nexport function SpringSnappingSlider({\n  min = 0,\n  max = 100,\n  step = 20,\n  defaultValue = 40,\n  onChange,\n  className,\n}: SpringSnappingSliderProps) {\n  const [value, setValue] = useState(defaultValue);\n  const [isDragging, setIsDragging] = useState(false);\n  const trackRef = useRef<HTMLDivElement>(null);\n\n  const stepsCount = Math.floor((max - min) / step);\n  const percentage = ((value - min) / (max - min)) * 100;\n\n  const updateFromPointer = (clientX: number) => {\n    const track = trackRef.current;\n    if (!track) return;\n    const rect = track.getBoundingClientRect();\n    const rawPct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));\n    const rawVal = min + rawPct * (max - min);\n    const snappedVal = Math.round(rawVal / step) * step;\n    const clamped = Math.max(min, Math.min(max, snappedVal));\n    setValue(clamped);\n    onChange?.(clamped);\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-md p-4\", className)}>\n      <div className=\"flex items-center justify-between font-mono text-xs text-graphite mb-2\">\n        <span>QUANTIZED_STEP: {step}</span>\n        <span className=\"font-bold text-ink\">{value} / {max}</span>\n      </div>\n      <div\n        ref={trackRef}\n        onPointerDown={(e) => {\n          setIsDragging(true);\n          updateFromPointer(e.clientX);\n          (e.target as HTMLElement).setPointerCapture(e.pointerId);\n        }}\n        onPointerMove={(e) => {\n          if (isDragging) updateFromPointer(e.clientX);\n        }}\n        onPointerUp={(e) => {\n          setIsDragging(false);\n          try {\n            (e.target as HTMLElement).releasePointerCapture(e.pointerId);\n          } catch {}\n        }}\n        className=\"relative h-9 cursor-pointer select-none rounded border border-line bg-surface p-1 flex items-center\"\n      >\n        {/* Notches */}\n        <div className=\"absolute inset-x-2 flex justify-between pointer-events-none\">\n          {Array.from({ length: stepsCount + 1 }).map((_, i) => (\n            <div key={i} className=\"h-2 w-0.5 bg-line/80\" />\n          ))}\n        </div>\n\n        {/* Progress fill */}\n        <div\n          className=\"absolute left-1 top-1 bottom-1 bg-ink/10 rounded-sm pointer-events-none transition-all duration-150 ease-out\"\n          style={{ width: `calc(${percentage}% - 4px)` }}\n        />\n\n        {/* Thumb */}\n        <div\n          className=\"absolute top-1 bottom-1 w-6 rounded border border-ink bg-ink text-paper flex items-center justify-center font-mono text-[9px] shadow-sm transition-all duration-200 ease-spring\"\n          style={{\n            left: `calc(${percentage}% - ${(percentage / 100) * 24}px)`,\n            transitionProperty: isDragging ? \"none\" : \"left\",\n          }}\n        >\n          {value}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "72ede7cf6877cb4eb38d288f953f0c805fcdef2178a7c3be4cd3b1e3c7b86c7d",
+      "sizeBytes": 3054
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SpringSnappingSlider } from \"./spring-snapping-slider\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-10\">\n      <SpringSnappingSlider min={0} max={100} step={20} defaultValue={60} />\n    </div>\n  );\n}\n",
+      "contentHash": "c13d54da2c4884f7b4b842eaf79f4ac37e8e44810ba6e46edd3ebcd1954dd8dd",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "slider",
+    "spring",
+    "physics",
+    "haptic",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "continuous-drag-notched-snap",
+      "visualModel": "ruled-calibrated-gauge",
+      "motionModel": "restoring-spring-detent",
+      "layoutModel": "horizontal-bar",
+      "semanticPurpose": "calibrated-value-selector"
+    }
+  },
+  "url": "https://openui.dev/r/spring-snapping-slider.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Continuous Drag Notched Snap: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

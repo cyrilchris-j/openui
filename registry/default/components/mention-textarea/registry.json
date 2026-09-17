@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "mention-textarea",
+  "type": "registry:component",
+  "title": "Mention Textarea",
+  "description": "Smart text input with @ mention trigger popover, member lookup, and automatic pill replacement.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "mention-textarea.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "mention",
+    "textarea",
+    "forms",
+    "input",
+    "collaborator"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "character-triggered-popover-lookup",
+      "visualModel": "anchored-suggestion-popover",
+      "motionModel": "none",
+      "layoutModel": "text-input-with-overlay",
+      "semanticPurpose": "member-mention-input"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

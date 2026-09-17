@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inline-diff-markup",
+  "type": "registry:text",
+  "title": "Inline Diff Markup",
+  "description": "Renders edits the way copyeditors mark them: insertions underlined in green, deletions struck in red — computed from a real word-level LCS diff, not hand-authored spans, so any two strings can be compared.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inline-diff-markup.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface InlineDiffMarkupProps {\n  before: string;\n  after: string;\n  className?: string;\n}\n\ntype Op = { type: \"same\" | \"insert\" | \"delete\"; word: string };\n\n/** Word-level longest-common-subsequence diff. */\nexport function diffWords(before: string, after: string): Op[] {\n  const a = before.split(/\\s+/);\n  const b = after.split(/\\s+/);\n  const lcs: number[][] = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));\n\n  for (let i = a.length - 1; i >= 0; i--) {\n    for (let j = b.length - 1; j >= 0; j--) {\n      lcs[i]![j] = a[i] === b[j] ? (lcs[i + 1]?.[j + 1] ?? 0) + 1 : Math.max(lcs[i + 1]?.[j] ?? 0, lcs[i]?.[j + 1] ?? 0);\n    }\n  }\n\n  const ops: Op[] = [];\n  let i = 0;\n  let j = 0;\n  while (i < a.length && j < b.length) {\n    if (a[i] === b[j]) {\n      ops.push({ type: \"same\", word: a[i]! });\n      i++;\n      j++;\n    } else if ((lcs[i + 1]?.[j] ?? 0) >= (lcs[i]?.[j + 1] ?? 0)) {\n      ops.push({ type: \"delete\", word: a[i]! });\n      i++;\n    } else {\n      ops.push({ type: \"insert\", word: b[j]! });\n      j++;\n    }\n  }\n  while (i < a.length) {\n    ops.push({ type: \"delete\", word: a[i]! });\n    i++;\n  }\n  while (j < b.length) {\n    ops.push({ type: \"insert\", word: b[j]! });\n    j++;\n  }\n  return ops;\n}\n\nexport function InlineDiffMarkup({ before, after, className }: InlineDiffMarkupProps) {\n  const ops = diffWords(before, after);\n\n  return (\n    <p className={cn(\"max-w-prose font-mono text-sm leading-loose\", className)} role=\"doc-diff\">\n      {ops.map((op, index) => {\n        if (op.type === \"same\") return <span key={index}>{op.word} </span>;\n        if (op.type === \"insert\") {\n          return (\n            <span key={index} className=\"rounded-sm bg-emerald-500/10 px-0.5 text-emerald-700 underline decoration-emerald-500 decoration-2\">\n              {op.word}{\" \"}\n            </span>\n          );\n        }\n        return (\n          <span key={index} className=\"rounded-sm bg-red-500/10 px-0.5 text-red-700 line-through decoration-red-500 decoration-2\" aria-label={`deleted: ${op.word}`}>\n            {op.word}{\" \"}\n          </span>\n        );\n      })}\n    </p>\n  );\n}\n\nexport default InlineDiffMarkup;\n",
+      "contentHash": "6ed7858c83bc8fa6322ba22063729a1cc7b1c29b05712fc9ff414a5105cbbcdb",
+      "sizeBytes": 2201
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { InlineDiffMarkup } from \"./inline-diff-markup\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <InlineDiffMarkup\n        before=\"the quick brown fox jumps over the lazy dog\"\n        after=\"the quick red fox leaps over the sleepy dog\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "15cd92f06ff54db3222d6b6e6e1361714cea697632884f450385ed359be0e542",
+      "sizeBytes": 357
+    }
+  ],
+  "tags": [
+    "diff",
+    "lcs",
+    "editing",
+    "compare"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "lcs-word-diff",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "change-review"
+    }
+  },
+  "url": "https://openui.dev/r/inline-diff-markup.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Duotone\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

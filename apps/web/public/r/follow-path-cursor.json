@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "follow-path-cursor",
+  "type": "registry:interaction",
+  "title": "Follow Path Cursor",
+  "description": "An interactive tracker node that constrains mouse interaction to a curvilinear parametric SVG spline rail.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "follow-path-cursor.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FollowPathCursorProps {\n  className?: string;\n}\n\nexport function FollowPathCursor({ className }: FollowPathCursorProps) {\n  const [t, setT] = useState(0.5);\n\n  const x = t * 240 + 20;\n  const y = 50 + Math.sin(t * Math.PI * 2) * 30;\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">PARAMETRIC RAIL TRACKER</span>\n      <div className=\"relative h-28 w-72\">\n        <svg className=\"h-full w-full overflow-visible\">\n          <path\n            d=\"M 20 50 Q 80 10 140 50 T 260 50\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            strokeWidth=\"2\"\n            className=\"text-line\"\n          />\n        </svg>\n        <div\n          className=\"absolute -ml-3 -mt-3 h-6 w-6 rounded-full border-2 border-paper bg-ink shadow-md transition-all duration-75\"\n          style={{ left: x, top: y }}\n        />\n      </div>\n\n      <input\n        type=\"range\"\n        min=\"0\"\n        max=\"1\"\n        step=\"0.01\"\n        value={t}\n        onChange={(e) => setT(parseFloat(e.target.value))}\n        className=\"w-48 cursor-pointer accent-ink\"\n      />\n    </div>\n  );\n}\n\nexport default FollowPathCursor;\n",
+      "contentHash": "5e4debab8e291af62773ade2f58942110d8b3b43b0cb6c3ef437a39af41fda8a",
+      "sizeBytes": 1353
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { FollowPathCursor } from \"./follow-path-cursor\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <FollowPathCursor />\n    </div>\n  );\n}\n",
+      "contentHash": "fd1f91a843732a94a6681071fff38ebb6e83f5874e97774839d648381f49b48a",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "path",
+    "svg",
+    "rail",
+    "constrained",
+    "cursor"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "constrained-spline-slider",
+      "visualModel": "sinusoidal-rail-guide",
+      "motionModel": "parametric-curve-travel",
+      "layoutModel": "horizontal-spline-stage",
+      "semanticPurpose": "rail-constrained-tracker"
+    }
+  },
+  "url": "https://openui.dev/r/follow-path-cursor.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Constrained Spline Slider: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

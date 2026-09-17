@@ -50,6 +50,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "dual-pane-scroll",
+      "visualModel": "golden-ratio-bleed-frame",
+      "layoutModel": "asymmetric-two-column",
+      "semanticPurpose": "narrative-lead-story"
     }
   },
   "url": "https://openui.dev/r/asymmetric-split.json",

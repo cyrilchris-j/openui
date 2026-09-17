@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "idle-fade-whisper",
+  "type": "registry:text",
+  "title": "Idle Fade Whisper",
+  "description": "Ambient text that slowly fades toward invisibility while the reader is idle and breathes back on any input — presence-aware typography that rewards attention instead of demanding it.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "idle-fade-whisper.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface IdleFadeWhisperProps {\n  children: string;\n  /** Seconds of idle before fading begins. */\n  idleSeconds?: number;\n  /** Fade duration in seconds. */\n  fadeSeconds?: number;\n  className?: string;\n}\n\nexport function IdleFadeWhisper({ children, idleSeconds = 4, fadeSeconds = 6, className }: IdleFadeWhisperProps) {\n  const [idle, setIdle] = useState(false);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    if (reduced) return;\n    let timer: number;\n    const wake = () => {\n      setIdle(false);\n      window.clearTimeout(timer);\n      timer = window.setTimeout(() => setIdle(true), idleSeconds * 1000);\n    };\n    wake();\n    window.addEventListener(\"pointermove\", wake);\n    window.addEventListener(\"keydown\", wake);\n    window.addEventListener(\"scroll\", wake, { passive: true });\n    return () => {\n      window.clearTimeout(timer);\n      window.removeEventListener(\"pointermove\", wake);\n      window.removeEventListener(\"keydown\", wake);\n      window.removeEventListener(\"scroll\", wake);\n    };\n  }, [idleSeconds, reduced]);\n\n  return (\n    <p\n      className={cn(\"max-w-prose text-xl leading-relaxed text-ink\", className)}\n      style={{\n        opacity: idle && !reduced ? 0.15 : 1,\n        transition: `opacity ${fadeSeconds}s ease`,\n      }}\n    >\n      {children}\n    </p>\n  );\n}\n\nexport default IdleFadeWhisper;\n",
+      "contentHash": "045f38a13a7bb06b186e188e8522bcc888e634094f688e641f78897dcea36206",
+      "sizeBytes": 1531
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { IdleFadeWhisper } from \"./idle-fade-whisper\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <IdleFadeWhisper fadeSeconds={3}>\n        Stop moving your pointer for a moment and watch this sentence whisper away.\n      </IdleFadeWhisper>\n    </div>\n  );\n}\n",
+      "contentHash": "468f8e7d8e0c144585890757341771dc83d8604244989f823b21b0cf8f3b10bb",
+      "sizeBytes": 350
+    }
+  ],
+  "tags": [
+    "idle",
+    "fade",
+    "presence",
+    "ambient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "idle-decay",
+      "visualModel": "attention-fade",
+      "motionModel": "slow-opacity-drift",
+      "layoutModel": "block",
+      "semanticPurpose": "ambient-message"
+    }
+  },
+  "url": "https://openui.dev/r/idle-fade-whisper.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Stack\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Idle Decay: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

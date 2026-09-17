@@ -39,7 +39,14 @@
       "dark-mode",
       "reduced-motion-safe",
       "wcag-aa"
-    ]
+    ],
+    "subcategory": "palette",
+    "fingerprint": {
+      "interactionModel": "high-contrast-paper-tokens",
+      "visualModel": "stark-ink-on-vellum-palette",
+      "layoutModel": "css-root-variables",
+      "semanticPurpose": "swiss-theme-definition"
+    }
   },
   "url": "https://openui.dev/r/swiss-ledger.json"
 }

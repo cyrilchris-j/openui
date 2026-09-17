@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "use-canvas-loop",
+  "type": "registry:hook",
+  "title": "Use Canvas Loop",
+  "description": "The registry's shared canvas animation loop: DPR-correct sizing, pause when hidden or offscreen, a single static frame under reduced motion, and guaranteed teardown.",
+  "category": "components",
+  "dependencies": ["react"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "use-canvas-loop.ts",
+      "type": "registry:hook",
+      "target": "hooks"
+    }
+  ],
+  "tags": ["hook", "canvas", "animation", "performance"],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "hooks",
+    "fingerprint": {
+      "interactionModel": "frame-loop",
+      "visualModel": "none",
+      "motionModel": "raf-loop",
+      "layoutModel": "inline",
+      "semanticPurpose": "animation-infrastructure"
+    },
+    "features": ["visibility-aware", "reduced-motion-safe", "dpr-correct"]
+  }
+}

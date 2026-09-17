@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "whisper-stage-direction",
+  "type": "registry:text",
+  "title": "Whisper Stage Direction",
+  "description": "Play-script typography where italic stage directions sit inset from the speech, character names are tracked caps on their own line, and clicking a direction highlights the affected character's next line — theatre markup made navigable.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "whisper-stage-direction.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "script",
+    "stage-direction",
+    "theatre",
+    "dialogue"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "click-highlight-cast",
+      "visualModel": "inset-direction-blocks",
+      "motionModel": "highlight-link",
+      "layoutModel": "script",
+      "semanticPurpose": "dramatic-text"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -50,6 +50,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "pointer-pause-hover",
+      "visualModel": "continuous-tape-ticker",
+      "motionModel": "linear-infinite-travel",
+      "layoutModel": "full-width-strip",
+      "semanticPurpose": "catalogue-browse"
     }
   },
   "url": "https://openui.dev/r/marquee-index.json",

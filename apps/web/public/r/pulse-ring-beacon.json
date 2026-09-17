@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pulse-ring-beacon",
+  "type": "registry:motion",
+  "title": "Pulse Ring Beacon",
+  "description": "An animated radar status indicator broadcasting expanding concentric pulse rings into surrounding space.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pulse-ring-beacon.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface PulseRingBeaconProps {\n  className?: string;\n}\n\nexport function PulseRingBeacon({ className }: PulseRingBeaconProps) {\n  return (\n    <div className={cn(\"relative flex h-24 w-24 items-center justify-center\", className)}>\n      <div className=\"h-4 w-4 rounded-full bg-emerald-500 shadow-sm\" />\n      <div className=\"absolute h-12 w-12 rounded-full border border-emerald-500 animate-ping opacity-75\" />\n      <div className=\"absolute h-20 w-20 rounded-full border border-emerald-500 animate-ping opacity-40\" style={{ animationDelay: \"300ms\" }} />\n    </div>\n  );\n}\n\nexport default PulseRingBeacon;\n",
+      "contentHash": "29af0c3c68e45e7faa4834032bb118ed958db224c548411c547b2e7a5cd71394",
+      "sizeBytes": 660
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { PulseRingBeacon } from \"./pulse-ring-beacon\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <PulseRingBeacon />\n    </div>\n  );\n}\n",
+      "contentHash": "f39d1de134500cbcac4e2401095c14908bb01b93894534cef6dd88dc10c0f992",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "pulse",
+    "beacon",
+    "radar",
+    "status",
+    "ring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "indicators",
+    "fingerprint": {
+      "interactionModel": "continuous-radar-broadcast",
+      "visualModel": "annular-pulse-radiator",
+      "motionModel": "radial-fadeout-expansion",
+      "layoutModel": "center-point-beacon",
+      "semanticPurpose": "live-telemetry-beacon"
+    }
+  },
+  "url": "https://openui.dev/r/pulse-ring-beacon.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Continuous Radar Broadcast: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

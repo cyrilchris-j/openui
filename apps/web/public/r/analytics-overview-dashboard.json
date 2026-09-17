@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "analytics-overview-dashboard",
+  "type": "registry:block",
+  "title": "Analytics Overview Dashboard",
+  "description": "A comprehensive metric workspace with KPI cards, revenue breakdowns, period filters, and live telemetry badges.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "analytics-overview-dashboard.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface AnalyticsOverviewDashboardProps extends React.HTMLAttributes<HTMLDivElement> {\n  defaultPeriod?: string;\n}\n\nexport function AnalyticsOverviewDashboard({\n  defaultPeriod = \"30d\",\n  className,\n  ...props\n}: AnalyticsOverviewDashboardProps) {\n  const [period, setPeriod] = React.useState(defaultPeriod);\n\n  const kpis = [\n    { label: \"Total Revenue\", val: \"$128,430\", change: \"+18.2%\", positive: true },\n    { label: \"Active Sessions\", val: \"42,890\", change: \"+6.4%\", positive: true },\n    { label: \"Bounce Rate\", val: \"24.1%\", change: \"-2.3%\", positive: true },\n    { label: \"p99 API Latency\", val: \"14ms\", change: \"+1.2ms\", positive: false },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-6xl mx-auto p-6 space-y-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm\", className)} {...props}>\n      <div className=\"flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-100 dark:border-neutral-800\">\n        <div>\n          <h2 className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100\">Telemetry Overview</h2>\n          <p className=\"text-xs text-neutral-500\">Live operational throughput across edge regions.</p>\n        </div>\n        <div className=\"flex gap-1.5 p-1 rounded-lg bg-neutral-100 dark:bg-neutral-900 text-xs font-mono\">\n          {[\"7d\", \"30d\", \"90d\", \"1y\"].map((p) => (\n            <button\n              key={p}\n              type=\"button\"\n              onClick={() => setPeriod(p)}\n              className={cn(\n                \"px-2.5 py-1 rounded-md transition-colors\",\n                period === p ? \"bg-white dark:bg-neutral-800 font-bold shadow-xs text-neutral-900 dark:text-neutral-100\" : \"text-neutral-500 hover:text-neutral-900 dark:hover:text-white\"\n              )}\n            >\n              {p}\n            </button>\n          ))}\n        </div>\n      </div>\n\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">\n        {kpis.map((k) => (\n          <div key={k.label} className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30\">\n            <span className=\"text-[11px] font-mono text-neutral-400 uppercase\">{k.label}</span>\n            <div className=\"text-2xl font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1\">{k.val}</div>\n            <div className={cn(\"text-[11px] font-mono mt-1\", k.positive ? \"text-emerald-600 dark:text-emerald-400\" : \"text-rose-500\")}>\n              {k.change} vs prior period\n            </div>\n          </div>\n        ))}\n      </div>\n\n      <div className=\"p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 text-center font-mono text-xs text-neutral-400 h-48 flex items-center justify-center\">\n        [Time-Series Event Stream Visualization Canvas — Mode: {period}]\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "41df9250d80cdd8cc19b5006f53f49b809c80b7fcb2e90993d60ef46b7fafe01",
+      "sizeBytes": 3010
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { AnalyticsOverviewDashboard } from \"./analytics-overview-dashboard\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[450px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <AnalyticsOverviewDashboard />\n    </div>\n  );\n}\n",
+      "contentHash": "d739281ed0a4032488066f0a4fec5c03fdebd2be001db2ed340a813e9e382cd6",
+      "sizeBytes": 307
+    }
+  ],
+  "tags": [
+    "dashboard",
+    "analytics",
+    "kpi",
+    "telemetry",
+    "metrics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "dashboard",
+    "fingerprint": {
+      "interactionModel": "timeframe-filter-kpi-drilldown",
+      "visualModel": "metric-grid-with-chart-canvas",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "business-telemetry-dashboard"
+    }
+  },
+  "url": "https://openui.dev/r/analytics-overview-dashboard.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Timeframe Filter Kpi Drilldown: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

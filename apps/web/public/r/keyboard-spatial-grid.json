@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-spatial-grid",
+  "type": "registry:interaction",
+  "title": "Keyboard Spatial Grid",
+  "description": "A 2D navigation grid supporting full directional arrow key navigation, spatial focus retention, and enter activation.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-spatial-grid.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KeyboardSpatialGridProps {\n  className?: string;\n}\n\nexport function KeyboardSpatialGrid({ className }: KeyboardSpatialGridProps) {\n  const [selected, setSelected] = useState({ r: 0, c: 0 });\n\n  const move = (dr: number, dc: number) => {\n    setSelected((prev) => ({\n      r: Math.max(0, Math.min(2, prev.r + dr)),\n      c: Math.max(0, Math.min(2, prev.c + dc)),\n    }));\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">SPATIAL GRID (ROW {selected.r}, COL {selected.c})</span>\n\n      <div className=\"grid grid-cols-3 gap-2\">\n        {Array.from({ length: 3 }).map((_, r) =>\n          Array.from({ length: 3 }).map((_, c) => {\n            const isSel = selected.r === r && selected.c === c;\n            return (\n              <div\n                key={`${r}-${c}`}\n                onClick={() => setSelected({ r, c })}\n                className={cn(\n                  \"flex h-12 w-12 cursor-pointer items-center justify-center rounded border font-mono text-xs font-bold transition-all\",\n                  isSel ? \"border-ink bg-ink text-paper shadow\" : \"border-line bg-line/10 text-ink\"\n                )}\n              >\n                {r},{c}\n              </div>\n            );\n          })\n        )}\n      </div>\n\n      <div className=\"flex gap-1.5\">\n        <button\n          type=\"button\"\n          onClick={() => move(0, -1)}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs hover:bg-line/20\"\n        >\n          ←\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => move(-1, 0)}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs hover:bg-line/20\"\n        >\n          ↑\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => move(1, 0)}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs hover:bg-line/20\"\n        >\n          ↓\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => move(0, 1)}\n          className=\"rounded border border-line px-2 py-1 font-mono text-xs hover:bg-line/20\"\n        >\n          →\n        </button>\n      </div>\n    </div>\n  );\n}\n\nexport default KeyboardSpatialGrid;\n",
+      "contentHash": "c5cb1537b2bf58bca790eb08b3f7fc4bb06c8d640347405e07ca07f1b4016856",
+      "sizeBytes": 2430
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { KeyboardSpatialGrid } from \"./keyboard-spatial-grid\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <KeyboardSpatialGrid />\n    </div>\n  );\n}\n",
+      "contentHash": "51383c1a10c93e802d905a8c260e0fe35c0ecd72912fe308159da96b98cc112a",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "keyboard",
+    "grid",
+    "spatial",
+    "navigation",
+    "arrows"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "spatial-arrow-key-navigation",
+      "visualModel": "coordinate-matrix-cells",
+      "motionModel": "discrete-cell-jump",
+      "layoutModel": "2d-spatial-mosaic",
+      "semanticPurpose": "spatial-grid-navigator"
+    }
+  },
+  "url": "https://openui.dev/r/keyboard-spatial-grid.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Spatial Arrow Key Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

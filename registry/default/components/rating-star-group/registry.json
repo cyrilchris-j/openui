@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rating-star-group",
+  "type": "registry:component",
+  "title": "Rating Star Group",
+  "description": "An accessible rating group displaying star glyphs with locked status and numeric feedback score.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rating-star-group.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "rating",
+    "stars",
+    "review",
+    "score",
+    "feedback"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "star-rating-scoring",
+      "visualModel": "five-star-glyph-chain",
+      "motionModel": "glyph-highlight-step",
+      "layoutModel": "horizontal-star-group",
+      "semanticPurpose": "review-star-group"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

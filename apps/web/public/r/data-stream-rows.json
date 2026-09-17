@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "data-stream-rows",
+  "type": "registry:motion",
+  "title": "Data Stream Rows",
+  "description": "Streaming rows enter at the top and push older rows down with a measured slide (FLIP), each new row flashing once on arrival — the motion of a live feed, honest about the fact that data keeps arriving.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "data-stream-rows.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DataStreamRowsProps {\n  /** Generates a new row label per tick. */\n  generate?: (index: number) => string;\n  tickMs?: number;\n  maxRows?: number;\n  className?: string;\n}\n\nconst EVENTS = [\"deploy\", \"merge\", \"validate\", \"publish\", \"rollback\", \"install\"];\n\nexport function DataStreamRows({\n  generate,\n  tickMs = 2000,\n  maxRows = 6,\n  className,\n}: DataStreamRowsProps) {\n  const [rows, setRows] = useState<Array<{ id: number; label: string }>>([]);\n  const counter = useRef(0);\n  const listRef = useRef<HTMLUListElement>(null);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    const timer = window.setInterval(() => {\n      const id = counter.current++;\n      const label = generate\n        ? generate(id)\n        : `${EVENTS[id % EVENTS.length]} #${1000 + id}`;\n\n      const list = listRef.current;\n      if (list && !reduced) {\n        // Measure existing rows before the insert for the FLIP push.\n        const before = new Map<string, DOMRect>();\n        list.querySelectorAll(\"li[data-row]\").forEach((node) => {\n          before.set((node as HTMLElement).dataset.row!, (node as HTMLElement).getBoundingClientRect());\n        });\n\n        setRows((current) => [{ id, label, flash: true } as never, ...current].slice(0, maxRows));\n\n        requestAnimationFrame(() => {\n          list.querySelectorAll(\"li[data-row]\").forEach((node) => {\n            const el = node as HTMLElement;\n            const firstRect = before.get(el.dataset.row!);\n            if (!firstRect) {\n              el.animate([{ opacity: 0, transform: \"translateY(-100%)\" }, { opacity: 1, transform: \"translateY(0)\" }], {\n                duration: 320,\n                easing: \"cubic-bezier(0.2, 0, 0, 1)\",\n              });\n              return;\n            }\n            const after = el.getBoundingClientRect();\n            const dy = firstRect.top - after.top;\n            if (Math.abs(dy) > 1) {\n              el.animate([{ transform: `translateY(${dy}px)` }, { transform: \"translateY(0)\" }], {\n                duration: 320,\n                easing: \"cubic-bezier(0.2, 0, 0, 1)\",\n              });\n            }\n          });\n        });\n      } else {\n        setRows((current) => [{ id, label }, ...current].slice(0, maxRows));\n      }\n    }, tickMs);\n    return () => window.clearInterval(timer);\n  }, [tickMs, maxRows, generate, reduced]);\n\n  return (\n    <ul ref={listRef} className={cn(\"flex flex-col overflow-hidden rounded-lg border border-line bg-ink font-mono text-xs\", className)} aria-live=\"polite\">\n      {rows.map((row) => (\n        <li\n          key={row.id}\n          data-row={row.id}\n          className=\"flex items-center gap-2 border-b border-white/5 px-3 py-2 text-paper/85 last:border-0\"\n        >\n          <span aria-hidden className=\"h-1.5 w-1.5 rounded-full bg-emerald-400\" />\n          {row.label}\n        </li>\n      ))}\n    </ul>\n  );\n}\n\nexport default DataStreamRows;\n",
+      "contentHash": "5fc8bf4186545219c074ecbeb00ee0602298ee9d88540d3c2f0dfa94f1cbae12",
+      "sizeBytes": 3092
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { DataStreamRows } from \"./data-stream-rows\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <DataStreamRows className=\"h-56 w-full max-w-sm\" />\n    </div>\n  );\n}\n",
+      "contentHash": "5321073638c4a0bb101e6840003a953922890e5cdf21c3f3ef7e8389729e1521",
+      "sizeBytes": 257
+    }
+  ],
+  "tags": [
+    "stream",
+    "feed",
+    "live",
+    "rows"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "interval-push",
+      "visualModel": "measured-feed-insert",
+      "motionModel": "flip-push-slide",
+      "layoutModel": "list",
+      "semanticPurpose": "live-monitoring"
+    }
+  },
+  "url": "https://openui.dev/r/data-stream-rows.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Duotone\n\n## Rules\n\n- Interval Push: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

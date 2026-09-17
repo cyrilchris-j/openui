@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wandering-gradient-type",
+  "type": "registry:text",
+  "title": "Wandering Gradient Type",
+  "description": "A multi-stop gradient that drifts through the glyphs on a slow non-repeating noise path — background-position animated through keyframes that never land on the same offset twice in a row, so the colour never loops visibly.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wandering-gradient-type.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface WanderingGradientTypeProps {\n  children: string;\n  /** Gradient stops; pass three or more for the wander to read. */\n  stops?: string[];\n  /** Full drift duration; long values read calmer. */\n  duration?: number;\n  className?: string;\n}\n\nconst KEYFRAMES = `@keyframes openui-wander {\n  0%   { background-position: 0% 50%; }\n  17%  { background-position: 28% 38%; }\n  34%  { background-position: 61% 57%; }\n  51%  { background-position: 84% 33%; }\n  68%  { background-position: 47% 71%; }\n  85%  { background-position: 12% 62%; }\n  100% { background-position: 0% 50%; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .openui-wander-target { animation: none !important; background-position: 30% 40% !important; }\n}`;\n\nexport function WanderingGradientType({\n  children,\n  stops = [\"#e2624a\", \"#d9a441\", \"#5d8a72\", \"#4a6fa5\", \"#e2624a\"],\n  duration = 14,\n  className,\n}: WanderingGradientTypeProps) {\n  return (\n    <span className={cn(\"inline\", className)}>\n      <style>{KEYFRAMES}</style>\n      <span\n        aria-hidden\n        className=\"openui-wander-target inline-block\"\n        style={{\n          backgroundImage: `linear-gradient(100deg, ${stops.join(\", \")})`,\n          backgroundSize: \"280% 280%\",\n          WebkitBackgroundClip: \"text\",\n          backgroundClip: \"text\",\n          color: \"transparent\",\n          animation: `openui-wander ${duration}s ease-in-out infinite`,\n        }}\n      >\n        {children}\n      </span>\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default WanderingGradientType;\n",
+      "contentHash": "779aff71fb87300cff5ac1b6154541314b8abb1c0c36bf213206807dee4db449",
+      "sizeBytes": 1592
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { WanderingGradientType } from \"./wandering-gradient-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <WanderingGradientType className=\"font-display text-step-5 tracking-tight\">\n        Iridescent\n      </WanderingGradientType>\n    </div>\n  );\n}\n",
+      "contentHash": "87a740a4a27e2f7d25adfe001233de72ec107326c64b0dc2d93dceaaf2136b00",
+      "sizeBytes": 345
+    }
+  ],
+  "tags": [
+    "gradient",
+    "iridescent",
+    "drift",
+    "animated"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "pastel"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "clipped-gradient",
+      "motionModel": "non-repeating-position-path",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-accent"
+    }
+  },
+  "url": "https://openui.dev/r/wandering-gradient-type.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Variable Poster\nColor: Pastel\n\n## Rules\n\n- Ambient Loop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

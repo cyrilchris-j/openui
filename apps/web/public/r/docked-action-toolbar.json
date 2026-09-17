@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "docked-action-toolbar",
+  "type": "registry:component",
+  "title": "Docked Action Toolbar",
+  "description": "A floating bottom pill toolbar with action icons, badge counters, and keyboard shortcut indicators.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "docked-action-toolbar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { MessageSquare, Share, Bookmark, ThumbsUp, Sparkles } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DockedActionToolbar({ className }: { className?: string }) {\n  const [liked, setLiked] = useState(false);\n  const [saved, setSaved] = useState(false);\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-1 p-1.5 rounded-full border border-line bg-paper/90 backdrop-blur-md shadow-lg font-sans\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setLiked(!liked)}\n        className={cn(\n          \"flex items-center gap-1 px-3 py-1.5 rounded-full text-xs transition-colors\",\n          liked ? \"bg-red-500/15 text-red-500 font-semibold\" : \"text-ink/70 hover:bg-surface hover:text-ink\"\n        )}\n      >\n        <ThumbsUp className=\"w-3.5 h-3.5\" />\n        <span>{liked ? \"43\" : \"42\"}</span>\n      </button>\n\n      <div className=\"w-px h-4 bg-line\" />\n\n      <button\n        type=\"button\"\n        className=\"flex items-center gap-1 px-3 py-1.5 rounded-full text-xs text-ink/70 hover:bg-surface hover:text-ink transition-colors\"\n      >\n        <MessageSquare className=\"w-3.5 h-3.5\" />\n        <span>18</span>\n      </button>\n\n      <button\n        type=\"button\"\n        onClick={() => setSaved(!saved)}\n        className={cn(\n          \"p-2 rounded-full transition-colors\",\n          saved ? \"bg-accent/15 text-accent\" : \"text-ink/70 hover:bg-surface hover:text-ink\"\n        )}\n        aria-label=\"Save\"\n      >\n        <Bookmark className=\"w-3.5 h-3.5\" />\n      </button>\n\n      <button\n        type=\"button\"\n        className=\"p-2 rounded-full text-ink/70 hover:bg-surface hover:text-ink transition-colors\"\n        aria-label=\"Share\"\n      >\n        <Share className=\"w-3.5 h-3.5\" />\n      </button>\n\n      <button\n        type=\"button\"\n        className=\"ml-1 p-2 rounded-full bg-accent text-white hover:bg-accent/90 transition-transform active:scale-95\"\n        aria-label=\"AI Insight\"\n      >\n        <Sparkles className=\"w-3.5 h-3.5\" />\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "e38f9f3dd5a4415b186dff5671ea7820d900f58b70503f9608e79962a619d092",
+      "sizeBytes": 2090
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { DockedActionToolbar } from \"./docked-action-toolbar\";\n\nexport default function DockedActionToolbarDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[200px]\">\n      <DockedActionToolbar />\n    </div>\n  );\n}\n",
+      "contentHash": "39dbcfc784bec86347df167bf34debd066847c73a1d246bc24e3e7c91c14f620",
+      "sizeBytes": 277
+    }
+  ],
+  "tags": [
+    "toolbar",
+    "docked",
+    "actions",
+    "floating",
+    "shortcuts"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "actions",
+    "fingerprint": {
+      "interactionModel": "floating-toolbar-quick-action",
+      "visualModel": "glass-pill-dock",
+      "motionModel": "none",
+      "layoutModel": "bottom-pinned-bar",
+      "semanticPurpose": "viewport-action-dock"
+    }
+  },
+  "url": "https://openui.dev/r/docked-action-toolbar.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Floating Toolbar Quick Action: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

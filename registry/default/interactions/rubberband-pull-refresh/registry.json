@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rubberband-pull-refresh",
+  "type": "registry:interaction",
+  "title": "Rubberband Pull Refresh",
+  "description": "A pull-to-refresh container simulating mechanical elastic resistance before triggering a simulated async sync spinner.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rubberband-pull-refresh.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "pull-to-refresh",
+    "rubberband",
+    "gesture",
+    "spring",
+    "sync"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "pull-down-elastic-trigger",
+      "visualModel": "tethered-spinner-underlay",
+      "motionModel": "logarithmic-drag-resistance",
+      "layoutModel": "top-pinned-refresh-slot",
+      "semanticPurpose": "pull-to-refresh-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

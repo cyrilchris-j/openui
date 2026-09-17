@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "perspective-plane-reveal",
+  "type": "registry:motion",
+  "title": "Perspective Plane Reveal",
+  "description": "Content reveals as a plane rotating up from the floor of its own perspective container — rotateX from -75° with transform-origin at the bottom edge, so the element rises like a drawbridge instead of sliding.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "perspective-plane-reveal.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "perspective",
+    "3d",
+    "reveal",
+    "plane"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "floor-hinged-plane",
+      "motionModel": "rotate-x-rise",
+      "layoutModel": "block",
+      "semanticPurpose": "section-entrance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

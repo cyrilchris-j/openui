@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "census-bar-heading",
+  "type": "registry:text",
+  "title": "Census Bar Heading",
+  "description": "A headline where each word carries a data bar underneath whose width encodes a value — typography and chart fused into one element, so a sentence can literally show its own distribution.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "census-bar-heading.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "chart",
+    "data",
+    "bars",
+    "heading"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "hover-readout",
+      "visualModel": "glyph-plus-bar-fusion",
+      "motionModel": "grow-in-view",
+      "layoutModel": "inline",
+      "semanticPurpose": "data-headline"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

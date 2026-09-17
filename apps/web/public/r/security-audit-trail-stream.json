@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "security-audit-trail-stream",
+  "type": "registry:section",
+  "title": "Security Audit Trail Stream",
+  "description": "An immutable telemetry log stream tracking access controls, key rotations, and compliance checks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "security-audit-trail-stream.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface AuditEvent {\n  timestamp: string;\n  actor: string;\n  action: string;\n  sha: string;\n}\n\nexport interface SecurityAuditTrailStreamProps extends React.HTMLAttributes<HTMLElement> {\n  events?: AuditEvent[];\n}\n\nconst DEFAULT_EVENTS: AuditEvent[] = [\n  { timestamp: \"18:42:19 UTC\", actor: \"deploy-bot@prod\", action: \"DEPLOY_REGISTRY_V2.4\", sha: \"8f7a9d2\" },\n  { timestamp: \"18:35:04 UTC\", actor: \"cyrilchris\", action: \"APPROVE_PULL_REQUEST_800\", sha: \"3c4e1b0\" },\n  { timestamp: \"17:12:51 UTC\", actor: \"kms-system\", action: \"ROTATE_HARDWARE_M_TLS_CERTS\", sha: \"e9f02a4\" },\n  { timestamp: \"15:08:12 UTC\", actor: \"auditor@soc2\", action: \"TAMPER_PROOF_CHECKSUM_PASS\", sha: \"01bc93f\" },\n];\n\nexport function SecurityAuditTrailStream({\n  events = DEFAULT_EVENTS,\n  className,\n  ...props\n}: SecurityAuditTrailStreamProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl p-5 font-mono text-xs\">\n        <div className=\"flex items-center justify-between pb-4 border-b border-neutral-800\">\n          <div className=\"flex items-center gap-2\">\n            <span className=\"h-2 w-2 rounded-full bg-emerald-500 animate-pulse\" />\n            <span className=\"font-bold uppercase tracking-wider text-white\">Live Audit Log Feed</span>\n          </div>\n          <span className=\"text-[10px] text-neutral-500\">Tamper-Evident SHA-256 Ledger</span>\n        </div>\n\n        <div className=\"divide-y divide-neutral-900 mt-2\">\n          {events.map((e, idx) => (\n            <div key={idx} className=\"py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2\">\n              <div className=\"flex items-center gap-3\">\n                <span className=\"text-neutral-500 text-[11px]\">{e.timestamp}</span>\n                <span className=\"text-emerald-400 font-bold\">{e.actor}</span>\n                <span className=\"text-neutral-200\">{e.action}</span>\n              </div>\n              <span className=\"text-neutral-500 text-[10px] font-mono\">sha:{e.sha}</span>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "d64ae7af2aa708b2f0293ccf153dcbf55a049f1ee144768c3b989d794bfb4dfe",
+      "sizeBytes": 2276
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { SecurityAuditTrailStream } from \"./security-audit-trail-stream\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-950\">\n      <SecurityAuditTrailStream />\n    </div>\n  );\n}\n",
+      "contentHash": "fc5ceaa768aa0a26d4163a6a01bf9f742b1d9ddfd0593f8de56eb081c42b3a71",
+      "sizeBytes": 282
+    }
+  ],
+  "tags": [
+    "security",
+    "audit",
+    "stream",
+    "telemetry",
+    "logs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "security-audit-trail-stream-interaction",
+      "visualModel": "security-audit-trail-stream-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "security-audit-trail-stream-section"
+    }
+  },
+  "url": "https://openui.dev/r/security-audit-trail-stream.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Security Audit Trail Stream Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

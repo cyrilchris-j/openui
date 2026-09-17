@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "stacked-pin-card-scroll",
+      "visualModel": "overlapping-deck-leaves",
+      "motionModel": "scale-compress-as-pinned",
+      "layoutModel": "sticky-viewport-anchor",
+      "semanticPurpose": "feature-storytelling"
     }
   },
   "url": "https://openui.dev/r/sticky-stack.json",

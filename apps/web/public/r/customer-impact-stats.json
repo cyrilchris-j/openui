@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-impact-stats",
+  "type": "registry:section",
+  "title": "Customer Impact Stats",
+  "description": "A quantitative impact report showing cumulative developer hours saved and issues mitigated.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-impact-stats.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CustomerImpactStats({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-4xl mx-auto text-center\", className)} {...props}>\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-6\">\n        <div className=\"p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n          <div className=\"text-4xl font-extrabold text-emerald-600 dark:text-emerald-400\">1.4M+</div>\n          <div className=\"text-xs text-neutral-500 mt-1\">Dev hours saved in 2026</div>\n        </div>\n        <div className=\"p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n          <div className=\"text-4xl font-extrabold text-neutral-900 dark:text-white\">0</div>\n          <div className=\"text-xs text-neutral-500 mt-1\">Runtime vulnerabilities</div>\n        </div>\n        <div className=\"p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n          <div className=\"text-4xl font-extrabold text-neutral-900 dark:text-white\">800</div>\n          <div className=\"text-xs text-neutral-500 mt-1\">Verified registry resources</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "7b9c7828a1c24d0ec023bf7a1ca87d8b42e7182666b2636773a7e10287e26882",
+      "sizeBytes": 1352
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CustomerImpactStats } from \"./customer-impact-stats\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <CustomerImpactStats />\n    </div>\n  );\n}\n",
+      "contentHash": "88adef000246a596485e6b30ef834c61dc5e966d1054f4a56f52e6f0c67a6f9a",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "impact",
+    "stats",
+    "roi",
+    "savings",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "customer-impact-stats-interaction",
+      "visualModel": "customer-impact-stats-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "customer-impact-stats-section"
+    }
+  },
+  "url": "https://openui.dev/r/customer-impact-stats.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Customer Impact Stats Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

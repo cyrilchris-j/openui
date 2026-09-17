@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-quote-carousel",
+  "type": "registry:section",
+  "title": "Customer Quote Carousel",
+  "description": "Verified customer testimonial card with pull-quote statement, author avatar, credentials, and verification seal.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-quote-carousel.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CustomerQuoteCarouselProps extends React.HTMLAttributes<HTMLElement> {\n  quote?: string;\n  author?: string;\n  role?: string;\n  org?: string;\n}\n\nexport function CustomerQuoteCarousel({\n  quote = \"“OpenUI eliminated months of boilerplate. Having exactly 800 working, installable resources with distinct architectural fingerprints transformed how we orchestrate autonomous frontends.”\",\n  author = \"Dr. Marcus Vance\",\n  role = \"VP of Architecture\",\n  org = \"Autonomous Intelligence Labs\",\n  className,\n  ...props\n}: CustomerQuoteCarouselProps) {\n  return (\n    <section className={cn(\"py-16 px-6 max-w-4xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <div className=\"p-8 sm:p-12 rounded-3xl border border-line bg-surface/30 shadow-sm text-center\">\n        <blockquote className=\"font-serif text-lg sm:text-xl leading-relaxed text-ink mb-6 max-w-2xl mx-auto\">\n          {quote}\n        </blockquote>\n        <div className=\"flex flex-col items-center\">\n          <div className=\"w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold font-mono text-sm mb-2\">\n            MV\n          </div>\n          <div className=\"font-bold text-sm text-ink\">{author}</div>\n          <div className=\"text-xs text-ink/60 font-mono mt-0.5\">{role} • {org}</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "431decd342174c7ed30293319536ee1430997e226fd94e68a2e9d82b75aab403",
+      "sizeBytes": 1416
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CustomerQuoteCarousel } from \"./customer-quote-carousel\";\n\nexport default function CustomerQuoteCarouselDemo() {\n  return <CustomerQuoteCarousel />;\n}\n",
+      "contentHash": "1b63f3ccc95212d0f2f5e2223bde2eca83aacbf39d5ed44132c474c9969c7f40",
+      "sizeBytes": 175
+    }
+  ],
+  "tags": [
+    "testimonials",
+    "quotes",
+    "social-proof",
+    "reviews",
+    "author"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "social-proof",
+    "fingerprint": {
+      "interactionModel": "quote-testimony-presentation",
+      "visualModel": "bordered-quote-card",
+      "motionModel": "none",
+      "layoutModel": "centered-testimonial-card",
+      "semanticPurpose": "customer-testimony-section"
+    }
+  },
+  "url": "https://openui.dev/r/customer-quote-carousel.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Quote Testimony Presentation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

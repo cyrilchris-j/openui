@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-metrics-ticker",
+  "type": "registry:section",
+  "title": "Customer Metrics Ticker",
+  "description": "A high-impact KPI telemetry strip with animated values, trending badges, and verification timestamps.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-metrics-ticker.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "metrics",
+    "ticker",
+    "kpi",
+    "stats",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "customer-metrics-ticker-interaction",
+      "visualModel": "customer-metrics-ticker-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "customer-metrics-ticker-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast",
+      "shapeLanguage": "sharp",
+      "density": "dense",
+      "genre": "brutalist"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-slider-fill",
+  "type": "registry:interaction",
+  "title": "Elastic Slider Fill",
+  "description": "A vertical fill tank slider where the liquid surface deforms and sloshes as user scrubs vertical level.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-slider-fill.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "slider",
+    "liquid",
+    "fill",
+    "vertical",
+    "tank"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "vertical-reservoir-scrub",
+      "visualModel": "columnar-liquid-tank",
+      "motionModel": "continuous-level-filling",
+      "layoutModel": "vertical-calibrated-column",
+      "semanticPurpose": "vertical-fluid-meter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

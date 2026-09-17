@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "search-filter-input",
+  "type": "registry:component",
+  "title": "Search Filter Input",
+  "description": "An input field with search magnifying glass prefix, clear button, and keyboard shortcut badge affordance.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "search-filter-input.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SearchFilterInputProps {\n  placeholder?: string;\n  className?: string;\n}\n\nexport function SearchFilterInput({\n  placeholder = \"Filter resources...\",\n  className,\n}: SearchFilterInputProps) {\n  const [val, setVal] = useState(\"\");\n\n  return (\n    <div className={cn(\"relative flex items-center w-full max-w-sm\", className)}>\n      <span className=\"absolute left-3 text-ink/40 font-mono text-xs\">🔍</span>\n      <input\n        type=\"text\"\n        value={val}\n        onChange={(e) => setVal(e.target.value)}\n        placeholder={placeholder}\n        className=\"w-full rounded-xl border border-line bg-paper py-2.5 pl-9 pr-12 font-mono text-xs text-ink placeholder:text-ink/40 focus:border-ink focus:outline-none shadow-sm\"\n      />\n      {val ? (\n        <button\n          type=\"button\"\n          onClick={() => setVal(\"\")}\n          className=\"absolute right-3 font-mono text-xs text-ink/50 hover:text-ink\"\n        >\n          ✕\n        </button>\n      ) : (\n        <span className=\"absolute right-3 rounded border border-line px-1.5 py-0.5 font-mono text-[9px] text-ink/40\">\n          /\n        </span>\n      )}\n    </div>\n  );\n}\n\nexport default SearchFilterInput;\n",
+      "contentHash": "d1e17a8858e5a371f80c287ff1e1fd104c7ae7a2c2cd722381df3c5eb0e66d23",
+      "sizeBytes": 1267
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SearchFilterInput } from \"./search-filter-input\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SearchFilterInput />\n    </div>\n  );\n}\n",
+      "contentHash": "b430889e8f00ec4848a9342e5c6fb3cfc86b9d795f3873ce211337b7b87cb1e6",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "search",
+    "input",
+    "filter",
+    "keyboard",
+    "affordance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "input-field-query-entry",
+      "visualModel": "prefixed-search-chassis",
+      "motionModel": "none",
+      "layoutModel": "horizontal-input-bar",
+      "semanticPurpose": "search-query-field"
+    }
+  },
+  "url": "https://openui.dev/r/search-filter-input.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Input Field Query Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

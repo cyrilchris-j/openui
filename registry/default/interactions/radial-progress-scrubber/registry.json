@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radial-progress-scrubber",
+  "type": "registry:interaction",
+  "title": "Radial Progress Scrubber",
+  "description": "A circular progress dial whose sweep angle can be adjusted interactively by dragging pointer around ring origin.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radial-progress-scrubber.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "radial",
+    "scrubber",
+    "dial",
+    "progress",
+    "ring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "circumferential-angle-scrub",
+      "visualModel": "annular-svg-ring-gauge",
+      "motionModel": "polar-angle-tracking-stroke",
+      "layoutModel": "centered-circular-ring",
+      "semanticPurpose": "radial-percentage-dial"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chip-toggle-cluster",
+  "type": "registry:component",
+  "title": "Chip Toggle Cluster",
+  "description": "An array of selectable category chips with active counts and toggle selection states.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chip-toggle-cluster.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "chips",
+    "tags",
+    "filters",
+    "cluster",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "multi-chip-toggle",
+      "visualModel": "horizontal-pill-constellation",
+      "motionModel": "none",
+      "layoutModel": "flex-wrapping-chips",
+      "semanticPurpose": "facet-filter-chips"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

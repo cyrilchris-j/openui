@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bidi-mirror-type",
+  "type": "registry:text",
+  "title": "Bidi Mirror Type",
+  "description": "A dual-direction type specimen: the same phrase rendered LTR and RTL simultaneously, with per-glyph mirroring toggle and automatic dir attribute handling — a working tool for checking internationalised typography.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bidi-mirror-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "bidi",
+    "rtl",
+    "i18n",
+    "specimen"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "toggle-mirror",
+      "visualModel": "dual-direction-render",
+      "motionModel": "none",
+      "layoutModel": "split",
+      "semanticPurpose": "i18n-verification"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

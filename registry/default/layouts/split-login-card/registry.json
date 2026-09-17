@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-login-card",
+  "type": "registry:layout",
+  "title": "Split Login Card",
+  "description": "Contained authentication card with left branded illustration and right social/email form.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-login-card.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "login",
+    "auth",
+    "card",
+    "split",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "contained-auth-split",
+      "visualModel": "compact-split-auth-card",
+      "motionModel": "none",
+      "layoutModel": "contained-two-column-card",
+      "semanticPurpose": "login-card-container"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

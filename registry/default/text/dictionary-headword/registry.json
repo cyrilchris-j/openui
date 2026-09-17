@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dictionary-headword",
+  "type": "registry:text",
+  "title": "Dictionary Headword",
+  "description": "A full dictionary entry layout: headword with syllable breaks, IPA pronunciation, part-of-speech italics, numbered senses with semicolon-separated examples, and etymology in a hanging indent — all semantic definition-list markup.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dictionary-headword.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "dictionary",
+    "ipa",
+    "definition",
+    "reference"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "lemma-entry-layout",
+      "motionModel": "none",
+      "layoutModel": "definition-list",
+      "semanticPurpose": "lexical-reference"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

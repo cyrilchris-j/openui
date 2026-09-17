@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-tabs-card",
+  "type": "registry:component",
+  "title": "Segmented Tabs Card",
+  "description": "A surface container featuring segmented tabs integrated directly into the header boundary.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-tabs-card.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "card",
+    "segmented",
+    "header",
+    "views"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "card-header-tab-switch",
+      "visualModel": "tabbed-header-card",
+      "motionModel": "none",
+      "layoutModel": "stacked-tabbed-card",
+      "semanticPurpose": "multi-view-panel-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

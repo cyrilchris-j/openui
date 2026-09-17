@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gesture-swipe-dismiss-banner",
+  "type": "registry:interaction",
+  "title": "Gesture Swipe Dismiss Banner",
+  "description": "An alert notification ribbon that translates laterally and dissolves when swiped horizontally past threshold.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gesture-swipe-dismiss-banner.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "banner",
+    "swipe",
+    "dismiss",
+    "alert",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "lateral-banner-dismiss-swipe",
+      "visualModel": "dismissible-alert-ribbon",
+      "motionModel": "lateral-ejection-dissolve",
+      "layoutModel": "top-pinned-banner",
+      "semanticPurpose": "swipeable-notice-banner"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fountain-pen-signature",
+  "type": "registry:text",
+  "title": "Fountain Pen Signature",
+  "description": "A cursive signature drawn as an SVG stroke path with variable stroke width (two overlapping paths slightly offset), animating via dashoffset as if written by hand — sign here, then wipe and re-sign.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fountain-pen-signature.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FountainPenSignatureProps {\n  /** Signer name rendered beneath, for context. */\n  name?: string;\n  ink?: string;\n  className?: string;\n}\n\nexport function FountainPenSignature({ name = \"A. Signer\", ink = \"#1a2a4a\", className }: FountainPenSignatureProps) {\n  const [signature, setSignature] = useState(0);\n\n  return (\n    <div className={cn(\"flex flex-col items-center gap-3\", className)}>\n      <svg\n        key={signature}\n        aria-hidden\n        width=\"220\"\n        height=\"80\"\n        viewBox=\"0 0 220 80\"\n        className=\"overflow-visible\"\n      >\n        <path\n          d=\"M12 52 C 30 10, 44 12, 40 34 C 36 58, 58 60, 74 30 C 82 15, 92 18, 88 36 C 84 56, 104 58, 120 34 C 130 20, 140 22, 136 38 C 133 50, 148 54, 162 40 C 172 30, 186 34, 208 28\"\n          fill=\"none\"\n          stroke={ink}\n          strokeWidth=\"2.6\"\n          strokeLinecap=\"round\"\n          pathLength={1}\n          style={{ strokeDasharray: 1, animation: \"openui-sign 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards\" }}\n        />\n        <path\n          d=\"M12 53 C 30 11, 44 13, 40 35 C 36 59, 58 61, 74 31\"\n          fill=\"none\"\n          stroke={ink}\n          strokeWidth=\"1.1\"\n          strokeLinecap=\"round\"\n          opacity={0.5}\n          pathLength={1}\n          style={{ strokeDasharray: 1, animation: \"openui-sign 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards\" }}\n        />\n      </svg>\n      <p className=\"font-mono text-xs uppercase tracking-widest text-ink/50\">{name}</p>\n      <button\n        type=\"button\"\n        onClick={() => setSignature((value) => value + 1)}\n        className=\"rounded border border-line px-2 py-1 font-mono text-xs text-ink/70 hover:bg-line/20\"\n      >\n        sign again\n      </button>\n      <style>{`@keyframes openui-sign { from { stroke-dashoffset: 1 } to { stroke-dashoffset: 0 } } @media (prefers-reduced-motion: reduce) { path { animation: none !important; stroke-dashoffset: 0 !important } }`}</style>\n    </div>\n  );\n}\n\nexport default FountainPenSignature;\n",
+      "contentHash": "d834d58e723a0d9c8c830edaa929fc3e28cbfe9bec715c9e697f1f72f4f31272",
+      "sizeBytes": 2083
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { FountainPenSignature } from \"./fountain-pen-signature\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[15rem] items-center justify-center bg-paper p-10\">\n      <FountainPenSignature />\n    </div>\n  );\n}\n",
+      "contentHash": "476413def5425d259cddb6de185aa6622f022bf86521e66f46779e9965a06d5d",
+      "sizeBytes": 242
+    }
+  ],
+  "tags": [
+    "signature",
+    "handwriting",
+    "svg",
+    "variable-stroke"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "path",
+    "fingerprint": {
+      "interactionModel": "button-redraw",
+      "visualModel": "svg-variable-stroke",
+      "motionModel": "dash-write",
+      "layoutModel": "inline",
+      "semanticPurpose": "signature"
+    }
+  },
+  "url": "https://openui.dev/r/fountain-pen-signature.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Rail\nDensity: Airy\nShape: Soft\nMotion: Expressive\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Button Redraw: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "infinite-scroll-masonry",
+  "type": "registry:layout",
+  "title": "Infinite Scroll Masonry",
+  "description": "Responsive multi-column image masonry grid with loading indicator spinner at the foot.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "infinite-scroll-masonry.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "masonry",
+    "infinite-scroll",
+    "gallery",
+    "waterfall",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "infinite-scroll-masonry",
+      "visualModel": "waterfall-image-columns",
+      "motionModel": "none",
+      "layoutModel": "css-columns-infinite",
+      "semanticPurpose": "infinite-image-masonry"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "scatter",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

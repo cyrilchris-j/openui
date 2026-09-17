@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spectral-split-text",
+  "type": "registry:text",
+  "title": "Spectral Split Text",
+  "description": "Two chromatic copies of the headline offset in opposing directions with screen/ multiply blend modes, producing a prism-split edge that intensifies as the offset grows — chromatic aberration as a dial.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spectral-split-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SpectralSplitTextProps {\n  children: string;\n  /** Max split offset in px. */\n  offset?: number;\n  channelA?: string;\n  channelB?: string;\n  className?: string;\n}\n\nexport function SpectralSplitText({\n  children,\n  offset = 4,\n  channelA = \"#e2624a\",\n  channelB = \"#4a6fa5\",\n  className,\n}: SpectralSplitTextProps) {\n  const [spread, setSpread] = useState(1);\n\n  return (\n    <span className={cn(\"inline-flex flex-col gap-4\", className)}>\n      <span className=\"relative inline-block select-none font-display\" role=\"text\" aria-label={children}>\n        <span\n          aria-hidden\n          className=\"absolute left-0 top-0 block\"\n          style={{ color: channelA, transform: `translateX(${-offset * spread}px)`, mixBlendMode: \"multiply\", opacity: 0.85 }}\n        >\n          {children}\n        </span>\n        <span\n          aria-hidden\n          className=\"absolute left-0 top-0 block\"\n          style={{ color: channelB, transform: `translateX(${offset * spread}px)`, mixBlendMode: \"screen\", opacity: 0.85 }}\n        >\n          {children}\n        </span>\n        <span aria-hidden className=\"relative z-10 block text-ink\">\n          {children}\n        </span>\n        <span className=\"sr-only\">{children}</span>\n      </span>\n      <label className=\"flex items-center gap-2 font-mono text-xs text-ink/70\">\n        split\n        <input\n          type=\"range\"\n          min={0}\n          max={3}\n          step={0.1}\n          value={spread}\n          onChange={(event) => setSpread(Number(event.target.value))}\n          className=\"w-32 accent-[#e2624a]\"\n        />\n      </label>\n    </span>\n  );\n}\n\nexport default SpectralSplitText;\n",
+      "contentHash": "f73e2c9b7e8ad2a3e6303aab9f04682ca79d74d0b413a92e2840c75d97214c06",
+      "sizeBytes": 1738
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SpectralSplitText } from \"./spectral-split-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <SpectralSplitText className=\"text-step-4\">Prism</SpectralSplitText>\n    </div>\n  );\n}\n",
+      "contentHash": "f269897a957d3eec8ed25cf6098b0536aa7d425142d4191ee213d7b517c8623e",
+      "sizeBytes": 280
+    }
+  ],
+  "tags": [
+    "chromatic",
+    "split",
+    "blend",
+    "prism"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "offset-dial",
+      "visualModel": "dual-blend-copies",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "display-accent"
+    }
+  },
+  "url": "https://openui.dev/r/spectral-split-text.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Variable Poster\nColor: Duotone\n\n## Rules\n\n- Offset Dial: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

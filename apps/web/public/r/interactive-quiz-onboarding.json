@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-quiz-onboarding",
+  "type": "registry:section",
+  "title": "Interactive Quiz Onboarding",
+  "description": "A multi-step guided recommendation questionnaire outputting tailored stack configurations.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-quiz-onboarding.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface QuizQuestion {\n  id: string;\n  title: string;\n  options: { label: string; tag: string }[];\n}\n\nexport interface InteractiveQuizOnboardingProps extends React.HTMLAttributes<HTMLElement> {\n  questions?: QuizQuestion[];\n}\n\nconst DEFAULT_QUESTIONS: QuizQuestion[] = [\n  {\n    id: \"q1\",\n    title: \"What framework is your team targeting?\",\n    options: [\n      { label: \"Next.js 15 (App Router)\", tag: \"nextjs\" },\n      { label: \"Vite + React 19\", tag: \"vite\" },\n      { label: \"Remix / React Router v7\", tag: \"remix\" },\n      { label: \"Astro / Static SSG\", tag: \"astro\" },\n    ],\n  },\n  {\n    id: \"q2\",\n    title: \"What is your primary design aesthetic?\",\n    options: [\n      { label: \"Minimal & Clean Grotesk\", tag: \"minimal\" },\n      { label: \"High-Contrast Brutalist\", tag: \"brutalist\" },\n      { label: \"Refined Swiss Editorial\", tag: \"editorial\" },\n      { label: \"High-Density Technical\", tag: \"technical\" },\n    ],\n  },\n];\n\nexport function InteractiveQuizOnboarding({\n  questions = DEFAULT_QUESTIONS,\n  className,\n  ...props\n}: InteractiveQuizOnboardingProps) {\n  const [currentStep, setCurrentStep] = React.useState(0);\n  const [answers, setAnswers] = React.useState<Record<string, string>>({});\n\n  const question = questions[currentStep];\n  const isFinished = currentStep >= questions.length;\n\n  const handleSelect = (tag: string) => {\n    if (!question) return;\n    setAnswers((prev) => ({ ...prev, [question.id]: tag }));\n    setCurrentStep((prev) => prev + 1);\n  };\n\n  const handleReset = () => {\n    setAnswers({});\n    setCurrentStep(0);\n  };\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-3xl mx-auto\", className)} {...props}>\n      <div className=\"bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 md:p-8 shadow-sm\">\n        {!isFinished && question ? (\n          <div>\n            <div className=\"flex items-center justify-between text-xs font-mono text-neutral-400 mb-4\">\n              <span>Step {currentStep + 1} of {questions.length}</span>\n              <span>Stack Configurator</span>\n            </div>\n            <h3 className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-6\">\n              {question.title}\n            </h3>\n            <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-3\">\n              {question.options.map((opt) => (\n                <button\n                  key={opt.tag}\n                  type=\"button\"\n                  onClick={() => handleSelect(opt.tag)}\n                  className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 text-left hover:border-emerald-500 hover:bg-emerald-50/20 dark:hover:bg-emerald-950/20 transition-all text-xs font-medium text-neutral-800 dark:text-neutral-200\"\n                >\n                  {opt.label}\n                </button>\n              ))}\n            </div>\n          </div>\n        ) : (\n          <div className=\"text-center py-4\">\n            <span className=\"text-3xl\">✨</span>\n            <h3 className=\"text-xl font-bold text-neutral-900 dark:text-neutral-100 mt-2\">\n              Configuration Tailored!\n            </h3>\n            <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2\">\n              Based on your stack selections, your recommended starter command is ready:\n            </p>\n            <div className=\"mt-4 p-3 bg-neutral-100 dark:bg-neutral-900 rounded font-mono text-xs text-emerald-600 dark:text-emerald-400\">\n              npx openui@latest init --stack={answers.q1 || \"nextjs\"} --style={answers.q2 || \"minimal\"}\n            </div>\n            <button\n              type=\"button\"\n              onClick={handleReset}\n              className=\"mt-6 px-4 py-2 rounded-lg text-xs font-semibold bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900\"\n            >\n              Start Over\n            </button>\n          </div>\n        )}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "5fd9d694f5ee0879ca4403f6f3d832dd45cf855c852710ae072805e04b38c51b",
+      "sizeBytes": 4026
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveQuizOnboarding } from \"./interactive-quiz-onboarding\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <InteractiveQuizOnboarding />\n    </div>\n  );\n}\n",
+      "contentHash": "957fdf8d40e2b4933302d1e7a461681e7c318339c33dd9d0745412040bb5ad03",
+      "sizeBytes": 306
+    }
+  ],
+  "tags": [
+    "quiz",
+    "onboarding",
+    "interactive",
+    "recommendation",
+    "stepper"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "onboarding",
+    "fingerprint": {
+      "interactionModel": "interactive-quiz-onboarding-interaction",
+      "visualModel": "interactive-quiz-onboarding-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-quiz-onboarding-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-quiz-onboarding.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Interactive Quiz Onboarding Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

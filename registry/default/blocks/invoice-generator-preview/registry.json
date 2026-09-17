@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "invoice-generator-preview",
+  "type": "registry:block",
+  "title": "Invoice Generator Preview",
+  "description": "An itemized accounting invoice document with dynamic line additions, tax calculations, and printable summary.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "invoice-generator-preview.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "invoice",
+    "billing",
+    "tax",
+    "accounting",
+    "calculator"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "billing",
+    "fingerprint": {
+      "interactionModel": "invoice-calculation-and-line-items",
+      "visualModel": "formal-invoice-document-sheet",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "tax-invoice-generation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "swiss"
+    }
+  }
+}

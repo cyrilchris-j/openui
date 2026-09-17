@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "team-access-control-panel",
+  "type": "registry:block",
+  "title": "Team Access Control Panel",
+  "description": "An administrative user permissions manager with role selectors (Admin, Editor, Viewer) and invitation modals.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "team-access-control-panel.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "team",
+    "access",
+    "permissions",
+    "roles",
+    "admin"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "team",
+    "fingerprint": {
+      "interactionModel": "role-permission-assignment-matrix",
+      "visualModel": "user-roster-access-management",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "organization-access-control"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

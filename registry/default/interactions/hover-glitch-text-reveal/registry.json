@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-glitch-text-reveal",
+  "type": "registry:interaction",
+  "title": "Hover Glitch Text Reveal",
+  "description": "A cypher text display swapping random glyphs rapidly on pointer hover before locking back into plaintext.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-glitch-text-reveal.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "glitch",
+    "text",
+    "cipher",
+    "hover",
+    "matrix"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-glyph-cypher",
+      "visualModel": "random-symbol-stream",
+      "motionModel": "stochastic-symbol-permutation",
+      "layoutModel": "inline-terminal-row",
+      "semanticPurpose": "cypherpunk-hover-reveal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

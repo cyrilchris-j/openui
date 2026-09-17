@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-invoice-ledger",
+  "type": "registry:layout",
+  "title": "Split Invoice Ledger",
+  "description": "Two-panel accounting billing invoice with client metadata on left and line-item totals on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-invoice-ledger.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "invoice",
+    "ledger",
+    "billing",
+    "split",
+    "accounting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "invoice-ledger-inspection",
+      "visualModel": "dual-column-invoice-sheet",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-invoice-split",
+      "semanticPurpose": "accounting-invoice-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

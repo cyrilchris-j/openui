@@ -7,12 +7,26 @@
   "category": "design-systems",
   "dependencies": [],
   "registryDependencies": [],
-  "files": [{ "path": "industrial-archive.css", "type": "registry:theme", "target": "styles" }],
-  "tags": ["design-system", "industrial", "dark"],
+  "files": [
+    {
+      "path": "industrial-archive.css",
+      "type": "registry:theme",
+      "target": "styles"
+    }
+  ],
+  "tags": [
+    "design-system",
+    "industrial",
+    "dark"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["design-tokens", "dark-first", "ai-consumable"],
+    "features": [
+      "design-tokens",
+      "dark-first",
+      "ai-consumable"
+    ],
     "dna": {
       "genre": "industrial",
       "macrostructure": "mosaic",
@@ -21,6 +35,13 @@
       "motionLanguage": "mechanical",
       "typographyStyle": "monospace",
       "colorStrategy": "neon-on-dark"
+    },
+    "subcategory": "design-system",
+    "fingerprint": {
+      "interactionModel": "dense-data-token-system",
+      "visualModel": "utilitarian-monochrome-wireframe",
+      "layoutModel": "compact-instrument-matrix",
+      "semanticPurpose": "industrial-styleguide"
     }
   }
 }

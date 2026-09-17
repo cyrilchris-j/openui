@@ -94,6 +94,10 @@ export function toResourceSummary(row: ResourceRow): ResourceSummary {
       : null,
     latestVersion: row.latest_version,
     tags: row.tags ?? [],
+    // The database schema has no subcategory/fingerprint columns yet; they are
+    // registry-artifact concepts. Explicit nulls, never plausible guesses.
+    subcategory: null,
+    fingerprint: null,
     design: row.genre
       ? {
           genre: row.genre,

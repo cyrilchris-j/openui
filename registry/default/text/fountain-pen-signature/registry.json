@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fountain-pen-signature",
+  "type": "registry:text",
+  "title": "Fountain Pen Signature",
+  "description": "A cursive signature drawn as an SVG stroke path with variable stroke width (two overlapping paths slightly offset), animating via dashoffset as if written by hand — sign here, then wipe and re-sign.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fountain-pen-signature.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "signature",
+    "handwriting",
+    "svg",
+    "variable-stroke"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "path",
+    "fingerprint": {
+      "interactionModel": "button-redraw",
+      "visualModel": "svg-variable-stroke",
+      "motionModel": "dash-write",
+      "layoutModel": "inline",
+      "semanticPurpose": "signature"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

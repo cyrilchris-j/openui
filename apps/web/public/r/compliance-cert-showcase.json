@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compliance-cert-showcase",
+  "type": "registry:section",
+  "title": "Compliance Cert Showcase",
+  "description": "A trust badge showcase presenting verified audit credentials, security seals, and data compliance marks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compliance-cert-showcase.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ComplianceCertShowcase({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const certs = [\"SOC 2 Type II\", \"ISO / IEC 27001\", \"HIPAA Compliant\", \"GDPR Ready\"];\n\n  return (\n    <section className={cn(\"w-full py-12 px-4 max-w-4xl mx-auto text-center\", className)} {...props}>\n      <div className=\"flex flex-wrap justify-center gap-4\">\n        {certs.map((c) => (\n          <div key={c} className=\"px-4 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs font-semibold text-neutral-700 dark:text-neutral-300\">\n            ✓ {c}\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "e4d09966316f1c32663e98a306ce34a6f4f71dd48c2db5fd1ee675848063ede4",
+      "sizeBytes": 754
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ComplianceCertShowcase } from \"./compliance-cert-showcase\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <ComplianceCertShowcase />\n    </div>\n  );\n}\n",
+      "contentHash": "646b6213950b929e00a837886f53c48aaedac2bb61ae5e726cb9e268b18319e7",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "compliance",
+    "trust",
+    "certifications",
+    "security",
+    "badges"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "trust",
+    "fingerprint": {
+      "interactionModel": "compliance-cert-showcase-interaction",
+      "visualModel": "compliance-cert-showcase-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "compliance-cert-showcase-section"
+    }
+  },
+  "url": "https://openui.dev/r/compliance-cert-showcase.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Compliance Cert Showcase Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

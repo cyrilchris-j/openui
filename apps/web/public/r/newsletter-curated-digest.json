@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "newsletter-curated-digest",
+  "type": "registry:section",
+  "title": "Newsletter Curated Digest",
+  "description": "A subscription card offering weekly design engineering breakdowns and curated component patterns.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "newsletter-curated-digest.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function NewsletterCuratedDigest({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-xl mx-auto text-center\", className)} {...props}>\n      <h2 className=\"text-2xl font-bold text-neutral-900 dark:text-neutral-100\">The Design Engineer Digest</h2>\n      <p className=\"text-xs text-neutral-500 mt-2\">Join 12,000+ UI architects receiving our bi-weekly deep dive.</p>\n      <div className=\"mt-6 flex gap-2 max-w-md mx-auto\">\n        <input\n          type=\"email\"\n          placeholder=\"your.email@work.com\"\n          className=\"flex-1 px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white\"\n        />\n        <button type=\"button\" className=\"px-4 py-2 rounded-lg text-xs font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900\">\n          Subscribe\n        </button>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "471e9859aa242693fbecd75fd823276dcf08f7ab3db56e5f9d957c61db3b9c1d",
+      "sizeBytes": 1067
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { NewsletterCuratedDigest } from \"./newsletter-curated-digest\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <NewsletterCuratedDigest />\n    </div>\n  );\n}\n",
+      "contentHash": "b037953eb1f9d84fb245b3854683a26685ecff4226020f036aec6968c6b0db2c",
+      "sizeBytes": 300
+    }
+  ],
+  "tags": [
+    "newsletter",
+    "digest",
+    "subscribe",
+    "curated",
+    "articles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "newsletter",
+    "fingerprint": {
+      "interactionModel": "newsletter-curated-digest-interaction",
+      "visualModel": "newsletter-curated-digest-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "newsletter-curated-digest-section"
+    }
+  },
+  "url": "https://openui.dev/r/newsletter-curated-digest.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Newsletter Curated Digest Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "onboarding-flow-shell",
+  "type": "registry:layout",
+  "title": "Onboarding Flow Shell",
+  "description": "Centered welcoming user onboarding dialog container with step dots indicator and forward controls.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "onboarding-flow-shell.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface OnboardingFlowShellProps extends React.HTMLAttributes<HTMLDivElement> {\n  stepIndicator?: React.ReactNode;\n  actions?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function OnboardingFlowShell({\n  stepIndicator,\n  actions,\n  children,\n  className,\n  ...props\n}: OnboardingFlowShellProps) {\n  return (\n    <div className={cn(\"max-w-md mx-auto p-8 rounded-3xl border border-line bg-paper text-ink font-sans shadow-xl text-center space-y-6\", className)} {...props}>\n      <div className=\"flex justify-center\">{stepIndicator}</div>\n      <div>{children}</div>\n      <div className=\"pt-4 border-t border-line\">{actions}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "f58f27d18342a318c7d3a030261e632878bb4cbf50e390a57bcb3054396c242a",
+      "sizeBytes": 715
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { OnboardingFlowShell } from \"./onboarding-flow-shell\";\n\nexport default function OnboardingFlowShellDemo() {\n  return (\n    <OnboardingFlowShell\n      stepIndicator={<div className=\"font-mono text-xs text-accent\">● ○ ○</div>}\n      actions={<button type=\"button\" className=\"w-full py-2 rounded-xl bg-accent text-white font-mono text-xs font-bold\">Next</button>}\n    >\n      <h3 className=\"text-base font-bold text-ink\">Welcome to OpenUI</h3>\n      <p className=\"text-xs text-ink/60 mt-1\">Autonomous interface registration built for speed.</p>\n    </OnboardingFlowShell>\n  );\n}\n",
+      "contentHash": "dac48f3f930b6b6bdb7381d0fbfb94dc99b88119b1291a13647084023bcb8638",
+      "sizeBytes": 605
+    }
+  ],
+  "tags": [
+    "onboarding",
+    "walkthrough",
+    "modal",
+    "shell",
+    "steps"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "onboarding-step-modal",
+      "visualModel": "centered-welcome-card",
+      "motionModel": "none",
+      "layoutModel": "centered-dialog-frame",
+      "semanticPurpose": "first-run-onboarding-shell"
+    }
+  },
+  "url": "https://openui.dev/r/onboarding-flow-shell.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Onboarding Step Modal: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

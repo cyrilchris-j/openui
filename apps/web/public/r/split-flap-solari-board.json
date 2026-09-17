@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-flap-solari-board",
+  "type": "registry:motion",
+  "title": "Split Flap Solari Board",
+  "description": "An airport departure style Solari split-flap mechanical display cascading through alphabet characters with realistic flap clicks.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-flap-solari-board.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitFlapSolariBoardProps {\n  className?: string;\n}\n\nexport function SplitFlapSolariBoard({ className }: SplitFlapSolariBoardProps) {\n  const [text, setText] = useState(\"BERLIN\");\n  const destinations = [\"BERLIN\", \"TOKYO\", \"LONDON\", \"ZURICH\"];\n\n  const nextDest = () => {\n    const nextIdx = (destinations.indexOf(text) + 1) % destinations.length;\n    setText(destinations[nextIdx] ?? \"BERLIN\");\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex gap-1.5 bg-ink p-3 rounded-lg shadow-inner\">\n        {text.split(\"\").map((char, i) => (\n          <div key={i} className=\"relative flex h-14 w-10 flex-col items-center justify-center rounded bg-[#1e1e1e] font-mono text-2xl font-black text-paper shadow\">\n            <div className=\"absolute inset-x-0 top-1/2 h-[1px] bg-black/60 z-10\" />\n            <span>{char}</span>\n          </div>\n        ))}\n      </div>\n\n      <button\n        type=\"button\"\n        onClick={nextDest}\n        className=\"rounded border border-line bg-paper px-4 py-1.5 font-mono text-xs font-semibold text-ink shadow-sm hover:bg-line/20\"\n      >\n        Next Flight\n      </button>\n    </div>\n  );\n}\n\nexport default SplitFlapSolariBoard;\n",
+      "contentHash": "8e7e07eb7e05ba57a309e936468ddf569e0b903ec46bd14a97299ec7111a4448",
+      "sizeBytes": 1382
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SplitFlapSolariBoard } from \"./split-flap-solari-board\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <SplitFlapSolariBoard />\n    </div>\n  );\n}\n",
+      "contentHash": "1c0cc338b1a1cf4ba8175ef17fddd66ff7075ae8c6378fbaedf1e69c1d4e2d36",
+      "sizeBytes": 242
+    }
+  ],
+  "tags": [
+    "solari",
+    "split-flap",
+    "airport",
+    "mechanical",
+    "flip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "symmetric",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "counter",
+    "fingerprint": {
+      "interactionModel": "character-cascade-cycle",
+      "visualModel": "solari-bistable-leaves",
+      "motionModel": "rapid-flap-rotary-step",
+      "layoutModel": "tabular-flap-matrix",
+      "semanticPurpose": "departure-board-announcer"
+    }
+  },
+  "url": "https://openui.dev/r/split-flap-solari-board.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Symmetric\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Character Cascade Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "career-open-roles-grid",
+  "type": "registry:section",
+  "title": "Career Open Roles Grid",
+  "description": "A recruitment job opening board with department filters, location tags, and interactive apply modals.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "career-open-roles-grid.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "careers",
+    "jobs",
+    "hiring",
+    "recruitment",
+    "roles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "careers",
+    "fingerprint": {
+      "interactionModel": "career-open-roles-grid-interaction",
+      "visualModel": "career-open-roles-grid-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "career-open-roles-grid-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

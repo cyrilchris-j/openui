@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-diff-slider",
+  "type": "registry:interaction",
+  "title": "Interactive Diff Slider",
+  "description": "A split before-and-after image comparator where dragging the vertical hairline scrubber reveals underlying differences.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-diff-slider.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "diff",
+    "slider",
+    "comparator",
+    "split",
+    "scrubber"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "split-curtain-scrub",
+      "visualModel": "bisected-diff-frame",
+      "motionModel": "clip-path-linear-travel",
+      "layoutModel": "full-width-comparator",
+      "semanticPurpose": "before-after-diff-slider"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

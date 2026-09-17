@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bento-modular-grid",
+  "type": "registry:layout",
+  "title": "Bento Modular Grid",
+  "description": "Bento box modular 12-column dashboard layout with dynamic cell spans and harmonic cell paddings.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bento-modular-grid.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "bento",
+    "grid",
+    "modular",
+    "cards",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "bento-modular-tiling",
+      "visualModel": "asymmetric-tile-mosaic",
+      "motionModel": "none",
+      "layoutModel": "twelve-column-mosaic",
+      "semanticPurpose": "feature-showcase-mosaic"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

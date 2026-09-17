@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "directional-scroll-indicator",
+  "type": "registry:interaction",
+  "title": "Directional Scroll Indicator",
+  "description": "An animated navigational arrow cue indicating the axis and distance remaining in an active viewport section.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "directional-scroll-indicator.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "indicator",
+    "arrow",
+    "cue",
+    "directional"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "viewport-direction-cue",
+      "visualModel": "pulsing-chevron-arrow",
+      "motionModel": "vertical-bounce-oscillation",
+      "layoutModel": "bottom-centered-arrow-cue",
+      "semanticPurpose": "scroll-affordance-cue"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

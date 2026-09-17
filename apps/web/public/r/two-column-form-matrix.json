@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-form-matrix",
+  "type": "registry:layout",
+  "title": "Two Column Form Matrix",
+  "description": "Enterprise form layout with instructional labels on left and matching input groups on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-form-matrix.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoColumnFormMatrixProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function TwoColumnFormMatrix({ children, className, ...props }: TwoColumnFormMatrixProps) {\n  return (\n    <div className={cn(\"divide-y divide-line max-w-4xl mx-auto p-4 font-sans\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "b297b5fababd0f6156b510797f235d4e5184739bb2dd22c354bf11871b196119",
+      "sizeBytes": 417
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoColumnFormMatrix } from \"./two-column-form-matrix\";\n\nexport default function TwoColumnFormMatrixDemo() {\n  return (\n    <TwoColumnFormMatrix>\n      <div className=\"grid grid-cols-1 md:grid-cols-12 gap-4 py-4 items-start\">\n        <div className=\"md:col-span-4\">\n          <h4 className=\"text-xs font-bold text-ink\">Public Identifier</h4>\n          <p className=\"text-[11px] text-ink/60\">This name will appear on published registry packages.</p>\n        </div>\n        <div className=\"md:col-span-8\">\n          <input type=\"text\" defaultValue=\"@openui/registry\" className=\"w-full px-3 py-1.5 rounded border border-line text-xs font-mono bg-paper\" />\n        </div>\n      </div>\n    </TwoColumnFormMatrix>\n  );\n}\n",
+      "contentHash": "5f791f4ee021f3a2f63cbea9b9f7586205e449cb13385ac158d3455e54da0568",
+      "sizeBytes": 738
+    }
+  ],
+  "tags": [
+    "forms",
+    "two-column",
+    "matrix",
+    "enterprise",
+    "inputs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "instructional-label-field-pair",
+      "visualModel": "enterprise-form-matrix",
+      "motionModel": "none",
+      "layoutModel": "two-column-form-grid",
+      "semanticPurpose": "enterprise-configuration-form"
+    }
+  },
+  "url": "https://openui.dev/r/two-column-form-matrix.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Instructional Label Field Pair: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

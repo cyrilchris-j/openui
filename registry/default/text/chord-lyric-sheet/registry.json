@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chord-lyric-sheet",
+  "type": "registry:text",
+  "title": "Chord Lyric Sheet",
+  "description": "Song sheet typography: chord names float above lyrics in a monospace grid with exact column alignment, chord lines tint, and tapping a chord plays nothing but shows its fingering in a popover — alignment typography as musical notation.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chord-lyric-sheet.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "chords",
+    "lyrics",
+    "monospace",
+    "music"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "tap-chord-popover",
+      "visualModel": "column-aligned-chords",
+      "motionModel": "none",
+      "layoutModel": "monospace-grid",
+      "semanticPurpose": "musical-score"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

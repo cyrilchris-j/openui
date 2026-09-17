@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "database-backup-restore-panel",
+  "type": "registry:block",
+  "title": "Database Backup Restore Panel",
+  "description": "A database snapshot management block with manual snapshot trigger, backup size logs, and point-in-time recovery.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "database-backup-restore-panel.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "database",
+    "backup",
+    "restore",
+    "snapshots",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "database",
+    "fingerprint": {
+      "interactionModel": "database-snapshot-creation-and-restore",
+      "visualModel": "backup-recovery-management-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "database-backup-recovery"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

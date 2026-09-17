@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "use-reduced-motion",
+  "type": "registry:hook",
+  "title": "Use Reduced Motion",
+  "description": "A hook that subscribes to prefers-reduced-motion and reports whether the user asked for reduced motion, so resources can replace animation with state changes.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "use-reduced-motion.ts",
+      "type": "registry:hook",
+      "target": "hooks",
+      "content": "import { useEffect, useState } from \"react\";\n\n/**\n * use-reduced-motion\n *\n * Subscribes to `prefers-reduced-motion` and returns whether the user asked\n * for reduced motion. Resources use this to *replace* animation with a static\n * state change rather than only shortening durations.\n */\nexport function useReducedMotion(): boolean {\n  const [reduced, setReduced] = useState(false);\n\n  useEffect(() => {\n    if (typeof window === \"undefined\" || !window.matchMedia) return;\n    const query = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    const update = () => setReduced(query.matches);\n    update();\n    query.addEventListener(\"change\", update);\n    return () => query.removeEventListener(\"change\", update);\n  }, []);\n\n  return reduced;\n}\n\nexport default useReducedMotion;\n",
+      "contentHash": "398b3c89716cb1ecada08f1d64505196ad25d7ea6c66cc48601bd446a1438be4",
+      "sizeBytes": 787
+    }
+  ],
+  "tags": [
+    "hook",
+    "motion",
+    "accessibility"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "features": [
+      "zero-dependency",
+      "ssr-safe"
+    ],
+    "subcategory": "hooks",
+    "fingerprint": {
+      "interactionModel": "media-query-subscription",
+      "visualModel": "none",
+      "motionModel": "reduction-signal",
+      "layoutModel": "inline",
+      "semanticPurpose": "accessibility"
+    }
+  },
+  "url": "https://openui.dev/r/use-reduced-motion.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Consumers must replace animation with a state change, not merely shorten it.\n- The hook never throws during SSR; it reports `false` until mounted.\n- Prefer this hook over ad-hoc `matchMedia` calls so the subscription pattern\n  stays consistent across the registry.\n\n## Avoid\n\n- Using the flag to render *different content* for reduced-motion users; the\n  content stays, only the motion changes.\n"
+}

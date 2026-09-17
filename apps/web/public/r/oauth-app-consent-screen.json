@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "oauth-app-consent-screen",
+  "type": "registry:block",
+  "title": "OAuth App Consent Screen",
+  "description": "An authorization prompt displaying third-party application name, requested permission scopes, and grant actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "oauth-app-consent-screen.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function OauthAppConsentScreen({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-sm mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl text-center text-xs\", className)} {...props}>\n      <div className=\"h-12 w-12 mx-auto rounded-xl bg-neutral-900 text-white flex items-center justify-center text-xl font-bold mb-3\">\n        ◈\n      </div>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white\">Authorize Figma Sync</h3>\n      <p className=\"text-neutral-500 mt-1 mb-6\">Figma Variables Sync is requesting read access to your design tokens.</p>\n      <div className=\"space-y-2 mb-6\">\n        <button type=\"button\" className=\"w-full py-2 bg-emerald-600 text-white font-semibold rounded-lg\">\n          Grant Access\n        </button>\n        <button type=\"button\" className=\"w-full py-2 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-lg\">\n          Cancel\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "ac85bcb3bb39a1bb16f093eb21938443250653bc2ca06e63a9305e524186b5b4",
+      "sizeBytes": 1186
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { OauthAppConsentScreen } from \"./oauth-app-consent-screen\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <OauthAppConsentScreen />\n    </div>\n  );\n}\n",
+      "contentHash": "d89f42f8f3af7aa36bdc855127401e4cc3bc0dab765de2f13523021c25d0971d",
+      "sizeBytes": 293
+    }
+  ],
+  "tags": [
+    "oauth",
+    "consent",
+    "permissions",
+    "auth",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "auth",
+    "fingerprint": {
+      "interactionModel": "oauth-scope-grant-authorization",
+      "visualModel": "permission-consent-dialog",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "oauth-authorization-consent"
+    }
+  },
+  "url": "https://openui.dev/r/oauth-app-consent-screen.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Oauth Scope Grant Authorization: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

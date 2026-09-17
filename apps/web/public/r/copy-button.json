@@ -51,6 +51,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "actions",
+    "fingerprint": {
+      "interactionModel": "clipboard-write-feedback",
+      "visualModel": "icon-swap-state",
+      "layoutModel": "compact-inline",
+      "semanticPurpose": "quick-copy"
     }
   },
   "url": "https://openui.dev/r/copy-button.json",

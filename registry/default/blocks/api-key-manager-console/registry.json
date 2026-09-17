@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "api-key-manager-console",
+  "type": "registry:block",
+  "title": "API Key Manager Console",
+  "description": "A secret key lifecycle manager featuring token masking, creation modals, copy confirmation, and revocation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "api-key-manager-console.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "api-keys",
+    "secrets",
+    "tokens",
+    "security",
+    "credentials"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "token-generation-and-revocation",
+      "visualModel": "security-credentials-console",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "api-credential-lifecycle"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

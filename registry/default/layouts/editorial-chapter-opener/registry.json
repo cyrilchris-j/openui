@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-chapter-opener",
+  "type": "registry:layout",
+  "title": "Editorial Chapter Opener",
+  "description": "Book chapter opening spread featuring oversized Roman numeral, ornamental drop cap, and dual columns.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-chapter-opener.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "book",
+    "chapter",
+    "editorial",
+    "prose",
+    "dropcap"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "chapter-opening-reading",
+      "visualModel": "numeral-and-dropcap-opener",
+      "motionModel": "none",
+      "layoutModel": "book-chapter-spread",
+      "semanticPurpose": "book-chapter-title-spread"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

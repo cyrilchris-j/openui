@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "status-telemetry-dot",
+  "type": "registry:component",
+  "title": "Status Telemetry Dot",
+  "description": "A compact status dot badge with pulsing concentric halo for system observability.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "status-telemetry-dot.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StatusTelemetryDotProps {\n  label?: string;\n  className?: string;\n}\n\nexport function StatusTelemetryDot({\n  label = \"Cluster Operational\",\n  className,\n}: StatusTelemetryDotProps) {\n  return (\n    <div className={cn(\"inline-flex items-center gap-2 font-mono text-xs font-bold text-ink\", className)}>\n      <span className=\"relative flex h-2 w-2\">\n        <span className=\"absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping\" />\n        <span className=\"relative inline-flex h-2 w-2 rounded-full bg-emerald-500\" />\n      </span>\n      <span>{label}</span>\n    </div>\n  );\n}\n\nexport default StatusTelemetryDot;\n",
+      "contentHash": "bfbaab84666a4b9e6195c8ae3b970c5126f9e6569ce9fb36597d9b129389704c",
+      "sizeBytes": 708
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { StatusTelemetryDot } from \"./status-telemetry-dot\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <StatusTelemetryDot />\n    </div>\n  );\n}\n",
+      "contentHash": "d40225b3e22c65e3a5fe3c326ec5707e100f9897085be6c362bb809802f1778c",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "dot",
+    "status",
+    "telemetry",
+    "halo",
+    "health"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "telemetry-dot-ping",
+      "visualModel": "concentric-halo-dot",
+      "motionModel": "none",
+      "layoutModel": "inline-telemetry-dot",
+      "semanticPurpose": "observability-status-dot"
+    }
+  },
+  "url": "https://openui.dev/r/status-telemetry-dot.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Telemetry Dot Ping: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

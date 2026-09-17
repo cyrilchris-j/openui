@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-column-kanban-board",
+  "type": "registry:layout",
+  "title": "Multi Column Kanban Board",
+  "description": "Horizontal scrolling kanban workspace with responsive column rails and card racks.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-column-kanban-board.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiColumnKanbanBoardProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MultiColumnKanbanBoard({ children, className, ...props }: MultiColumnKanbanBoardProps) {\n  return (\n    <div className={cn(\"flex gap-4 overflow-x-auto p-4 min-h-[380px] w-full font-sans bg-surface/20 rounded-xl border border-line\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "bb352da67b60166d068f4e7bea07d5274cc8fb62ddd325ffa6f2acfcdf930d24",
+      "sizeBytes": 479
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MultiColumnKanbanBoard } from \"./multi-column-kanban-board\";\n\nexport default function MultiColumnKanbanBoardDemo() {\n  return (\n    <MultiColumnKanbanBoard>\n      {[\"Backlog\", \"In Review\", \"Done\"].map((col) => (\n        <div key={col} className=\"w-64 shrink-0 rounded-xl border border-line bg-paper p-3 flex flex-col gap-2\">\n          <div className=\"font-mono text-xs font-bold text-ink\">{col}</div>\n          <div className=\"p-2.5 rounded-lg border border-line bg-surface/40 text-xs\">Sample Card A</div>\n          <div className=\"p-2.5 rounded-lg border border-line bg-surface/40 text-xs\">Sample Card B</div>\n        </div>\n      ))}\n    </MultiColumnKanbanBoard>\n  );\n}\n",
+      "contentHash": "5c03067e703a1d833bae03e8203ed975d8100b6cb7947fa446766b55af112dac",
+      "sizeBytes": 697
+    }
+  ],
+  "tags": [
+    "kanban",
+    "board",
+    "columns",
+    "workflow",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "kanban-column-horizontal-flow",
+      "visualModel": "multi-column-workflow-board",
+      "motionModel": "none",
+      "layoutModel": "horizontal-column-rack",
+      "semanticPurpose": "project-kanban-stage"
+    }
+  },
+  "url": "https://openui.dev/r/multi-column-kanban-board.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Kanban Column Horizontal Flow: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

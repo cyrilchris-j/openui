@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "vertical-kern-text",
+  "type": "registry:text",
+  "title": "Vertical Kern Text",
+  "description": "A label set in vertical writing mode with upright Latin glyphs and controlled letter spacing, for spines, rails and side navigation where horizontal space is the constraint.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "vertical-kern-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "vertical",
+    "writing-mode",
+    "spine",
+    "rail"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "responsive-orientation-flow",
+      "visualModel": "vertical-writing-mode-typeset",
+      "layoutModel": "sideways-sidebar-label",
+      "semanticPurpose": "editorial-margin-annotation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

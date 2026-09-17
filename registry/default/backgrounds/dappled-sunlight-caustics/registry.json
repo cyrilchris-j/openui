@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dappled-sunlight-caustics",
+  "type": "registry:background",
+  "title": "Dappled Sunlight Caustics",
+  "description": "Subtle forest canopy or water ripple dappled lighting caustics with soft blurred highlights.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dappled-sunlight-caustics.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "sunlight",
+    "caustics",
+    "ambient",
+    "canopy",
+    "lighting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-caustic-lighting",
+      "visualModel": "dappled-sunlight-mask",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "natural-sunlight-caustics"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-retention-cohort-matrix",
+  "type": "registry:block",
+  "title": "User Retention Cohort Matrix",
+  "description": "A SaaS analytics retention heatmap table visualizing weekly active cohorts and retention percentages.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-retention-cohort-matrix.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "cohort",
+    "retention",
+    "analytics",
+    "heatmap",
+    "metrics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "analytics",
+    "fingerprint": {
+      "interactionModel": "cohort-matrix-cell-inspection",
+      "visualModel": "saas-retention-heatmap-grid",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "user-cohort-retention-analysis"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-segment-tabs",
+  "type": "registry:interaction",
+  "title": "Interactive Segment Tabs",
+  "description": "A pill segment bar featuring smooth indicator gliding between active view targets on selection.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-segment-tabs.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveSegmentTabsProps {\n  className?: string;\n}\n\nexport function InteractiveSegmentTabs({ className }: InteractiveSegmentTabsProps) {\n  const [active, setActive] = useState(0);\n  const items = [\"Daily\", \"Weekly\", \"All Time\"];\n\n  return (\n    <div className={cn(\"inline-flex rounded-full border border-line bg-line/20 p-1\", className)}>\n      {items.map((item, idx) => (\n        <button\n          key={item}\n          type=\"button\"\n          onClick={() => setActive(idx)}\n          className={cn(\n            \"rounded-full px-4 py-1.5 font-mono text-xs font-semibold transition-all\",\n            active === idx ? \"bg-ink text-paper shadow-sm\" : \"text-ink/60 hover:text-ink\"\n          )}\n        >\n          {item}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default InteractiveSegmentTabs;\n",
+      "contentHash": "6a40485162c3aefe5380e76783c95ccb292ce4f4d9d33ab8da9accc7d094fc6b",
+      "sizeBytes": 904
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { InteractiveSegmentTabs } from \"./interactive-segment-tabs\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <InteractiveSegmentTabs />\n    </div>\n  );\n}\n",
+      "contentHash": "061baa9b0fbf4d7f2551dc705e0f3b79ba5eba26a2676755f792058e01d3b5b8",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "tabs",
+    "segment",
+    "pill",
+    "navigation",
+    "views"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "segmented-view-switch",
+      "visualModel": "sliding-pill-indicator",
+      "motionModel": "lateral-pill-glide",
+      "layoutModel": "horizontal-pill-rail",
+      "semanticPurpose": "segmented-view-selector"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-segment-tabs.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Segmented View Switch: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

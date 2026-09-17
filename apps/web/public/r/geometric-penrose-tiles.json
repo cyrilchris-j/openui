@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-penrose-tiles",
+  "type": "registry:background",
+  "title": "Geometric Penrose Tiles",
+  "description": "Aperiodic non-repeating Penrose kite and dart rhombus tessellation with 5-fold local symmetry.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-penrose-tiles.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface GeometricPenroseTilesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GeometricPenroseTiles({ className, children, ...props }: GeometricPenroseTilesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"penrose-pat\" width=\"64\" height=\"64\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"32,4 58,24 32,44 6,24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"32,24 58,44 32,64 6,44\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <line x1=\"32\" y1=\"4\" x2=\"32\" y2=\"44\" stroke=\"currentColor\" strokeWidth=\"0.5\" strokeDasharray=\"2 2\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#penrose-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "bfd9a741f4b0390718f658c1a41ad73a8f51c23de71b1177707117d857c763da",
+      "sizeBytes": 1115
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GeometricPenroseTiles } from \"./geometric-penrose-tiles\";\n\nexport default function GeometricPenroseTilesDemo() {\n  return (\n    <GeometricPenroseTiles className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Penrose Aperiodic Tiling</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Kite and dart five-fold aperiodic geometry.</p>\n      </div>\n    </GeometricPenroseTiles>\n  );\n}\n",
+      "contentHash": "a0ecc778a1959b99c4c93e405b32d41a1ae4def81f8dc4c70b5e87ba3f340d97",
+      "sizeBytes": 603
+    }
+  ],
+  "tags": [
+    "penrose",
+    "aperiodic",
+    "rhombus",
+    "tessellation",
+    "geometry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-penrose-tiling",
+      "visualModel": "aperiodic-rhombus-lattice",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "aperiodic-tessellation-texture"
+    }
+  },
+  "url": "https://openui.dev/r/geometric-penrose-tiles.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Geometric\nColor: High Contrast\n\n## Rules\n\n- Passive Penrose Tiling: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

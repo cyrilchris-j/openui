@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "roadmap-quarterly-milestones",
+  "type": "registry:section",
+  "title": "Roadmap Quarterly Milestones",
+  "description": "A forward-looking technical roadmap displaying upcoming milestones across Q1 through Q4.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "roadmap-quarterly-milestones.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "roadmap",
+    "milestones",
+    "quarters",
+    "planning",
+    "future"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "roadmap",
+    "fingerprint": {
+      "interactionModel": "roadmap-quarterly-milestones-interaction",
+      "visualModel": "roadmap-quarterly-milestones-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "roadmap-quarterly-milestones-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "swiss"
+    }
+  }
+}

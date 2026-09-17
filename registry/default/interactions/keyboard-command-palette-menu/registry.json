@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-command-palette-menu",
+  "type": "registry:interaction",
+  "title": "Keyboard Command Palette Menu",
+  "description": "A fast terminal-style action selector navigable exclusively via keyboard arrow keys and return triggers.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-command-palette-menu.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "command-palette",
+    "menu",
+    "keyboard",
+    "actions",
+    "terminal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "arrow-key-command-navigation",
+      "visualModel": "terminal-palette-list",
+      "motionModel": "stepwise-selection-jump",
+      "layoutModel": "vertical-command-deck",
+      "semanticPurpose": "terminal-command-menu"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

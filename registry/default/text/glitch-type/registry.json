@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-type",
+  "type": "registry:text",
+  "title": "Glitch Type",
+  "description": "Burst-based glitching, not a permanent loop: on an interval the text fires a 3-frame RGB channel split with clip-path slicing, then rests clean — the disturbance reads as an event, not wallpaper.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "glitch",
+    "rgb-split",
+    "burst",
+    "clip-path"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "interval-burst",
+      "visualModel": "channel-split",
+      "motionModel": "burst-then-rest",
+      "layoutModel": "inline",
+      "semanticPurpose": "attention-signal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "cut",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

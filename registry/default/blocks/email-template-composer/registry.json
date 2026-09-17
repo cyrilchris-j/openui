@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "email-template-composer",
+  "type": "registry:block",
+  "title": "Email Template Composer",
+  "description": "A newsletter and transactional email draft composer with subject line editor and live HTML view toggle.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "email-template-composer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "email",
+    "composer",
+    "newsletter",
+    "template",
+    "messaging"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "email",
+    "fingerprint": {
+      "interactionModel": "email-composer-and-preview-toggle",
+      "visualModel": "wysiwyg-email-layout-editor",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "transactional-email-authoring"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

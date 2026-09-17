@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "quantum-particle-web",
+  "type": "registry:background",
+  "title": "Quantum Particle Web",
+  "description": "Interactive constellation web connecting nearby drifting particles with dynamic threshold lines.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "quantum-particle-web.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface QuantumParticleWebProps extends React.HTMLAttributes<HTMLDivElement> {\n  nodeCount?: number;\n  children?: React.ReactNode;\n}\n\nexport function QuantumParticleWeb({ nodeCount = 35, className, children, ...props }: QuantumParticleWebProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    const nodes = Array.from({ length: nodeCount }, () => ({\n      x: Math.random() * w,\n      y: Math.random() * h,\n      vx: (Math.random() - 0.5) * 0.8,\n      vy: (Math.random() - 0.5) * 0.8,\n    }));\n\n    const render = () => {\n      ctx.clearRect(0, 0, w, h);\n      ctx.fillStyle = \"currentColor\";\n\n      for (let i = 0; i < nodes.length; i++) {\n        const n = nodes[i]!;\n        n.x += n.vx;\n        n.y += n.vy;\n        if (n.x < 0 || n.x > w) n.vx *= -1;\n        if (n.y < 0 || n.y > h) n.vy *= -1;\n\n        ctx.beginPath();\n        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);\n        ctx.fill();\n\n        for (let j = i + 1; j < nodes.length; j++) {\n          const m = nodes[j]!;\n          const dx = n.x - m.x;\n          const dy = n.y - m.y;\n          const dist = Math.sqrt(dx * dx + dy * dy);\n          if (dist < 80) {\n            ctx.strokeStyle = `rgba(150, 150, 150, ${1 - dist / 80})`;\n            ctx.lineWidth = 0.5;\n            ctx.beginPath();\n            ctx.moveTo(n.x, n.y);\n            ctx.lineTo(m.x, m.y);\n            ctx.stroke();\n          }\n        }\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, [nodeCount]);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none opacity-30 -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "75b6ba005791b2fc832d7a3bc7626aa79f74d2f65dfb5d4b522f25b7bb1a7eca",
+      "sizeBytes": 2232
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { QuantumParticleWeb } from \"./quantum-particle-web\";\n\nexport default function QuantumParticleWebDemo() {\n  return (\n    <QuantumParticleWeb className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Network Nodes</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Dynamic proximity particle constellation web.</p>\n      </div>\n    </QuantumParticleWeb>\n  );\n}\n",
+      "contentHash": "82c8f8b1c87147d2997ffe3a42845d200a9907bff589b393e82ac0f7abee55b5",
+      "sizeBytes": 579
+    }
+  ],
+  "tags": [
+    "constellation",
+    "particles",
+    "network",
+    "canvas",
+    "web"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-particles",
+      "visualModel": "proximity-constellation-network",
+      "motionModel": "stochastic-particle-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "network-graph-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/quantum-particle-web.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Canvas Particles: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

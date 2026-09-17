@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-faq-filter",
+  "type": "registry:section",
+  "title": "Interactive FAQ Filter",
+  "description": "A categorized FAQ accordion with live category filtering and expand-collapse state memory.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-faq-filter.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FAQItem {\n  id: string;\n  category: \"General\" | \"Licensing\" | \"Technical\";\n  q: string;\n  a: string;\n}\n\nconst FAQS: FAQItem[] = [\n  { id: \"1\", category: \"General\", q: \"Can I use OpenUI in commercial client projects?\", a: \"Yes. All 800 items are licensed under permissive MIT.\" },\n  { id: \"2\", category: \"Technical\", q: \"How does OpenUI differ from npm component libraries?\", a: \"OpenUI materializes code straight into your src folder with zero runtime dependency lock-in.\" },\n  { id: \"3\", category: \"Licensing\", q: \"Are there any hidden seat fees or cloud subscriptions?\", a: \"None. The open-source registry is 100% free and open.\" },\n];\n\nexport function InteractiveFAQFilter({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [selected, setSelected] = React.useState(\"All\");\n  const [openId, setOpenId] = React.useState<string | null>(\"1\");\n\n  const filtered = selected === \"All\" ? FAQS : FAQS.filter((f) => f.category === selected);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-3xl mx-auto\", className)} {...props}>\n      <h2 className=\"text-2xl font-bold text-center text-neutral-900 dark:text-neutral-100 mb-6\">Frequently Asked Questions</h2>\n      <div className=\"flex justify-center gap-2 mb-6 text-xs\">\n        {[\"All\", \"General\", \"Technical\", \"Licensing\"].map((c) => (\n          <button\n            key={c}\n            type=\"button\"\n            onClick={() => setSelected(c)}\n            className={cn(\n              \"px-3 py-1 rounded-full\",\n              selected === c ? \"bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900\" : \"bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400\"\n            )}\n          >\n            {c}\n          </button>\n        ))}\n      </div>\n\n      <div className=\"space-y-3\">\n        {filtered.map((item) => {\n          const isOpen = openId === item.id;\n          return (\n            <div key={item.id} className=\"border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 bg-white dark:bg-neutral-950\">\n              <button\n                type=\"button\"\n                onClick={() => setOpenId(isOpen ? null : item.id)}\n                className=\"w-full flex justify-between items-center text-left text-sm font-semibold text-neutral-900 dark:text-neutral-100\"\n              >\n                <span>{item.q}</span>\n                <span>{isOpen ? \"−\" : \"+\"}</span>\n              </button>\n              {isOpen && (\n                <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2 pt-2 border-t border-neutral-100 dark:border-neutral-900\">\n                  {item.a}\n                </p>\n              )}\n            </div>\n          );\n        })}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "3f7422ba9e66d8826608470bd707a0917d5acc1e334dd3a64f7e3d1ed474465a",
+      "sizeBytes": 2828
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveFAQFilter } from \"./interactive-faq-filter\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <InteractiveFAQFilter />\n    </div>\n  );\n}\n",
+      "contentHash": "2a158c8158137839d8ce1c756c5eccb8b9199399367ac0fd81252545e4bfa88a",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "faq",
+    "filter",
+    "questions",
+    "accordion",
+    "interactive"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "faq",
+    "fingerprint": {
+      "interactionModel": "interactive-faq-filter-interaction",
+      "visualModel": "interactive-faq-filter-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-faq-filter-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-faq-filter.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Interactive Faq Filter Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

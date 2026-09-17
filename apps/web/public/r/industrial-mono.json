@@ -39,7 +39,14 @@
       "dark-first",
       "wcag-aa",
       "monospace"
-    ]
+    ],
+    "subcategory": "palette",
+    "fingerprint": {
+      "interactionModel": "terminal-contrast-tokens",
+      "visualModel": "monochrome-cad-slate-palette",
+      "layoutModel": "css-token-bundle",
+      "semanticPurpose": "industrial-theme-definition"
+    }
   },
   "url": "https://openui.dev/r/industrial-mono.json"
 }

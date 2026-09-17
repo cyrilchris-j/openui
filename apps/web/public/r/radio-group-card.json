@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radio-group-card",
+  "type": "registry:component",
+  "title": "Radio Group Card",
+  "description": "A tiered choice selector displaying options as selectable cards with checkmark status.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radio-group-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RadioGroupCardProps {\n  className?: string;\n}\n\nexport function RadioGroupCard({ className }: RadioGroupCardProps) {\n  const [selected, setSelected] = useState(\"pro\");\n  const tiers = [\n    { id: \"starter\", title: \"Starter Spec\", price: \"Free\" },\n    { id: \"pro\", title: \"Enterprise Registry\", price: \"$29/mo\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-sm space-y-2 font-mono text-xs\", className)}>\n      {tiers.map((t) => {\n        const isSel = selected === t.id;\n        return (\n          <div\n            key={t.id}\n            onClick={() => setSelected(t.id)}\n            className={cn(\n              \"flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all\",\n              isSel ? \"border-ink bg-line/10 shadow-sm\" : \"border-line bg-paper hover:border-ink/60\"\n            )}\n          >\n            <div>\n              <span className=\"font-bold text-ink\">{t.title}</span>\n              <span className=\"text-ink/60 block text-[10px] mt-0.5\">{t.price}</span>\n            </div>\n            <div className={cn(\"h-4 w-4 rounded-full border flex items-center justify-center\", isSel ? \"border-ink bg-ink\" : \"border-line\")}>\n              {isSel && <div className=\"h-1.5 w-1.5 rounded-full bg-paper\" />}\n            </div>\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default RadioGroupCard;\n",
+      "contentHash": "7d7bd9303857d6a02a40f6566f863cfb1436bf35a8e88a07f13c4ed31d46da4b",
+      "sizeBytes": 1455
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { RadioGroupCard } from \"./radio-group-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <RadioGroupCard />\n    </div>\n  );\n}\n",
+      "contentHash": "cdc3e264a64de8a01e5ff6cffe8957e14e173f0771b932fd86e380f1b840ba96",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "radio",
+    "cards",
+    "selection",
+    "plans",
+    "tier"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "card-radio-selection",
+      "visualModel": "selectable-tier-cards",
+      "motionModel": "none",
+      "layoutModel": "stacked-radio-deck",
+      "semanticPurpose": "pricing-tier-selector"
+    }
+  },
+  "url": "https://openui.dev/r/radio-group-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Card Radio Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

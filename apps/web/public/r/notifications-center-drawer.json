@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "notifications-center-drawer",
+  "type": "registry:block",
+  "title": "Notifications Center Drawer",
+  "description": "A slide-out alerts drawer featuring unread count badges, clear actions, and categorized notification items.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "notifications-center-drawer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function NotificationsCenterDrawer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [unreadCount, setUnreadCount] = React.useState(2);\n\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl text-xs\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800\">\n        <div className=\"flex items-center gap-2 font-bold text-neutral-900 dark:text-white\">\n          <span>Notifications</span>\n          {unreadCount > 0 && (\n            <span className=\"px-1.5 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-mono\">\n              {unreadCount}\n            </span>\n          )}\n        </div>\n        <button type=\"button\" onClick={() => setUnreadCount(0)} className=\"text-neutral-400 hover:text-neutral-900 dark:hover:text-white text-[11px]\">\n          Mark all read\n        </button>\n      </div>\n\n      <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800 mt-2\">\n        <div className=\"py-3\">\n          <div className=\"font-semibold text-neutral-900 dark:text-white\">Release v2.4.0 verified</div>\n          <div className=\"text-neutral-500 mt-0.5\">800 open-source primitives are now live in the registry.</div>\n          <div className=\"text-[10px] text-neutral-400 mt-1 font-mono\">5m ago</div>\n        </div>\n        <div className=\"py-3\">\n          <div className=\"font-semibold text-neutral-900 dark:text-white\">Security audit completed</div>\n          <div className=\"text-neutral-500 mt-0.5\">Zero vulnerabilities detected in automated scanning.</div>\n          <div className=\"text-[10px] text-neutral-400 mt-1 font-mono\">1h ago</div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "36ac38750a2d39a75522d8f5274fdf99a9ef8be7f9301a1b9c871b35c97a0f77",
+      "sizeBytes": 1916
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { NotificationsCenterDrawer } from \"./notifications-center-drawer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <NotificationsCenterDrawer />\n    </div>\n  );\n}\n",
+      "contentHash": "6f8691b169ab599df5cb10caeed83e73b2ec089a2895d1201a3a6b71359d3c45",
+      "sizeBytes": 304
+    }
+  ],
+  "tags": [
+    "notifications",
+    "alerts",
+    "drawer",
+    "unread",
+    "badge"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "notifications",
+    "fingerprint": {
+      "interactionModel": "notification-tray-mark-read",
+      "visualModel": "slideout-activity-alerts-tray",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "user-system-notifications"
+    }
+  },
+  "url": "https://openui.dev/r/notifications-center-drawer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Notification Tray Mark Read: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

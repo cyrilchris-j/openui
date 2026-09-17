@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hardware-accelerated-banner",
+  "type": "registry:section",
+  "title": "Hardware Accelerated Banner",
+  "description": "A high-performance technical callout banner emphasizing GPU composition and 120fps animations.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hardware-accelerated-banner.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function HardwareAcceleratedBanner({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-8 border-y border-neutral-800 bg-neutral-950 text-neutral-100 font-mono text-xs text-center\", className)} {...props}>\n      <span className=\"text-emerald-400 font-bold\">⚡ GPU ACCELERATED:</span> 120 FPS buttery transforms with zero main-thread layout thrashing.\n    </section>\n  );\n}\n",
+      "contentHash": "a583ffda11ecadddafe0ac9c8fcadcc15bfde985ec43b3d059b9ad998e1c90c8",
+      "sizeBytes": 522
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { HardwareAcceleratedBanner } from \"./hardware-accelerated-banner\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[150px] flex items-center justify-center bg-neutral-900\">\n      <HardwareAcceleratedBanner />\n    </div>\n  );\n}\n",
+      "contentHash": "bb49e67e0ee856370111abc69bddc97d7c7181f2c867b08460b59610881c4f33",
+      "sizeBytes": 280
+    }
+  ],
+  "tags": [
+    "hardware",
+    "gpu",
+    "webgl",
+    "120fps",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hardware",
+    "fingerprint": {
+      "interactionModel": "hardware-accelerated-banner-interaction",
+      "visualModel": "hardware-accelerated-banner-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "hardware-accelerated-banner-section"
+    }
+  },
+  "url": "https://openui.dev/r/hardware-accelerated-banner.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Hardware Accelerated Banner Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compliance-cert-showcase",
+  "type": "registry:section",
+  "title": "Compliance Cert Showcase",
+  "description": "A trust badge showcase presenting verified audit credentials, security seals, and data compliance marks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compliance-cert-showcase.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "compliance",
+    "trust",
+    "certifications",
+    "security",
+    "badges"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "trust",
+    "fingerprint": {
+      "interactionModel": "compliance-cert-showcase-interaction",
+      "visualModel": "compliance-cert-showcase-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "compliance-cert-showcase-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "industrial"
+    }
+  }
+}

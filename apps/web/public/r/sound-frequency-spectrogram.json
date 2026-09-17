@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sound-frequency-spectrogram",
+  "type": "registry:background",
+  "title": "Sound Frequency Spectrogram",
+  "description": "Waterfall audio spectrum analyzer heatmap spectrogram with chromatic acoustic intensity bands.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sound-frequency-spectrogram.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SoundFrequencySpectrogramProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function SoundFrequencySpectrogram({ className, children, ...props }: SoundFrequencySpectrogramProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-25 -z-10\"\n        style={{\n          backgroundImage: `\n            linear-gradient(to right, #3b82f6 0%, #10b981 30%, #f59e0b 60%, #ef4444 100%),\n            repeating-linear-gradient(to bottom, transparent, transparent 3px, rgba(0,0,0,0.8) 3px, rgba(0,0,0,0.8) 5px)\n          `,\n          backgroundBlendMode: \"multiply\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "9e84186359cd19a57223f4236cef3881b064023229f542d3365bbde3d2e207c7",
+      "sizeBytes": 876
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { SoundFrequencySpectrogram } from \"./sound-frequency-spectrogram\";\n\nexport default function SoundFrequencySpectrogramDemo() {\n  return (\n    <SoundFrequencySpectrogram className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-white\">FFT Spectrogram</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Audio spectral frequency power distribution.</p>\n      </div>\n    </SoundFrequencySpectrogram>\n  );\n}\n",
+      "contentHash": "a469b5d9cfd5987bb3fbcbc8159b6ed7f72d842b9e5ee0e512ed143376e9e089",
+      "sizeBytes": 623
+    }
+  ],
+  "tags": [
+    "spectrogram",
+    "audio",
+    "frequency",
+    "fft",
+    "waterfall"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-spectrogram-backdrop",
+      "visualModel": "frequency-intensity-heatmap",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "audio-spectrogram-canvas"
+    }
+  },
+  "url": "https://openui.dev/r/sound-frequency-spectrogram.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Spectrogram Backdrop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inline-editable-heading",
+  "type": "registry:component",
+  "title": "Inline Editable Heading",
+  "description": "Double-click or click-to-edit heading component with live input switch, escape-to-cancel, and blur commit.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inline-editable-heading.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "editable",
+    "inline",
+    "heading",
+    "forms",
+    "input"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "inline-double-click-edit",
+      "visualModel": "seamless-text-to-input",
+      "motionModel": "none",
+      "layoutModel": "single-line-field",
+      "semanticPurpose": "inline-title-mutator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

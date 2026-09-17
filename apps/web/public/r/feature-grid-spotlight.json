@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-grid-spotlight",
+  "type": "registry:section",
+  "title": "Feature Grid Spotlight",
+  "description": "A 3x2 interactive feature grid with dynamic cursor hover spotlighting, category tags, and expandable detail states.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-grid-spotlight.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FeatureItem {\n  id: string;\n  tag: string;\n  title: string;\n  description: string;\n  icon?: React.ReactNode;\n}\n\nexport interface FeatureGridSpotlightProps extends React.HTMLAttributes<HTMLElement> {\n  eyebrow?: string;\n  headline?: string;\n  description?: string;\n  features?: FeatureItem[];\n  columns?: 2 | 3;\n}\n\nconst DEFAULT_FEATURES: FeatureItem[] = [\n  { id: \"f1\", tag: \"Speed\", title: \"Sub-millisecond Routing\", description: \"Edge-distributed request pipeline resolving cache lookups in under 1ms globally.\" },\n  { id: \"f2\", tag: \"Security\", title: \"Automated Zero Trust\", description: \"Per-request mutual TLS validation with hardware-backed certificate rotation.\" },\n  { id: \"f3\", tag: \"Analytics\", title: \"Real-time Telemetry\", description: \"Streaming event aggregation piping 500k ops/sec into your Grafana dashboards.\" },\n  { id: \"f4\", tag: \"Scaling\", title: \"Instant Elasticity\", description: \"Horizontal pod autoscaling triggered on memory pressure within 400ms.\" },\n  { id: \"f5\", tag: \"Compliance\", title: \"SOC2 & ISO Ready\", description: \"Immutable tamper-proof audit trails generated directly to cold storage.\" },\n  { id: \"f6\", tag: \"DX\", title: \"CLI First Workflow\", description: \"Push-to-deploy Git hooks with local preview sandboxes in under 3 seconds.\" },\n];\n\nexport function FeatureGridSpotlight({\n  eyebrow = \"Core Capabilities\",\n  headline = \"Engineered for uncompromising velocity\",\n  description = \"A comprehensive suite of infrastructure primitives designed to scale without operational friction.\",\n  features = DEFAULT_FEATURES,\n  columns = 3,\n  className,\n  ...props\n}: FeatureGridSpotlightProps) {\n  const [activeId, setActiveId] = React.useState<string | null>(null);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-3xl mx-auto mb-12\">\n        <span className=\"text-xs font-mono tracking-widest uppercase text-emerald-600 dark:text-emerald-400 font-semibold\">\n          {eyebrow}\n        </span>\n        <h2 className=\"text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-2\">\n          {headline}\n        </h2>\n        <p className=\"text-sm md:text-base text-neutral-600 dark:text-neutral-400 mt-3\">\n          {description}\n        </p>\n      </div>\n\n      <div\n        className={cn(\n          \"grid gap-6\",\n          columns === 2 ? \"grid-cols-1 md:grid-cols-2\" : \"grid-cols-1 md:grid-cols-2 lg:grid-cols-3\"\n        )}\n      >\n        {features.map((feature) => {\n          const isSelected = activeId === feature.id;\n          return (\n            <div\n              key={feature.id}\n              onClick={() => setActiveId(isSelected ? null : feature.id)}\n              className={cn(\n                \"group relative rounded-xl border p-6 transition-all duration-200 cursor-pointer\",\n                \"bg-white dark:bg-neutral-950\",\n                isSelected\n                  ? \"border-emerald-500 shadow-md ring-1 ring-emerald-500/20\"\n                  : \"border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700\"\n              )}\n            >\n              <div className=\"flex items-center justify-between mb-3\">\n                <span className=\"text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300\">\n                  {feature.tag}\n                </span>\n                <span className=\"text-xs font-mono text-neutral-400\">\n                  #{feature.id}\n                </span>\n              </div>\n              <h3 className=\"text-base font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors\">\n                {feature.title}\n              </h3>\n              <p className=\"text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed\">\n                {feature.description}\n              </p>\n            </div>\n          );\n        })}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "4dc635d391845f8ece61ccef8c1a5173dc34bae94af43cdabb755e8637eda176",
+      "sizeBytes": 4166
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { FeatureGridSpotlight } from \"./feature-grid-spotlight\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <FeatureGridSpotlight />\n    </div>\n  );\n}\n",
+      "contentHash": "f2523795292525414383f00754340cc6c398d929a173ff9546bd403a128254e0",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "feature",
+    "grid",
+    "spotlight",
+    "interactive",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "feature-grid-spotlight-interaction",
+      "visualModel": "feature-grid-spotlight-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "feature-grid-spotlight-section"
+    }
+  },
+  "url": "https://openui.dev/r/feature-grid-spotlight.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Feature Grid Spotlight Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

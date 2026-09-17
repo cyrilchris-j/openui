@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "social-proof-logo-cloud",
+  "type": "registry:section",
+  "title": "Social Proof Logo Cloud",
+  "description": "Monochromatic partner/customer logo cloud with trust header and active installation count.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "social-proof-logo-cloud.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SocialProofLogoCloudProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n  brands?: string[];\n}\n\nexport function SocialProofLogoCloud({\n  title = \"TRUSTED BY LEADING AUTONOMOUS ENGINEERING TEAMS\",\n  brands = [\"DeepMind\", \"Google AGY\", \"Vercel\", \"Supabase\", \"Linear\", \"Raycast\"],\n  className,\n  ...props\n}: SocialProofLogoCloudProps) {\n  return (\n    <section className={cn(\"py-12 px-6 max-w-5xl mx-auto font-sans text-center bg-paper text-ink\", className)} {...props}>\n      <p className=\"font-mono text-[11px] font-semibold uppercase tracking-wider text-ink/50 mb-8\">{title}</p>\n      <div className=\"flex flex-wrap items-center justify-center gap-8 sm:gap-12 opacity-60\">\n        {brands.map((brand) => (\n          <span key={brand} className=\"font-mono text-sm font-bold tracking-tight text-ink/80 hover:opacity-100 transition-opacity\">\n            {brand}\n          </span>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "df95deb7ca4b3de6f8a9675455d13c9568d2ea43e1248dc2aef9d7f374ee7927",
+      "sizeBytes": 1004
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { SocialProofLogoCloud } from \"./social-proof-logo-cloud\";\n\nexport default function SocialProofLogoCloudDemo() {\n  return <SocialProofLogoCloud />;\n}\n",
+      "contentHash": "b8670b8301fe57464f9e5966403b430af0d3b66afd049aa22f2dc11d1c2a1526",
+      "sizeBytes": 172
+    }
+  ],
+  "tags": [
+    "logos",
+    "partners",
+    "social-proof",
+    "trust",
+    "brands"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "social-proof",
+    "fingerprint": {
+      "interactionModel": "passive-brand-cloud",
+      "visualModel": "monochromatic-logo-ribbon",
+      "motionModel": "none",
+      "layoutModel": "horizontal-partner-strip",
+      "semanticPurpose": "client-trust-showcase"
+    }
+  },
+  "url": "https://openui.dev/r/social-proof-logo-cloud.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Brand Cloud: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

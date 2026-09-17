@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-health-status-page",
+  "type": "registry:block",
+  "title": "System Health Status Page",
+  "description": "A complete service health status board displaying global edge availability, incident timeline, and uptime bars.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-health-status-page.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SystemHealthStatusPage({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const services = [\n    { name: \"Registry API Distribution\", uptime: \"99.99%\" },\n    { name: \"Static Asset CDN Edge\", uptime: \"100.00%\" },\n    { name: \"CLI Mirror Synchronization\", uptime: \"99.98%\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-800 mb-4\">\n        <div className=\"flex items-center gap-2\">\n          <span className=\"h-3 w-3 rounded-full bg-emerald-500 animate-pulse\" />\n          <span className=\"font-bold text-neutral-900 dark:text-white\">All Systems Operational</span>\n        </div>\n        <span className=\"text-neutral-400\">90-Day SLA</span>\n      </div>\n\n      <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800\">\n        {services.map((s) => (\n          <div key={s.name} className=\"py-3 flex items-center justify-between\">\n            <span className=\"text-neutral-800 dark:text-neutral-200\">{s.name}</span>\n            <span className=\"text-emerald-500 font-bold\">{s.uptime}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "6caf2a17b03a2770d4ea1a25f2f1d67cf692245458915a3ccea0d0b90f13036b",
+      "sizeBytes": 1454
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { SystemHealthStatusPage } from \"./system-health-status-page\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <SystemHealthStatusPage />\n    </div>\n  );\n}\n",
+      "contentHash": "9a510d51f7c9795d77fdcc856c0e3b94b7e3b359492334339ae304e595270dc3",
+      "sizeBytes": 296
+    }
+  ],
+  "tags": [
+    "status",
+    "health",
+    "uptime",
+    "services",
+    "incidents"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "status",
+    "fingerprint": {
+      "interactionModel": "system-status-indicator-monitoring",
+      "visualModel": "uptime-history-status-board",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "service-uptime-status"
+    }
+  },
+  "url": "https://openui.dev/r/system-health-status-page.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- System Status Indicator Monitoring: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "scroll-triggered-split",
+      "visualModel": "character-clip-path-reveal",
+      "motionModel": "staggered-glyph-rise",
+      "layoutModel": "multiline-display",
+      "semanticPurpose": "hero-title-reveal"
     }
   },
   "url": "https://openui.dev/r/split-text.json",

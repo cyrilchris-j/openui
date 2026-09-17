@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pricing-enterprise-inquiry",
+  "type": "registry:section",
+  "title": "Pricing Enterprise Inquiry",
+  "description": "A specialized contact banner tailored for enterprise buyers requiring custom VPC deployments and SOC2 packages.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pricing-enterprise-inquiry.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function PricingEnterpriseInquiry({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-4xl mx-auto text-center\", className)} {...props}>\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-2xl p-8 bg-neutral-50 dark:bg-neutral-900/50\">\n        <h3 className=\"text-2xl font-bold text-neutral-900 dark:text-white\">Need a private registry mirror?</h3>\n        <p className=\"text-xs text-neutral-500 mt-2 max-w-xl mx-auto\">\n          We offer on-premises air-gapped registry distribution with custom security assertions for regulated industries.\n        </p>\n        <button type=\"button\" className=\"mt-6 px-6 py-2.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 text-xs font-semibold\">\n          Contact Enterprise Sales →\n        </button>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "44a5df526e7d38835a1268ac0b6433c0a457863264983ff7f48f816c18de4bf0",
+      "sizeBytes": 992
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { PricingEnterpriseInquiry } from \"./pricing-enterprise-inquiry\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-white dark:bg-neutral-950\">\n      <PricingEnterpriseInquiry />\n    </div>\n  );\n}\n",
+      "contentHash": "c5fa31a2b6a160c96373cd99c0331799b552314261b6a2cae244fa9f6f21a758",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "enterprise",
+    "inquiry",
+    "pricing",
+    "custom",
+    "sla"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "pricing-enterprise-inquiry-interaction",
+      "visualModel": "pricing-enterprise-inquiry-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "pricing-enterprise-inquiry-section"
+    }
+  },
+  "url": "https://openui.dev/r/pricing-enterprise-inquiry.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Pricing Enterprise Inquiry Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

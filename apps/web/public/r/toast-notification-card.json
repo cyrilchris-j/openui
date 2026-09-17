@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toast-notification-card",
+  "type": "registry:component",
+  "title": "Toast Notification Card",
+  "description": "A self-contained alert toast banner displaying action state, timestamp, and instant dismiss button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toast-notification-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ToastNotificationCardProps {\n  message?: string;\n  className?: string;\n}\n\nexport function ToastNotificationCard({\n  message = \"Registry package index rebuilt successfully.\",\n  className,\n}: ToastNotificationCardProps) {\n  const [dismissed, setDismissed] = useState(false);\n  if (dismissed) return null;\n\n  return (\n    <div className={cn(\"flex w-full max-w-sm items-center justify-between rounded-xl border border-line bg-paper p-4 shadow-lg font-mono text-xs\", className)}>\n      <div className=\"flex items-center gap-2 text-ink\">\n        <span className=\"text-emerald-600 font-bold\">✓</span>\n        <span>{message}</span>\n      </div>\n      <button\n        type=\"button\"\n        onClick={() => setDismissed(true)}\n        className=\"text-ink/40 hover:text-ink ml-3 font-bold\"\n      >\n        ✕\n      </button>\n    </div>\n  );\n}\n\nexport default ToastNotificationCard;\n",
+      "contentHash": "6211d70c5832796c86335af775da0b7ba0211ce6a2dcf93ccaa7ca1eb3307775",
+      "sizeBytes": 972
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ToastNotificationCard } from \"./toast-notification-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ToastNotificationCard />\n    </div>\n  );\n}\n",
+      "contentHash": "a660ea97ae4e8d0799b61444ffb5c384c3f4a765496f48133b4b7b20fd7daf10",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "toast",
+    "notification",
+    "alert",
+    "feedback",
+    "card"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "dismissible-toast-alert",
+      "visualModel": "pill-toast-banner",
+      "motionModel": "none",
+      "layoutModel": "compact-toast-card",
+      "semanticPurpose": "transient-toast-notice"
+    }
+  },
+  "url": "https://openui.dev/r/toast-notification-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Dismissible Toast Alert: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

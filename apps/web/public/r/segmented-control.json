@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "exclusive-pill-selection",
+      "visualModel": "capsule-slider-track",
+      "motionModel": "spring-thumb-slide",
+      "layoutModel": "inline-segmented",
+      "semanticPurpose": "view-mode-toggle"
     }
   },
   "url": "https://openui.dev/r/segmented-control.json",

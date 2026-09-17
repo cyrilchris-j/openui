@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cloud-deployment-pipeline",
+  "type": "registry:block",
+  "title": "Cloud Deployment Pipeline",
+  "description": "A continuous integration and edge release runner displaying step progress (Build, Test, Deploy, Verify).",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cloud-deployment-pipeline.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "ci-cd",
+    "pipeline",
+    "deployment",
+    "devops",
+    "cloud"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "ci-pipeline-stage-tracking",
+      "visualModel": "horizontal-node-pipeline-graph",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "continuous-deployment-status"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "rail",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-resource-monitor",
+  "type": "registry:block",
+  "title": "System Resource Monitor",
+  "description": "An operational infrastructure monitor tracking live CPU load, RAM allocation, and edge node health.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-resource-monitor.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SystemResourceMonitor({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-3 border-b border-neutral-800 mb-4\">\n        <span className=\"font-bold text-white\">Edge Node Cluster US-EAST</span>\n        <span className=\"text-emerald-400\">● 100% Operational</span>\n      </div>\n      <div className=\"grid grid-cols-1 sm:grid-cols-3 gap-4\">\n        <div className=\"p-4 rounded bg-neutral-900 border border-neutral-800\">\n          <div className=\"text-neutral-400 text-[10px]\">CPU USAGE</div>\n          <div className=\"text-2xl font-bold text-white mt-1\">14.2%</div>\n          <div className=\"w-full h-1.5 bg-neutral-800 rounded-full mt-2 overflow-hidden\">\n            <div className=\"h-full bg-emerald-500 w-[14%]\" />\n          </div>\n        </div>\n        <div className=\"p-4 rounded bg-neutral-900 border border-neutral-800\">\n          <div className=\"text-neutral-400 text-[10px]\">RAM ISOLATES</div>\n          <div className=\"text-2xl font-bold text-white mt-1\">42.8 GB</div>\n          <div className=\"w-full h-1.5 bg-neutral-800 rounded-full mt-2 overflow-hidden\">\n            <div className=\"h-full bg-blue-500 w-[42%]\" />\n          </div>\n        </div>\n        <div className=\"p-4 rounded bg-neutral-900 border border-neutral-800\">\n          <div className=\"text-neutral-400 text-[10px]\">EGRESS BANDWIDTH</div>\n          <div className=\"text-2xl font-bold text-white mt-1\">4.2 Gbps</div>\n          <div className=\"w-full h-1.5 bg-neutral-800 rounded-full mt-2 overflow-hidden\">\n            <div className=\"h-full bg-purple-500 w-[28%]\" />\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "25a11941b5b33864f5f31eb87868d4187d53f27d5d51ddb29acdd4c422b3ff48",
+      "sizeBytes": 1954
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { SystemResourceMonitor } from \"./system-resource-monitor\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-900\">\n      <SystemResourceMonitor />\n    </div>\n  );\n}\n",
+      "contentHash": "1007a1150c0a68b3d07f4d45673477326b326a51a001aa358a07e081d3c068a6",
+      "sizeBytes": 272
+    }
+  ],
+  "tags": [
+    "system",
+    "monitor",
+    "cpu",
+    "memory",
+    "telemetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "realtime-telemetry-monitoring",
+      "visualModel": "system-load-gauges",
+      "motionModel": "mechanical",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "edge-infrastructure-monitoring"
+    }
+  },
+  "url": "https://openui.dev/r/system-resource-monitor.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Realtime Telemetry Monitoring: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

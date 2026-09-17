@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-flap-board",
+  "type": "registry:text",
+  "title": "Split Flap Board",
+  "description": "An airport-style flap display where each cell flips through cards top-over-bottom to reach its target; half-flap seams, staggered columns and the characteristic clack pacing are all CSS-only per cell.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-flap-board.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "split-flap",
+    "board",
+    "airport",
+    "flip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "value-sweep",
+      "visualModel": "hinged-flap-cells",
+      "motionModel": "top-over-flip-cascade",
+      "layoutModel": "grid-cells",
+      "semanticPurpose": "status-board"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

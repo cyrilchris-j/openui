@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scatter-rain-text",
+  "type": "registry:text",
+  "title": "Scatter Rain Text",
+  "description": "On in-view, glyphs fall from above with per-letter delay, rotation and a tiny bounce, then stay put — a controlled storm where each drop lands on its own baseline slot, spring-free and transition-only.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "scatter-rain-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScatterRainTextProps {\n  children: string;\n  className?: string;\n}\n\nexport function ScatterRainText({ children, className }: ScatterRainTextProps) {\n  const { ref, inView } = useInView<HTMLSpanElement>({ once: true });\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const landed = inView || Boolean(reduced);\n\n  return (\n    <span ref={ref} className={cn(\"inline-block select-none\", className)} role=\"text\" aria-label={children}>\n      {[...children].map((char, index) => {\n        const delay = index * 70;\n        const rotation = ((index * 37) % 13) - 6;\n        return (\n          <span key={index} aria-hidden className=\"inline-block overflow-visible\" style={{ verticalAlign: \"top\" }}>\n            <span\n              className=\"inline-block will-change-transform\"\n              style={{\n                transform: landed\n                  ? \"translateY(0) rotate(0deg)\"\n                  : `translateY(-2.4em) rotate(${rotation}deg)`,\n                opacity: landed ? 1 : 0,\n                transition: `transform 560ms cubic-bezier(0.34, 1.3, 0.64, 1) ${delay}ms, opacity 240ms ease ${delay}ms`,\n              }}\n            >\n              {char === \" \" ? \"\\u00A0\" : char}\n            </span>\n          </span>\n        );\n      })}\n    </span>\n  );\n}\n\nexport default ScatterRainText;\n",
+      "contentHash": "c5a153783e1ad8bdb8d9fc28c9f5366ea4dec41ffdd844c7deddbdd88cee9def",
+      "sizeBytes": 1485
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ScatterRainText } from \"./scatter-rain-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <ScatterRainText className=\"font-display text-step-4 text-ink\">Downpour</ScatterRainText>\n    </div>\n  );\n}\n",
+      "contentHash": "c9a067b1fe14d8c579d7044ee4447272ba2edfa2e431253083c6b31273e16d0f",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "rain",
+    "fall",
+    "scatter",
+    "entrance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "glyph-drop-entrance",
+      "motionModel": "fall-bounce-settle",
+      "layoutModel": "inline",
+      "semanticPurpose": "entrance-heading"
+    }
+  },
+  "url": "https://openui.dev/r/scatter-rain-text.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Airy\nShape: Rounded\nMotion: Expressive\nTypography: Variable Poster\nColor: High Contrast\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

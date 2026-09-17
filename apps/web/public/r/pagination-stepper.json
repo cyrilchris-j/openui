@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pagination-stepper",
+  "type": "registry:component",
+  "title": "Pagination Stepper",
+  "description": "A page navigation stepper bar with previous/next buttons and active numeric page pill.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pagination-stepper.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PaginationStepperProps {\n  totalPages?: number;\n  className?: string;\n}\n\nexport function PaginationStepper({ totalPages = 8, className }: PaginationStepperProps) {\n  const [page, setPage] = useState(1);\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-2 rounded-xl border border-line bg-paper p-2 shadow-sm font-mono text-xs\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setPage((p) => Math.max(1, p - 1))}\n        disabled={page === 1}\n        className=\"rounded px-2.5 py-1 border border-line hover:bg-line/20 disabled:opacity-30\"\n      >\n        Prev\n      </button>\n\n      <span className=\"px-3 font-bold text-ink\">\n        {page} / {totalPages}\n      </span>\n\n      <button\n        type=\"button\"\n        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}\n        disabled={page === totalPages}\n        className=\"rounded px-2.5 py-1 border border-line hover:bg-line/20 disabled:opacity-30\"\n      >\n        Next\n      </button>\n    </div>\n  );\n}\n\nexport default PaginationStepper;\n",
+      "contentHash": "fc75c3bb250d3feac0db2c0a18b9350d8816bdeb009a8b7af68fab2eef567fca",
+      "sizeBytes": 1136
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { PaginationStepper } from \"./pagination-stepper\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <PaginationStepper />\n    </div>\n  );\n}\n",
+      "contentHash": "d3bb771000223ac05300c929ac54684659221d8f82eeab0d70c81cf2d34b30fc",
+      "sizeBytes": 231
+    }
+  ],
+  "tags": [
+    "pagination",
+    "stepper",
+    "pages",
+    "navigation",
+    "table"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "page-index-advancement",
+      "visualModel": "stepped-pagination-bar",
+      "motionModel": "stepwise-page-increment",
+      "layoutModel": "horizontal-pagination-cluster",
+      "semanticPurpose": "table-page-navigator"
+    }
+  },
+  "url": "https://openui.dev/r/pagination-stepper.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Page Index Advancement: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

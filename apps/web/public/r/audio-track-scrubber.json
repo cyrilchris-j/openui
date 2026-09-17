@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audio-track-scrubber",
+  "type": "registry:component",
+  "title": "Audio Track Scrubber",
+  "description": "Compact playback bar with play/pause state, dynamic progress waveform ticks, and timestamp display.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audio-track-scrubber.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Play, Pause, Volume2 } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function AudioTrackScrubber({ className }: { className?: string }) {\n  const [playing, setPlaying] = useState(false);\n  const [progress, setProgress] = useState(35);\n\n  const bars = [20, 45, 60, 80, 50, 90, 75, 40, 60, 30, 85, 95, 70, 45, 55, 35, 65, 80, 50, 40];\n\n  return (\n    <div className={cn(\"flex items-center gap-3 p-3 rounded-full border border-line bg-paper max-w-md w-full shadow-sm\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setPlaying(!playing)}\n        className=\"w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center transition-transform active:scale-95 shrink-0\"\n        aria-label={playing ? \"Pause\" : \"Play\"}\n      >\n        {playing ? <Pause className=\"w-3.5 h-3.5\" /> : <Play className=\"w-3.5 h-3.5 ml-0.5\" />}\n      </button>\n\n      <div className=\"flex-1 flex items-center gap-0.5 h-8 px-1 cursor-pointer\" onClick={(e) => {\n        const rect = e.currentTarget.getBoundingClientRect();\n        const p = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));\n        setProgress(p);\n      }}>\n        {bars.map((h, i) => {\n          const barPct = (i / bars.length) * 100;\n          const isPassed = barPct <= progress;\n          return (\n            <div\n              key={i}\n              className={cn(\"flex-1 rounded-full transition-all\", isPassed ? \"bg-accent\" : \"bg-line\")}\n              style={{ height: `${h}%` }}\n            />\n          );\n        })}\n      </div>\n\n      <div className=\"text-[11px] font-mono text-ink/60 shrink-0\">01:24</div>\n      <Volume2 className=\"w-4 h-4 text-ink/40 hover:text-ink cursor-pointer shrink-0\" />\n    </div>\n  );\n}\n",
+      "contentHash": "bcf69576a6f04c77ad07e27eae1b0fa822c7e871266a8a4052b34da5d25ba705",
+      "sizeBytes": 1797
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { AudioTrackScrubber } from \"./audio-track-scrubber\";\n\nexport default function AudioTrackScrubberDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[220px]\">\n      <AudioTrackScrubber />\n    </div>\n  );\n}\n",
+      "contentHash": "503b2e0bd748deb4b903575fcc6938ba34b527f161312ac5c2e3f47cea5aaf48",
+      "sizeBytes": 273
+    }
+  ],
+  "tags": [
+    "audio",
+    "player",
+    "scrubber",
+    "waveform",
+    "media"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "waveform-progress-scrubbing",
+      "visualModel": "bar-waveform-track",
+      "motionModel": "none",
+      "layoutModel": "compact-media-bar",
+      "semanticPurpose": "audio-playback-control"
+    }
+  },
+  "url": "https://openui.dev/r/audio-track-scrubber.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Waveform Progress Scrubbing: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

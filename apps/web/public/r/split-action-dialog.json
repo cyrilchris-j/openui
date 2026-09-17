@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-action-dialog",
+  "type": "registry:layout",
+  "title": "Split Action Dialog",
+  "description": "Two-column modal dialog shell with brand illustration on left and action form on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-action-dialog.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitActionDialogProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"content\"> {\n  visual?: React.ReactNode;\n  content?: React.ReactNode;\n}\n\nexport function SplitActionDialog({ visual, content, className, ...props }: SplitActionDialogProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 max-w-xl mx-auto rounded-2xl border border-line bg-paper overflow-hidden shadow-xl font-sans\", className)} {...props}>\n      <div className=\"p-6 bg-surface/50 border-b md:border-b-0 md:border-r border-line flex items-center justify-center\">{visual}</div>\n      <div className=\"p-6 flex flex-col justify-between space-y-4\">{content}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "9b4d8a318e32b6d7f36bef86fca5aa5b25b2a88fe812c19ae8c74464f1ddf769",
+      "sizeBytes": 736
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitActionDialog } from \"./split-action-dialog\";\n\nexport default function SplitActionDialogDemo() {\n  return (\n    <SplitActionDialog\n      visual={<div className=\"font-mono text-xs text-accent font-bold\">Graphic Asset</div>}\n      content={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink mb-1\">Confirm Deployment</h3>\n          <p className=\"text-xs text-ink/60 mb-4\">Promote release candidate v2.4.0 to production edge.</p>\n          <button type=\"button\" className=\"w-full py-1.5 rounded bg-accent text-white font-mono text-xs\">Authorize</button>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "662fa4b050ab67229a03b4ab5d0cf20c441e6269f08d675f15004d4d0bdd8903",
+      "sizeBytes": 631
+    }
+  ],
+  "tags": [
+    "dialog",
+    "modal",
+    "split",
+    "shell",
+    "actions"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "split-dialog-interaction",
+      "visualModel": "dual-column-modal",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-dialog",
+      "semanticPurpose": "dialog-action-shell"
+    }
+  },
+  "url": "https://openui.dev/r/split-action-dialog.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Split Dialog Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-profile-feed",
+  "type": "registry:layout",
+  "title": "Two Column Profile Feed",
+  "description": "Social profile view with sticky user bio credentials on left and chronological post stream on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-profile-feed.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "profile",
+    "feed",
+    "social",
+    "stream",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "profile-bio-and-stream-scroll",
+      "visualModel": "sticky-bio-and-activity-stream",
+      "motionModel": "none",
+      "layoutModel": "asymmetric-profile-grid",
+      "semanticPurpose": "user-profile-and-activity-layout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

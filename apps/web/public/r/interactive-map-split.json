@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-map-split",
+  "type": "registry:layout",
+  "title": "Interactive Map Split",
+  "description": "Dual-pane directory layout with sticky map visualizer on right and scrollable facility cards on left.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-map-split.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveMapSplitProps extends React.HTMLAttributes<HTMLDivElement> {\n  map?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function InteractiveMapSplit({ map, children, className, ...props }: InteractiveMapSplitProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-12 min-h-[360px] w-full border border-line rounded-2xl overflow-hidden font-sans\", className)} {...props}>\n      <div className=\"lg:col-span-5 p-4 overflow-y-auto space-y-3 bg-paper\">{children}</div>\n      <div className=\"lg:col-span-7 bg-surface/40 p-6 flex items-center justify-center border-t lg:border-t-0 lg:border-l border-line\">{map}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "51bad1942673a6cce90c71d0930423f23b907c01bf3a58beeb7c7b6b16f1453f",
+      "sizeBytes": 728
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { InteractiveMapSplit } from \"./interactive-map-split\";\n\nexport default function InteractiveMapSplitDemo() {\n  return (\n    <InteractiveMapSplit map={<div className=\"font-mono text-xs text-ink/60\">Cartographic Geographic Map Viewport</div>}>\n      <div className=\"p-3 rounded-xl border border-line bg-surface/30 text-xs\">\n        <div className=\"font-bold\">US-East Datacenter</div>\n        <div className=\"text-ink/60 mt-0.5\">Virginia, USA • 14 Nodes</div>\n      </div>\n      <div className=\"p-3 rounded-xl border border-line bg-surface/30 text-xs\">\n        <div className=\"font-bold\">EU-Central Datacenter</div>\n        <div className=\"text-ink/60 mt-0.5\">Frankfurt, Germany • 28 Nodes</div>\n      </div>\n    </InteractiveMapSplit>\n  );\n}\n",
+      "contentHash": "70736fd1086f06be2f7f7f8e790dff9c0bbcacd1795f31fa20d634b798303b4e",
+      "sizeBytes": 766
+    }
+  ],
+  "tags": [
+    "map",
+    "location",
+    "directory",
+    "split",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "location-card-map-sync",
+      "visualModel": "sticky-map-with-card-stream",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-map-split",
+      "semanticPurpose": "location-directory-map"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-map-split.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Location Card Map Sync: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

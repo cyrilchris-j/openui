@@ -16,6 +16,10 @@ import {
 } from "../constants.js";
 import { inspectDependencies } from "../dependency-policy.js";
 import { parseRegistryName } from "../names.js";
+import {
+  findDuplicates,
+  type UniquenessSubject,
+} from "../uniqueness.js";
 import { AUXILIARY_FILES, loadRegistryItem, type LoadedRegistryItem } from "./load-item.js";
 
 /** Resource types where a `design.md` is expected to exist. */
@@ -379,6 +383,31 @@ export async function validateRegistry(
     state.set(name, "done");
   };
   for (const name of byName.keys()) visit(name, []);
+
+  // Uniqueness engine: two items may not express the same *idea*, whether by
+  // variant-name resubmission, fingerprint collision or paraphrased copy.
+  // Errors rather than warnings — a registry that accepts near-duplicates is a
+  // counter, not a catalogue.
+  const subjects: UniquenessSubject[] = [...byName.values()].map((loaded) => ({
+    name: loaded.item.name,
+    title: loaded.item.title,
+    description: loaded.item.description,
+    category: loaded.item.category,
+    subcategory: loaded.item.meta?.subcategory,
+    tags: loaded.item.tags,
+    fingerprint: loaded.item.meta?.fingerprint,
+  }));
+  for (const pair of findDuplicates(subjects)) {
+    issues.push(
+      makeIssue(
+        "error",
+        "duplicate_concept",
+        `"${pair.a}" and "${pair.b}" are the same idea (${pair.reasons.join(", ")}). ${pair.detail}`,
+        pair.b,
+        null,
+      ),
+    );
+  }
 
   // `designSystem` must point at a design system item.
   for (const item of byName.values()) {

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "support-sla-guarantee",
+  "type": "registry:section",
+  "title": "Support SLA Guarantee",
+  "description": "An operational commitment banner detailing response times, ticket severity levels, and on-call escalation.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "support-sla-guarantee.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SupportSLAGuarantee({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"border border-neutral-300 dark:border-neutral-800 rounded-xl p-6 bg-white dark:bg-neutral-950\">\n        <h3 className=\"text-lg font-bold text-neutral-900 dark:text-neutral-100\">\n          Enterprise SLA Commitments\n        </h3>\n        <div className=\"grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 text-xs\">\n          <div>\n            <span className=\"font-bold text-neutral-900 dark:text-neutral-100\">P0 (Critical Outage)</span>\n            <div className=\"text-neutral-500 mt-1\">Under 15 minutes guaranteed response with warm page escalation.</div>\n          </div>\n          <div>\n            <span className=\"font-bold text-neutral-900 dark:text-neutral-100\">P1 (Degraded Performance)</span>\n            <div className=\"text-neutral-500 mt-1\">Under 1 hour guaranteed technical review with senior engineer.</div>\n          </div>\n          <div>\n            <span className=\"font-bold text-neutral-900 dark:text-neutral-100\">Scheduled Maintenance</span>\n            <div className=\"text-neutral-500 mt-1\">Zero downtime rolling edge cluster deployments with 72h advance notice.</div>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "4e343b3710fea1e7da16b04c13b96af080fe4cadf4a26ca87aa33e68ab919bb5",
+      "sizeBytes": 1456
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { SupportSLAGuarantee } from \"./support-sla-guarantee\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <SupportSLAGuarantee />\n    </div>\n  );\n}\n",
+      "contentHash": "2b9646aefb9efe9cd1b587f51b09a95b7671024f86d4c95e2966a808a311f278",
+      "sizeBytes": 286
+    }
+  ],
+  "tags": [
+    "support",
+    "sla",
+    "guarantee",
+    "uptime",
+    "enterprise"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "support",
+    "fingerprint": {
+      "interactionModel": "support-sla-guarantee-interaction",
+      "visualModel": "support-sla-guarantee-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "support-sla-guarantee-section"
+    }
+  },
+  "url": "https://openui.dev/r/support-sla-guarantee.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Support Sla Guarantee Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

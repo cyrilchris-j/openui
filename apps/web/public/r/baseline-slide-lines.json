@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "baseline-slide-lines",
+  "type": "registry:text",
+  "title": "Baseline Slide Lines",
+  "description": "Multi-line reveal where each line is its own clipped rail and slides up from below the baseline with per-line delay; line breaks are authored, so the composition survives font substitution.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "baseline-slide-lines.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BaselineSlideLinesProps {\n  /** One array entry per authored line. */\n  lines: string[];\n  /** Seconds between line starts. */\n  stagger?: number;\n  className?: string;\n}\n\nexport function BaselineSlideLines({ lines, stagger = 0.14, className }: BaselineSlideLinesProps) {\n  const { ref, inView } = useInView<HTMLSpanElement>({ once: true });\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n  const revealed = inView || Boolean(reduced);\n\n  return (\n    <span ref={ref} className={cn(\"block\", className)}>\n      {lines.map((line, index) => (\n        <span\n          key={index}\n          className=\"block overflow-hidden\"\n          aria-hidden\n        >\n          <span\n            className=\"block will-change-transform\"\n            style={{\n              transform: revealed ? \"translateY(0)\" : \"translateY(110%)\",\n              transition: revealed\n                ? `transform 640ms cubic-bezier(0.2, 0, 0, 1) ${index * stagger}s`\n                : \"none\",\n            }}\n          >\n            {line}\n          </span>\n        </span>\n      ))}\n      <span className=\"sr-only\">{lines.join(\" \")}</span>\n    </span>\n  );\n}\n\nexport default BaselineSlideLines;\n",
+      "contentHash": "8af7f5b034f7af10b91920244bfac838b2f4c9c798987ac135c8d62434708d71",
+      "sizeBytes": 1351
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { BaselineSlideLines } from \"./baseline-slide-lines\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <BaselineSlideLines\n        lines={[\"Interfaces should\", \"have a fingerprint.\"]}\n        className=\"font-display text-step-4 text-ink\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "561f4a467b5c091af23af36ea85dae5684079903895ee3e1b207a48737d522e5",
+      "sizeBytes": 357
+    }
+  ],
+  "tags": [
+    "lines",
+    "slide",
+    "stagger",
+    "clip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "per-line-clipped-rails",
+      "motionModel": "baseline-rise-stagger",
+      "layoutModel": "stacked-rails",
+      "semanticPurpose": "heading-reveal"
+    }
+  },
+  "url": "https://openui.dev/r/baseline-slide-lines.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

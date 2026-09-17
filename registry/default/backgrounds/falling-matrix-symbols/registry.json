@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "falling-matrix-symbols",
+  "type": "registry:background",
+  "title": "Falling Matrix Symbols",
+  "description": "Arithmetic operators, brackets, and engineering calculus glyphs floating gently in suspension.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "falling-matrix-symbols.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "math",
+    "symbols",
+    "calculus",
+    "canvas",
+    "symbols"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-glyphs",
+      "visualModel": "drifting-math-glyphs",
+      "motionModel": "vertical-buoyancy-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "mathematical-symbol-layer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

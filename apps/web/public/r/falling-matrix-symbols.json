@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "falling-matrix-symbols",
+  "type": "registry:background",
+  "title": "Falling Matrix Symbols",
+  "description": "Arithmetic operators, brackets, and engineering calculus glyphs floating gently in suspension.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "falling-matrix-symbols.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FallingMatrixSymbolsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function FallingMatrixSymbols({ className, children, ...props }: FallingMatrixSymbolsProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    const glyphs = [\"∑\", \"∫\", \"∂\", \"√\", \"π\", \"∆\", \"∞\", \"≈\", \"≠\", \"≤\", \"≥\", \"λ\", \"Ω\"];\n    const items = Array.from({ length: 30 }, () => ({\n      x: Math.random() * w,\n      y: Math.random() * h,\n      char: glyphs[Math.floor(Math.random() * glyphs.length)] ?? \"π\",\n      vy: Math.random() * 0.4 + 0.2,\n      opacity: Math.random() * 0.25 + 0.05,\n    }));\n\n    const render = () => {\n      ctx.clearRect(0, 0, w, h);\n      ctx.font = \"14px monospace\";\n\n      for (const item of items) {\n        item.y += item.vy;\n        if (item.y > h) {\n          item.y = -10;\n          item.x = Math.random() * w;\n        }\n        ctx.fillStyle = `rgba(150, 150, 150, ${item.opacity})`;\n        ctx.fillText(item.char, item.x, item.y);\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "c814b2d90c481c994376a9ae5d662deadd9055504164366a9f353f34e9aa5b23",
+      "sizeBytes": 1849
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { FallingMatrixSymbols } from \"./falling-matrix-symbols\";\n\nexport default function FallingMatrixSymbolsDemo() {\n  return (\n    <FallingMatrixSymbols className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Calculus Glyphs</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Buoyant floating mathematical operators.</p>\n      </div>\n    </FallingMatrixSymbols>\n  );\n}\n",
+      "contentHash": "b925fe81b06933f228952a62f006f098c9ed71b26fcc00da99d99bb377919807",
+      "sizeBytes": 586
+    }
+  ],
+  "tags": [
+    "math",
+    "symbols",
+    "calculus",
+    "canvas",
+    "symbols"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-glyphs",
+      "visualModel": "drifting-math-glyphs",
+      "motionModel": "vertical-buoyancy-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "mathematical-symbol-layer"
+    }
+  },
+  "url": "https://openui.dev/r/falling-matrix-symbols.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Canvas Glyphs: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

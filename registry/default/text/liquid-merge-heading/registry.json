@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-merge-heading",
+  "type": "registry:text",
+  "title": "Liquid Merge Heading",
+  "description": "Two words drift toward each other on a loop, blur at the seam, and merge into one with a gooey SVG filter — then pull apart again. The metaball effect is a filter chain, not a physics engine.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-merge-heading.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "liquid",
+    "merge",
+    "gooey",
+    "metaball"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "gooey-filter-merge",
+      "motionModel": "oscillating-approach",
+      "layoutModel": "split",
+      "semanticPurpose": "relationship-heading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    }
+  }
+}

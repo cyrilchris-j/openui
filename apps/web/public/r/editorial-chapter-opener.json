@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-chapter-opener",
+  "type": "registry:layout",
+  "title": "Editorial Chapter Opener",
+  "description": "Book chapter opening spread featuring oversized Roman numeral, ornamental drop cap, and dual columns.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-chapter-opener.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface EditorialChapterOpenerProps extends React.HTMLAttributes<HTMLDivElement> {\n  numeral?: string;\n  title?: string;\n  children?: React.ReactNode;\n}\n\nexport function EditorialChapterOpener({\n  numeral = \"IV\",\n  title = \"The Architecture of Clean Interfaces\",\n  children,\n  className,\n  ...props\n}: EditorialChapterOpenerProps) {\n  return (\n    <div className={cn(\"max-w-4xl mx-auto p-8 font-serif text-ink space-y-8\", className)} {...props}>\n      <div className=\"border-b-2 border-ink pb-6\">\n        <div className=\"text-4xl font-bold font-mono text-accent\">{numeral}</div>\n        <h1 className=\"text-2xl font-bold mt-2\">{title}</h1>\n      </div>\n      <div className=\"columns-1 md:columns-2 gap-8 text-sm leading-relaxed text-ink/90 space-y-4\">\n        {children}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "535ebb3eb09443f7a8bfe8474cfac4b85ea19b140c761499f8d587b4bc92e13f",
+      "sizeBytes": 858
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { EditorialChapterOpener } from \"./editorial-chapter-opener\";\n\nexport default function EditorialChapterOpenerDemo() {\n  return (\n    <EditorialChapterOpener>\n      <p>Interfaces should not be generic copies. When every component carries an explicit architectural signature, design systems scale with integrity.</p>\n    </EditorialChapterOpener>\n  );\n}\n",
+      "contentHash": "416fbc04fbe483ca96e91648845d120a3df59bf2bc867fc817b4424064020082",
+      "sizeBytes": 374
+    }
+  ],
+  "tags": [
+    "book",
+    "chapter",
+    "editorial",
+    "prose",
+    "dropcap"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "chapter-opening-reading",
+      "visualModel": "numeral-and-dropcap-opener",
+      "motionModel": "none",
+      "layoutModel": "book-chapter-spread",
+      "semanticPurpose": "book-chapter-title-spread"
+    }
+  },
+  "url": "https://openui.dev/r/editorial-chapter-opener.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Chapter Opening Reading: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

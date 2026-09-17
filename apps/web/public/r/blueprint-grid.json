@@ -51,6 +51,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "grid",
+    "fingerprint": {
+      "interactionModel": "passive-viewport",
+      "visualModel": "drafting-blueprint-cad",
+      "layoutModel": "full-bleed-underlay",
+      "semanticPurpose": "canvas-backdrop"
     }
   },
   "url": "https://openui.dev/r/blueprint-grid.json",

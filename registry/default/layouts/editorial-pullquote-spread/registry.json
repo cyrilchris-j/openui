@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "editorial-pullquote-spread",
+  "type": "registry:layout",
+  "title": "Editorial Pullquote Spread",
+  "description": "Magazine layout with oversized highlighted pullquote spanning across multi-column article prose.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-pullquote-spread.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "editorial",
+    "pullquote",
+    "spread",
+    "magazine",
+    "serif"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "editorial-pullquote-reading",
+      "visualModel": "oversized-pullquote-banner",
+      "motionModel": "none",
+      "layoutModel": "pullquote-spanning-columns",
+      "semanticPurpose": "editorial-feature-article"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

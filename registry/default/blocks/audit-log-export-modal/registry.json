@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-log-export-modal",
+  "type": "registry:block",
+  "title": "Audit Log Export Modal",
+  "description": "An export dialog allowing compliance administrators to bundle security event logs into CSV or JSON tarballs.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audit-log-export-modal.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "export",
+    "audit",
+    "compliance",
+    "logs",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "export-format-and-date-selector",
+      "visualModel": "modal-export-dialog-box",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "security-audit-export"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

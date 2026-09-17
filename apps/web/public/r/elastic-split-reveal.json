@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-split-reveal",
+  "type": "registry:motion",
+  "title": "Elastic Split Reveal",
+  "description": "A split-screen curtain reveal dividing a surface along a central diagonal or horizontal axis with rubberband overshoot on trigger.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-split-reveal.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ElasticSplitRevealProps {\n  label?: string;\n  className?: string;\n}\n\nexport function ElasticSplitReveal({\n  label = \"SYSTEM REVEALED\",\n  className,\n}: ElasticSplitRevealProps) {\n  const [opened, setOpened] = useState(false);\n\n  return (\n    <div className={cn(\"relative mx-auto h-72 w-full max-w-lg overflow-hidden border border-line bg-surface select-none\", className)}>\n      {/* Revealed content beneath */}\n      <div className=\"absolute inset-0 flex flex-col items-center justify-center p-6 bg-paper text-center\">\n        <span className=\"font-mono text-xs text-accent\">PROTECTED CODENAME</span>\n        <h4 className=\"mt-1 font-serif text-2xl font-bold text-ink\">{label}</h4>\n        <p className=\"mt-2 text-xs text-graphite max-w-xs leading-relaxed\">\n          The split aperture retracts outward with dual-phase spring overshoot.\n        </p>\n      </div>\n\n      {/* Top half shutter */}\n      <div\n        style={{\n          transform: opened ? \"translateY(-105%)\" : \"translateY(0%)\",\n        }}\n        className=\"absolute inset-x-0 top-0 h-1/2 bg-ink text-paper flex items-end justify-center pb-2 transition-transform duration-500 ease-spring border-b border-paper/20 z-10\"\n      >\n        <span className=\"font-mono text-[10px] tracking-widest text-paper/70\">TOP SHUTTER</span>\n      </div>\n\n      {/* Bottom half shutter */}\n      <div\n        style={{\n          transform: opened ? \"translateY(105%)\" : \"translateY(0%)\",\n        }}\n        className=\"absolute inset-x-0 bottom-0 h-1/2 bg-ink text-paper flex items-start justify-center pt-2 transition-transform duration-500 ease-spring border-t border-paper/20 z-10\"\n      >\n        <span className=\"font-mono text-[10px] tracking-widest text-paper/70\">BOTTOM SHUTTER</span>\n      </div>\n\n      {/* Toggle button */}\n      <div className=\"absolute bottom-3 right-3 z-20\">\n        <button\n          type=\"button\"\n          onClick={() => setOpened((v) => !v)}\n          className=\"rounded border border-line bg-paper/90 backdrop-blur px-2.5 py-1 font-mono text-xs text-ink shadow-sm hover:bg-paper\"\n        >\n          {opened ? \"Close Aperture\" : \"Open Aperture\"}\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "fec4b81cee7ea74e3e4ba8ba227ba43d95081fac341ae837b0d8c32332d4a404",
+      "sizeBytes": 2275
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ElasticSplitReveal } from \"./elastic-split-reveal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <ElasticSplitReveal />\n    </div>\n  );\n}\n",
+      "contentHash": "301d97b07d6d13edea4c65a6b135009065125d537504dd3445e1832a1f2e9863",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "curtain",
+    "split",
+    "reveal",
+    "elastic",
+    "transition"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "toggle-split-parting",
+      "visualModel": "bisected-shutter-panels",
+      "motionModel": "bipartite-spring-parting",
+      "layoutModel": "two-half-covering-curtain",
+      "semanticPurpose": "canvas-content-unveil"
+    }
+  },
+  "url": "https://openui.dev/r/elastic-split-reveal.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: Kinetic\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Toggle Split Parting: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

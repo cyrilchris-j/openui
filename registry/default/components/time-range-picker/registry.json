@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "time-range-picker",
+  "type": "registry:component",
+  "title": "Time Range Picker",
+  "description": "An intuitive time span selector with preset duration pills, custom start/end hour inputs, and visual range bar.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "time-range-picker.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "time",
+    "range",
+    "picker",
+    "controls",
+    "schedule"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "interval-slider-selection",
+      "visualModel": "time-interval-bar",
+      "motionModel": "none",
+      "layoutModel": "compact-form-stack",
+      "semanticPurpose": "time-window-specification"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

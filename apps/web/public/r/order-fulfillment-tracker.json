@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "order-fulfillment-tracker",
+  "type": "registry:block",
+  "title": "Order Fulfillment Tracker",
+  "description": "A tracking status workbench showing delivery timeline, courier coordinates, and itemized packages.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "order-fulfillment-tracker.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function OrderFulfillmentTracker({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm font-mono text-xs\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-4 border-b border-neutral-200 dark:border-neutral-800\">\n        <div>\n          <div className=\"font-bold text-neutral-900 dark:text-white\">Order #OPUI-9842</div>\n          <div className=\"text-neutral-400 text-[11px]\">Carrier: DHL Express (Track: 894204812)</div>\n        </div>\n        <span className=\"text-emerald-500 font-bold\">In Transit</span>\n      </div>\n      <div className=\"mt-6 space-y-4\">\n        <div className=\"flex gap-3\">\n          <span className=\"text-emerald-500 font-bold\">✓</span>\n          <div>\n            <div className=\"font-bold text-neutral-900 dark:text-white\">Order Received & Paid</div>\n            <div className=\"text-neutral-400 text-[11px]\">Sep 16, 14:00 UTC</div>\n          </div>\n        </div>\n        <div className=\"flex gap-3\">\n          <span className=\"text-emerald-500 font-bold\">✓</span>\n          <div>\n            <div className=\"font-bold text-neutral-900 dark:text-white\">Dispatched from Hub</div>\n            <div className=\"text-neutral-400 text-[11px]\">Sep 17, 09:30 UTC</div>\n          </div>\n        </div>\n        <div className=\"flex gap-3\">\n          <span className=\"text-amber-500 font-bold\">●</span>\n          <div>\n            <div className=\"font-bold text-neutral-900 dark:text-white\">Out for Delivery</div>\n            <div className=\"text-neutral-400 text-[11px]\">Expected Today before 18:00</div>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "bb503b894a8bd88bfcbe6faca4c8dff2008d1a7643bb7206a13b75eef59f2eaa",
+      "sizeBytes": 1890
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { OrderFulfillmentTracker } from \"./order-fulfillment-tracker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-50 dark:bg-neutral-900\">\n      <OrderFulfillmentTracker />\n    </div>\n  );\n}\n",
+      "contentHash": "57def85888b1094070b21dc8f752e56d7109102fd7678f8e7b0d0ee33d455601",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "order",
+    "fulfillment",
+    "tracking",
+    "shipping",
+    "ecommerce"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "orders",
+    "fingerprint": {
+      "interactionModel": "shipment-tracking-stepper",
+      "visualModel": "package-fulfillment-timeline",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-fulfillment-status"
+    }
+  },
+  "url": "https://openui.dev/r/order-fulfillment-tracker.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Shipment Tracking Stepper: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

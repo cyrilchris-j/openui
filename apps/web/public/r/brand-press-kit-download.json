@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "brand-press-kit-download",
+  "type": "registry:section",
+  "title": "Brand Press Kit Download",
+  "description": "A media assets and brand press resource section with vector logos, color codes, and download bundles.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "brand-press-kit-download.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface BrandAsset {\n  name: string;\n  format: \"SVG\" | \"PNG\" | \"PDF\" | \"ZIP\";\n  size: string;\n  description: string;\n}\n\nexport interface BrandPressKitDownloadProps extends React.HTMLAttributes<HTMLElement> {\n  assets?: BrandAsset[];\n}\n\nconst DEFAULT_ASSETS: BrandAsset[] = [\n  { name: \"Primary Wordmark (Dark & Light)\", format: \"SVG\", size: \"48 KB\", description: \"Standard vector wordmark for digital displays.\" },\n  { name: \"Brand Symbol Monogram\", format: \"SVG\", size: \"16 KB\", description: \"Square icon monogram for favicons and avatars.\" },\n  { name: \"Color Palette Guideline Sheet\", format: \"PDF\", size: \"1.2 MB\", description: \"Design DNA tokens, hex codes, and contrast ratios.\" },\n  { name: \"Complete Media Press Kit\", format: \"ZIP\", size: \"8.4 MB\", description: \"High-resolution mockups, badges, and founder headshots.\" },\n];\n\nexport function BrandPressKitDownload({\n  assets = DEFAULT_ASSETS,\n  className,\n  ...props\n}: BrandPressKitDownloadProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"mb-10\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-neutral-400 font-bold\">\n          Media Assets\n        </span>\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n          Brand Guidelines & Press Kit\n        </h2>\n        <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-2\">\n          Official assets for journalists, conference organizers, and partner publications.\n        </p>\n      </div>\n\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">\n        {assets.map((asset) => (\n          <div\n            key={asset.name}\n            className=\"p-5 border border-neutral-200 dark:border-neutral-800 rounded-xl bg-white dark:bg-neutral-950 flex flex-col justify-between\"\n          >\n            <div>\n              <div className=\"flex items-center justify-between\">\n                <span className=\"text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-bold\">\n                  {asset.format} • {asset.size}\n                </span>\n              </div>\n              <h3 className=\"text-sm font-bold text-neutral-900 dark:text-neutral-100 mt-3\">\n                {asset.name}\n              </h3>\n              <p className=\"text-xs text-neutral-500 mt-1\">\n                {asset.description}\n              </p>\n            </div>\n            <button\n              type=\"button\"\n              className=\"mt-6 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline text-left flex items-center gap-1\"\n            >\n              Download Asset ↓\n            </button>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "7defbac02725ef454ad8b77173780bbcec34f2a586e804988558b9e7aa9331a6",
+      "sizeBytes": 2933
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { BrandPressKitDownload } from \"./brand-press-kit-download\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <BrandPressKitDownload />\n    </div>\n  );\n}\n",
+      "contentHash": "50d1c4addf6b57fc47af32dff931485abbc96d81c8a8e484099d73e1df8e6c0c",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "brand",
+    "press",
+    "kit",
+    "download",
+    "assets"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "brand",
+    "fingerprint": {
+      "interactionModel": "brand-press-kit-download-interaction",
+      "visualModel": "brand-press-kit-download-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "brand-press-kit-download-section"
+    }
+  },
+  "url": "https://openui.dev/r/brand-press-kit-download.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Brand Press Kit Download Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

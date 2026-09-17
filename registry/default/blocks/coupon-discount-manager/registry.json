@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "coupon-discount-manager",
+  "type": "registry:block",
+  "title": "Coupon Discount Manager",
+  "description": "An e-commerce promotional discount code creator managing active promo percentages, usages, and expiry dates.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "coupon-discount-manager.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "coupons",
+    "discounts",
+    "ecommerce",
+    "promo",
+    "billing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "discount-code-creation-and-table",
+      "visualModel": "promo-coupon-manager",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-coupon-management"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

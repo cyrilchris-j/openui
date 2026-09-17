@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-stepper-dots",
+  "type": "registry:motion",
+  "title": "Elastic Stepper Dots",
+  "description": "Pagination carousel dots where the active dot stretches into an elongated pill before snapping to the next target.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-stepper-dots.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "dots",
+    "pagination",
+    "stepper",
+    "elastic",
+    "carousel"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "indicators",
+    "fingerprint": {
+      "interactionModel": "step-dot-selection",
+      "visualModel": "stretching-capsule-bead",
+      "motionModel": "aspect-ratio-elastic-snap",
+      "layoutModel": "horizontal-dots-chain",
+      "semanticPurpose": "carousel-step-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

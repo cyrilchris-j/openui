@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "legal-compliance-footer",
+  "type": "registry:section",
+  "title": "Legal Compliance Footer",
+  "description": "A compact footer containing statutory copyright, license details, and compliance links.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "legal-compliance-footer.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "legal",
+    "footer",
+    "compliance",
+    "copyright",
+    "terms"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "legal-compliance-footer-interaction",
+      "visualModel": "legal-compliance-footer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "legal-compliance-footer-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

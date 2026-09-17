@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-stretch-text",
+  "type": "registry:text",
+  "title": "Elastic Stretch Text",
+  "description": "Glyphs stretch horizontally away from the pointer like a material with tension, using scaleX with an overshoot curve on release; the stretch is per-glyph so the word deforms, not just moves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-stretch-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "elastic",
+    "stretch",
+    "pointer",
+    "deform"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-deform",
+      "visualModel": "glyph-scale-field",
+      "motionModel": "overshoot-release",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "geometric",
+      "colorStrategy": "duotone"
+    }
+  }
+}

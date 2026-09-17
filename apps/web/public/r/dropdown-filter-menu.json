@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dropdown-filter-menu",
+  "type": "registry:component",
+  "title": "Dropdown Filter Menu",
+  "description": "A dropdown menu allowing single selection filter criteria with checkmark state.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dropdown-filter-menu.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DropdownFilterMenuProps {\n  className?: string;\n}\n\nexport function DropdownFilterMenu({ className }: DropdownFilterMenuProps) {\n  const [selected, setSelected] = useState(\"All Categories\");\n  const [open, setOpen] = useState(false);\n  const options = [\"All Categories\", \"Components\", \"Motion\", \"Interactions\"];\n\n  return (\n    <div className={cn(\"relative inline-block font-mono text-xs\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setOpen((o) => !o)}\n        className=\"rounded-lg border border-line bg-paper px-4 py-2 font-bold text-ink shadow-sm\"\n      >\n        {selected} ▾\n      </button>\n\n      {open && (\n        <div className=\"absolute top-full mt-1.5 w-44 rounded-xl border border-line bg-paper p-1.5 shadow-xl z-20 space-y-1\">\n          {options.map((opt) => (\n            <div\n              key={opt}\n              onClick={() => {\n                setSelected(opt);\n                setOpen(false);\n              }}\n              className=\"flex justify-between px-3 py-1.5 rounded hover:bg-line/20 cursor-pointer\"\n            >\n              <span>{opt}</span>\n              {selected === opt && <span>✓</span>}\n            </div>\n          ))}\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default DropdownFilterMenu;\n",
+      "contentHash": "9f1b651363d017ac2e1ab976d94e01bccf05b33c015f8924f7625215e485d807",
+      "sizeBytes": 1367
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { DropdownFilterMenu } from \"./dropdown-filter-menu\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <DropdownFilterMenu />\n    </div>\n  );\n}\n",
+      "contentHash": "d8ab827bacf843fc878c72a5dc3da6fda2cd9763a49c0c3b768096779ac3a7de",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "dropdown",
+    "filter",
+    "select",
+    "menu",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "dropdown-filter-select",
+      "visualModel": "popover-filter-menu",
+      "motionModel": "none",
+      "layoutModel": "dropdown-filter-stack",
+      "semanticPurpose": "catalog-filter-dropdown"
+    }
+  },
+  "url": "https://openui.dev/r/dropdown-filter-menu.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Dropdown Filter Select: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

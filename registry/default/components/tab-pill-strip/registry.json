@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tab-pill-strip",
+  "type": "registry:component",
+  "title": "Tab Pill Strip",
+  "description": "A compact navigation tab pill strip with sliding background selection highlights.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tab-pill-strip.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "navigation",
+    "pills",
+    "strip",
+    "views"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "tab-strip-view-switch",
+      "visualModel": "pill-tab-array",
+      "motionModel": "none",
+      "layoutModel": "horizontal-pill-strip",
+      "semanticPurpose": "view-navigation-strip"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

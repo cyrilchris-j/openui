@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tiled-stat-matrix",
+  "type": "registry:layout",
+  "title": "Tiled Stat Matrix",
+  "description": "Four-column metric telemetry dashboard grid with uniform gutters and responsive wrapping.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tiled-stat-matrix.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TiledStatMatrixProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function TiledStatMatrix({ children, className, ...props }: TiledStatMatrixProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto p-4 font-sans\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "3b88180ff548105c8effa1392b3459615d37f930e23131b043d81b6e80c360c5",
+      "sizeBytes": 437
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TiledStatMatrix } from \"./tiled-stat-matrix\";\n\nexport default function TiledStatMatrixDemo() {\n  const metrics = [\n    { label: \"Active Nodes\", val: \"1,048\" },\n    { label: \"Uptime\", val: \"99.99%\" },\n    { label: \"Throughput\", val: \"4.8 GB/s\" },\n    { label: \"Error Rate\", val: \"0.001%\" },\n  ];\n\n  return (\n    <TiledStatMatrix>\n      {metrics.map((m) => (\n        <div key={m.label} className=\"p-4 rounded-xl border border-line bg-surface/30\">\n          <div className=\"text-[11px] font-mono text-ink/60\">{m.label}</div>\n          <div className=\"text-xl font-bold font-mono text-ink mt-1\">{m.val}</div>\n        </div>\n      ))}\n    </TiledStatMatrix>\n  );\n}\n",
+      "contentHash": "84b2b58b3194379bb24dc718c547da79c3fdadb5dfdd26ab064fc8186cd87b5b",
+      "sizeBytes": 684
+    }
+  ],
+  "tags": [
+    "stats",
+    "matrix",
+    "telemetry",
+    "kpi",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "stat-tile-telemetry-scan",
+      "visualModel": "four-column-kpi-rack",
+      "motionModel": "none",
+      "layoutModel": "symmetric-four-tile-grid",
+      "semanticPurpose": "kpi-metric-matrix"
+    }
+  },
+  "url": "https://openui.dev/r/tiled-stat-matrix.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Stat Tile Telemetry Scan: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

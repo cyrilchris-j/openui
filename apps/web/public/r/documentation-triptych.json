@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "documentation-triptych",
+  "type": "registry:layout",
+  "title": "Documentation Triptych",
+  "description": "Three-pane technical documentation layout: directory tree sidebar, main article, and table of contents rail.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "documentation-triptych.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DocumentationTriptychProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"content\"> {\n  sidebar?: React.ReactNode;\n  content?: React.ReactNode;\n  toc?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function DocumentationTriptych({\n  sidebar,\n  content,\n  toc,\n  children,\n  className,\n  ...props\n}: DocumentationTriptychProps) {\n  return (\n    <div className={cn(\"min-h-[400px] flex w-full bg-paper text-ink font-sans\", className)} {...props}>\n      {sidebar && <nav className=\"w-56 border-r border-line p-4 shrink-0 hidden md:block\">{sidebar}</nav>}\n      <article className=\"flex-1 p-8 max-w-3xl min-w-0\">{content || children}</article>\n      {toc && <aside className=\"w-56 border-l border-line p-4 shrink-0 hidden lg:block text-xs font-mono\">{toc}</aside>}\n    </div>\n  );\n}\n",
+      "contentHash": "bfaccb0a20a23813ba26953900fb10e94a07e1c7a82e4155af5384f464823859",
+      "sizeBytes": 858
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { DocumentationTriptych } from \"./documentation-triptych\";\n\nexport default function DocumentationTriptychDemo() {\n  return (\n    <div className=\"w-full border border-line rounded-xl overflow-hidden shadow-sm\">\n      <DocumentationTriptych\n        sidebar={\n          <div className=\"space-y-2 text-xs font-mono text-ink/70\">\n            <div className=\"font-bold text-ink\">Getting Started</div>\n            <div>Installation</div>\n            <div>Architecture</div>\n            <div>Registry API</div>\n          </div>\n        }\n        content={\n          <div>\n            <h1 className=\"text-xl font-bold text-ink mb-2\">Registry Architecture</h1>\n            <p className=\"text-xs text-ink/70 leading-relaxed\">\n              OpenUI registers self-contained resources with distinct behavioral fingerprints, strict TypeScript definitions, and reproducible demos.\n            </p>\n          </div>\n        }\n        toc={\n          <div className=\"space-y-1 text-ink/60\">\n            <div className=\"font-semibold text-ink uppercase mb-2\">On This Page</div>\n            <div className=\"text-accent\">Overview</div>\n            <div>Fingerprinting</div>\n            <div>Validation</div>\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "6604f8bd7f52b7c9c5cf6fe9770c70a447adaa9dd0c64518df2bd2b3a889538b",
+      "sizeBytes": 1263
+    }
+  ],
+  "tags": [
+    "docs",
+    "documentation",
+    "triptych",
+    "toc",
+    "sidebar"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "three-pane-doc-navigation",
+      "visualModel": "triptych-doc-wireframe",
+      "motionModel": "none",
+      "layoutModel": "three-column-split",
+      "semanticPurpose": "documentation-site-shell"
+    }
+  },
+  "url": "https://openui.dev/r/documentation-triptych.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Three Pane Doc Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

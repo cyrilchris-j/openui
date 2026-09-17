@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "version-compatibility-matrix",
+  "type": "registry:block",
+  "title": "Version Compatibility Matrix",
+  "description": "A framework runtime compatibility checklist validating React 19, Next.js 15, Vite, and Node.js.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "version-compatibility-matrix.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "compatibility",
+    "matrix",
+    "versions",
+    "react19",
+    "nextjs15"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "runtime-version-check-matrix",
+      "visualModel": "compatibility-assurance-grid",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "runtime-compatibility-verification"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

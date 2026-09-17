@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-preview-editor",
+  "type": "registry:layout",
+  "title": "Split Preview Editor",
+  "description": "Two-column side-by-side interactive playground with code editor on left and live preview on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-preview-editor.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "playground",
+    "editor",
+    "preview",
+    "split",
+    "code"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "split-code-and-preview",
+      "visualModel": "code-preview-dual-pane",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-halves",
+      "semanticPurpose": "interactive-code-playground"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

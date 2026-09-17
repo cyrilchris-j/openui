@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-cyber-mosaic",
+  "type": "registry:background",
+  "title": "Glitch Cyber Mosaic",
+  "description": "Digital pixel sorting displacement glitch blocks shifting unpredictably across canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-cyber-mosaic.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface GlitchCyberMosaicProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GlitchCyberMosaic({ className, children, ...props }: GlitchCyberMosaicProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    const render = () => {\n      ctx.fillStyle = \"rgba(15, 23, 42, 0.2)\";\n      ctx.fillRect(0, 0, w, h);\n\n      if (Math.random() > 0.4) {\n        const x = Math.random() * w;\n        const y = Math.random() * h;\n        const bw = Math.random() * 80 + 20;\n        const bh = Math.random() * 8 + 2;\n        ctx.fillStyle = Math.random() > 0.5 ? \"rgba(56, 189, 248, 0.4)\" : \"rgba(236, 72, 153, 0.4)\";\n        ctx.fillRect(x, y, bw, bh);\n      }\n\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "9aad843657b52b1102a236c78e959570fb959dbc556f1a211485d0d12c39ad0d",
+      "sizeBytes": 1535
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GlitchCyberMosaic } from \"./glitch-cyber-mosaic\";\n\nexport default function GlitchCyberMosaicDemo() {\n  return (\n    <GlitchCyberMosaic className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-sky-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-sky-400\">Cyber Glitch Shards</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Digital stream dislocation horizontal artifacts.</p>\n      </div>\n    </GlitchCyberMosaic>\n  );\n}\n",
+      "contentHash": "407b798e50371ad794d9c83ec80f7b09178fc6b3feaf30b20c149612edb70216",
+      "sizeBytes": 595
+    }
+  ],
+  "tags": [
+    "glitch",
+    "pixel",
+    "sorting",
+    "cyber",
+    "displacement"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-glitch-canvas",
+      "visualModel": "pixel-sorting-shards",
+      "motionModel": "stroboscopic-slice-jitter",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cybernetic-glitch-texture"
+    }
+  },
+  "url": "https://openui.dev/r/glitch-cyber-mosaic.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Glitch Canvas: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

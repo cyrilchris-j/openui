@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "confetti-particle-field",
+  "type": "registry:background",
+  "title": "Confetti Particle Field",
+  "description": "Multi-colored geometric confetti squares drifting slowly downward across an celebratory canvas backdrop.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "confetti-particle-field.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "confetti",
+    "party",
+    "canvas",
+    "celebration",
+    "particles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-confetti",
+      "visualModel": "falling-geometric-flakes",
+      "motionModel": "downward-swaying-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "celebratory-particle-field"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "cut",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "pastel"
+    }
+  }
+}

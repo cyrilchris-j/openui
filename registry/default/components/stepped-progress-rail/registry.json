@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepped-progress-rail",
+  "type": "registry:component",
+  "title": "Stepped Progress Rail",
+  "description": "A segmented workflow milestone indicator showing current execution step and completed checkpoints.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepped-progress-rail.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "progress",
+    "rail",
+    "stepped",
+    "milestones",
+    "workflow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "step-station-milestones",
+      "visualModel": "segmented-station-rail",
+      "motionModel": "step-indicator-advance",
+      "layoutModel": "horizontal-progress-rail",
+      "semanticPurpose": "workflow-phase-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

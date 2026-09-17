@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "honeycomb-hex-lattice",
+  "type": "registry:background",
+  "title": "Honeycomb Hex Lattice",
+  "description": "Repeating geometric hexagon tessellation pattern creating a structured honeycomb grid.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "honeycomb-hex-lattice.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoneycombHexLatticeProps extends React.HTMLAttributes<HTMLDivElement> {\n  size?: number;\n  children?: React.ReactNode;\n}\n\nexport function HoneycombHexLattice({ size = 32, className, children, ...props }: HoneycombHexLatticeProps) {\n  const w = size * 2;\n  const h = size * 1.732;\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"hex-pat\" width={w} height={h} patternUnits=\"userSpaceOnUse\">\n            <path\n              d={`M${size * 0.5} 0 L${size * 1.5} 0 L${w} ${h * 0.5} L${size * 1.5} ${h} L${size * 0.5} ${h} L0 ${h * 0.5} Z`}\n              fill=\"none\"\n              stroke=\"currentColor\"\n              strokeWidth=\"1\"\n            />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#hex-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "f63042050953ef28ae6755b97496cb153f7dcb7a366bd59e2a22b6600fa92ae0",
+      "sizeBytes": 1103
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { HoneycombHexLattice } from \"./honeycomb-hex-lattice\";\n\nexport default function HoneycombHexLatticeDemo() {\n  return (\n    <HoneycombHexLattice className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Honeycomb Tessellation</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Hexagonal modular lattice vector tile.</p>\n      </div>\n    </HoneycombHexLattice>\n  );\n}\n",
+      "contentHash": "3f6570186d3f5f442df7e94406ab3ca53ba251888c1e14c8da5302df7b366528",
+      "sizeBytes": 586
+    }
+  ],
+  "tags": [
+    "honeycomb",
+    "hex",
+    "lattice",
+    "tessellation",
+    "geometric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-tessellation-canvas",
+      "visualModel": "hexagonal-tessellation",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "honeycomb-structure-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/honeycomb-hex-lattice.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Geometric\nColor: High Contrast\n\n## Rules\n\n- Passive Tessellation Canvas: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

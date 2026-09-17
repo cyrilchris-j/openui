@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "slider-scrubber-timeline",
+  "type": "registry:interaction",
+  "title": "Slider Scrubber Timeline",
+  "description": "A precision timeline scrubber providing continuous frame position scrub and millisecond tooltip tracking.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "slider-scrubber-timeline.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "timeline",
+    "scrubber",
+    "video",
+    "audio",
+    "slider"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "precision-timeline-scrub",
+      "visualModel": "graduated-timecode-ribbon",
+      "motionModel": "continuous-linear-scrub",
+      "layoutModel": "horizontal-timeline-track",
+      "semanticPurpose": "media-scrubber-timeline"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

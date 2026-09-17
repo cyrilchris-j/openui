@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "comparison-versus-matrix",
+  "type": "registry:section",
+  "title": "Comparison Versus Matrix",
+  "description": "Competitor comparison table contrasting OpenUI's verified architectural registry against generic UI libraries.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "comparison-versus-matrix.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "comparison",
+    "matrix",
+    "versus",
+    "features",
+    "competitors"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "comparison",
+    "fingerprint": {
+      "interactionModel": "comparative-feature-audit",
+      "visualModel": "dual-column-versus-matrix",
+      "motionModel": "none",
+      "layoutModel": "tabular-comparison-matrix",
+      "semanticPurpose": "product-differentiation-matrix"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

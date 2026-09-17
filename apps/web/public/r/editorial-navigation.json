@@ -51,6 +51,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "hierarchical-subnav-disclosure",
+      "visualModel": "minimal-ink-rule-header",
+      "layoutModel": "top-anchored-sticky-bar",
+      "semanticPurpose": "primary-site-navigation"
     }
   },
   "url": "https://openui.dev/r/editorial-navigation.json",

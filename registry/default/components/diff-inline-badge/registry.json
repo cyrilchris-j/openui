@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "diff-inline-badge",
+  "type": "registry:component",
+  "title": "Diff Inline Badge",
+  "description": "Side-by-side or stacked code change metrics badge with addition and deletion count pills.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "diff-inline-badge.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "diff",
+    "badge",
+    "metrics",
+    "git",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "diff-summary-presentation",
+      "visualModel": "split-colored-tag-pill",
+      "motionModel": "none",
+      "layoutModel": "compact-badge-group",
+      "semanticPurpose": "git-diff-delta-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

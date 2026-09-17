@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-cli-cheatsheet",
+  "type": "registry:section",
+  "title": "Developer CLI Cheatsheet",
+  "description": "A reference card mapping key CLI subcommands, options, and environmental variables.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-cli-cheatsheet.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeveloperCLICommandsCheatsheet({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const commands = [\n    { cmd: \"openui add <name>\", desc: \"Materialize item into local project src/\" },\n    { cmd: \"openui diff <name>\", desc: \"Inspect local overrides vs upstream registry\" },\n    { cmd: \"openui validate\", desc: \"Verify Design DNA invariants and TypeScript contracts\" },\n    { cmd: \"openui sync\", desc: \"Pull latest security patches and bugfixes\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-4xl mx-auto font-mono\", className)} {...props}>\n      <h3 className=\"text-xs uppercase tracking-widest text-emerald-500 font-bold mb-4\">\n        Command Syntax\n      </h3>\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-3\">\n        {commands.map((c) => (\n          <div key={c.cmd} className=\"p-3.5 rounded bg-neutral-900 border border-neutral-800 text-xs\">\n            <div className=\"text-emerald-400 font-bold\">$ {c.cmd}</div>\n            <div className=\"text-neutral-400 text-[11px] mt-1\">{c.desc}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "3eb6c1eb23b31ec29e63507ae4e154601d05572d5eea92a2f5b44f6fddead805",
+      "sizeBytes": 1211
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DeveloperCLICommandsCheatsheet } from \"./developer-cli-cheatsheet\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-950\">\n      <DeveloperCLICommandsCheatsheet />\n    </div>\n  );\n}\n",
+      "contentHash": "9b418c2231d83052e958502d1560faa05d6bb60d0cb9e63ce3a3954fa8cc5db1",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "cli",
+    "cheatsheet",
+    "terminal",
+    "commands",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "developer-cli-cheatsheet-interaction",
+      "visualModel": "developer-cli-cheatsheet-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "developer-cli-cheatsheet-section"
+    }
+  },
+  "url": "https://openui.dev/r/developer-cli-cheatsheet.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Developer Cli Cheatsheet Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

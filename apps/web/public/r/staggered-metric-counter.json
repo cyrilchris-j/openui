@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-metric-counter",
+  "type": "registry:motion",
+  "title": "Staggered Metric Counter",
+  "description": "A KPI scorecard row where numeric metrics increment simultaneously with staggered duration and spring finish.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-metric-counter.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StaggeredMetricCounterProps {\n  className?: string;\n}\n\nexport function StaggeredMetricCounter({ className }: StaggeredMetricCounterProps) {\n  const [val1, setVal1] = useState(0);\n  const [val2, setVal2] = useState(0);\n\n  useEffect(() => {\n    const t1 = setInterval(() => setVal1((v) => (v < 98 ? v + 2 : 98)), 30);\n    const t2 = setInterval(() => setVal2((v) => (v < 412 ? v + 6 : 412)), 20);\n    return () => {\n      clearInterval(t1);\n      clearInterval(t2);\n    };\n  }, []);\n\n  return (\n    <div className={cn(\"grid grid-cols-2 gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"border-r border-line pr-4\">\n        <span className=\"font-mono text-[10px] text-ink/50 uppercase\">UPTIME RATIO</span>\n        <div className=\"font-mono text-3xl font-bold text-ink\">{val1}.9%</div>\n      </div>\n      <div className=\"pl-2\">\n        <span className=\"font-mono text-[10px] text-ink/50 uppercase\">ACTIVE PODS</span>\n        <div className=\"font-mono text-3xl font-bold text-ink\">{val2}</div>\n      </div>\n    </div>\n  );\n}\n\nexport default StaggeredMetricCounter;\n",
+      "contentHash": "0365d51c37cc09daf6925fa9ab3f88191551879ccff9983031992c1ec7b29a19",
+      "sizeBytes": 1214
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { StaggeredMetricCounter } from \"./staggered-metric-counter\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <StaggeredMetricCounter />\n    </div>\n  );\n}\n",
+      "contentHash": "cbb54edb111cd106f2abb51f00316824ab1d6edf64316815120f7bfe0697e2d9",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "metrics",
+    "kpi",
+    "counter",
+    "scorecard",
+    "stagger"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "counter",
+    "fingerprint": {
+      "interactionModel": "simultaneous-metric-spinup",
+      "visualModel": "dashboard-stat-row",
+      "motionModel": "interpolated-rate-countup",
+      "layoutModel": "multi-column-kpi-deck",
+      "semanticPurpose": "kpi-scorecard-banner"
+    }
+  },
+  "url": "https://openui.dev/r/staggered-metric-counter.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Simultaneous Metric Spinup: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

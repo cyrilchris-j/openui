@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-velocity-blur-hero",
+  "type": "registry:motion",
+  "title": "Scroll Velocity Blur Hero",
+  "description": "A hero whose letters gain directional blur proportional to scroll speed and settle crisp at rest — using a stacked text-shadow trick instead of filter blur so it stays GPU-cheap even on long pages.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-velocity-blur-hero.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "blur",
+    "hero",
+    "velocity",
+    "shadow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "shadow-blur-text",
+      "motionModel": "speed-coupled-shadow",
+      "layoutModel": "block",
+      "semanticPurpose": "hero-feedback"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

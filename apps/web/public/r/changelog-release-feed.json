@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "changelog-release-feed",
+  "type": "registry:section",
+  "title": "Changelog Release Feed",
+  "description": "A chronological release notes section highlighting version bumps, features, breaking changes, and bug fixes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "changelog-release-feed.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ReleaseEntry {\n  version: string;\n  date: string;\n  highlight: string;\n  changes: { type: \"feature\" | \"fix\" | \"breaking\"; text: string }[];\n}\n\nexport interface ChangelogReleaseFeedProps extends React.HTMLAttributes<HTMLElement> {\n  releases?: ReleaseEntry[];\n}\n\nconst DEFAULT_RELEASES: ReleaseEntry[] = [\n  {\n    version: \"v2.4.0\",\n    date: \"September 16, 2026\",\n    highlight: \"Zero-bundle CSS variables engine and Next.js 15.2 Server Action support.\",\n    changes: [\n      { type: \"feature\", text: \"Added CSS-variable color token synchronization API\" },\n      { type: \"fix\", text: \"Resolved hydration mismatch in SSR popover controllers\" },\n      { type: \"breaking\", text: \"Renamed macroStructure prop to macrostructure in RegistrySchema\" },\n    ],\n  },\n  {\n    version: \"v2.3.1\",\n    date: \"August 28, 2026\",\n    highlight: \"Critical patch for touch gesture panning on Safari iOS 19.\",\n    changes: [\n      { type: \"fix\", text: \"Fixed momentum scroll inertia lock on mobile drawer\" },\n      { type: \"feature\", text: \"Added keyboard shortcut Alt+K to quick command palette\" },\n    ],\n  },\n];\n\nexport function ChangelogReleaseFeed({\n  releases = DEFAULT_RELEASES,\n  className,\n  ...props\n}: ChangelogReleaseFeedProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-4xl mx-auto\", className)} {...props}>\n      <div className=\"mb-12\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-neutral-400 font-semibold\">\n          Updates & Notes\n        </span>\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n          Product Changelog\n        </h2>\n      </div>\n\n      <div className=\"space-y-12\">\n        {releases.map((rel) => (\n          <div key={rel.version} className=\"border-l-2 border-neutral-200 dark:border-neutral-800 pl-6 relative\">\n            <div className=\"absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-white dark:bg-neutral-950 border-2 border-neutral-900 dark:border-neutral-100\" />\n            <div className=\"flex items-baseline gap-3\">\n              <span className=\"text-lg font-mono font-bold text-neutral-900 dark:text-neutral-100\">\n                {rel.version}\n              </span>\n              <span className=\"text-xs text-neutral-400 font-mono\">{rel.date}</span>\n            </div>\n            <p className=\"text-sm font-medium text-neutral-700 dark:text-neutral-300 mt-2\">\n              {rel.highlight}\n            </p>\n            <div className=\"mt-4 space-y-2\">\n              {rel.changes.map((change, idx) => (\n                <div key={idx} className=\"flex items-center gap-2 text-xs\">\n                  <span\n                    className={cn(\n                      \"px-1.5 py-0.5 rounded text-[10px] font-mono uppercase font-bold\",\n                      change.type === \"feature\" && \"bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300\",\n                      change.type === \"fix\" && \"bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300\",\n                      change.type === \"breaking\" && \"bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300\"\n                    )}\n                  >\n                    {change.type}\n                  </span>\n                  <span className=\"text-neutral-600 dark:text-neutral-400\">{change.text}</span>\n                </div>\n              ))}\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "9841b9fdea53ccbf4bb304177b632c36501daa5c8c96c0f3006e28d42d7f786b",
+      "sizeBytes": 3556
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ChangelogReleaseFeed } from \"./changelog-release-feed\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-white dark:bg-neutral-950\">\n      <ChangelogReleaseFeed />\n    </div>\n  );\n}\n",
+      "contentHash": "cdcba3fbfa11c0716c98d0e63b9e02143a7495d596af8440ce8e77fae810fb51",
+      "sizeBytes": 283
+    }
+  ],
+  "tags": [
+    "changelog",
+    "release",
+    "feed",
+    "updates",
+    "versioning"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "changelog",
+    "fingerprint": {
+      "interactionModel": "changelog-release-feed-interaction",
+      "visualModel": "changelog-release-feed-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "changelog-release-feed-section"
+    }
+  },
+  "url": "https://openui.dev/r/changelog-release-feed.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Rail\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Changelog Release Feed Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

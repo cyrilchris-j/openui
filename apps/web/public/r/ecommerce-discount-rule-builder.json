@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ecommerce-discount-rule-builder",
+  "type": "registry:block",
+  "title": "E-commerce Discount Rule Builder",
+  "description": "An automated pricing rule builder supporting conditional thresholds like free shipping above order limits.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ecommerce-discount-rule-builder.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function EcommerceDiscountRuleBuilder({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-2\">Automatic Order Rule</h3>\n      <p className=\"text-neutral-500 mb-4\">IF cart total &gt; $100 THEN apply free priority shipping.</p>\n      <div className=\"p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-semibold font-mono\">\n        Active in Production ✓\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "576b3de9224d474e1cdad83ae2381d4fb7243736eee9a8c4adda9c178c8709af",
+      "sizeBytes": 796
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { EcommerceDiscountRuleBuilder } from \"./ecommerce-discount-rule-builder\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <EcommerceDiscountRuleBuilder />\n    </div>\n  );\n}\n",
+      "contentHash": "f5595253ab98b7ae06def4822b5eeee4ae3cafdb2ae6adecb4a447ffa66e28a5",
+      "sizeBytes": 314
+    }
+  ],
+  "tags": [
+    "discount",
+    "pricing",
+    "rules",
+    "ecommerce",
+    "threshold"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ecommerce",
+    "fingerprint": {
+      "interactionModel": "discount-rule-threshold-builder",
+      "visualModel": "conditional-rule-logic-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "ecommerce-pricing-rules"
+    }
+  },
+  "url": "https://openui.dev/r/ecommerce-discount-rule-builder.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Discount Rule Threshold Builder: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

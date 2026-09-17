@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "matrix-binary-curtain",
+  "type": "registry:background",
+  "title": "Matrix Binary Curtain",
+  "description": "Alternating columns of digital binary 1s and 0s forming a structured computational veil.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "matrix-binary-curtain.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MatrixBinaryCurtainProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MatrixBinaryCurtain({ className, children, ...props }: MatrixBinaryCurtainProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-emerald-400 overflow-hidden font-mono\", className)} {...props}>\n      <div className=\"absolute inset-0 flex justify-around pointer-events-none opacity-20 -z-10 text-[10px] leading-tight select-none\">\n        {Array.from({ length: 12 }).map((_, col) => (\n          <div key={col} className=\"flex flex-col\">\n            {Array.from({ length: 24 }).map((_, row) => (\n              <span key={row}>{(col + row) % 2 === 0 ? \"1\" : \"0\"}</span>\n            ))}\n          </div>\n        ))}\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "dbaa5b851c71ad64ac14a3d9f6fe83ea7d61a424a714c8697229f170be62b00b",
+      "sizeBytes": 886
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { MatrixBinaryCurtain } from \"./matrix-binary-curtain\";\n\nexport default function MatrixBinaryCurtainDemo() {\n  return (\n    <MatrixBinaryCurtain className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-emerald-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-emerald-400\">Binary Curtain</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Structured columns of binary code bits.</p>\n      </div>\n    </MatrixBinaryCurtain>\n  );\n}\n",
+      "contentHash": "428e7541832aebb11ee4cc57fd252188119bef1c46ef2e863d4eb437a51eafe5",
+      "sizeBytes": 599
+    }
+  ],
+  "tags": [
+    "binary",
+    "code",
+    "curtain",
+    "matrix",
+    "bits"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-binary-curtain",
+      "visualModel": "columnar-binary-digits",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "binary-code-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/matrix-binary-curtain.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Binary Curtain: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

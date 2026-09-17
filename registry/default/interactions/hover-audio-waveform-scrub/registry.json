@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-audio-waveform-scrub",
+  "type": "registry:interaction",
+  "title": "Hover Audio Waveform Scrub",
+  "description": "An audio waveform bar chart displaying instantaneous amplitude bars with real-time horizontal playback scrub.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-audio-waveform-scrub.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "waveform",
+    "audio",
+    "scrubber",
+    "amplitude",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "waveform-hover-scrubbing",
+      "visualModel": "amplitude-bar-histogram",
+      "motionModel": "scrubber-hairline-glide",
+      "layoutModel": "horizontal-audio-track",
+      "semanticPurpose": "audio-waveform-scrubber"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

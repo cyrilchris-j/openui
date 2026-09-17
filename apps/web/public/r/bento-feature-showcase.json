@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bento-feature-showcase",
+  "type": "registry:section",
+  "title": "Bento Feature Showcase",
+  "description": "Four-card modular bento grid showcasing core ecosystem features with varied aspect ratios.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bento-feature-showcase.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface BentoFeatureShowcaseProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n  subtitle?: string;\n}\n\nexport function BentoFeatureShowcase({\n  title = \"Engineered for Mathematical Precision\",\n  subtitle = \"Every component is verified against closed types and distinct behavioral fingerprints.\",\n  className,\n  ...props\n}: BentoFeatureShowcaseProps) {\n  return (\n    <section className={cn(\"py-16 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <h2 className=\"text-2xl sm:text-3xl font-bold tracking-tight text-ink\">{title}</h2>\n        <p className=\"text-xs sm:text-sm text-ink/60 mt-2\">{subtitle}</p>\n      </div>\n\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n        <div className=\"md:col-span-2 p-6 rounded-2xl border border-line bg-surface/30 flex flex-col justify-between h-56\">\n          <div className=\"font-mono text-xs font-bold text-accent\">01 // Zero Placeholders</div>\n          <div>\n            <h3 className=\"text-base font-bold text-ink\">800 Fully Materialized Resources</h3>\n            <p className=\"text-xs text-ink/60 mt-1\">100 in each of 8 countable categories with real executable TypeScript source.</p>\n          </div>\n        </div>\n        <div className=\"p-6 rounded-2xl border border-line bg-surface/30 flex flex-col justify-between h-56\">\n          <div className=\"font-mono text-xs font-bold text-emerald-600\">02 // Validation</div>\n          <div>\n            <h3 className=\"text-sm font-bold text-ink\">Closed Schema</h3>\n            <p className=\"text-xs text-ink/60 mt-1\">Strict compile-time schema validation with zero runtime warnings.</p>\n          </div>\n        </div>\n        <div className=\"p-6 rounded-2xl border border-line bg-surface/30 flex flex-col justify-between h-56\">\n          <div className=\"font-mono text-xs font-bold text-purple-600\">03 // Tokens</div>\n          <div>\n            <h3 className=\"text-sm font-bold text-ink\">CSS Custom Properties</h3>\n            <p className=\"text-xs text-ink/60 mt-1\">Universal theme variable mappings with dark mode inheritance.</p>\n          </div>\n        </div>\n        <div className=\"md:col-span-2 p-6 rounded-2xl border border-line bg-surface/30 flex flex-col justify-between h-56\">\n          <div className=\"font-mono text-xs font-bold text-sky-600\">04 // Fingerprints</div>\n          <div>\n            <h3 className=\"text-base font-bold text-ink\">Architectural Uniqueness Engine</h3>\n            <p className=\"text-xs text-ink/60 mt-1\">Guarantees zero conceptual duplicates across mechanisms, motions, and layouts.</p>\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "65255707ec89c1d1b8ce6dd040d334c55166c663119eadbd945a41309124307d",
+      "sizeBytes": 2773
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { BentoFeatureShowcase } from \"./bento-feature-showcase\";\n\nexport default function BentoFeatureShowcaseDemo() {\n  return <BentoFeatureShowcase />;\n}\n",
+      "contentHash": "3705b0e22934a1e99785b3f4aaa9b85e1e522c417b3856e5e0dae3fcf0cd3bd2",
+      "sizeBytes": 171
+    }
+  ],
+  "tags": [
+    "bento",
+    "features",
+    "grid",
+    "showcase",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "features",
+    "fingerprint": {
+      "interactionModel": "bento-tile-inspection",
+      "visualModel": "four-card-bento-matrix",
+      "motionModel": "none",
+      "layoutModel": "asymmetric-mosaic-grid",
+      "semanticPurpose": "product-features-bento"
+    }
+  },
+  "url": "https://openui.dev/r/bento-feature-showcase.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Bento Tile Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

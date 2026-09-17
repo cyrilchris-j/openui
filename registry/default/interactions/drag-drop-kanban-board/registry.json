@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-drop-kanban-board",
+  "type": "registry:interaction",
+  "title": "Drag Drop Kanban Board",
+  "description": "A compact multi-lane task board allowing cards to transition between stages with active target ghosting.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-drop-kanban-board.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "kanban",
+    "board",
+    "drag-drop",
+    "swimlane",
+    "triage"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "multi-lane-kanban-triage",
+      "visualModel": "dual-lane-board-deck",
+      "motionModel": "swimlane-transfer-reorder",
+      "layoutModel": "horizontal-lane-board",
+      "semanticPurpose": "dual-lane-triage-board"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

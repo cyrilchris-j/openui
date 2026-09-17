@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "action-sheet-dialog",
+  "type": "registry:component",
+  "title": "Action Sheet Dialog",
+  "description": "A bottom action sheet confirmation overlay displaying a list of options with a separate cancel button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "action-sheet-dialog.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ActionSheetDialogProps {\n  className?: string;\n}\n\nexport function ActionSheetDialog({ className }: ActionSheetDialogProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setOpen(true)}\n        className=\"rounded-lg border border-line bg-ink px-4 py-2 font-mono text-xs text-paper shadow\"\n      >\n        Show Action Sheet\n      </button>\n\n      {open && (\n        <div className=\"w-64 rounded-xl border border-line bg-paper p-3 shadow-xl space-y-1 font-mono text-xs\">\n          <button\n            type=\"button\"\n            onClick={() => setOpen(false)}\n            className=\"w-full text-left rounded p-2 hover:bg-line/20 text-ink\"\n          >\n            Archive File\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setOpen(false)}\n            className=\"w-full text-left rounded p-2 hover:bg-red-500/10 text-red-600 font-bold\"\n          >\n            Permanent Delete\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setOpen(false)}\n            className=\"w-full text-center border-t border-line pt-2 text-ink/50 hover:text-ink\"\n          >\n            Cancel\n          </button>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default ActionSheetDialog;\n",
+      "contentHash": "0690685eaf66b81dca88b4169aae587f7a15fdeaacf59901ec2ebe07cdbfe3c3",
+      "sizeBytes": 1492
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ActionSheetDialog } from \"./action-sheet-dialog\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <ActionSheetDialog />\n    </div>\n  );\n}\n",
+      "contentHash": "93fc1305972ed2c0132c5361727c33147d6b633f6f455dd0e0fd4c19fb16a5b6",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "action-sheet",
+    "dialog",
+    "modal",
+    "options",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "overlays",
+    "fingerprint": {
+      "interactionModel": "action-sheet-modal-selection",
+      "visualModel": "docked-action-options",
+      "motionModel": "none",
+      "layoutModel": "centered-action-sheet",
+      "semanticPurpose": "confirmation-action-sheet"
+    }
+  },
+  "url": "https://openui.dev/r/action-sheet-dialog.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Action Sheet Modal Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

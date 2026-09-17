@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-view-switcher",
+  "type": "registry:component",
+  "title": "Segmented View Switcher",
+  "description": "An icon view switcher toggling presentation between grid, list, and compact modes.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-view-switcher.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "views",
+    "switcher",
+    "grid",
+    "list",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "icon-view-selection",
+      "visualModel": "tri-state-view-switch",
+      "motionModel": "none",
+      "layoutModel": "inline-switcher-cluster",
+      "semanticPurpose": "layout-mode-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

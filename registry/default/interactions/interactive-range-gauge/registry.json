@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-range-gauge",
+  "type": "registry:interaction",
+  "title": "Interactive Range Gauge",
+  "description": "A semicircular speedometer gauge needle tracking pointer scrub position with calibrated numeric ticks.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-range-gauge.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "gauge",
+    "speedometer",
+    "needle",
+    "range",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "semicircular-needle-scrub",
+      "visualModel": "arc-tachometer-dial",
+      "motionModel": "angular-tachometer-sweep",
+      "layoutModel": "centered-tachometer-rosette",
+      "semanticPurpose": "tachometer-range-gauge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

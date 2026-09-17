@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stacked-notification-center",
+  "type": "registry:layout",
+  "title": "Stacked Notification Center",
+  "description": "Chronological notification feed with filter tabs and mark-all-read action header.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stacked-notification-center.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StackedNotificationCenterProps extends React.HTMLAttributes<HTMLDivElement> {\n  header?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function StackedNotificationCenter({ header, children, className, ...props }: StackedNotificationCenterProps) {\n  return (\n    <div className={cn(\"max-w-md mx-auto p-4 rounded-2xl border border-line bg-paper font-sans text-xs shadow-sm space-y-3\", className)} {...props}>\n      {header && <div className=\"flex items-center justify-between pb-2 border-b border-line\">{header}</div>}\n      <div className=\"space-y-2\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "eb14f5ba785f4fec3cbedd06b5af610c8220f7a08571977c175c9ada1ad0f912",
+      "sizeBytes": 660
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { StackedNotificationCenter } from \"./stacked-notification-center\";\n\nexport default function StackedNotificationCenterDemo() {\n  return (\n    <StackedNotificationCenter\n      header={\n        <>\n          <span className=\"font-bold text-ink\">Inbox (2)</span>\n          <button type=\"button\" className=\"text-[11px] text-accent font-mono\">Mark read</button>\n        </>\n      }\n    >\n      <div className=\"p-3 rounded-lg border border-line bg-surface/30\">\n        <span className=\"font-bold\">Catalog Verified</span>\n        <p className=\"text-ink/60 mt-0.5\">800 of 800 items verified with zero errors.</p>\n      </div>\n    </StackedNotificationCenter>\n  );\n}\n",
+      "contentHash": "915687e5e5cd13da64dc215b316800e3b469326b88c7afae2375fe79c615c17d",
+      "sizeBytes": 679
+    }
+  ],
+  "tags": [
+    "notifications",
+    "feed",
+    "alerts",
+    "inbox",
+    "stack"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "notification-inbox-scroll",
+      "visualModel": "stacked-alert-cards",
+      "motionModel": "none",
+      "layoutModel": "single-column-inbox-stack",
+      "semanticPurpose": "notification-center-layout"
+    }
+  },
+  "url": "https://openui.dev/r/stacked-notification-center.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Notification Inbox Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

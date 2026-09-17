@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "investor-metrics-deck",
+  "type": "registry:section",
+  "title": "Investor Metrics Deck",
+  "description": "A financial telemetry summary presenting capital efficiency, ARR growth rates, and market penetration.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "investor-metrics-deck.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MetricCard {\n  label: string;\n  metric: string;\n  detail: string;\n}\n\nexport interface InvestorMetricsDeckProps extends React.HTMLAttributes<HTMLElement> {\n  metrics?: MetricCard[];\n}\n\nconst DEFAULT_METRICS: MetricCard[] = [\n  { label: \"ANNUAL RUN RATE\", metric: \"$42.8M\", detail: \"100% organic software revenue\" },\n  { label: \"NET RETENTION\", metric: \"138%\", detail: \"Best-in-class enterprise expansion\" },\n  { label: \"GROSS MARGIN\", metric: \"84%\", detail: \"Sub-millisecond edge architecture\" },\n  { label: \"TOTAL MAU\", metric: \"2.4M\", detail: \"Active web client sessions daily\" },\n];\n\nexport function InvestorMetricsDeck({\n  metrics = DEFAULT_METRICS,\n  className,\n  ...props\n}: InvestorMetricsDeckProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"mb-8\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-neutral-400 font-bold\">\n          Financial Disclosures\n        </span>\n        <h2 className=\"text-2xl font-bold font-mono tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n          Q3 2026 Telemetry & Capital Efficiency\n        </h2>\n      </div>\n\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">\n        {metrics.map((m) => (\n          <div\n            key={m.label}\n            className=\"p-5 border-2 border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 font-mono\"\n          >\n            <div className=\"text-[10px] text-neutral-500 uppercase tracking-wider\">{m.label}</div>\n            <div className=\"text-3xl font-extrabold text-neutral-900 dark:text-neutral-100 mt-2\">\n              {m.metric}\n            </div>\n            <div className=\"text-[11px] text-neutral-600 dark:text-neutral-400 mt-1\">{m.detail}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "7e438e04c87d80889021e024af1fd225fb9ca5e2d74fa0b52153e5400c34abc2",
+      "sizeBytes": 1948
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InvestorMetricsDeck } from \"./investor-metrics-deck\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-white dark:bg-neutral-950\">\n      <InvestorMetricsDeck />\n    </div>\n  );\n}\n",
+      "contentHash": "9d85c28fc653182f342bc89bccf078f008077c431680f95dc960631bed14384c",
+      "sizeBytes": 280
+    }
+  ],
+  "tags": [
+    "investors",
+    "metrics",
+    "arr",
+    "growth",
+    "finance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "investors",
+    "fingerprint": {
+      "interactionModel": "investor-metrics-deck-interaction",
+      "visualModel": "investor-metrics-deck-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "investor-metrics-deck-section"
+    }
+  },
+  "url": "https://openui.dev/r/investor-metrics-deck.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Mosaic\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Investor Metrics Deck Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

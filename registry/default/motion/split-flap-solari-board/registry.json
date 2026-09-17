@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-flap-solari-board",
+  "type": "registry:motion",
+  "title": "Split Flap Solari Board",
+  "description": "An airport departure style Solari split-flap mechanical display cascading through alphabet characters with realistic flap clicks.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-flap-solari-board.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "solari",
+    "split-flap",
+    "airport",
+    "mechanical",
+    "flip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "counter",
+    "fingerprint": {
+      "interactionModel": "character-cascade-cycle",
+      "visualModel": "solari-bistable-leaves",
+      "motionModel": "rapid-flap-rotary-step",
+      "layoutModel": "tabular-flap-matrix",
+      "semanticPurpose": "departure-board-announcer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "symmetric",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

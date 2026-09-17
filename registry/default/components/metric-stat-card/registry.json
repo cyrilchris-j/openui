@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "metric-stat-card",
+  "type": "registry:component",
+  "title": "Metric Stat Card",
+  "description": "A KPI scorecard tile featuring large numeric metrics, percentage delta badges, and contextual timeframe labels.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "metric-stat-card.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "metric",
+    "kpi",
+    "stat",
+    "card",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-kpi-inspection",
+      "visualModel": "bordered-kpi-card",
+      "motionModel": "none",
+      "layoutModel": "kpi-metric-tile",
+      "semanticPurpose": "dashboard-metric-tile"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

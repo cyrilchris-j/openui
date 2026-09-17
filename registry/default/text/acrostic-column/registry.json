@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "acrostic-column",
+  "type": "registry:text",
+  "title": "Acrostic Column",
+  "description": "A poem whose initial letters spell a hidden word down the left edge: the initials column is emphasised, hovering it lights the full acrostic, and a reveal toggle confirms the message — a medieval device implemented as a responsive layout.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "acrostic-column.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "acrostic",
+    "hidden",
+    "initials",
+    "poetry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "hover-reveal-message",
+      "visualModel": "initials-column-lockup",
+      "motionModel": "column-illumination",
+      "layoutModel": "two-column-margins",
+      "semanticPurpose": "hidden-message"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keycap-badge",
+  "type": "registry:component",
+  "title": "Keycap Badge",
+  "description": "A mechanical keycap badge styled with bottom beveled edge shadows to simulate physical mechanical keyboard caps.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keycap-badge.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "keycap",
+    "keyboard",
+    "badge",
+    "shortcut",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "keycap-badge-press",
+      "visualModel": "beveled-keycap-slab",
+      "motionModel": "tactile-depression",
+      "layoutModel": "inline-keycap-badge",
+      "semanticPurpose": "hotkey-keycap-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-curtain-reveal",
+  "type": "registry:motion",
+  "title": "Scroll Curtain Reveal",
+  "description": "A dual-leaf curtain mechanism that parts horizontally across the viewport as the user scrolls, unveiling underlying content.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-curtain-reveal.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "curtain",
+    "reveal",
+    "transition",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "wheel-scrubbed-reveal",
+      "visualModel": "bisected-shutter-leaves",
+      "motionModel": "linear-scroll-displacement",
+      "layoutModel": "full-bleed-curtain",
+      "semanticPurpose": "dramatic-section-gate"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

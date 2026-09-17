@@ -53,6 +53,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "hero",
+    "fingerprint": {
+      "interactionModel": "interactive-cta-focus",
+      "visualModel": "off-axis-typographic-composition",
+      "layoutModel": "asymmetric-editorial-split",
+      "semanticPurpose": "brand-landing-masthead"
     }
   },
   "url": "https://openui.dev/r/asymmetric-hero.json",

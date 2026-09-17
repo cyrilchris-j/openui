@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-penrose-tiles",
+  "type": "registry:background",
+  "title": "Geometric Penrose Tiles",
+  "description": "Aperiodic non-repeating Penrose kite and dart rhombus tessellation with 5-fold local symmetry.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-penrose-tiles.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "penrose",
+    "aperiodic",
+    "rhombus",
+    "tessellation",
+    "geometry"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-penrose-tiling",
+      "visualModel": "aperiodic-rhombus-lattice",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "aperiodic-tessellation-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

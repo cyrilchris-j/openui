@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "compliance-gdpr-consent-strip",
+  "type": "registry:section",
+  "title": "Compliance GDPR Consent Strip",
+  "description": "A regulatory privacy consent banner supporting essential, analytical, and marketing preference toggles.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "compliance-gdpr-consent-strip.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "privacy",
+    "gdpr",
+    "consent",
+    "cookie",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "privacy",
+    "fingerprint": {
+      "interactionModel": "compliance-gdpr-consent-strip-interaction",
+      "visualModel": "compliance-gdpr-consent-strip-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "compliance-gdpr-consent-strip-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

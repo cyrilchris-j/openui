@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-feature-comparison",
+  "type": "registry:section",
+  "title": "Interactive Feature Comparison",
+  "description": "A comprehensive side-by-side comparison table contrasting OpenUI with legacy UI libraries across specs.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-feature-comparison.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "comparison",
+    "features",
+    "versus",
+    "specs",
+    "table"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "comparison",
+    "fingerprint": {
+      "interactionModel": "interactive-feature-comparison-interaction",
+      "visualModel": "interactive-feature-comparison-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "interactive-feature-comparison-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "swiss"
+    }
+  }
+}

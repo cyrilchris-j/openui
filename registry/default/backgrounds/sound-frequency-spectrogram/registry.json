@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sound-frequency-spectrogram",
+  "type": "registry:background",
+  "title": "Sound Frequency Spectrogram",
+  "description": "Waterfall audio spectrum analyzer heatmap spectrogram with chromatic acoustic intensity bands.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sound-frequency-spectrogram.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "spectrogram",
+    "audio",
+    "frequency",
+    "fft",
+    "waterfall"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-spectrogram-backdrop",
+      "visualModel": "frequency-intensity-heatmap",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "audio-spectrogram-canvas"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

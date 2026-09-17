@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dune-sand-ripples",
+  "type": "registry:background",
+  "title": "Dune Sand Ripples",
+  "description": "Sinusoidal natural wind-blown sand ripples reminiscent of Saharan desert dunes.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dune-sand-ripples.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DuneSandRipplesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function DuneSandRipples({ className, children, ...props }: DuneSandRipplesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"dune-pat\" width=\"100\" height=\"24\" patternUnits=\"userSpaceOnUse\">\n            <path d=\"M0 12 Q25 4 50 12 T100 12\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#dune-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "ed4934d88906757a3ea011d8d442f305e766c128762da33f0189ab951408a73e",
+      "sizeBytes": 868
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { DuneSandRipples } from \"./dune-sand-ripples\";\n\nexport default function DuneSandRipplesDemo() {\n  return (\n    <DuneSandRipples className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Desert Dune Ripples</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Wind-blown sinusoidal sand ridge striations.</p>\n      </div>\n    </DuneSandRipples>\n  );\n}\n",
+      "contentHash": "3318f1bba14f25505efcdd7e4d50c1d1e919657f111777b03095b5ccf624faa4",
+      "sizeBytes": 569
+    }
+  ],
+  "tags": [
+    "dune",
+    "sand",
+    "ripples",
+    "desert",
+    "organic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-dune-ripples",
+      "visualModel": "sinusoidal-sand-crests",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "desert-sand-texture"
+    }
+  },
+  "url": "https://openui.dev/r/dune-sand-ripples.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Soft\nMotion: None\nTypography: Humanist\nColor: Muted Earth\n\n## Rules\n\n- Passive Dune Ripples: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

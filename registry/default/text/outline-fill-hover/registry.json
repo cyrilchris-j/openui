@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "outline-fill-hover",
+  "type": "registry:text",
+  "title": "Outline Fill Hover",
+  "description": "Text drawn as a stroke that fills from the reading direction on hover — two stacked copies, the fill one clipped by a width transition, so the fill sweeps like ink soaking into a letter rather than fading in.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "outline-fill-hover.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "outline",
+    "fill",
+    "hover",
+    "ink"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "hover-fill",
+      "visualModel": "stroke-plus-clipped-fill",
+      "motionModel": "directional-sweep",
+      "layoutModel": "inline",
+      "semanticPurpose": "link-emphasis"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

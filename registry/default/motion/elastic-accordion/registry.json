@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-accordion",
+  "type": "registry:motion",
+  "title": "Elastic Accordion",
+  "description": "An accordion whose panels open with elastic overshoot: neighbouring rows are pushed with a spring-lag (each row's displacement chases the row above), so the stack wobbles like a slinky instead of snapping rigid.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-accordion.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "accordion",
+    "elastic",
+    "overshoot",
+    "slinky"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "click-expand",
+      "visualModel": "chained-push-rows",
+      "motionModel": "per-row-spring-lag",
+      "layoutModel": "stack",
+      "semanticPurpose": "faq-disclosure"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

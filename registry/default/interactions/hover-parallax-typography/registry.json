@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-parallax-typography",
+  "type": "registry:interaction",
+  "title": "Hover Parallax Typography",
+  "description": "An editorial display heading where shadow, stroke, and fill layers translate at differential depths under pointer hover.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-parallax-typography.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "typography",
+    "parallax",
+    "hover",
+    "layers",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "typography-depth-tilt",
+      "visualModel": "multi-pass-typeset-planes",
+      "motionModel": "differential-layer-offset",
+      "layoutModel": "headline-stage-box",
+      "semanticPurpose": "parallax-editorial-headline"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

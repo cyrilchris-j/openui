@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rubberband-pull-refresh",
+  "type": "registry:interaction",
+  "title": "Rubberband Pull Refresh",
+  "description": "A pull-to-refresh container simulating mechanical elastic resistance before triggering a simulated async sync spinner.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rubberband-pull-refresh.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RubberbandPullRefreshProps {\n  className?: string;\n}\n\nexport function RubberbandPullRefresh({ className }: RubberbandPullRefreshProps) {\n  const [pull, setPull] = useState(0);\n  const [refreshing, setRefreshing] = useState(false);\n\n  const triggerRefresh = () => {\n    setRefreshing(true);\n    setPull(40);\n    setTimeout(() => {\n      setRefreshing(false);\n      setPull(0);\n    }, 1000);\n  };\n\n  return (\n    <div className={cn(\"relative h-64 w-full max-w-sm overflow-hidden rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-line\">\n        <span className=\"font-mono text-xs text-ink/60\">FEED REFRESH</span>\n        <button\n          type=\"button\"\n          onClick={triggerRefresh}\n          className=\"rounded border border-line px-2 py-0.5 font-mono text-[10px] text-ink hover:bg-line/20\"\n        >\n          {refreshing ? \"Syncing...\" : \"Simulate Pull\"}\n        </button>\n      </div>\n\n      <div\n        className=\"mt-4 space-y-2 transition-transform duration-200\"\n        style={{ transform: `translateY(${pull}px)` }}\n      >\n        <div className=\"rounded border border-line bg-line/10 p-3 font-mono text-xs text-ink\">\n          Feed item #1092 - Realtime status verified\n        </div>\n        <div className=\"rounded border border-line bg-line/10 p-3 font-mono text-xs text-ink\">\n          Feed item #1093 - Block signature accepted\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport default RubberbandPullRefresh;\n",
+      "contentHash": "36c4532c6b9d72f1c51ff9372065a6ed2da402a2bbf1c3af36d34d41b988a21f",
+      "sizeBytes": 1624
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { RubberbandPullRefresh } from \"./rubberband-pull-refresh\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <RubberbandPullRefresh />\n    </div>\n  );\n}\n",
+      "contentHash": "2382354f2069aeadfcb6b2c0015cd19888cfa101f113b4f49066704ae487b5ed",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "pull-to-refresh",
+    "rubberband",
+    "gesture",
+    "spring",
+    "sync"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "pull-down-elastic-trigger",
+      "visualModel": "tethered-spinner-underlay",
+      "motionModel": "logarithmic-drag-resistance",
+      "layoutModel": "top-pinned-refresh-slot",
+      "semanticPurpose": "pull-to-refresh-indicator"
+    }
+  },
+  "url": "https://openui.dev/r/rubberband-pull-refresh.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Pull Down Elastic Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

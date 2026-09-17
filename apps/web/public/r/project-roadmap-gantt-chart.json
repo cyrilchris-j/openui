@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "project-roadmap-gantt-chart",
+  "type": "registry:block",
+  "title": "Project Roadmap Gantt Chart",
+  "description": "A milestone timeline Gantt visualization displaying deliverable progress across sprints and quarters.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "project-roadmap-gantt-chart.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function ProjectRoadmapGanttChart({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-4\">Milestone Delivery Timeline</h3>\n      <div className=\"space-y-3\">\n        <div>\n          <div className=\"flex justify-between text-[11px] mb-1\">\n            <span>800 Certified Catalog Resources</span>\n            <span className=\"text-emerald-500 font-bold\">100% Completed</span>\n          </div>\n          <div className=\"w-full h-2 rounded-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden\">\n            <div className=\"h-full bg-emerald-500 w-full\" />\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "2c7dffa9636b88e1718b8d5109f9d62e010e9f0d52e3c1d287ca527894128017",
+      "sizeBytes": 994
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { ProjectRoadmapGanttChart } from \"./project-roadmap-gantt-chart\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <ProjectRoadmapGanttChart />\n    </div>\n  );\n}\n",
+      "contentHash": "73800c3d0a6a51f9cc8416dcaca89e9700ce66e6cbcd7258eecb7aa096e7ee6d",
+      "sizeBytes": 302
+    }
+  ],
+  "tags": [
+    "gantt",
+    "roadmap",
+    "timeline",
+    "milestones",
+    "projects"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "roadmap",
+    "fingerprint": {
+      "interactionModel": "gantt-timeline-scrubbing",
+      "visualModel": "quarterly-milestone-bar-chart",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "milestone-gantt-roadmap"
+    }
+  },
+  "url": "https://openui.dev/r/project-roadmap-gantt-chart.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Gantt Timeline Scrubbing: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-terminal-hero",
+  "type": "registry:section",
+  "title": "Developer Terminal Hero",
+  "description": "Hero layout with code terminal on right showing instant pnpm install and validation commands.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-terminal-hero.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "terminal",
+    "hero",
+    "developer",
+    "cli",
+    "install"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "heroes",
+    "fingerprint": {
+      "interactionModel": "copyable-terminal-hero",
+      "visualModel": "code-terminal-landing-hero",
+      "motionModel": "none",
+      "layoutModel": "split-terminal-banner",
+      "semanticPurpose": "developer-cli-hero"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

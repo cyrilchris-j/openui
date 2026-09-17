@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-accordion-stack",
+  "type": "registry:motion",
+  "title": "Kinetic Accordion Stack",
+  "description": "A vertical accordion whose content height expands and contracts with smooth spring damping physics.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-accordion-stack.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KineticAccordionStackProps {\n  className?: string;\n}\n\nexport function KineticAccordionStack({ className }: KineticAccordionStackProps) {\n  const [openIdx, setOpenIdx] = useState<number | null>(0);\n  const items = [\n    { title: \"Distributed Consensus\", body: \"Raft and Paxos implement state machine replication across partitioned topologies.\" },\n    { title: \"Vector Clocks\", body: \"Causality tracking guarantees partial ordering across asynchronous message passing networks.\" },\n    { title: \"Zero-Knowledge Proofs\", body: \"Succinct non-interactive arguments enable verifiable computation without data leakage.\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-md rounded-xl border border-line bg-paper p-4 shadow-sm divide-y divide-line\", className)}>\n      {items.map((item, idx) => {\n        const isOpen = openIdx === idx;\n        return (\n          <div key={item.title} className=\"py-3\">\n            <button\n              type=\"button\"\n              onClick={() => setOpenIdx(isOpen ? null : idx)}\n              className=\"flex w-full items-center justify-between font-display text-sm font-semibold text-ink\"\n            >\n              <span>{item.title}</span>\n              <span className={cn(\"transition-transform duration-200\", isOpen ? \"rotate-180\" : \"rotate-0\")}>▾</span>\n            </button>\n            {isOpen && (\n              <p className=\"mt-2 text-xs leading-relaxed text-ink/70 transition-all duration-200\">\n                {item.body}\n              </p>\n            )}\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default KineticAccordionStack;\n",
+      "contentHash": "2895a05864622e025a36de88b56aa0627d7a4b27cd58f13267e31ad1c6611213",
+      "sizeBytes": 1698
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { KineticAccordionStack } from \"./kinetic-accordion-stack\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <KineticAccordionStack />\n    </div>\n  );\n}\n",
+      "contentHash": "d732072bd674d07f234030ad5db7be7b5b53e7f661a81e68c6bb07ec51edb1e0",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "accordion",
+    "disclosure",
+    "spring",
+    "height",
+    "collapse"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "spring-disclosure-toggle",
+      "visualModel": "vertically-stacked-slabs",
+      "motionModel": "spring-height-damping",
+      "layoutModel": "accordion-vertical-flow",
+      "semanticPurpose": "spring-disclosure-accordion"
+    }
+  },
+  "url": "https://openui.dev/r/kinetic-accordion-stack.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Spring Disclosure Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

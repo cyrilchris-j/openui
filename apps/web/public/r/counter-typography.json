@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "counter-typography",
+  "type": "registry:text",
+  "title": "Counter Typography",
+  "description": "Numeric tweening with tabular figures, an ease-out curve and locale-aware grouping; the width is reserved from the final value so the surrounding line never shifts while counting.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "counter-typography.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { useInView } from \"@/hooks/use-in-view\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CounterTypographyProps {\n  value: number;\n  /** Animation duration in milliseconds. */\n  duration?: number;\n  /** Decimal places to render. */\n  decimals?: number;\n  /** Locale for digit grouping. */\n  locale?: string;\n  /** Optional suffix rendered after the number (%, k, …). */\n  suffix?: string;\n  className?: string;\n}\n\nexport function CounterTypography({\n  value,\n  duration = 1400,\n  decimals = 0,\n  locale = \"en-US\",\n  suffix,\n  className,\n}: CounterTypographyProps) {\n  const { ref, inView } = useInView<HTMLSpanElement>({ once: true });\n  const [display, setDisplay] = useState(0);\n  const frame = useRef<number | null>(null);\n\n  useEffect(() => {\n    if (!inView) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setDisplay(value);\n      return;\n    }\n\n    const start = performance.now();\n    const step = (now: number) => {\n      const progress = Math.min(1, (now - start) / duration);\n      // ease-out cubic: fast start, soft landing\n      const eased = 1 - Math.pow(1 - progress, 3);\n      setDisplay(value * eased);\n      if (progress < 1) frame.current = requestAnimationFrame(step);\n    };\n    frame.current = requestAnimationFrame(step);\n    return () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    };\n  }, [inView, value, duration]);\n\n  const formatted = display.toLocaleString(locale, {\n    minimumFractionDigits: decimals,\n    maximumFractionDigits: decimals,\n  });\n\n  return (\n    <span\n      ref={ref}\n      className={cn(\"tabular-nums\", className)}\n      // Reserve the final width so the line does not shift while counting.\n      style={{ minWidth: `${value.toLocaleString(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).length}ch`, display: \"inline-block\" }}\n    >\n      {formatted}\n      {suffix ? <span aria-hidden>{suffix}</span> : null}\n    </span>\n  );\n}\n\nexport default CounterTypography;\n",
+      "contentHash": "4f527138cfa6f85dbeb10fc9681a0d0b92711013d11dfce999b0be7c6c1c4dc1",
+      "sizeBytes": 2094
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { CounterTypography } from \"./counter-typography\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] items-center justify-center gap-10 bg-paper p-10\">\n      <CounterTypography value={800} className=\"font-display text-step-4 text-ink\" />\n      <CounterTypography value={99.7} decimals={1} suffix=\"%\" className=\"font-display text-step-3 text-oxide\" />\n      <CounterTypography value={126400} className=\"font-display text-step-3 text-moss\" />\n    </div>\n  );\n}\n",
+      "contentHash": "0ee84212fcda80e4b126b0887d81c2e45d0a18f60e6fdf33e87179878ce51c4b",
+      "sizeBytes": 500
+    }
+  ],
+  "tags": [
+    "counter",
+    "numbers",
+    "tween",
+    "tabular"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "value-increment-trigger",
+      "visualModel": "tabular-numeral-spin",
+      "motionModel": "spring-digit-roll",
+      "layoutModel": "inline-numeral",
+      "semanticPurpose": "metric-counter"
+    }
+  },
+  "url": "https://openui.dev/r/counter-typography.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- In View Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

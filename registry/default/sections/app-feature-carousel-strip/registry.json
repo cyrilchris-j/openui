@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "app-feature-carousel-strip",
+  "type": "registry:section",
+  "title": "App Feature Carousel Strip",
+  "description": "A horizontally scrollable feature card carousel highlighting key workflow moments.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "app-feature-carousel-strip.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "carousel",
+    "strip",
+    "features",
+    "workflow",
+    "scroll"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "app-feature-carousel-strip-interaction",
+      "visualModel": "app-feature-carousel-strip-visual",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "app-feature-carousel-strip-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "rail",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

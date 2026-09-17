@@ -5,15 +5,34 @@
   "title": "Kinetic Ticker",
   "description": "A rotating word ticker that reserves the width of its longest phrase so the surrounding layout never reflows, and pauses when the tab is hidden.",
   "category": "text",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "kinetic-ticker.tsx", "type": "registry:text" }],
-  "tags": ["typography", "ticker", "loop"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-ticker.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "typography",
+    "ticker",
+    "loop"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["no-layout-shift", "reduced-motion-safe", "pauses-when-hidden"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "no-layout-shift",
+      "reduced-motion-safe",
+      "pauses-when-hidden"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "industrial",
       "macrostructure": "stack",
@@ -22,6 +41,14 @@
       "motionLanguage": "mechanical",
       "typographyStyle": "condensed",
       "colorStrategy": "duotone"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "pointer-pause-marquee",
+      "visualModel": "high-contrast-ticker-ribbon",
+      "motionModel": "constant-velocity-drift",
+      "layoutModel": "viewport-span-strip",
+      "semanticPurpose": "announcement-ticker"
     }
   }
 }

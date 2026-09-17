@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "baseline-slide-lines",
+  "type": "registry:text",
+  "title": "Baseline Slide Lines",
+  "description": "Multi-line reveal where each line is its own clipped rail and slides up from below the baseline with per-line delay; line breaks are authored, so the composition survives font substitution.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "use-in-view"
+  ],
+  "files": [
+    {
+      "path": "baseline-slide-lines.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "lines",
+    "slide",
+    "stagger",
+    "clip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "in-view-trigger",
+      "visualModel": "per-line-clipped-rails",
+      "motionModel": "baseline-rise-stagger",
+      "layoutModel": "stacked-rails",
+      "semanticPurpose": "heading-reveal"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

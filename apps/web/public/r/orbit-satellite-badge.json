@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "orbit-satellite-badge",
+  "type": "registry:motion",
+  "title": "Orbit Satellite Badge",
+  "description": "A small circular notification satellite executing continuous Keplerian orbit around an icon container.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "orbit-satellite-badge.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface OrbitSatelliteBadgeProps {\n  className?: string;\n}\n\nexport function OrbitSatelliteBadge({ className }: OrbitSatelliteBadgeProps) {\n  return (\n    <div className={cn(\"relative flex h-24 w-24 items-center justify-center rounded-xl border border-line bg-paper p-4\", className)}>\n      <div className=\"flex h-12 w-12 items-center justify-center rounded-full bg-ink text-paper font-mono text-sm font-bold shadow\">\n        UI\n      </div>\n      <div className=\"absolute inset-0 animate-spin\" style={{ animationDuration: \"3s\" }}>\n        <div className=\"absolute top-0 left-1/2 -ml-2 -mt-2 h-4 w-4 rounded-full bg-red-500 shadow-md\" />\n      </div>\n    </div>\n  );\n}\n\nexport default OrbitSatelliteBadge;\n",
+      "contentHash": "4898ade8404d88b39133927abbbcd86807f5460ab6446c5d4a6271c0c069b7f1",
+      "sizeBytes": 761
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { OrbitSatelliteBadge } from \"./orbit-satellite-badge\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <OrbitSatelliteBadge />\n    </div>\n  );\n}\n",
+      "contentHash": "b101c51ea023fd2bf4439171fe1b7ed3d69d0288d8bd86db31f2ea4c9d74e661",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "satellite",
+    "orbit",
+    "badge",
+    "notification",
+    "circle"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "indicators",
+    "fingerprint": {
+      "interactionModel": "keplerian-satellite-revolution",
+      "visualModel": "orbiting-status-dot",
+      "motionModel": "circular-orbital-path",
+      "layoutModel": "icon-centered-satellite",
+      "semanticPurpose": "continuous-satellite-beacon"
+    }
+  },
+  "url": "https://openui.dev/r/orbit-satellite-badge.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Keplerian Satellite Revolution: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

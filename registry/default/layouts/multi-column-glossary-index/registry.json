@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-column-glossary-index",
+  "type": "registry:layout",
+  "title": "Multi Column Glossary Index",
+  "description": "Three-column alphabetical glossary layout with letter jump anchors and definition cards.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-column-glossary-index.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "glossary",
+    "alphabetical",
+    "index",
+    "columns",
+    "definitions"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "glossary-alphabetical-scan",
+      "visualModel": "three-column-letter-matrix",
+      "motionModel": "none",
+      "layoutModel": "three-column-glossary-grid",
+      "semanticPurpose": "alphabetical-glossary-index"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "matrix-permission-table",
+  "type": "registry:component",
+  "title": "Matrix Permission Table",
+  "description": "Role-based access control grid with toggleable capability checkboxes across User, Manager, and Admin roles.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "matrix-permission-table.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "rbac",
+    "permissions",
+    "table",
+    "roles",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "matrix-checkbox-toggle",
+      "visualModel": "role-permission-grid",
+      "motionModel": "none",
+      "layoutModel": "tabular-matrix-view",
+      "semanticPurpose": "rbac-access-assignment"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

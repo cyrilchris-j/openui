@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "horizontal-strip-reel",
+  "type": "registry:layout",
+  "title": "Horizontal Strip Reel",
+  "description": "Horizontal snap-scrolling card strip with peek margins and smooth momentum scrolling.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "horizontal-strip-reel.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "reel",
+    "carousel",
+    "horizontal",
+    "snap",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "horizontal-momentum-scroll",
+      "visualModel": "snap-card-strip-reel",
+      "motionModel": "none",
+      "layoutModel": "horizontal-card-strip",
+      "semanticPurpose": "horizontal-media-gallery"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-mask-wipe",
+  "type": "registry:text",
+  "title": "Scroll Mask Wipe",
+  "description": "A headline wiped open by the page's own scroll position: an inset clip-path tied to viewport progress means the reader, not a timer, controls how much of the statement is visible.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-mask-wipe.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollMaskWipeProps {\n  children: string;\n  /** Scroll distance over which the wipe completes, in px. */\n  travel?: number;\n  className?: string;\n}\n\nexport function ScrollMaskWipe({ children, travel = 480, className }: ScrollMaskWipeProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const [progress, setProgress] = useState(0);\n\n  useEffect(() => {\n    const element = ref.current;\n    if (!element) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setProgress(1);\n      return;\n    }\n\n    let raf = 0;\n    const update = () => {\n      raf = 0;\n      const rect = element.getBoundingClientRect();\n      const viewportHeight = window.innerHeight;\n      // Map the element's travel through the viewport onto 0..1.\n      const start = viewportHeight * 0.9;\n      const end = viewportHeight * 0.25;\n      const raw = (start - rect.top) / (start - end);\n      setProgress(Math.max(0, Math.min(1, raw)));\n    };\n\n    const onScroll = () => {\n      if (!raf) raf = requestAnimationFrame(update);\n    };\n    update();\n    window.addEventListener(\"scroll\", onScroll, { passive: true });\n    window.addEventListener(\"resize\", onScroll);\n    return () => {\n      cancelAnimationFrame(raf);\n      window.removeEventListener(\"scroll\", onScroll);\n      window.removeEventListener(\"resize\", onScroll);\n    };\n  }, [travel]);\n\n  return (\n    <span\n      ref={ref}\n      className={cn(\"inline-block\", className)}\n      role=\"text\"\n      aria-label={children}\n      style={{\n        clipPath: `inset(0 ${(1 - progress) * 100}% 0 0)`,\n        transition: \"clip-path 60ms linear\",\n      }}\n      aria-hidden\n    >\n      {children}\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default ScrollMaskWipe;\n",
+      "contentHash": "46bb30634ec0820bbb5774d294d6692f62a4e537bce538bc4f1bdf100b4c4649",
+      "sizeBytes": 1875
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ScrollMaskWipe } from \"./scroll-mask-wipe\";\n\nexport default function Demo() {\n  return (\n    <div className=\"bg-paper\">\n      <div className=\"h-[40vh]\" />\n      <div className=\"flex min-h-[30vh] items-center justify-center p-10\">\n        <ScrollMaskWipe className=\"font-display text-step-4 text-ink\">\n          Read by scrolling\n        </ScrollMaskWipe>\n      </div>\n      <div className=\"h-[40vh]\" />\n    </div>\n  );\n}\n",
+      "contentHash": "2fb4d420eebff88ed298e6c5fa370b1a202c880d3fcd0a4462bcbb6849f70d6f",
+      "sizeBytes": 430
+    }
+  ],
+  "tags": [
+    "scroll-linked",
+    "mask",
+    "wipe",
+    "clip-path"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "reveal",
+    "fingerprint": {
+      "interactionModel": "scroll-progress",
+      "visualModel": "inset-clip",
+      "motionModel": "scroll-mapped-reveal",
+      "layoutModel": "full-bleed",
+      "semanticPurpose": "statement-reveal"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-mask-wipe.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Scroll Progress: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

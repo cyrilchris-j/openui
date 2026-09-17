@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "neon-flicker-sign",
+  "type": "registry:text",
+  "title": "Neon Flicker Sign",
+  "description": "A neon sign built from text-shadow stacks with a scripted flicker that buzzes specific letters off-beat — the failure pattern of real signage, applied per glyph, resting steady most of the time.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "neon-flicker-sign.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "neon",
+    "flicker",
+    "sign",
+    "glow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "per-glyph-script",
+      "visualModel": "shadow-glow-stack",
+      "motionModel": "offbeat-buzz",
+      "layoutModel": "inline",
+      "semanticPurpose": "signage"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

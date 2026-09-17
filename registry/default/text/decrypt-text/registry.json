@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "decrypt-text",
+  "type": "registry:text",
+  "title": "Decrypt Text",
+  "description": "Click-to-decrypt ciphertext: a button-styled text surface that re-runs a keyed glyph resolution on every activation, with run progress announced to screen readers and deterministic per-index glyphs.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "decrypt-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "decrypt",
+    "cipher",
+    "terminal",
+    "click-triggered"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "scramble",
+    "fingerprint": {
+      "interactionModel": "hover-scramble-resolve",
+      "visualModel": "matrix-glyph-substitution",
+      "motionModel": "frame-by-frame-settle",
+      "layoutModel": "inline-phrase",
+      "semanticPurpose": "cypherpunk-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

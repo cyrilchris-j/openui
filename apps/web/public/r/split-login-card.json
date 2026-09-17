@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-login-card",
+  "type": "registry:layout",
+  "title": "Split Login Card",
+  "description": "Contained authentication card with left branded illustration and right social/email form.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-login-card.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitLoginCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  graphic?: React.ReactNode;\n  form?: React.ReactNode;\n}\n\nexport function SplitLoginCard({ graphic, form, className, ...props }: SplitLoginCardProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 max-w-xl mx-auto rounded-3xl border border-line bg-paper overflow-hidden font-sans shadow-lg\", className)} {...props}>\n      <div className=\"p-6 bg-surface/50 border-b md:border-b-0 md:border-r border-line flex items-center justify-center\">{graphic}</div>\n      <div className=\"p-6 space-y-3\">{form}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "5f344a47d23a33a952403488b679da6fecb26b1f9b35f9d1f04ad10e5321a113",
+      "sizeBytes": 674
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitLoginCard } from \"./split-login-card\";\n\nexport default function SplitLoginCardDemo() {\n  return (\n    <SplitLoginCard\n      graphic={<div className=\"font-mono text-xs font-bold text-accent\">OpenUI Core</div>}\n      form={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink mb-1\">Sign In</h3>\n          <input type=\"text\" placeholder=\"Username\" className=\"w-full px-3 py-1.5 rounded border border-line text-xs bg-paper mb-2\" />\n          <button type=\"button\" className=\"w-full py-1.5 rounded bg-accent text-white font-mono text-xs\">Enter</button>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "90a104b0960b8580dd7c2f888a64448a111679cd8a75d35a514aa43ceec69c34",
+      "sizeBytes": 628
+    }
+  ],
+  "tags": [
+    "login",
+    "auth",
+    "card",
+    "split",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "contained-auth-split",
+      "visualModel": "compact-split-auth-card",
+      "motionModel": "none",
+      "layoutModel": "contained-two-column-card",
+      "semanticPurpose": "login-card-container"
+    }
+  },
+  "url": "https://openui.dev/r/split-login-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Contained Auth Split: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

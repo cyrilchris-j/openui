@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "metric-kpi-scoreboard",
+  "type": "registry:layout",
+  "title": "Metric KPI Scoreboard",
+  "description": "High-impact executive scoreboard banner displaying primary business KPIs across a single horizontal strip.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "metric-kpi-scoreboard.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "kpi",
+    "scoreboard",
+    "metrics",
+    "executive",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "executive-scoreboard-scan",
+      "visualModel": "single-strip-kpi-scoreboard",
+      "motionModel": "none",
+      "layoutModel": "horizontal-metric-strip",
+      "semanticPurpose": "executive-telemetry-banner"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

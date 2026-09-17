@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dock-navigation",
+  "type": "registry:component",
+  "title": "Dock Navigation",
+  "description": "A macOS-style navigation dock that magnifies icons by pointer distance with a falloff curve, magnification driven by one rAF-throttled pointermove and disabled on touch and reduced motion.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dock-navigation.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useRef, useState, useCallback, useEffect } from \"react\";\nimport { Home, Search, Bell, User, Settings } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DockItem {\n  label: string;\n  href: string;\n  icon: React.ComponentType<{ className?: string }>;\n}\n\nexport interface DockNavigationProps {\n  items?: DockItem[];\n  /** Max scale at zero distance. */\n  magnification?: number;\n  /** Distance in px over which the effect falls off. */\n  range?: number;\n  className?: string;\n}\n\nconst DEFAULT_ITEMS: DockItem[] = [\n  { label: \"Home\", href: \"#home\", icon: Home },\n  { label: \"Search\", href: \"#search\", icon: Search },\n  { label: \"Notifications\", href: \"#bell\", icon: Bell },\n  { label: \"Profile\", href: \"#user\", icon: User },\n  { label: \"Settings\", href: \"#settings\", icon: Settings },\n];\n\nexport function DockNavigation({\n  items = DEFAULT_ITEMS,\n  magnification = 1.8,\n  range = 90,\n  className,\n}: DockNavigationProps) {\n  const dockRef = useRef<HTMLDivElement>(null);\n  const frame = useRef<number | null>(null);\n  const [pointerX, setPointerX] = useState<number | null>(null);\n  const [enabled, setEnabled] = useState(false);\n\n  useEffect(() => {\n    if (typeof window === \"undefined\" || !window.matchMedia) return;\n    const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    const coarse = window.matchMedia(\"(pointer: coarse)\");\n    const update = () => setEnabled(!reduced.matches && !coarse.matches);\n    update();\n    reduced.addEventListener(\"change\", update);\n    coarse.addEventListener(\"change\", update);\n    return () => {\n      reduced.removeEventListener(\"change\", update);\n      coarse.removeEventListener(\"change\", update);\n    };\n  }, []);\n\n  useEffect(\n    () => () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    },\n    [],\n  );\n\n  const handleMove = useCallback(\n    (event: React.PointerEvent<HTMLDivElement>) => {\n      if (!enabled) return;\n      const x = event.clientX;\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n      frame.current = requestAnimationFrame(() => setPointerX(x));\n    },\n    [enabled],\n  );\n\n  const scaleFor = (element: HTMLElement | null): number => {\n    if (!enabled || pointerX === null || !element) return 1;\n    const rect = element.getBoundingClientRect();\n    const center = rect.left + rect.width / 2;\n    const distance = Math.abs(pointerX - center);\n    const falloff = Math.max(0, 1 - distance / range);\n    return 1 + (magnification - 1) * falloff * falloff;\n  };\n  void scaleFor;\n\n  return (\n    <nav\n      aria-label=\"Dock\"\n      className={cn(\n        \"inline-flex items-end gap-2 rounded-pill border border-line bg-paper/90 px-3 pb-2 pt-3 backdrop-blur\",\n        className,\n      )}\n      ref={dockRef}\n      onPointerMove={handleMove}\n      onPointerLeave={() => setPointerX(null)}\n    >\n      {items.map((item) => (\n        <a\n          key={item.label}\n          href={item.href}\n          aria-label={item.label}\n          data-dock-item\n          className={cn(\n            \"flex h-11 w-11 items-center justify-center rounded-lg border border-transparent bg-ink/[0.04] text-ink\",\n            \"transition-[transform,border-color] duration-150 ease-out origin-bottom motion-reduce:transition-none\",\n            \"hover:border-line focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide\",\n          )}\n          ref={(element) => {\n            if (element && pointerX !== null && enabled) {\n              const scale = scaleFor(element);\n              element.style.transform = `scale(${scale})`;\n            } else if (element) {\n              element.style.transform = \"\";\n            }\n          }}\n        >\n          <item.icon className=\"h-5 w-5\" aria-hidden />\n        </a>\n      ))}\n    </nav>\n  );\n}\n\nexport default DockNavigation;\n",
+      "contentHash": "e52bfcf380ea4bea8728d5121d622ec292d34bd7e367363e648fc044aee17125",
+      "sizeBytes": 3852
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { DockNavigation } from \"./dock-navigation\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-end justify-center bg-paper p-10 pb-16\">\n      <DockNavigation />\n    </div>\n  );\n}\n",
+      "contentHash": "2bd12022aeff0b3bbbb21013331a865c35163a24e24889646336ef70252a7010",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "navigation",
+    "dock",
+    "pointer",
+    "magnify"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "pointer-proximity-scale",
+      "visualModel": "icon-rail",
+      "motionModel": "distance-falloff",
+      "layoutModel": "bottom-dock",
+      "semanticPurpose": "primary-navigation"
+    }
+  },
+  "url": "https://openui.dev/r/dock-navigation.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Compact\nShape: Soft\nMotion: Expressive\nTypography: Grotesk\nColor: Duotone\n\n## Rules\n\n- Pointer Proximity Scale: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

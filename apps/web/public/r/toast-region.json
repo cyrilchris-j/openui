@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "overlays",
+    "fingerprint": {
+      "interactionModel": "timed-dismiss-queue",
+      "visualModel": "corner-stack-surface",
+      "motionModel": "spring-slide-entrance",
+      "layoutModel": "floating-fixed-region",
+      "semanticPurpose": "action-notification"
     }
   },
   "url": "https://openui.dev/r/toast-region.json",

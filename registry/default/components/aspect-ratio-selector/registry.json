@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "aspect-ratio-selector",
+  "type": "registry:component",
+  "title": "Aspect Ratio Selector",
+  "description": "Aspect ratio buttons (16:9, 4:3, 1:1, 9:16) with dynamic proportional preview frame.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "aspect-ratio-selector.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "aspect-ratio",
+    "media",
+    "controls",
+    "frame",
+    "ratio"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "ratio-button-selection",
+      "visualModel": "proportional-bounding-box",
+      "motionModel": "none",
+      "layoutModel": "frame-with-ratio-strip",
+      "semanticPurpose": "canvas-ratio-picker"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

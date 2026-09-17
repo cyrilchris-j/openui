@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-swatch-picker",
+  "type": "registry:component",
+  "title": "Color Swatch Picker",
+  "description": "A compact matrix palette picker allowing color tone selection with checkmark indicators.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-swatch-picker.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "color",
+    "picker",
+    "palette",
+    "swatches",
+    "tokens"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "swatch-selection-click",
+      "visualModel": "tessellated-color-chips",
+      "motionModel": "none",
+      "layoutModel": "grid-swatch-array",
+      "semanticPurpose": "theme-color-selector"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

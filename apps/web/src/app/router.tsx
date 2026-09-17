@@ -87,6 +87,7 @@ const AdminUsersPage = React.lazy(() =>
 const AdminAnalyticsPage = React.lazy(() =>
   import("../routes/admin.js").then((module) => ({ default: module.AdminAnalyticsPage })),
 );
+const CatalogueAdminPage = React.lazy(() => import("../routes/catalogue-admin.js"));
 
 /** Every resource category route, generated from the single taxonomy. */
 const categoryRoutes: RouteObject[] = CATALOGUE_CATEGORIES.map((category) => ({
@@ -156,6 +157,10 @@ export const routes: RouteObject[] = [
         element: <AdminLayout />,
         children: [
           { index: true, element: <AdminOverviewPage /> },
+          // The catalogue dashboard reads published artifacts only — no
+          // database, no PII — so unlike the moderation pages it is also
+          // useful unauthenticated and sits outside the role gate.
+          { path: "catalogue", element: <CatalogueAdminPage /> },
           { path: "submissions", element: <AdminSubmissionsPage /> },
           { path: "resources", element: <AdminResourcesPage /> },
           { path: "reports", element: <AdminReportsPage /> },

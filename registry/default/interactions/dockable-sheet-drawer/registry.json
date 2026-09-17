@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dockable-sheet-drawer",
+  "type": "registry:interaction",
+  "title": "Dockable Sheet Drawer",
+  "description": "An edge sheet that snaps into docked, peeked, and expanded states via interactive vertical flick dragging.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dockable-sheet-drawer.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "sheet",
+    "drawer",
+    "dockable",
+    "gesture",
+    "mobile"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "multi-height-sheet-snap",
+      "visualModel": "docked-bottom-drawer",
+      "motionModel": "discrete-height-settle",
+      "layoutModel": "docked-viewport-sheet",
+      "semanticPurpose": "docked-inspector-sheet"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cybernetic-hex-shield",
+  "type": "registry:background",
+  "title": "Cybernetic Hex Shield",
+  "description": "Futuristic energy deflector force field shield with glowing cyan hexagonal barrier tiles.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cybernetic-hex-shield.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "shield",
+    "scifi",
+    "forcefield",
+    "hex",
+    "cyber"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-deflector-shield",
+      "visualModel": "hexagonal-energy-barrier",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "energy-shield-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

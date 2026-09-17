@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-tier-footer-matrix",
+  "type": "registry:layout",
+  "title": "Two Tier Footer Matrix",
+  "description": "Enterprise site footer with comprehensive multi-column link directory and bottom copyright/status bar.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-tier-footer-matrix.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "footer",
+    "sitemap",
+    "links",
+    "matrix",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "sitemap-link-navigation",
+      "visualModel": "two-tier-link-matrix-footer",
+      "motionModel": "none",
+      "layoutModel": "columnar-footer-matrix",
+      "semanticPurpose": "global-sitemap-footer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

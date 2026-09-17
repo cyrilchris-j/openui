@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "reply-tree-thread",
+  "type": "registry:text",
+  "title": "Reply Tree Thread",
+  "description": "Discussion text structured as a tree: replies indent along ruled connector lines that draw in on expand, collapsed branches show reply counts, and the whole thread is keyboard-navigable with arrow keys.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "reply-tree-thread.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "thread",
+    "tree",
+    "discussion",
+    "keyboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "expand-collapse-tree",
+      "visualModel": "ruled-branch-indent",
+      "motionModel": "connector-draw",
+      "layoutModel": "tree",
+      "semanticPurpose": "conversation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

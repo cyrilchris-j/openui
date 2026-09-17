@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "progress-circle-ring",
+  "type": "registry:component",
+  "title": "Progress Circle Ring",
+  "description": "An SVG circular percentage progress meter with stroke dash-offset visualization and centered value readout.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "progress-circle-ring.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ProgressCircleRingProps {\n  percent?: number;\n  className?: string;\n}\n\nexport function ProgressCircleRing({ percent = 82, className }: ProgressCircleRingProps) {\n  const radius = 40;\n  const circ = 2 * Math.PI * radius;\n  const offset = circ - (percent / 100) * circ;\n\n  return (\n    <div className={cn(\"relative flex h-28 w-28 items-center justify-center\", className)}>\n      <svg className=\"h-full w-full rotate-[-90deg]\">\n        <circle cx=\"56\" cy=\"56\" r={radius} stroke=\"currentColor\" strokeWidth=\"8\" fill=\"transparent\" className=\"text-line\" />\n        <circle\n          cx=\"56\"\n          cy=\"56\"\n          r={radius}\n          stroke=\"currentColor\"\n          strokeWidth=\"8\"\n          fill=\"transparent\"\n          strokeDasharray={circ}\n          strokeDashoffset={offset}\n          strokeLinecap=\"round\"\n          className=\"text-ink\"\n        />\n      </svg>\n      <span className=\"absolute font-mono text-sm font-bold text-ink\">{percent}%</span>\n    </div>\n  );\n}\n\nexport default ProgressCircleRing;\n",
+      "contentHash": "6831a326330f0ced20222c49365e56815fd44ae828f332da84864c41f73ec76b",
+      "sizeBytes": 1072
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ProgressCircleRing } from \"./progress-circle-ring\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ProgressCircleRing percent={82} />\n    </div>\n  );\n}\n",
+      "contentHash": "4cda137df46e632b0d06d88ff77eb055ad2e22a74d2469ce7b0c2eed93e0707d",
+      "sizeBytes": 248
+    }
+  ],
+  "tags": [
+    "progress",
+    "circle",
+    "svg",
+    "ring",
+    "percentage"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "static-circle-gauge",
+      "visualModel": "circumferential-ring-meter",
+      "motionModel": "none",
+      "layoutModel": "centered-circular-box",
+      "semanticPurpose": "circular-capacity-gauge"
+    }
+  },
+  "url": "https://openui.dev/r/progress-circle-ring.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Static Circle Gauge: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

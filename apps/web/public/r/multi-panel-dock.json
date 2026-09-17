@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-panel-dock",
+  "type": "registry:layout",
+  "title": "Multi Panel Dock",
+  "description": "IDE layout with main coding editor above and collapsible developer console drawer docked below.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-panel-dock.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiPanelDockProps extends React.HTMLAttributes<HTMLDivElement> {\n  editor?: React.ReactNode;\n  dock?: React.ReactNode;\n}\n\nexport function MultiPanelDock({ editor, dock, className, ...props }: MultiPanelDockProps) {\n  return (\n    <div className={cn(\"h-80 flex flex-col w-full border border-line rounded-xl overflow-hidden font-mono text-xs\", className)} {...props}>\n      <div className=\"flex-1 p-4 bg-paper overflow-y-auto\">{editor}</div>\n      <div className=\"h-28 border-t border-line p-3 bg-surface/40 shrink-0 overflow-y-auto\">{dock}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "3aec60f16ab48c1cb2aa6f913faaf1216e9ef5a7a6f46004d1d25de1868e2e7d",
+      "sizeBytes": 629
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MultiPanelDock } from \"./multi-panel-dock\";\n\nexport default function MultiPanelDockDemo() {\n  return (\n    <MultiPanelDock\n      editor={<div>// Active file: index.tsx</div>}\n      dock={<div>Output: 0 errors, ready in 12ms</div>}\n    />\n  );\n}\n",
+      "contentHash": "7338aee9940fb86dc7dbb4795e4b142ac24cbbe1ba3ed84ae5822ff4e46c43c2",
+      "sizeBytes": 269
+    }
+  ],
+  "tags": [
+    "dock",
+    "console",
+    "terminal",
+    "ide",
+    "panels"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "dockable-console-drawer",
+      "visualModel": "editor-with-bottom-dock",
+      "motionModel": "none",
+      "layoutModel": "vertical-dock-split",
+      "semanticPurpose": "docked-developer-console"
+    }
+  },
+  "url": "https://openui.dev/r/multi-panel-dock.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Dockable Console Drawer: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

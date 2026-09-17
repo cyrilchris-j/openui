@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "morphing-hamburger",
+  "type": "registry:motion",
+  "title": "Morphing Hamburger",
+  "description": "The three-bar icon that becomes an X through genuine morphing: bars are separate elements whose rotations and translations interpolate through a shared keyframe timeline, so the middle bar thins and fades while the outer bars cross precisely.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "morphing-hamburger.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MorphingHamburgerProps {\n  open?: boolean;\n  onToggle?: (open: boolean) => void;\n  className?: string;\n}\n\nexport function MorphingHamburger({ open: controlled, onToggle, className }: MorphingHamburgerProps) {\n  const [uncontrolled, setUncontrolled] = useState(false);\n  const open = controlled ?? uncontrolled;\n  const toggle = () => {\n    const next = !open;\n    setUncontrolled(next);\n    onToggle?.(next);\n  };\n\n  const bar = \"absolute left-0 h-0.5 w-6 rounded-full bg-ink transition-all duration-300\";\n\n  return (\n    <button\n      type=\"button\"\n      onClick={toggle}\n      aria-expanded={open}\n      aria-label={open ? \"Close menu\" : \"Open menu\"}\n      className={cn(\"relative h-8 w-8 cursor-pointer border-0 bg-transparent p-0\", className)}\n    >\n      <span\n        aria-hidden\n        className={bar}\n        style={{ top: open ? \"calc(50% - 1px)\" : \"8px\", transform: open ? \"rotate(45deg)\" : \"rotate(0)\" }}\n      />\n      <span\n        aria-hidden\n        className={bar}\n        style={{\n          top: \"calc(50% - 1px)\",\n          opacity: open ? 0 : 1,\n          transform: open ? \"scaleX(0.2)\" : \"scaleX(1)\",\n        }}\n      />\n      <span\n        aria-hidden\n        className={bar}\n        style={{ bottom: open ? \"calc(50% - 1px)\" : \"8px\", transform: open ? \"rotate(-45deg)\" : \"rotate(0)\" }}\n      />\n    </button>\n  );\n}\n\nexport default MorphingHamburger;\n",
+      "contentHash": "ac9f9f8cae940fec4a613e08d2b761099bf2f2f7cb1093cea3d76ffe12457933",
+      "sizeBytes": 1473
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MorphingHamburger } from \"./morphing-hamburger\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <MorphingHamburger />\n    </div>\n  );\n}\n",
+      "contentHash": "0a62511ccd75cc522d8fe70d49cec44dbdff9a35c5639ae47abc12b747c63716",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "hamburger",
+    "icon",
+    "morph",
+    "menu"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "page",
+    "fingerprint": {
+      "interactionModel": "click-toggle",
+      "visualModel": "three-bar-cross-morph",
+      "motionModel": "keyframe-interpolation",
+      "layoutModel": "inline",
+      "semanticPurpose": "menu-toggle"
+    }
+  },
+  "url": "https://openui.dev/r/morphing-hamburger.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Click Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

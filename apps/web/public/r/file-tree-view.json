@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "file-tree-view",
+  "type": "registry:component",
+  "title": "File Tree View",
+  "description": "A directory tree explorer displaying nested folder structures, chevron disclosure toggles, and file icons.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "file-tree-view.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FileTreeViewProps {\n  className?: string;\n}\n\nexport function FileTreeView({ className }: FileTreeViewProps) {\n  const [open, setOpen] = useState(true);\n\n  return (\n    <div className={cn(\"w-full max-w-xs rounded-xl border border-line bg-paper p-4 font-mono text-xs shadow-sm\", className)}>\n      <span className=\"text-ink/60 uppercase mb-3 block text-[10px]\">WORKSPACE TREE</span>\n      <div className=\"space-y-1\">\n        <div\n          onClick={() => setOpen((o) => !o)}\n          className=\"flex items-center gap-1.5 cursor-pointer text-ink font-bold hover:text-black\"\n        >\n          <span>{open ? \"▾\" : \"▸\"}</span>\n          <span>📁 packages/</span>\n        </div>\n        {open && (\n          <div className=\"ml-4 border-l border-line pl-3 space-y-1 text-ink/70\">\n            <div>📄 registry-schema/</div>\n            <div>📄 search/</div>\n            <div>📄 types/</div>\n          </div>\n        )}\n        <div className=\"pl-4 text-ink/70\">📄 package.json</div>\n      </div>\n    </div>\n  );\n}\n\nexport default FileTreeView;\n",
+      "contentHash": "8334b5f21bf7a7ecd76c11294f7479050cfd602fdeb0765a1d019a91ec8a8e65",
+      "sizeBytes": 1150
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { FileTreeView } from \"./file-tree-view\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <FileTreeView />\n    </div>\n  );\n}\n",
+      "contentHash": "33861ecc62f7da14e88454437e6925947cdafafaec442baf3704aa8e1552f639",
+      "sizeBytes": 217
+    }
+  ],
+  "tags": [
+    "tree",
+    "files",
+    "directory",
+    "navigation",
+    "explorer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "tree-folder-disclosure",
+      "visualModel": "indented-filesystem-tree",
+      "motionModel": "none",
+      "layoutModel": "hierarchical-rail-list",
+      "semanticPurpose": "filesystem-tree-viewer"
+    }
+  },
+  "url": "https://openui.dev/r/file-tree-view.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Tree Folder Disclosure: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

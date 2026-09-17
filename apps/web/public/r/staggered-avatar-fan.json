@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-avatar-fan",
+  "type": "registry:motion",
+  "title": "Staggered Avatar Fan",
+  "description": "A compact deck of overlapping user avatars that fans out radially on hover with proportional rotational offsets.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-avatar-fan.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StaggeredAvatarFanProps {\n  className?: string;\n}\n\nexport function StaggeredAvatarFan({ className }: StaggeredAvatarFanProps) {\n  const [fanned, setFanned] = useState(false);\n  const avatars = [\"Alex\", \"Elena\", \"Marcus\", \"Sora\", \"Devon\"];\n\n  return (\n    <div\n      onPointerEnter={() => setFanned(true)}\n      onPointerLeave={() => setFanned(false)}\n      className={cn(\"flex h-44 w-full max-w-sm items-center justify-center rounded-xl border border-line bg-paper p-6\", className)}\n    >\n      <div className=\"relative flex items-center justify-center\">\n        {avatars.map((name, idx) => {\n          const mid = (avatars.length - 1) / 2;\n          const offset = idx - mid;\n          return (\n            <div\n              key={name}\n              className=\"absolute flex h-12 w-12 items-center justify-center rounded-full border-2 border-paper bg-ink text-xs font-bold text-paper shadow-md transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]\"\n              style={{\n                transform: fanned\n                  ? `translateX(${offset * 36}px) rotate(${offset * 8}deg)`\n                  : `translateX(${offset * 14}px)`,\n                zIndex: idx,\n              }}\n            >\n              {name[0]}\n            </div>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n\nexport default StaggeredAvatarFan;\n",
+      "contentHash": "2cf718d7cb623a74faa2d01e6d115d966d3f5c50e5ad196520618a5ef8f31dac",
+      "sizeBytes": 1447
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { StaggeredAvatarFan } from \"./staggered-avatar-fan\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <StaggeredAvatarFan />\n    </div>\n  );\n}\n",
+      "contentHash": "8d251f3f275e1e869e6a479f4d69a191480ce7281923796a178d5410c004c83c",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "avatars",
+    "fan",
+    "deck",
+    "radial",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "hover-radial-spread",
+      "visualModel": "fanned-playing-card-deck",
+      "motionModel": "angular-stagger-fanning",
+      "layoutModel": "compact-avatar-cluster",
+      "semanticPurpose": "collaborator-fanout-deck"
+    }
+  },
+  "url": "https://openui.dev/r/staggered-avatar-fan.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Hover Radial Spread: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

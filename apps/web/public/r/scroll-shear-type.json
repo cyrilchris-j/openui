@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-shear-type",
+  "type": "registry:text",
+  "title": "Scroll Shear Type",
+  "description": "Headline that skews proportionally to scroll velocity and springs back to true when scrolling stops — the letters lean into the motion like pages fanned by wind, driven by a critically damped spring.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-shear-type.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollShearTypeProps {\n  children: string;\n  /** Max skew in degrees at full velocity. */\n  maxShear?: number;\n  className?: string;\n}\n\nexport function ScrollShearType({ children, maxShear = 8, className }: ScrollShearTypeProps) {\n  const ref = useRef<HTMLHeadingElement>(null);\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    let lastY = window.scrollY;\n    let lastT = performance.now();\n    let velocity = 0;\n    let shear = 0;\n    let frame: number | null = null;\n\n    const tick = () => {\n      const now = performance.now();\n      const dt = Math.max(1, now - lastT);\n      const dy = window.scrollY - lastY;\n      lastY = window.scrollY;\n      lastT = now;\n\n      const instant = (dy / dt) * 16; // px per frame-equivalent\n      velocity += (instant - velocity) * 0.2;\n\n      const target = Math.max(-maxShear, Math.min(maxShear, velocity * 0.6));\n      shear += (target - shear) * 0.25;\n\n      const node = ref.current;\n      if (node) node.style.transform = `skewY(${shear.toFixed(3)}deg)`;\n\n      if (Math.abs(shear) > 0.01 || Math.abs(velocity) > 0.05) {\n        frame = requestAnimationFrame(tick);\n      } else {\n        frame = null;\n        if (node) node.style.transform = \"\";\n      }\n    };\n\n    const kick = () => {\n      if (frame === null) frame = requestAnimationFrame(tick);\n    };\n\n    window.addEventListener(\"scroll\", kick, { passive: true });\n    return () => {\n      window.removeEventListener(\"scroll\", kick);\n      if (frame !== null) cancelAnimationFrame(frame);\n    };\n  }, [maxShear]);\n\n  return (\n    <h2 ref={ref} className={cn(\"font-display will-change-transform\", className)} aria-label={children}>\n      <span aria-hidden>{children}</span>\n    </h2>\n  );\n}\n\nexport default ScrollShearType;\n",
+      "contentHash": "70a6c81f92531247e254576ba9554ec4e490e92c00b61c9227474eedb682551e",
+      "sizeBytes": 1893
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ScrollShearType } from \"./scroll-shear-type\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[64vh] bg-paper p-10\">\n      <ScrollShearType className=\"text-step-5 text-ink\">Lean into it</ScrollShearType>\n      <p className=\"mt-6 max-w-prose text-ink/70\">\n        Scroll the page — the headline shears with your velocity and settles back upright.\n      </p>\n      <div className=\"h-[40vh]\" />\n    </div>\n  );\n}\n",
+      "contentHash": "d68938c4adf136e731afe5077c0d58ad95a2627bf7d01248d294a1da80d9b36e",
+      "sizeBytes": 444
+    }
+  ],
+  "tags": [
+    "scroll",
+    "velocity",
+    "skew",
+    "shear"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "skewed-block",
+      "motionModel": "damped-spring-return",
+      "layoutModel": "block",
+      "semanticPurpose": "kinetic-heading"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-shear-type.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Rail\nDensity: Airy\nShape: Sharp\nMotion: Kinetic\nTypography: Variable Poster\nColor: Monochrome\n\n## Rules\n\n- Scroll Velocity Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

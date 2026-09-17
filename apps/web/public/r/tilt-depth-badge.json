@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tilt-depth-badge",
+  "type": "registry:interaction",
+  "title": "Tilt Depth Badge",
+  "description": "A compact badge chip computing 3D tilt angles on hover with specular glass highlight reflections.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tilt-depth-badge.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TiltDepthBadgeProps {\n  label?: string;\n  className?: string;\n}\n\nexport function TiltDepthBadge({ label = \"VERIFIED SYSTEM_V1\", className }: TiltDepthBadgeProps) {\n  const [rot, setRot] = useState({ x: 0, y: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = (e.clientX - rect.left) / rect.width - 0.5;\n    const y = (e.clientY - rect.top) / rect.height - 0.5;\n    setRot({ x: x * 24, y: -y * 24 });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      onPointerLeave={() => setRot({ x: 0, y: 0 })}\n      style={{ perspective: 400 }}\n      className={cn(\"inline-block cursor-pointer select-none\", className)}\n    >\n      <div\n        style={{\n          transform: `rotateX(${rot.y}deg) rotateY(${rot.x}deg)`,\n          transformStyle: \"preserve-3d\",\n        }}\n        className=\"rounded-full border border-line bg-ink px-5 py-2 font-mono text-xs font-bold text-paper shadow-md transition-transform duration-75\"\n      >\n        ✦ {label}\n      </div>\n    </div>\n  );\n}\n\nexport default TiltDepthBadge;\n",
+      "contentHash": "c64a4c766174dda183840a602143d45f3a59ca5474d619a72541fec5f8d4b086",
+      "sizeBytes": 1221
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { TiltDepthBadge } from \"./tilt-depth-badge\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <TiltDepthBadge />\n    </div>\n  );\n}\n",
+      "contentHash": "e17730531f2909d123ab65ad8c7fee1e1d474ec421c3210989e6975d0810cb76",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "badge",
+    "tilt",
+    "3d",
+    "chip",
+    "specular"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "micro-tilt-tracking",
+      "visualModel": "chamfered-glass-chip",
+      "motionModel": "damped-perspective-recline",
+      "layoutModel": "centered-chip-stage",
+      "semanticPurpose": "verified-credential-chip"
+    }
+  },
+  "url": "https://openui.dev/r/tilt-depth-badge.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Micro Tilt Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

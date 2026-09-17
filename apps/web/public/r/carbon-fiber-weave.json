@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "carbon-fiber-weave",
+  "type": "registry:background",
+  "title": "Carbon Fiber Weave",
+  "description": "Automotive high-performance 2x2 twill composite carbon fiber checkered weave.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "carbon-fiber-weave.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CarbonFiberWeaveProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CarbonFiberWeave({ className, children, ...props }: CarbonFiberWeaveProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-40 -z-10\"\n        style={{\n          background: `\n            radial-gradient(black 15%, transparent 16%) 0 0,\n            radial-gradient(black 15%, transparent 16%) 8px 8px,\n            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,\n            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px\n          `,\n          backgroundColor: \"#1e2024\",\n          backgroundSize: \"16px 16px\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "385b183bca2fc80de66c2c5b76dd4c90bfd8ea1cee6710e341af7f9e1926e409",
+      "sizeBytes": 949
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CarbonFiberWeave } from \"./carbon-fiber-weave\";\n\nexport default function CarbonFiberWeaveDemo() {\n  return (\n    <CarbonFiberWeave className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-white\">Carbon Twill Weave</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Structural motorsport carbon fiber twill.</p>\n      </div>\n    </CarbonFiberWeave>\n  );\n}\n",
+      "contentHash": "0bb98f47e16847408e1168618b81582bbc0c2bb33408f6d3ac04c08bec074499",
+      "sizeBytes": 578
+    }
+  ],
+  "tags": [
+    "carbon",
+    "fiber",
+    "automotive",
+    "weave",
+    "composite"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-carbon-twill",
+      "visualModel": "twill-woven-carbon",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "composite-material-texture"
+    }
+  },
+  "url": "https://openui.dev/r/carbon-fiber-weave.json",
+  "designRules": "# Design System\n\nGenre: Industrial\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Condensed\nColor: Monochrome\n\n## Rules\n\n- Passive Carbon Twill: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

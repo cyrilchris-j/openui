@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "staggered-glyph-cascade",
+  "type": "registry:motion",
+  "title": "Staggered Glyph Cascade",
+  "description": "A dramatic entrance reveal splitting strings into glyphs that drop down like raindrops with slight pseudo-random angle jitter and spring settle.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "staggered-glyph-cascade.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface StaggeredGlyphCascadeProps {\n  text?: string;\n  staggerMs?: number;\n  className?: string;\n}\n\nexport function StaggeredGlyphCascade({\n  text = \"KINETIC SYSTEM ARCHITECTURE\",\n  staggerMs = 38,\n  className,\n}: StaggeredGlyphCascadeProps) {\n  const [active, setActive] = useState(false);\n\n  useEffect(() => {\n    setActive(false);\n    const timeout = setTimeout(() => setActive(true), 50);\n    return () => clearTimeout(timeout);\n  }, [text]);\n\n  const glyphs = Array.from(text);\n\n  return (\n    <div className={cn(\"overflow-hidden p-4\", className)}>\n      <div className=\"flex flex-wrap items-center justify-center font-mono text-2xl font-bold tracking-tight text-ink md:text-3xl\">\n        {glyphs.map((char, index) => {\n          const delay = index * staggerMs;\n          const wobble = (index % 5 - 2) * 4;\n          return (\n            <span\n              key={index}\n              style={{\n                transitionDelay: `${delay}ms`,\n                transform: active ? \"translateY(0) rotate(0deg)\" : `translateY(-120%) rotate(${wobble}deg)`,\n                opacity: active ? 1 : 0,\n              }}\n              className=\"inline-block whitespace-pre transition-all duration-500 ease-out\"\n            >\n              {char}\n            </span>\n          );\n        })}\n      </div>\n      <div className=\"mt-6 flex justify-center\">\n        <button\n          type=\"button\"\n          onClick={() => {\n            setActive(false);\n            setTimeout(() => setActive(true), 120);\n          }}\n          className=\"rounded border border-line px-3 py-1 font-mono text-xs uppercase tracking-wider text-graphite hover:border-ink hover:text-ink\"\n        >\n          Replay Cascade\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "7939d73f81f705283c845b3a7703251d0586f41db80198d7833292fc6b342734",
+      "sizeBytes": 1843
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { StaggeredGlyphCascade } from \"./staggered-glyph-cascade\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <StaggeredGlyphCascade text=\"METRONOME KINETICS\" />\n    </div>\n  );\n}\n",
+      "contentHash": "b08a5d340f49582583bd9dd909593682212a261efada7b42c783961e701aca64",
+      "sizeBytes": 270
+    }
+  ],
+  "tags": [
+    "typography",
+    "cascade",
+    "stagger",
+    "spring",
+    "drop"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "viewport-entrance-cycle",
+      "visualModel": "character-split-raindrop",
+      "motionModel": "staggered-spring-delay",
+      "layoutModel": "headline-flow",
+      "semanticPurpose": "hero-statement-entrance"
+    }
+  },
+  "url": "https://openui.dev/r/staggered-glyph-cascade.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Variable Poster\nColor: Monochrome\n\n## Rules\n\n- Viewport Entrance Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

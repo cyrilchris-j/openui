@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "reorderable-tab-strip",
+  "type": "registry:interaction",
+  "title": "Reorderable Tab Strip",
+  "description": "A browser-style tab bar allowing tabs to be dragged horizontally to swap places with animated displacement.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "reorderable-tab-strip.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "reorderable",
+    "drag",
+    "browser",
+    "strip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "horizontal-tab-reorder",
+      "visualModel": "browser-tab-strip",
+      "motionModel": "lateral-tab-displacement",
+      "layoutModel": "horizontal-tab-rail",
+      "semanticPurpose": "reorderable-browser-tabs"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

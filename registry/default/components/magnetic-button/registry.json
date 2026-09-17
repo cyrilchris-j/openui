@@ -5,20 +5,34 @@
   "title": "Magnetic Button",
   "description": "A button whose label and edge follow the pointer inside a bounded magnet field. Keyboard, touch and reduced-motion behaviour stay identical to a plain button.",
   "category": "components",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
   "files": [
     {
       "path": "magnetic-button.tsx",
       "type": "registry:component"
     }
   ],
-  "tags": ["pointer", "button", "physics"],
+  "tags": [
+    "pointer",
+    "button",
+    "physics"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "starter",
-    "features": ["keyboard-accessible", "reduced-motion-safe", "touch-safe"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "touch-safe"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "editorial",
       "macrostructure": "asymmetric",
@@ -27,6 +41,14 @@
       "motionLanguage": "expressive",
       "typographyStyle": "grotesk",
       "colorStrategy": "accent-only"
+    },
+    "subcategory": "actions",
+    "fingerprint": {
+      "interactionModel": "magnetic-pointer-attraction",
+      "visualModel": "editorial-outline",
+      "motionModel": "spring-follow",
+      "layoutModel": "inline",
+      "semanticPurpose": "primary-cta"
     }
   }
 }

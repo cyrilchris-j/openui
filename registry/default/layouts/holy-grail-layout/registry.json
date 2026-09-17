@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "holy-grail-layout",
+  "type": "registry:layout",
+  "title": "Holy Grail Layout",
+  "description": "Classic five-region web shell with header, persistent navigation sidebar, main content, contextual aside, and footer.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "holy-grail-layout.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "layout",
+    "holygrail",
+    "shell",
+    "sidebar",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "responsive-five-box-shell",
+      "visualModel": "holy-grail-wireframe",
+      "motionModel": "none",
+      "layoutModel": "five-region-grid",
+      "semanticPurpose": "application-root-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

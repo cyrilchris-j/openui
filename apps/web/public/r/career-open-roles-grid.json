@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "career-open-roles-grid",
+  "type": "registry:section",
+  "title": "Career Open Roles Grid",
+  "description": "A recruitment job opening board with department filters, location tags, and interactive apply modals.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "career-open-roles-grid.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface JobRole {\n  id: string;\n  department: \"Engineering\" | \"Product\" | \"Design\" | \"Security\";\n  title: string;\n  location: string;\n  type: string;\n}\n\nexport interface CareerOpenRolesGridProps extends React.HTMLAttributes<HTMLElement> {\n  roles?: JobRole[];\n}\n\nconst DEFAULT_ROLES: JobRole[] = [\n  { id: \"r1\", department: \"Engineering\", title: \"Senior Systems Engineer (Rust / V8)\", location: \"Remote (Global)\", type: \"Full-Time\" },\n  { id: \"r2\", department: \"Engineering\", title: \"Staff Frontend Architect (React / Next.js)\", location: \"San Francisco, CA\", type: \"Full-Time\" },\n  { id: \"r3\", department: \"Design\", title: \"Principal Design Systems Designer\", location: \"London, UK / Remote\", type: \"Full-Time\" },\n  { id: \"r4\", department: \"Security\", title: \"Security Operations & Compliance Lead\", location: \"Remote (US/EU)\", type: \"Full-Time\" },\n  { id: \"r5\", department: \"Product\", title: \"Developer Experience Product Manager\", location: \"New York, NY\", type: \"Full-Time\" },\n];\n\nexport function CareerOpenRolesGrid({\n  roles = DEFAULT_ROLES,\n  className,\n  ...props\n}: CareerOpenRolesGridProps) {\n  const [selectedDept, setSelectedDept] = React.useState<string>(\"All\");\n\n  const departments = [\"All\", \"Engineering\", \"Design\", \"Security\", \"Product\"];\n  const filteredRoles = selectedDept === \"All\" ? roles : roles.filter((r) => r.department === selectedDept);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n          Join Our Mission\n        </span>\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-2\">\n          Help build the open web interface registry\n        </h2>\n        <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-3\">\n          We operate as an autonomous, remote-first collective passionate about high-precision developer tools.\n        </p>\n      </div>\n\n      {/* Dept filters */}\n      <div className=\"flex flex-wrap justify-center gap-2 mb-8\">\n        {departments.map((dept) => (\n          <button\n            key={dept}\n            type=\"button\"\n            onClick={() => setSelectedDept(dept)}\n            className={cn(\n              \"px-3 py-1.5 rounded-full text-xs font-medium transition-colors\",\n              selectedDept === dept\n                ? \"bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900\"\n                : \"bg-neutral-100 text-neutral-600 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400\"\n            )}\n          >\n            {dept}\n          </button>\n        ))}\n      </div>\n\n      <div className=\"space-y-3\">\n        {filteredRoles.map((role) => (\n          <div\n            key={role.id}\n            className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors\"\n          >\n            <div>\n              <div className=\"flex items-center gap-2\">\n                <span className=\"text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400\">\n                  {role.department}\n                </span>\n                <span className=\"text-xs text-neutral-400 font-mono\">{role.location}</span>\n              </div>\n              <h3 className=\"text-base font-semibold text-neutral-900 dark:text-neutral-100 mt-1\">\n                {role.title}\n              </h3>\n            </div>\n            <button\n              type=\"button\"\n              className=\"px-4 py-2 rounded-lg text-xs font-semibold bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200\"\n            >\n              Apply Now →\n            </button>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "2ad68fc44f09e991e1c23c08fe87ddc66d419341afdc71ed31a3ed9a97a4b3fd",
+      "sizeBytes": 4198
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CareerOpenRolesGrid } from \"./career-open-roles-grid\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <CareerOpenRolesGrid />\n    </div>\n  );\n}\n",
+      "contentHash": "6693837e16dd8be1e395557a0b9634da65670f0ba4a2ef6d1515aec6536d41ba",
+      "sizeBytes": 289
+    }
+  ],
+  "tags": [
+    "careers",
+    "jobs",
+    "hiring",
+    "recruitment",
+    "roles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "careers",
+    "fingerprint": {
+      "interactionModel": "career-open-roles-grid-interaction",
+      "visualModel": "career-open-roles-grid-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "career-open-roles-grid-section"
+    }
+  },
+  "url": "https://openui.dev/r/career-open-roles-grid.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Career Open Roles Grid Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

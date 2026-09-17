@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-scroll-feature-showcase",
+  "type": "registry:layout",
+  "title": "Split Scroll Feature Showcase",
+  "description": "Marketing feature showcase with sticky illustrative canvas on left and sequential scrolling feature steps on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-scroll-feature-showcase.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitScrollFeatureShowcaseProps extends React.HTMLAttributes<HTMLDivElement> {\n  canvas?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function SplitScrollFeatureShowcase({ canvas, children, className, ...props }: SplitScrollFeatureShowcaseProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <div className=\"lg:sticky lg:top-8 h-64 lg:h-80 rounded-2xl border border-line bg-surface/40 flex items-center justify-center p-6\">{canvas}</div>\n      <div className=\"space-y-12 py-6\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "1bff7c9b8a2b0dea56a9d501c83c853e6a0ac80beb486ace1ab647be025a5c80",
+      "sizeBytes": 694
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitScrollFeatureShowcase } from \"./split-scroll-feature-showcase\";\n\nexport default function SplitScrollFeatureShowcaseDemo() {\n  return (\n    <SplitScrollFeatureShowcase canvas={<div className=\"font-mono text-xs font-bold text-accent\">Feature Graphic Stage</div>}>\n      <div className=\"space-y-2\">\n        <h3 className=\"text-base font-bold text-ink\">01. Autonomous Discovery</h3>\n        <p className=\"text-xs text-ink/60\">Components automatically self-register without manual barrel manifests.</p>\n      </div>\n      <div className=\"space-y-2\">\n        <h3 className=\"text-base font-bold text-ink\">02. Closed Schema Verification</h3>\n        <p className=\"text-xs text-ink/60\">Every component enforces strict TypeScript contract compliance.</p>\n      </div>\n    </SplitScrollFeatureShowcase>\n  );\n}\n",
+      "contentHash": "e75d1ddc287ebf47990e4249b2a942f7d4b457b13e87b3d0ccf96cbe7eb74d3e",
+      "sizeBytes": 828
+    }
+  ],
+  "tags": [
+    "feature",
+    "showcase",
+    "sticky",
+    "scroll",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "sticky-graphic-scroll-steps",
+      "visualModel": "pin-on-scroll-showcase",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-feature-scroll",
+      "semanticPurpose": "feature-walkthrough-split"
+    }
+  },
+  "url": "https://openui.dev/r/split-scroll-feature-showcase.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Sticky Graphic Scroll Steps: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

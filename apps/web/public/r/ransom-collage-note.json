@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ransom-collage-note",
+  "type": "registry:text",
+  "title": "Ransom Collage Note",
+  "description": "Each glyph is clipped from its own 'scrap' — deterministic per-index rotation, paper tone, serif/sans alternation and tape strip — so the collage is chaotic to the eye but reproducible to the pixel across renders.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ransom-collage-note.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface RansomCollageNoteProps {\n  children: string;\n  className?: string;\n}\n\nconst PAPERS = [\"#f5efe3\", \"#efe6d2\", \"#f8f4ea\", \"#ece2cc\"];\nconst ROTATIONS = [-4, 3, -2, 5, -3, 2];\n\nexport function RansomCollageNote({ children, className }: RansomCollageNoteProps) {\n  let seed = 0;\n  const next = () => {\n    seed = (seed * 9301 + 49297) % 233280;\n    return seed / 233280;\n  };\n\n  return (\n    <span\n      className={cn(\"inline-flex flex-wrap items-baseline\", className)}\n      role=\"text\"\n      aria-label={children}\n    >\n      {[...children].map((char, index) => {\n        if (char === \" \") return <span key={index} className=\"w-3\" />;\n        const rotation = ROTATIONS[index % ROTATIONS.length]!;\n        const paper = PAPERS[Math.floor(next() * PAPERS.length)]!;\n        const serif = index % 2 === 0;\n        return (\n          <span\n            key={index}\n            aria-hidden\n            className=\"relative mx-[1px] inline-block px-1.5 py-0.5 text-ink\"\n            style={{\n              background: paper,\n              transform: `rotate(${rotation}deg) translateY(${(next() * 4 - 2).toFixed(1)}px)`,\n              fontFamily: serif ? \"Georgia, serif\" : \"system-ui, sans-serif\",\n              fontWeight: serif ? 400 : 700,\n              boxShadow: \"0 1px 2px rgba(0,0,0,0.22)\",\n            }}\n          >\n            {char}\n            <span\n              className=\"absolute -top-1 left-1/2 h-2 w-5 -translate-x-1/2\"\n              style={{ background: \"rgba(222,205,166,0.85)\", transform: `translateX(-50%) rotate(${rotation * -1.4}deg)` }}\n            />\n          </span>\n        );\n      })}\n    </span>\n  );\n}\n\nexport default RansomCollageNote;\n",
+      "contentHash": "517484f7a63ec2836fde681fe6862a07dec9b584c4180de7e28cb65e53cef09e",
+      "sizeBytes": 1709
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { RansomCollageNote } from \"./ransom-collage-note\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-ink/90 p-10\">\n      <RansomCollageNote className=\"text-step-2\">SHIP REAL THINGS</RansomCollageNote>\n    </div>\n  );\n}\n",
+      "contentHash": "238e1b15fd220db4d3f25db5c47de7e973ead882f7f98f13942bf0fa6d58c006",
+      "sizeBytes": 292
+    }
+  ],
+  "tags": [
+    "collage",
+    "cutout",
+    "scrap",
+    "deterministic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "scatter",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "per-glyph-collage-scrap",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "protest-statement"
+    }
+  },
+  "url": "https://openui.dev/r/ransom-collage-note.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Scatter\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Muted Earth\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

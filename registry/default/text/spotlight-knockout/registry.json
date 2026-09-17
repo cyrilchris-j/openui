@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "spotlight-knockout",
+  "type": "registry:text",
+  "title": "Spotlight Knockout",
+  "description": "A wall of dark type with a spotlight hole punched through it: the headline sits underneath and is only legible inside a radial mask that tracks the pointer — reading becomes a searchlight act.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "spotlight-knockout.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "spotlight",
+    "mask",
+    "knockout",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-mask-follow",
+      "visualModel": "knockout-overlay",
+      "motionModel": "direct-follow",
+      "layoutModel": "overlay",
+      "semanticPurpose": "curiosity-heading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

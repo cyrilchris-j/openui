@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rating-gauge-bar",
+  "type": "registry:component",
+  "title": "Rating Gauge Bar",
+  "description": "A linear satisfaction gauge tracking breakdown percentages across ratings categories.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rating-gauge-bar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface RatingGaugeBarProps {\n  score?: number;\n  className?: string;\n}\n\nexport function RatingGaugeBar({ score = 94, className }: RatingGaugeBarProps) {\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-5 shadow-sm font-mono text-xs\", className)}>\n      <div className=\"flex justify-between items-baseline mb-2\">\n        <span className=\"text-ink/60\">SATISFACTION SCORE</span>\n        <span className=\"font-bold text-ink text-base\">{score}%</span>\n      </div>\n\n      <div className=\"h-2.5 w-full rounded-full bg-line/40 overflow-hidden\">\n        <div className=\"h-full bg-emerald-500 rounded-full\" style={{ width: `${score}%` }} />\n      </div>\n    </div>\n  );\n}\n\nexport default RatingGaugeBar;\n",
+      "contentHash": "455f2d86148bf77191bc554baed912008e6649025b58dd81a42778725ea17d67",
+      "sizeBytes": 795
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { RatingGaugeBar } from \"./rating-gauge-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <RatingGaugeBar />\n    </div>\n  );\n}\n",
+      "contentHash": "6ff3e6f2dc1683a846582d96533eeadafc3adb5999b6c2de8d452eb9a92b5726",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "rating",
+    "gauge",
+    "bar",
+    "feedback",
+    "satisfaction"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "linear-satisfaction-breakdown",
+      "visualModel": "segmented-percentage-track",
+      "motionModel": "none",
+      "layoutModel": "horizontal-gauge-bar",
+      "semanticPurpose": "satisfaction-gauge-bar"
+    }
+  },
+  "url": "https://openui.dev/r/rating-gauge-bar.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Linear Satisfaction Breakdown: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

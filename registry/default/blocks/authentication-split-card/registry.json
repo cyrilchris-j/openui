@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "authentication-split-card",
+  "type": "registry:block",
+  "title": "Authentication Split Card",
+  "description": "A dual-mode authentication card supporting sign-in, account creation, OAuth social connectors, and magic links.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "authentication-split-card.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "auth",
+    "login",
+    "signup",
+    "oauth",
+    "credentials"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "auth",
+    "fingerprint": {
+      "interactionModel": "tabbed-auth-mode-switch",
+      "visualModel": "centered-split-form-card",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "user-identity-access"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

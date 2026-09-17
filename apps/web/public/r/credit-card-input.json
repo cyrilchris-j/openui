@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "credit-card-input",
+  "type": "registry:component",
+  "title": "Credit Card Input",
+  "description": "Segmented credit card entry with card issuer brand indicator, space grouping, and expiry date format.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "credit-card-input.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { CreditCard, Lock } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CreditCardInput({ className }: { className?: string }) {\n  const [num, setNum] = useState(\"\");\n  const [exp, setExp] = useState(\"\");\n  const [cvc, setCvc] = useState(\"\");\n\n  const formatCard = (v: string) => {\n    const raw = v.replace(/\\D/g, \"\").slice(0, 16);\n    return raw.replace(/(\\d{4})(?=\\d)/g, \"$1 \");\n  };\n\n  const formatExp = (v: string) => {\n    const raw = v.replace(/\\D/g, \"\").slice(0, 4);\n    if (raw.length > 2) return `${raw.slice(0, 2)}/${raw.slice(2)}`;\n    return raw;\n  };\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-sm w-full font-mono text-xs shadow-sm\", className)}>\n      <div className=\"flex items-center justify-between mb-3 text-ink\">\n        <div className=\"flex items-center gap-1.5 font-bold\">\n          <CreditCard className=\"w-4 h-4 text-accent\" />\n          <span>Card Payment</span>\n        </div>\n        <Lock className=\"w-3.5 h-3.5 text-emerald-500\" />\n      </div>\n\n      <div className=\"space-y-2\">\n        <div>\n          <label className=\"block text-[10px] text-ink/60 mb-1 uppercase\">Card Number</label>\n          <input\n            type=\"text\"\n            value={num}\n            onChange={(e) => setNum(formatCard(e.target.value))}\n            placeholder=\"4111 2222 3333 4444\"\n            className=\"w-full px-2.5 py-2 rounded border border-line bg-surface text-ink text-xs focus:outline-none focus:border-accent\"\n          />\n        </div>\n\n        <div className=\"grid grid-cols-2 gap-2\">\n          <div>\n            <label className=\"block text-[10px] text-ink/60 mb-1 uppercase\">Expiry</label>\n            <input\n              type=\"text\"\n              value={exp}\n              onChange={(e) => setExp(formatExp(e.target.value))}\n              placeholder=\"MM/YY\"\n              className=\"w-full px-2.5 py-2 rounded border border-line bg-surface text-ink text-xs focus:outline-none focus:border-accent\"\n            />\n          </div>\n          <div>\n            <label className=\"block text-[10px] text-ink/60 mb-1 uppercase\">CVC</label>\n            <input\n              type=\"password\"\n              maxLength={4}\n              value={cvc}\n              onChange={(e) => setCvc(e.target.value.replace(/\\D/g, \"\"))}\n              placeholder=\"•••\"\n              className=\"w-full px-2.5 py-2 rounded border border-line bg-surface text-ink text-xs focus:outline-none focus:border-accent\"\n            />\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "89c1a047fbe8b1f9a3ee063ccf4805e7d5f2913dafbdbdaa84654d9a9e42cb9b",
+      "sizeBytes": 2609
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { CreditCardInput } from \"./credit-card-input\";\n\nexport default function CreditCardInputDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[250px]\">\n      <CreditCardInput />\n    </div>\n  );\n}\n",
+      "contentHash": "fbd22b0ca41ea6fb78087e2503aa0fba6fe0514a2fcfc2eca3d6d4f6c611341f",
+      "sizeBytes": 261
+    }
+  ],
+  "tags": [
+    "card",
+    "payment",
+    "forms",
+    "input",
+    "validation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "formatted-numeric-card-entry",
+      "visualModel": "card-brand-badge-field",
+      "motionModel": "none",
+      "layoutModel": "card-payment-form",
+      "semanticPurpose": "payment-card-input"
+    }
+  },
+  "url": "https://openui.dev/r/credit-card-input.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Formatted Numeric Card Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

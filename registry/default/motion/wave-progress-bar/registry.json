@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-progress-bar",
+  "type": "registry:motion",
+  "title": "Wave Progress Bar",
+  "description": "A fluid meter simulating dynamic liquid surging across a container as its percentage fill level rises.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-progress-bar.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "progress",
+    "wave",
+    "liquid",
+    "fill",
+    "meter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "fill-percentage-scrub",
+      "visualModel": "sinusoidal-liquid-crest",
+      "motionModel": "harmonic-wave-undulation",
+      "layoutModel": "pill-track-reservoir",
+      "semanticPurpose": "fluid-level-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

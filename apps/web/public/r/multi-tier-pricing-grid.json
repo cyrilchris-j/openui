@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-tier-pricing-grid",
+  "type": "registry:layout",
+  "title": "Multi Tier Pricing Grid",
+  "description": "Three-tier pricing card layout featuring prominent central highlight for the recommended tier.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-tier-pricing-grid.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiTierPricingGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MultiTierPricingGrid({ children, className, ...props }: MultiTierPricingGridProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto p-4 font-sans items-center\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "9c98caa5fbe65ad8932950e06eef58fb2bb1542ae47fe47569de6d1869a11bf3",
+      "sizeBytes": 450
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MultiTierPricingGrid } from \"./multi-tier-pricing-grid\";\n\nexport default function MultiTierPricingGridDemo() {\n  return (\n    <MultiTierPricingGrid>\n      <div className=\"p-6 rounded-2xl border border-line bg-paper text-xs\">\n        <h3 className=\"font-bold text-sm mb-1\">Starter</h3>\n        <p className=\"text-xl font-bold font-mono my-2\">$0</p>\n      </div>\n      <div className=\"p-6 rounded-2xl border-2 border-accent bg-paper shadow-lg text-xs\">\n        <span className=\"text-[10px] font-mono px-2 py-0.5 rounded bg-accent text-white uppercase font-bold\">Recommended</span>\n        <h3 className=\"font-bold text-sm mt-2 mb-1\">Pro Architect</h3>\n        <p className=\"text-xl font-bold font-mono my-2\">$29<span className=\"text-xs font-normal\">/mo</span></p>\n      </div>\n      <div className=\"p-6 rounded-2xl border border-line bg-paper text-xs\">\n        <h3 className=\"font-bold text-sm mb-1\">Enterprise</h3>\n        <p className=\"text-xl font-bold font-mono my-2\">Custom</p>\n      </div>\n    </MultiTierPricingGrid>\n  );\n}\n",
+      "contentHash": "6b3f5fd07780a2453709472f2abbfe5c8fce0fba3d7c2a43e9f57d5b8dbea4cd",
+      "sizeBytes": 1053
+    }
+  ],
+  "tags": [
+    "pricing",
+    "tiers",
+    "subscription",
+    "cards",
+    "highlight"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "plan-tier-selection",
+      "visualModel": "three-tier-card-cluster",
+      "motionModel": "none",
+      "layoutModel": "three-column-pricing-grid",
+      "semanticPurpose": "subscription-pricing-display"
+    }
+  },
+  "url": "https://openui.dev/r/multi-tier-pricing-grid.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Plan Tier Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

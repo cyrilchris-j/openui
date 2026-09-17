@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-radar-chart",
+  "type": "registry:interaction",
+  "title": "Interactive Radar Chart",
+  "description": "A polygonal spider radar chart allowing multi-axial parameter tuning via direct vertex drag.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-radar-chart.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "radar",
+    "spider",
+    "chart",
+    "polygon",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "multi-axis-vertex-drag",
+      "visualModel": "polygonal-radar-spider",
+      "motionModel": "polygon-coordinate-interpolation",
+      "layoutModel": "centered-radar-polygon",
+      "semanticPurpose": "parameter-spider-evaluator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

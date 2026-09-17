@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "word-help-balloons",
+  "type": "registry:text",
+  "title": "Word Help Balloons",
+  "description": "Dotted-underline terms that open small paper balloons on focus or hover with a definition, arrow and all — real popover semantics (button + role), not a CSS-only mirage, so keyboard users get the same affordance.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "word-help-balloons.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useId, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface WordHelpBalloonsProps {\n  /** Segments: plain strings, or { term, definition } objects. */\n  segments: Array<string | { term: string; definition: string }>;\n  className?: string;\n}\n\nexport function WordHelpBalloons({ segments, className }: WordHelpBalloonsProps) {\n  const [openIndex, setOpenIndex] = useState<number | null>(null);\n\n  return (\n    <p className={cn(\"max-w-prose leading-relaxed\", className)}>\n      {segments.map((segment, index) => {\n        if (typeof segment === \"string\") return <span key={index}>{segment} </span>;\n        return <Balloon key={index} index={index} term={segment.term} definition={segment.definition} open={openIndex === index} onToggle={(next) => setOpenIndex(next ? index : null)} />;\n      })}\n    </p>\n  );\n}\n\nfunction Balloon({\n  index,\n  term,\n  definition,\n  open,\n  onToggle,\n}: {\n  index: number;\n  term: string;\n  definition: string;\n  open: boolean;\n  onToggle: (open: boolean) => void;\n}) {\n  const id = useId();\n  return (\n    <span className=\"relative inline-block\">\n      <button\n        type=\"button\"\n        aria-expanded={open}\n        aria-describedby={open ? id : undefined}\n        onClick={() => onToggle(!open)}\n        onMouseEnter={() => onToggle(true)}\n        onMouseLeave={() => onToggle(false)}\n        onFocus={() => onToggle(true)}\n        onBlur={() => onToggle(false)}\n        className=\"cursor-help border-0 bg-transparent p-0 underline decoration-dotted decoration-2 underline-offset-4\"\n      >\n        {term}\n      </button>\n      <span\n        id={id}\n        role=\"tooltip\"\n        className={cn(\n          \"absolute bottom-full left-1/2 z-10 mb-2 w-56 -translate-x-1/2 rounded-md border border-line bg-paper p-3 text-xs leading-relaxed text-ink shadow-lg\",\n          open ? \"scale-100 opacity-100\" : \"pointer-events-none scale-95 opacity-0\",\n        )}\n        style={{ transition: \"opacity 140ms ease, transform 140ms ease\", transformOrigin: \"bottom center\" }}\n      >\n        {definition}\n      </span>\n    </span>\n  );\n}\n\nexport default WordHelpBalloons;\n",
+      "contentHash": "72919fbc7f565ab9da71f70a78cc0d4bf1a3203637089dab121c8140d698691b",
+      "sizeBytes": 2139
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { WordHelpBalloons } from \"./word-help-balloons\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <WordHelpBalloons\n        segments={[\n          \"Every registry item ships with a\",\n          { term: \"fingerprint\", definition: \"Five axes describing interaction, rendering, motion, layout and purpose.\" },\n          \"so near-duplicates are refused at validation time.\",\n        ]}\n        className=\"text-ink\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "fd207abf617e1234e5f92f8c8594f4acf603f35d9b6aebbf6144c9deea2a1689",
+      "sizeBytes": 529
+    }
+  ],
+  "tags": [
+    "tooltip",
+    "glossary",
+    "balloon",
+    "a11y"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "focus-popover",
+      "visualModel": "annotated-terms",
+      "motionModel": "scale-in-pop",
+      "layoutModel": "inline",
+      "semanticPurpose": "inline-glossary"
+    }
+  },
+  "url": "https://openui.dev/r/word-help-balloons.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Humanist\nColor: Muted Earth\n\n## Rules\n\n- Focus Popover: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "career-benefits-perks",
+  "type": "registry:section",
+  "title": "Career Benefits Perks",
+  "description": "An employee value proposition grid displaying health coverage, remote stipends, and learning budgets.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "career-benefits-perks.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CareerBenefitsPerks({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const perks = [\n    { title: \"100% Remote First\", desc: \"Work from anywhere in the world on asynchronous timelines.\" },\n    { title: \"$4,000 Setup Stipend\", desc: \"Equip your workspace with the hardware and monitors you need.\" },\n    { title: \"Continuous Learning\", desc: \"$2,500 annual budget for books, courses, and conferences.\" },\n    { title: \"Transparent Equity\", desc: \"Clear stock option schedules with 10-year exercise windows.\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-5xl mx-auto\", className)} {...props}>\n      <h3 className=\"text-2xl font-bold text-center text-neutral-900 dark:text-white mb-8\">Life at OpenUI</h3>\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">\n        {perks.map((p) => (\n          <div key={p.title} className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n            <h4 className=\"text-sm font-semibold text-neutral-900 dark:text-white\">{p.title}</h4>\n            <p className=\"text-xs text-neutral-500 mt-2 leading-relaxed\">{p.desc}</p>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "d28f6dae078a6d38223bc063c6a186971bccc22d2c29225436317cdb64c1df39",
+      "sizeBytes": 1331
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CareerBenefitsPerks } from \"./career-benefits-perks\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <CareerBenefitsPerks />\n    </div>\n  );\n}\n",
+      "contentHash": "ec55d174c56a9aff8887cfa11ccc017ff8a314ae1ef80fe46c9ef0718b9ecc77",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "careers",
+    "benefits",
+    "perks",
+    "culture",
+    "hiring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "careers",
+    "fingerprint": {
+      "interactionModel": "career-benefits-perks-interaction",
+      "visualModel": "career-benefits-perks-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "career-benefits-perks-section"
+    }
+  },
+  "url": "https://openui.dev/r/career-benefits-perks.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Career Benefits Perks Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

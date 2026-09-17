@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "elastic-orbit-loader",
+  "type": "registry:motion",
+  "title": "Elastic Orbit Loader",
+  "description": "A celestial loading spinner featuring multi-satellite nodes orbiting an elliptical nucleus with gravitational acceleration at periapsis and spring-tethered lag.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "elastic-orbit-loader.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "loader",
+    "orbital",
+    "physics",
+    "planets"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "orbital",
+    "fingerprint": {
+      "interactionModel": "continuous-playback",
+      "visualModel": "concentric-orbital-traces",
+      "motionModel": "keplerian-gravitational-orbit",
+      "layoutModel": "centered-fixed-aspect",
+      "semanticPurpose": "loading-progress-indicator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

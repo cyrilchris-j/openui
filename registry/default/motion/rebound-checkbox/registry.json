@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rebound-checkbox",
+  "type": "registry:motion",
+  "title": "Rebound Checkbox",
+  "description": "A mechanical checkbox whose border compresses elastically before springing an animated SVG checkmark into lock.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rebound-checkbox.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "checkbox",
+    "controls",
+    "rebound",
+    "spring",
+    "svg"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "click-toggle-rebound",
+      "visualModel": "square-bordered-latch",
+      "motionModel": "svg-stroke-dash-spring",
+      "layoutModel": "inline-checkbox-label",
+      "semanticPurpose": "boolean-verification-latch"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

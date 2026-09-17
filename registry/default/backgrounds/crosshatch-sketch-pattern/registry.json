@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "crosshatch-sketch-pattern",
+  "type": "registry:background",
+  "title": "Crosshatch Sketch Pattern",
+  "description": "Architectural dual-direction 45-degree diagonal line crosshatching pattern.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "crosshatch-sketch-pattern.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "crosshatch",
+    "sketch",
+    "pattern",
+    "diagonal",
+    "drawing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-engraving-backdrop",
+      "visualModel": "dual-diagonal-hatching",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "etching-texture-layer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

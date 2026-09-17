@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "isometric-shelf-grid",
+  "type": "registry:layout",
+  "title": "Isometric Shelf Grid",
+  "description": "Angled 3D isometric display shelf layout showcasing product cards or 3D assets.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "isometric-shelf-grid.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "isometric",
+    "shelf",
+    "showcase",
+    "cards",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "isometric-shelf-presentation",
+      "visualModel": "angled-showcase-tier",
+      "motionModel": "none",
+      "layoutModel": "isometric-shelf-matrix",
+      "semanticPurpose": "isometric-product-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

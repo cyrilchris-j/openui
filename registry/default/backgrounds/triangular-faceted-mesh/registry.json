@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "triangular-faceted-mesh",
+  "type": "registry:background",
+  "title": "Triangular Faceted Mesh",
+  "description": "Low-poly faceted Delaunay triangulation mesh creating geometric architectural depth.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "triangular-faceted-mesh.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "triangles",
+    "delaunay",
+    "mesh",
+    "faceted",
+    "lowpoly"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-polyhedral-canvas",
+      "visualModel": "faceted-triangulation",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "low-poly-surface-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

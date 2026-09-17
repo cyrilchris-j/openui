@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "bottom-sheet-mobile-shell",
+  "type": "registry:layout",
+  "title": "Bottom Sheet Mobile Shell",
+  "description": "Mobile-optimized viewport shell with top navigation bar and sliding bottom sheet drawer.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "bottom-sheet-mobile-shell.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "mobile",
+    "bottom-sheet",
+    "drawer",
+    "shell",
+    "phone"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "mobile-bottom-sheet-tray",
+      "visualModel": "handheld-viewport-shell",
+      "motionModel": "none",
+      "layoutModel": "mobile-frame-stack",
+      "semanticPurpose": "handheld-mobile-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

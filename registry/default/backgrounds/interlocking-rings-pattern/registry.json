@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interlocking-rings-pattern",
+  "type": "registry:background",
+  "title": "Interlocking Rings Pattern",
+  "description": "Classic geometric interlocking circle torus rings forming an intricate intersecting lattice.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interlocking-rings-pattern.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "rings",
+    "interlocking",
+    "circles",
+    "torus",
+    "pattern"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-torus-geometry",
+      "visualModel": "interlaced-circle-rings",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "ornamental-circle-mesh"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

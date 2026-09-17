@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-tabbed-walkthrough",
+  "type": "registry:section",
+  "title": "Feature Tabbed Walkthrough",
+  "description": "Interactive tabbed feature demonstration switching between code AST, design tokens, and live visual preview.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-tabbed-walkthrough.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "tabs",
+    "walkthrough",
+    "features",
+    "code",
+    "preview"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "features",
+    "fingerprint": {
+      "interactionModel": "tabbed-feature-switch",
+      "visualModel": "tabs-above-feature-stage",
+      "motionModel": "none",
+      "layoutModel": "tab-controlled-stage",
+      "semanticPurpose": "feature-deepdive-walkthrough"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

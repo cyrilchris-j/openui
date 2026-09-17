@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "carbon-fiber-weave",
+  "type": "registry:background",
+  "title": "Carbon Fiber Weave",
+  "description": "Automotive high-performance 2x2 twill composite carbon fiber checkered weave.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "carbon-fiber-weave.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "carbon",
+    "fiber",
+    "automotive",
+    "weave",
+    "composite"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-carbon-twill",
+      "visualModel": "twill-woven-carbon",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "composite-material-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

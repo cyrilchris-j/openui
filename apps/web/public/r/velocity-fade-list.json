@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "velocity-fade-list",
+  "type": "registry:motion",
+  "title": "Velocity Fade List",
+  "description": "List items whose opacity and vertical blur respond to scroll velocity — scrolling fast dissolves the rows into streaks, slowing down brings them back into focus — motion feedback that measures impatience.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "velocity-fade-list.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface VelocityFadeListProps {\n  rows: string[];\n  className?: string;\n}\n\nexport function VelocityFadeList({ rows, className }: VelocityFadeListProps) {\n  const containerRef = useRef<HTMLUListElement>(null);\n\n  useEffect(() => {\n    const node = containerRef.current;\n    if (!node) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    let lastY = window.scrollY;\n    let lastT = performance.now();\n    let raf: number | null = null;\n    let velocity = 0;\n\n    const tick = () => {\n      const now = performance.now();\n      const dy = window.scrollY - lastY;\n      const dt = Math.max(1, now - lastT);\n      lastY = window.scrollY;\n      lastT = now;\n      velocity += ((dy / dt) * 16 - velocity) * 0.25;\n\n      const intensity = Math.min(Math.abs(velocity) / 40, 1);\n      node.style.opacity = String(1 - intensity * 0.7);\n      node.style.filter = `blur(${(intensity * 4).toFixed(1)}px)`;\n\n      raf = requestAnimationFrame(tick);\n    };\n    raf = requestAnimationFrame(tick);\n\n    return () => {\n      if (raf !== null) cancelAnimationFrame(raf);\n    };\n  }, []);\n\n  return (\n    <ul ref={containerRef} className={cn(\"flex flex-col divide-y divide-line\", className)}>\n      {rows.map((row, index) => (\n        <li key={index} className=\"py-4 text-lg text-ink\">\n          {row}\n        </li>\n      ))}\n    </ul>\n  );\n}\n\nexport default VelocityFadeList;\n",
+      "contentHash": "78dc7c87b7370736ae7339fb12815de1329392adf1a0174ffcc1cf01d3a462a7",
+      "sizeBytes": 1497
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { VelocityFadeList } from \"./velocity-fade-list\";\n\nexport default function Demo() {\n  return (\n    <div className=\"min-h-[70vh] bg-paper p-10\">\n      <div className=\"h-[30vh]\" />\n      <VelocityFadeList\n        rows={[\"Fast scroll dissolves me\", \"Slow scroll restores me\", \"Motion measures impatience\", \"Focus returns on rest\"]}\n        className=\"max-w-md\"\n      />\n      <div className=\"h-[40vh]\" />\n    </div>\n  );\n}\n",
+      "contentHash": "597089ce0592d98d4247e272cf5110cd16730fd6086f8eec91559afecece4662",
+      "sizeBytes": 427
+    }
+  ],
+  "tags": [
+    "velocity",
+    "fade",
+    "blur",
+    "list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "velocity-blurred-rows",
+      "motionModel": "speed-coupled-dissolve",
+      "layoutModel": "list",
+      "semanticPurpose": "scroll-feedback"
+    }
+  },
+  "url": "https://openui.dev/r/velocity-fade-list.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Kinetic\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Scroll Velocity Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

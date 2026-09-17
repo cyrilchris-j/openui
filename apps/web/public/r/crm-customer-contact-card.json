@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "crm-customer-contact-card",
+  "type": "registry:block",
+  "title": "CRM Customer Contact Card",
+  "description": "A customer relationship management overview featuring deal pipeline status, company info, and call log notes.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "crm-customer-contact-card.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CrmCustomerContactCard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [stage, setStage] = React.useState(\"Qualified Opportunity\");\n\n  return (\n    <div className={cn(\"w-full max-w-2xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"flex justify-between items-start pb-4 border-b border-neutral-200 dark:border-neutral-800 mb-4\">\n        <div>\n          <h3 className=\"text-base font-bold text-neutral-900 dark:text-white\">Alex Rivera</h3>\n          <div className=\"text-neutral-500\">VP Architecture • Acme Cloud Systems</div>\n        </div>\n        <div className=\"text-right font-mono\">\n          <div className=\"text-base font-bold text-emerald-600 dark:text-emerald-400\">$120,000 ARR</div>\n          <div className=\"text-[10px] text-neutral-400\">Annual Contract Value</div>\n        </div>\n      </div>\n\n      <div className=\"space-y-3\">\n        <div>\n          <label className=\"block text-neutral-500 mb-1\">Deal Pipeline Stage</label>\n          <select\n            value={stage}\n            onChange={(e) => setStage(e.target.value)}\n            className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900\"\n          >\n            <option>Discovery Call</option>\n            <option>Qualified Opportunity</option>\n            <option>Security Review</option>\n            <option>Closed Won</option>\n          </select>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "de002205da407554cb3a5139ef69241e123f517ce021aec693d66df4a9c4237f",
+      "sizeBytes": 1675
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CrmCustomerContactCard } from \"./crm-customer-contact-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CrmCustomerContactCard />\n    </div>\n  );\n}\n",
+      "contentHash": "e77bd845f4ac7943dbe0909d2febc931745097772d51d63a6555f1700a197e60",
+      "sizeBytes": 296
+    }
+  ],
+  "tags": [
+    "crm",
+    "customer",
+    "contact",
+    "deals",
+    "sales"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "crm",
+    "fingerprint": {
+      "interactionModel": "deal-pipeline-stage-selection",
+      "visualModel": "customer-dossier-card",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "crm-contact-record"
+    }
+  },
+  "url": "https://openui.dev/r/crm-customer-contact-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Deal Pipeline Stage Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

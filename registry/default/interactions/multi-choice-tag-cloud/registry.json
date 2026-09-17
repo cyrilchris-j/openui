@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-choice-tag-cloud",
+  "type": "registry:interaction",
+  "title": "Multi Choice Tag Cloud",
+  "description": "A responsive flex pill cluster allowing multi-select filter toggles with active badge count computation.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-choice-tag-cloud.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "tags",
+    "multi-select",
+    "cloud",
+    "filter",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "selection",
+    "fingerprint": {
+      "interactionModel": "multi-tag-toggle-selection",
+      "visualModel": "compact-pill-constellation",
+      "motionModel": "bistable-pill-invert",
+      "layoutModel": "flex-wrapping-cloud",
+      "semanticPurpose": "faceted-filter-cloud"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

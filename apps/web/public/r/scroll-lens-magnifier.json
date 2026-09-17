@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-lens-magnifier",
+  "type": "registry:motion",
+  "title": "Scroll Lens Magnifier",
+  "description": "A circular magnifying viewport that glides over underlying text during scroll, scaling the focus area dynamically.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-lens-magnifier.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ScrollLensMagnifierProps {\n  className?: string;\n}\n\nexport function ScrollLensMagnifier({ className }: ScrollLensMagnifierProps) {\n  const [lensPos, setLensPos] = useState({ x: 140, y: 80 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    setLensPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      className={cn(\"relative h-72 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper p-8 select-none\", className)}\n    >\n      <div className=\"space-y-3 font-serif text-sm leading-relaxed text-ink/70\">\n        <p>\n          Typography possesses rhythm and scale. When viewed closely, structural hairlines and contrast ratios reveal the underlying grid.\n        </p>\n        <p>\n          Move the lens over this passage to examine the fine detail of grotesque and display serif forms.\n        </p>\n      </div>\n\n      <div\n        className=\"pointer-events-none absolute -ml-12 -mt-12 h-24 w-24 rounded-full border-2 border-ink bg-paper/20 shadow-2xl backdrop-blur-[1px] transition-transform duration-75\"\n        style={{\n          left: lensPos.x,\n          top: lensPos.y,\n          transform: \"scale(1.2)\",\n        }}\n      />\n    </div>\n  );\n}\n\nexport default ScrollLensMagnifier;\n",
+      "contentHash": "c04f8ac9bbcb9dcca5acd2ecc95726aef23b42d02339d2f93d9276fabe04e76a",
+      "sizeBytes": 1465
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { ScrollLensMagnifier } from \"./scroll-lens-magnifier\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <ScrollLensMagnifier />\n    </div>\n  );\n}\n",
+      "contentHash": "12986a9fa0ff22a148cbdcc09981f0fc7c8fb6fe8252e19eb8a80ab3abfe2db8",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "lens",
+    "magnifier",
+    "scroll",
+    "zoom",
+    "focus"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "viewport-scrub-magnification",
+      "visualModel": "floating-convex-lens",
+      "motionModel": "smooth-damped-reticle-travel",
+      "layoutModel": "lens-over-typeset-flow",
+      "semanticPurpose": "editorial-magnifying-glass"
+    }
+  },
+  "url": "https://openui.dev/r/scroll-lens-magnifier.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Viewport Scrub Magnification: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

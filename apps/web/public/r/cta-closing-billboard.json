@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cta-closing-billboard",
+  "type": "registry:section",
+  "title": "CTA Closing Billboard",
+  "description": "A monumental high-impact conversion stage at the base of the page with quickstart commands.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cta-closing-billboard.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CtaClosingBillboard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-20 px-4 md:px-8 bg-neutral-950 text-white text-center border-t-2 border-neutral-800\", className)} {...props}>\n      <div className=\"max-w-4xl mx-auto\">\n        <h2 className=\"text-4xl md:text-6xl font-black tracking-tight\">\n          BUILD WITHOUT COMPROMISE.\n        </h2>\n        <p className=\"text-sm md:text-base text-neutral-400 mt-4 max-w-xl mx-auto\">\n          Start integrating 800 certified zero-dependency accessible components into your production Next.js apps today.\n        </p>\n        <div className=\"mt-8 flex flex-wrap justify-center gap-4\">\n          <button\n            type=\"button\"\n            className=\"px-6 py-3 rounded-none bg-white text-neutral-950 font-mono font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-colors\"\n          >\n            Explore Catalog (800) →\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "d00c16806c92a73a2084ab0616d4bc4b5dbbb5f578831f12acf8220b6027c39c",
+      "sizeBytes": 1118
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CtaClosingBillboard } from \"./cta-closing-billboard\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full bg-neutral-950 min-h-[300px] flex items-center justify-center\">\n      <CtaClosingBillboard />\n    </div>\n  );\n}\n",
+      "contentHash": "aa3dd3695146e138d38b40726062a84ced60b548157be530501066258900baac",
+      "sizeBytes": 262
+    }
+  ],
+  "tags": [
+    "cta",
+    "billboard",
+    "conversion",
+    "closing",
+    "landing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "cta",
+    "fingerprint": {
+      "interactionModel": "cta-closing-billboard-interaction",
+      "visualModel": "cta-closing-billboard-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "cta-closing-billboard-section"
+    }
+  },
+  "url": "https://openui.dev/r/cta-closing-billboard.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Airy\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Cta Closing Billboard Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

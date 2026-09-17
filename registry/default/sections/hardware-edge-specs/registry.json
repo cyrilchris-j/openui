@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hardware-edge-specs",
+  "type": "registry:section",
+  "title": "Hardware Edge Specs",
+  "description": "A bare-metal computing specifications overview showing NVMe IOPS, RAM allocation, and CPU isolates.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hardware-edge-specs.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "hardware",
+    "specs",
+    "bare-metal",
+    "edge",
+    "datacenter"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hardware",
+    "fingerprint": {
+      "interactionModel": "hardware-edge-specs-interaction",
+      "visualModel": "hardware-edge-specs-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "hardware-edge-specs-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "industrial"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-map-split",
+  "type": "registry:layout",
+  "title": "Interactive Map Split",
+  "description": "Dual-pane directory layout with sticky map visualizer on right and scrollable facility cards on left.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-map-split.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "map",
+    "location",
+    "directory",
+    "split",
+    "cards"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "location-card-map-sync",
+      "visualModel": "sticky-map-with-card-stream",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-map-split",
+      "semanticPurpose": "location-directory-map"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

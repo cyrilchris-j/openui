@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kinetic-slider-rail",
+  "type": "registry:motion",
+  "title": "Kinetic Slider Rail",
+  "description": "A continuous range slider with elastic thumb drag that snaps into discrete calibrated detents upon release.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kinetic-slider-rail.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "slider",
+    "rail",
+    "kinetic",
+    "controls",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "slider-rail-drag-detent",
+      "visualModel": "ruled-index-notches",
+      "motionModel": "detent-snapping-release",
+      "layoutModel": "horizontal-linear-track",
+      "semanticPurpose": "continuous-range-dial"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

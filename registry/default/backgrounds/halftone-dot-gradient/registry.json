@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "halftone-dot-gradient",
+  "type": "registry:background",
+  "title": "Halftone Dot Gradient",
+  "description": "Classic newspaper printmaking halftone screen with dots scaling along an optical gradient.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "halftone-dot-gradient.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "halftone",
+    "screen",
+    "print",
+    "retro",
+    "dots"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-print-backdrop",
+      "visualModel": "variable-radius-halftone",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "printmaking-halftone-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "condensed",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "perspective-infinity-grid",
+  "type": "registry:background",
+  "title": "Perspective Infinity Grid",
+  "description": "Classic 80s synthwave perspective vanishing point wireframe plane receding into the horizon.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "perspective-infinity-grid.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "synthwave",
+    "perspective",
+    "horizon",
+    "grid",
+    "wireframe"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-perspective-wireframe",
+      "visualModel": "vanishing-point-groundplane",
+      "motionModel": "none",
+      "layoutModel": "perspective-ground-tilt",
+      "semanticPurpose": "synthwave-horizon-grid"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

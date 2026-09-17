@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-tenant-organization-switcher",
+  "type": "registry:block",
+  "title": "Multi-tenant Organization Switcher",
+  "description": "An enterprise workspace dropdown selector supporting team switching, plan badges, and tenant creation.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-tenant-organization-switcher.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "tenants",
+    "workspace",
+    "organizations",
+    "teams",
+    "switcher"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "organization-tenant-selection",
+      "visualModel": "multitenant-workspace-dropdown",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "organization-context-switching"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

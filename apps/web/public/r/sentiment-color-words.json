@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "sentiment-color-words",
+  "type": "registry:text",
+  "title": "Sentiment Color Words",
+  "description": "A sentiment readout where each word is tinted by its valence score on a diverging scale — negative cools, positive warms — with a hover tooltip exposing the exact score and a legend that doubles as the scale.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "sentiment-color-words.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SentimentColorWordsProps {\n  /** Words with valence from -1 (negative) to 1 (positive). */\n  words: Array<{ word: string; score: number }>;\n  className?: string;\n}\n\nfunction tint(score: number): string {\n  // Diverging: negative -> #4a6fa5, zero -> neutral, positive -> #e2624a\n  const clamped = Math.max(-1, Math.min(1, score));\n  if (clamped < 0) {\n    return `color-mix(in oklab, #4a6fa5 ${Math.round(Math.abs(clamped) * 100)}%, #6b6b6b)`;\n  }\n  return `color-mix(in oklab, #e2624a ${Math.round(clamped * 100)}%, #6b6b6b)`;\n}\n\nexport function SentimentColorWords({ words, className }: SentimentColorWordsProps) {\n  return (\n    <div className={cn(\"flex flex-col gap-3\", className)}>\n      <p className=\"max-w-prose text-lg leading-relaxed\">\n        {words.map((entry, index) => (\n          <span\n            key={index}\n            title={`${entry.word}: ${entry.score > 0 ? \"+\" : \"\"}${entry.score.toFixed(2)}`}\n            className=\"font-medium\"\n            style={{ color: tint(entry.score) }}\n          >\n            {entry.word}{\" \"}\n          </span>\n        ))}\n      </p>\n      <div className=\"flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-ink/60\" aria-hidden>\n        <span>-1</span>\n        <span\n          className=\"h-1.5 w-40 rounded-full\"\n          style={{ background: \"linear-gradient(to right, #4a6fa5, #6b6b6b, #e2624a)\" }}\n        />\n        <span>+1</span>\n      </div>\n    </div>\n  );\n}\n\nexport default SentimentColorWords;\n",
+      "contentHash": "14beca8b4be891ad37aaa89d2d7c86ead79daef2c0baae06410e38f952f8eaef",
+      "sizeBytes": 1543
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SentimentColorWords } from \"./sentiment-color-words\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-paper p-10\">\n      <SentimentColorWords\n        words={[\n          { word: \"The\", score: 0 },\n          { word: \"review\", score: 0.1 },\n          { word: \"was\", score: 0 },\n          { word: \"harsh\", score: -0.8 },\n          { word: \"but\", score: -0.1 },\n          { word: \"fair\", score: 0.6 },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "df097f74da7c751ca37d0010550d4ceaebac9c44cada312d35a8b630b80f86be",
+      "sizeBytes": 511
+    }
+  ],
+  "tags": [
+    "sentiment",
+    "valence",
+    "color-scale",
+    "nlp"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "hover-readout",
+      "visualModel": "valence-tinted-words",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "sentiment-display"
+    }
+  },
+  "url": "https://openui.dev/r/sentiment-color-words.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Soft\nMotion: None\nTypography: Humanist\nColor: Duotone\n\n## Rules\n\n- Hover Readout: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

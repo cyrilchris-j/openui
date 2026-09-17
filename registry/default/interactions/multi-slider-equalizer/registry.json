@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-slider-equalizer",
+  "type": "registry:interaction",
+  "title": "Multi Slider Equalizer",
+  "description": "A graphic equalizer rack featuring independent vertical sliders computing frequency spectrum balance.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-slider-equalizer.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "equalizer",
+    "sliders",
+    "audio",
+    "frequency",
+    "vertical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "multi-channel-slider-rack",
+      "visualModel": "bandpass-slider-bank",
+      "motionModel": "vertical-channel-travel",
+      "layoutModel": "horizontal-rack-slots",
+      "semanticPurpose": "audio-frequency-attenuator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

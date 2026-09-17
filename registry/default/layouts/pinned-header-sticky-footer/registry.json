@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pinned-header-sticky-footer",
+  "type": "registry:layout",
+  "title": "Pinned Header Sticky Footer",
+  "description": "Viewport application framework with fixed header on top, central scroll area, and bottom action bar.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pinned-header-sticky-footer.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "sticky",
+    "footer",
+    "header",
+    "shell",
+    "viewport"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "pinned-header-footer-scroll",
+      "visualModel": "framed-viewport-shell",
+      "motionModel": "none",
+      "layoutModel": "top-middle-bottom-stack",
+      "semanticPurpose": "viewport-bounded-application-shell"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

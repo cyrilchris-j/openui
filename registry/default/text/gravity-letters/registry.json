@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gravity-letters",
+  "type": "registry:text",
+  "title": "Gravity Letters",
+  "description": "Click the headline and each letter drops off its baseline with individual delay and bounce easing, then reassembles on the next click — a deterministic physics sketch using transitions, not an engine.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gravity-letters.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "gravity",
+    "physics",
+    "drop",
+    "click"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "click-toggle",
+      "visualModel": "displaced-glyph-spans",
+      "motionModel": "bounce-fall-return",
+      "layoutModel": "inline",
+      "semanticPurpose": "playful-heading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

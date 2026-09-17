@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-button-dropdown",
+  "type": "registry:component",
+  "title": "Split Button Dropdown",
+  "description": "A composite action button with a primary click surface and a distinct chevron dropdown trigger for secondary variants.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-button-dropdown.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitButtonDropdownProps {\n  className?: string;\n}\n\nexport function SplitButtonDropdown({ className }: SplitButtonDropdownProps) {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <div className={cn(\"relative inline-flex rounded-lg border border-line bg-paper shadow-sm font-mono text-xs\", className)}>\n      <button\n        type=\"button\"\n        className=\"px-4 py-2 font-bold text-ink hover:bg-line/20 rounded-l-lg\"\n      >\n        Deploy Branch\n      </button>\n      <button\n        type=\"button\"\n        onClick={() => setOpen((o) => !o)}\n        className=\"border-l border-line px-2 hover:bg-line/20 rounded-r-lg\"\n      >\n        ▾\n      </button>\n\n      {open && (\n        <div className=\"absolute top-full mt-1 right-0 w-44 rounded-xl border border-line bg-paper p-1.5 shadow-xl space-y-1 z-10\">\n          <div className=\"px-3 py-1.5 hover:bg-line/20 rounded cursor-pointer\">Deploy to Staging</div>\n          <div className=\"px-3 py-1.5 hover:bg-line/20 rounded cursor-pointer\">Deploy with Rebuild</div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default SplitButtonDropdown;\n",
+      "contentHash": "b6643dcd0693f80f0ea37ca82124ba47a86527be7bdca3265578137f76905bd7",
+      "sizeBytes": 1200
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SplitButtonDropdown } from \"./split-button-dropdown\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SplitButtonDropdown />\n    </div>\n  );\n}\n",
+      "contentHash": "a9d5f3ee289b332ff866bf1b6c55237f9daa510f949163749fd4b86ca55ba27e",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "split-button",
+    "button",
+    "dropdown",
+    "actions",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "split-action-dropdown",
+      "visualModel": "bipartite-action-capsule",
+      "motionModel": "none",
+      "layoutModel": "horizontal-split-button",
+      "semanticPurpose": "dual-action-split-button"
+    }
+  },
+  "url": "https://openui.dev/r/split-button-dropdown.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Split Action Dropdown: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

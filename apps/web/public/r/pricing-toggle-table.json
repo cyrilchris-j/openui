@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pricing-toggle-table",
+  "type": "registry:section",
+  "title": "Pricing Toggle Table",
+  "description": "An interactive billing matrix with a monthly/annual billing cycle switch, plan tiers, and recommended highlights.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pricing-toggle-table.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PricingPlan {\n  name: string;\n  monthlyPrice: number;\n  annualPrice: number;\n  description: string;\n  features: string[];\n  popular?: boolean;\n}\n\nexport interface PricingToggleTableProps extends React.HTMLAttributes<HTMLElement> {\n  plans?: PricingPlan[];\n}\n\nconst DEFAULT_PLANS: PricingPlan[] = [\n  {\n    name: \"Starter\",\n    monthlyPrice: 19,\n    annualPrice: 15,\n    description: \"For independent engineers and small prototypes.\",\n    features: [\"Up to 5 team members\", \"10,000 monthly active requests\", \"Community Discord support\", \"1GB shared telemetry storage\"],\n  },\n  {\n    name: \"Pro\",\n    monthlyPrice: 49,\n    annualPrice: 39,\n    description: \"For scaling engineering squads and growing products.\",\n    popular: true,\n    features: [\"Unlimited team members\", \"250,000 monthly active requests\", \"Priority Slack connect channel\", \"30-day telemetry retention\", \"Custom domain routing\"],\n  },\n  {\n    name: \"Enterprise\",\n    monthlyPrice: 199,\n    annualPrice: 159,\n    description: \"For mission-critical infrastructure with strict SLAs.\",\n    features: [\"Unlimited requests with dedicated proxy\", \"99.99% uptime guarantee\", \"24/7/365 dedicated engineer\", \"Self-hosted VPC gateway\", \"Custom SSO & SAML\"],\n  },\n];\n\nexport function PricingToggleTable({\n  plans = DEFAULT_PLANS,\n  className,\n  ...props\n}: PricingToggleTableProps) {\n  const [annual, setAnnual] = React.useState(true);\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100\">\n          Predictable, transparent pricing\n        </h2>\n        <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-2\">\n          No hidden seat charges or overage traps. Upgrade or downgrade at any time.\n        </p>\n\n        {/* Toggle switch */}\n        <div className=\"mt-6 inline-flex items-center gap-3 p-1 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700\">\n          <button\n            type=\"button\"\n            onClick={() => setAnnual(false)}\n            className={cn(\n              \"px-4 py-1.5 rounded-full text-xs font-medium transition-colors\",\n              !annual ? \"bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white shadow-sm\" : \"text-neutral-500 hover:text-neutral-900 dark:hover:text-white\"\n            )}\n          >\n            Monthly billing\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setAnnual(true)}\n            className={cn(\n              \"px-4 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5\",\n              annual ? \"bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white shadow-sm\" : \"text-neutral-500 hover:text-neutral-900 dark:hover:text-white\"\n            )}\n          >\n            <span>Annual billing</span>\n            <span className=\"text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-1.5 py-0.5 rounded-full\">\n              Save 20%\n            </span>\n          </button>\n        </div>\n      </div>\n\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch\">\n        {plans.map((plan) => {\n          const price = annual ? plan.annualPrice : plan.monthlyPrice;\n          return (\n            <div\n              key={plan.name}\n              className={cn(\n                \"rounded-2xl border p-6 flex flex-col justify-between relative transition-all duration-200\",\n                plan.popular\n                  ? \"border-neutral-900 dark:border-neutral-100 shadow-xl bg-neutral-900 text-white dark:bg-neutral-900\"\n                  : \"border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100\"\n              )}\n            >\n              {plan.popular && (\n                <span className=\"absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500 text-black\">\n                  Most Popular\n                </span>\n              )}\n              <div>\n                <h3 className=\"text-lg font-bold\">{plan.name}</h3>\n                <p className=\"text-xs text-neutral-400 mt-1\">{plan.description}</p>\n                <div className=\"mt-4 flex items-baseline gap-1\">\n                  <span className=\"text-4xl font-extrabold tracking-tight\">$${price}</span>\n                  <span className=\"text-xs text-neutral-400\">/mo per seat</span>\n                </div>\n                <div className=\"mt-6 space-y-2.5 text-xs\">\n                  {plan.features.map((feature, i) => (\n                    <div key={i} className=\"flex items-center gap-2\">\n                      <span className=\"text-emerald-400 font-bold\">✓</span>\n                      <span className={plan.popular ? \"text-neutral-200\" : \"text-neutral-600 dark:text-neutral-300\"}>\n                        {feature}\n                      </span>\n                    </div>\n                  ))}\n                </div>\n              </div>\n              <button\n                type=\"button\"\n                className={cn(\n                  \"mt-8 w-full py-2.5 rounded-xl text-xs font-semibold transition-colors\",\n                  plan.popular\n                    ? \"bg-white text-neutral-900 hover:bg-neutral-100\"\n                    : \"bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200\"\n                )}\n              >\n                Choose {plan.name}\n              </button>\n            </div>\n          );\n        })}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "1435865c452893e0f3e073b330f0efd508908164c8a84a8ac4f964861a2997b8",
+      "sizeBytes": 5845
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { PricingToggleTable } from \"./pricing-toggle-table\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[500px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <PricingToggleTable />\n    </div>\n  );\n}\n",
+      "contentHash": "018d6498bab8962cf4b531cd7761c9b93dedba23b1cbfbed05e4b5274fc57804",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "pricing",
+    "table",
+    "billing",
+    "plans",
+    "tier"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "pricing-toggle-table-interaction",
+      "visualModel": "pricing-toggle-table-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "pricing-toggle-table-section"
+    }
+  },
+  "url": "https://openui.dev/r/pricing-toggle-table.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Pricing Toggle Table Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

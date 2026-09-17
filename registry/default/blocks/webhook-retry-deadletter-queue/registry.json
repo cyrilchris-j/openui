@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "webhook-retry-deadletter-queue",
+  "type": "registry:block",
+  "title": "Webhook Retry Deadletter Queue",
+  "description": "A dead-letter queue recovery tool displaying failed delivery events and bulk re-dispatch action triggers.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "webhook-retry-deadletter-queue.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "deadletter",
+    "queue",
+    "webhooks",
+    "retry",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "webhooks",
+    "fingerprint": {
+      "interactionModel": "dead-letter-queue-redelivery",
+      "visualModel": "failed-job-retry-console",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "dead-letter-queue-recovery"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

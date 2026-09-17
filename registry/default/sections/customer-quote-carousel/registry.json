@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-quote-carousel",
+  "type": "registry:section",
+  "title": "Customer Quote Carousel",
+  "description": "Verified customer testimonial card with pull-quote statement, author avatar, credentials, and verification seal.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-quote-carousel.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "testimonials",
+    "quotes",
+    "social-proof",
+    "reviews",
+    "author"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "social-proof",
+    "fingerprint": {
+      "interactionModel": "quote-testimony-presentation",
+      "visualModel": "bordered-quote-card",
+      "motionModel": "none",
+      "layoutModel": "centered-testimonial-card",
+      "semanticPurpose": "customer-testimony-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

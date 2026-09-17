@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "case-study-hero-card",
+  "type": "registry:section",
+  "title": "Case Study Hero Card",
+  "description": "Enterprise case study overview card with client logo, quantifiable outcome metrics, and quote.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "case-study-hero-card.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CaseStudyHeroCardProps extends React.HTMLAttributes<HTMLElement> {\n  client?: string;\n  headline?: string;\n  metric?: string;\n  metricLabel?: string;\n}\n\nexport function CaseStudyHeroCard({\n  client = \"FINANCIAL SYSTEMS INC.\",\n  headline = \"How a Tier-1 Fintech migrated 1,400 legacy views to OpenUI closed schemas in three sprints.\",\n  metric = \"94% Less\",\n  metricLabel = \"Frontend Regression Tickets\",\n  className,\n  ...props\n}: CaseStudyHeroCardProps) {\n  return (\n    <section className={cn(\"py-16 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <div className=\"p-8 sm:p-12 rounded-3xl border border-line bg-surface/30 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center\">\n        <div className=\"lg:col-span-8 space-y-3\">\n          <div className=\"font-mono text-xs font-bold text-accent tracking-wider\">{client}</div>\n          <h3 className=\"text-xl sm:text-2xl font-bold font-serif text-ink leading-snug\">{headline}</h3>\n          <p className=\"text-xs text-ink/60 font-sans\">Verified deployment case study • Q3 2026</p>\n        </div>\n        <div className=\"lg:col-span-4 p-6 rounded-2xl border border-line bg-paper text-center shadow-xs\">\n          <div className=\"text-3xl font-bold font-mono text-emerald-600\">{metric}</div>\n          <div className=\"text-xs font-semibold text-ink mt-1 font-sans\">{metricLabel}</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "d09e88f0d1515cf7185e530bcef70a389f51056c7c4f2be676bf645b73e5c36c",
+      "sizeBytes": 1482
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CaseStudyHeroCard } from \"./case-study-hero-card\";\n\nexport default function CaseStudyHeroCardDemo() {\n  return <CaseStudyHeroCard />;\n}\n",
+      "contentHash": "c3358a9948385413645f8fd32a909dd6499db0c7149db840fa034b7b7a9dcb44",
+      "sizeBytes": 160
+    }
+  ],
+  "tags": [
+    "case-study",
+    "customer",
+    "outcome",
+    "metrics",
+    "hero"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "case-studies",
+    "fingerprint": {
+      "interactionModel": "case-study-hero-inspection",
+      "visualModel": "outcomes-and-narrative-split",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-case-study",
+      "semanticPurpose": "customer-success-study"
+    }
+  },
+  "url": "https://openui.dev/r/case-study-hero-card.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Split\nDensity: Airy\nShape: Rounded\nMotion: None\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Case Study Hero Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

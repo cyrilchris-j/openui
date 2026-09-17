@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-profile-feed",
+  "type": "registry:layout",
+  "title": "Two Column Profile Feed",
+  "description": "Social profile view with sticky user bio credentials on left and chronological post stream on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-profile-feed.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoColumnProfileFeedProps extends React.HTMLAttributes<HTMLDivElement> {\n  bio?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function TwoColumnProfileFeed({ bio, children, className, ...props }: TwoColumnProfileFeedProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <aside className=\"lg:col-span-4 lg:sticky lg:top-6 p-6 rounded-2xl border border-line bg-surface/30\">{bio}</aside>\n      <main className=\"lg:col-span-8 space-y-4\">{children}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "339b3a73acf371e375b00320933c906d14058136d652022961c8ccec418380ee",
+      "sizeBytes": 650
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoColumnProfileFeed } from \"./two-column-profile-feed\";\n\nexport default function TwoColumnProfileFeedDemo() {\n  return (\n    <TwoColumnProfileFeed\n      bio={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink\">Cyril Chris</h3>\n          <p className=\"text-xs text-ink/60 mt-1\">Lead Design Systems Architect</p>\n        </div>\n      }\n    >\n      <div className=\"p-4 rounded-xl border border-line bg-paper text-xs\">Activity update from architect.</div>\n    </TwoColumnProfileFeed>\n  );\n}\n",
+      "contentHash": "55cef61a40e4dbb84c7e9dd2ffeb83dc0c5ca104d6e28ebef7865695d85a3858",
+      "sizeBytes": 528
+    }
+  ],
+  "tags": [
+    "profile",
+    "feed",
+    "social",
+    "stream",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "profile-bio-and-stream-scroll",
+      "visualModel": "sticky-bio-and-activity-stream",
+      "motionModel": "none",
+      "layoutModel": "asymmetric-profile-grid",
+      "semanticPurpose": "user-profile-and-activity-layout"
+    }
+  },
+  "url": "https://openui.dev/r/two-column-profile-feed.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Profile Bio And Stream Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

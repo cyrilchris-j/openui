@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-incident-declaration-modal",
+  "type": "registry:block",
+  "title": "System Incident Declaration Modal",
+  "description": "An emergency incident declaration modal with severity tiers (P0, P1, P2), impact scope, and status broadcast checkbox.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-incident-declaration-modal.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SystemIncidentDeclarationModal({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl text-xs\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-rose-600 mb-2\">Declare Operational Incident</h3>\n      <p className=\"text-neutral-500 mb-4\">This action broadcasts a pager alert to the on-call SRE squad.</p>\n      <div className=\"space-y-3 mb-6\">\n        <div>\n          <label className=\"block text-neutral-600 dark:text-neutral-400 mb-1\">Severity Level</label>\n          <select className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900\">\n            <option>P0 — Catastrophic Outage</option>\n            <option>P1 — Degraded Performance</option>\n            <option>P2 — Minor Edge Latency</option>\n          </select>\n        </div>\n      </div>\n      <button type=\"button\" className=\"w-full py-2 bg-rose-600 text-white font-bold rounded-lg\">\n        Trigger Incident Alert 🚨\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "dcf155b330449c5180fa04f8aac970d7ff4ab08d03cc2216cf6544e9f4de7657",
+      "sizeBytes": 1274
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { SystemIncidentDeclarationModal } from \"./system-incident-declaration-modal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <SystemIncidentDeclarationModal />\n    </div>\n  );\n}\n",
+      "contentHash": "a74307f662587c59c0acead54e803a638824ae3817ef7a725c985f97d5a2690e",
+      "sizeBytes": 320
+    }
+  ],
+  "tags": [
+    "incident",
+    "devops",
+    "modal",
+    "alerts",
+    "sre"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "incident-declaration-dispatch",
+      "visualModel": "emergency-response-declaration-modal",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "emergency-incident-declaration"
+    }
+  },
+  "url": "https://openui.dev/r/system-incident-declaration-modal.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Incident Declaration Dispatch: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

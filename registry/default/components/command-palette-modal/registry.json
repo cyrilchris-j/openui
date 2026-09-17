@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "command-palette-modal",
+  "type": "registry:component",
+  "title": "Command Palette Modal",
+  "description": "Spotlight modal launcher with categorized actions, keyboard shortcut navigation, and query filter.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "command-palette-modal.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "command",
+    "palette",
+    "modal",
+    "spotlight",
+    "navigation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "spotlight-dialog-search",
+      "visualModel": "centered-command-dialog",
+      "motionModel": "none",
+      "layoutModel": "overlay-dialog-stack",
+      "semanticPurpose": "global-command-launcher"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

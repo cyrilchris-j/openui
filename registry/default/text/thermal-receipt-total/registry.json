@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "thermal-receipt-total",
+  "type": "registry:text",
+  "title": "Thermal Receipt Total",
+  "description": "A receipt layout with dot-leader lines between item names and prices, a dashed separator, a double-ruled total, and tabular numerals that keep every currency column aligned — the typography of honest arithmetic.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "thermal-receipt-total.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "receipt",
+    "dot-leader",
+    "tabular",
+    "totals"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "dot-leader-columns",
+      "motionModel": "none",
+      "layoutModel": "receipt",
+      "semanticPurpose": "itemised-total"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gyroscopic-card-tilt",
+  "type": "registry:motion",
+  "title": "Gyroscopic Card Tilt",
+  "description": "A layered holographic identity card that tilts dynamically in 3D space based on mouse angle, simulating physical glass inertia.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gyroscopic-card-tilt.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface GyroscopicCardTiltProps {\n  className?: string;\n  name?: string;\n  role?: string;\n}\n\nexport function GyroscopicCardTilt({\n  className,\n  name = \"Aria Montgomery\",\n  role = \"Staff Systems Architect\",\n}: GyroscopicCardTiltProps) {\n  const [rot, setRot] = useState({ x: 0, y: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = (e.clientX - rect.left) / rect.width - 0.5;\n    const y = (e.clientY - rect.top) / rect.height - 0.5;\n    setRot({ x: -y * 22, y: x * 22 });\n  };\n\n  const handlePointerLeave = () => {\n    setRot({ x: 0, y: 0 });\n  };\n\n  return (\n    <div style={{ perspective: 1000 }} className=\"inline-block\">\n      <div\n        onPointerMove={handlePointerMove}\n        onPointerLeave={handlePointerLeave}\n        style={{\n          transform: `rotateX(${rot.x}deg) rotateY(${rot.y}deg)`,\n          transformStyle: \"preserve-3d\",\n        }}\n        className={cn(\n          \"relative h-56 w-96 cursor-pointer overflow-hidden rounded-2xl border border-line bg-paper p-6 shadow-xl transition-transform duration-150 ease-out\",\n          className\n        )}\n      >\n        <div className=\"flex h-full flex-col justify-between\" style={{ transform: \"translateZ(30px)\" }}>\n          <div className=\"flex items-center justify-between\">\n            <span className=\"font-mono text-xs uppercase tracking-widest text-ink/50\">OPENUI CLEARANCE</span>\n            <span className=\"h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse\" />\n          </div>\n          <div>\n            <h3 className=\"font-display text-xl font-bold text-ink\">{name}</h3>\n            <p className=\"font-mono text-xs text-ink/70\">{role}</p>\n          </div>\n          <div className=\"flex justify-between font-mono text-[10px] text-ink/40\">\n            <span>ID: 8092-B-99</span>\n            <span>LEVEL 4 VERIFIED</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport default GyroscopicCardTilt;\n",
+      "contentHash": "a8e1b943a22c8bb7188bdac54f4dda96b8c1693083780acf251986d10c640d39",
+      "sizeBytes": 2096
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { GyroscopicCardTilt } from \"./gyroscopic-card-tilt\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <GyroscopicCardTilt />\n    </div>\n  );\n}\n",
+      "contentHash": "6127464a1f925d01617bdf690a3264a2293372fdbe9e35add711f3bac1c71208",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "3d",
+    "tilt",
+    "perspective",
+    "gyroscope",
+    "card"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "pointer-perspective-tilt",
+      "visualModel": "specular-sheen-surface",
+      "motionModel": "damped-euler-rotation",
+      "layoutModel": "isolated-identity-slab",
+      "semanticPurpose": "premium-profile-pass"
+    }
+  },
+  "url": "https://openui.dev/r/gyroscopic-card-tilt.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Pointer Perspective Tilt: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

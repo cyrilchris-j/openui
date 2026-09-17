@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "directional-pan-pad",
+  "type": "registry:interaction",
+  "title": "Directional Pan Pad",
+  "description": "A four-way cross D-pad allowing orthogonal coordinate navigation with tactile keycap depression states.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "directional-pan-pad.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "d-pad",
+    "directional",
+    "pan",
+    "arrows",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "cardinal-dpad-navigation",
+      "visualModel": "cruciform-dpad-chassis",
+      "motionModel": "bistable-direction-latch",
+      "layoutModel": "cruciform-button-cluster",
+      "semanticPurpose": "cardinal-directional-pad"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

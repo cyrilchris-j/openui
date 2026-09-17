@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "count-up-spring",
+  "type": "registry:motion",
+  "title": "Count Up Spring",
+  "description": "Numeric tween driven by a spring, not an easing curve: the displayed value overshoots the target and settles, digits use tabular numerals so widths never jitter, and re-targeting mid-flight re-targets the spring without restart.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "count-up-spring.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface CountUpSpringProps {\n  value: number;\n  stiffness?: number;\n  /** Decimal places to display. */\n  decimals?: number;\n  className?: string;\n}\n\nexport function CountUpSpring({ value, stiffness = 90, decimals = 0, className }: CountUpSpringProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const state = useRef({ current: value, velocity: 0, target: value, raf: null as number | null });\n\n  useEffect(() => {\n    const node = ref.current;\n    if (!node) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      node.textContent = value.toFixed(decimals);\n      return;\n    }\n\n    const s = state.current;\n    s.target = value;\n\n    const tick = () => {\n      const force = -stiffness * (s.current - s.target);\n      s.velocity = (s.velocity + force * 0.016) * 0.88;\n      s.current += s.velocity * 0.016;\n\n      if (node) node.textContent = s.current.toFixed(decimals);\n\n      if (Math.abs(s.current - s.target) > 0.001 || Math.abs(s.velocity) > 0.01) {\n        s.raf = requestAnimationFrame(tick);\n      } else {\n        s.current = s.target;\n        if (node) node.textContent = s.target.toFixed(decimals);\n        s.raf = null;\n      }\n    };\n    if (s.raf === null) s.raf = requestAnimationFrame(tick);\n\n    return () => {\n      if (s.raf !== null) {\n        cancelAnimationFrame(s.raf);\n        s.raf = null;\n      }\n    };\n  }, [value, stiffness, decimals]);\n\n  return (\n    <span ref={ref} className={cn(\"tabular-nums\", className)}>\n      {value.toFixed(decimals)}\n    </span>\n  );\n}\n\nexport default CountUpSpring;\n",
+      "contentHash": "360bd5d8e4254e8c7f7911447364024b6df3bc3050029d1559e820091df5a276",
+      "sizeBytes": 1664
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { useEffect, useState } from \"react\";\nimport { CountUpSpring } from \"./count-up-spring\";\n\nexport default function Demo() {\n  const [value, setValue] = useState(100);\n\n  useEffect(() => {\n    const timer = window.setInterval(\n      () => setValue((current) => Math.max(0, current + Math.round((Math.random() - 0.35) * 60))),\n      1800,\n    );\n    return () => window.clearInterval(timer);\n  }, []);\n\n  return (\n    <div className=\"flex min-h-[13rem] flex-col items-center justify-center gap-2 bg-paper p-10\">\n      <CountUpSpring value={value} className=\"font-display text-6xl text-ink\" />\n      <p className=\"font-mono text-xs text-ink/50\">resources published</p>\n    </div>\n  );\n}\n",
+      "contentHash": "92ee473b385c0ad1127027e89b037524b4310bcd534dfe838686b4ef46895f16",
+      "sizeBytes": 690
+    }
+  ],
+  "tags": [
+    "count",
+    "spring",
+    "number",
+    "tween"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "value-change-trigger",
+      "visualModel": "overshooting-numeral",
+      "motionModel": "spring-value-integrator",
+      "layoutModel": "inline",
+      "semanticPurpose": "metric-attention"
+    }
+  },
+  "url": "https://openui.dev/r/count-up-spring.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Expressive\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Value Change Trigger: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

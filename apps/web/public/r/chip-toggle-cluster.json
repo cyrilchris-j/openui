@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "chip-toggle-cluster",
+  "type": "registry:component",
+  "title": "Chip Toggle Cluster",
+  "description": "An array of selectable category chips with active counts and toggle selection states.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "chip-toggle-cluster.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ChipToggleClusterProps {\n  className?: string;\n}\n\nexport function ChipToggleCluster({ className }: ChipToggleClusterProps) {\n  const [active, setActive] = useState<string[]>([\"Components\"]);\n  const items = [\"Components\", \"Motion\", \"Text\", \"Layouts\"];\n\n  const toggle = (it: string) => {\n    setActive((prev) => (prev.includes(it) ? prev.filter((i) => i !== it) : [...prev, it]));\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-wrap gap-2\", className)}>\n      {items.map((it) => {\n        const isSel = active.includes(it);\n        return (\n          <button\n            key={it}\n            type=\"button\"\n            onClick={() => toggle(it)}\n            className={cn(\n              \"rounded-full border px-3.5 py-1 font-mono text-xs font-semibold transition-all\",\n              isSel ? \"border-ink bg-ink text-paper shadow-sm\" : \"border-line bg-paper text-ink hover:border-ink\"\n            )}\n          >\n            {it}\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n\nexport default ChipToggleCluster;\n",
+      "contentHash": "e93181dd6c490f9b79de4e99df1b1eb397d7473df919a3fa224fbd43e4d2ef64",
+      "sizeBytes": 1129
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ChipToggleCluster } from \"./chip-toggle-cluster\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ChipToggleCluster />\n    </div>\n  );\n}\n",
+      "contentHash": "f6e9c47996bab1ee55cd7482eb96dc5724dba9ce53864ea852710c14638202f0",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "chips",
+    "tags",
+    "filters",
+    "cluster",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "multi-chip-toggle",
+      "visualModel": "horizontal-pill-constellation",
+      "motionModel": "none",
+      "layoutModel": "flex-wrapping-chips",
+      "semanticPurpose": "facet-filter-chips"
+    }
+  },
+  "url": "https://openui.dev/r/chip-toggle-cluster.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Multi Chip Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -6,6 +6,7 @@ import type { RegistryIndexEntry } from "@openui/types";
 import { cn } from "@openui/ui";
 
 import { DnaStrip } from "./DnaStrip.js";
+import { TilePreview } from "./TilePreview.js";
 
 /**
  * A catalogue tile.
@@ -23,17 +24,20 @@ export interface ResourceTileProps {
   item: RegistryIndexEntry;
   /** Catalogue position, rendered as a monospace index. */
   index?: number;
+  /** Render a lazy live preview above the metadata. Opt-in per surface. */
+  withPreview?: boolean;
   className?: string;
 }
 
-export function ResourceTile({ item, index, className }: ResourceTileProps): React.JSX.Element {
+export function ResourceTile({ item, index, withPreview = false, className }: ResourceTileProps): React.JSX.Element {
   const href = `/${categorySegmentFor(item.category)}/${item.name}`;
   const dependencies = item.dependencies.filter((name) => name !== "react");
 
   return (
     <article
       className={cn(
-        "group relative flex flex-col bg-paper p-4 sm:p-5",
+        "group relative flex flex-col bg-paper",
+        withPreview ? "" : "p-4 sm:p-5",
         "transition-colors duration-fast ease-editorial hover:bg-ink/[0.02]",
         "focus-within:bg-ink/[0.02]",
         className,
@@ -48,7 +52,9 @@ export function ResourceTile({ item, index, className }: ResourceTileProps): Rea
         </span>
       ) : null}
 
-      <div className="flex items-center gap-2">
+      {withPreview ? <TilePreview item={item} /> : null}
+
+      <div className={cn("flex items-center gap-2", withPreview && "px-4 pt-4 sm:px-5 sm:pt-5")}>
         <span className="eyebrow text-[10px] sm:text-[11px]">{item.type.replace("registry:", "")}</span>
         {item.license ? (
           <>
@@ -60,7 +66,7 @@ export function ResourceTile({ item, index, className }: ResourceTileProps): Rea
         ) : null}
       </div>
 
-      <h3 className="mt-2.5 sm:mt-3 max-w-[22ch] font-display text-xl sm:text-step-2 leading-tight sm:leading-[1.1] tracking-tight text-ink">
+      <h3 className={cn("max-w-[22ch] font-display text-xl sm:text-step-2 leading-tight sm:leading-[1.1] tracking-tight text-ink", withPreview ? "mt-3 px-4 sm:px-5" : "mt-2.5 sm:mt-3")}>
         <Link
           to={href}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -69,11 +75,11 @@ export function ResourceTile({ item, index, className }: ResourceTileProps): Rea
         </Link>
       </h3>
 
-      <p className="mt-2 sm:mt-3 max-w-[42ch] text-[0.82rem] sm:text-[0.88rem] leading-relaxed text-graphite line-clamp-2 sm:line-clamp-none">
+      <p className={cn("max-w-[42ch] text-[0.82rem] sm:text-[0.88rem] leading-relaxed text-graphite line-clamp-2 sm:line-clamp-none", withPreview ? "mt-2 px-4 sm:px-5" : "mt-2 sm:mt-3")}>
         {item.description}
       </p>
 
-      <div className="mt-auto pt-4 sm:pt-6">
+      <div className={cn("mt-auto", withPreview ? "px-4 pb-4 pt-4 sm:px-5 sm:pb-5" : "pt-4 sm:pt-6")}>
         <DnaStrip dna={item.dna} />
         <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-3">
           <p className="font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.14em] text-graphite truncate">

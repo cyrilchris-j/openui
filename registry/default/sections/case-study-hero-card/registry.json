@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "case-study-hero-card",
+  "type": "registry:section",
+  "title": "Case Study Hero Card",
+  "description": "Enterprise case study overview card with client logo, quantifiable outcome metrics, and quote.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "case-study-hero-card.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "case-study",
+    "customer",
+    "outcome",
+    "metrics",
+    "hero"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "case-studies",
+    "fingerprint": {
+      "interactionModel": "case-study-hero-inspection",
+      "visualModel": "outcomes-and-narrative-split",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-case-study",
+      "semanticPurpose": "customer-success-study"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

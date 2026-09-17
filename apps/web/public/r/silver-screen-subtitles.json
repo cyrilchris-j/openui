@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "silver-screen-subtitles",
+  "type": "registry:text",
+  "title": "Silver Screen Subtitles",
+  "description": "Cinema-grade subtitles: word-wrapped to 42 characters per line (the industry standard), timed against a playhead, positioned bottom-centre with a safety margin, and re-rendered per cue without animation jank.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "silver-screen-subtitles.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SubtitleCue {\n  /** Start time, seconds. */\n  start: number;\n  /** End time, seconds. */\n  end: number;\n  text: string;\n}\n\nexport interface SilverScreenSubtitlesProps {\n  cues: SubtitleCue[];\n  /** Total runtime in seconds; the demo loops a scrubber over it. */\n  durationSeconds?: number;\n  className?: string;\n}\n\nexport function SilverScreenSubtitles({ cues, durationSeconds = 20, className }: SilverScreenSubtitlesProps) {\n  const [time, setTime] = useState(0);\n\n  useEffect(() => {\n    const timer = window.setInterval(() => setTime((value) => (value + 0.25) % durationSeconds), 250);\n    return () => window.clearInterval(timer);\n  }, [durationSeconds]);\n\n  const active = cues.find((cue) => time >= cue.start && time < cue.end);\n  // Wrap at 42 chars per line, max 2 lines — the Netflix/TED guideline.\n  const lines = active ? wrapLines(active.text, 42) : [];\n\n  return (\n    <div className={cn(\"flex flex-col gap-4\", className)}>\n      <div className=\"relative flex h-40 items-end justify-center rounded-lg bg-gradient-to-b from-slate-800 to-slate-950\">\n        <span aria-hidden className=\"absolute left-3 top-3 font-mono text-[10px] text-white/40\">\n          {time.toFixed(1)}s / {durationSeconds}s\n        </span>\n        <p className=\"mb-6 max-w-[90%] text-center text-lg leading-snug text-white\" role=\"status\" aria-live=\"polite\">\n          {lines.map((line, index) => (\n            <span key={index} className=\"block drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]\">\n              {line}\n            </span>\n          ))}\n        </p>\n      </div>\n      <ul className=\"flex flex-wrap gap-1 font-mono text-[10px] text-ink/60\" aria-hidden>\n        {cues.map((cue, index) => (\n          <li key={index} className={cn(\"rounded border px-1.5 py-0.5\", active === cue ? \"border-accent text-accent\" : \"border-line\")}>\n            {cue.start}-{cue.end}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nfunction wrapLines(text: string, max: number): string[] {\n  const words = text.split(\" \");\n  const lines: string[] = [];\n  let current = \"\";\n  for (const word of words) {\n    if ((current + \" \" + word).trim().length > max && current) {\n      lines.push(current);\n      current = word;\n    } else {\n      current = (current ? current + \" \" : \"\") + word;\n    }\n  }\n  if (current) lines.push(current);\n  return lines.slice(0, 2);\n}\n\nexport default SilverScreenSubtitles;\n",
+      "contentHash": "674f65b3cfcd5447fbbbe65a6e95fcba444d732c977ea3a8f673f4b2704ee634",
+      "sizeBytes": 2486
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SilverScreenSubtitles } from \"./silver-screen-subtitles\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <SilverScreenSubtitles\n        className=\"w-full max-w-lg\"\n        cues={[\n          { start: 0, end: 5, text: \"Registries are contracts between authors and installers.\" },\n          { start: 6, end: 12, text: \"The schema is where the trust lives.\" },\n          { start: 13, end: 20, text: \"Everything else is presentation.\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "22e9f35eb5851ec1ba907cdc6bb9d57291ffcdd36f38bc775054d903e8d6bcdb",
+      "sizeBytes": 567
+    }
+  ],
+  "tags": [
+    "subtitles",
+    "captions",
+    "timing",
+    "cues"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "playhead-sync",
+      "visualModel": "cue-wrapped-lines",
+      "motionModel": "cue-swap",
+      "layoutModel": "bottom-overlay",
+      "semanticPurpose": "captioning"
+    }
+  },
+  "url": "https://openui.dev/r/silver-screen-subtitles.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Playhead Sync: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

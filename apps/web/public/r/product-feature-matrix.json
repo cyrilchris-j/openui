@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "product-feature-matrix",
+  "type": "registry:section",
+  "title": "Product Feature Matrix",
+  "description": "A comprehensive checklist matrix detailing features across Free, Team, and Enterprise deployment tiers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "product-feature-matrix.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MatrixRow {\n  name: string;\n  starter: boolean | string;\n  pro: boolean | string;\n  enterprise: boolean | string;\n}\n\nexport interface ProductFeatureMatrixProps extends React.HTMLAttributes<HTMLElement> {\n  rows?: MatrixRow[];\n}\n\nconst DEFAULT_ROWS: MatrixRow[] = [\n  { name: \"Full 800 Catalog Access\", starter: true, pro: true, enterprise: true },\n  { name: \"CLI Generator Tooling\", starter: true, pro: true, enterprise: true },\n  { name: \"Zero-bundle CSS Engine\", starter: true, pro: true, enterprise: true },\n  { name: \"Private Air-gapped Mirror\", starter: false, pro: true, enterprise: true },\n  { name: \"Dedicated Slack Support\", starter: false, pro: \"Business Hours\", enterprise: \"24/7/365 Dedicated\" },\n  { name: \"Custom SSO & SAML Provisioning\", starter: false, pro: false, enterprise: true },\n  { name: \"Custom Component Audits\", starter: false, pro: false, enterprise: \"Quarterly Review\" },\n];\n\nexport function ProductFeatureMatrix({\n  rows = DEFAULT_ROWS,\n  className,\n  ...props\n}: ProductFeatureMatrixProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100\">\n          Feature Matrix by Plan\n        </h2>\n        <p className=\"text-xs text-neutral-500 mt-2\">\n          Compare core capabilities and SLA guarantees across all plan tiers.\n        </p>\n      </div>\n\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-950\">\n        <div className=\"grid grid-cols-12 bg-neutral-50 dark:bg-neutral-900 p-4 font-mono text-xs font-bold border-b border-neutral-200 dark:border-neutral-800\">\n          <div className=\"col-span-6 text-neutral-500 uppercase\">Capability</div>\n          <div className=\"col-span-2 text-center text-neutral-600 dark:text-neutral-400\">Starter</div>\n          <div className=\"col-span-2 text-center text-emerald-600 dark:text-emerald-400\">Pro</div>\n          <div className=\"col-span-2 text-center text-neutral-900 dark:text-neutral-100\">Enterprise</div>\n        </div>\n\n        <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800 text-xs\">\n          {rows.map((row, idx) => (\n            <div key={idx} className=\"grid grid-cols-12 p-3.5 items-center\">\n              <div className=\"col-span-6 font-medium text-neutral-800 dark:text-neutral-200\">\n                {row.name}\n              </div>\n              <div className=\"col-span-2 text-center text-neutral-500\">\n                {typeof row.starter === \"boolean\" ? (row.starter ? \"✓\" : \"—\") : row.starter}\n              </div>\n              <div className=\"col-span-2 text-center font-semibold text-emerald-600 dark:text-emerald-400\">\n                {typeof row.pro === \"boolean\" ? (row.pro ? \"✓\" : \"—\") : row.pro}\n              </div>\n              <div className=\"col-span-2 text-center font-bold text-neutral-900 dark:text-neutral-100\">\n                {typeof row.enterprise === \"boolean\" ? (row.enterprise ? \"✓\" : \"—\") : row.enterprise}\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "6b7b2824623286e54fe2c39d25432ffd8e4e78e7fdfb61cd78c1776d6cd959cc",
+      "sizeBytes": 3348
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { ProductFeatureMatrix } from \"./product-feature-matrix\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900/40\">\n      <ProductFeatureMatrix />\n    </div>\n  );\n}\n",
+      "contentHash": "d3eb515efefd02f418a5f64c016096ed30aab19d8422b9a4043e56c4bc93bebb",
+      "sizeBytes": 292
+    }
+  ],
+  "tags": [
+    "matrix",
+    "features",
+    "plans",
+    "pricing",
+    "table"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "product-feature-matrix-interaction",
+      "visualModel": "product-feature-matrix-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "product-feature-matrix-section"
+    }
+  },
+  "url": "https://openui.dev/r/product-feature-matrix.json",
+  "designRules": "# Design System\n\nGenre: Swiss\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Product Feature Matrix Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

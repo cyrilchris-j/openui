@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rubber-slider-knob",
+  "type": "registry:motion",
+  "title": "Rubber Slider Knob",
+  "description": "A rotary dial knob providing tactile angular drag resistance that rebounds smoothly when released past threshold.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rubber-slider-knob.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "knob",
+    "dial",
+    "rotary",
+    "rubber",
+    "recoil"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "rotational-angular-drag",
+      "visualModel": "notched-calibrated-dial",
+      "motionModel": "torsional-spring-recoil",
+      "layoutModel": "centered-rotary-gauge",
+      "semanticPurpose": "rotary-audio-attenuator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

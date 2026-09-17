@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-dock",
+  "type": "registry:motion",
+  "title": "Magnetic Dock",
+  "description": "A dock where icons gravitate toward the pointer within an influence field: displacement falls off with distance (inverse-square), neighbours lean toward the cursor, and the dock lifts as a whole when engaged.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-dock.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "dock",
+    "magnetic",
+    "pointer",
+    "field"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pointer-field",
+      "visualModel": "displacement-icon-rail",
+      "motionModel": "inverse-square-attraction",
+      "layoutModel": "rail",
+      "semanticPurpose": "app-launcher"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

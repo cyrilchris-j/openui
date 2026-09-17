@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-snap-grid",
+  "type": "registry:motion",
+  "title": "Drag Snap Grid",
+  "description": "Draggable tiles that snap to the nearest grid cell on release with a spring settle — occupancy is enforced (a cell holds one tile), and the displaced tile animates to the freed cell, making the grid itself the state machine.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-snap-grid.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "drag",
+    "snap",
+    "grid",
+    "swap"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "drag-snap-arrange",
+      "visualModel": "cell-occupancy-tiles",
+      "motionModel": "spring-snap-swap",
+      "layoutModel": "grid",
+      "semanticPurpose": "arrangeable-content"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

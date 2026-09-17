@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-parallax-typography",
+  "type": "registry:interaction",
+  "title": "Hover Parallax Typography",
+  "description": "An editorial display heading where shadow, stroke, and fill layers translate at differential depths under pointer hover.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-parallax-typography.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverParallaxTypographyProps {\n  text?: string;\n  className?: string;\n}\n\nexport function HoverParallaxTypography({ text = \"OPENUI SPEC\", className }: HoverParallaxTypographyProps) {\n  const [offset, setOffset] = useState({ x: 0, y: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = (e.clientX - rect.left) / rect.width - 0.5;\n    const y = (e.clientY - rect.top) / rect.height - 0.5;\n    setOffset({ x: x * 16, y: y * 16 });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      onPointerLeave={() => setOffset({ x: 0, y: 0 })}\n      className={cn(\"relative flex h-56 w-full max-w-md items-center justify-center rounded-xl border border-line bg-paper p-6 select-none\", className)}\n    >\n      {/* Background shadow layer */}\n      <h2\n        className=\"absolute font-display text-4xl font-black text-ink/10 transition-transform duration-150\"\n        style={{ transform: `translate(${-offset.x * 1.5}px, ${-offset.y * 1.5}px)` }}\n      >\n        {text}\n      </h2>\n\n      {/* Foreground primary layer */}\n      <h2\n        className=\"relative font-display text-4xl font-black text-ink transition-transform duration-100\"\n        style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}\n      >\n        {text}\n      </h2>\n    </div>\n  );\n}\n\nexport default HoverParallaxTypography;\n",
+      "contentHash": "b0fbdeace7374655eaf7c72a27178cd30539224177ba71eda5833561ef3427ea",
+      "sizeBytes": 1505
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverParallaxTypography } from \"./hover-parallax-typography\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <HoverParallaxTypography />\n    </div>\n  );\n}\n",
+      "contentHash": "f67e2ec27a1c5137c07d2fb4ef576bb7eb98cc8c6612c120f2c1843ef800302a",
+      "sizeBytes": 250
+    }
+  ],
+  "tags": [
+    "typography",
+    "parallax",
+    "hover",
+    "layers",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "typography-depth-tilt",
+      "visualModel": "multi-pass-typeset-planes",
+      "motionModel": "differential-layer-offset",
+      "layoutModel": "headline-stage-box",
+      "semanticPurpose": "parallax-editorial-headline"
+    }
+  },
+  "url": "https://openui.dev/r/hover-parallax-typography.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Symmetric\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Typography Depth Tilt: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

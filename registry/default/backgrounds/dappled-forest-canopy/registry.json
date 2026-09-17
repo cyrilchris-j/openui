@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dappled-forest-canopy",
+  "type": "registry:background",
+  "title": "Dappled Forest Canopy",
+  "description": "Atmospheric sunbeams (crepuscular rays) filtering down through an overhead woodland canopy.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dappled-forest-canopy.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "forest",
+    "canopy",
+    "sunbeams",
+    "godrays",
+    "nature"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-crepuscular-rays",
+      "visualModel": "canopy-light-shafts",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "forest-canopy-sunbeams"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

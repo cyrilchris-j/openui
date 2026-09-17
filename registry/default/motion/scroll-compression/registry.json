@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-compression",
+  "type": "registry:motion",
+  "title": "Scroll Compression",
+  "description": "A stack of panels that compresses together as the page scrolls — each layer's gap interpolates from loose to sealed based on scroll progress through the section, like a deck being squeezed shut.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-compression.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "compress",
+    "stack",
+    "panels"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-progress-trigger",
+      "visualModel": "gap-collapsing-stack",
+      "motionModel": "scroll-linked-gap-interpolation",
+      "layoutModel": "stack",
+      "semanticPurpose": "narrative-sequence"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

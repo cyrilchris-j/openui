@@ -22,6 +22,12 @@ export function makeResource(overrides: Partial<ResourceSummary> = {}): Resource
     author: overrides.author ?? { id: "author-1", username: "openui", displayName: "OpenUI", avatarUrl: null },
     latestVersion: overrides.latestVersion ?? "1.0.0",
     tags: overrides.tags ?? ["pointer", "physics"],
+    subcategory: overrides.subcategory ?? "actions",
+    fingerprint: overrides.fingerprint ?? {
+      interactionModel: "magnetic-pointer",
+      visualModel: "editorial-outline",
+      motionModel: "spring-follow",
+    },
     design: overrides.design ?? {
       genre: "editorial",
       macrostructure: "asymmetric",

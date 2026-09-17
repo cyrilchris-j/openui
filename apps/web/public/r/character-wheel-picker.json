@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "character-wheel-picker",
+  "type": "registry:text",
+  "title": "Character Wheel Picker",
+  "description": "A slot-machine you drive: up/down arrows (or wheel) spin each character column independently through the alphabet with inertial easing, composing text letter by letter — an input mechanism, not an animation.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "character-wheel-picker.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nconst CHARS = \" ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\".split(\"\");\n\nexport interface CharacterWheelPickerProps {\n  length?: number;\n  onChange?: (value: string) => void;\n  className?: string;\n}\n\nexport function CharacterWheelPicker({ length = 4, onChange, className }: CharacterWheelPickerProps) {\n  const [indices, setIndices] = useState<number[]>(() => Array.from({ length }, () => 0));\n  const momentum = useRef<number[]>(Array.from({ length }, () => 0));\n\n  const step = (index: number, delta: number) => {\n    setIndices((current) => {\n      const next = [...current];\n      next[index] = (((next[index] ?? 0) + delta) % CHARS.length + CHARS.length) % CHARS.length;\n      onChange?.(next.map((i) => CHARS[i]).join(\"\"));\n      return next;\n    });\n  };\n\n  return (\n    <div\n      className={cn(\"inline-flex select-none gap-1\", className)}\n      role=\"listbox\"\n      aria-label=\"Character wheel\"\n    >\n      {indices.map((value, index) => (\n        <div\n          key={index}\n          role=\"option\"\n          aria-selected\n          tabIndex={0}\n          className=\"flex h-12 w-10 cursor-ns-resize items-center justify-center rounded-md border border-line bg-paper font-mono text-xl text-ink outline-none focus-visible:ring-2 focus-visible:ring-accent\"\n          onWheel={(event) => {\n            event.preventDefault();\n            momentum.current[index] = (momentum.current[index] ?? 0) + (event.deltaY > 0 ? 1 : -1);\n            step(index, event.deltaY > 0 ? 1 : -1);\n          }}\n          onKeyDown={(event) => {\n            if (event.key === \"ArrowUp\") {\n              event.preventDefault();\n              step(index, 1);\n            }\n            if (event.key === \"ArrowDown\") {\n              event.preventDefault();\n              step(index, -1);\n            }\n          }}\n        >\n          <span\n            key={value}\n            style={{\n              display: \"inline-block\",\n              animation: \"openui-wheel-tick 120ms ease-out\",\n            }}\n          >\n            {CHARS[value] === \" \" ? \"\\u00A0\" : CHARS[value]}\n          </span>\n        </div>\n      ))}\n      <style>{`@keyframes openui-wheel-tick { 0% { transform: translateY(-0.35em); opacity: 0.4 } 100% { transform: translateY(0); opacity: 1 } }`}</style>\n    </div>\n  );\n}\n\nexport default CharacterWheelPicker;\n",
+      "contentHash": "6890498ad1c2274d988b15a2b65939224328949e89c531d19082efe21f2d0643",
+      "sizeBytes": 2392
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { CharacterWheelPicker } from \"./character-wheel-picker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <CharacterWheelPicker length={5} />\n    </div>\n  );\n}\n",
+      "contentHash": "14ad22d6d5c46796bddd5e245c3b3546f169cc9978902adacbec127a9cd8bb9b",
+      "sizeBytes": 253
+    }
+  ],
+  "tags": [
+    "wheel",
+    "input",
+    "picker",
+    "columns"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "wheel-and-key-input",
+      "visualModel": "independent-letter-columns",
+      "motionModel": "inertial-column-spin",
+      "layoutModel": "inline",
+      "semanticPurpose": "text-entry"
+    }
+  },
+  "url": "https://openui.dev/r/character-wheel-picker.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Dense\nShape: Rounded\nMotion: Kinetic\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Wheel And Key Input: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-card-hover",
+  "type": "registry:motion",
+  "title": "Magnetic Card Hover",
+  "description": "An elevation card that lifts and casts dynamic cast shadows while floating softly toward cursor position.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-card-hover.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticCardHoverProps {\n  className?: string;\n}\n\nexport function MagneticCardHover({ className }: MagneticCardHoverProps) {\n  const [hover, setHover] = useState(false);\n\n  return (\n    <div className={cn(\"flex h-64 w-full max-w-sm items-center justify-center rounded-xl border border-line bg-paper p-6\", className)}>\n      <div\n        onPointerEnter={() => setHover(true)}\n        onPointerLeave={() => setHover(false)}\n        className={cn(\n          \"cursor-pointer rounded-xl border border-line bg-paper p-6 transition-all duration-200 ease-out\",\n          hover ? \"-translate-y-2 shadow-2xl scale-[1.02]\" : \"translate-y-0 shadow-sm scale-100\"\n        )}\n      >\n        <span className=\"font-mono text-[10px] uppercase text-ink/50\">ELEVATION RIG</span>\n        <h4 className=\"mt-1 font-display font-bold text-ink\">Dynamic Shadow Hover</h4>\n        <p className=\"mt-1 text-xs text-ink/70\">Z-axis lift with softened diffuse drop shadow.</p>\n      </div>\n    </div>\n  );\n}\n\nexport default MagneticCardHover;\n",
+      "contentHash": "e53e3def07a552d5d2c36e59d02a96863f976949664d2d344ab49336a8fe547c",
+      "sizeBytes": 1110
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MagneticCardHover } from \"./magnetic-card-hover\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <MagneticCardHover />\n    </div>\n  );\n}\n",
+      "contentHash": "13b452bb280ad9235790d063c0d278a8bea5085bcb94f3f1670d0498c4ae7c70",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "card",
+    "hover",
+    "shadow",
+    "magnetic",
+    "lift"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "hover-elevation-float",
+      "visualModel": "floating-surface-shadow",
+      "motionModel": "z-elevation-shadow-drift",
+      "layoutModel": "center-floating-slab",
+      "semanticPurpose": "tactile-card-elevation"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-card-hover.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Hover Elevation Float: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

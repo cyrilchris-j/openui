@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-workflow-stepper",
+  "type": "registry:section",
+  "title": "Interactive Workflow Stepper",
+  "description": "A chronological process section showing numbered steps with live tab switching and interactive preview detail.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-workflow-stepper.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "stepper",
+    "process",
+    "workflow",
+    "interactive",
+    "timeline"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "process",
+    "fingerprint": {
+      "interactionModel": "interactive-workflow-stepper-interaction",
+      "visualModel": "interactive-workflow-stepper-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "interactive-workflow-stepper-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "sharp",
+      "density": "medium",
+      "genre": "swiss"
+    }
+  }
+}

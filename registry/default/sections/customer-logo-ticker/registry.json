@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-logo-ticker",
+  "type": "registry:section",
+  "title": "Customer Logo Ticker",
+  "description": "An animated corporate brand marquee strip showcasing enterprise adopters and venture partners.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-logo-ticker.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "logos",
+    "marquee",
+    "ticker",
+    "brands",
+    "social-proof"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "social-proof",
+    "fingerprint": {
+      "interactionModel": "customer-logo-ticker-interaction",
+      "visualModel": "customer-logo-ticker-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "customer-logo-ticker-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

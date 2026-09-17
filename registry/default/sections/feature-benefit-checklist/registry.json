@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "feature-benefit-checklist",
+  "type": "registry:section",
+  "title": "Feature Benefit Checklist",
+  "description": "A bulleted value proposition section highlighting zero-lock-in, strict TypeScript, and accessibility.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "feature-benefit-checklist.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "checklist",
+    "benefits",
+    "features",
+    "value",
+    "list"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feature",
+    "fingerprint": {
+      "interactionModel": "feature-benefit-checklist-interaction",
+      "visualModel": "feature-benefit-checklist-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "feature-benefit-checklist-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-sandbox-embed-card",
+  "type": "registry:block",
+  "title": "Developer Sandbox Embed Card",
+  "description": "An embeddable code snippet preview card with iframe embed code generator and direct share button.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-sandbox-embed-card.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeveloperSandboxEmbedCard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-md mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-2\">Embed Sandbox</h3>\n      <p className=\"text-neutral-500 mb-4\">Paste this iframe to embed this live primitive into your documentation.</p>\n      <div className=\"p-3 rounded-lg bg-neutral-100 dark:bg-neutral-900 font-mono text-[10px] text-neutral-700 dark:text-neutral-300 break-all mb-4\">\n        &lt;iframe src=\"https://openui.dev/embed/hero\" width=\"100%\" height=\"400\" /&gt;\n      </div>\n      <button type=\"button\" className=\"w-full py-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold rounded-lg\">\n        Copy Embed Code\n      </button>\n    </div>\n  );\n}\n",
+      "contentHash": "187dd66bd0950467ddd203074486a0fce8111827152285a066f31deaacd09397",
+      "sizeBytes": 1044
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DeveloperSandboxEmbedCard } from \"./developer-sandbox-embed-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DeveloperSandboxEmbedCard />\n    </div>\n  );\n}\n",
+      "contentHash": "ea3dceb1ead2c944e643c06c76301fad6e8af66034a6093e7d95af495ec7f682",
+      "sizeBytes": 305
+    }
+  ],
+  "tags": [
+    "sandbox",
+    "embed",
+    "iframe",
+    "developer",
+    "share"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "sandbox-embed-copy-code",
+      "visualModel": "embed-share-preview-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "sandbox-component-embedding"
+    }
+  },
+  "url": "https://openui.dev/r/developer-sandbox-embed-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Sandbox Embed Copy Code: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

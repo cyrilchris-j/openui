@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cloud-infrastructure-map",
+  "type": "registry:section",
+  "title": "Cloud Infrastructure Map",
+  "description": "A geographical edge location matrix displaying active points of presence, latency pings, and redundancy.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cloud-infrastructure-map.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RegionPoP {\n  city: string;\n  region: string;\n  ping: string;\n}\n\nexport interface CloudInfrastructureMapProps extends React.HTMLAttributes<HTMLElement> {\n  regions?: RegionPoP[];\n}\n\nconst DEFAULT_POPS: RegionPoP[] = [\n  { city: \"San Francisco\", region: \"us-west-1\", ping: \"2ms\" },\n  { city: \"Frankfurt\", region: \"eu-central-1\", ping: \"4ms\" },\n  { city: \"Tokyo\", region: \"ap-northeast-1\", ping: \"6ms\" },\n  { city: \"Singapore\", region: \"ap-southeast-1\", ping: \"5ms\" },\n  { city: \"London\", region: \"eu-west-2\", ping: \"3ms\" },\n  { city: \"Sydney\", region: \"ap-southeast-2\", ping: \"8ms\" },\n];\n\nexport function CloudInfrastructureMap({\n  regions = DEFAULT_POPS,\n  className,\n  ...props\n}: CloudInfrastructureMapProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"text-center max-w-2xl mx-auto mb-10\">\n        <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n          Global Backbone\n        </span>\n        <h2 className=\"text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n          Deploy within 10ms of your users\n        </h2>\n      </div>\n\n      <div className=\"grid grid-cols-2 md:grid-cols-3 gap-4\">\n        {regions.map((pop) => (\n          <div\n            key={pop.region}\n            className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 font-mono\"\n          >\n            <div className=\"flex items-center justify-between\">\n              <span className=\"text-sm font-bold text-neutral-900 dark:text-neutral-100\">{pop.city}</span>\n              <span className=\"text-xs text-emerald-500 font-bold\">{pop.ping}</span>\n            </div>\n            <div className=\"text-[11px] text-neutral-400 mt-1\">{pop.region}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "13e04947ec2225869de5a8d0067eae268f2d2b88fba05ada3e6bf57fffd38dd3",
+      "sizeBytes": 2013
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CloudInfrastructureMap } from \"./cloud-infrastructure-map\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <CloudInfrastructureMap />\n    </div>\n  );\n}\n",
+      "contentHash": "76769a5021ba9a752e7f96ce8c1aa8d0ddce3344c8dd10d8296cd87a7d00b65f",
+      "sizeBytes": 297
+    }
+  ],
+  "tags": [
+    "cloud",
+    "map",
+    "edge",
+    "latency",
+    "infrastructure"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "infrastructure",
+    "fingerprint": {
+      "interactionModel": "cloud-infrastructure-map-interaction",
+      "visualModel": "cloud-infrastructure-map-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "cloud-infrastructure-map-section"
+    }
+  },
+  "url": "https://openui.dev/r/cloud-infrastructure-map.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Cloud Infrastructure Map Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

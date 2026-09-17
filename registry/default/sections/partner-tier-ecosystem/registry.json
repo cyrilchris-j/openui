@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "partner-tier-ecosystem",
+  "type": "registry:section",
+  "title": "Partner Tier Ecosystem",
+  "description": "An alliance and certified consultancy network grid showcasing technology partners, tiers, and certification marks.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "partner-tier-ecosystem.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "partners",
+    "ecosystem",
+    "integrations",
+    "alliances",
+    "certifications"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "partners",
+    "fingerprint": {
+      "interactionModel": "partner-tier-ecosystem-interaction",
+      "visualModel": "partner-tier-ecosystem-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "partner-tier-ecosystem-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "industrial"
+    }
+  }
+}

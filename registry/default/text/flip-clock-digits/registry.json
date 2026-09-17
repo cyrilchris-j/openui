@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "flip-clock-digits",
+  "type": "registry:text",
+  "title": "Flip Clock Digits",
+  "description": "Split-flap style digit transitions: each changing digit folds through a two-panel rotateX with a shadow phase, built on real 3D transforms with backface culling and per-digit stagger.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "flip-clock-digits.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "flip",
+    "clock",
+    "split-flap",
+    "3d"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "numeric",
+    "fingerprint": {
+      "interactionModel": "value-change",
+      "visualModel": "split-flap-panel",
+      "motionModel": "rotate-x-fold",
+      "layoutModel": "rail",
+      "semanticPurpose": "live-counter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

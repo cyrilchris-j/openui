@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wax-seal-stamp",
+  "type": "registry:text",
+  "title": "Wax Seal Stamp",
+  "description": "An initials monogram pressed into a wax disc: radial-gradient wax with irregular blob edge (border-radius trick), debossed lettering via inner shadows, and a press animation on click that re-stamps the seal.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wax-seal-stamp.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "seal",
+    "wax",
+    "monogram",
+    "stamp"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "click-restamp",
+      "visualModel": "debossed-wax-disc",
+      "motionModel": "press-imprint",
+      "layoutModel": "badge",
+      "semanticPurpose": "authenticity-mark"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

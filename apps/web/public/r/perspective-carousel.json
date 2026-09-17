@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "perspective-carousel",
+  "type": "registry:motion",
+  "title": "Perspective Carousel",
+  "description": "A 3D revolving cylindrical carousel rotating items across an elliptical perspective plane on click.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "perspective-carousel.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface PerspectiveCarouselProps {\n  className?: string;\n}\n\nexport function PerspectiveCarousel({ className }: PerspectiveCarouselProps) {\n  const [angle, setAngle] = useState(0);\n  const items = [\"Alpha\", \"Beta\", \"Gamma\", \"Delta\"];\n\n  return (\n    <div className={cn(\"relative h-80 w-full max-w-md overflow-hidden rounded-xl border border-line bg-paper p-6\", className)}>\n      <div className=\"flex h-full flex-col items-center justify-between\">\n        <span className=\"font-mono text-xs text-ink/50\">3D CYLINDRICAL STAGE</span>\n\n        <div className=\"relative h-40 w-40\" style={{ perspective: 600 }}>\n          {items.map((item, idx) => {\n            const itemAngle = (idx * 360) / items.length + angle;\n            const rad = (itemAngle * Math.PI) / 180;\n            const z = Math.cos(rad) * 90;\n            const x = Math.sin(rad) * 90;\n            const opacity = (z + 90) / 180;\n\n            return (\n              <div\n                key={item}\n                className=\"absolute left-1/2 top-1/2 -ml-14 -mt-10 flex h-20 w-28 items-center justify-center rounded-xl border border-line bg-paper shadow-lg font-display text-sm font-bold text-ink transition-all duration-300\"\n                style={{\n                  transform: `translate3d(${x}px, 0, ${z}px)`,\n                  opacity: Math.max(0.2, opacity),\n                  zIndex: Math.round(z),\n                }}\n              >\n                {item}\n              </div>\n            );\n          })}\n        </div>\n\n        <div className=\"flex gap-3\">\n          <button\n            type=\"button\"\n            onClick={() => setAngle((a) => a - 90)}\n            className=\"rounded border border-line px-3 py-1 font-mono text-xs text-ink hover:bg-line/20\"\n          >\n            ← Prev\n          </button>\n          <button\n            type=\"button\"\n            onClick={() => setAngle((a) => a + 90)}\n            className=\"rounded border border-line px-3 py-1 font-mono text-xs text-ink hover:bg-line/20\"\n          >\n            Next →\n          </button>\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport default PerspectiveCarousel;\n",
+      "contentHash": "8622ee65c34bf312f2e1e2655866b6a67c95e551cc6586db7f45ff54db933d23",
+      "sizeBytes": 2209
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { PerspectiveCarousel } from \"./perspective-carousel\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <PerspectiveCarousel />\n    </div>\n  );\n}\n",
+      "contentHash": "9de820e82fb3212aed3e9eff6d2f8f623ddf5413699ab5498a44e91e034917f5",
+      "sizeBytes": 237
+    }
+  ],
+  "tags": [
+    "carousel",
+    "3d",
+    "perspective",
+    "cylinder",
+    "revolving"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "stepped-carousel-rotation",
+      "visualModel": "cylindrical-ring-array",
+      "motionModel": "orbital-cylinder-spin",
+      "layoutModel": "perspective-3d-stage",
+      "semanticPurpose": "3d-product-carousel"
+    }
+  },
+  "url": "https://openui.dev/r/perspective-carousel.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Serif Display\nColor: High Contrast\n\n## Rules\n\n- Stepped Carousel Rotation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

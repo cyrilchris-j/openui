@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inbox-conversation-thread",
+  "type": "registry:block",
+  "title": "Inbox Conversation Thread",
+  "description": "A messaging conversation workspace with recipient headers, chat message bubbles, and rich message composer.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inbox-conversation-thread.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "chat",
+    "inbox",
+    "messaging",
+    "thread",
+    "conversation"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "messaging",
+    "fingerprint": {
+      "interactionModel": "chat-message-send-and-scroll",
+      "visualModel": "threaded-conversation-inbox",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "direct-messaging-interface"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

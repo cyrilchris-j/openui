@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "topographic-contour-lines",
+  "type": "registry:background",
+  "title": "Topographic Contour Lines",
+  "description": "Generative SVG topographic elevation contours reminiscent of geographic cartography maps.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "topographic-contour-lines.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "topographic",
+    "contours",
+    "elevation",
+    "map",
+    "lines"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-contour-backdrop",
+      "visualModel": "curved-elevation-isobars",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "cartographic-elevation-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

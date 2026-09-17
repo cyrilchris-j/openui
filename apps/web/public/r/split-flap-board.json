@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-flap-board",
+  "type": "registry:text",
+  "title": "Split Flap Board",
+  "description": "An airport-style flap display where each cell flips through cards top-over-bottom to reach its target; half-flap seams, staggered columns and the characteristic clack pacing are all CSS-only per cell.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-flap-board.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nconst FLAPS = \" ABCDEFGHIJ0123456789:\".split(\"\");\n\nexport interface SplitFlapBoardProps {\n  /** The message the board should resolve to. */\n  message: string;\n  cells?: number;\n  className?: string;\n}\n\nexport function SplitFlapBoard({ message, cells = 16, className }: SplitFlapBoardProps) {\n  const [shown, setShown] = useState<string[]>(() => Array.from({ length: cells }, () => \" \"));\n\n  useEffect(() => {\n    const padded = message.slice(0, cells).padEnd(cells, \" \").toUpperCase();\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setShown([...padded]);\n      return;\n    }\n\n    let cancelled = false;\n    const tick = () => {\n      if (cancelled) return;\n      setShown((current) => {\n        let changed = false;\n        const next = current.map((char, index) => {\n          const target = padded[index] ?? \" \";\n          if (char === target) return char;\n          changed = true;\n          const from = FLAPS.indexOf(char);\n          return FLAPS[(from + 1) % FLAPS.length]!;\n        });\n        if (changed) window.setTimeout(tick, 90);\n        return next;\n      });\n    };\n    const start = window.setTimeout(tick, 200);\n    return () => {\n      cancelled = true;\n      window.clearTimeout(start);\n    };\n  }, [message, cells]);\n\n  return (\n    <div className={cn(\"inline-flex gap-1 rounded-lg bg-ink p-2\", className)} role=\"status\" aria-label={message}>\n      {shown.map((char, index) => (\n        <span key={index} aria-hidden className=\"relative h-10 w-7 overflow-hidden rounded-sm bg-[#1c1c1f]\">\n          <span className=\"absolute left-0 top-0 h-1/2 w-full border-b border-black/60\" />\n          <span\n            key={char}\n            className=\"absolute inset-x-0 top-0 flex h-full items-center justify-center font-mono text-lg text-amber-200\"\n            style={{ animation: \"openui-flap 90ms ease-in\" }}\n          >\n            {char === \" \" ? \"\\u00A0\" : char}\n          </span>\n        </span>\n      ))}\n      <style>{`@keyframes openui-flap { 0% { transform: rotateX(-70deg); opacity: 0.3 } 100% { transform: rotateX(0); opacity: 1 } } @media (prefers-reduced-motion: reduce) { span { animation: none !important } }`}</style>\n    </div>\n  );\n}\n\nexport default SplitFlapBoard;\n",
+      "contentHash": "f7c71e1dd66767a590f901af2bd4d86295929619f0e123044df676716cb774d4",
+      "sizeBytes": 2323
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { SplitFlapBoard } from \"./split-flap-board\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <SplitFlapBoard message=\"GATE 14 OPENUI\" />\n    </div>\n  );\n}\n",
+      "contentHash": "7e764d021fcff9d6a2afab28b5cfc68adaeec33770a883e0a636c764947fdf03",
+      "sizeBytes": 249
+    }
+  ],
+  "tags": [
+    "split-flap",
+    "board",
+    "airport",
+    "flip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "value-sweep",
+      "visualModel": "hinged-flap-cells",
+      "motionModel": "top-over-flip-cascade",
+      "layoutModel": "grid-cells",
+      "semanticPurpose": "status-board"
+    }
+  },
+  "url": "https://openui.dev/r/split-flap-board.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Value Sweep: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

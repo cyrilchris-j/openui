@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "email-template-composer",
+  "type": "registry:block",
+  "title": "Email Template Composer",
+  "description": "A newsletter and transactional email draft composer with subject line editor and live HTML view toggle.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "email-template-composer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function EmailTemplateComposer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [subject, setSubject] = React.useState(\"OpenUI Release v2.4.0 — 800 Certified Primitives\");\n\n  return (\n    <div className={cn(\"w-full max-w-3xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <h3 className=\"text-base font-bold text-neutral-900 dark:text-white mb-4\">Email Campaign Composer</h3>\n      <div className=\"space-y-3\">\n        <div>\n          <label className=\"block text-neutral-500 mb-1\">Subject Line</label>\n          <input\n            type=\"text\"\n            value={subject}\n            onChange={(e) => setSubject(e.target.value)}\n            className=\"w-full px-3 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 font-semibold\"\n          />\n        </div>\n        <div>\n          <label className=\"block text-neutral-500 mb-1\">Body Preview</label>\n          <div className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50\">\n            <h4 className=\"font-bold text-neutral-900 dark:text-white\">Hi Team,</h4>\n            <p className=\"text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed\">\n              We are excited to announce that all 800 registry resources across 8 categories have passed 100% automated verification.\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "2a814c95f4f605e2f11f87149a97a3392f60c2c769c3b4490e0c979e30eb22e3",
+      "sizeBytes": 1631
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { EmailTemplateComposer } from \"./email-template-composer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <EmailTemplateComposer />\n    </div>\n  );\n}\n",
+      "contentHash": "6b534ee8a53b6b6e831a20b8622d3c42eec50f256b5506ac13baec50eacbca88",
+      "sizeBytes": 292
+    }
+  ],
+  "tags": [
+    "email",
+    "composer",
+    "newsletter",
+    "template",
+    "messaging"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "email",
+    "fingerprint": {
+      "interactionModel": "email-composer-and-preview-toggle",
+      "visualModel": "wysiwyg-email-layout-editor",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "transactional-email-authoring"
+    }
+  },
+  "url": "https://openui.dev/r/email-template-composer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Email Composer And Preview Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

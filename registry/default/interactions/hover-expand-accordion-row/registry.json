@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-expand-accordion-row",
+  "type": "registry:interaction",
+  "title": "Hover Expand Accordion Row",
+  "description": "A compact feed row list that expands active disclosure content smoothly on cursor hover.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-expand-accordion-row.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "accordion",
+    "hover",
+    "disclosure",
+    "feed",
+    "expand"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-accordion-disclosure",
+      "visualModel": "vertical-collapsible-slabs",
+      "motionModel": "smooth-height-expansion",
+      "layoutModel": "stacked-feed-accordion",
+      "semanticPurpose": "hover-disclosure-row"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

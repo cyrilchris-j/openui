@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "contact-support-split",
+  "type": "registry:layout",
+  "title": "Contact Support Split",
+  "description": "Support contact layout with office headquarters location and dispatch inquiry form side-by-side.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "contact-support-split.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ContactSupportSplitProps extends React.HTMLAttributes<HTMLDivElement> {\n  info?: React.ReactNode;\n  form?: React.ReactNode;\n}\n\nexport function ContactSupportSplit({ info, form, className, ...props }: ContactSupportSplitProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <div className=\"space-y-4\">{info}</div>\n      <div className=\"p-6 rounded-2xl border border-line bg-surface/30\">{form}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "d79cb3316ce42d8c886406e0dc84565b8b066bac1c65aaa1c4452a31280ff3a4",
+      "sizeBytes": 584
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { ContactSupportSplit } from \"./contact-support-split\";\n\nexport default function ContactSupportSplitDemo() {\n  return (\n    <ContactSupportSplit\n      info={\n        <div>\n          <h2 className=\"text-lg font-bold text-ink\">Connect with Architecture Lead</h2>\n          <p className=\"text-xs text-ink/60 mt-1\">Direct inquiries to the OpenUI core systems team.</p>\n        </div>\n      }\n      form={\n        <div className=\"space-y-3 text-xs\">\n          <input type=\"text\" placeholder=\"Your Name\" className=\"w-full px-3 py-1.5 rounded border border-line bg-paper\" />\n          <textarea rows={3} placeholder=\"Message\" className=\"w-full px-3 py-1.5 rounded border border-line bg-paper resize-none\" />\n          <button type=\"button\" className=\"w-full py-1.5 rounded bg-accent text-white font-mono\">Send</button>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "4b1ad68fe219f9805289319ba88107892b151ee0ef472c77a15e100829c1e9a3",
+      "sizeBytes": 871
+    }
+  ],
+  "tags": [
+    "contact",
+    "support",
+    "inquiry",
+    "split",
+    "form"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "contact-dispatch-inquiry",
+      "visualModel": "office-info-and-support-form",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-contact-halves",
+      "semanticPurpose": "support-contact-shell"
+    }
+  },
+  "url": "https://openui.dev/r/contact-support-split.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Contact Dispatch Inquiry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

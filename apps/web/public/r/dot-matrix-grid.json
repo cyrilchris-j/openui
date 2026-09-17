@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dot-matrix-grid",
+  "type": "registry:background",
+  "title": "Dot Matrix Grid",
+  "description": "Precise geometric dot matrix background rendered via radial gradient masks with configurable pitch and radius.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dot-matrix-grid.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface DotMatrixGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  spacing?: number;\n  dotSize?: number;\n  dotColor?: string;\n  children?: React.ReactNode;\n}\n\nexport function DotMatrixGrid({\n  spacing = 24,\n  dotSize = 1.5,\n  dotColor = \"currentColor\",\n  className,\n  children,\n  ...props\n}: DotMatrixGridProps) {\n  return (\n    <div\n      className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)}\n      {...props}\n    >\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-20 -z-10\"\n        style={{\n          backgroundImage: `radial-gradient(${dotColor} ${dotSize}px, transparent ${dotSize}px)`,\n          backgroundSize: `${spacing}px ${spacing}px`,\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "139879a946b83aa6f039b6472fbfbd000d15c7ce84cceaef80b02d70d43e979e",
+      "sizeBytes": 836
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { DotMatrixGrid } from \"./dot-matrix-grid\";\n\nexport default function DotMatrixGridDemo() {\n  return (\n    <DotMatrixGrid className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Dot Matrix Underlay</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Precision calibrated radial grid pattern.</p>\n      </div>\n    </DotMatrixGrid>\n  );\n}\n",
+      "contentHash": "a6248518b6775377a780924a3594962577ca51af8ee36275868531f277896b07",
+      "sizeBytes": 556
+    }
+  ],
+  "tags": [
+    "dots",
+    "grid",
+    "matrix",
+    "pattern",
+    "minimal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-backdrop",
+      "visualModel": "radial-dot-lattice",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "subtle-data-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/dot-matrix-grid.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Canvas Backdrop: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

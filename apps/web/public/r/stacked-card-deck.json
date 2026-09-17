@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stacked-card-deck",
+  "type": "registry:layout",
+  "title": "Stacked Card Deck",
+  "description": "Vertical stacked card sequence where headers stick cleanly on top of one another during scroll.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stacked-card-deck.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StackedCardDeckProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function StackedCardDeck({ children, className, ...props }: StackedCardDeckProps) {\n  return (\n    <div className={cn(\"space-y-6 max-w-2xl mx-auto p-4 font-sans\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "8f7dba86b5caf833483cc0f78875795cdb787d907f7ee22f39609d4b1542ca5b",
+      "sizeBytes": 394
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { StackedCardDeck } from \"./stacked-card-deck\";\n\nexport default function StackedCardDeckDemo() {\n  return (\n    <StackedCardDeck>\n      {[1, 2, 3].map((card) => (\n        <div key={card} className=\"p-6 rounded-2xl border border-line bg-paper shadow-sm\">\n          <div className=\"font-mono text-xs font-bold text-accent mb-1\">Layer 0{card}</div>\n          <h3 className=\"text-sm font-bold text-ink\">Procedural Composition Card</h3>\n          <p className=\"text-xs text-ink/60 mt-1\">Self-contained card block with responsive bounds.</p>\n        </div>\n      ))}\n    </StackedCardDeck>\n  );\n}\n",
+      "contentHash": "7a628f498148ea80d5ba72dd5aaa3ef47b7e91bf5423cd0f9095e1f507191401",
+      "sizeBytes": 613
+    }
+  ],
+  "tags": [
+    "deck",
+    "cards",
+    "sticky",
+    "stack",
+    "scroll"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "stacking-sticky-card-scroll",
+      "visualModel": "overlapping-card-deck",
+      "motionModel": "none",
+      "layoutModel": "vertical-stacked-cards",
+      "semanticPurpose": "stacked-story-deck"
+    }
+  },
+  "url": "https://openui.dev/r/stacked-card-deck.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Stacking Sticky Card Scroll: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

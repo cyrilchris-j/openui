@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "avatar-profile-card",
+  "type": "registry:component",
+  "title": "Avatar Profile Card",
+  "description": "A user summary card featuring round avatar image, verified badge, and operational role attribution.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "avatar-profile-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AvatarProfileCardProps {\n  name?: string;\n  role?: string;\n  handle?: string;\n  className?: string;\n}\n\nexport function AvatarProfileCard({\n  name = \"Marcus Vance\",\n  role = \"Core Architecture Lead\",\n  handle = \"@mvance\",\n  className,\n}: AvatarProfileCardProps) {\n  return (\n    <div className={cn(\"flex w-full max-w-xs items-center gap-3.5 rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"flex h-11 w-11 items-center justify-center rounded-full bg-ink font-mono text-sm font-bold text-paper shadow\">\n        {name[0]}\n      </div>\n      <div>\n        <h5 className=\"font-display text-sm font-bold text-ink leading-none\">{name}</h5>\n        <p className=\"mt-1 font-mono text-[10px] text-ink/60\">{role}</p>\n        <span className=\"font-mono text-[9px] text-ink/40\">{handle}</span>\n      </div>\n    </div>\n  );\n}\n\nexport default AvatarProfileCard;\n",
+      "contentHash": "f2a15b806cf5ef182bfa7966177dee996f9ef5d2e710478085dfc9ffb1a14006",
+      "sizeBytes": 951
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { AvatarProfileCard } from \"./avatar-profile-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <AvatarProfileCard />\n    </div>\n  );\n}\n",
+      "contentHash": "f59190364d3195353aa0a01a000fb03d7169f62ed572d1f7b8045babfc86e7a3",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "avatar",
+    "profile",
+    "card",
+    "author",
+    "user"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "cards",
+    "fingerprint": {
+      "interactionModel": "user-profile-inspection",
+      "visualModel": "bordered-profile-card",
+      "motionModel": "none",
+      "layoutModel": "compact-user-card",
+      "semanticPurpose": "user-profile-summary-card"
+    }
+  },
+  "url": "https://openui.dev/r/avatar-profile-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- User Profile Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

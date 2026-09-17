@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-tab-navigator",
+  "type": "registry:interaction",
+  "title": "Keyboard Tab Navigator",
+  "description": "A keyboard focus trap container illustrating active focus rings and tab loop navigation.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-tab-navigator.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "keyboard",
+    "tab",
+    "focus",
+    "accessibility",
+    "trap"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "tab-key-roving-focus",
+      "visualModel": "illuminated-focus-bounds",
+      "motionModel": "stepwise-focus-handoff",
+      "layoutModel": "tab-indexed-row",
+      "semanticPurpose": "keyboard-focus-ring-manager"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "fluid-segmented-meter",
+  "type": "registry:motion",
+  "title": "Fluid Segmented Meter",
+  "description": "A multi-cell battery meter filling discrete energy blocks with sequenced neon charge pulses.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "fluid-segmented-meter.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "meter",
+    "battery",
+    "energy",
+    "segmented",
+    "pulse"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "charge-level-sequence",
+      "visualModel": "partitioned-cell-gauge",
+      "motionModel": "stepwise-energy-pulse",
+      "layoutModel": "horizontal-battery-cell",
+      "semanticPurpose": "energy-cell-gauge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

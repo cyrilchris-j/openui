@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "calendar-month-grid",
+  "type": "registry:layout",
+  "title": "Calendar Month Grid",
+  "description": "Seven-column calendar monthly schedule matrix with weekday header row and date cells.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "calendar-month-grid.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CalendarMonthGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CalendarMonthGrid({ children, className, ...props }: CalendarMonthGridProps) {\n  const days = [\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"];\n\n  return (\n    <div className={cn(\"max-w-2xl mx-auto border border-line rounded-xl overflow-hidden font-mono text-xs\", className)} {...props}>\n      <div className=\"grid grid-cols-7 border-b border-line bg-surface/40 text-center font-bold py-2\">\n        {days.map((d) => (\n          <div key={d}>{d}</div>\n        ))}\n      </div>\n      <div className=\"grid grid-cols-7 divide-x divide-y divide-line/60 bg-paper\">{children}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "9d712a708815d1825afcd9b0d9abfdc64a761ac381d475f284c5cdba624ddec2",
+      "sizeBytes": 777
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CalendarMonthGrid } from \"./calendar-month-grid\";\n\nexport default function CalendarMonthGridDemo() {\n  return (\n    <CalendarMonthGrid>\n      {Array.from({ length: 14 }).map((_, i) => (\n        <div key={i} className=\"h-16 p-1.5 flex flex-col justify-between text-[11px]\">\n          <span className=\"font-semibold text-ink/70\">{i + 1}</span>\n          {i === 3 && <span className=\"text-[9px] bg-accent/20 text-accent rounded px-1 truncate\">Release</span>}\n        </div>\n      ))}\n    </CalendarMonthGrid>\n  );\n}\n",
+      "contentHash": "6e8f8cc688a97b86f451c7283e49663d6364e7b19bf4b9972c02e2be0de1c617",
+      "sizeBytes": 537
+    }
+  ],
+  "tags": [
+    "calendar",
+    "schedule",
+    "month",
+    "grid",
+    "planner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "monthly-calendar-cell-inspection",
+      "visualModel": "seven-column-day-matrix",
+      "motionModel": "none",
+      "layoutModel": "seven-column-calendar-grid",
+      "semanticPurpose": "monthly-schedule-matrix"
+    }
+  },
+  "url": "https://openui.dev/r/calendar-month-grid.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Monthly Calendar Cell Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

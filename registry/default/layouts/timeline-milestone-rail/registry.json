@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "timeline-milestone-rail",
+  "type": "registry:layout",
+  "title": "Timeline Milestone Rail",
+  "description": "Vertical chronological timeline spine with alternating milestone event cards.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "timeline-milestone-rail.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "timeline",
+    "milestone",
+    "spine",
+    "chronological",
+    "rail"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "stacks",
+    "fingerprint": {
+      "interactionModel": "chronological-spine-scroll",
+      "visualModel": "central-spine-timeline",
+      "motionModel": "none",
+      "layoutModel": "alternating-timeline-spine",
+      "semanticPurpose": "roadmap-milestone-timeline"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

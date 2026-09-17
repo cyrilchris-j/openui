@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stats-telemetry-banner",
+  "type": "registry:section",
+  "title": "Stats Telemetry Banner",
+  "description": "Numeric telemetry showcase highlighting scale metrics: 800 components, 14 packages, 0 errors.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stats-telemetry-banner.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StatItem {\n  metric: string;\n  label: string;\n}\n\nexport interface StatsTelemetryBannerProps extends React.HTMLAttributes<HTMLElement> {\n  stats?: StatItem[];\n}\n\nexport function StatsTelemetryBanner({\n  stats = [\n    { metric: \"800\", label: \"Unique Working Resources\" },\n    { metric: \"100%\", label: \"TypeScript Strictness\" },\n    { metric: \"0ms\", label: \"Runtime Dependencies\" },\n    { metric: \"14\", label: \"Monorepo Packages\" },\n  ],\n  className,\n  ...props\n}: StatsTelemetryBannerProps) {\n  return (\n    <section className={cn(\"py-12 px-6 max-w-5xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <div className=\"grid grid-cols-2 md:grid-cols-4 gap-4 p-8 rounded-3xl border border-line bg-surface/30\">\n        {stats.map((s) => (\n          <div key={s.label} className=\"text-center\">\n            <div className=\"text-3xl sm:text-4xl font-bold font-mono text-ink tracking-tight\">{s.metric}</div>\n            <div className=\"text-xs text-ink/60 mt-1 font-sans\">{s.label}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "53be1e5c136e0ff1def0a3ee0790aae85946aaa249433e26e9bcd9a840698678",
+      "sizeBytes": 1125
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { StatsTelemetryBanner } from \"./stats-telemetry-banner\";\n\nexport default function StatsTelemetryBannerDemo() {\n  return <StatsTelemetryBanner />;\n}\n",
+      "contentHash": "7f4b0776420e04274e1e995eed85c30b4859d992cc46ac80f271be7ad79b1ff6",
+      "sizeBytes": 171
+    }
+  ],
+  "tags": [
+    "stats",
+    "telemetry",
+    "metrics",
+    "kpi",
+    "numbers"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "stats",
+    "fingerprint": {
+      "interactionModel": "telemetry-stat-scan",
+      "visualModel": "metric-counter-strip",
+      "motionModel": "none",
+      "layoutModel": "four-column-stat-banner",
+      "semanticPurpose": "scale-proof-telemetry"
+    }
+  },
+  "url": "https://openui.dev/r/stats-telemetry-banner.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Telemetry Stat Scan: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

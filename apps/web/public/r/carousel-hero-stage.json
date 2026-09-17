@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "carousel-hero-stage",
+  "type": "registry:layout",
+  "title": "Carousel Hero Stage",
+  "description": "Full-width hero carousel stage with slide track viewport, chevron triggers, and progress indicators.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "carousel-hero-stage.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CarouselHeroStageProps extends React.HTMLAttributes<HTMLDivElement> {\n  controls?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function CarouselHeroStage({ controls, children, className, ...props }: CarouselHeroStageProps) {\n  return (\n    <div className={cn(\"relative w-full h-72 rounded-3xl border border-line bg-surface/30 overflow-hidden flex flex-col justify-between p-8 font-sans\", className)} {...props}>\n      <div className=\"flex-1 flex items-center justify-center\">{children}</div>\n      {controls && <div className=\"flex justify-center\">{controls}</div>}\n    </div>\n  );\n}\n",
+      "contentHash": "a0b5c7a9f7eba42704321943be044a4b29a49dd2a6afa1716cf2f12e41f99a99",
+      "sizeBytes": 661
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { CarouselHeroStage } from \"./carousel-hero-stage\";\n\nexport default function CarouselHeroStageDemo() {\n  return (\n    <CarouselHeroStage controls={<div className=\"font-mono text-xs text-accent\">● ○ ○</div>}>\n      <div className=\"text-center\">\n        <h2 className=\"text-lg font-bold text-ink\">Featured Release: 800 Resource Master Catalogue</h2>\n        <p className=\"text-xs text-ink/60 mt-1\">Zero placeholders • Complete standalone React components</p>\n      </div>\n    </CarouselHeroStage>\n  );\n}\n",
+      "contentHash": "1ef50554ecdbc28f76560f81bca6d2f3f6683498e973fa4ee4e2564596c77922",
+      "sizeBytes": 532
+    }
+  ],
+  "tags": [
+    "carousel",
+    "hero",
+    "slider",
+    "stage",
+    "banner"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "hero-carousel-pagination",
+      "visualModel": "wide-carousel-banner",
+      "motionModel": "none",
+      "layoutModel": "banner-with-navigation-dots",
+      "semanticPurpose": "rotational-hero-stage"
+    }
+  },
+  "url": "https://openui.dev/r/carousel-hero-stage.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Airy\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Hero Carousel Pagination: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

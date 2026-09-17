@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-target-focus-ring",
+  "type": "registry:interaction",
+  "title": "Multi Target Focus Ring",
+  "description": "A roving highlight reticle that glides smoothly across active focal targets with animated geometry resizing.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-target-focus-ring.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "focus",
+    "reticle",
+    "roving",
+    "selection",
+    "keyboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "selection",
+    "fingerprint": {
+      "interactionModel": "roving-focus-navigation",
+      "visualModel": "geometry-matching-reticle",
+      "motionModel": "bounding-box-morph-glide",
+      "layoutModel": "segmented-button-row",
+      "semanticPurpose": "focus-indicator-reticle"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

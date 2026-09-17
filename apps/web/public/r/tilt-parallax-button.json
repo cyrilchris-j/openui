@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tilt-parallax-button",
+  "type": "registry:interaction",
+  "title": "Tilt Parallax Button",
+  "description": "A primary button calculating 3D perspective rotation and specular rim lighting under mouse hover angle.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tilt-parallax-button.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TiltParallaxButtonProps {\n  label?: string;\n  className?: string;\n}\n\nexport function TiltParallaxButton({ label = \"Initialize Engine\", className }: TiltParallaxButtonProps) {\n  const [rot, setRot] = useState({ x: 0, y: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = (e.clientX - rect.left) / rect.width - 0.5;\n    const y = (e.clientY - rect.top) / rect.height - 0.5;\n    setRot({ x: x * 20, y: -y * 20 });\n  };\n\n  return (\n    <div style={{ perspective: 400 }} className=\"inline-block\">\n      <button\n        type=\"button\"\n        onPointerMove={handlePointerMove}\n        onPointerLeave={() => setRot({ x: 0, y: 0 })}\n        style={{\n          transform: `rotateX(${rot.y}deg) rotateY(${rot.x}deg)`,\n          transformStyle: \"preserve-3d\",\n        }}\n        className={cn(\n          \"rounded-full bg-ink px-6 py-3 font-display text-sm font-bold text-paper shadow-xl transition-transform duration-75 active:scale-95\",\n          className\n        )}\n      >\n        {label}\n      </button>\n    </div>\n  );\n}\n\nexport default TiltParallaxButton;\n",
+      "contentHash": "a8e8433c110be1ad978c66058546f264c69638c068d867699e9d95454d6a87c9",
+      "sizeBytes": 1253
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { TiltParallaxButton } from \"./tilt-parallax-button\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <TiltParallaxButton />\n    </div>\n  );\n}\n",
+      "contentHash": "c21b0dce59b11d3c6a65896b6fdd17b1ab79b07e35439e66ef4111cb600a2bd3",
+      "sizeBytes": 235
+    }
+  ],
+  "tags": [
+    "button",
+    "tilt",
+    "3d",
+    "specular",
+    "hover"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "button-tilt-perspective",
+      "visualModel": "beveled-action-pill",
+      "motionModel": "damped-perspective-swivel",
+      "layoutModel": "centered-action-capsule",
+      "semanticPurpose": "high-impact-cta-button"
+    }
+  },
+  "url": "https://openui.dev/r/tilt-parallax-button.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Button Tilt Perspective: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

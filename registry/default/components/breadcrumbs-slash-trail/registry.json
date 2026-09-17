@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "breadcrumbs-slash-trail",
+  "type": "registry:component",
+  "title": "Breadcrumbs Slash Trail",
+  "description": "An accessible trail of hierarchy waypoints separated by slash delimiters indicating current route depth.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "breadcrumbs-slash-trail.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "breadcrumbs",
+    "navigation",
+    "trail",
+    "slash",
+    "hierarchy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "hierarchical-wayfinding",
+      "visualModel": "slash-separated-trail",
+      "motionModel": "none",
+      "layoutModel": "horizontal-inline-trail",
+      "semanticPurpose": "route-breadcrumb-trail"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

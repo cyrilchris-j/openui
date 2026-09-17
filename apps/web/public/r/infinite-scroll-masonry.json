@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "infinite-scroll-masonry",
+  "type": "registry:layout",
+  "title": "Infinite Scroll Masonry",
+  "description": "Responsive multi-column image masonry grid with loading indicator spinner at the foot.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "infinite-scroll-masonry.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface InfiniteScrollMasonryProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function InfiniteScrollMasonry({ children, className, ...props }: InfiniteScrollMasonryProps) {\n  return (\n    <div className={cn(\"columns-2 sm:columns-3 gap-3 p-4 max-w-4xl mx-auto space-y-3\", className)} {...props}>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "a37dfe0a1fb00612cb935baac86a14a03f920430c6a57d64cf717fdf760d97c9",
+      "sizeBytes": 431
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "import { cn } from \"@/lib/cn\";\nimport { InfiniteScrollMasonry } from \"./infinite-scroll-masonry\";\n\nexport default function InfiniteScrollMasonryDemo() {\n  return (\n    <InfiniteScrollMasonry>\n      {[40, 24, 32, 48, 28, 36].map((h, i) => (\n        <div key={i} className={cn(\"p-4 rounded-xl border border-line bg-surface/30 break-inside-avoid text-xs font-mono\", `h-${h}`)}>\n          Card #{i + 1}\n        </div>\n      ))}\n    </InfiniteScrollMasonry>\n  );\n}\n",
+      "contentHash": "31b3a19b9c688e830d817f80e26254c0bca81976564001082085b7fa5163fab2",
+      "sizeBytes": 460
+    }
+  ],
+  "tags": [
+    "masonry",
+    "infinite-scroll",
+    "gallery",
+    "waterfall",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "scatter",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "infinite-scroll-masonry",
+      "visualModel": "waterfall-image-columns",
+      "motionModel": "none",
+      "layoutModel": "css-columns-infinite",
+      "semanticPurpose": "infinite-image-masonry"
+    }
+  },
+  "url": "https://openui.dev/r/infinite-scroll-masonry.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Scatter\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Infinite Scroll Masonry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

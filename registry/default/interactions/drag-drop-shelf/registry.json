@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-drop-shelf",
+  "type": "registry:interaction",
+  "title": "Drag Drop Shelf",
+  "description": "A multi-slot asset shelf supporting drag reordering, empty slot snap indicators, and active drag ghosting.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-drop-shelf.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "drag",
+    "drop",
+    "shelf",
+    "reorder",
+    "inventory"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "slot-based-drag-drop",
+      "visualModel": "divided-rack-compartments",
+      "motionModel": "snap-to-slot-displacement",
+      "layoutModel": "horizontal-shelf-array",
+      "semanticPurpose": "asset-tray-manager"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

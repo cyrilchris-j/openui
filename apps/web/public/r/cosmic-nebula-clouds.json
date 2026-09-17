@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cosmic-nebula-clouds",
+  "type": "registry:background",
+  "title": "Cosmic Nebula Clouds",
+  "description": "Deep interstellar hydrogen dust clouds with ultraviolet chromatic gas dispersion.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cosmic-nebula-clouds.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface CosmicNebulaCloudsProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function CosmicNebulaClouds({ className, children, ...props }: CosmicNebulaCloudsProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute -top-32 left-1/4 w-[500px] h-[500px] rounded-full blur-3xl opacity-30 pointer-events-none -z-10\"\n        style={{ background: \"radial-gradient(circle, #8b5cf6 0%, #ec4899 50%, transparent 80%)\" }}\n      />\n      <div\n        className=\"absolute bottom-0 right-1/4 w-[450px] h-[450px] rounded-full blur-3xl opacity-25 pointer-events-none -z-10\"\n        style={{ background: \"radial-gradient(circle, #06b6d4 0%, #3b82f6 50%, transparent 80%)\" }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "6d25d54d71cdddbb3ceb08621bf0af1d596e80006e50c2177c76857926002516",
+      "sizeBytes": 928
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { CosmicNebulaClouds } from \"./cosmic-nebula-clouds\";\n\nexport default function CosmicNebulaCloudsDemo() {\n  return (\n    <CosmicNebulaClouds className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-serif text-white\">Interstellar Nebula</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-sans\">Ultraviolet emission cloud luminescence.</p>\n      </div>\n    </CosmicNebulaClouds>\n  );\n}\n",
+      "contentHash": "85903f12890ce64ed3b6c35fae0f56fa9be3cc28a66d2210bb793ff891e9b106",
+      "sizeBytes": 589
+    }
+  ],
+  "tags": [
+    "nebula",
+    "space",
+    "cosmic",
+    "clouds",
+    "astronomy"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-nebula-glow",
+      "visualModel": "chromatic-gas-cloud-dispersion",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "deep-space-nebula"
+    }
+  },
+  "url": "https://openui.dev/r/cosmic-nebula-clouds.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Serif Display\nColor: Neon On Dark\n\n## Rules\n\n- Passive Nebula Glow: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

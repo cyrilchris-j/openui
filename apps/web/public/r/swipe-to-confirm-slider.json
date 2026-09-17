@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "swipe-to-confirm-slider",
+  "type": "registry:interaction",
+  "title": "Swipe to Confirm Slider",
+  "description": "A swipe-to-unlock horizontal action latch requiring full channel traversal to commit irreversible actions.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "swipe-to-confirm-slider.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SwipeToConfirmSliderProps {\n  className?: string;\n}\n\nexport function SwipeToConfirmSlider({ className }: SwipeToConfirmSliderProps) {\n  const [val, setVal] = useState(0);\n  const confirmed = val >= 95;\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-2xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">\n        {confirmed ? \"AUTHORIZATION GRANTED\" : \"SLIDE TO AUTHORIZE\"}\n      </span>\n\n      <div className=\"relative h-12 w-64 rounded-full border border-line bg-line/20 p-1 flex items-center\">\n        <input\n          type=\"range\"\n          min=\"0\"\n          max=\"100\"\n          value={val}\n          onChange={(e) => setVal(parseInt(e.target.value, 10))}\n          className=\"w-full cursor-pointer accent-ink\"\n        />\n      </div>\n\n      {confirmed && (\n        <button\n          type=\"button\"\n          onClick={() => setVal(0)}\n          className=\"font-mono text-[10px] text-ink/50 hover:underline\"\n        >\n          Reset Authorization\n        </button>\n      )}\n    </div>\n  );\n}\n\nexport default SwipeToConfirmSlider;\n",
+      "contentHash": "167602edb7aac3d0f6321a3edbbf478b9b3a4b79ff9698d377fc131d53fd28b4",
+      "sizeBytes": 1228
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { SwipeToConfirmSlider } from \"./swipe-to-confirm-slider\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <SwipeToConfirmSlider />\n    </div>\n  );\n}\n",
+      "contentHash": "9c297adea18eb26b0b15c702184f029b79245f0fc718db3e3d72759340bb122e",
+      "sizeBytes": 242
+    }
+  ],
+  "tags": [
+    "slider",
+    "swipe",
+    "confirm",
+    "unlock",
+    "latch"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "full-stroke-latch-swipe",
+      "visualModel": "retained-rail-chassis",
+      "motionModel": "threshold-locked-travel",
+      "layoutModel": "horizontal-action-latch",
+      "semanticPurpose": "commit-authorization-slider"
+    }
+  },
+  "url": "https://openui.dev/r/swipe-to-confirm-slider.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Full Stroke Latch Swipe: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

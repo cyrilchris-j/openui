@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "timeline-roadmap-stream",
+  "type": "registry:section",
+  "title": "Timeline Roadmap Stream",
+  "description": "Product roadmap stream showing past milestones achieved and upcoming releases.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "timeline-roadmap-stream.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface RoadmapMilestone {\n  quarter: string;\n  status: \"shipped\" | \"in-progress\" | \"planned\";\n  title: string;\n  desc: string;\n}\n\nexport interface TimelineRoadmapStreamProps extends React.HTMLAttributes<HTMLElement> {\n  title?: string;\n  milestones?: RoadmapMilestone[];\n}\n\nexport function TimelineRoadmapStream({\n  title = \"Public Architecture Roadmap\",\n  milestones = [\n    { quarter: \"Q1 2026\", status: \"shipped\", title: \"Catalogue Bootstrap\", desc: \"Core schema, test harness, and AST validators.\" },\n    { quarter: \"Q2 2026\", status: \"shipped\", title: \"800 Resource Master Build\", desc: \"100 components in each of 8 countable categories.\" },\n    { quarter: \"Q3 2026\", status: \"in-progress\", title: \"Autonomous Design Synthesizer\", desc: \"AI agent registry compiler and real-time variant generator.\" },\n  ],\n  className,\n  ...props\n}: TimelineRoadmapStreamProps) {\n  return (\n    <section className={cn(\"py-16 px-6 max-w-3xl mx-auto font-sans bg-paper text-ink\", className)} {...props}>\n      <h2 className=\"text-2xl font-bold text-center text-ink mb-10\">{title}</h2>\n      <div className=\"space-y-6 relative pl-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-line\">\n        {milestones.map((m) => (\n          <div key={m.quarter} className=\"relative\">\n            <div className={cn(\n              \"absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-paper\",\n              m.status === \"shipped\" ? \"bg-emerald-500\" : m.status === \"in-progress\" ? \"bg-accent\" : \"bg-line\"\n            )} />\n            <div className=\"p-4 rounded-xl border border-line bg-surface/30\">\n              <div className=\"flex items-center justify-between text-xs font-mono mb-1\">\n                <span className=\"font-bold text-ink\">{m.quarter}</span>\n                <span className={cn(\"uppercase text-[10px] font-bold px-2 py-0.5 rounded-full\", m.status === \"shipped\" ? \"bg-emerald-500/15 text-emerald-600\" : \"bg-accent/15 text-accent\")}>\n                  {m.status}\n                </span>\n              </div>\n              <div className=\"font-bold text-sm text-ink\">{m.title}</div>\n              <p className=\"text-xs text-ink/60 mt-1\">{m.desc}</p>\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "bc76660bb7a4a6059f2e0b8d157720c95da2dad290282cf78419aea8c61d71a8",
+      "sizeBytes": 2327
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { TimelineRoadmapStream } from \"./timeline-roadmap-stream\";\n\nexport default function TimelineRoadmapStreamDemo() {\n  return <TimelineRoadmapStream />;\n}\n",
+      "contentHash": "bbc315255d03d0acca6462d4e0863c47a57d8025d67eae2d0bc50d4264ddbc8c",
+      "sizeBytes": 175
+    }
+  ],
+  "tags": [
+    "roadmap",
+    "timeline",
+    "milestones",
+    "releases",
+    "stream"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "roadmap",
+    "fingerprint": {
+      "interactionModel": "quarterly-roadmap-inspection",
+      "visualModel": "timeline-rail-milestones",
+      "motionModel": "none",
+      "layoutModel": "vertical-roadmap-rail",
+      "semanticPurpose": "product-roadmap-display"
+    }
+  },
+  "url": "https://openui.dev/r/timeline-roadmap-stream.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Quarterly Roadmap Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stat-sparkline-tile",
+  "type": "registry:component",
+  "title": "Stat Sparkline Tile",
+  "description": "A compact analytics KPI tile paired with an inline SVG sparkline graph visualizing 7-day trendlines.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stat-sparkline-tile.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StatSparklineTileProps {\n  className?: string;\n}\n\nexport function StatSparklineTile({ className }: StatSparklineTileProps) {\n  return (\n    <div className={cn(\"w-full max-w-xs rounded-xl border border-line bg-paper p-5 shadow-sm font-mono text-xs\", className)}>\n      <span className=\"text-ink/60 uppercase text-[10px]\">THROUGHPUT TREND</span>\n      <div className=\"flex items-end justify-between mt-2\">\n        <span className=\"text-2xl font-bold text-ink\">99.98%</span>\n        <svg className=\"h-6 w-20 overflow-visible text-emerald-600\">\n          <polyline\n            fill=\"none\"\n            stroke=\"currentColor\"\n            strokeWidth=\"2\"\n            points=\"0,20 15,14 30,18 45,8 60,10 75,4 90,2\"\n          />\n        </svg>\n      </div>\n    </div>\n  );\n}\n\nexport default StatSparklineTile;\n",
+      "contentHash": "6cbd8d07b9aaf479bfc6b7d5fd5f5a702761ee944de075ac27240f345bed939c",
+      "sizeBytes": 864
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { StatSparklineTile } from \"./stat-sparkline-tile\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <StatSparklineTile />\n    </div>\n  );\n}\n",
+      "contentHash": "e2e4449f3627b13d9e4b8f35ca43b5bf7b402562563ad6539dcf0be3500a3f9a",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "sparkline",
+    "chart",
+    "metrics",
+    "kpi",
+    "analytics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "kpi-sparkline-inspection",
+      "visualModel": "trendline-metric-card",
+      "motionModel": "none",
+      "layoutModel": "metric-tile-with-sparkline",
+      "semanticPurpose": "sparkline-trend-tile"
+    }
+  },
+  "url": "https://openui.dev/r/stat-sparkline-tile.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Kpi Sparkline Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

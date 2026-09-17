@@ -137,15 +137,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     };
   }, []);
 
-  /** Sends the browser to the provider, returning to the current page after. */
+  /** Sends the browser to the provider, returning to the current origin after. */
   const signIn = React.useCallback(async (provider: "github" | "google") => {
     const auth = supabase();
     if (!auth) throw new Error("Authentication is not configured on this deployment.");
-    const { error } = await auth.auth.signInWithOAuth({
+    const redirectUrl = `${window.location.origin}/`;
+    const { data, error } = await auth.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: window.location.href },
+      options: { redirectTo: redirectUrl },
     });
     if (error) throw error;
+    if (data?.url) {
+      window.location.href = data.url;
+    }
   }, []);
 
   const value = React.useMemo<AuthContextValue>(

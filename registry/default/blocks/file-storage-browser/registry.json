@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "file-storage-browser",
+  "type": "registry:block",
+  "title": "File Storage Browser",
+  "description": "A cloud asset manager with folder directory hierarchy, file size badges, and selection controls.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "file-storage-browser.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "files",
+    "storage",
+    "explorer",
+    "directory",
+    "browser"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "files",
+    "fingerprint": {
+      "interactionModel": "directory-navigation-and-file-selection",
+      "visualModel": "hierarchical-asset-file-explorer",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "cloud-storage-file-management"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "sharp",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

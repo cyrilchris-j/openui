@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "floating-dock-bar",
+  "type": "registry:component",
+  "title": "Floating Dock Bar",
+  "description": "An elevated floating application launcher shelf with icon buttons, tooltips, and blur backdrop.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "floating-dock-bar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface FloatingDockBarProps {\n  className?: string;\n}\n\nexport function FloatingDockBar({ className }: FloatingDockBarProps) {\n  const [active, setActive] = useState(0);\n  const items = [\"Home\", \"Components\", \"Docs\", \"Settings\"];\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-1.5 rounded-full border border-line bg-paper/90 p-2 shadow-xl backdrop-blur font-mono text-xs\", className)}>\n      {items.map((item, idx) => (\n        <button\n          key={item}\n          type=\"button\"\n          onClick={() => setActive(idx)}\n          className={cn(\n            \"rounded-full px-3.5 py-1.5 transition-all font-semibold\",\n            active === idx ? \"bg-ink text-paper shadow-sm\" : \"text-ink/60 hover:text-ink\"\n          )}\n        >\n          {item}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default FloatingDockBar;\n",
+      "contentHash": "f4118ed0e534543741f2cf652503c30328cfdcf870ed0073b7bd73b4330fbdda",
+      "sizeBytes": 935
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { FloatingDockBar } from \"./floating-dock-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <FloatingDockBar />\n    </div>\n  );\n}\n",
+      "contentHash": "1e0e673efe61e5e8bb496d1f0d4bd82910accaf6c9ac965a41cd6082016d6e4b",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "dock",
+    "floating",
+    "launcher",
+    "navigation",
+    "shelf"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "floating-dock-navigation",
+      "visualModel": "capsule-dock-shelf",
+      "motionModel": "none",
+      "layoutModel": "floating-bottom-dock",
+      "semanticPurpose": "app-launcher-dock-bar"
+    }
+  },
+  "url": "https://openui.dev/r/floating-dock-bar.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Floating Dock Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

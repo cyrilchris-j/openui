@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tally-glyph-counter",
+  "type": "registry:text",
+  "title": "Tally Glyph Counter",
+  "description": "Counts rendered as tally marks: groups of four vertical strokes with a diagonal fifth strike-through, animated stroke-by-stroke as the value ticks up — a counting display that predates numerals and still reads instantly.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tally-glyph-counter.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "tally",
+    "counter",
+    "svg",
+    "strokes"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "value-tick",
+      "visualModel": "tally-stroke-groups",
+      "motionModel": "stroke-draw-increment",
+      "layoutModel": "inline-wrap",
+      "semanticPurpose": "counting-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

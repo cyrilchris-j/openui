@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "justify-hyphen-proof",
+  "type": "registry:text",
+  "title": "Justify Hyphen Proof",
+  "description": "A justified paragraph with manual soft-hyphen control and rivers visualisation: toggle justification, hyphenation and a river-detector overlay that highlights the vertical gaps justified text leaves behind.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "justify-hyphen-proof.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "justify",
+    "hyphenation",
+    "rivers",
+    "proofing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "toggle-proof",
+      "visualModel": "river-highlight-overlay",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "typographic-proofing"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

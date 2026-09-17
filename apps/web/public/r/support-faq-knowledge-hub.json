@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "support-faq-knowledge-hub",
+  "type": "registry:block",
+  "title": "Support FAQ Knowledge Hub",
+  "description": "A customer documentation support hub featuring categorized topic tiles and instant search filtering.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "support-faq-knowledge-hub.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SupportFaqKnowledgeHub({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const topics = [\n    { title: \"Installation & CLI\", count: \"12 articles\", icon: \"⚡\" },\n    { title: \"Design DNA Invariants\", count: \"8 articles\", icon: \"📐\" },\n    { title: \"Custom Theme Tokens\", count: \"14 articles\", icon: \"🎨\" },\n    { title: \"Enterprise Air-gapped Mirror\", count: \"6 articles\", icon: \"🔒\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"text-center max-w-xl mx-auto mb-8\">\n        <h3 className=\"text-xl font-bold text-neutral-900 dark:text-white\">Knowledge Hub</h3>\n        <p className=\"text-neutral-500 mt-1\">Search through verified setup guides and architecture specifications.</p>\n      </div>\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">\n        {topics.map((t) => (\n          <div key={t.title} className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-emerald-500 transition-colors cursor-pointer bg-neutral-50/40 dark:bg-neutral-900/30\">\n            <div className=\"text-2xl\">{t.icon}</div>\n            <h4 className=\"font-bold text-sm text-neutral-900 dark:text-white mt-2\">{t.title}</h4>\n            <div className=\"text-neutral-400 text-[11px] mt-1\">{t.count}</div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "cf4e02c3d050d749799622a0f0766a02722480e3def097d283ccca6a481d640b",
+      "sizeBytes": 1585
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { SupportFaqKnowledgeHub } from \"./support-faq-knowledge-hub\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <SupportFaqKnowledgeHub />\n    </div>\n  );\n}\n",
+      "contentHash": "1898678df5c1f5753c112cdf0a1350d015a9f2df71db3f70bf34e182361aab59",
+      "sizeBytes": 296
+    }
+  ],
+  "tags": [
+    "faq",
+    "support",
+    "knowledge-hub",
+    "help",
+    "docs"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "support",
+    "fingerprint": {
+      "interactionModel": "knowledge-base-topic-navigation",
+      "visualModel": "categorized-faq-hub-grid",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "self-service-support-hub"
+    }
+  },
+  "url": "https://openui.dev/r/support-faq-knowledge-hub.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Knowledge Base Topic Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

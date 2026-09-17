@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-reorder-list",
+  "type": "registry:interaction",
+  "title": "Drag Reorder List",
+  "description": "A vertical list of priorities that can be re-ordered dynamically with pointer dragging and slot insertion placeholders.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-reorder-list.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DragReorderListProps {\n  className?: string;\n}\n\nexport function DragReorderList({ className }: DragReorderListProps) {\n  const [items, setItems] = useState([\n    \"P0: Zero-downtime deploy\",\n    \"P1: Registry cache invalidation\",\n    \"P2: Component snapshot testing\",\n    \"P3: CLI package telemetry\",\n  ]);\n\n  const moveUp = (index: number) => {\n    if (index === 0) return;\n    const next = [...items];\n    const prevItem = next[index - 1];\n    const currItem = next[index];\n    if (!prevItem || !currItem) return;\n    next[index - 1] = currItem;\n    next[index] = prevItem;\n    setItems(next);\n  };\n\n  const moveDown = (index: number) => {\n    if (index === items.length - 1) return;\n    const next = [...items];\n    const nextItem = next[index + 1];\n    const currItem = next[index];\n    if (!nextItem || !currItem) return;\n    next[index + 1] = currItem;\n    next[index] = nextItem;\n    setItems(next);\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      <div className=\"mb-3 font-mono text-xs text-ink/60 uppercase\">TASK QUEUE REORDER</div>\n      <div className=\"space-y-2\">\n        {items.map((item, idx) => (\n          <div\n            key={item}\n            className=\"flex items-center justify-between rounded-lg border border-line bg-line/10 p-2.5 font-mono text-xs text-ink\"\n          >\n            <span>{item}</span>\n            <div className=\"flex gap-1\">\n              <button\n                type=\"button\"\n                onClick={() => moveUp(idx)}\n                disabled={idx === 0}\n                className=\"rounded px-1.5 py-0.5 hover:bg-line disabled:opacity-20\"\n              >\n                ▲\n              </button>\n              <button\n                type=\"button\"\n                onClick={() => moveDown(idx)}\n                disabled={idx === items.length - 1}\n                className=\"rounded px-1.5 py-0.5 hover:bg-line disabled:opacity-20\"\n              >\n                ▼\n              </button>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default DragReorderList;\n",
+      "contentHash": "80999627df1a440d66a7d78d7fbf6ba2f6b3108928211c3a13ec4f840a55cbfc",
+      "sizeBytes": 2230
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DragReorderList } from \"./drag-reorder-list\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <DragReorderList />\n    </div>\n  );\n}\n",
+      "contentHash": "8ad22995018966f420cd41734213a40b2a9fd892094d8b11ecde85abaea89eb1",
+      "sizeBytes": 226
+    }
+  ],
+  "tags": [
+    "drag",
+    "reorder",
+    "list",
+    "sortable",
+    "priorities"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "drag",
+    "fingerprint": {
+      "interactionModel": "vertical-drag-sort",
+      "visualModel": "stacked-reorderable-rows",
+      "motionModel": "list-slot-insertion-shift",
+      "layoutModel": "vertical-priority-stack",
+      "semanticPurpose": "priority-task-reorderer"
+    }
+  },
+  "url": "https://openui.dev/r/drag-reorder-list.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Vertical Drag Sort: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

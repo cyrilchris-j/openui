@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-anchor-tooltip",
+  "type": "registry:motion",
+  "title": "Magnetic Anchor Tooltip",
+  "description": "A contextual tooltip balloon anchored via invisible elastic tether that leans smoothly toward pointer cursor.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-anchor-tooltip.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "tooltip",
+    "magnetic",
+    "anchor",
+    "spring",
+    "tether"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "tethered-hover-lean",
+      "visualModel": "elastic-speech-bubble",
+      "motionModel": "spring-tether-displacement",
+      "layoutModel": "anchored-tooltip-float",
+      "semanticPurpose": "contextual-help-balloon"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

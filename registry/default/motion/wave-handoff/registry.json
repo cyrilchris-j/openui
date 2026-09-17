@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-handoff",
+  "type": "registry:motion",
+  "title": "Wave Handoff",
+  "description": "Two rows of content hand off motion to each other: as the top row settles, its last element's exit velocity is inherited by the first element of the next row — energy conservation applied to entrance choreography.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-handoff.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "handoff",
+    "wave",
+    "momentum",
+    "sequence"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "sequence-handoff",
+      "visualModel": "row-to-row-transfer",
+      "motionModel": "inherited-velocity",
+      "layoutModel": "stack",
+      "semanticPurpose": "narrative-entrance"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

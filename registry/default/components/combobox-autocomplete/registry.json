@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "combobox-autocomplete",
+  "type": "registry:component",
+  "title": "Combobox Autocomplete",
+  "description": "A searchable dropdown select combining a text input field with filtered option suggestions.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "combobox-autocomplete.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "combobox",
+    "autocomplete",
+    "dropdown",
+    "search",
+    "select"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "autocomplete-filter-select",
+      "visualModel": "combobox-anchor-dropdown",
+      "motionModel": "none",
+      "layoutModel": "stacked-combobox-field",
+      "semanticPurpose": "autocomplete-search-field"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

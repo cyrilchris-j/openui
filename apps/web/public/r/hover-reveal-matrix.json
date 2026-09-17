@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-reveal-matrix",
+  "type": "registry:interaction",
+  "title": "Hover Reveal Matrix",
+  "description": "A matrix grid of tiles where individual cells light up with proximity bloom as mouse travels over the array.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-reveal-matrix.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverRevealMatrixProps {\n  className?: string;\n}\n\nexport function HoverRevealMatrix({ className }: HoverRevealMatrixProps) {\n  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);\n\n  return (\n    <div className={cn(\"grid grid-cols-4 gap-2 rounded-xl border border-line bg-paper p-4 shadow-sm\", className)}>\n      {Array.from({ length: 16 }).map((_, i) => (\n        <div\n          key={i}\n          onPointerEnter={() => setHoveredIdx(i)}\n          onPointerLeave={() => setHoveredIdx(null)}\n          className={cn(\n            \"flex h-12 w-12 cursor-pointer items-center justify-center rounded border font-mono text-[10px] font-bold transition-colors duration-150\",\n            hoveredIdx === i ? \"border-ink bg-ink text-paper\" : \"border-line bg-line/10 text-ink/40\"\n          )}\n        >\n          {i.toString(16).toUpperCase()}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default HoverRevealMatrix;\n",
+      "contentHash": "34cec48abe5eb8f6cadeaeff2d80d85a78bf4e814fe897f1ab2eced7923058ac",
+      "sizeBytes": 1022
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverRevealMatrix } from \"./hover-reveal-matrix\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <HoverRevealMatrix />\n    </div>\n  );\n}\n",
+      "contentHash": "978c540d860c6435be06d71b78727af5eb8d815e2632c3b3e8b0fb5db20b8dde",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "matrix",
+    "grid",
+    "hover",
+    "bloom",
+    "cells"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "grid-cell-proximity-illumination",
+      "visualModel": "matrix-tile-array",
+      "motionModel": "instantaneous-alpha-fadeout",
+      "layoutModel": "uniform-grid-mosaic",
+      "semanticPurpose": "proximity-grid-sensor"
+    }
+  },
+  "url": "https://openui.dev/r/hover-reveal-matrix.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Dense\nShape: Sharp\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Grid Cell Proximity Illumination: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

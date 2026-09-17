@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-list-navigation",
+  "type": "registry:interaction",
+  "title": "Keyboard List Navigation",
+  "description": "A vertical record feed navigable smoothly via keyboard arrow keys with instantaneous active highlight styling.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-list-navigation.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "list",
+    "keyboard",
+    "navigation",
+    "arrows",
+    "focus"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "arrow-key-list-selection",
+      "visualModel": "highlighted-row-matrix",
+      "motionModel": "stepwise-index-handoff",
+      "layoutModel": "vertical-indexed-list",
+      "semanticPurpose": "keyboard-row-navigator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

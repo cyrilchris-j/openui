@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-split-terminal",
+  "type": "registry:section",
+  "title": "Hero Split Terminal",
+  "description": "A high-conversion landing hero pairing an editorial headline with an interactive installation terminal.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-split-terminal.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function HeroSplitTerminal({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-20 px-4 md:px-8 max-w-6xl mx-auto\", className)} {...props}>\n      <div className=\"grid grid-cols-1 lg:grid-cols-12 gap-10 items-center\">\n        <div className=\"lg:col-span-6\">\n          <span className=\"text-xs font-mono uppercase text-emerald-500 font-bold\">OpenUI v2.4</span>\n          <h1 className=\"text-4xl font-extrabold text-neutral-900 dark:text-white mt-2 leading-tight\">\n            Interfaces should have a fingerprint.\n          </h1>\n          <p className=\"text-sm text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed\">\n            The decentralized design system registry. 800 certified open-source primitives installable straight to your src/ with deterministic schemas.\n          </p>\n          <div className=\"mt-6 flex gap-3\">\n            <button type=\"button\" className=\"px-5 py-2.5 rounded-lg bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 text-xs font-bold\">\n              Explore 800 Items\n            </button>\n          </div>\n        </div>\n\n        <div className=\"lg:col-span-6 bg-neutral-950 text-neutral-100 p-5 rounded-xl border border-neutral-800 font-mono text-xs\">\n          <div className=\"text-neutral-500 mb-2\"># Install your first verified primitive</div>\n          <div className=\"text-emerald-400 font-bold\">$ pnpm dlx openui@latest add hero-split-terminal</div>\n          <div className=\"text-neutral-400 mt-2\">✓ Verified 0 runtime dependencies</div>\n          <div className=\"text-neutral-400\">✓ Materialized in src/components/sections/</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "73fa0e98e3f95682478776f3cdd2cbc9f1881c7c1fab49c18de002bd10c227cd",
+      "sizeBytes": 1790
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { HeroSplitTerminal } from \"./hero-split-terminal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-white dark:bg-neutral-950\">\n      <HeroSplitTerminal />\n    </div>\n  );\n}\n",
+      "contentHash": "02f76420a569c7b36760b1aef7686543257963ccca03c16893e21acd7588daf3",
+      "sizeBytes": 274
+    }
+  ],
+  "tags": [
+    "hero",
+    "split",
+    "terminal",
+    "cta",
+    "landing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hero",
+    "fingerprint": {
+      "interactionModel": "hero-split-terminal-interaction",
+      "visualModel": "hero-split-terminal-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "hero-split-terminal-section"
+    }
+  },
+  "url": "https://openui.dev/r/hero-split-terminal.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Medium\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Hero Split Terminal Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

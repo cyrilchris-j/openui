@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-dock",
+  "type": "registry:motion",
+  "title": "Magnetic Dock",
+  "description": "A dock where icons gravitate toward the pointer within an influence field: displacement falls off with distance (inverse-square), neighbours lean toward the cursor, and the dock lifts as a whole when engaged.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-dock.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MagneticDockProps {\n  icons: string[];\n  /** Radius of the magnetic field, px. */\n  influence?: number;\n  className?: string;\n}\n\nexport function MagneticDock({ icons, influence = 90, className }: MagneticDockProps) {\n  const dockRef = useRef<HTMLDivElement>(null);\n  const iconRefs = useRef<Array<HTMLButtonElement | null>>([]);\n  const frame = useRef<number | null>(null);\n\n  const apply = useCallback(\n    (clientX: number | null) => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n      frame.current = requestAnimationFrame(() => {\n        const dock = dockRef.current;\n        if (!dock) return;\n        const dockRect = dock.getBoundingClientRect();\n        let anyEngaged = false;\n\n        icons.forEach((_, index) => {\n          const node = iconRefs.current[index];\n          if (!node) return;\n          const rect = node.getBoundingClientRect();\n          const centre = rect.left + rect.width / 2;\n\n          if (clientX === null) {\n            node.style.transform = \"translateY(0) scale(1)\";\n            return;\n          }\n          const distance = clientX - centre;\n          const falloff = Math.max(0, 1 - Math.abs(distance) / influence);\n          if (falloff > 0) anyEngaged = true;\n          const lift = falloff * falloff * 18;\n          node.style.transform = `translateY(-${lift}px) scale(${1 + falloff * 0.25})`;\n        });\n\n        dock.style.transform = anyEngaged ? \"translateY(-4px)\" : \"translateY(0)\";\n      });\n    },\n    [icons, influence],\n  );\n\n  useEffect(\n    () => () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    },\n    [],\n  );\n\n  return (\n    <div\n      ref={dockRef}\n      className={cn(\"inline-flex items-end gap-3 rounded-2xl border border-line bg-paper/90 p-3 shadow-xl backdrop-blur\", className)}\n      onPointerMove={(event) => apply(event.clientX)}\n      onPointerLeave={() => apply(null)}\n      role=\"toolbar\"\n      aria-label=\"Magnetic dock\"\n    >\n      {icons.map((icon, index) => (\n        <button\n          key={icon}\n          ref={(node) => {\n            iconRefs.current[index] = node;\n          }}\n          type=\"button\"\n          aria-label={icon}\n          className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-line/40 text-xl transition-transform duration-100 will-change-transform hover:bg-accent/20\"\n        >\n          <span aria-hidden>{icon}</span>\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default MagneticDock;\n",
+      "contentHash": "72da42274f6314bebf7cb6fc6a5108b821af307e07bb31ba5d843ec93ebcf898",
+      "sizeBytes": 2585
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MagneticDock } from \"./magnetic-dock\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-end justify-center bg-paper p-10\">\n      <MagneticDock icons={[\"📐\", \"✏️\", \"🗂️\", \"⚙️\", \"📦\", \"🔍\"]} />\n    </div>\n  );\n}\n",
+      "contentHash": "9b49ffac57dfe5c46305b7123b995fff4445e060fab5e2878327174bd71cefab",
+      "sizeBytes": 278
+    }
+  ],
+  "tags": [
+    "dock",
+    "magnetic",
+    "pointer",
+    "field"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pointer-field",
+      "visualModel": "displacement-icon-rail",
+      "motionModel": "inverse-square-attraction",
+      "layoutModel": "rail",
+      "semanticPurpose": "app-launcher"
+    }
+  },
+  "url": "https://openui.dev/r/magnetic-dock.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Medium\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Pointer Field: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

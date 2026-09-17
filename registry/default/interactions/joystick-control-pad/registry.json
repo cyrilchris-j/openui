@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "joystick-control-pad",
+  "type": "registry:interaction",
+  "title": "Joystick Control Pad",
+  "description": "A virtual 2D analog thumbstick that displaces within a circular constraint zone tracking pointer drag vectors.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "joystick-control-pad.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "joystick",
+    "control",
+    "analog",
+    "drag",
+    "thumbstick"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "polar-joystick-displacement",
+      "visualModel": "radial-gimbal-pad",
+      "motionModel": "clamped-radial-spring-recenter",
+      "layoutModel": "centered-joystick-chassis",
+      "semanticPurpose": "virtual-analog-controller"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

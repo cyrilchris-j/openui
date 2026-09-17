@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "audit-compliance-badges",
+  "type": "registry:section",
+  "title": "Audit Compliance Badges",
+  "description": "Enterprise compliance certifications rack displaying SOC 2 Type II, ISO 27001, GDPR, and HIPAA compliance.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "audit-compliance-badges.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "compliance",
+    "security",
+    "soc2",
+    "gdpr",
+    "trust"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "trust",
+    "fingerprint": {
+      "interactionModel": "security-badge-verification",
+      "visualModel": "four-badge-compliance-rack",
+      "motionModel": "none",
+      "layoutModel": "horizontal-compliance-strip",
+      "semanticPurpose": "enterprise-compliance-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

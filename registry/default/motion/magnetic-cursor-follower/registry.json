@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-cursor-follower",
+  "type": "registry:motion",
+  "title": "Magnetic Cursor Follower",
+  "description": "A trailing fluid pointer node that elongates along its velocity vector when mouse moves fast.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-cursor-follower.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "cursor",
+    "follower",
+    "velocity",
+    "elongate",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "cursor",
+    "fingerprint": {
+      "interactionModel": "vector-velocity-follower",
+      "visualModel": "elongating-liquid-droplet",
+      "motionModel": "lagged-orientation-spring",
+      "layoutModel": "fluid-cursor-trail",
+      "semanticPurpose": "velocity-cursor-trail"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

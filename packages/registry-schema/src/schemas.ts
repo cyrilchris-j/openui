@@ -126,12 +126,37 @@ export const registryItemAuthorSchema = z.object({
   url: z.string().url().max(200).optional(),
 });
 
+/** One behavioural fingerprint axis: a lowercase slug, e.g. `spring-follow`. */
+const fingerprintAxisSchema = z
+  .string()
+  .min(1)
+  .max(48)
+  .regex(TAG_PATTERN, "Fingerprint values must be lowercase slugs, e.g. `spring-follow`.");
+
 export const registryItemMetaSchema = z
   .object({
     dna: partialDesignDnaSchema.optional(),
     difficulty: difficultySchema.optional(),
     features: z.array(z.string().min(1).max(48)).max(16).optional(),
     peer: z.record(z.string(), z.string()).optional(),
+    /** Subcategory slug within the category, e.g. `navigation`, `forms`. */
+    subcategory: z
+      .string()
+      .min(1)
+      .max(48)
+      .regex(TAG_PATTERN, "Subcategory must be a lowercase slug, e.g. `navigation`.")
+      .optional(),
+    /** Behavioural fingerprint used by the uniqueness engine. */
+    fingerprint: z
+      .object({
+        interactionModel: fingerprintAxisSchema.optional(),
+        visualModel: fingerprintAxisSchema.optional(),
+        motionModel: fingerprintAxisSchema.optional(),
+        layoutModel: fingerprintAxisSchema.optional(),
+        semanticPurpose: fingerprintAxisSchema.optional(),
+      })
+      .strict()
+      .optional(),
   })
   .strict();
 
@@ -251,6 +276,8 @@ export const registryIndexEntrySchema = z.object({
   license: licenseIdSchema.optional(),
   difficulty: difficultySchema.optional(),
   dna: partialDesignDnaSchema.optional(),
+  subcategory: z.string().max(48).optional(),
+  fingerprint: z.record(z.string().max(48)).optional(),
   url: z.string().min(1).max(512),
   integrity: z.string().min(8).max(128),
 });

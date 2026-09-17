@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inertial-rebound-scroll",
+  "type": "registry:motion",
+  "title": "Inertial Rebound Scroll",
+  "description": "A scroll container featuring physical overscroll rubberbanding that snaps back to boundaries via damped spring physics.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inertial-rebound-scroll.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "overscroll",
+    "rubberband",
+    "spring",
+    "inertial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "overscroll-rubberband-drag",
+      "visualModel": "elastic-scrollable-deck",
+      "motionModel": "boundary-spring-rebound",
+      "layoutModel": "bounded-scroll-viewport",
+      "semanticPurpose": "tactile-list-scroller"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "project-roadmap-gantt-chart",
+  "type": "registry:block",
+  "title": "Project Roadmap Gantt Chart",
+  "description": "A milestone timeline Gantt visualization displaying deliverable progress across sprints and quarters.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "project-roadmap-gantt-chart.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "gantt",
+    "roadmap",
+    "timeline",
+    "milestones",
+    "projects"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "roadmap",
+    "fingerprint": {
+      "interactionModel": "gantt-timeline-scrubbing",
+      "visualModel": "quarterly-milestone-bar-chart",
+      "motionModel": "none",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "milestone-gantt-roadmap"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "vector-force-field",
+  "type": "registry:background",
+  "title": "Vector Force Field",
+  "description": "Grid of oriented physics force vectors illustrating electromagnetic flux lines.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "vector-force-field.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface VectorForceFieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function VectorForceField({ className, children, ...props }: VectorForceFieldProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-20 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"vector-pat\" width=\"40\" height=\"40\" patternUnits=\"userSpaceOnUse\">\n            <line x1=\"12\" y1=\"28\" x2=\"28\" y2=\"12\" stroke=\"currentColor\" strokeWidth=\"1\" />\n            <polygon points=\"28,12 22,14 26,18\" fill=\"currentColor\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#vector-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "44ba1e81f18e2b9db0209f5001879c810d09d19f3a8f6213f22551379d0010a1",
+      "sizeBytes": 935
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { VectorForceField } from \"./vector-force-field\";\n\nexport default function VectorForceFieldDemo() {\n  return (\n    <VectorForceField className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Magnetic Vector Field</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Directional force flux vector arrows.</p>\n      </div>\n    </VectorForceField>\n  );\n}\n",
+      "contentHash": "885d7472beb1a4fcecbcfbcdc313b31619745f839256ba5cee41f838be4a56ac",
+      "sizeBytes": 569
+    }
+  ],
+  "tags": [
+    "vector",
+    "physics",
+    "force",
+    "field",
+    "flux"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-vector-flux",
+      "visualModel": "oriented-arrow-grid",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "electromagnetic-vector-texture"
+    }
+  },
+  "url": "https://openui.dev/r/vector-force-field.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Vector Flux: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

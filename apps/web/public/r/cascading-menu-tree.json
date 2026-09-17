@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cascading-menu-tree",
+  "type": "registry:component",
+  "title": "Cascading Menu Tree",
+  "description": "A nested flyout menu with keyboard navigation support, chevron branch indicators, and action triggers.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cascading-menu-tree.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { ChevronRight, Folder, File, Settings, Share2, Trash2 } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MenuItem {\n  id: string;\n  label: string;\n  icon?: any;\n  children?: MenuItem[];\n  action?: string;\n}\n\nexport function CascadingMenuTree({ className }: { className?: string }) {\n  const [activeBranch, setActiveBranch] = useState<string | null>(null);\n  const [status, setStatus] = useState(\"Hover or click a menu item\");\n\n  const items: MenuItem[] = [\n    {\n      id: \"workspace\",\n      label: \"Workspace Options\",\n      icon: Folder,\n      children: [\n        { id: \"ws-share\", label: \"Invite Collaborators\", icon: Share2 },\n        { id: \"ws-settings\", label: \"Preferences & Keys\", icon: Settings },\n      ],\n    },\n    {\n      id: \"exports\",\n      label: \"Export Pipeline\",\n      icon: File,\n      children: [\n        { id: \"exp-json\", label: \"Bundle as JSON\" },\n        { id: \"exp-ts\", label: \"Typescript Definitions\" },\n        { id: \"exp-tar\", label: \"Archive (.tar.gz)\" },\n      ],\n    },\n    { id: \"delete\", label: \"Prune Workspace\", icon: Trash2 },\n  ];\n\n  return (\n    <div className={cn(\"relative inline-block font-sans text-xs\", className)}>\n      <div className=\"w-56 rounded-lg border border-line bg-paper shadow-md p-1.5 flex flex-col gap-0.5\">\n        {items.map((item) => {\n          const Icon = item.icon;\n          const hasChildren = Boolean(item.children && item.children.length > 0);\n          const isOpen = activeBranch === item.id;\n\n          return (\n            <div\n              key={item.id}\n              className=\"relative\"\n              onMouseEnter={() => hasChildren && setActiveBranch(item.id)}\n              onMouseLeave={() => hasChildren && setActiveBranch(null)}\n            >\n              <button\n                type=\"button\"\n                onClick={() => {\n                  if (!hasChildren) setStatus(`Triggered: ${item.label}`);\n                }}\n                className={cn(\n                  \"w-full flex items-center justify-between px-2.5 py-1.5 rounded transition-colors text-left\",\n                  isOpen ? \"bg-surface font-medium text-ink\" : \"text-ink/80 hover:bg-surface hover:text-ink\"\n                )}\n              >\n                <div className=\"flex items-center gap-2\">\n                  {Icon && <Icon className=\"w-3.5 h-3.5 text-ink/60\" />}\n                  <span>{item.label}</span>\n                </div>\n                {hasChildren && <ChevronRight className=\"w-3.5 h-3.5 text-ink/40\" />}\n              </button>\n\n              {hasChildren && isOpen && (\n                <div className=\"absolute left-full top-0 ml-1 w-48 rounded-lg border border-line bg-paper shadow-lg p-1.5 flex flex-col gap-0.5 z-20\">\n                  {item.children?.map((sub) => {\n                    const SubIcon = sub.icon;\n                    return (\n                      <button\n                        key={sub.id}\n                        type=\"button\"\n                        onClick={() => setStatus(`Selected: ${sub.label}`)}\n                        className=\"w-full flex items-center gap-2 px-2.5 py-1.5 rounded text-left text-ink/80 hover:bg-surface hover:text-ink transition-colors\"\n                      >\n                        {SubIcon && <SubIcon className=\"w-3.5 h-3.5 text-ink/60\" />}\n                        <span>{sub.label}</span>\n                      </button>\n                    );\n                  })}\n                </div>\n              )}\n            </div>\n          );\n        })}\n      </div>\n      <div className=\"mt-2 text-[11px] font-mono text-ink/60\">{status}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "02a8a9c9d7547d122f86db7b66696705107f1ce257589aa977a907851499b697",
+      "sizeBytes": 3663
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { CascadingMenuTree } from \"./cascading-menu-tree\";\n\nexport default function CascadingMenuTreeDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[300px]\">\n      <CascadingMenuTree />\n    </div>\n  );\n}\n",
+      "contentHash": "6ec622a08e32d6e73d3d8ea44764c65057e868dc48b8230ca06912f27f7eb7ed",
+      "sizeBytes": 269
+    }
+  ],
+  "tags": [
+    "menu",
+    "cascading",
+    "flyout",
+    "navigation",
+    "nested"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "cascading-flyout-hover",
+      "visualModel": "floating-nested-popover",
+      "motionModel": "none",
+      "layoutModel": "hierarchical-flyout",
+      "semanticPurpose": "hierarchical-action-menu"
+    }
+  },
+  "url": "https://openui.dev/r/cascading-menu-tree.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Cascading Flyout Hover: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

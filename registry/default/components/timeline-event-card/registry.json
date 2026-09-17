@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "timeline-event-card",
+  "type": "registry:component",
+  "title": "Timeline Event Card",
+  "description": "An audit trail card tracking historical deployment and commit operations with author attribution.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "timeline-event-card.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "timeline",
+    "audit",
+    "events",
+    "card",
+    "git"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "audit-event-inspection",
+      "visualModel": "chronological-event-slab",
+      "motionModel": "none",
+      "layoutModel": "vertical-event-card",
+      "semanticPurpose": "audit-trail-event-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

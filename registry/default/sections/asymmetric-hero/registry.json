@@ -5,15 +5,36 @@
   "title": "Asymmetric Hero",
   "description": "An opening section with a 5/7 vertical split, an edge-to-edge index rail and a display heading that is composed from type rather than a gradient block.",
   "category": "sections",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn", "editorial-heading", "marquee-index"],
-  "files": [{ "path": "asymmetric-hero.tsx", "type": "registry:section" }],
-  "tags": ["hero", "section", "asymmetric"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn",
+    "editorial-heading",
+    "marquee-index"
+  ],
+  "files": [
+    {
+      "path": "asymmetric-hero.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "hero",
+    "section",
+    "asymmetric"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["no-gradient", "responsive-recomposition", "landmark-correct"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "no-gradient",
+      "responsive-recomposition",
+      "landmark-correct"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "editorial",
       "macrostructure": "asymmetric",
@@ -22,6 +43,13 @@
       "motionLanguage": "subtle",
       "typographyStyle": "serif-display",
       "colorStrategy": "high-contrast"
+    },
+    "subcategory": "hero",
+    "fingerprint": {
+      "interactionModel": "interactive-cta-focus",
+      "visualModel": "off-axis-typographic-composition",
+      "layoutModel": "asymmetric-editorial-split",
+      "semanticPurpose": "brand-landing-masthead"
     }
   }
 }

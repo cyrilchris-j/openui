@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pull-quote-rule",
+  "type": "registry:text",
+  "title": "Pull Quote Rule",
+  "description": "An oversized pull quote with a graduated emphasis trick: the first clause renders at full weight and the remainder tapers through two lighter tones — drawing the eye through the sentence in reading order.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pull-quote-rule.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "pull-quote",
+    "emphasis",
+    "taper",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "tapered-weight-quote",
+      "motionModel": "none",
+      "layoutModel": "asymmetric",
+      "semanticPurpose": "pull-quote"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

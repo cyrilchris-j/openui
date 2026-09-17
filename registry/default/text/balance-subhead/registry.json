@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "balance-subhead",
+  "type": "registry:text",
+  "title": "Balance Subhead",
+  "description": "A subhead that uses text-wrap: balance with a JS fallback that greedily evens line lengths for older engines — ragged edges tamed typographically, with a live before/after toggle for teaching the difference.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "balance-subhead.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "balance",
+    "rag",
+    "line-breaks",
+    "typography"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "toggle-compare",
+      "visualModel": "line-length-optimiser",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "subhead-setting"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "swiss",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

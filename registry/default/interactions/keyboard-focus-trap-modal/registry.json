@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "keyboard-focus-trap-modal",
+  "type": "registry:interaction",
+  "title": "Keyboard Focus Trap Modal",
+  "description": "An accessible modal dialog containing an active keyboard focus loop that traps tab key cycles.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "keyboard-focus-trap-modal.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "focus-trap",
+    "modal",
+    "keyboard",
+    "accessibility",
+    "dialog"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "keyboard",
+    "fingerprint": {
+      "interactionModel": "trapped-tab-cycle",
+      "visualModel": "modal-chassis-bounds",
+      "motionModel": "bounded-focus-loop",
+      "layoutModel": "centered-dialog-box",
+      "semanticPurpose": "focus-trapped-dialog"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

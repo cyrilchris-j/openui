@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "command-search-pill",
+  "type": "registry:component",
+  "title": "Command Search Pill",
+  "description": "A search trigger pill showing search icon, placeholder text, and keyboard shortcut badge affordance.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "command-search-pill.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "search",
+    "pill",
+    "command",
+    "trigger",
+    "shortcut"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "search-modal-trigger",
+      "visualModel": "pill-search-trigger",
+      "motionModel": "none",
+      "layoutModel": "compact-search-capsule",
+      "semanticPurpose": "search-trigger-pill"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

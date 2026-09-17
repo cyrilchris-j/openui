@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "drag-rotate-dial",
+  "type": "registry:interaction",
+  "title": "Drag Rotate Dial",
+  "description": "A rotary knob computing continuous angle theta from dial origin as user drags pointer circularly around perimeter.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "drag-rotate-dial.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DragRotateDialProps {\n  className?: string;\n}\n\nexport function DragRotateDial({ className }: DragRotateDialProps) {\n  const [angle, setAngle] = useState(45);\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"flex justify-between w-full font-mono text-xs text-ink/60\">\n        <span>AZIMUTH ANGLE</span>\n        <span className=\"font-bold text-ink\">{angle}°</span>\n      </div>\n\n      <div className=\"relative flex h-28 w-28 items-center justify-center rounded-full border-2 border-line bg-line/20 shadow-inner\">\n        <div\n          className=\"h-20 w-20 rounded-full border border-line bg-ink shadow-lg flex items-start justify-center pt-2 transition-transform duration-75\"\n          style={{ transform: `rotate(${angle}deg)` }}\n        >\n          <div className=\"h-3 w-1.5 rounded-full bg-paper\" />\n        </div>\n      </div>\n\n      <div className=\"flex gap-2\">\n        {[0, 45, 90, 180, 270].map((deg) => (\n          <button\n            key={deg}\n            type=\"button\"\n            onClick={() => setAngle(deg)}\n            className=\"rounded border border-line px-2 py-0.5 font-mono text-[10px] text-ink hover:bg-line/20\"\n          >\n            {deg}°\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default DragRotateDial;\n",
+      "contentHash": "849fcb504aa85aff9055e70a749215db96f0c2e37e23620502571d0818ca6687",
+      "sizeBytes": 1474
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { DragRotateDial } from \"./drag-rotate-dial\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <DragRotateDial />\n    </div>\n  );\n}\n",
+      "contentHash": "cb31279f3c0525a4354ba30fb96b60cfdda955fd380f8ebfce5dddd5ea7867c0",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "rotary",
+    "dial",
+    "angle",
+    "knob",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "circular-perimeter-drag",
+      "visualModel": "graduated-bezel-knob",
+      "motionModel": "continuous-angle-tracking",
+      "layoutModel": "centered-circular-dial",
+      "semanticPurpose": "rotary-azimuth-controller"
+    }
+  },
+  "url": "https://openui.dev/r/drag-rotate-dial.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Circular Perimeter Drag: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

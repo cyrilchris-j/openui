@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "integration-ecosystem-grid",
+  "type": "registry:section",
+  "title": "Integration Ecosystem Grid",
+  "description": "Grid of supported developer ecosystem tools (Next.js, Vite, Supabase, Tailwind, Figma) with connection status badges.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "integration-ecosystem-grid.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "integrations",
+    "tools",
+    "ecosystem",
+    "partners",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "integrations",
+    "fingerprint": {
+      "interactionModel": "ecosystem-tool-inspection",
+      "visualModel": "integration-badge-grid",
+      "motionModel": "none",
+      "layoutModel": "six-slot-integration-matrix",
+      "semanticPurpose": "integration-ecosystem-display"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

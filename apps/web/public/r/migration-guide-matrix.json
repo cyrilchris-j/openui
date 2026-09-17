@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "migration-guide-matrix",
+  "type": "registry:section",
+  "title": "Migration Guide Matrix",
+  "description": "A transition mapping guide comparing old conventions with modern OpenUI patterns.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "migration-guide-matrix.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function MigrationGuideMatrix({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const steps = [\n    { from: \"npm install @legacy/ui\", to: \"pnpm dlx openui add <component>\" },\n    { from: \"Theme Context Provider\", to: \"Native CSS variables in globals.css\" },\n    { from: \"Client-only Wrappers\", to: \"React 19 Server Actions compatible\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-4xl mx-auto font-mono text-xs\", className)} {...props}>\n      <h3 className=\"text-sm font-bold text-neutral-900 dark:text-neutral-100 mb-6\">Migration Path</h3>\n      <div className=\"divide-y divide-neutral-200 dark:divide-neutral-800 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-950\">\n        {steps.map((s, idx) => (\n          <div key={idx} className=\"p-4 grid grid-cols-1 md:grid-cols-2 gap-4\">\n            <div className=\"text-rose-500\">✕ Legacy: {s.from}</div>\n            <div className=\"text-emerald-500 font-bold\">✓ Modern: {s.to}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "5ee86ff0a68387d7e5d50d878a4f2006dee4cf182561e669d941cf6ffe7459a8",
+      "sizeBytes": 1181
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { MigrationGuideMatrix } from \"./migration-guide-matrix\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <MigrationGuideMatrix />\n    </div>\n  );\n}\n",
+      "contentHash": "4ae8f2873a9834aac377bc7cfccd44388f06314e42912250252bacae4ab01588",
+      "sizeBytes": 289
+    }
+  ],
+  "tags": [
+    "migration",
+    "guide",
+    "matrix",
+    "upgrade",
+    "reference"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "guides",
+    "fingerprint": {
+      "interactionModel": "migration-guide-matrix-interaction",
+      "visualModel": "migration-guide-matrix-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "migration-guide-matrix-section"
+    }
+  },
+  "url": "https://openui.dev/r/migration-guide-matrix.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Migration Guide Matrix Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

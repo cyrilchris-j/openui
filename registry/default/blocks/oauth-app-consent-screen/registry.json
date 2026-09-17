@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "oauth-app-consent-screen",
+  "type": "registry:block",
+  "title": "OAuth App Consent Screen",
+  "description": "An authorization prompt displaying third-party application name, requested permission scopes, and grant actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "oauth-app-consent-screen.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "oauth",
+    "consent",
+    "permissions",
+    "auth",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "auth",
+    "fingerprint": {
+      "interactionModel": "oauth-scope-grant-authorization",
+      "visualModel": "permission-consent-dialog",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "oauth-authorization-consent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

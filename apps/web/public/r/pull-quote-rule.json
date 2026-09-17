@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "pull-quote-rule",
+  "type": "registry:text",
+  "title": "Pull Quote Rule",
+  "description": "An oversized pull quote with a graduated emphasis trick: the first clause renders at full weight and the remainder tapers through two lighter tones — drawing the eye through the sentence in reading order.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "pull-quote-rule.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface PullQuoteRuleProps {\n  /** The full quote; the first segment gets the heavy treatment. */\n  heavy: string;\n  light: string;\n  attribution?: string;\n  className?: string;\n}\n\nexport function PullQuoteRule({ heavy, light, attribution, className }: PullQuoteRuleProps) {\n  return (\n    <figure className={cn(\"max-w-prose\", className)}>\n      <blockquote className=\"font-display text-2xl leading-snug\">\n        <span className=\"font-semibold text-ink\">{heavy} </span>\n        <span className=\"font-normal text-ink/65\">{light}</span>\n      </blockquote>\n      {attribution && (\n        <figcaption className=\"mt-3 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-ink/50\">\n          <span aria-hidden className=\"h-px w-8 bg-line\" />\n          {attribution}\n        </figcaption>\n      )}\n    </figure>\n  );\n}\n\nexport default PullQuoteRule;\n",
+      "contentHash": "9003be95650bc87f5bb388be0d0b5fc661ebe2fe455c94c1096cdeb8d61d6b03",
+      "sizeBytes": 906
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { PullQuoteRule } from \"./pull-quote-rule\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <PullQuoteRule\n        heavy=\"A component without metadata is a rumour.\"\n        light=\"The registry is how the rumour becomes a fact.\"\n        attribution=\"OpenUI Manifesto, §2\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "ae25e8e21c9fd03cba31b9b303d3bd2d2eb1e0076d0e3f9417e0cacf59441031",
+      "sizeBytes": 392
+    }
+  ],
+  "tags": [
+    "pull-quote",
+    "emphasis",
+    "taper",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "tapered-weight-quote",
+      "motionModel": "none",
+      "layoutModel": "asymmetric",
+      "semanticPurpose": "pull-quote"
+    }
+  },
+  "url": "https://openui.dev/r/pull-quote-rule.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Asymmetric\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Serif Display\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

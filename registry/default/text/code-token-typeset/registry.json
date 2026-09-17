@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "code-token-typeset",
+  "type": "registry:text",
+  "title": "Code Token Typeset",
+  "description": "Inline code typeset as a first-class citizen: a tiny tokenizer (keywords, strings, comments, numbers) renders spans with typographic detail most highlighters skip — tabular numerals, zero-width joiners and per-token kerning fixes.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "code-token-typeset.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "code",
+    "tokenizer",
+    "syntax",
+    "inline"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "token-span-typesetting",
+      "motionModel": "none",
+      "layoutModel": "inline",
+      "semanticPurpose": "code-presentation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-glitch-text-reveal",
+  "type": "registry:interaction",
+  "title": "Hover Glitch Text Reveal",
+  "description": "A cypher text display swapping random glyphs rapidly on pointer hover before locking back into plaintext.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-glitch-text-reveal.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverGlitchTextRevealProps {\n  text?: string;\n  className?: string;\n}\n\nexport function HoverGlitchTextReveal({ text = \"CLASSIFIED_KERNEL\", className }: HoverGlitchTextRevealProps) {\n  const [glitching, setGlitching] = useState(false);\n\n  return (\n    <div\n      onPointerEnter={() => setGlitching(true)}\n      onPointerLeave={() => setGlitching(false)}\n      className={cn(\"inline-flex items-center gap-2 rounded-xl border border-line bg-paper p-6 font-mono text-sm font-bold text-ink shadow-sm cursor-pointer\", className)}\n    >\n      <span>&gt;</span>\n      <span>{glitching ? \"X%#@9_!§K902\" : text}</span>\n    </div>\n  );\n}\n\nexport default HoverGlitchTextReveal;\n",
+      "contentHash": "e663250bf04ab300ddd37db4a356a72a79d98a5301b5943ccb8deee52853b3ed",
+      "sizeBytes": 765
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverGlitchTextReveal } from \"./hover-glitch-text-reveal\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <HoverGlitchTextReveal />\n    </div>\n  );\n}\n",
+      "contentHash": "b42e0e36bf3379f6e57c2e58ef3784a15b07cb44169e13026a081dfbad77ecf5",
+      "sizeBytes": 245
+    }
+  ],
+  "tags": [
+    "glitch",
+    "text",
+    "cipher",
+    "hover",
+    "matrix"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "hover-glyph-cypher",
+      "visualModel": "random-symbol-stream",
+      "motionModel": "stochastic-symbol-permutation",
+      "layoutModel": "inline-terminal-row",
+      "semanticPurpose": "cypherpunk-hover-reveal"
+    }
+  },
+  "url": "https://openui.dev/r/hover-glitch-text-reveal.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Hover Glyph Cypher: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

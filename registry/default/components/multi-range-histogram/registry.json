@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-range-histogram",
+  "type": "registry:component",
+  "title": "Multi Range Histogram",
+  "description": "Interactive distribution chart with dual-threshold range sliders to filter numeric dataset partitions.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-range-histogram.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "histogram",
+    "chart",
+    "range",
+    "filter",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "histogram-slice-selection",
+      "visualModel": "columnar-distribution-bars",
+      "motionModel": "none",
+      "layoutModel": "stacked-histogram-rack",
+      "semanticPurpose": "distribution-range-filter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

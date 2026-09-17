@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "device-session-manager",
+  "type": "registry:block",
+  "title": "Device Session Manager",
+  "description": "A security authentication sessions console showing active browsers, IP geolocations, and remote termination.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "device-session-manager.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "sessions",
+    "devices",
+    "security",
+    "auth",
+    "tokens"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "security",
+    "fingerprint": {
+      "interactionModel": "session-revocation-controls",
+      "visualModel": "connected-device-roster",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "user-session-security"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

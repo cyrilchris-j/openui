@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "vintage-engraving-shading",
+  "type": "registry:background",
+  "title": "Vintage Engraving Shading",
+  "description": "Fine steel-plate intaglio banknote engraving lines providing rich classical texture.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "vintage-engraving-shading.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "engraving",
+    "banknote",
+    "intaglio",
+    "classical",
+    "lines"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-intaglio-engraving",
+      "visualModel": "variable-frequency-engraving-hatching",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "banknote-engraving-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

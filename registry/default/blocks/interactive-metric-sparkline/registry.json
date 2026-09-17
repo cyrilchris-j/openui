@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-metric-sparkline",
+  "type": "registry:block",
+  "title": "Interactive Metric Sparkline",
+  "description": "A KPI telemetry card pairing high-precision numerical stats with interactive trend sparkline charts.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-metric-sparkline.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "sparkline",
+    "metrics",
+    "kpi",
+    "charts",
+    "analytics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "analytics",
+    "fingerprint": {
+      "interactionModel": "sparkline-telemetry-scrubbing",
+      "visualModel": "stat-card-with-embedded-chart",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "metric-sparkline-visualization"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gesture-swipe-action-list",
+  "type": "registry:interaction",
+  "title": "Gesture Swipe Action List",
+  "description": "A task feed allowing rows to be swiped left for delete or right for complete with color reveal actions.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gesture-swipe-action-list.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "swipe",
+    "list",
+    "actions",
+    "tasks",
+    "gestures"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "bidirectional-swipe-action",
+      "visualModel": "dual-drawer-task-row",
+      "motionModel": "bidirectional-lateral-drawer",
+      "layoutModel": "stacked-task-lane",
+      "semanticPurpose": "task-swipe-completer"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

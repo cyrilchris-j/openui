@@ -51,6 +51,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "disclosure-toggle",
+      "visualModel": "editorial-rule-separated",
+      "layoutModel": "vertical-stacked-list",
+      "semanticPurpose": "content-hierarchy"
     }
   },
   "url": "https://openui.dev/r/accordion-index.json",

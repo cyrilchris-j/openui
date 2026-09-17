@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-interference-grid",
+  "type": "registry:background",
+  "title": "Wave Interference Grid",
+  "description": "Physical dual-source wave interference pattern with constructive and destructive wave crests.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-interference-grid.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "physics",
+    "interference",
+    "waves",
+    "canvas",
+    "ripple"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-physics",
+      "visualModel": "constructive-interference-ripples",
+      "motionModel": "dual-source-frequency-propagation",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "wave-optics-simulation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "soft",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

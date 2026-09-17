@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-theme-toggle-bar",
+  "type": "registry:section",
+  "title": "Interactive Theme Toggle Bar",
+  "description": "A lightweight presentation strip showcasing light, dark, and system color mode switching.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-theme-toggle-bar.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "theme",
+    "toggle",
+    "darkmode",
+    "lightmode",
+    "switcher"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "theme",
+    "fingerprint": {
+      "interactionModel": "interactive-theme-toggle-bar-interaction",
+      "visualModel": "interactive-theme-toggle-bar-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "interactive-theme-toggle-bar-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "full-bleed",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "verse-line-numbers",
+  "type": "registry:text",
+  "title": "Verse Line Numbers",
+  "description": "Poetry typesetting with margin line numbers every fifth line plus an active-line follower that brightens the number of the line currently in the viewport centre — scripture-style apparatus, live.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "verse-line-numbers.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "poetry",
+    "line-numbers",
+    "margin",
+    "verse"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "editorial",
+    "fingerprint": {
+      "interactionModel": "viewport-line-follow",
+      "visualModel": "margin-numbered-verse",
+      "motionModel": "active-line-track",
+      "layoutModel": "two-column-margins",
+      "semanticPurpose": "verse-navigation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "asymmetric",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

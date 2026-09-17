@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "edge-cache-purge-console",
+  "type": "registry:block",
+  "title": "Edge Cache Purge Console",
+  "description": "A global CDN cache invalidator with URL path targeting, tag-based purging, and execution verification logs.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "edge-cache-purge-console.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "cache",
+    "cdn",
+    "purge",
+    "edge",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "cache-invalidation-path-purge",
+      "visualModel": "cdn-purge-action-card",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "cdn-edge-cache-invalidation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "technical"
+    }
+  }
+}

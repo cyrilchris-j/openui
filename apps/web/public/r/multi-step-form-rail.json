@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "multi-step-form-rail",
+  "type": "registry:layout",
+  "title": "Multi Step Form Rail",
+  "description": "Vertical step checklist rail on left with active form step inputs on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "multi-step-form-rail.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface MultiStepFormRailProps extends React.HTMLAttributes<HTMLDivElement> {\n  rail?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function MultiStepFormRail({ rail, children, className, ...props }: MultiStepFormRailProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 gap-6 max-w-4xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <aside className=\"md:col-span-4 border-r border-line p-4 space-y-2\">{rail}</aside>\n      <main className=\"md:col-span-8 p-4\">{children}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "6d64fc07cf76679cd551b9afffd399a35e0e2b4675ed5d2164dac5dbca9d80d0",
+      "sizeBytes": 605
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { MultiStepFormRail } from \"./multi-step-form-rail\";\n\nexport default function MultiStepFormRailDemo() {\n  return (\n    <MultiStepFormRail\n      rail={\n        <div className=\"text-xs space-y-2\">\n          <div className=\"font-bold text-accent\">1. Project Basics ✓</div>\n          <div className=\"font-semibold text-ink\">2. Design DNA Specs</div>\n          <div className=\"text-ink/50\">3. Verification Pipeline</div>\n        </div>\n      }\n    >\n      <div className=\"space-y-3\">\n        <h3 className=\"text-sm font-bold text-ink\">Configure Design DNA</h3>\n        <p className=\"text-xs text-ink/60\">Choose closed enums for typography, density, and macrostructure.</p>\n      </div>\n    </MultiStepFormRail>\n  );\n}\n",
+      "contentHash": "ed2d7343eba382918349f093b5496c7e90adacc71070834c2da1e89a5b893f81",
+      "sizeBytes": 737
+    }
+  ],
+  "tags": [
+    "stepper",
+    "form",
+    "rail",
+    "checklist",
+    "steps"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "vertical-rail-stepper-form",
+      "visualModel": "step-rail-and-input-stage",
+      "motionModel": "none",
+      "layoutModel": "two-column-wizard-rail",
+      "semanticPurpose": "complex-wizard-workflow"
+    }
+  },
+  "url": "https://openui.dev/r/multi-step-form-rail.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Vertical Rail Stepper Form: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

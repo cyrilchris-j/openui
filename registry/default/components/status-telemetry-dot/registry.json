@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "status-telemetry-dot",
+  "type": "registry:component",
+  "title": "Status Telemetry Dot",
+  "description": "A compact status dot badge with pulsing concentric halo for system observability.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "status-telemetry-dot.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "dot",
+    "status",
+    "telemetry",
+    "halo",
+    "health"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "telemetry-dot-ping",
+      "visualModel": "concentric-halo-dot",
+      "motionModel": "none",
+      "layoutModel": "inline-telemetry-dot",
+      "semanticPurpose": "observability-status-dot"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

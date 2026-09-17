@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "confetti-blast-trigger",
+  "type": "registry:motion",
+  "title": "Confetti Blast Trigger",
+  "description": "A celebratory burst of multi-colored vector fragments detonating outward on click with gravity falloff.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "confetti-blast-trigger.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "confetti",
+    "particles",
+    "blast",
+    "celebrate",
+    "canvas"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "click-detonation-blast",
+      "visualModel": "geometric-confetti-shards",
+      "motionModel": "radial-drag-gravity-drift",
+      "layoutModel": "button-anchored-canvas",
+      "semanticPurpose": "celebratory-completion-burst"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

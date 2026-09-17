@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "slider-numeric-input",
+  "type": "registry:component",
+  "title": "Slider Numeric Input",
+  "description": "A range control synchronized with a numeric text input field for both analog and exact discrete entry.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "slider-numeric-input.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "slider",
+    "numeric",
+    "input",
+    "range",
+    "synchronized"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "inputs",
+    "fingerprint": {
+      "interactionModel": "synchronized-slider-numeric",
+      "visualModel": "dual-input-calibrated-chassis",
+      "motionModel": "instantaneous-value-sync",
+      "layoutModel": "horizontal-synchronized-pair",
+      "semanticPurpose": "dual-entry-numeric-slider"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

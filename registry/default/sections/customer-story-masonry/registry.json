@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-story-masonry",
+  "type": "registry:section",
+  "title": "Customer Story Masonry",
+  "description": "An editorial masonry layout displaying verified customer case studies with ROI statistics and testimonial quotes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-story-masonry.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "customer",
+    "story",
+    "masonry",
+    "testimonials",
+    "case-studies"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "testimonials",
+    "fingerprint": {
+      "interactionModel": "customer-story-masonry-interaction",
+      "visualModel": "customer-story-masonry-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "customer-story-masonry-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth",
+      "shapeLanguage": "soft",
+      "density": "medium",
+      "genre": "editorial"
+    }
+  }
+}

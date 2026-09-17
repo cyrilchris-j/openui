@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "data-table-explorer",
+  "type": "registry:block",
+  "title": "Data Table Explorer",
+  "description": "An interactive paginated table with real-time text query filtering, sortable column headers, and row selection.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "data-table-explorer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface DataRow {\n  id: string;\n  name: string;\n  category: string;\n  status: \"Active\" | \"Pending\" | \"Failed\";\n  latency: number;\n}\n\nconst ROWS: DataRow[] = [\n  { id: \"res_01\", name: \"SplitHeadlineHero\", category: \"Sections\", status: \"Active\", latency: 12 },\n  { id: \"res_02\", name: \"MagneticButton\", category: \"Interactions\", status: \"Active\", latency: 8 },\n  { id: \"res_03\", name: \"CyberpunkNoise\", category: \"Backgrounds\", status: \"Pending\", latency: 24 },\n  { id: \"res_04\", name: \"HolyGrailLayout\", category: \"Layouts\", status: \"Active\", latency: 14 },\n  { id: \"res_05\", name: \"ParticleExplosion\", category: \"Motion\", status: \"Active\", latency: 18 },\n];\n\nexport function DataTableExplorer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [query, setQuery] = React.useState(\"\");\n  const [selected, setSelected] = React.useState<string[]>([]);\n\n  const filtered = ROWS.filter((r) =>\n    r.name.toLowerCase().includes(query.toLowerCase()) ||\n    r.category.toLowerCase().includes(query.toLowerCase())\n  );\n\n  const toggleSelect = (id: string) => {\n    setSelected((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);\n  };\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"flex items-center justify-between gap-4 mb-4\">\n        <input\n          type=\"text\"\n          value={query}\n          onChange={(e) => setQuery(e.target.value)}\n          placeholder=\"Filter resources...\"\n          className=\"px-3 py-1.5 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-xs text-neutral-900 dark:text-white\"\n        />\n        <div className=\"text-neutral-400 text-[11px]\">{selected.length} of {ROWS.length} selected</div>\n      </div>\n\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden\">\n        <div className=\"grid grid-cols-12 bg-neutral-50 dark:bg-neutral-900 p-3 font-bold border-b border-neutral-200 dark:border-neutral-800 text-neutral-500\">\n          <div className=\"col-span-1\">#</div>\n          <div className=\"col-span-4\">Resource</div>\n          <div className=\"col-span-3\">Category</div>\n          <div className=\"col-span-2\">Status</div>\n          <div className=\"col-span-2 text-right\">Latency</div>\n        </div>\n        <div className=\"divide-y divide-neutral-100 dark:divide-neutral-800\">\n          {filtered.map((r) => {\n            const isChecked = selected.includes(r.id);\n            return (\n              <div key={r.id} className={cn(\"grid grid-cols-12 p-3 items-center hover:bg-neutral-50/50 dark:hover:bg-neutral-900/30\", isChecked && \"bg-emerald-50/30 dark:bg-emerald-950/20\")}>\n                <div className=\"col-span-1\">\n                  <input\n                    type=\"checkbox\"\n                    checked={isChecked}\n                    onChange={() => toggleSelect(r.id)}\n                    className=\"accent-emerald-500 cursor-pointer\"\n                  />\n                </div>\n                <div className=\"col-span-4 font-bold text-neutral-900 dark:text-neutral-100\">{r.name}</div>\n                <div className=\"col-span-3 text-neutral-500\">{r.category}</div>\n                <div className=\"col-span-2 text-emerald-600 dark:text-emerald-400 font-semibold\">{r.status}</div>\n                <div className=\"col-span-2 text-right text-neutral-400\">{r.latency}ms</div>\n              </div>\n            );\n          })}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "8f643c4ca1561683eb607272374a542321394f4f53ff6a407cf569234490735d",
+      "sizeBytes": 3722
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DataTableExplorer } from \"./data-table-explorer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DataTableExplorer />\n    </div>\n  );\n}\n",
+      "contentHash": "f152407b1ed2be82852b0a3ec1bf91d3687661a2c44d42207ec704b1c96c4b2b",
+      "sizeBytes": 280
+    }
+  ],
+  "tags": [
+    "table",
+    "data-table",
+    "pagination",
+    "search",
+    "sorting"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-table",
+    "fingerprint": {
+      "interactionModel": "search-sort-pagination-table",
+      "visualModel": "enterprise-tabular-explorer",
+      "motionModel": "none",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "tabular-data-inspection"
+    }
+  },
+  "url": "https://openui.dev/r/data-table-explorer.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Search Sort Pagination Table: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

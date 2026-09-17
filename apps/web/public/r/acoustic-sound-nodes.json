@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "acoustic-sound-nodes",
+  "type": "registry:background",
+  "title": "Acoustic Sound Nodes",
+  "description": "Chladni plate acoustic resonance nodal line patterns formed by harmonic frequency standing waves.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "acoustic-sound-nodes.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AcousticSoundNodesProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function AcousticSoundNodes({ className, children, ...props }: AcousticSoundNodesProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 400\">\n        <circle cx=\"300\" cy=\"200\" r=\"140\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" strokeDasharray=\"4 2\" />\n        <line x1=\"160\" y1=\"200\" x2=\"440\" y2=\"200\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <line x1=\"300\" y1=\"60\" x2=\"300\" y2=\"340\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <path d=\"M200 100 Q300 200 400 100\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <path d=\"M200 300 Q300 200 400 300\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "b60da11cd057c63c5a3017049cd05dad36e5ca808c0f72ea2416eae07dbdc46e",
+      "sizeBytes": 1084
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { AcousticSoundNodes } from \"./acoustic-sound-nodes\";\n\nexport default function AcousticSoundNodesDemo() {\n  return (\n    <AcousticSoundNodes className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-ink\">Chladni Nodal Lines</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Vibrational acoustic standing wave modes.</p>\n      </div>\n    </AcousticSoundNodes>\n  );\n}\n",
+      "contentHash": "1acb9e6241b26c5f11918fd4aaf17d763bcbeb1a0cc56e92422ebb77a375603a",
+      "sizeBytes": 581
+    }
+  ],
+  "tags": [
+    "chladni",
+    "acoustics",
+    "resonance",
+    "sound",
+    "nodal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-chladni-plate",
+      "visualModel": "acoustic-nodal-geometry",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "acoustic-resonance-pattern"
+    }
+  },
+  "url": "https://openui.dev/r/acoustic-sound-nodes.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Soft\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Chladni Plate: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "soundwave-visualizer-bar",
+  "type": "registry:motion",
+  "title": "Soundwave Visualizer Bar",
+  "description": "An audio equalizer bar array pulsating with organic harmonic frequency fluctuations and vertical dancing springs.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "soundwave-visualizer-bar.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SoundwaveVisualizerBarProps {\n  barCount?: number;\n  className?: string;\n}\n\nexport function SoundwaveVisualizerBar({ barCount = 12, className }: SoundwaveVisualizerBarProps) {\n  const [heights, setHeights] = useState<number[]>(Array(barCount).fill(20));\n\n  useEffect(() => {\n    const interval = setInterval(() => {\n      setHeights(Array.from({ length: barCount }, () => Math.random() * 80 + 15));\n    }, 120);\n    return () => clearInterval(interval);\n  }, [barCount]);\n\n  return (\n    <div className={cn(\"flex h-24 items-center justify-center gap-1.5 rounded-xl border border-line bg-paper p-4\", className)}>\n      {heights.map((h, i) => (\n        <div\n          key={i}\n          className=\"w-2 rounded-full bg-ink transition-all duration-100 ease-out\"\n          style={{ height: `${h}%` }}\n        />\n      ))}\n    </div>\n  );\n}\n\nexport default SoundwaveVisualizerBar;\n",
+      "contentHash": "20f091345676a285092c52edfeeeadb3d49d014abf51a6f7df320461ebcb7e7c",
+      "sizeBytes": 983
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { SoundwaveVisualizerBar } from \"./soundwave-visualizer-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <SoundwaveVisualizerBar />\n    </div>\n  );\n}\n",
+      "contentHash": "3677269e0f7f0760f00c797c1b428eb02ef3b4e43790370da25b7da7bee11bbd",
+      "sizeBytes": 247
+    }
+  ],
+  "tags": [
+    "equalizer",
+    "audio",
+    "soundwave",
+    "bars",
+    "music"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "continuous-frequency-bounce",
+      "visualModel": "vertical-spectrum-columns",
+      "motionModel": "pseudo-random-harmonic-bounce",
+      "layoutModel": "inline-equalizer-rack",
+      "semanticPurpose": "audio-activity-visualizer"
+    }
+  },
+  "url": "https://openui.dev/r/soundwave-visualizer-bar.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Kinetic\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Continuous Frequency Bounce: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

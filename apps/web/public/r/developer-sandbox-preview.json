@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-sandbox-preview",
+  "type": "registry:section",
+  "title": "Developer Sandbox Preview",
+  "description": "An interactive code previewer section with tabbed code and live view toggles.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-sandbox-preview.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeveloperSandboxPreview({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [view, setView] = React.useState<\"preview\" | \"code\">(\"preview\");\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950 shadow-sm\">\n        <div className=\"flex items-center justify-between p-3 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900\">\n          <span className=\"text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300\">\n            SplitHeadlineHero.tsx\n          </span>\n          <div className=\"flex items-center gap-1 font-mono text-xs\">\n            <button\n              type=\"button\"\n              onClick={() => setView(\"preview\")}\n              className={cn(\n                \"px-3 py-1 rounded text-xs transition-colors\",\n                view === \"preview\" ? \"bg-white dark:bg-neutral-800 font-bold shadow-xs\" : \"text-neutral-400\"\n              )}\n            >\n              Live Preview\n            </button>\n            <button\n              type=\"button\"\n              onClick={() => setView(\"code\")}\n              className={cn(\n                \"px-3 py-1 rounded text-xs transition-colors\",\n                view === \"code\" ? \"bg-white dark:bg-neutral-800 font-bold shadow-xs\" : \"text-neutral-400\"\n              )}\n            >\n              React Code\n            </button>\n          </div>\n        </div>\n\n        <div className=\"p-6\">\n          {view === \"preview\" ? (\n            <div className=\"h-48 flex flex-col items-center justify-center text-center bg-neutral-100 dark:bg-neutral-900/60 rounded-xl p-4\">\n              <h4 className=\"text-lg font-bold text-neutral-900 dark:text-white\">Next Generation Interfaces</h4>\n              <p className=\"text-xs text-neutral-500 mt-1 max-w-md\">Interactive preview render executing in client sandbox</p>\n              <button type=\"button\" className=\"mt-4 px-4 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold\">\n                Action Trigger\n              </button>\n            </div>\n          ) : (\n            <pre className=\"text-xs font-mono overflow-x-auto p-4 bg-neutral-950 text-neutral-100 rounded-xl\">\n              {`export function SplitHeadlineHero({ title, cta }) {\n  return (\n    <section className=\"py-12 flex items-center justify-between\">\n      <h1>{title}</h1>\n      <button>{cta}</button>\n    </section>\n  );\n}`}\n            </pre>\n          )}\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "6641ff3b9d58a8ef73e312fd9c15577a7ee197e3d3a3211c91aeea9506de533d",
+      "sizeBytes": 2733
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DeveloperSandboxPreview } from \"./developer-sandbox-preview\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <DeveloperSandboxPreview />\n    </div>\n  );\n}\n",
+      "contentHash": "b14d0a4d19e9fafa6c2234924d54eaa0d871868f29f66ce7686c7c0b48f4a411",
+      "sizeBytes": 298
+    }
+  ],
+  "tags": [
+    "sandbox",
+    "preview",
+    "code",
+    "interactive",
+    "developer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "developer",
+    "fingerprint": {
+      "interactionModel": "developer-sandbox-preview-interaction",
+      "visualModel": "developer-sandbox-preview-visual",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "developer-sandbox-preview-section"
+    }
+  },
+  "url": "https://openui.dev/r/developer-sandbox-preview.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Developer Sandbox Preview Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

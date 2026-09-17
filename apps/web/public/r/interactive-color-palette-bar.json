@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-color-palette-bar",
+  "type": "registry:interaction",
+  "title": "Interactive Color Palette Bar",
+  "description": "A swatch ribbon allowing rapid clipboard copying of theme hex values with instant visual feedback.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-color-palette-bar.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveColorPaletteBarProps {\n  className?: string;\n}\n\nexport function InteractiveColorPaletteBar({ className }: InteractiveColorPaletteBarProps) {\n  const [copied, setCopied] = useState<string | null>(null);\n  const swatches = [\"#000000\", \"#333333\", \"#666666\", \"#999999\", \"#E5E5E5\"];\n\n  const copy = (hex: string) => {\n    setCopied(hex);\n    setTimeout(() => setCopied(null), 1000);\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-3 rounded-xl border border-line bg-paper p-5 shadow-sm\", className)}>\n      <span className=\"font-mono text-xs text-ink/60\">\n        {copied ? `Copied ${copied}!` : \"CLICK SWATCH TO COPY HEX\"}\n      </span>\n\n      <div className=\"flex overflow-hidden rounded-lg border border-line\">\n        {swatches.map((hex) => (\n          <div\n            key={hex}\n            onClick={() => copy(hex)}\n            className=\"h-14 w-14 cursor-pointer transition-transform hover:scale-110 flex items-end justify-center pb-1\"\n            style={{ backgroundColor: hex }}\n          >\n            <span className=\"font-mono text-[8px] text-white/70\">{hex.slice(1, 4)}</span>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default InteractiveColorPaletteBar;\n",
+      "contentHash": "e45dc6596ddea5e8dd6f6b80f5aa88a3f538ad46c8204eaa4956fad55e1e7556",
+      "sizeBytes": 1329
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { InteractiveColorPaletteBar } from \"./interactive-color-palette-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-8\">\n      <InteractiveColorPaletteBar />\n    </div>\n  );\n}\n",
+      "contentHash": "f39050bad0a386cbc8c4e820c249317a96b9d713038e2eb68781c404c8fcd6e7",
+      "sizeBytes": 260
+    }
+  ],
+  "tags": [
+    "colors",
+    "palette",
+    "swatch",
+    "copy",
+    "clipboard"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "click-swatch-copy-action",
+      "visualModel": "partitioned-hex-ribbon",
+      "motionModel": "transient-badge-alert",
+      "layoutModel": "horizontal-swatch-bar",
+      "semanticPurpose": "color-clipboard-copy-tray"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-color-palette-bar.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Click Swatch Copy Action: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

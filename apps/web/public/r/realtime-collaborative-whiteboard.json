@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "realtime-collaborative-whiteboard",
+  "type": "registry:block",
+  "title": "Realtime Collaborative Whiteboard",
+  "description": "A collaborative drawing whiteboard mockup showing active cursor presences, sticky note objects, and shape tools.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "realtime-collaborative-whiteboard.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function RealtimeCollaborativeWhiteboard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto h-72 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 relative overflow-hidden flex items-center justify-center font-mono text-xs\", className)} {...props}>\n      <div className=\"absolute top-4 left-4 flex gap-2\">\n        <span className=\"px-3 py-1 bg-white dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-800 shadow-xs font-bold text-neutral-800 dark:text-neutral-200\">\n          ✏ Select Tool\n        </span>\n        <span className=\"px-3 py-1 bg-white dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-800 shadow-xs text-neutral-500\">\n          📝 Sticky Note\n        </span>\n      </div>\n      <div className=\"text-center text-neutral-400\">\n        [Multiplayer Whiteboard Stage — 3 Active Cursors]\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "834e0d91edb7313747cb8286f2e78b1e7bcfa9fd2381e9fb8f50ec254142f7c2",
+      "sizeBytes": 1098
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { RealtimeCollaborativeWhiteboard } from \"./realtime-collaborative-whiteboard\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <RealtimeCollaborativeWhiteboard />\n    </div>\n  );\n}\n",
+      "contentHash": "938d385d36be8bea28e52e03f660260e0b0576046f45194dba21b1e37f760dc0",
+      "sizeBytes": 322
+    }
+  ],
+  "tags": [
+    "whiteboard",
+    "canvas",
+    "collaboration",
+    "realtime",
+    "drawing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "collaboration",
+    "fingerprint": {
+      "interactionModel": "canvas-collaboration-cursor-tracking",
+      "visualModel": "virtual-whiteboard-infinite-canvas",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "collaborative-visual-whiteboard"
+    }
+  },
+  "url": "https://openui.dev/r/realtime-collaborative-whiteboard.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Canvas Collaboration Cursor Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

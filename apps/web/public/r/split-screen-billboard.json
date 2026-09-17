@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-screen-billboard",
+  "type": "registry:layout",
+  "title": "Split Screen Billboard",
+  "description": "Full-viewport 50/50 split layout with sticky visual showcase on left and scrollable narrative on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-screen-billboard.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitScreenBillboardProps extends React.HTMLAttributes<HTMLDivElement> {\n  visual?: React.ReactNode;\n  narrative?: React.ReactNode;\n  children?: React.ReactNode;\n}\n\nexport function SplitScreenBillboard({\n  visual,\n  narrative,\n  children,\n  className,\n  ...props\n}: SplitScreenBillboardProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-2 min-h-[400px] w-full bg-paper text-ink font-sans\", className)} {...props}>\n      <div className=\"lg:sticky lg:top-0 h-72 lg:h-auto border-b lg:border-b-0 lg:border-r border-line p-8 flex items-center justify-center bg-surface/30\">\n        {visual}\n      </div>\n      <div className=\"p-8 space-y-6 overflow-y-auto\">\n        {narrative || children}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "c6141efc7cc7495e6e28d84603d7775bdc726ad6431c1123d23aa037c2aedf80",
+      "sizeBytes": 804
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitScreenBillboard } from \"./split-screen-billboard\";\n\nexport default function SplitScreenBillboardDemo() {\n  return (\n    <div className=\"w-full border border-line rounded-xl overflow-hidden shadow-sm\">\n      <SplitScreenBillboard\n        visual={<div className=\"font-mono text-sm font-bold text-accent\">Interactive Visual Canvas</div>}\n        narrative={\n          <div className=\"space-y-4\">\n            <h2 className=\"text-lg font-bold text-ink\">Product Specification</h2>\n            <p className=\"text-xs text-ink/70 leading-relaxed\">\n              The left half remains pinned in the viewport while the reader traverses sequential specification milestones.\n            </p>\n            <div className=\"p-4 rounded-lg bg-surface border border-line text-xs font-mono\">\n              Milestone 1: Zero runtime dependencies\n            </div>\n            <div className=\"p-4 rounded-lg bg-surface border border-line text-xs font-mono\">\n              Milestone 2: Sub-millisecond hydration\n            </div>\n          </div>\n        }\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "8186353f6a4fb53e6f7b292f281f1a3b3c10c0d3e7532304a087ea4150dd4ea3",
+      "sizeBytes": 1092
+    }
+  ],
+  "tags": [
+    "split",
+    "billboard",
+    "sticky",
+    "showcase",
+    "viewport"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "sticky-billboard-split",
+      "visualModel": "half-screen-sticky-stage",
+      "motionModel": "none",
+      "layoutModel": "dual-viewport-halves",
+      "semanticPurpose": "product-showcase-split"
+    }
+  },
+  "url": "https://openui.dev/r/split-screen-billboard.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Airy\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Sticky Billboard Split: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

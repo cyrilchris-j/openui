@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "community-forum-digest",
+  "type": "registry:section",
+  "title": "Community Forum Digest",
+  "description": "A snapshot of top community forum threads with author avatars, response counts, and upvotes.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "community-forum-digest.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ForumThread {\n  id: string;\n  title: string;\n  author: string;\n  category: string;\n  replies: number;\n  likes: number;\n}\n\nexport interface CommunityForumDigestProps extends React.HTMLAttributes<HTMLElement> {\n  threads?: ForumThread[];\n}\n\nconst DEFAULT_THREADS: ForumThread[] = [\n  { id: \"t1\", title: \"How we migrated 40 micro-frontends to OpenUI zero-dependency components\", author: \"marcus_v\", category: \"Architecture\", replies: 28, likes: 142 },\n  { id: \"t2\", title: \"RFC: Adding deterministic CSS color token math to design.md generator\", author: \"elena_design\", category: \"RFC\", replies: 44, likes: 210 },\n  { id: \"t3\", title: \"Showcase: Real-time telemetry dashboard using layouts/grid-bento\", author: \"devon_codes\", category: \"Showcase\", replies: 19, likes: 98 },\n];\n\nexport function CommunityForumDigest({\n  threads = DEFAULT_THREADS,\n  className,\n  ...props\n}: CommunityForumDigestProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-4xl mx-auto\", className)} {...props}>\n      <div className=\"flex items-center justify-between mb-8\">\n        <div>\n          <span className=\"text-xs font-mono uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-bold\">\n            Community Discussions\n          </span>\n          <h2 className=\"text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mt-1\">\n            Trending on OpenUI Forum\n          </h2>\n        </div>\n        <button\n          type=\"button\"\n          className=\"text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-emerald-500\"\n        >\n          View All Discussions →\n        </button>\n      </div>\n\n      <div className=\"space-y-3\">\n        {threads.map((thread) => (\n          <div\n            key={thread.id}\n            className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors\"\n          >\n            <div>\n              <div className=\"flex items-center gap-2\">\n                <span className=\"text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400\">\n                  {thread.category}\n                </span>\n                <span className=\"text-xs text-neutral-400\">by @{thread.author}</span>\n              </div>\n              <h3 className=\"text-sm font-semibold text-neutral-900 dark:text-neutral-100 mt-1\">\n                {thread.title}\n              </h3>\n            </div>\n            <div className=\"flex items-center gap-4 text-xs font-mono text-neutral-500 shrink-0\">\n              <div>💬 {thread.replies}</div>\n              <div>▲ {thread.likes}</div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "142a69d9c8e3214554575780b7f12680ffb1fed60dc0c8ccfa1f2d575bd71fb0",
+      "sizeBytes": 2983
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { CommunityForumDigest } from \"./community-forum-digest\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[350px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/40\">\n      <CommunityForumDigest />\n    </div>\n  );\n}\n",
+      "contentHash": "452eb39d89952e9832b73eae87a547d51e0ab3ee193491c765b1640ef4280d13",
+      "sizeBytes": 291
+    }
+  ],
+  "tags": [
+    "community",
+    "forum",
+    "threads",
+    "discussions",
+    "social"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "community",
+    "fingerprint": {
+      "interactionModel": "community-forum-digest-interaction",
+      "visualModel": "community-forum-digest-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "community-forum-digest-section"
+    }
+  },
+  "url": "https://openui.dev/r/community-forum-digest.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Community Forum Digest Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

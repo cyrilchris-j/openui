@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "momentum-flick-card",
+  "type": "registry:motion",
+  "title": "Momentum Flick Card",
+  "description": "A card deck element that responds to pointer swipe velocity, flying away when flicked beyond velocity threshold or springing back to center.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "momentum-flick-card.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MomentumFlickCardProps {\n  className?: string;\n}\n\nexport function MomentumFlickCard({ className }: MomentumFlickCardProps) {\n  const [flicked, setFlicked] = useState(false);\n  const [direction, setDirection] = useState<\"left\" | \"right\">(\"right\");\n\n  const flick = (dir: \"left\" | \"right\") => {\n    setDirection(dir);\n    setFlicked(true);\n    setTimeout(() => setFlicked(false), 800);\n  };\n\n  return (\n    <div className={cn(\"flex flex-col items-center gap-4\", className)}>\n      <div className=\"relative h-64 w-52\">\n        {/* Background standby card */}\n        <div className=\"absolute inset-0 rounded-lg border border-line bg-surface p-4 scale-95 opacity-60\" />\n\n        {/* Foreground dynamic card */}\n        <div\n          style={{\n            transform: flicked\n              ? direction === \"right\"\n                ? \"translate(160%, -20%) rotate(24deg)\"\n                : \"translate(-160%, -20%) rotate(-24deg)\"\n              : \"translate(0, 0) rotate(0deg)\",\n            opacity: flicked ? 0 : 1,\n          }}\n          className=\"absolute inset-0 flex flex-col justify-between rounded-lg border border-ink bg-paper p-5 shadow-lg transition-all duration-500 ease-out select-none\"\n        >\n          <span className=\"font-mono text-[10px] uppercase tracking-wider text-graphite\">\n            DECISION SPECIMEN\n          </span>\n          <div className=\"my-auto text-center\">\n            <h4 className=\"font-serif text-xl font-bold text-ink\">Action 09</h4>\n            <p className=\"mt-1 text-xs text-graphite\">Flick left or right to trigger ballistic flight.</p>\n          </div>\n          <div className=\"flex justify-between font-mono text-[10px] text-graphite\">\n            <span>← Dismiss</span>\n            <span>Approve →</span>\n          </div>\n        </div>\n      </div>\n\n      <div className=\"flex gap-3\">\n        <button\n          type=\"button\"\n          onClick={() => flick(\"left\")}\n          className=\"rounded border border-line px-3 py-1 font-mono text-xs text-ink hover:bg-surface\"\n        >\n          Flick Left\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => flick(\"right\")}\n          className=\"rounded border border-line px-3 py-1 font-mono text-xs text-ink hover:bg-surface\"\n        >\n          Flick Right\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "8a1c85e1dff7abdced3b4511f3c9420d0c1f20f0df95b57d7dbb5acb3066547a",
+      "sizeBytes": 2427
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { MomentumFlickCard } from \"./momentum-flick-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[22rem] items-center justify-center bg-paper p-8\">\n      <MomentumFlickCard />\n    </div>\n  );\n}\n",
+      "contentHash": "9a3f0f049a58a44442a86c86e960465ad70c8f028308c976c09657f1a36fbf82",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "card",
+    "flick",
+    "swipe",
+    "velocity",
+    "gesture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "gesture",
+    "fingerprint": {
+      "interactionModel": "swipe-throw-gesture",
+      "visualModel": "stacked-tinder-card",
+      "motionModel": "velocity-based-ballistic-flight",
+      "layoutModel": "center-stacked-card",
+      "semanticPurpose": "decision-deck-card"
+    }
+  },
+  "url": "https://openui.dev/r/momentum-flick-card.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Swipe Throw Gesture: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

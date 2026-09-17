@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toggle-switch-morph",
+  "type": "registry:interaction",
+  "title": "Toggle Switch Morph",
+  "description": "A binary switch button whose round thumb squashes into a wide capsule during drag travel before snapping.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toggle-switch-morph.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "toggle",
+    "switch",
+    "morph",
+    "capsule",
+    "spring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "morphing-thumb-toggle",
+      "visualModel": "elastic-capsule-chassis",
+      "motionModel": "squash-and-stretch-travel",
+      "layoutModel": "inline-pill-chassis",
+      "semanticPurpose": "morphing-binary-switch"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

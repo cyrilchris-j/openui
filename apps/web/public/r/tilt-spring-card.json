@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tilt-spring-card",
+  "type": "registry:motion",
+  "title": "Tilt Spring Card",
+  "description": "Pointer-driven 3D tilt with a real spring integrator: rotation chases the pointer through a damped spring rather than lerping, so quick circles overshoot and settle — the difference between a transition and a physical object.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tilt-spring-card.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TiltSpringCardProps {\n  children: React.ReactNode;\n  /** Max tilt in degrees. */\n  maxTilt?: number;\n  stiffness?: number;\n  className?: string;\n}\n\nexport function TiltSpringCard({ children, maxTilt = 12, stiffness = 120, className }: TiltSpringCardProps) {\n  const ref = useRef<HTMLDivElement>(null);\n  const state = useRef({ rx: 0, ry: 0, vx: 0, vy: 0, tx: 0, ty: 0, raf: null as number | null, running: false });\n\n  useEffect(() => {\n    const node = ref.current;\n    if (!node) return;\n    if (window.matchMedia?.(\"(pointer: coarse)\").matches) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    const s = state.current;\n\n    const tick = () => {\n      const forceX = -stiffness * (s.rx - s.tx);\n      const forceY = -stiffness * (s.ry - s.ty);\n      s.vx += forceX * 0.016;\n      s.vy += forceY * 0.016;\n      s.vx *= 0.86;\n      s.vy *= 0.86;\n      s.rx += s.vx * 0.016;\n      s.ry += s.vy * 0.016;\n\n      node.style.transform = `rotateX(${s.rx.toFixed(2)}deg) rotateY(${s.ry.toFixed(2)}deg)`;\n\n      if (Math.abs(s.rx - s.tx) > 0.05 || Math.abs(s.ry - s.ty) > 0.05 || Math.abs(s.vx) > 0.5 || Math.abs(s.vy) > 0.5) {\n        s.raf = requestAnimationFrame(tick);\n      } else {\n        s.running = false;\n      }\n    };\n\n    const kick = () => {\n      if (!s.running) {\n        s.running = true;\n        s.raf = requestAnimationFrame(tick);\n      }\n    };\n\n    const onMove = (event: PointerEvent) => {\n      const rect = node.getBoundingClientRect();\n      const px = (event.clientX - rect.left) / rect.width - 0.5;\n      const py = (event.clientY - rect.top) / rect.height - 0.5;\n      s.ty = px * maxTilt * 2;\n      s.tx = -py * maxTilt * 2;\n      kick();\n    };\n    const onLeave = () => {\n      s.tx = 0;\n      s.ty = 0;\n      kick();\n    };\n\n    node.addEventListener(\"pointermove\", onMove);\n    node.addEventListener(\"pointerleave\", onLeave);\n    return () => {\n      node.removeEventListener(\"pointermove\", onMove);\n      node.removeEventListener(\"pointerleave\", onLeave);\n      if (s.raf !== null) cancelAnimationFrame(s.raf);\n    };\n  }, [maxTilt, stiffness]);\n\n  return (\n    <div style={{ perspective: 900 }}>\n      <div\n        ref={ref}\n        className={cn(\"rounded-xl border border-line bg-paper shadow-xl will-change-transform\", className)}\n        style={{ transformStyle: \"preserve-3d\" }}\n      >\n        {children}\n      </div>\n    </div>\n  );\n}\n\nexport default TiltSpringCard;\n",
+      "contentHash": "1991fcbb5fad0244d5e2fee87fb3d15374d9ea098863b6c9b33603e8d84b22a2",
+      "sizeBytes": 2553
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { TiltSpringCard } from \"./tilt-spring-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-10\">\n      <TiltSpringCard className=\"w-64 p-8\">\n        <p className=\"font-display text-xl text-ink\">Physical object</p>\n        <p className=\"mt-2 text-sm text-ink/70\">Circle your pointer quickly — the card overshoots and settles like a gyroscope.</p>\n      </TiltSpringCard>\n    </div>\n  );\n}\n",
+      "contentHash": "53b05f17d450707bf5f766d349dd7c518bbdab1fbd138f80236fed1681bce8b9",
+      "sizeBytes": 474
+    }
+  ],
+  "tags": [
+    "tilt",
+    "3d",
+    "spring",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pointer-tilt",
+      "visualModel": "perspective-rotation",
+      "motionModel": "damped-spring-rotation",
+      "layoutModel": "card",
+      "semanticPurpose": "showcase-card"
+    }
+  },
+  "url": "https://openui.dev/r/tilt-spring-card.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Expressive\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Pointer Tilt: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

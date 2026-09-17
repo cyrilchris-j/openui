@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "noise-grain-overlay",
+  "type": "registry:background",
+  "title": "Noise Grain Overlay",
+  "description": "Tactile analog film grain noise texture using SVG turbulence filter.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "noise-grain-overlay.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface NoiseGrainOverlayProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function NoiseGrainOverlay({ className, children, ...props }: NoiseGrainOverlayProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-35 pointer-events-none -z-10\">\n        <filter id=\"noiseFilter\">\n          <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\" stitchTiles=\"stitch\" />\n        </filter>\n        <rect width=\"100%\" height=\"100%\" filter=\"url(#noiseFilter)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "f8843700e529ca2f5a6c29d8345b869ff660c21aeeaf5a632b7d48464264dd93",
+      "sizeBytes": 759
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { NoiseGrainOverlay } from \"./noise-grain-overlay\";\n\nexport default function NoiseGrainOverlayDemo() {\n  return (\n    <NoiseGrainOverlay className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Film Grain Noise</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Tactile SVG fractal turbulence film emulsion.</p>\n      </div>\n    </NoiseGrainOverlay>\n  );\n}\n",
+      "contentHash": "751d0ec20b5d98c0bb312ba100548e7cd146b5be312d0de0b67a511960b0f20f",
+      "sizeBytes": 577
+    }
+  ],
+  "tags": [
+    "noise",
+    "grain",
+    "film",
+    "analog",
+    "texture"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-film-grain",
+      "visualModel": "analog-fe-turbulence-grain",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "film-grain-surface-texture"
+    }
+  },
+  "url": "https://openui.dev/r/noise-grain-overlay.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Film Grain: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

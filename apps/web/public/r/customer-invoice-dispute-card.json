@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-invoice-dispute-card",
+  "type": "registry:block",
+  "title": "Customer Invoice Dispute Card",
+  "description": "A financial dispute review panel presenting customer complaint logs, transaction evidence, and refund actions.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-invoice-dispute-card.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CustomerInvoiceDisputeCard({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm text-xs\", className)} {...props}>\n      <div className=\"flex justify-between items-center pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-4\">\n        <div>\n          <h3 className=\"font-bold text-base text-neutral-900 dark:text-white\">Dispute #DSP-9842</h3>\n          <div className=\"text-neutral-500 text-[11px]\">Invoice: $49.00 (Pro Monthly)</div>\n        </div>\n        <span className=\"px-2 py-0.5 rounded font-mono text-[10px] bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 font-bold\">\n          Under Review\n        </span>\n      </div>\n      <p className=\"text-neutral-600 dark:text-neutral-400 mb-6\">\n        Customer requested refund stating accidental renewal charge prior to cancellation.\n      </p>\n      <div className=\"flex gap-3\">\n        <button type=\"button\" className=\"flex-1 py-2 bg-emerald-600 text-white font-semibold rounded-lg\">\n          Approve Full Refund\n        </button>\n        <button type=\"button\" className=\"flex-1 py-2 border border-neutral-200 dark:border-neutral-800 rounded-lg\">\n          Decline Request\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "8a8021f5199e75e9a10ea359670849b57a7f51e57b98c65f88c5800b9b4d6dbc",
+      "sizeBytes": 1477
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CustomerInvoiceDisputeCard } from \"./customer-invoice-dispute-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <CustomerInvoiceDisputeCard />\n    </div>\n  );\n}\n",
+      "contentHash": "4ab6588d1d12098c8b16562556b0fe8f011612d1552b80a12fd35291adeaffc0",
+      "sizeBytes": 308
+    }
+  ],
+  "tags": [
+    "billing",
+    "dispute",
+    "chargeback",
+    "finance",
+    "invoice"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "billing",
+    "fingerprint": {
+      "interactionModel": "dispute-resolution-action",
+      "visualModel": "invoice-chargeback-detail-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "financial-dispute-resolution"
+    }
+  },
+  "url": "https://openui.dev/r/customer-invoice-dispute-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Accent Only\n\n## Rules\n\n- Dispute Resolution Action: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "word-help-balloons",
+  "type": "registry:text",
+  "title": "Word Help Balloons",
+  "description": "Dotted-underline terms that open small paper balloons on focus or hover with a definition, arrow and all — real popover semantics (button + role), not a CSS-only mirage, so keyboard users get the same affordance.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "word-help-balloons.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "tooltip",
+    "glossary",
+    "balloon",
+    "a11y"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "focus-popover",
+      "visualModel": "annotated-terms",
+      "motionModel": "scale-in-pop",
+      "layoutModel": "inline",
+      "semanticPurpose": "inline-glossary"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

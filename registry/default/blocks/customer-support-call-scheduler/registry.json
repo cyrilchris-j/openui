@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "customer-support-call-scheduler",
+  "type": "registry:block",
+  "title": "Customer Support Call Scheduler",
+  "description": "A VIP technical consultation reservation block with timezone selection and instant calendar invitation dispatch.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "customer-support-call-scheduler.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "support",
+    "booking",
+    "consultation",
+    "calendar",
+    "vip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "support",
+    "fingerprint": {
+      "interactionModel": "support-call-slot-reservation",
+      "visualModel": "consultation-booking-card",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "vip-support-consultation-booking"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

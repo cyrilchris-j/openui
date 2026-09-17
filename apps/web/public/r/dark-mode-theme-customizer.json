@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "dark-mode-theme-customizer",
+  "type": "registry:block",
+  "title": "Dark Mode Theme Customizer",
+  "description": "An interactive color palette modifier letting developers adjust primary hue, saturation, and export CSS variables.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "dark-mode-theme-customizer.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DarkModeThemeCustomizer({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const [hue, setHue] = React.useState(160);\n\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-6 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-base text-neutral-900 dark:text-white mb-4\">HSL Theme Customizer</h3>\n      <div className=\"space-y-4\">\n        <div>\n          <div className=\"flex justify-between text-neutral-500 mb-1\">\n            <span>Primary Brand Hue</span>\n            <span className=\"font-bold\">{hue}°</span>\n          </div>\n          <input\n            type=\"range\"\n            min=\"0\"\n            max=\"360\"\n            value={hue}\n            onChange={(e) => setHue(Number(e.target.value))}\n            className=\"w-full accent-emerald-500 cursor-pointer\"\n          />\n        </div>\n        <div\n          className=\"h-14 rounded-xl flex items-center justify-center font-bold text-white\"\n          style={{ backgroundColor: `hsl(${hue}, 80%, 40%)` }}\n        >\n          Active Accent Preview\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "acecde5909baa631aee42e3d90547c7f552948797beb7cfca66b8aafaf5a3ad9",
+      "sizeBytes": 1300
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DarkModeThemeCustomizer } from \"./dark-mode-theme-customizer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DarkModeThemeCustomizer />\n    </div>\n  );\n}\n",
+      "contentHash": "5150e8d660b1f19df013471505dd78e65ce213ac8a13480dc2c5d526d5b1e104",
+      "sizeBytes": 299
+    }
+  ],
+  "tags": [
+    "theme",
+    "darkmode",
+    "colors",
+    "tokens",
+    "customizer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "theme",
+    "fingerprint": {
+      "interactionModel": "theme-hsl-token-manipulation",
+      "visualModel": "theme-color-palette-configurator",
+      "motionModel": "subtle",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "theme-token-customization"
+    }
+  },
+  "url": "https://openui.dev/r/dark-mode-theme-customizer.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Theme Hsl Token Manipulation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

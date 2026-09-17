@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wave-text-reveal",
+  "type": "registry:motion",
+  "title": "Wave Text Reveal",
+  "description": "A headline phrase whose characters oscillate in an undulated sine wave rhythm before locking into typography baseline.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wave-text-reveal.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "text",
+    "wave",
+    "sine",
+    "headline",
+    "reveal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "entrance",
+    "fingerprint": {
+      "interactionModel": "sinusoidal-glyph-wave",
+      "visualModel": "undulating-character-ribbon",
+      "motionModel": "phase-offset-harmonic-sine",
+      "layoutModel": "display-headline-track",
+      "semanticPurpose": "kinetic-hero-headline"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

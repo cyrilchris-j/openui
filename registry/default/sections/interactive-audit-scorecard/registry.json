@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-audit-scorecard",
+  "type": "registry:section",
+  "title": "Interactive Audit Scorecard",
+  "description": "Core Web Vitals scorecard grid displaying 100/100 performance grades for Performance, Accessibility, and Best Practices.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-audit-scorecard.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "lighthouse",
+    "cwv",
+    "audit",
+    "scorecard",
+    "performance"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "performance",
+    "fingerprint": {
+      "interactionModel": "audit-score-inspection",
+      "visualModel": "four-gauge-scorecard-strip",
+      "motionModel": "none",
+      "layoutModel": "horizontal-score-rack",
+      "semanticPurpose": "performance-audit-scorecard"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

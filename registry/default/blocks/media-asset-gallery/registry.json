@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "media-asset-gallery",
+  "type": "registry:block",
+  "title": "Media Asset Gallery",
+  "description": "A digital media library grid featuring thumbnail previews, resolution chips, and selection checkboxes.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "media-asset-gallery.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "media",
+    "gallery",
+    "images",
+    "assets",
+    "grid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "media",
+    "fingerprint": {
+      "interactionModel": "gallery-thumbnail-selection",
+      "visualModel": "responsive-image-asset-grid",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "media-asset-management"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "mosaic",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

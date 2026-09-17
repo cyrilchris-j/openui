@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "status-beacon-badge",
+  "type": "registry:component",
+  "title": "Status Beacon Badge",
+  "description": "An operational status badge pill featuring an animated pulsing radar dot and uptime latency telemetry.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "status-beacon-badge.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StatusBeaconBadgeProps {\n  label?: string;\n  status?: \"healthy\" | \"degraded\" | \"down\";\n  className?: string;\n}\n\nexport function StatusBeaconBadge({\n  label = \"API Cluster Live\",\n  status = \"healthy\",\n  className,\n}: StatusBeaconBadgeProps) {\n  const colorMap = {\n    healthy: \"bg-emerald-500\",\n    degraded: \"bg-amber-500\",\n    down: \"bg-red-500\",\n  };\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1.5 font-mono text-xs font-bold text-ink shadow-sm\", className)}>\n      <span className=\"relative flex h-2.5 w-2.5\">\n        <span className={cn(\"absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping\", colorMap[status])} />\n        <span className={cn(\"relative inline-flex h-2.5 w-2.5 rounded-full\", colorMap[status])} />\n      </span>\n      <span>{label}</span>\n    </div>\n  );\n}\n\nexport default StatusBeaconBadge;\n",
+      "contentHash": "17a8317c93f9bf76e4b87c656fbd97312466fbcc874c035aa58de5e4b6ae0570",
+      "sizeBytes": 968
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { StatusBeaconBadge } from \"./status-beacon-badge\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <StatusBeaconBadge />\n    </div>\n  );\n}\n",
+      "contentHash": "acf068b16c431266efa161d24024ac034a2707f429b0039d3656dda35f56791f",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "beacon",
+    "badge",
+    "status",
+    "uptime",
+    "radar"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "telemetry-beacon-inspection",
+      "visualModel": "pulsing-radar-pill",
+      "motionModel": "annular-ping-oscillation",
+      "layoutModel": "compact-inline-beacon",
+      "semanticPurpose": "system-health-beacon"
+    }
+  },
+  "url": "https://openui.dev/r/status-beacon-badge.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Telemetry Beacon Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

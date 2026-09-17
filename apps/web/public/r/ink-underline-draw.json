@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ink-underline-draw",
+  "type": "registry:text",
+  "title": "Ink Underline Draw",
+  "description": "Link underline drawn like a felt-tip stroke: an SVG path whose stroke-dashoffset animates left-to-right with a hand-drawn wobble, thicker in the middle, retraced in reverse when the pointer leaves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ink-underline-draw.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface InkUnderlineDrawProps {\n  children: string;\n  href?: string;\n  /** Stroke colour. */\n  ink?: string;\n  className?: string;\n}\n\nexport function InkUnderlineDraw({ children, href = \"#\", ink = \"#e2624a\", className }: InkUnderlineDrawProps) {\n  return (\n    <a href={href} className={cn(\"group relative inline-block\", className)}>\n      <span className=\"text-ink\">{children}</span>\n      <svg\n        aria-hidden\n        className=\"absolute -bottom-1.5 left-0 w-full\"\n        height=\"8\"\n        viewBox=\"0 0 100 8\"\n        preserveAspectRatio=\"none\"\n      >\n        <path\n          d=\"M1 5 Q 25 2.4 50 4 T 99 3.6\"\n          fill=\"none\"\n          stroke={ink}\n          strokeWidth=\"2.4\"\n          strokeLinecap=\"round\"\n          pathLength={1}\n          strokeDasharray={1}\n          style={{\n            strokeDashoffset: 1,\n            transition: \"stroke-dashoffset 460ms cubic-bezier(0.2, 0, 0, 1)\",\n          }}\n        />\n      </svg>\n      <style>{`a:hover svg path, a:focus-visible svg path { stroke-dashoffset: 0 !important } @media (prefers-reduced-motion: reduce) { svg path { transition: none !important; stroke-dashoffset: 0 !important } }`}</style>\n    </a>\n  );\n}\n\nexport default InkUnderlineDraw;\n",
+      "contentHash": "4a4f6a6e8ac38666cd32521d7992d4d3941ee43bd20ce45c51cfc16da943214e",
+      "sizeBytes": 1272
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { InkUnderlineDraw } from \"./ink-underline-draw\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] items-center justify-center bg-paper p-10\">\n      <p className=\"text-lg text-ink\">\n        Read the <InkUnderlineDraw>manifesto</InkUnderlineDraw> before contributing.\n      </p>\n    </div>\n  );\n}\n",
+      "contentHash": "2b1cf0e81d7b7f65089de95d885147c42491534c6ebb76c081d79734a67c90bb",
+      "sizeBytes": 338
+    }
+  ],
+  "tags": [
+    "underline",
+    "svg",
+    "link",
+    "ink"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "humanist",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "hover-draw",
+      "visualModel": "svg-stroke-decoration",
+      "motionModel": "dash-offset-trace",
+      "layoutModel": "inline",
+      "semanticPurpose": "link-emphasis"
+    }
+  },
+  "url": "https://openui.dev/r/ink-underline-draw.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Rail\nDensity: Airy\nShape: Soft\nMotion: Expressive\nTypography: Humanist\nColor: High Contrast\n\n## Rules\n\n- Hover Draw: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

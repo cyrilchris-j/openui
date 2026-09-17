@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "reading-level-tinter",
+  "type": "registry:text",
+  "title": "Reading Level Tinter",
+  "description": "Each sentence is tinted by its own complexity — average word length and clause count map to an ink density ramp — so a paragraph shows you where it gets hard to read before you get there.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "reading-level-tinter.tsx",
+      "type": "registry:text",
+      "content": "import { cn } from \"@/lib/cn\";\n\nexport interface ReadingLevelTinterProps {\n  children: string;\n  className?: string;\n}\n\n/** Cheap complexity proxy: mean word length × clause count. */\nfunction complexity(sentence: string): number {\n  const words = sentence.split(/\\s+/).filter(Boolean);\n  const meanLength = words.reduce((sum, word) => sum + word.length, 0) / Math.max(words.length, 1);\n  const clauses = (sentence.match(/[,;:—-]/g) ?? []).length + 1;\n  return meanLength * clauses;\n}\n\nexport function ReadingLevelTinter({ children, className }: ReadingLevelTinterProps) {\n  const sentences = children.match(/[^.!?]+[.!?]+/g) ?? [children];\n  const scores = sentences.map((sentence) => complexity(sentence));\n  const max = Math.max(...scores, 1);\n\n  return (\n    <p className={cn(\"max-w-prose text-base leading-relaxed\", className)}>\n      {sentences.map((sentence, index) => {\n        const density = scores[index]! / max;\n        return (\n          <span\n            key={index}\n            title={`complexity ${(density * 100).toFixed(0)}%`}\n            style={{ color: `color-mix(in oklab, currentColor, transparent ${Math.round((1 - density) * 55)}%)` }}\n          >\n            {sentence.trim()}{\" \"}\n          </span>\n        );\n      })}\n    </p>\n  );\n}\n\nexport default ReadingLevelTinter;\n",
+      "contentHash": "4ca51240f6cf5cf45e78d4bb75e8b4eed4a328a7fc8b6d4f5cbe8e8829db62fc",
+      "sizeBytes": 1301
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { ReadingLevelTinter } from \"./reading-level-tinter\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-10\">\n      <ReadingLevelTinter className=\"w-full max-w-lg\">\n        Keep it short. Short sentences read fast and land hard. Longer sentences with subordinate clauses, parenthetical asides, and enumerated qualifications demand more of the reader and fade into the background noise of the page.\n      </ReadingLevelTinter>\n    </div>\n  );\n}\n",
+      "contentHash": "a7ab920831839ab9026a62efab7ce8657243dc51d87a3a1cd44e26c3f00897b8",
+      "sizeBytes": 523
+    }
+  ],
+  "tags": [
+    "readability",
+    "sentences",
+    "tint",
+    "analysis"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "humanist",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "static",
+      "visualModel": "complexity-tinted-sentences",
+      "motionModel": "none",
+      "layoutModel": "block",
+      "semanticPurpose": "readability-analysis"
+    }
+  },
+  "url": "https://openui.dev/r/reading-level-tinter.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Humanist\nColor: Monochrome\n\n## Rules\n\n- Static: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rsvp-speed-reader",
+  "type": "registry:text",
+  "title": "RSVP Speed Reader",
+  "description": "Rapid Serial Visual Presentation: words flash one at a time at a fixed focal point with the optimal recognition letter (ORP) highlighted in red, play/pause and WPM control — reading 400 wpm without moving your eyes.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rsvp-speed-reader.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface RsvpSpeedReaderProps {\n  text: string;\n  /** Words per minute. */\n  wpm?: number;\n  className?: string;\n}\n\n/** Index of the optimal recognition point (~1/3 into the word). */\nfunction orpIndex(word: string): number {\n  if (word.length <= 1) return 0;\n  if (word.length <= 5) return 1;\n  return Math.floor(word.length / 3) + 1;\n}\n\nexport function RsvpSpeedReader({ text, wpm = 300, className }: RsvpSpeedReaderProps) {\n  const words = text.split(/\\s+/).filter(Boolean);\n  const [index, setIndex] = useState(0);\n  const [playing, setPlaying] = useState(false);\n  const [speed, setSpeed] = useState(wpm);\n  const timer = useRef<number | null>(null);\n\n  useEffect(() => {\n    if (!playing) return;\n    const interval = 60000 / speed;\n    timer.current = window.setInterval(() => {\n      setIndex((value) => {\n        if (value + 1 >= words.length) {\n          setPlaying(false);\n          return value;\n        }\n        return value + 1;\n      });\n    }, interval);\n    return () => {\n      if (timer.current !== null) window.clearInterval(timer.current);\n    };\n  }, [playing, speed, words.length]);\n\n  const word = words[index] ?? \"\";\n  const orp = orpIndex(word);\n  const pivotOffset = Math.min(orp * 0.6, 10); // ch units the pivot shifts left\n\n  return (\n    <div className={cn(\"flex flex-col gap-4\", className)}>\n      <div\n        className=\"relative flex h-20 items-center justify-center overflow-hidden rounded-lg border border-line bg-ink font-mono\"\n        role=\"status\"\n        aria-label={playing ? `Reading word ${index + 1} of ${words.length}: ${word}` : `Paused at word ${index + 1}`}\n      >\n        <span aria-hidden className=\"absolute left-1/2 h-full w-px bg-line/40\" />\n        <span aria-hidden className=\"whitespace-pre text-2xl text-paper\" style={{ transform: `translateX(${-pivotOffset}ch)` }}>\n          <span className=\"text-paper/70\">{word.slice(0, orp)}</span>\n          <span className=\"text-red-400\">{word[orp]}</span>\n          <span className=\"text-paper/70\">{word.slice(orp + 1)}</span>\n        </span>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <button\n          type=\"button\"\n          onClick={() => setPlaying((value) => !value)}\n          className=\"rounded-md border border-line px-3 py-1.5 font-mono text-sm hover:bg-line/20\"\n        >\n          {playing ? \"⏸\" : \"▶\"}\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => {\n            setPlaying(false);\n            setIndex(0);\n          }}\n          className=\"rounded-md border border-line px-3 py-1.5 font-mono text-sm hover:bg-line/20\"\n        >\n          ↺\n        </button>\n        <input\n          type=\"range\"\n          min={150}\n          max={700}\n          step={25}\n          value={speed}\n          onChange={(event) => setSpeed(Number(event.target.value))}\n          aria-label=\"Words per minute\"\n          className=\"w-40\"\n        />\n        <span className=\"font-mono text-xs text-ink/60\">{speed} wpm</span>\n        <span className=\"font-mono text-xs text-ink/40 tabular-nums\">\n          {index + 1}/{words.length}\n        </span>\n      </div>\n    </div>\n  );\n}\n\nexport default RsvpSpeedReader;\n",
+      "contentHash": "b023069ae9b5a2f419d172c7fc8fe53ed29429268c9885ea8d73b37fd4ed242f",
+      "sizeBytes": 3279
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { RsvpSpeedReader } from \"./rsvp-speed-reader\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <RsvpSpeedReader\n        text=\"Speed reading works by removing the eye movement between words and presenting each one at a fixed point.\"\n        wpm={320}\n        className=\"w-full max-w-md\"\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "8e596d3ffd68808ae117db875618621fea6c8018d2ae634c2c99364aadc8e61b",
+      "sizeBytes": 407
+    }
+  ],
+  "tags": [
+    "rsvp",
+    "speed-reading",
+    "wpm",
+    "orp"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "playback-control",
+      "visualModel": "single-word-focus",
+      "motionModel": "fixed-interval-flash",
+      "layoutModel": "stack",
+      "semanticPurpose": "speed-reading"
+    }
+  },
+  "url": "https://openui.dev/r/rsvp-speed-reader.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Playback Control: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

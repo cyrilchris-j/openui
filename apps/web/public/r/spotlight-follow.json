@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "radial-light-aiming",
+      "visualModel": "soft-radial-gradient-mask",
+      "motionModel": "damped-focal-follow",
+      "layoutModel": "under-cursor-glow",
+      "semanticPurpose": "card-surface-reveal"
     }
   },
   "url": "https://openui.dev/r/spotlight-follow.json",

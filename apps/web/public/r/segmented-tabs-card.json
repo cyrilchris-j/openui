@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-tabs-card",
+  "type": "registry:component",
+  "title": "Segmented Tabs Card",
+  "description": "A surface container featuring segmented tabs integrated directly into the header boundary.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-tabs-card.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SegmentedTabsCardProps {\n  className?: string;\n}\n\nexport function SegmentedTabsCard({ className }: SegmentedTabsCardProps) {\n  const [tab, setTab] = useState(0);\n  const tabs = [\"Metrics\", \"Logs\"];\n\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper shadow-sm overflow-hidden font-mono text-xs\", className)}>\n      <div className=\"flex justify-between items-center p-3 border-b border-line bg-line/10\">\n        <span className=\"font-bold text-ink uppercase\">PANEL VIEW</span>\n        <div className=\"flex rounded-lg border border-line bg-paper p-0.5\">\n          {tabs.map((t, idx) => (\n            <button\n              key={t}\n              type=\"button\"\n              onClick={() => setTab(idx)}\n              className={cn(\"px-2.5 py-0.5 rounded text-[11px] font-semibold\", tab === idx && \"bg-ink text-paper\")}\n            >\n              {t}\n            </button>\n          ))}\n        </div>\n      </div>\n\n      <div className=\"p-4 text-ink/70\">\n        {tab === 0 ? \"Throughput: 4,200 req/sec | Latency: 12ms\" : \"02:14:09 [INFO] Cluster sync verified.\"}\n      </div>\n    </div>\n  );\n}\n\nexport default SegmentedTabsCard;\n",
+      "contentHash": "435ee74958e494fe0eb26a3df10f5d2133334da8205394cdeba539f6055258c2",
+      "sizeBytes": 1263
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SegmentedTabsCard } from \"./segmented-tabs-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SegmentedTabsCard />\n    </div>\n  );\n}\n",
+      "contentHash": "8fba97fad3bbd99bf96bcb7e83a8ba4f1848aecb7a04fca3c0615f24c3bc3d07",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "tabs",
+    "card",
+    "segmented",
+    "header",
+    "views"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "card-header-tab-switch",
+      "visualModel": "tabbed-header-card",
+      "motionModel": "none",
+      "layoutModel": "stacked-tabbed-card",
+      "semanticPurpose": "multi-view-panel-card"
+    }
+  },
+  "url": "https://openui.dev/r/segmented-tabs-card.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Card Header Tab Switch: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

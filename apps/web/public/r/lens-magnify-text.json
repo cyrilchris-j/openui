@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "lens-magnify-text",
+  "type": "registry:text",
+  "title": "Lens Magnify Text",
+  "description": "A circular lens that magnifies the text beneath it using a duplicated, scaled copy clipped to a circle that tracks the pointer — a magnifier, not a highlight, with true enlargement of glyph detail.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "lens-magnify-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface LensMagnifyTextProps {\n  children: string;\n  /** Lens diameter in px. */\n  lensSize?: number;\n  /** Magnification factor inside the lens. */\n  zoom?: number;\n  className?: string;\n}\n\nexport function LensMagnifyText({\n  children,\n  lensSize = 96,\n  zoom = 1.8,\n  className,\n}: LensMagnifyTextProps) {\n  const surfaceRef = useRef<HTMLSpanElement>(null);\n  const lensRef = useRef<HTMLSpanElement>(null);\n  const frame = useRef<number | null>(null);\n  const [active, setActive] = useState(false);\n\n  useEffect(() => {\n    const fine = window.matchMedia?.(\"(pointer: fine)\");\n    setActive(Boolean(fine?.matches));\n  }, []);\n\n  useEffect(\n    () => () => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n    },\n    [],\n  );\n\n  const track = useCallback(\n    (clientX: number, clientY: number) => {\n      if (frame.current !== null) cancelAnimationFrame(frame.current);\n      frame.current = requestAnimationFrame(() => {\n        const surface = surfaceRef.current;\n        const lens = lensRef.current;\n        if (!surface || !lens) return;\n        const rect = surface.getBoundingClientRect();\n        const x = clientX - rect.left;\n        const y = clientY - rect.top;\n        lens.style.left = `${x - lensSize / 2}px`;\n        lens.style.top = `${y - lensSize / 2}px`;\n        // Counter-offset the scaled copy so the point under the cursor is the\n        // point under the lens centre: translate = (1 - zoom) * position.\n        const inner = lens.firstElementChild as HTMLElement | null;\n        if (inner) {\n          inner.style.transform = `scale(${zoom}) translate(${(1 - zoom) * (x - lensSize / 2)}px, ${(1 - zoom) * (y - lensSize / 2)}px)`;\n        }\n      });\n    },\n    [lensSize, zoom],\n  );\n\n  return (\n    <span\n      ref={surfaceRef}\n      className={cn(\"relative inline-block select-none\", className)}\n      onPointerMove={(event) => active && track(event.clientX, event.clientY)}\n      role=\"text\"\n      aria-label={children}\n    >\n      <span aria-hidden>{children}</span>\n      <span\n        ref={lensRef}\n        aria-hidden\n        className={cn(\n          \"pointer-events-none absolute overflow-hidden rounded-full border border-line bg-paper\",\n          active ? \"opacity-100\" : \"opacity-0\",\n        )}\n        style={{ width: lensSize, height: lensSize, transition: \"opacity 150ms ease\" }}\n      >\n        <span\n          className=\"absolute left-0 top-0 origin-top-left\"\n          style={{ width: \"100%\", willChange: \"transform\" }}\n        >\n          {children}\n        </span>\n      </span>\n    </span>\n  );\n}\n\nexport default LensMagnifyText;\n",
+      "contentHash": "035156d526089d6269c69f2d0596d723d082395ac74a33b0c5922740735126e7",
+      "sizeBytes": 2724
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { LensMagnifyText } from \"./lens-magnify-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <LensMagnifyText className=\"font-mono text-[0.85rem] text-ink\">\n        Inspect the fine print clause 8.4.2\n      </LensMagnifyText>\n    </div>\n  );\n}\n",
+      "contentHash": "fe159b4a61aba02a1c8d3c6a961847a935ba3dbaa49e9b253392036a2961288e",
+      "sizeBytes": 340
+    }
+  ],
+  "tags": [
+    "lens",
+    "magnify",
+    "clip",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-lens",
+      "visualModel": "clipped-scale-copy",
+      "motionModel": "direct-follow",
+      "layoutModel": "overlay",
+      "semanticPurpose": "inspection"
+    }
+  },
+  "url": "https://openui.dev/r/lens-magnify-text.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Pointer Lens: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

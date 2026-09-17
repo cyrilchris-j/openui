@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tab-underline-strip",
+  "type": "registry:component",
+  "title": "Tab Underline Strip",
+  "description": "A tab bar displaying underlined selection border styles below active option.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tab-underline-strip.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TabUnderlineStripProps {\n  className?: string;\n}\n\nexport function TabUnderlineStrip({ className }: TabUnderlineStripProps) {\n  const [active, setActive] = useState(0);\n  const tabs = [\"Overview\", \"Code\", \"Reviews\"];\n\n  return (\n    <div className={cn(\"flex border-b border-line font-mono text-xs\", className)}>\n      {tabs.map((t, idx) => (\n        <button\n          key={t}\n          type=\"button\"\n          onClick={() => setActive(idx)}\n          className={cn(\n            \"px-4 py-2 border-b-2 font-semibold transition-colors\",\n            active === idx ? \"border-ink text-ink\" : \"border-transparent text-ink/60 hover:text-ink\"\n          )}\n        >\n          {t}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default TabUnderlineStrip;\n",
+      "contentHash": "91c52c90528727f0a982fb44c711729eada5b98f5f5d5505b6bda359bb76bbdc",
+      "sizeBytes": 850
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { TabUnderlineStrip } from \"./tab-underline-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <TabUnderlineStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "7f8318cba8ea5ecf3e00d6b7e08d288d300b9ea0dd9633097c14aef8ebd8b8ec",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "tabs",
+    "underline",
+    "navigation",
+    "views",
+    "strip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "underline-tab-selection",
+      "visualModel": "ruled-underline-track",
+      "motionModel": "none",
+      "layoutModel": "horizontal-underline-tabs",
+      "semanticPurpose": "underline-tab-bar"
+    }
+  },
+  "url": "https://openui.dev/r/tab-underline-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Underline Tab Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

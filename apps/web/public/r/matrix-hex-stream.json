@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "matrix-hex-stream",
+  "type": "registry:background",
+  "title": "Matrix Hex Stream",
+  "description": "Hexadecimal byte stream memory dump (0xDEAD, 0xBEEF) raining downward on canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "matrix-hex-stream.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface MatrixHexStreamProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function MatrixHexStream({ className, children, ...props }: MatrixHexStreamProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    const resize = () => {\n      canvas.width = canvas.parentElement?.clientWidth || window.innerWidth;\n      canvas.height = canvas.parentElement?.clientHeight || window.innerHeight;\n    };\n    resize();\n\n    const hexCols = Math.floor(canvas.width / 50);\n    const drops: number[] = Array.from({ length: hexCols }, () => Math.random() * -30);\n\n    const render = () => {\n      ctx.fillStyle = \"rgba(10, 15, 25, 0.15)\";\n      ctx.fillRect(0, 0, canvas.width, canvas.height);\n      ctx.font = \"11px monospace\";\n      ctx.fillStyle = \"#38bdf8\";\n\n      for (let i = 0; i < drops.length; i++) {\n        const hex = \"0x\" + Math.floor(Math.random() * 65535).toString(16).toUpperCase().padStart(4, \"0\");\n        const x = i * 50;\n        const y = (drops[i] ?? 0) * 16;\n\n        ctx.fillText(hex, x, y);\n        if (y > canvas.height && Math.random() > 0.95) {\n          drops[i] = 0;\n        }\n        drops[i] = (drops[i] ?? 0) + 1;\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    window.addEventListener(\"resize\", resize);\n    return () => {\n      cancelAnimationFrame(animId);\n      window.removeEventListener(\"resize\", resize);\n    };\n  }, []);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none opacity-40 -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "99bae2563c9136b56550edfdffe04498c71bdb59cdffae4048081c83a93ed1a1",
+      "sizeBytes": 1971
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { MatrixHexStream } from \"./matrix-hex-stream\";\n\nexport default function MatrixHexStreamDemo() {\n  return (\n    <MatrixHexStream className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-sky-500/30 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-sky-400\">Hexadecimal Memory</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">Realtime 16-bit memory register streaming.</p>\n      </div>\n    </MatrixHexStream>\n  );\n}\n",
+      "contentHash": "168265fb3dc925acd587d6aef6986b0b6aa977c0a8b4b576efbe9139cd1f959d",
+      "sizeBytes": 578
+    }
+  ],
+  "tags": [
+    "hex",
+    "memory",
+    "stream",
+    "canvas",
+    "cyber"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-hex-stream",
+      "visualModel": "hexadecimal-memory-dump",
+      "motionModel": "vertical-code-rain",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "hex-telemetry-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/matrix-hex-stream.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Hex Stream: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "pointer-pause-marquee",
+      "visualModel": "high-contrast-ticker-ribbon",
+      "motionModel": "constant-velocity-drift",
+      "layoutModel": "viewport-span-strip",
+      "semanticPurpose": "announcement-ticker"
     }
   },
   "url": "https://openui.dev/r/kinetic-ticker.json",

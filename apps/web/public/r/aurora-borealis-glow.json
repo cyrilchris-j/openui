@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "aurora-borealis-glow",
+  "type": "registry:background",
+  "title": "Aurora Borealis Glow",
+  "description": "Ethereal Northern Lights atmospheric glow with animated shifting radial color gradients.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "aurora-borealis-glow.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface AuroraBorealisGlowProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function AuroraBorealisGlow({ className, children, ...props }: AuroraBorealisGlowProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div className=\"absolute inset-0 pointer-events-none -z-10 overflow-hidden\">\n        <div className=\"absolute -top-40 left-1/4 w-96 h-96 rounded-full bg-emerald-500/30 blur-3xl\" />\n        <div className=\"absolute -top-20 right-1/4 w-96 h-96 rounded-full bg-cyan-500/30 blur-3xl\" />\n        <div className=\"absolute top-40 left-1/3 w-80 h-80 rounded-full bg-purple-500/25 blur-3xl\" />\n      </div>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "418985ff0d5441bdf9de79f0ee2129fc15c036ea01536005c1c06f7fd66a2c68",
+      "sizeBytes": 840
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { AuroraBorealisGlow } from \"./aurora-borealis-glow\";\n\nexport default function AuroraBorealisGlowDemo() {\n  return (\n    <AuroraBorealisGlow className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-white\">Northern Lights</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-sans\">Deep multi-spectrum atmospheric glow.</p>\n      </div>\n    </AuroraBorealisGlow>\n  );\n}\n",
+      "contentHash": "35a6f0f676314a644c4b764c0d882df3c7c30d91d5ff13c042fa5b465d12e3c4",
+      "sizeBytes": 581
+    }
+  ],
+  "tags": [
+    "aurora",
+    "glow",
+    "ambient",
+    "gradients",
+    "atmosphere"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "organic",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-atmospheric-glow",
+      "visualModel": "aurora-curtain-field",
+      "motionModel": "subtle-color-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "atmospheric-light-curtain"
+    }
+  },
+  "url": "https://openui.dev/r/aurora-borealis-glow.json",
+  "designRules": "# Design System\n\nGenre: Organic\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: Subtle\nTypography: Grotesk\nColor: Neon On Dark\n\n## Rules\n\n- Passive Atmospheric Glow: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

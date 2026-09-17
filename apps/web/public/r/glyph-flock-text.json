@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glyph-flock-text",
+  "type": "registry:text",
+  "title": "Glyph Flock Text",
+  "description": "Letters behave as boids: each glyph steers away from the pointer within its influence radius and eases back to its baseline slot when the pointer leaves, giving the headline a startled-school-of-fish quality.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glyph-flock-text.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface GlyphFlockTextProps {\n  children: string;\n  /** Distance at which glyphs start fleeing, px. */\n  influence?: number;\n  /** Max displacement, px. */\n  scatter?: number;\n  className?: string;\n}\n\ninterface Slot {\n  x: number;\n  y: number;\n}\n\nexport function GlyphFlockText({\n  children,\n  influence = 90,\n  scatter = 26,\n  className,\n}: GlyphFlockTextProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const slots = useRef<Slot[]>([]);\n  const glyphRefs = useRef<Array<HTMLSpanElement | null>>([]);\n\n  const register = useCallback((index: number, node: HTMLSpanElement | null) => {\n    glyphRefs.current[index] = node;\n  }, []);\n\n  useEffect(() => {\n    const fine = window.matchMedia?.(\"(pointer: fine)\");\n    if (!fine?.matches) return;\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) return;\n\n    const host = ref.current;\n    if (!host) return;\n\n    const measure = () => {\n      slots.current = glyphRefs.current.map((node) => {\n        if (!node) return { x: 0, y: 0 };\n        const rect = node.getBoundingClientRect();\n        return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };\n      });\n    };\n    measure();\n\n    let frame: number | null = null;\n    let pointer: Slot | null = null;\n\n    const steer = () => {\n      frame = null;\n      const p = pointer;\n      if (!p) return;\n      glyphRefs.current.forEach((node, index) => {\n        const slot = slots.current[index];\n        if (!node || !slot) return;\n        const dx = slot.x - p.x;\n        const dy = slot.y - p.y;\n        const distance = Math.hypot(dx, dy);\n        if (distance < influence && distance > 0.01) {\n          const strength = (1 - distance / influence) * scatter;\n          node.style.transform = `translate(${(dx / distance) * strength}px, ${(dy / distance) * strength}px) rotate(${(dx / distance) * 8}deg)`;\n        } else {\n          node.style.transform = \"\";\n        }\n      });\n    };\n\n    const onMove = (event: PointerEvent) => {\n      pointer = { x: event.clientX, y: event.clientY };\n      if (frame === null) frame = requestAnimationFrame(steer);\n    };\n    const onLeave = () => {\n      pointer = null;\n      glyphRefs.current.forEach((node) => {\n        if (node) node.style.transform = \"\";\n      });\n    };\n\n    const observer = new ResizeObserver(measure);\n    observer.observe(host);\n    host.addEventListener(\"pointermove\", onMove);\n    host.addEventListener(\"pointerleave\", onLeave);\n\n    return () => {\n      observer.disconnect();\n      host.removeEventListener(\"pointermove\", onMove);\n      host.removeEventListener(\"pointerleave\", onLeave);\n      if (frame !== null) cancelAnimationFrame(frame);\n    };\n  }, [influence, scatter]);\n\n  return (\n    <span\n      ref={ref}\n      className={cn(\"inline-block select-none\", className)}\n      role=\"text\"\n      aria-label={children}\n    >\n      {[...children].map((char, index) => (\n        <span\n          key={`${index}-${char}`}\n          aria-hidden\n          ref={(node) => register(index, node)}\n          className=\"inline-block will-change-transform\"\n          style={{ transition: \"transform 220ms cubic-bezier(0.2, 0, 0, 1)\" }}\n        >\n          {char === \" \" ? \"\\u00A0\" : char}\n        </span>\n      ))}\n    </span>\n  );\n}\n\nexport default GlyphFlockText;\n",
+      "contentHash": "008f9546e61a8f30bc8ba151572ea0a994f1c3ad10d3649b4d2e625e83b4d95b",
+      "sizeBytes": 3385
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { GlyphFlockText } from \"./glyph-flock-text\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[12rem] items-center justify-center bg-paper p-10\">\n      <GlyphFlockText className=\"font-display text-step-4 text-ink\">Startle</GlyphFlockText>\n    </div>\n  );\n}\n",
+      "contentHash": "7d9c3b394ee0c41b589ee8381d7d2f8e46ad2e776495936dd9ed43401236739b",
+      "sizeBytes": 292
+    }
+  ],
+  "tags": [
+    "flock",
+    "repel",
+    "boids",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-repel",
+      "visualModel": "displaced-glyph-spans",
+      "motionModel": "flee-and-settle",
+      "layoutModel": "inline",
+      "semanticPurpose": "playful-heading"
+    }
+  },
+  "url": "https://openui.dev/r/glyph-flock-text.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Rail\nDensity: Airy\nShape: Rounded\nMotion: Kinetic\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Pointer Repel: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

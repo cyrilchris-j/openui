@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-marbling-swirl",
+  "type": "registry:background",
+  "title": "Liquid Marbling Swirl",
+  "description": "Viscous paper marbling Ebru ink fluid swirls with smooth harmonic color currents.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-marbling-swirl.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "marbling",
+    "ebru",
+    "liquid",
+    "swirl",
+    "fluid"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-marbling-currents",
+      "visualModel": "viscous-marbled-flow",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "paper-marbling-texture"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "pastel"
+    }
+  }
+}

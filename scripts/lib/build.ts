@@ -147,6 +147,8 @@ export function toIndexEntry(
     ...(item.license ? { license: item.license } : {}),
     ...(item.meta?.difficulty ? { difficulty: item.meta.difficulty } : {}),
     ...(item.meta?.dna ? { dna: item.meta.dna } : {}),
+    ...(item.meta?.subcategory ? { subcategory: item.meta.subcategory } : {}),
+    ...(item.meta?.fingerprint ? { fingerprint: item.meta.fingerprint } : {}),
   };
 }
 

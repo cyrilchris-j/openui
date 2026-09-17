@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "ink-underline-draw",
+  "type": "registry:text",
+  "title": "Ink Underline Draw",
+  "description": "Link underline drawn like a felt-tip stroke: an SVG path whose stroke-dashoffset animates left-to-right with a hand-drawn wobble, thicker in the middle, retraced in reverse when the pointer leaves.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "ink-underline-draw.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "underline",
+    "svg",
+    "link",
+    "ink"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "hover-draw",
+      "visualModel": "svg-stroke-decoration",
+      "motionModel": "dash-offset-trace",
+      "layoutModel": "inline",
+      "semanticPurpose": "link-emphasis"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "expressive",
+      "typographyStyle": "humanist",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

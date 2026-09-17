@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tab-pill-strip",
+  "type": "registry:component",
+  "title": "Tab Pill Strip",
+  "description": "A compact navigation tab pill strip with sliding background selection highlights.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tab-pill-strip.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TabPillStripProps {\n  tabs?: string[];\n  className?: string;\n}\n\nexport function TabPillStrip({\n  tabs = [\"Endpoints\", \"Schemas\", \"Security\", \"Logs\"],\n  className,\n}: TabPillStripProps) {\n  const [active, setActive] = useState(0);\n\n  return (\n    <div className={cn(\"inline-flex gap-1.5 rounded-full border border-line bg-paper p-1.5 shadow-sm\", className)}>\n      {tabs.map((tab, idx) => (\n        <button\n          key={tab}\n          type=\"button\"\n          onClick={() => setActive(idx)}\n          className={cn(\n            \"rounded-full px-4 py-1.5 font-mono text-xs font-semibold transition-all\",\n            active === idx ? \"bg-ink text-paper shadow-sm\" : \"text-ink/60 hover:text-ink\"\n          )}\n        >\n          {tab}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default TabPillStrip;\n",
+      "contentHash": "71efba906c120e2f08694c80cc093e8a7a68d23dc42d2082855a1d708a04651b",
+      "sizeBytes": 906
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { TabPillStrip } from \"./tab-pill-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <TabPillStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "e05f10e683bdf5db33d76eff38a2e267f11f189e22bb62456a03229b0fa573cc",
+      "sizeBytes": 217
+    }
+  ],
+  "tags": [
+    "tabs",
+    "navigation",
+    "pills",
+    "strip",
+    "views"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "tab-strip-view-switch",
+      "visualModel": "pill-tab-array",
+      "motionModel": "none",
+      "layoutModel": "horizontal-pill-strip",
+      "semanticPurpose": "view-navigation-strip"
+    }
+  },
+  "url": "https://openui.dev/r/tab-pill-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Tab Strip View Switch: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

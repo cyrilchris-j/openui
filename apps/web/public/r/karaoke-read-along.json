@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "karaoke-read-along",
+  "type": "registry:text",
+  "title": "Karaoke Read-Along",
+  "description": "A paragraph that highlights each chunk in sync with a timer while an aria-live region reads the current chunk — designed for language learning and read-along accessibility, with speed control and pause.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "karaoke-read-along.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface KaraokeReadAlongProps {\n  /** Chunks to highlight in order. */\n  chunks: string[];\n  /** ms per chunk at speed 1. */\n  chunkMs?: number;\n  className?: string;\n}\n\nexport function KaraokeReadAlong({ chunks, chunkMs = 900, className }: KaraokeReadAlongProps) {\n  const [index, setIndex] = useState(-1);\n  const [playing, setPlaying] = useState(false);\n  const [speed, setSpeed] = useState(1);\n  const timer = useRef<number | null>(null);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    if (!playing) return;\n    timer.current = window.setInterval(() => {\n      setIndex((value) => {\n        const next = value + 1;\n        if (next >= chunks.length) {\n          setPlaying(false);\n          return chunks.length - 1;\n        }\n        return next;\n      });\n    }, chunkMs / speed);\n    return () => {\n      if (timer.current !== null) window.clearInterval(timer.current);\n    };\n  }, [playing, chunkMs, speed, chunks.length]);\n\n  return (\n    <div className={cn(\"flex max-w-prose flex-col gap-4\", className)}>\n      <p className=\"text-lg leading-relaxed\">\n        {chunks.map((chunk, i) => (\n          <span\n            key={i}\n            aria-hidden\n            className={cn(\n              \"transition-colors duration-200\",\n              i === index ? \"bg-accent/20 text-ink\" : \"text-ink/75\",\n              i < index ? \"text-ink\" : \"\",\n            )}\n          >\n            {chunk}{\" \"}\n          </span>\n        ))}\n        <span className=\"sr-only\" aria-live={playing ? \"assertive\" : \"off\"}>\n          {index >= 0 ? chunks[index] : \"\"}\n        </span>\n      </p>\n      <div className=\"flex items-center gap-3 text-sm\">\n        <button\n          type=\"button\"\n          onClick={() => {\n            setIndex(-1);\n            setPlaying(true);\n          }}\n          className=\"rounded-md border border-line px-3 py-1.5 hover:bg-line/20\"\n        >\n          ▶ Start over\n        </button>\n        <button\n          type=\"button\"\n          onClick={() => setPlaying((value) => !value)}\n          className=\"rounded-md border border-line px-3 py-1.5 hover:bg-line/20\"\n        >\n          {playing ? \"⏸ Pause\" : \"⏵ Resume\"}\n        </button>\n        <label className=\"flex items-center gap-2 font-mono text-xs text-ink/70\">\n          speed\n          <input\n            type=\"range\"\n            min={0.5}\n            max={2.5}\n            step={0.25}\n            value={speed}\n            onChange={(event) => setSpeed(Number(event.target.value))}\n            className=\"w-24\"\n          />\n          {speed}×\n        </label>\n        {reduced && <span className=\"font-mono text-xs text-ink/50\">reduced motion: highlight still applies</span>}\n      </div>\n    </div>\n  );\n}\n\nexport default KaraokeReadAlong;\n",
+      "contentHash": "a4600efb3d0559aa21be4c7696c8e207e3e440f3f98e6f90868fdf4a1fed74a0",
+      "sizeBytes": 2930
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { KaraokeReadAlong } from \"./karaoke-read-along\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[16rem] items-center justify-center bg-paper p-10\">\n      <KaraokeReadAlong\n        chunks={[\"Registries\", \"should\", \"validate\", \"at\", \"build\", \"time,\", \"not\", \"in\", \"production.\"]}\n      />\n    </div>\n  );\n}\n",
+      "contentHash": "f5a8fdaee8a77e121e55636c506e41759b069a150adfbef03db4c70674466670",
+      "sizeBytes": 342
+    }
+  ],
+  "tags": [
+    "karaoke",
+    "read-along",
+    "aria",
+    "learning"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "humanist",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "playback-control",
+      "visualModel": "progressive-highlight",
+      "motionModel": "timed-advance",
+      "layoutModel": "block",
+      "semanticPurpose": "guided-reading"
+    }
+  },
+  "url": "https://openui.dev/r/karaoke-read-along.json",
+  "designRules": "# Design System\n\nGenre: Editorial\nMacrostructure: Stack\nDensity: Medium\nShape: Soft\nMotion: Subtle\nTypography: Humanist\nColor: Accent Only\n\n## Rules\n\n- Playback Control: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

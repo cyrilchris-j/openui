@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "coordinate-pin-drop",
+  "type": "registry:interaction",
+  "title": "Coordinate Pin Drop",
+  "description": "An interactive geographic coordinate canvas dropping draggable location pin beacons on user click.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "coordinate-pin-drop.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "pin",
+    "coordinates",
+    "map",
+    "marker",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "coordinate-pin-placement",
+      "visualModel": "cartographic-grid-pins",
+      "motionModel": "point-drop-settle",
+      "layoutModel": "map-coordinate-canvas",
+      "semanticPurpose": "spatial-pin-annotator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

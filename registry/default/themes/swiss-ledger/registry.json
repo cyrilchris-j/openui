@@ -7,13 +7,27 @@
   "category": "themes",
   "dependencies": [],
   "registryDependencies": [],
-  "files": [{ "path": "swiss-ledger.css", "type": "registry:theme", "target": "styles" }],
-  "tags": ["theme", "swiss", "high-contrast"],
+  "files": [
+    {
+      "path": "swiss-ledger.css",
+      "type": "registry:theme",
+      "target": "styles"
+    }
+  ],
+  "tags": [
+    "theme",
+    "swiss",
+    "high-contrast"
+  ],
   "license": "MIT",
   "designSystem": "swiss-editorial",
   "meta": {
     "difficulty": "starter",
-    "features": ["dark-mode", "reduced-motion-safe", "wcag-aa"],
+    "features": [
+      "dark-mode",
+      "reduced-motion-safe",
+      "wcag-aa"
+    ],
     "dna": {
       "genre": "swiss",
       "macrostructure": "rail",
@@ -22,6 +36,13 @@
       "motionLanguage": "subtle",
       "typographyStyle": "grotesk",
       "colorStrategy": "high-contrast"
+    },
+    "subcategory": "palette",
+    "fingerprint": {
+      "interactionModel": "high-contrast-paper-tokens",
+      "visualModel": "stark-ink-on-vellum-palette",
+      "layoutModel": "css-root-variables",
+      "semanticPurpose": "swiss-theme-definition"
     }
   }
 }

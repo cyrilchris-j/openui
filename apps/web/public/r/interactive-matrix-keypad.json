@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-matrix-keypad",
+  "type": "registry:interaction",
+  "title": "Interactive Matrix Keypad",
+  "description": "A 3x4 numeric pin entry pad with haptic tactile depression feedback and masked passcode sequence display.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-matrix-keypad.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InteractiveMatrixKeypadProps {\n  className?: string;\n}\n\nexport function InteractiveMatrixKeypad({ className }: InteractiveMatrixKeypadProps) {\n  const [code, setCode] = useState(\"\");\n  const keys = [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"C\", \"0\", \"⏎\"];\n\n  const press = (k: string) => {\n    if (k === \"C\") setCode(\"\");\n    else if (k === \"⏎\") {\n      /* noop */\n    } else if (code.length < 4) setCode((c) => c + k);\n  };\n\n  return (\n    <div className={cn(\"inline-flex flex-col items-center gap-4 rounded-xl border border-line bg-paper p-6 shadow-sm\", className)}>\n      <div className=\"h-8 flex items-center gap-2\">\n        {Array.from({ length: 4 }).map((_, i) => (\n          <div\n            key={i}\n            className={cn(\n              \"h-3 w-3 rounded-full border border-line\",\n              i < code.length ? \"bg-ink\" : \"bg-line/20\"\n            )}\n          />\n        ))}\n      </div>\n\n      <div className=\"grid grid-cols-3 gap-2 w-48\">\n        {keys.map((k) => (\n          <button\n            key={k}\n            type=\"button\"\n            onClick={() => press(k)}\n            className=\"flex h-12 items-center justify-center rounded-lg border border-line bg-paper font-mono text-sm font-bold text-ink shadow-sm hover:bg-line/20 active:scale-95\"\n          >\n            {k}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default InteractiveMatrixKeypad;\n",
+      "contentHash": "e30154277bb9de7d6b26cef01cee97e58b300b1a789ec0ade5dac7ce8765eafd",
+      "sizeBytes": 1500
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { InteractiveMatrixKeypad } from \"./interactive-matrix-keypad\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[18rem] items-center justify-center bg-paper p-8\">\n      <InteractiveMatrixKeypad />\n    </div>\n  );\n}\n",
+      "contentHash": "c93f45a9b760c2727f35d61fa39b85fe896b99141b7009af201449b7e1514d18",
+      "sizeBytes": 250
+    }
+  ],
+  "tags": [
+    "keypad",
+    "pin",
+    "matrix",
+    "passcode",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "numeric-keypad-entry",
+      "visualModel": "pinpad-button-matrix",
+      "motionModel": "discrete-key-depression",
+      "layoutModel": "numeric-pinpad-grid",
+      "semanticPurpose": "security-pin-keypad"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-matrix-keypad.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Numeric Keypad Entry: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

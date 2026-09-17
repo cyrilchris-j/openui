@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "typewriter-stack",
+  "type": "registry:text",
+  "title": "Typewriter Stack",
+  "description": "Types and deletes successive phrases with a blinking caret, where typing speed varies per character (humanised), deletion is faster than typing, and the caret width adapts to the current glyph.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "typewriter-stack.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TypewriterStackProps {\n  phrases: string[];\n  /** Base typing delay per character in ms. */\n  typeDelay?: number;\n  /** Deletion delay per character in ms. */\n  deleteDelay?: number;\n  className?: string;\n}\n\nexport function TypewriterStack({\n  phrases,\n  typeDelay = 70,\n  deleteDelay = 32,\n  className,\n}: TypewriterStackProps) {\n  const [phraseIndex, setPhraseIndex] = useState(0);\n  const [length, setLength] = useState(0);\n  const [deleting, setDeleting] = useState(false);\n  const timer = useRef<number | null>(null);\n\n  const current = phrases[phraseIndex] ?? \"\";\n\n  useEffect(() => {\n    if (window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches) {\n      setLength(current.length);\n      return;\n    }\n\n    let next: number;\n    let action: () => void;\n\n    if (!deleting && length < current.length) {\n      next = typeDelay + Math.random() * 60; // humanised jitter\n      action = () => setLength((value) => value + 1);\n    } else if (!deleting && length === current.length) {\n      next = 1800;\n      action = () => setDeleting(true);\n    } else if (deleting && length > 0) {\n      next = deleteDelay;\n      action = () => setLength((value) => value - 1);\n    } else {\n      next = 400;\n      action = () => {\n        setDeleting(false);\n        setPhraseIndex((value) => (value + 1) % phrases.length);\n      };\n    }\n\n    timer.current = window.setTimeout(() => action(), next);\n    return () => {\n      if (timer.current !== null) window.clearTimeout(timer.current);\n    };\n  }, [length, deleting, current, phrases.length, typeDelay, deleteDelay]);\n\n  return (\n    <span className={cn(\"inline\", className)} role=\"status\" aria-label={current}>\n      <span aria-hidden>\n        {current.slice(0, length)}\n        <span\n          className=\"ml-0.5 inline-block w-[0.55ch] border-r-2 border-ink align-text-bottom\"\n          style={{ animation: \"openui-caret 1.1s steps(1) infinite\", height: \"1em\" }}\n        />\n      </span>\n      <style>{`@keyframes openui-caret { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } } @media (prefers-reduced-motion: reduce) { @keyframes openui-caret { 0%, 100% { opacity: 1 } } }`}</style>\n    </span>\n  );\n}\n\nexport default TypewriterStack;\n",
+      "contentHash": "be7958d4cd79a58f30b928e6b83271075dab517bc684331cebf9f588c3dd866e",
+      "sizeBytes": 2308
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { TypewriterStack } from \"./typewriter-stack\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[10rem] items-center justify-center bg-paper p-10\">\n      <p className=\"font-mono text-step-2 text-ink\">\n        <TypewriterStack phrases={[\"install once.\", \"own forever.\", \"compose freely.\"]} />\n      </p>\n    </div>\n  );\n}\n",
+      "contentHash": "d7c76261a42455908bb84d049cf6d83438e9597073d1893cea05e9bd1c4cc12c",
+      "sizeBytes": 355
+    }
+  ],
+  "tags": [
+    "typewriter",
+    "typing",
+    "caret",
+    "loop"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "timer-cycle",
+      "visualModel": "incremental-substring",
+      "motionModel": "asymmetric-type-erase",
+      "layoutModel": "inline",
+      "semanticPurpose": "heading-rotation"
+    }
+  },
+  "url": "https://openui.dev/r/typewriter-stack.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Sharp\nMotion: Mechanical\nTypography: Monospace\nColor: Monochrome\n\n## Rules\n\n- Timer Cycle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

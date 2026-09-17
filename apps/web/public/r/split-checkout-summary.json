@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-checkout-summary",
+  "type": "registry:layout",
+  "title": "Split Checkout Summary",
+  "description": "Ecommerce checkout layout with customer details/shipping on left and order ledger summary on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-checkout-summary.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SplitCheckoutSummaryProps extends React.HTMLAttributes<HTMLDivElement> {\n  form?: React.ReactNode;\n  summary?: React.ReactNode;\n}\n\nexport function SplitCheckoutSummary({ form, summary, className, ...props }: SplitCheckoutSummaryProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <div className=\"lg:col-span-7 space-y-4\">{form}</div>\n      <div className=\"lg:col-span-5 p-6 rounded-2xl border border-line bg-surface/30 space-y-4\">{summary}</div>\n    </div>\n  );\n}\n",
+      "contentHash": "59b47f786b89e93dfdece22d5bb22b82e9a67ec98bbe98b534b54445db74c4a0",
+      "sizeBytes": 635
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { SplitCheckoutSummary } from \"./split-checkout-summary\";\n\nexport default function SplitCheckoutSummaryDemo() {\n  return (\n    <SplitCheckoutSummary\n      form={\n        <div>\n          <h3 className=\"text-sm font-bold text-ink mb-2\">Shipping Information</h3>\n          <input type=\"text\" placeholder=\"Street Address\" className=\"w-full px-3 py-2 rounded-lg border border-line bg-paper text-xs\" />\n        </div>\n      }\n      summary={\n        <div className=\"text-xs\">\n          <div className=\"font-bold text-ink mb-2\">Order Summary</div>\n          <div className=\"flex justify-between py-1 text-ink/70\"><span>Components Pack</span><span>$49.00</span></div>\n          <div className=\"flex justify-between py-1 text-ink/70\"><span>Taxes</span><span>$4.90</span></div>\n          <div className=\"flex justify-between pt-2 border-t border-line font-bold text-ink\"><span>Total</span><span>$53.90</span></div>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "e62b95b43d3e85dafaf74fbcd7c74a5617c37ce4a646751309181145c540ec13",
+      "sizeBytes": 964
+    }
+  ],
+  "tags": [
+    "checkout",
+    "cart",
+    "summary",
+    "ecommerce",
+    "split"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "splits",
+    "fingerprint": {
+      "interactionModel": "checkout-order-summary-split",
+      "visualModel": "shipping-and-order-summary",
+      "motionModel": "none",
+      "layoutModel": "side-by-side-checkout-grid",
+      "semanticPurpose": "checkout-order-review"
+    }
+  },
+  "url": "https://openui.dev/r/split-checkout-summary.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Checkout Order Summary Split: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "acoustic-sound-nodes",
+  "type": "registry:background",
+  "title": "Acoustic Sound Nodes",
+  "description": "Chladni plate acoustic resonance nodal line patterns formed by harmonic frequency standing waves.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "acoustic-sound-nodes.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "chladni",
+    "acoustics",
+    "resonance",
+    "sound",
+    "nodal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-chladni-plate",
+      "visualModel": "acoustic-nodal-geometry",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "acoustic-resonance-pattern"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

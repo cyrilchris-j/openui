@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gradient-prism-rainbow",
+  "type": "registry:background",
+  "title": "Gradient Prism Rainbow",
+  "description": "Refractive optical prism dispersion band stretching diagonally with spectral color hues.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gradient-prism-rainbow.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface GradientPrismRainbowProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function GradientPrismRainbow({ className, children, ...props }: GradientPrismRainbowProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute -top-40 -left-40 w-[800px] h-[300px] pointer-events-none -z-10 rotate-45 blur-3xl opacity-30\"\n        style={{\n          background: \"linear-gradient(to right, #ef4444, #f97316, #eab308, #22c55e, #06b6d4, #8b5cf6)\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "8b678f875d62d9fcb25af12101102aa3d3fc24dc85c972b884bed5ca7f496bc0",
+      "sizeBytes": 717
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { GradientPrismRainbow } from \"./gradient-prism-rainbow\";\n\nexport default function GradientPrismRainbowDemo() {\n  return (\n    <GradientPrismRainbow className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-white\">Optical Prism</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-sans\">Spectral wavelength optical dispersion beam.</p>\n      </div>\n    </GradientPrismRainbow>\n  );\n}\n",
+      "contentHash": "33e2697a8210d89104408684314853d25769d6183b6882b5bae8ce0b6548b4d8",
+      "sizeBytes": 596
+    }
+  ],
+  "tags": [
+    "prism",
+    "rainbow",
+    "optics",
+    "spectral",
+    "gradient"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-prism-refraction",
+      "visualModel": "spectral-dispersion-ribbon",
+      "motionModel": "none",
+      "layoutModel": "diagonal-band-underlay",
+      "semanticPurpose": "optical-refraction-backdrop"
+    }
+  },
+  "url": "https://openui.dev/r/gradient-prism-rainbow.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Soft\nMotion: None\nTypography: Grotesk\nColor: Neon On Dark\n\n## Rules\n\n- Passive Prism Refraction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

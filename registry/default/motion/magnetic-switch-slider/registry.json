@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "magnetic-switch-slider",
+  "type": "registry:motion",
+  "title": "Magnetic Switch Slider",
+  "description": "An industrial toggle lever sliding smoothly along a linear track with metallic snap detents and spring vibration.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "magnetic-switch-slider.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "switch",
+    "slider",
+    "toggle",
+    "mechanical",
+    "magnetic"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "lever-bistable-throw",
+      "visualModel": "metallic-knife-switch",
+      "motionModel": "bistable-mechanical-snap",
+      "layoutModel": "horizontal-switch-chassis",
+      "semanticPurpose": "industrial-breaker-switch"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "industrial",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

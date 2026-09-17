@@ -51,6 +51,13 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-badge",
+      "visualModel": "dot-prefix-pill",
+      "layoutModel": "inline-badge",
+      "semanticPurpose": "system-state-indicator"
     }
   },
   "url": "https://openui.dev/r/status-pill.json",

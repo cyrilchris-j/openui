@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "wandering-gradient-type",
+  "type": "registry:text",
+  "title": "Wandering Gradient Type",
+  "description": "A multi-stop gradient that drifts through the glyphs on a slow non-repeating noise path — background-position animated through keyframes that never land on the same offset twice in a row, so the colour never loops visibly.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "wandering-gradient-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "gradient",
+    "iridescent",
+    "drift",
+    "animated"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "clipped-gradient",
+      "motionModel": "non-repeating-position-path",
+      "layoutModel": "inline",
+      "semanticPurpose": "display-accent"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "pastel"
+    }
+  }
+}

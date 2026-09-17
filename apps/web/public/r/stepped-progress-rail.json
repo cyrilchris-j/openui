@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepped-progress-rail",
+  "type": "registry:component",
+  "title": "Stepped Progress Rail",
+  "description": "A segmented workflow milestone indicator showing current execution step and completed checkpoints.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepped-progress-rail.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface SteppedProgressRailProps {\n  currentStep?: number;\n  totalSteps?: number;\n  className?: string;\n}\n\nexport function SteppedProgressRail({\n  currentStep = 3,\n  totalSteps = 5,\n  className,\n}: SteppedProgressRailProps) {\n  return (\n    <div className={cn(\"w-full max-w-sm rounded-xl border border-line bg-paper p-5 shadow-sm\", className)}>\n      <div className=\"flex justify-between font-mono text-xs text-ink/60 mb-3\">\n        <span>DEPLOY STAGES</span>\n        <span className=\"font-bold text-ink\">STEP {currentStep}/{totalSteps}</span>\n      </div>\n\n      <div className=\"flex gap-1.5\">\n        {Array.from({ length: totalSteps }).map((_, i) => (\n          <div\n            key={i}\n            className={cn(\n              \"h-2 flex-1 rounded-full transition-all duration-300\",\n              i < currentStep ? \"bg-ink\" : \"bg-line/40\"\n            )}\n          />\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport default SteppedProgressRail;\n",
+      "contentHash": "09ff1afd96bc8190d160ef1e856c3c6d46bdbe9270e1ab9592bf7e80fd5d5b9b",
+      "sizeBytes": 1006
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SteppedProgressRail } from \"./stepped-progress-rail\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SteppedProgressRail />\n    </div>\n  );\n}\n",
+      "contentHash": "2c8a5a063b979cd95ed3c8d0a27db067948da517e9306db1db7ce33462a710d3",
+      "sizeBytes": 238
+    }
+  ],
+  "tags": [
+    "progress",
+    "rail",
+    "stepped",
+    "milestones",
+    "workflow"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "feedback",
+    "fingerprint": {
+      "interactionModel": "step-station-milestones",
+      "visualModel": "segmented-station-rail",
+      "motionModel": "step-indicator-advance",
+      "layoutModel": "horizontal-progress-rail",
+      "semanticPurpose": "workflow-phase-indicator"
+    }
+  },
+  "url": "https://openui.dev/r/stepped-progress-rail.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Mechanical\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Step Station Milestones: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

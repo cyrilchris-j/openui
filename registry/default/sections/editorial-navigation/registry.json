@@ -5,15 +5,34 @@
   "title": "Editorial Navigation",
   "description": "A two-tier masthead: a thin utility strip above a ruled wordmark row, with a mobile disclosure that keeps the same reading order and no hamburger icon dependency.",
   "category": "sections",
-  "dependencies": ["react"],
-  "registryDependencies": ["cn"],
-  "files": [{ "path": "editorial-navigation.tsx", "type": "registry:section" }],
-  "tags": ["navigation", "header", "masthead"],
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "editorial-navigation.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "navigation",
+    "header",
+    "masthead"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["keyboard-accessible", "skip-link", "works-without-js-fallback"],
-    "peer": { "react": ">=19" },
+    "features": [
+      "keyboard-accessible",
+      "skip-link",
+      "works-without-js-fallback"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
     "dna": {
       "genre": "editorial",
       "macrostructure": "rail",
@@ -22,6 +41,13 @@
       "motionLanguage": "subtle",
       "typographyStyle": "serif-display",
       "colorStrategy": "monochrome"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "hierarchical-subnav-disclosure",
+      "visualModel": "minimal-ink-rule-header",
+      "layoutModel": "top-anchored-sticky-bar",
+      "semanticPurpose": "primary-site-navigation"
     }
   }
 }

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "centered-reading-prose",
+  "type": "registry:layout",
+  "title": "Centered Reading Prose",
+  "description": "Narrow-measure centered typography layout optimized for distraction-free longform reading.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "centered-reading-prose.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "prose",
+    "reading",
+    "centered",
+    "typography",
+    "editorial"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "reading",
+    "fingerprint": {
+      "interactionModel": "passive-focused-reading",
+      "visualModel": "narrow-measure-prose-strip",
+      "motionModel": "none",
+      "layoutModel": "centered-single-column",
+      "semanticPurpose": "distraction-free-reading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

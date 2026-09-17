@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "split-button-dropdown",
+  "type": "registry:component",
+  "title": "Split Button Dropdown",
+  "description": "A composite action button with a primary click surface and a distinct chevron dropdown trigger for secondary variants.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "split-button-dropdown.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "split-button",
+    "button",
+    "dropdown",
+    "actions",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "split-action-dropdown",
+      "visualModel": "bipartite-action-capsule",
+      "motionModel": "none",
+      "layoutModel": "horizontal-split-button",
+      "semanticPurpose": "dual-action-split-button"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

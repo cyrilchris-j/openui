@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "firework-pop-glyphs",
+  "type": "registry:text",
+  "title": "Firework Pop Glyphs",
+  "description": "Celebration typography: on trigger, each glyph fires once — pops upward with rotation, bursts into two spark pseudo-elements that fly apart, then the glyph re-seats with an overshoot settle. One shot per click.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "firework-pop-glyphs.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "celebration",
+    "burst",
+    "firework",
+    "one-shot"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "kinetic",
+    "fingerprint": {
+      "interactionModel": "click-trigger-one-shot",
+      "visualModel": "glyph-burst-sparks",
+      "motionModel": "pop-overshoot-settle",
+      "layoutModel": "inline",
+      "semanticPurpose": "celebration-heading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

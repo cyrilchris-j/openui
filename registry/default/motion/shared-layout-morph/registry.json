@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "shared-layout-morph",
+  "type": "registry:motion",
+  "title": "Shared Layout Morph",
+  "description": "A selected card expands into a detail panel while its identity persists: FLIP technique — first, last, invert, play — implemented from scratch with measured rects and one transform, so the element never teleports.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "shared-layout-morph.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "flip",
+    "morph",
+    "shared-element",
+    "expansion"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "page",
+    "fingerprint": {
+      "interactionModel": "select-expand",
+      "visualModel": "measured-rect-morph",
+      "motionModel": "flip-invert-play",
+      "layoutModel": "grid-to-overlay",
+      "semanticPurpose": "detail-navigation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

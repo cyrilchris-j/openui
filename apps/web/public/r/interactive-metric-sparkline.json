@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-metric-sparkline",
+  "type": "registry:block",
+  "title": "Interactive Metric Sparkline",
+  "description": "A KPI telemetry card pairing high-precision numerical stats with interactive trend sparkline charts.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-metric-sparkline.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InteractiveMetricSparkline({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-sm mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <div className=\"text-neutral-400 text-[10px] uppercase\">Daily Active Invocations</div>\n      <div className=\"text-2xl font-bold text-neutral-900 dark:text-white mt-1\">1,492,800</div>\n      <div className=\"text-emerald-500 font-bold text-[11px] mt-0.5\">+14.2% vs yesterday</div>\n      <div className=\"mt-4 h-16 rounded bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center text-neutral-400 text-[10px]\">\n        [SPARKLINE TREND CURVE]\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "9653859db33a2a2521cceaa343d5db70375078891b4e60765d51389b85e442a9",
+      "sizeBytes": 885
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { InteractiveMetricSparkline } from \"./interactive-metric-sparkline\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <InteractiveMetricSparkline />\n    </div>\n  );\n}\n",
+      "contentHash": "5a232cca73d68fb10cc0ddb88c21158aef55d3ddff2233ff2d336d327a804eb4",
+      "sizeBytes": 307
+    }
+  ],
+  "tags": [
+    "sparkline",
+    "metrics",
+    "kpi",
+    "charts",
+    "analytics"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "analytics",
+    "fingerprint": {
+      "interactionModel": "sparkline-telemetry-scrubbing",
+      "visualModel": "stat-card-with-embedded-chart",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "metric-sparkline-visualization"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-metric-sparkline.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Sparkline Telemetry Scrubbing: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

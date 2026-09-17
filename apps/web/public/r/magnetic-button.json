@@ -51,6 +51,14 @@
     ],
     "peer": {
       "react": ">=19"
+    },
+    "subcategory": "actions",
+    "fingerprint": {
+      "interactionModel": "magnetic-pointer-attraction",
+      "visualModel": "editorial-outline",
+      "motionModel": "spring-follow",
+      "layoutModel": "inline",
+      "semanticPurpose": "primary-cta"
     }
   },
   "url": "https://openui.dev/r/magnetic-button.json",

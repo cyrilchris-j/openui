@@ -54,9 +54,12 @@ export interface ResourceSummary {
     displayName: string | null;
     avatarUrl: string | null;
   } | null;
-  latestVersion: string | null;
-  tags: string[];
-  design: {
+  latestVersion: string | null;    tags: string[];
+    /** Subcategory within the category; null when the item does not declare one. */
+    subcategory: string | null;
+    /** Behavioural fingerprint; null when the item does not declare one. */
+    fingerprint: Partial<Record<string, string>> | null;
+    design: {
     genre: string | null;
     macrostructure: string | null;
     density: string | null;

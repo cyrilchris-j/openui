@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "page-shutter-transition",
+  "type": "registry:motion",
+  "title": "Page Shutter Transition",
+  "description": "An aperture shutter transition consisting of interleaved horizontal blinds wiping the viewport between states.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "page-shutter-transition.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "shutter",
+    "blinds",
+    "transition",
+    "page",
+    "wipe"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "trigger-aperture-wipe",
+      "visualModel": "interleaved-horizontal-slats",
+      "motionModel": "staggered-scale-shutter",
+      "layoutModel": "viewport-covering-blinds",
+      "semanticPurpose": "page-view-interrupter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "two-column-help-center",
+  "type": "registry:layout",
+  "title": "Two Column Help Center",
+  "description": "Knowledge base layout with categorical help directories on left and popular FAQ articles on right.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "two-column-help-center.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface TwoColumnHelpCenterProps extends React.HTMLAttributes<HTMLDivElement> {\n  categories?: React.ReactNode;\n  articles?: React.ReactNode;\n}\n\nexport function TwoColumnHelpCenter({ categories, articles, className, ...props }: TwoColumnHelpCenterProps) {\n  return (\n    <div className={cn(\"grid grid-cols-1 md:grid-cols-12 gap-8 max-w-5xl mx-auto p-6 font-sans items-start\", className)} {...props}>\n      <aside className=\"md:col-span-4 space-y-2\">{categories}</aside>\n      <main className=\"md:col-span-8 space-y-4\">{articles}</main>\n    </div>\n  );\n}\n",
+      "contentHash": "7284b490ffd49e92b52c86e3eff967e07b180a8510e4db870293a1097e7f4d03",
+      "sizeBytes": 610
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:layout",
+      "content": "\"use client\";\n\nimport { TwoColumnHelpCenter } from \"./two-column-help-center\";\n\nexport default function TwoColumnHelpCenterDemo() {\n  return (\n    <TwoColumnHelpCenter\n      categories={\n        <div className=\"text-xs space-y-1\">\n          <div className=\"font-bold mb-2\">Help Topics</div>\n          <div className=\"p-2 rounded bg-accent/15 text-accent font-semibold\">Account & API Keys</div>\n          <div className=\"p-2 rounded text-ink/70\">CLI & Automation</div>\n        </div>\n      }\n      articles={\n        <div className=\"space-y-3\">\n          <div className=\"p-4 rounded-xl border border-line bg-paper text-xs\">\n            <h4 className=\"font-bold text-ink\">How to generate registry bundles</h4>\n            <p className=\"text-ink/60 mt-1\">Detailed guide to building JSON artifacts.</p>\n          </div>\n        </div>\n      }\n    />\n  );\n}\n",
+      "contentHash": "ae34ce151cb3cf9a7f580d78aefbd905e25a62e9d886a07f100dfb5b7808f4fd",
+      "sizeBytes": 853
+    }
+  ],
+  "tags": [
+    "help",
+    "knowledgebase",
+    "faq",
+    "support",
+    "shell"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "split",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "shells",
+    "fingerprint": {
+      "interactionModel": "knowledgebase-category-navigation",
+      "visualModel": "category-aside-and-article-rack",
+      "motionModel": "none",
+      "layoutModel": "two-column-help-shell",
+      "semanticPurpose": "help-center-portal-layout"
+    }
+  },
+  "url": "https://openui.dev/r/two-column-help-center.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Split\nDensity: Medium\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Knowledgebase Category Navigation: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

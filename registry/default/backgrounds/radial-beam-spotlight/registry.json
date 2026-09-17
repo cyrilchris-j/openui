@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "radial-beam-spotlight",
+  "type": "registry:background",
+  "title": "Radial Beam Spotlight",
+  "description": "An angled overhead conical beam spotlight illuminating the focal hero area against darkness.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "radial-beam-spotlight.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "spotlight",
+    "beam",
+    "ambient",
+    "lighting",
+    "hero"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "ambient",
+    "fingerprint": {
+      "interactionModel": "passive-lighting-underlay",
+      "visualModel": "conic-spotlight-cone",
+      "motionModel": "none",
+      "layoutModel": "top-anchored-cone",
+      "semanticPurpose": "stage-spotlight-illumination"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

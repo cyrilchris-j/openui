@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "scroll-shear-type",
+  "type": "registry:text",
+  "title": "Scroll Shear Type",
+  "description": "Headline that skews proportionally to scroll velocity and springs back to true when scrolling stops — the letters lean into the motion like pages fanned by wind, driven by a critically damped spring.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "scroll-shear-type.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "scroll",
+    "velocity",
+    "skew",
+    "shear"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "scroll",
+    "fingerprint": {
+      "interactionModel": "scroll-velocity-trigger",
+      "visualModel": "skewed-block",
+      "motionModel": "damped-spring-return",
+      "layoutModel": "block",
+      "semanticPurpose": "kinetic-heading"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

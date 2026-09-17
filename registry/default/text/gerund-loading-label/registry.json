@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gerund-loading-label",
+  "type": "registry:text",
+  "title": "Gerund Loading Label",
+  "description": "Loading states as real gerunds: “Validating…”, “Compiling…”, “Installing…” — the label swaps at random-ish intervals with a typing underline that grows like a progress sense, and a final past-tense completion flip.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gerund-loading-label.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "loading",
+    "gerund",
+    "progress",
+    "states"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "technical",
+    "fingerprint": {
+      "interactionModel": "async-state-machine",
+      "visualModel": "typed-progress-label",
+      "motionModel": "underline-grow",
+      "layoutModel": "inline",
+      "semanticPurpose": "progress-feedback"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

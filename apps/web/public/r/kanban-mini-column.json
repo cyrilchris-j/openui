@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "kanban-mini-column",
+  "type": "registry:component",
+  "title": "Kanban Mini Column",
+  "description": "Streamlined single-column task rack with item count pill, checkable items, and quick-add inline input.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "kanban-mini-column.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Plus, Check, MoreHorizontal } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function KanbanMiniColumn({ className }: { className?: string }) {\n  const [tasks, setTasks] = useState([\n    { id: \"1\", title: \"Review RFC for auth tokens\", done: false },\n    { id: \"2\", title: \"Migrate registry bundles to CDN\", done: true },\n    { id: \"3\", title: \"Benchmark latency on edge proxy\", done: false },\n  ]);\n  const [newTitle, setNewTitle] = useState(\"\");\n\n  const addTask = (e: React.FormEvent) => {\n    e.preventDefault();\n    if (!newTitle.trim()) return;\n    setTasks((prev) => [...prev, { id: String(Date.now()), title: newTitle.trim(), done: false }]);\n    setNewTitle(\"\");\n  };\n\n  const toggle = (id: string) => {\n    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));\n  };\n\n  return (\n    <div className={cn(\"w-72 rounded-xl border border-line bg-surface/40 p-3 flex flex-col gap-2 font-sans\", className)}>\n      <div className=\"flex items-center justify-between px-1\">\n        <div className=\"flex items-center gap-2\">\n          <span className=\"text-xs font-semibold text-ink\">In Progress</span>\n          <span className=\"text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-line text-ink/60\">\n            {tasks.filter((t) => !t.done).length}\n          </span>\n        </div>\n        <MoreHorizontal className=\"w-4 h-4 text-ink/40 cursor-pointer hover:text-ink\" />\n      </div>\n\n      <div className=\"flex flex-col gap-1.5\">\n        {tasks.map((task) => (\n          <div\n            key={task.id}\n            onClick={() => toggle(task.id)}\n            className={cn(\n              \"flex items-start gap-2 p-2.5 rounded-lg border border-line bg-paper cursor-pointer transition-colors shadow-xs\",\n              task.done ? \"opacity-60 bg-surface/60\" : \"hover:border-accent/40\"\n            )}\n          >\n            <div\n              className={cn(\n                \"w-4 h-4 rounded border flex items-center justify-center mt-0.5 transition-colors\",\n                task.done ? \"bg-emerald-500 border-emerald-500 text-white\" : \"border-line\"\n              )}\n            >\n              {task.done && <Check className=\"w-3 h-3\" />}\n            </div>\n            <span className={cn(\"text-xs text-ink flex-1\", task.done && \"line-through text-ink/50\")}>\n              {task.title}\n            </span>\n          </div>\n        ))}\n      </div>\n\n      <form onSubmit={addTask} className=\"mt-1 flex items-center gap-1.5\">\n        <input\n          type=\"text\"\n          value={newTitle}\n          onChange={(e) => setNewTitle(e.target.value)}\n          placeholder=\"New task...\"\n          className=\"flex-1 px-2.5 py-1.5 text-xs rounded-md border border-line bg-paper text-ink focus:outline-none focus:border-accent font-sans\"\n        />\n        <button\n          type=\"submit\"\n          className=\"p-1.5 rounded-md bg-accent text-white hover:bg-accent/90 transition-colors\"\n          aria-label=\"Add task\"\n        >\n          <Plus className=\"w-3.5 h-3.5\" />\n        </button>\n      </form>\n    </div>\n  );\n}\n",
+      "contentHash": "58122ca23392927e259a945a32767659372354bd73f964a30f1826207ffd3d03",
+      "sizeBytes": 3107
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { KanbanMiniColumn } from \"./kanban-mini-column\";\n\nexport default function KanbanMiniColumnDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[300px]\">\n      <KanbanMiniColumn />\n    </div>\n  );\n}\n",
+      "contentHash": "04c7ded209ec197e7486a5c4d8646a3e4916fd7b025d0b8837ff8f0e7b16ffd1",
+      "sizeBytes": 265
+    }
+  ],
+  "tags": [
+    "kanban",
+    "column",
+    "task",
+    "card",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "in-situ-task-addition-and-toggle",
+      "visualModel": "vertical-kanban-lane",
+      "motionModel": "none",
+      "layoutModel": "single-column-rail",
+      "semanticPurpose": "lightweight-task-column"
+    }
+  },
+  "url": "https://openui.dev/r/kanban-mini-column.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- In Situ Task Addition And Toggle: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

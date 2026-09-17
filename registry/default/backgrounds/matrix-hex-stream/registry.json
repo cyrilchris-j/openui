@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "matrix-hex-stream",
+  "type": "registry:background",
+  "title": "Matrix Hex Stream",
+  "description": "Hexadecimal byte stream memory dump (0xDEAD, 0xBEEF) raining downward on canvas.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "matrix-hex-stream.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "hex",
+    "memory",
+    "stream",
+    "canvas",
+    "cyber"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-hex-stream",
+      "visualModel": "hexadecimal-memory-dump",
+      "motionModel": "vertical-code-rain",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "hex-telemetry-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    }
+  }
+}

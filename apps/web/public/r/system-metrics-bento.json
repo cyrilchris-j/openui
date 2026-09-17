@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "system-metrics-bento",
+  "type": "registry:section",
+  "title": "System Metrics Bento",
+  "description": "A bento-style telemetry board displaying memory usage, throughput, and cluster worker health.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "system-metrics-bento.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function SystemMetricsBento({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-5xl mx-auto font-mono text-xs\", className)} {...props}>\n      <div className=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n        <div className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n          <div className=\"text-neutral-400 uppercase text-[10px]\">Active Edge Workers</div>\n          <div className=\"text-3xl font-bold mt-2 text-neutral-900 dark:text-neutral-100\">4,289</div>\n          <div className=\"text-emerald-500 mt-1\">100% healthy</div>\n        </div>\n        <div className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n          <div className=\"text-neutral-400 uppercase text-[10px]\">p99 Request Latency</div>\n          <div className=\"text-3xl font-bold mt-2 text-neutral-900 dark:text-neutral-100\">1.2 ms</div>\n          <div className=\"text-emerald-500 mt-1\">-14% vs avg</div>\n        </div>\n        <div className=\"p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950\">\n          <div className=\"text-neutral-400 uppercase text-[10px]\">Memory Pressure</div>\n          <div className=\"text-3xl font-bold mt-2 text-neutral-900 dark:text-neutral-100\">28.4%</div>\n          <div className=\"text-neutral-500 mt-1\">Nominal isolate range</div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "1d81b588fb510957a04cf225e0e990b6ea75ff898a2cdbc57712fbc28760fc62",
+      "sizeBytes": 1592
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { SystemMetricsBento } from \"./system-metrics-bento\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-100 dark:bg-neutral-900\">\n      <SystemMetricsBento />\n    </div>\n  );\n}\n",
+      "contentHash": "3f99786d78c47063cf3fcab4e53a1cd424a15a47c501b10846deed4979cafc46",
+      "sizeBytes": 283
+    }
+  ],
+  "tags": [
+    "bento",
+    "metrics",
+    "telemetry",
+    "system",
+    "monitoring"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "telemetry",
+    "fingerprint": {
+      "interactionModel": "system-metrics-bento-interaction",
+      "visualModel": "system-metrics-bento-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "system-metrics-bento-section"
+    }
+  },
+  "url": "https://openui.dev/r/system-metrics-bento.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- System Metrics Bento Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

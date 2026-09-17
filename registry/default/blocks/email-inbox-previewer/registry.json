@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "email-inbox-previewer",
+  "type": "registry:block",
+  "title": "Email Inbox Previewer",
+  "description": "A dual-column webmail client displaying message threads, sender badges, and email reading pane.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "email-inbox-previewer.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "email",
+    "inbox",
+    "mail",
+    "reader",
+    "messages"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "email",
+    "fingerprint": {
+      "interactionModel": "email-selection-and-reading-pane",
+      "visualModel": "split-email-inbox-workspace",
+      "motionModel": "none",
+      "layoutModel": "split-layout",
+      "semanticPurpose": "email-inbox-navigation"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "split",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "compact",
+      "genre": "minimal"
+    }
+  }
+}

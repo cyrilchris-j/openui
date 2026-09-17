@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-view-switcher",
+  "type": "registry:component",
+  "title": "Segmented View Switcher",
+  "description": "An icon view switcher toggling presentation between grid, list, and compact modes.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-view-switcher.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface SegmentedViewSwitcherProps {\n  className?: string;\n}\n\nexport function SegmentedViewSwitcher({ className }: SegmentedViewSwitcherProps) {\n  const [view, setView] = useState<\"grid\" | \"list\">(\"grid\");\n\n  return (\n    <div className={cn(\"inline-flex rounded-lg border border-line bg-paper p-1 shadow-sm font-mono text-xs\", className)}>\n      <button\n        type=\"button\"\n        onClick={() => setView(\"grid\")}\n        className={cn(\"px-3 py-1 rounded font-bold transition-all\", view === \"grid\" ? \"bg-ink text-paper\" : \"text-ink/60\")}\n      >\n        Grid\n      </button>\n      <button\n        type=\"button\"\n        onClick={() => setView(\"list\")}\n        className={cn(\"px-3 py-1 rounded font-bold transition-all\", view === \"list\" ? \"bg-ink text-paper\" : \"text-ink/60\")}\n      >\n        List\n      </button>\n    </div>\n  );\n}\n\nexport default SegmentedViewSwitcher;\n",
+      "contentHash": "1e7d60d90cb404822a0d57b74c67b67d98a63ac528cd5824841849d4064e6c3b",
+      "sizeBytes": 961
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { SegmentedViewSwitcher } from \"./segmented-view-switcher\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <SegmentedViewSwitcher />\n    </div>\n  );\n}\n",
+      "contentHash": "f8b66c2646e33fdec2c46cff80588622c0cbe5f614b471489f0b92a13c88d998",
+      "sizeBytes": 244
+    }
+  ],
+  "tags": [
+    "views",
+    "switcher",
+    "grid",
+    "list",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "icon-view-selection",
+      "visualModel": "tri-state-view-switch",
+      "motionModel": "none",
+      "layoutModel": "inline-switcher-cluster",
+      "semanticPurpose": "layout-mode-selector"
+    }
+  },
+  "url": "https://openui.dev/r/segmented-view-switcher.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Icon View Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

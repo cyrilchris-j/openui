@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "gauge-speedometer",
+  "type": "registry:component",
+  "title": "Gauge Speedometer",
+  "description": "SVG arc speedometer gauge showing current utilization percentage with color warning thresholds.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "gauge-speedometer.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "gauge",
+    "speedometer",
+    "svg",
+    "metric",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "slider-driven-arc-gauge",
+      "visualModel": "radial-speedometer-arc",
+      "motionModel": "none",
+      "layoutModel": "radial-meter-box",
+      "semanticPurpose": "utilization-telemetry-gauge"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

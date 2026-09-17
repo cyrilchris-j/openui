@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "glitch-interrupt",
+  "type": "registry:motion",
+  "title": "Glitch Interrupt",
+  "description": "Random micro-glitches interrupt an otherwise calm element: RGB-split flickers, 1-frame clip slices and character substitutions fire on a seeded schedule, then the element returns to perfect stillness — decay, not a loop.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "glitch-interrupt.tsx",
+      "type": "registry:motion",
+      "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface GlitchInterruptProps {\n  children: string;\n  /** Average seconds between glitches. */\n  intervalSeconds?: number;\n  className?: string;\n}\n\nexport function GlitchInterrupt({ children, intervalSeconds = 4, className }: GlitchInterruptProps) {\n  const [glitching, setGlitching] = useState(false);\n  const timeout = useRef<number | undefined>(undefined);\n  const reduced =\n    typeof window !== \"undefined\" &&\n    window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches;\n\n  useEffect(() => {\n    if (reduced) return;\n    const schedule = () => {\n      const wait = intervalSeconds * 1000 * (0.5 + Math.random());\n      timeout.current = window.setTimeout(() => {\n        setGlitching(true);\n        window.setTimeout(() => setGlitching(false), 160 + Math.random() * 140);\n        schedule();\n      }, wait);\n    };\n    schedule();\n    return () => window.clearTimeout(timeout.current);\n  }, [intervalSeconds, reduced]);\n\n  return (\n    <span\n      className={cn(\"relative inline-block select-none font-display\", className)}\n      role=\"text\"\n      aria-label={children}\n      style={\n        glitching\n          ? {\n              textShadow:\n                \"2px 0 rgba(255,0,80,0.8), -2px 0 rgba(0,220,255,0.8)\",\n              transform: `translateX(${(Math.random() * 4 - 2).toFixed(1)}px)`,\n              clipPath: `inset(${(Math.random() * 30).toFixed(0)}% 0 ${(Math.random() * 30).toFixed(0)}% 0)`,\n            }\n          : undefined\n      }\n      aria-hidden\n    >\n      {children}\n      <span className=\"sr-only\">{children}</span>\n    </span>\n  );\n}\n\nexport default GlitchInterrupt;\n",
+      "contentHash": "bee1ae91c68d2eb5d5581fa2c51e96cf7cd5c56e4a57e5062aaa0a29bdeb9465",
+      "sizeBytes": 1712
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:motion",
+      "content": "import { GlitchInterrupt } from \"./glitch-interrupt\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[13rem] items-center justify-center bg-ink p-10\">\n      <GlitchInterrupt className=\"text-step-3 text-paper\">signal / lost</GlitchInterrupt>\n    </div>\n  );\n}\n",
+      "contentHash": "79773be4b74c708ad14e2d0f89b93d72d669181ea721fb6a9635ed34eab66c13",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "glitch",
+    "interrupt",
+    "rgb-split",
+    "chaos"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "brutalist",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "experimental",
+    "fingerprint": {
+      "interactionModel": "seeded-random-interrupt",
+      "visualModel": "rgb-split-slices",
+      "motionModel": "burst-decay",
+      "layoutModel": "inline",
+      "semanticPurpose": "unsettling-accent"
+    }
+  },
+  "url": "https://openui.dev/r/glitch-interrupt.json",
+  "designRules": "# Design System\n\nGenre: Brutalist\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: Kinetic\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Seeded Random Interrupt: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

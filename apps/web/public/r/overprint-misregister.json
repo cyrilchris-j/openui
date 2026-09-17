@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "overprint-misregister",
+  "type": "registry:text",
+  "title": "Overprint Misregister",
+  "description": "Simulated CMYK misregistration: cyan, magenta and yellow copies of the word sit one pixel off each side of a black key plate, and dragging a control shifts the plates further out of register like a cheap print run.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "overprint-misregister.tsx",
+      "type": "registry:text",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface OverprintMisregisterProps {\n  children: string;\n  /** Max plate offset in px at full misregistration. */\n  maxOffset?: number;\n  className?: string;\n}\n\nexport function OverprintMisregister({ children, maxOffset = 5, className }: OverprintMisregisterProps) {\n  const [misregister, setMisregister] = useState(0.35);\n  const offset = misregister * maxOffset;\n\n  return (\n    <span className={cn(\"inline-flex flex-col gap-4\", className)}>\n      <span className=\"relative inline-block select-none font-display\" role=\"text\" aria-label={children}>\n        {([\"#00a5e3\", \"#e5007d\", \"#ffd400\"] as const).map((color, index) => {\n          const angle = (index * Math.PI * 2) / 3;\n          return (\n            <span\n              key={color}\n              aria-hidden\n              className=\"absolute left-0 top-0 block\"\n              style={{\n                color,\n                mixBlendMode: \"multiply\",\n                opacity: 0.9,\n                transform: `translate(${Math.cos(angle) * offset}px, ${Math.sin(angle) * offset}px)`,\n              }}\n            >\n              {children}\n            </span>\n          );\n        })}\n        <span aria-hidden className=\"relative z-10 block text-ink\">\n          {children}\n        </span>\n        <span className=\"sr-only\">{children}</span>\n      </span>\n      <label className=\"flex items-center gap-2 font-mono text-xs text-ink/70\">\n        misregister\n        <input\n          type=\"range\"\n          min={0}\n          max={1}\n          step={0.05}\n          value={misregister}\n          onChange={(event) => setMisregister(Number(event.target.value))}\n          className=\"w-32\"\n        />\n      </label>\n    </span>\n  );\n}\n\nexport default OverprintMisregister;\n",
+      "contentHash": "93890d4765025db89956e12d2908dc3e80c5706ad9e9e7b84a160d3661edc953",
+      "sizeBytes": 1814
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:text",
+      "content": "import { OverprintMisregister } from \"./overprint-misregister\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[15rem] items-center justify-center bg-paper p-10\">\n      <OverprintMisregister className=\"text-step-4\">Off-Press</OverprintMisregister>\n    </div>\n  );\n}\n",
+      "contentHash": "869a5f033d74cf81533adf80fbe8242f4c013c3850afadf70676f9963e0356dd",
+      "sizeBytes": 295
+    }
+  ],
+  "tags": [
+    "cmyk",
+    "overprint",
+    "print",
+    "misregister"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "variable-poster",
+      "colorStrategy": "duotone"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "paint",
+    "fingerprint": {
+      "interactionModel": "offset-dial",
+      "visualModel": "cmyk-plate-split",
+      "motionModel": "none",
+      "layoutModel": "stack",
+      "semanticPurpose": "display-statement"
+    }
+  },
+  "url": "https://openui.dev/r/overprint-misregister.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Stack\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Variable Poster\nColor: Duotone\n\n## Rules\n\n- Offset Dial: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "download-app-banner",
+  "type": "registry:section",
+  "title": "Download App Banner",
+  "description": "Mobile application callout section with Apple App Store and Google Play badge triggers.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "download-app-banner.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "download",
+    "mobile",
+    "app",
+    "store",
+    "cta"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "cta",
+    "fingerprint": {
+      "interactionModel": "app-store-download-dispatch",
+      "visualModel": "mobile-app-download-banner",
+      "motionModel": "none",
+      "layoutModel": "centered-app-banner",
+      "semanticPurpose": "mobile-app-download-callout"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

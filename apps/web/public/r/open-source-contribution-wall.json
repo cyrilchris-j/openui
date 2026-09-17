@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "open-source-contribution-wall",
+  "type": "registry:section",
+  "title": "Open Source Contribution Wall",
+  "description": "A community recognition board displaying GitHub stars, active PR contributors, and sponsorship tiers.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "open-source-contribution-wall.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface Contributor {\n  handle: string;\n  contributions: number;\n  avatarLetter: string;\n}\n\nexport interface OpenSourceContributionWallProps extends React.HTMLAttributes<HTMLElement> {\n  stars?: string;\n  forks?: string;\n  contributors?: Contributor[];\n}\n\nconst DEFAULT_CONTRIBUTORS: Contributor[] = [\n  { handle: \"cyrilchris\", contributions: 420, avatarLetter: \"C\" },\n  { handle: \"elena-r\", contributions: 184, avatarLetter: \"E\" },\n  { handle: \"marcus_v\", contributions: 98, avatarLetter: \"M\" },\n  { handle: \"devon_dev\", contributions: 74, avatarLetter: \"D\" },\n  { handle: \"alex_cloud\", contributions: 52, avatarLetter: \"A\" },\n  { handle: \"sara_design\", contributions: 41, avatarLetter: \"S\" },\n];\n\nexport function OpenSourceContributionWall({\n  stars = \"14.2k\",\n  forks = \"1.8k\",\n  contributors = DEFAULT_CONTRIBUTORS,\n  className,\n  ...props\n}: OpenSourceContributionWallProps) {\n  return (\n    <section className={cn(\"w-full py-16 px-4 md:px-8 max-w-5xl mx-auto\", className)} {...props}>\n      <div className=\"bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-2xl p-6 md:p-10 font-mono\">\n        <div className=\"flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-neutral-800\">\n          <div>\n            <div className=\"text-xs uppercase tracking-widest text-emerald-400 font-bold\">\n              Community Driven\n            </div>\n            <h2 className=\"text-2xl md:text-3xl font-bold tracking-tight text-white mt-1\">\n              Built in public by 200+ contributors\n            </h2>\n          </div>\n          <div className=\"flex items-center gap-4 text-xs\">\n            <div className=\"p-3 bg-neutral-900 border border-neutral-800 rounded text-center\">\n              <div className=\"text-lg font-bold text-white\">{stars}</div>\n              <div className=\"text-[10px] text-neutral-400\">GitHub Stars</div>\n            </div>\n            <div className=\"p-3 bg-neutral-900 border border-neutral-800 rounded text-center\">\n              <div className=\"text-lg font-bold text-white\">{forks}</div>\n              <div className=\"text-[10px] text-neutral-400\">Forks</div>\n            </div>\n          </div>\n        </div>\n\n        <div className=\"mt-8\">\n          <div className=\"text-xs text-neutral-400 uppercase tracking-wider mb-4\">\n            Recent Code Contributors\n          </div>\n          <div className=\"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3\">\n            {contributors.map((c) => (\n              <div\n                key={c.handle}\n                className=\"p-3 rounded bg-neutral-900/60 border border-neutral-800 flex items-center gap-3\"\n              >\n                <div className=\"h-7 w-7 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-300 flex items-center justify-center text-xs font-bold\">\n                  {c.avatarLetter}\n                </div>\n                <div className=\"overflow-hidden\">\n                  <div className=\"text-xs font-bold truncate text-neutral-200\">@{c.handle}</div>\n                  <div className=\"text-[10px] text-neutral-500\">{c.contributions} commits</div>\n                </div>\n              </div>\n            ))}\n          </div>\n        </div>\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "f2a85cd0d97c81908bb0708331ea98b5b511b978cc33ac79179f75918cb8459c",
+      "sizeBytes": 3326
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { OpenSourceContributionWall } from \"./open-source-contribution-wall\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[400px] flex items-center justify-center p-4 bg-neutral-900\">\n      <OpenSourceContributionWall />\n    </div>\n  );\n}\n",
+      "contentHash": "69a45e4c1e0ff2854b565abcc43ad2b92ea7c125a3eb6849bb31b2447a971ffc",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "open-source",
+    "contributors",
+    "github",
+    "community",
+    "sponsors"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "community",
+    "fingerprint": {
+      "interactionModel": "open-source-contribution-wall-interaction",
+      "visualModel": "open-source-contribution-wall-visual",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "open-source-contribution-wall-section"
+    }
+  },
+  "url": "https://openui.dev/r/open-source-contribution-wall.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Open Source Contribution Wall Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "inline-editable-heading",
+  "type": "registry:component",
+  "title": "Inline Editable Heading",
+  "description": "Double-click or click-to-edit heading component with live input switch, escape-to-cancel, and blur commit.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "inline-editable-heading.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState, useRef, useEffect } from \"react\";\nimport { Edit2, Check } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface InlineEditableHeadingProps {\n  initialValue?: string;\n  className?: string;\n}\n\nexport function InlineEditableHeading({\n  initialValue = \"Untitled Project Matrix\",\n  className,\n}: InlineEditableHeadingProps) {\n  const [isEditing, setIsEditing] = useState(false);\n  const [value, setValue] = useState(initialValue);\n  const inputRef = useRef<HTMLInputElement>(null);\n\n  useEffect(() => {\n    if (isEditing) {\n      inputRef.current?.focus();\n      inputRef.current?.select();\n    }\n  }, [isEditing]);\n\n  const handleKeyDown = (e: React.KeyboardEvent) => {\n    if (e.key === \"Enter\") setIsEditing(false);\n    if (e.key === \"Escape\") {\n      setValue(initialValue);\n      setIsEditing(false);\n    }\n  };\n\n  return (\n    <div className={cn(\"inline-flex items-center gap-2 group font-sans\", className)}>\n      {isEditing ? (\n        <div className=\"flex items-center gap-1.5\">\n          <input\n            ref={inputRef}\n            type=\"text\"\n            value={value}\n            onChange={(e) => setValue(e.target.value)}\n            onBlur={() => setIsEditing(false)}\n            onKeyDown={handleKeyDown}\n            className=\"text-lg font-semibold px-2 py-0.5 rounded border border-accent bg-paper text-ink focus:outline-none\"\n          />\n          <button\n            type=\"button\"\n            onClick={() => setIsEditing(false)}\n            className=\"p-1 rounded bg-accent text-white\"\n          >\n            <Check className=\"w-3.5 h-3.5\" />\n          </button>\n        </div>\n      ) : (\n        <div\n          onClick={() => setIsEditing(true)}\n          className=\"flex items-center gap-2 cursor-pointer px-2 py-0.5 rounded hover:bg-surface/80 transition-colors\"\n        >\n          <span className=\"text-lg font-semibold text-ink\">{value}</span>\n          <Edit2 className=\"w-3.5 h-3.5 text-ink/30 group-hover:text-ink/70 transition-colors\" />\n        </div>\n      )}\n    </div>\n  );\n}\n",
+      "contentHash": "20441c31f33b82e33a509b5701d312bd35ed7b173d1ee89b144dbd6a93bb2bab",
+      "sizeBytes": 2059
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { InlineEditableHeading } from \"./inline-editable-heading\";\n\nexport default function InlineEditableHeadingDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[200px]\">\n      <InlineEditableHeading />\n    </div>\n  );\n}\n",
+      "contentHash": "3d6b8a7a92d5a8cc65557b8e531764ccdefd94972fc664c6edc8077e68c8dbc6",
+      "sizeBytes": 285
+    }
+  ],
+  "tags": [
+    "editable",
+    "inline",
+    "heading",
+    "forms",
+    "input"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "inline-double-click-edit",
+      "visualModel": "seamless-text-to-input",
+      "motionModel": "none",
+      "layoutModel": "single-line-field",
+      "semanticPurpose": "inline-title-mutator"
+    }
+  },
+  "url": "https://openui.dev/r/inline-editable-heading.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Stack\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Inline Double Click Edit: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

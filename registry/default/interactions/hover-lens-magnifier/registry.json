@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-lens-magnifier",
+  "type": "registry:interaction",
+  "title": "Hover Lens Magnifier",
+  "description": "An inspection loupe following pointer movement to provide high-detail magnification over technical graphics.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-lens-magnifier.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "lens",
+    "magnifier",
+    "loupe",
+    "zoom",
+    "inspection"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "coordinate-loupe-tracking",
+      "visualModel": "bordered-magnification-optic",
+      "motionModel": "linear-pointer-slave",
+      "layoutModel": "overlaid-lens-quadrant",
+      "semanticPurpose": "technical-inspection-loupe"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

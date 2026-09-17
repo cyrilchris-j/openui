@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "cloud-deployment-pipeline",
+  "type": "registry:block",
+  "title": "Cloud Deployment Pipeline",
+  "description": "A continuous integration and edge release runner displaying step progress (Build, Test, Deploy, Verify).",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "cloud-deployment-pipeline.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function CloudDeploymentPipeline({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  const stages = [\n    { name: \"Lint & Prettier\", status: \"Passed\", duration: \"12s\" },\n    { name: \"Vitest (14 packages)\", status: \"Passed\", duration: \"24s\" },\n    { name: \"Registry Typecheck\", status: \"Passed\", duration: \"6s\" },\n    { name: \"Edge V8 Mirror Sync\", status: \"Active\", duration: \"running...\" },\n  ];\n\n  return (\n    <div className={cn(\"w-full max-w-4xl mx-auto p-5 bg-neutral-950 text-neutral-100 border border-neutral-800 rounded-xl font-mono text-xs\", className)} {...props}>\n      <div className=\"flex items-center justify-between pb-3 border-b border-neutral-800 mb-4\">\n        <span className=\"font-bold text-white\">Pipeline #2842 • commit 8f92a1</span>\n        <span className=\"text-emerald-400 font-bold\">● Running Edge Sync</span>\n      </div>\n      <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3\">\n        {stages.map((st) => (\n          <div key={st.name} className=\"p-3 rounded bg-neutral-900 border border-neutral-800\">\n            <div className=\"text-neutral-400 text-[10px] uppercase\">{st.name}</div>\n            <div className={cn(\"font-bold mt-1\", st.status === \"Passed\" ? \"text-emerald-400\" : \"text-amber-400 animate-pulse\")}>\n              {st.status}\n            </div>\n            <div className=\"text-[10px] text-neutral-500 mt-1\">{st.duration}</div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "047794435648e29191868fd7f998760388e079687fe74a03ca5eda7068f551c1",
+      "sizeBytes": 1561
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { CloudDeploymentPipeline } from \"./cloud-deployment-pipeline\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[300px] p-4 flex items-center justify-center bg-neutral-900\">\n      <CloudDeploymentPipeline />\n    </div>\n  );\n}\n",
+      "contentHash": "b5cf84e94d19dfa87d278bcab1c19349e29c10d4206ce9119ce03179308e5ad1",
+      "sizeBytes": 278
+    }
+  ],
+  "tags": [
+    "ci-cd",
+    "pipeline",
+    "deployment",
+    "devops",
+    "cloud"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "advanced",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "ci-pipeline-stage-tracking",
+      "visualModel": "horizontal-node-pipeline-graph",
+      "motionModel": "subtle",
+      "layoutModel": "rail-layout",
+      "semanticPurpose": "continuous-deployment-status"
+    }
+  },
+  "url": "https://openui.dev/r/cloud-deployment-pipeline.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Rail\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Ci Pipeline Stage Tracking: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

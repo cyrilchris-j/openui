@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "silver-screen-subtitles",
+  "type": "registry:text",
+  "title": "Silver Screen Subtitles",
+  "description": "Cinema-grade subtitles: word-wrapped to 42 characters per line (the industry standard), timed against a playhead, positioned bottom-centre with a safety margin, and re-rendered per cue without animation jank.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "silver-screen-subtitles.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "subtitles",
+    "captions",
+    "timing",
+    "cues"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "accessible",
+    "fingerprint": {
+      "interactionModel": "playhead-sync",
+      "visualModel": "cue-wrapped-lines",
+      "motionModel": "cue-swap",
+      "layoutModel": "bottom-overlay",
+      "semanticPurpose": "captioning"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

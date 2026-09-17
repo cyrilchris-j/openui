@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "segmented-filter-bar",
+  "type": "registry:component",
+  "title": "Segmented Filter Bar",
+  "description": "A compact segmented bar with active item pill indicator for filtering catalog tables.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "segmented-filter-bar.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "filter",
+    "segmented",
+    "controls",
+    "table",
+    "bar"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "segmented-filter-selection",
+      "visualModel": "pill-filter-track",
+      "motionModel": "none",
+      "layoutModel": "horizontal-pill-rail",
+      "semanticPurpose": "table-filter-bar"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

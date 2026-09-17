@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "password-strength-mark",
+  "type": "registry:text",
+  "title": "Password Strength Mark",
+  "description": "A wordmark that grades itself: the word STRENGTH renders letter-by-letter, and how many letters are inked versus ghosted encodes password score — typography doubling as a meter without a single bar.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "password-strength-mark.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "meter",
+    "password",
+    "grading",
+    "security"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "value-driven-reveal",
+      "visualModel": "partial-glyph-inking",
+      "motionModel": "step-ink-fill",
+      "layoutModel": "inline",
+      "semanticPurpose": "strength-meter"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

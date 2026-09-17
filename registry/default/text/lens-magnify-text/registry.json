@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "lens-magnify-text",
+  "type": "registry:text",
+  "title": "Lens Magnify Text",
+  "description": "A circular lens that magnifies the text beneath it using a duplicated, scaled copy clipped to a circle that tracks the pointer — a magnifier, not a highlight, with true enlargement of glyph detail.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "lens-magnify-text.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "lens",
+    "magnify",
+    "clip",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "pointer-lens",
+      "visualModel": "clipped-scale-copy",
+      "motionModel": "direct-follow",
+      "layoutModel": "overlay",
+      "semanticPurpose": "inspection"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

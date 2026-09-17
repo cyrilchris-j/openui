@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "rubberband-elastic-sheet",
+  "type": "registry:interaction",
+  "title": "Rubberband Elastic Sheet",
+  "description": "A bottom sheet panel that stretches with spring resistance when pulled beyond top boundary.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "rubberband-elastic-sheet.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "sheet",
+    "rubberband",
+    "gesture",
+    "spring",
+    "drag"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "gestures",
+    "fingerprint": {
+      "interactionModel": "overscroll-sheet-drag",
+      "visualModel": "elastic-bottom-slab",
+      "motionModel": "viscous-boundary-rebound",
+      "layoutModel": "bottom-anchored-slab",
+      "semanticPurpose": "rubberband-sheet-controller"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

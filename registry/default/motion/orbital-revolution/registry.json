@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "orbital-revolution",
+  "type": "registry:motion",
+  "title": "Orbital Revolution",
+  "description": "Satellites revolve a centre point on elliptical paths with independent periods and phases; each body's opacity and scale respond to depth (behind/in front of the centre), faking 3D with pure transforms.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "orbital-revolution.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "orbit",
+    "revolution",
+    "depth",
+    "elliptical"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "physics",
+    "fingerprint": {
+      "interactionModel": "ambient-loop",
+      "visualModel": "depth-faked-orbits",
+      "motionModel": "elliptical-revolution",
+      "layoutModel": "radial",
+      "semanticPurpose": "system-diagram"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "data-export-queue-monitor",
+  "type": "registry:block",
+  "title": "Data Export Queue Monitor",
+  "description": "A background asynchronous export task monitor with live progress percentage and download links.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "data-export-queue-monitor.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DataExportQueueMonitor({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div className={cn(\"w-full max-w-xl mx-auto p-5 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-xl font-mono text-xs shadow-sm\", className)} {...props}>\n      <h3 className=\"font-bold text-neutral-900 dark:text-white mb-3\">Background Job Queue</h3>\n      <div className=\"p-3 rounded bg-neutral-50 dark:bg-neutral-900 flex justify-between items-center\">\n        <div>\n          <div className=\"font-bold text-neutral-900 dark:text-white\">export_catalog_800.json</div>\n          <div className=\"text-neutral-400 text-[10px]\">Completed in 1.4s</div>\n        </div>\n        <button type=\"button\" className=\"text-emerald-500 font-bold hover:underline\">\n          Download ↓\n        </button>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "60cc27c1b58ab06d2888572ad64998ea28154bf8fb0503e70dd7eaf154b072f9",
+      "sizeBytes": 961
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:block",
+      "content": "\"use client\";\n\nimport { DataExportQueueMonitor } from \"./data-export-queue-monitor\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[200px] p-4 flex items-center justify-center bg-neutral-100 dark:bg-neutral-900\">\n      <DataExportQueueMonitor />\n    </div>\n  );\n}\n",
+      "contentHash": "99e9236ec0f0092464fae44375e099520c337aed80221e5f7b68bdca071ba039",
+      "sizeBytes": 296
+    }
+  ],
+  "tags": [
+    "queue",
+    "export",
+    "async",
+    "jobs",
+    "devops"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "accent-only"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "devops",
+    "fingerprint": {
+      "interactionModel": "export-job-progress-monitoring",
+      "visualModel": "async-task-queue-tray",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "async-data-export-queue"
+    }
+  },
+  "url": "https://openui.dev/r/data-export-queue-monitor.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: Accent Only\n\n## Rules\n\n- Export Job Progress Monitoring: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "floating-dock-bar",
+  "type": "registry:component",
+  "title": "Floating Dock Bar",
+  "description": "An elevated floating application launcher shelf with icon buttons, tooltips, and blur backdrop.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "floating-dock-bar.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "dock",
+    "floating",
+    "launcher",
+    "navigation",
+    "shelf"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "floating-dock-navigation",
+      "visualModel": "capsule-dock-shelf",
+      "motionModel": "none",
+      "layoutModel": "floating-bottom-dock",
+      "semanticPurpose": "app-launcher-dock-bar"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

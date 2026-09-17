@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tag-filter-group",
+  "type": "registry:component",
+  "title": "Tag Filter Group",
+  "description": "A multi-tag filter group providing active badge highlights on toggle.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tag-filter-group.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface TagFilterGroupProps {\n  className?: string;\n}\n\nexport function TagFilterGroup({ className }: TagFilterGroupProps) {\n  const [selected, setSelected] = useState<string>(\"All\");\n  const tags = [\"All\", \"Core\", \"Ecosystem\", \"Plugins\"];\n\n  return (\n    <div className={cn(\"inline-flex gap-2 font-mono text-xs\", className)}>\n      {tags.map((t) => (\n        <button\n          key={t}\n          type=\"button\"\n          onClick={() => setSelected(t)}\n          className={cn(\n            \"rounded-full border px-3 py-1 font-semibold transition-all\",\n            selected === t ? \"border-ink bg-ink text-paper\" : \"border-line bg-paper text-ink hover:border-ink\"\n          )}\n        >\n          {t}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nexport default TagFilterGroup;\n",
+      "contentHash": "d6e9e2f0a7fb9df121ec0115d9afdec494d3804e5d24d8c954a86a9c2eca4f9d",
+      "sizeBytes": 865
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { TagFilterGroup } from \"./tag-filter-group\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <TagFilterGroup />\n    </div>\n  );\n}\n",
+      "contentHash": "70d5bfa58382a4e0ad0dbec3d1d8a20bcb9951667429368809dcdfb04ad87dde",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "tags",
+    "filters",
+    "group",
+    "controls",
+    "pills"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "tag-group-filtering",
+      "visualModel": "compact-tag-pills",
+      "motionModel": "none",
+      "layoutModel": "horizontal-tag-group",
+      "semanticPurpose": "catalog-tag-filter"
+    }
+  },
+  "url": "https://openui.dev/r/tag-filter-group.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Tag Group Filtering: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-palette-strip",
+  "type": "registry:component",
+  "title": "Color Palette Strip",
+  "description": "A continuous color tone preview strip showing primary, secondary, and accent theme tokens.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-palette-strip.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface ColorPaletteStripProps {\n  className?: string;\n}\n\nexport function ColorPaletteStrip({ className }: ColorPaletteStripProps) {\n  const colors = [\"#000000\", \"#4B5563\", \"#9CA3AF\", \"#E5E7EB\"];\n\n  return (\n    <div className={cn(\"flex w-full max-w-xs overflow-hidden rounded-xl border border-line shadow-sm\", className)}>\n      {colors.map((c) => (\n        <div key={c} className=\"h-10 flex-1 flex items-center justify-center\" style={{ backgroundColor: c }}>\n          <span className=\"font-mono text-[9px] text-white/80\">{c.slice(1)}</span>\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport default ColorPaletteStrip;\n",
+      "contentHash": "ef9554a65170d717417a38cf8ecfb74736d658f5ba034bcc050221e9daf1f939",
+      "sizeBytes": 678
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { ColorPaletteStrip } from \"./color-palette-strip\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <ColorPaletteStrip />\n    </div>\n  );\n}\n",
+      "contentHash": "c10d6418d35d841c8e52b2b813a93c4407b221a989e4c511b7926558ac246514",
+      "sizeBytes": 232
+    }
+  ],
+  "tags": [
+    "colors",
+    "palette",
+    "tokens",
+    "preview",
+    "strip"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "passive-color-strip",
+      "visualModel": "gradient-token-strip",
+      "motionModel": "none",
+      "layoutModel": "horizontal-palette-strip",
+      "semanticPurpose": "color-theme-token-strip"
+    }
+  },
+  "url": "https://openui.dev/r/color-palette-strip.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Symmetric\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Passive Color Strip: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

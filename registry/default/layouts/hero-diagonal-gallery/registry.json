@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hero-diagonal-gallery",
+  "type": "registry:layout",
+  "title": "Hero Diagonal Gallery",
+  "description": "Skewed ribbon of rotated image cards drifting diagonally behind landing hero typography.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hero-diagonal-gallery.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "hero",
+    "diagonal",
+    "gallery",
+    "ribbon",
+    "skew"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "diagonal-ribbon-hero",
+      "visualModel": "skewed-image-stream-hero",
+      "motionModel": "none",
+      "layoutModel": "skewed-strip-underlay",
+      "semanticPurpose": "cinematic-diagonal-hero"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "split",
+      "density": "airy",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "honeycomb-hex-lattice",
+  "type": "registry:background",
+  "title": "Honeycomb Hex Lattice",
+  "description": "Repeating geometric hexagon tessellation pattern creating a structured honeycomb grid.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "honeycomb-hex-lattice.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "honeycomb",
+    "hex",
+    "lattice",
+    "tessellation",
+    "geometric"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-tessellation-canvas",
+      "visualModel": "hexagonal-tessellation",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "honeycomb-structure-backdrop"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "geometric",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

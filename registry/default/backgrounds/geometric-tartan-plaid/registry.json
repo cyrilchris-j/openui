@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "geometric-tartan-plaid",
+  "type": "registry:background",
+  "title": "Geometric Tartan Plaid",
+  "description": "Scottish woven tartan plaid with layered intersecting warp and weft yarn bands.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "geometric-tartan-plaid.tsx",
+      "type": "registry:background"
+    }
+  ],
+  "tags": [
+    "tartan",
+    "plaid",
+    "scottish",
+    "textile",
+    "heritage"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-tartan-weave",
+      "visualModel": "criss-cross-yarn-bands",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "heritage-tartan-pattern"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "editorial",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "muted-earth"
+    }
+  }
+}

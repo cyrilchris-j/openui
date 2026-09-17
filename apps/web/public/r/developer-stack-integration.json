@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "developer-stack-integration",
+  "type": "registry:section",
+  "title": "Developer Stack Integration",
+  "description": "An ecosystem compatibility grid showing native integration with Next.js, Vite, Tailwind v4, and React 19.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "developer-stack-integration.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function DeveloperStackIntegration({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const frameworks = [\n    { name: \"Next.js 15+\", status: \"App Router Native\" },\n    { name: \"Vite 6+\", status: \"HMR Optimized\" },\n    { name: \"Tailwind CSS v4\", status: \"Token Compatible\" },\n    { name: \"TypeScript 5.8+\", status: \"Strict Zero-Any\" },\n  ];\n\n  return (\n    <section className={cn(\"w-full py-16 px-4 max-w-4xl mx-auto\", className)} {...props}>\n      <h3 className=\"text-xl font-bold text-center text-neutral-900 dark:text-neutral-100 mb-8\">\n        Works with your existing framework\n      </h3>\n      <div className=\"grid grid-cols-2 sm:grid-cols-4 gap-4\">\n        {frameworks.map((f) => (\n          <div key={f.name} className=\"p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-center\">\n            <div className=\"text-sm font-bold text-neutral-900 dark:text-neutral-100\">{f.name}</div>\n            <div className=\"text-[10px] font-mono text-neutral-500 mt-1\">{f.status}</div>\n          </div>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "be8d28ce7fef786357d5e1eb39492a26f44be594fee918e0753412931c9b070b",
+      "sizeBytes": 1195
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { DeveloperStackIntegration } from \"./developer-stack-integration\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[250px] flex items-center justify-center p-4 bg-neutral-50 dark:bg-neutral-900/50\">\n      <DeveloperStackIntegration />\n    </div>\n  );\n}\n",
+      "contentHash": "5e86ac79a9887b08e57ee13a30e0e7c73747649459221cbd2231120c6dafce74",
+      "sizeBytes": 306
+    }
+  ],
+  "tags": [
+    "stack",
+    "integration",
+    "nextjs",
+    "vite",
+    "tailwind"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "mosaic",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "ecosystem",
+    "fingerprint": {
+      "interactionModel": "developer-stack-integration-interaction",
+      "visualModel": "developer-stack-integration-visual",
+      "motionModel": "subtle",
+      "layoutModel": "mosaic-layout",
+      "semanticPurpose": "developer-stack-integration-section"
+    }
+  },
+  "url": "https://openui.dev/r/developer-stack-integration.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Mosaic\nDensity: Compact\nShape: Rounded\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Developer Stack Integration Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

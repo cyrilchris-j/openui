@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "zoomable-image-lightbox",
+  "type": "registry:interaction",
+  "title": "Zoomable Image Lightbox",
+  "description": "A media preview container that transitions into an enlarged lightbox overlay focusing detail on click.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "zoomable-image-lightbox.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "lightbox",
+    "zoom",
+    "image",
+    "preview",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "click-zoom-lightbox-transition",
+      "visualModel": "frameless-lightbox-viewport",
+      "motionModel": "bounding-box-scale-transition",
+      "layoutModel": "modal-focused-stage",
+      "semanticPurpose": "media-inspection-lightbox"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

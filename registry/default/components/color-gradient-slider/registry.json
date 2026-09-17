@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "color-gradient-slider",
+  "type": "registry:component",
+  "title": "Color Gradient Slider",
+  "description": "Multi-stop CSS linear gradient builder with adjustable color stops, angle control, and copyable CSS string.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "color-gradient-slider.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "gradient",
+    "color",
+    "slider",
+    "css",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "multi-stop-gradient-tuning",
+      "visualModel": "gradient-strip-preview",
+      "motionModel": "none",
+      "layoutModel": "compact-form-stack",
+      "semanticPurpose": "gradient-generator"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "duotone"
+    }
+  }
+}

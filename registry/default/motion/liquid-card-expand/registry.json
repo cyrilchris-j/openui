@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "liquid-card-expand",
+  "type": "registry:motion",
+  "title": "Liquid Card Expand",
+  "description": "A card thumbnail that morphs dynamically into an expanded modal sheet with shared layout boundary transitions.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "liquid-card-expand.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "morph",
+    "expand",
+    "shared-layout",
+    "card",
+    "modal"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "intermediate",
+    "subcategory": "transitions",
+    "fingerprint": {
+      "interactionModel": "expand-modal-transition",
+      "visualModel": "bounding-box-morph",
+      "motionModel": "interpolated-geometry-spring",
+      "layoutModel": "thumbnail-to-overlay-morph",
+      "semanticPurpose": "shared-element-expander"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only"
+    }
+  }
+}

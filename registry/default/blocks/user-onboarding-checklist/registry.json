@@ -1,0 +1,54 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "user-onboarding-checklist",
+  "type": "registry:block",
+  "title": "User Onboarding Checklist",
+  "description": "An interactive getting-started card with progress calculation, task completion toggles, and step guides.",
+  "category": "blocks",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "user-onboarding-checklist.tsx",
+      "type": "registry:block"
+    }
+  ],
+  "tags": [
+    "onboarding",
+    "checklist",
+    "progress",
+    "setup",
+    "tasks"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "onboarding",
+    "fingerprint": {
+      "interactionModel": "task-completion-progress-checklist",
+      "visualModel": "gamified-onboarding-stepper",
+      "motionModel": "subtle",
+      "layoutModel": "stack-layout",
+      "semanticPurpose": "user-activation-checklist"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "macrostructure": "stack",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "accent-only",
+      "shapeLanguage": "rounded",
+      "density": "medium",
+      "genre": "minimal"
+    }
+  }
+}

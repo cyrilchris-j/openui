@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "action-sheet-popover",
+  "type": "registry:component",
+  "title": "Action Sheet Popover",
+  "description": "A popover action menu with icons and destructive confirmation button.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "action-sheet-popover.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "action-sheet",
+    "popover",
+    "menu",
+    "destructive",
+    "overlay"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "overlays",
+    "fingerprint": {
+      "interactionModel": "popover-action-menu-choice",
+      "visualModel": "bordered-action-box",
+      "motionModel": "none",
+      "layoutModel": "anchored-action-popover",
+      "semanticPurpose": "action-popover-sheet"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

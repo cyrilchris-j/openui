@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tree-checkbox-selector",
+  "type": "registry:component",
+  "title": "Tree Checkbox Selector",
+  "description": "Hierarchical nested folder tree with multi-state parent checkboxes and expandable branch folders.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tree-checkbox-selector.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { ChevronRight, ChevronDown, Check } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function TreeCheckboxSelector({ className }: { className?: string }) {\n  const [expanded, setExpanded] = useState<Record<string, boolean>>({ src: true });\n  const [checked, setChecked] = useState<Record<string, boolean>>({ \"src/components\": true });\n\n  const toggleExp = (k: string) => setExpanded((prev) => ({ ...prev, [k]: !prev[k] }));\n  const toggleCheck = (k: string) => setChecked((prev) => ({ ...prev, [k]: !prev[k] }));\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-xs w-full font-sans text-xs shadow-sm\", className)}>\n      <div className=\"text-xs font-semibold text-ink mb-2 font-mono\">Module Selection</div>\n      <div className=\"space-y-1\">\n        <div>\n          <div className=\"flex items-center gap-1.5 py-1 px-1 rounded hover:bg-surface\">\n            <button type=\"button\" onClick={() => toggleExp(\"src\")} className=\"p-0.5 text-ink/50\">\n              {expanded.src ? <ChevronDown className=\"w-3.5 h-3.5\" /> : <ChevronRight className=\"w-3.5 h-3.5\" />}\n            </button>\n            <button\n              type=\"button\"\n              onClick={() => toggleCheck(\"src\")}\n              className={cn(\n                \"w-4 h-4 rounded border flex items-center justify-center transition-colors\",\n                checked.src ? \"bg-accent border-accent text-white\" : \"border-line\"\n              )}\n            >\n              {checked.src && <Check className=\"w-3 h-3\" />}\n            </button>\n            <span className=\"font-medium text-ink\">src</span>\n          </div>\n\n          {expanded.src && (\n            <div className=\"pl-6 space-y-1 border-l border-line/60 ml-3 mt-1\">\n              {[\"components\", \"lib\", \"hooks\"].map((child) => {\n                const k = `src/${child}`;\n                const isChk = checked[k];\n                return (\n                  <div key={k} className=\"flex items-center gap-1.5 py-1 px-1 rounded hover:bg-surface\">\n                    <button\n                      type=\"button\"\n                      onClick={() => toggleCheck(k)}\n                      className={cn(\n                        \"w-4 h-4 rounded border flex items-center justify-center transition-colors\",\n                        isChk ? \"bg-accent border-accent text-white\" : \"border-line\"\n                      )}\n                    >\n                      {isChk && <Check className=\"w-3 h-3\" />}\n                    </button>\n                    <span className=\"text-ink/80\">{child}</span>\n                  </div>\n                );\n              })}\n            </div>\n          )}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "97438bf51f665cfc80b6b717f46459ed4eecce95186556ba0dc789fc7694b3dd",
+      "sizeBytes": 2748
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { TreeCheckboxSelector } from \"./tree-checkbox-selector\";\n\nexport default function TreeCheckboxSelectorDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[220px]\">\n      <TreeCheckboxSelector />\n    </div>\n  );\n}\n",
+      "contentHash": "51c0a34c1992c35f2789a8980177b6df55e68d1d045bad8e178d54095bd4b123",
+      "sizeBytes": 281
+    }
+  ],
+  "tags": [
+    "tree",
+    "checkbox",
+    "hierarchical",
+    "folder",
+    "forms"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "forms",
+    "fingerprint": {
+      "interactionModel": "nested-checkbox-tree-selection",
+      "visualModel": "hierarchical-indented-tree",
+      "motionModel": "none",
+      "layoutModel": "nested-indentation-column",
+      "semanticPurpose": "nested-scope-selection"
+    }
+  },
+  "url": "https://openui.dev/r/tree-checkbox-selector.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Nested Checkbox Tree Selection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

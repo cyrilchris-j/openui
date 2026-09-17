@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tilt-spring-card",
+  "type": "registry:motion",
+  "title": "Tilt Spring Card",
+  "description": "Pointer-driven 3D tilt with a real spring integrator: rotation chases the pointer through a damped spring rather than lerping, so quick circles overshoot and settle — the difference between a transition and a physical object.",
+  "category": "motion",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tilt-spring-card.tsx",
+      "type": "registry:motion"
+    }
+  ],
+  "tags": [
+    "tilt",
+    "3d",
+    "spring",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "pointer-tilt",
+      "visualModel": "perspective-rotation",
+      "motionModel": "damped-spring-rotation",
+      "layoutModel": "card",
+      "semanticPurpose": "showcase-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "expressive",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

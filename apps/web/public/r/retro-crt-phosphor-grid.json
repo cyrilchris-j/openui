@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "retro-crt-phosphor-grid",
+  "type": "registry:background",
+  "title": "Retro CRT Phosphor Grid",
+  "description": "Trinitron television aperture grille vertical phosphor stripes with RGB subpixel pattern.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "retro-crt-phosphor-grid.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface RetroCRTPhosphorGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function RetroCRTPhosphorGrid({ className, children, ...props }: RetroCRTPhosphorGridProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-slate-950 text-white overflow-hidden\", className)} {...props}>\n      <div\n        className=\"absolute inset-0 pointer-events-none opacity-25 -z-10\"\n        style={{\n          backgroundImage: \"linear-gradient(to right, rgba(255, 0, 0, 0.4) 1px, rgba(0, 255, 0, 0.4) 2px, rgba(0, 0, 255, 0.4) 3px, transparent 4px)\",\n          backgroundSize: \"6px 100%\",\n        }}\n      />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "f3c256e2298aa04a6cf2467d78a1dd6cc519fab1fca640db9acc6982953eb0a5",
+      "sizeBytes": 753
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { RetroCRTPhosphorGrid } from \"./retro-crt-phosphor-grid\";\n\nexport default function RetroCRTPhosphorGridDemo() {\n  return (\n    <RetroCRTPhosphorGrid className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-white/20 bg-black/70 backdrop-blur-md shadow-xl text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-mono text-white\">Trinitron Phosphor</h3>\n        <p className=\"text-xs text-white/70 mt-1 font-mono\">RGB cathode phosphor vertical aperture grille.</p>\n      </div>\n    </RetroCRTPhosphorGrid>\n  );\n}\n",
+      "contentHash": "9d479a8d7ef716af875b3f158ed30f1cf2d924d2b775d4e3ea834f9449718dc1",
+      "sizeBytes": 604
+    }
+  ],
+  "tags": [
+    "crt",
+    "phosphor",
+    "trinitron",
+    "subpixel",
+    "retro"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "retro",
+      "macrostructure": "full-bleed",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "neon-on-dark"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-phosphor-grille",
+      "visualModel": "vertical-aperture-stripes",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "trinitron-aperture-grille"
+    }
+  },
+  "url": "https://openui.dev/r/retro-crt-phosphor-grid.json",
+  "designRules": "# Design System\n\nGenre: Retro\nMacrostructure: Full Bleed\nDensity: Dense\nShape: Sharp\nMotion: None\nTypography: Monospace\nColor: Neon On Dark\n\n## Rules\n\n- Passive Phosphor Grille: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

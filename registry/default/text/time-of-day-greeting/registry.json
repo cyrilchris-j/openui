@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "time-of-day-greeting",
+  "type": "registry:text",
+  "title": "Time of Day Greeting",
+  "description": "A greeting that recomposes by clock: morning/afternoon/evening/night word, a gradient sky bar reflecting the hour, and a live minute hand of text — the heading itself is the clock, no icons involved.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "time-of-day-greeting.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "greeting",
+    "clock",
+    "time",
+    "personalised"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "clock-driven",
+      "visualModel": "time-gradient-word",
+      "motionModel": "minute-refresh",
+      "layoutModel": "stack",
+      "semanticPurpose": "personal-greeting"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "stack",
+      "density": "airy",
+      "shapeLanguage": "soft",
+      "motionLanguage": "subtle",
+      "typographyStyle": "serif-display",
+      "colorStrategy": "pastel"
+    }
+  }
+}

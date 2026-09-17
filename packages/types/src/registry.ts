@@ -1,4 +1,4 @@
-import type { DesignDna } from "./design.js";
+import type { DesignDna, ResourceFingerprint } from "./design.js";
 import type { Difficulty, ResourceType } from "./resource.js";
 
 /**
@@ -97,6 +97,10 @@ export interface RegistryItemMeta {
   features?: string[];
   /** Semver range of the peer framework the item targets (usually React). */
   peer?: Record<string, string>;
+  /** Subcategory slug within the category, e.g. `navigation`, `forms`. */
+  subcategory?: string;
+  /** Behavioural fingerprint used by the uniqueness engine. */
+  fingerprint?: ResourceFingerprint;
 }
 
 /** Shape of `registry.json` inside a single registry item directory. */
@@ -153,6 +157,10 @@ export interface RegistryIndexEntry {
   license?: string;
   difficulty?: Difficulty;
   dna?: Partial<DesignDna>;
+  /** Subcategory within the category, threaded from `meta.subcategory`. */
+  subcategory?: string;
+  /** Behavioural fingerprint, threaded from `meta.fingerprint`. */
+  fingerprint?: ResourceFingerprint;
   /** Relative URL of the item artifact, e.g. `components/magnetic-button.json`. */
   url: string;
   /** Stable hash of the item's source, used for integrity checks by the CLI. */

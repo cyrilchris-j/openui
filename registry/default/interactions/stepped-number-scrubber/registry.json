@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepped-number-scrubber",
+  "type": "registry:interaction",
+  "title": "Stepped Number Scrubber",
+  "description": "An inline numeric metric that increases or decreases dynamically as user drags pointer horizontally across label.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepped-number-scrubber.tsx",
+      "type": "registry:interaction"
+    }
+  ],
+  "tags": [
+    "scrubber",
+    "number",
+    "metric",
+    "drag",
+    "pointer"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pointer",
+    "fingerprint": {
+      "interactionModel": "label-scrub-numeric-drag",
+      "visualModel": "inline-scrubbable-glyph",
+      "motionModel": "horizontal-rate-increment",
+      "layoutModel": "compact-inline-badge",
+      "semanticPurpose": "inline-parameter-scrubber"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "mechanical",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

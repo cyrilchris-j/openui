@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "interactive-theme-toggle-bar",
+  "type": "registry:section",
+  "title": "Interactive Theme Toggle Bar",
+  "description": "A lightweight presentation strip showcasing light, dark, and system color mode switching.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "interactive-theme-toggle-bar.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function InteractiveThemeToggleBar({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  const [theme, setTheme] = React.useState<\"light\" | \"dark\" | \"system\">(\"system\");\n\n  return (\n    <section className={cn(\"w-full py-6 px-4 border-y border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 flex justify-center\", className)} {...props}>\n      <div className=\"flex gap-2 p-1 rounded-full bg-neutral-100 dark:bg-neutral-900 text-xs font-medium\">\n        {([\"light\", \"dark\", \"system\"] as const).map((t) => (\n          <button\n            key={t}\n            type=\"button\"\n            onClick={() => setTheme(t)}\n            className={cn(\n              \"px-3 py-1 rounded-full capitalize transition-colors\",\n              theme === t ? \"bg-white dark:bg-neutral-800 font-bold shadow-xs text-neutral-900 dark:text-white\" : \"text-neutral-500\"\n            )}\n          >\n            {t}\n          </button>\n        ))}\n      </div>\n    </section>\n  );\n}\n",
+      "contentHash": "a59f7300d0778335fa9d4f8478ac3b650517bb340bf710b8f73fe13a7e8ed5a9",
+      "sizeBytes": 1065
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { InteractiveThemeToggleBar } from \"./interactive-theme-toggle-bar\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full min-h-[150px] flex items-center justify-center bg-neutral-50 dark:bg-neutral-900\">\n      <InteractiveThemeToggleBar />\n    </div>\n  );\n}\n",
+      "contentHash": "f11798da5dfc8fc1d75635ac66720bf2dda0c8bd5859885883e7836d6069a7a0",
+      "sizeBytes": 300
+    }
+  ],
+  "tags": [
+    "theme",
+    "toggle",
+    "darkmode",
+    "lightmode",
+    "switcher"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "theme",
+    "fingerprint": {
+      "interactionModel": "interactive-theme-toggle-bar-interaction",
+      "visualModel": "interactive-theme-toggle-bar-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "interactive-theme-toggle-bar-section"
+    }
+  },
+  "url": "https://openui.dev/r/interactive-theme-toggle-bar.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Interactive Theme Toggle Bar Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

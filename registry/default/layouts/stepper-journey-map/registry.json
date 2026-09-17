@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stepper-journey-map",
+  "type": "registry:layout",
+  "title": "Stepper Journey Map",
+  "description": "Horizontal service blueprint journey map aligning user persona stages with system reactions.",
+  "category": "layouts",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stepper-journey-map.tsx",
+      "type": "registry:layout"
+    }
+  ],
+  "tags": [
+    "journey",
+    "blueprint",
+    "ux",
+    "stepper",
+    "persona"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "grids",
+    "fingerprint": {
+      "interactionModel": "journey-blueprint-inspection",
+      "visualModel": "horizontal-journey-grid",
+      "motionModel": "none",
+      "layoutModel": "horizontal-stage-matrix",
+      "semanticPurpose": "ux-service-blueprint"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

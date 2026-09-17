@@ -1,0 +1,69 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "waterfall-progress-bar",
+  "type": "registry:component",
+  "title": "Waterfall Progress Bar",
+  "description": "Sequential build/deployment phases tracker showing pipeline stage timings and completion states.",
+  "category": "components",
+  "dependencies": [
+    "react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "waterfall-progress-bar.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { CheckCircle2, Clock } from \"lucide-react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function WaterfallProgressBar({ className }: { className?: string }) {\n  const stages = [\n    { label: \"DNS Resolution\", ms: 42, pct: 15 },\n    { label: \"TLS Handshake\", ms: 88, pct: 30 },\n    { label: \"First Byte (TTFB)\", ms: 120, pct: 45 },\n    { label: \"Content Download\", ms: 35, pct: 10 },\n  ];\n\n  return (\n    <div className={cn(\"p-4 rounded-xl border border-line bg-paper max-w-sm w-full font-mono text-xs shadow-sm\", className)}>\n      <div className=\"flex items-center justify-between mb-3 text-ink\">\n        <span className=\"font-semibold\">Network Latency</span>\n        <span className=\"text-accent font-bold\">285ms Total</span>\n      </div>\n\n      <div className=\"space-y-2\">\n        {stages.map((st) => (\n          <div key={st.label}>\n            <div className=\"flex items-center justify-between text-[11px] text-ink/70 mb-1\">\n              <span>{st.label}</span>\n              <span>{st.ms}ms</span>\n            </div>\n            <div className=\"w-full h-1.5 bg-line rounded-full overflow-hidden\">\n              <div\n                className=\"h-full bg-accent rounded-full\"\n                style={{ width: `${st.pct * 2}%` }}\n              />\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "contentHash": "924d9d4c34710d8219d5cd300d9b203111e86695b77b2ad0a66970ea9e4bcb7e",
+      "sizeBytes": 1347
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { WaterfallProgressBar } from \"./waterfall-progress-bar\";\n\nexport default function WaterfallProgressBarDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-8 bg-surface/20 min-h-[220px]\">\n      <WaterfallProgressBar />\n    </div>\n  );\n}\n",
+      "contentHash": "8b2ddf18060d57aee8acd88a9adbb7962d9eeeef6116468c09f8092565f23b0a",
+      "sizeBytes": 281
+    }
+  ],
+  "tags": [
+    "waterfall",
+    "pipeline",
+    "progress",
+    "stages",
+    "data-display"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "stack",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "sequential-phase-inspection",
+      "visualModel": "waterfall-timing-bars",
+      "motionModel": "none",
+      "layoutModel": "stacked-timeline-phases",
+      "semanticPurpose": "pipeline-latency-breakdown"
+    }
+  },
+  "url": "https://openui.dev/r/waterfall-progress-bar.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Stack\nDensity: Compact\nShape: Rounded\nMotion: Subtle\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Sequential Phase Inspection: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "origami-hex-rosette",
+  "type": "registry:background",
+  "title": "Origami Hex Rosette",
+  "description": "Six-fold rotational origami paper tessellation forming star-shaped kaleidoscopic florets.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "origami-hex-rosette.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface OrigamiHexRosetteProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode;\n}\n\nexport function OrigamiHexRosette({ className, children, ...props }: OrigamiHexRosetteProps) {\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <svg className=\"absolute inset-0 w-full h-full opacity-15 pointer-events-none -z-10\" xmlns=\"http://www.w3.org/2000/svg\">\n        <defs>\n          <pattern id=\"hex-rosette-pat\" width=\"48\" height=\"48\" patternUnits=\"userSpaceOnUse\">\n            <polygon points=\"24,4 30,18 44,24 30,30 24,44 18,30 4,24 18,18\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1\" />\n          </pattern>\n        </defs>\n        <rect width=\"100%\" height=\"100%\" fill=\"url(#hex-rosette-pat)\" />\n      </svg>\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "165a55fd1a1decbf3d1ba2fd71b7e53ef0f02cb8ccb2baeaba84a9bf2739d4a8",
+      "sizeBytes": 915
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { OrigamiHexRosette } from \"./origami-hex-rosette\";\n\nexport default function OrigamiHexRosetteDemo() {\n  return (\n    <OrigamiHexRosette className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Origami Hex Rosette</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Folded paper star flower tessellation.</p>\n      </div>\n    </OrigamiHexRosette>\n  );\n}\n",
+      "contentHash": "a5ddf2b3bf43181970a41f2afc5aab01647d7bf15a9baf2a05874f4f77b22400",
+      "sizeBytes": 573
+    }
+  ],
+  "tags": [
+    "origami",
+    "rosette",
+    "hexagon",
+    "folding",
+    "paper"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "medium",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "patterns",
+    "fingerprint": {
+      "interactionModel": "passive-origami-rosette",
+      "visualModel": "six-fold-paper-florets",
+      "motionModel": "none",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "folded-rosette-texture"
+    }
+  },
+  "url": "https://openui.dev/r/origami-hex-rosette.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Medium\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Passive Origami Rosette: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

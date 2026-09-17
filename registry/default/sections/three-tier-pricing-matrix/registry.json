@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "three-tier-pricing-matrix",
+  "type": "registry:section",
+  "title": "Three Tier Pricing Matrix",
+  "description": "SaaS subscription pricing section with monthly/yearly billing toggle and highlighted recommended tier.",
+  "category": "sections",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "three-tier-pricing-matrix.tsx",
+      "type": "registry:section"
+    }
+  ],
+  "tags": [
+    "pricing",
+    "tiers",
+    "saas",
+    "subscription",
+    "plans"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "pricing",
+    "fingerprint": {
+      "interactionModel": "billing-interval-toggle",
+      "visualModel": "three-tier-card-comparison",
+      "motionModel": "none",
+      "layoutModel": "three-column-pricing-matrix",
+      "semanticPurpose": "saas-subscription-section"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

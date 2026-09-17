@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "tabular-mass-edit",
+  "type": "registry:text",
+  "title": "Tabular Mass Edit",
+  "description": "A numeric column you can edit like a spreadsheet: tabular-numeral alignment, arrow-key cell navigation, per-cell validation that shakes invalid entries, and an aggregate footer that recomputes live.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "tabular-mass-edit.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "table",
+    "numeric",
+    "spreadsheet",
+    "editing"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "data",
+    "fingerprint": {
+      "interactionModel": "grid-key-navigation",
+      "visualModel": "tabular-edit-cells",
+      "motionModel": "invalid-shake",
+      "layoutModel": "table",
+      "semanticPurpose": "bulk-entry"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "mosaic",
+      "density": "dense",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "monochrome"
+    }
+  }
+}

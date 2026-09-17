@@ -1,0 +1,56 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "toggle-switch-card",
+  "type": "registry:component",
+  "title": "Toggle Switch Card",
+  "description": "A settings tile row containing descriptive label copy paired with a boolean toggle switch.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "toggle-switch-card.tsx",
+      "type": "registry:component"
+    }
+  ],
+  "tags": [
+    "toggle",
+    "switch",
+    "settings",
+    "tile",
+    "controls"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "starter",
+    "subcategory": "controls",
+    "fingerprint": {
+      "interactionModel": "setting-tile-toggle",
+      "visualModel": "setting-row-chassis",
+      "motionModel": "lateral-switch-slide",
+      "layoutModel": "horizontal-setting-tile",
+      "semanticPurpose": "preference-toggle-card"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

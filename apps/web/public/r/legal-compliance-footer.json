@@ -1,0 +1,66 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "legal-compliance-footer",
+  "type": "registry:section",
+  "title": "Legal Compliance Footer",
+  "description": "A compact footer containing statutory copyright, license details, and compliance links.",
+  "category": "sections",
+  "dependencies": [],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "legal-compliance-footer.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport function LegalComplianceFooter({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <footer className={cn(\"w-full border-t border-neutral-200 dark:border-neutral-800 py-6 px-4 text-center text-xs text-neutral-500 bg-white dark:bg-neutral-950\", className)} {...props}>\n      <div>OpenUI Registry • Licensed under MIT • Zero Tracking Cookies</div>\n    </footer>\n  );\n}\n",
+      "contentHash": "78e5367cbaabd1d493b48fb0fc8c0b3ac9564f241c3b0700ae20c67d0f3440b9",
+      "sizeBytes": 485
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:section",
+      "content": "\"use client\";\n\nimport { LegalComplianceFooter } from \"./legal-compliance-footer\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full bg-neutral-100 dark:bg-neutral-950 min-h-[100px] flex items-center justify-center\">\n      <LegalComplianceFooter />\n    </div>\n  );\n}\n",
+      "contentHash": "f0ad427c3ba3b46ee5ec79f1f1804851782dc6ce7c63571580d9ad0a4d25707b",
+      "sizeBytes": 288
+    }
+  ],
+  "tags": [
+    "legal",
+    "footer",
+    "compliance",
+    "copyright",
+    "terms"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "minimal",
+      "macrostructure": "full-bleed",
+      "density": "compact",
+      "shapeLanguage": "sharp",
+      "motionLanguage": "none",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "monochrome"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "navigation",
+    "fingerprint": {
+      "interactionModel": "legal-compliance-footer-interaction",
+      "visualModel": "legal-compliance-footer-visual",
+      "motionModel": "subtle",
+      "layoutModel": "full-bleed-layout",
+      "semanticPurpose": "legal-compliance-footer-section"
+    }
+  },
+  "url": "https://openui.dev/r/legal-compliance-footer.json",
+  "designRules": "# Design System\n\nGenre: Minimal\nMacrostructure: Full Bleed\nDensity: Compact\nShape: Sharp\nMotion: None\nTypography: Grotesk\nColor: Monochrome\n\n## Rules\n\n- Legal Compliance Footer Interaction: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

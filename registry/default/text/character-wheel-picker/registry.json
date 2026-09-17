@@ -1,0 +1,55 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "character-wheel-picker",
+  "type": "registry:text",
+  "title": "Character Wheel Picker",
+  "description": "A slot-machine you drive: up/down arrows (or wheel) spin each character column independently through the alphabet with inertial easing, composing text letter by letter — an input mechanism, not an animation.",
+  "category": "text",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "character-wheel-picker.tsx",
+      "type": "registry:text"
+    }
+  ],
+  "tags": [
+    "wheel",
+    "input",
+    "picker",
+    "columns"
+  ],
+  "license": "MIT",
+  "meta": {
+    "difficulty": "advanced",
+    "subcategory": "interactive",
+    "fingerprint": {
+      "interactionModel": "wheel-and-key-input",
+      "visualModel": "independent-letter-columns",
+      "motionModel": "inertial-column-spin",
+      "layoutModel": "inline",
+      "semanticPurpose": "text-entry"
+    },
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "rail",
+      "density": "dense",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    }
+  }
+}

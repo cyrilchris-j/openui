@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "hover-glare-card",
+  "type": "registry:interaction",
+  "title": "Hover Glare Card",
+  "description": "A card surface simulating iridescent holographic film that sweeps a bright specular glare band across the tilt angle.",
+  "category": "interactions",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "hover-glare-card.tsx",
+      "type": "registry:interaction",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface HoverGlareCardProps {\n  className?: string;\n}\n\nexport function HoverGlareCard({ className }: HoverGlareCardProps) {\n  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });\n\n  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {\n    const rect = e.currentTarget.getBoundingClientRect();\n    const x = ((e.clientX - rect.left) / rect.width) * 100;\n    const y = ((e.clientY - rect.top) / rect.height) * 100;\n    setGlare({ x, y, opacity: 0.25 });\n  };\n\n  return (\n    <div\n      onPointerMove={handlePointerMove}\n      onPointerLeave={() => setGlare((g) => ({ ...g, opacity: 0 }))}\n      className={cn(\n        \"relative h-64 w-80 overflow-hidden rounded-2xl border border-line bg-ink text-paper p-6 shadow-xl select-none\",\n        className\n      )}\n    >\n      {/* Glare Sheen Overlay */}\n      <div\n        className=\"pointer-events-none absolute inset-0 transition-opacity duration-200\"\n        style={{\n          opacity: glare.opacity,\n          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255, 255, 255, 0.8), transparent 60%)`,\n        }}\n      />\n\n      <div className=\"relative z-10 flex h-full flex-col justify-between\">\n        <span className=\"font-mono text-[10px] text-paper/60 uppercase\">SPECIMEN FOIL</span>\n        <h3 className=\"font-display text-xl font-bold\">Holographic Glare</h3>\n        <p className=\"font-mono text-[10px] text-paper/40\">Tilt pointer across surface</p>\n      </div>\n    </div>\n  );\n}\n\nexport default HoverGlareCard;\n",
+      "contentHash": "7d9a98b42f524e6a53ae3409be70b7addd6762824aa2ffb5bba36270da7866cd",
+      "sizeBytes": 1608
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:interaction",
+      "content": "import { HoverGlareCard } from \"./hover-glare-card\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[20rem] items-center justify-center bg-paper p-8\">\n      <HoverGlareCard />\n    </div>\n  );\n}\n",
+      "contentHash": "0439b433391d3df140994559675d0b21a899eecdd021ee3ea48eb8da5a064625",
+      "sizeBytes": 223
+    }
+  ],
+  "tags": [
+    "glare",
+    "holographic",
+    "card",
+    "hover",
+    "specular"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "luxury",
+      "macrostructure": "symmetric",
+      "density": "medium",
+      "shapeLanguage": "rounded",
+      "motionLanguage": "subtle",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "hover",
+    "fingerprint": {
+      "interactionModel": "specular-glare-sweep",
+      "visualModel": "holographic-sheen-foil",
+      "motionModel": "interpolated-angle-reflection",
+      "layoutModel": "isolated-foil-slab",
+      "semanticPurpose": "iridescent-collector-card"
+    }
+  },
+  "url": "https://openui.dev/r/hover-glare-card.json",
+  "designRules": "# Design System\n\nGenre: Luxury\nMacrostructure: Symmetric\nDensity: Medium\nShape: Rounded\nMotion: Subtle\nTypography: Grotesk\nColor: High Contrast\n\n## Rules\n\n- Specular Glare Sweep: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

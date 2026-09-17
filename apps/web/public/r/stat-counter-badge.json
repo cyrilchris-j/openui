@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "stat-counter-badge",
+  "type": "registry:component",
+  "title": "Stat Counter Badge",
+  "description": "A metric badge displaying live numerical count with delta arrow indicator.",
+  "category": "components",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "stat-counter-badge.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/cn\";\n\nexport interface StatCounterBadgeProps {\n  label?: string;\n  count?: number;\n  delta?: string;\n  className?: string;\n}\n\nexport function StatCounterBadge({\n  label = \"Requests\",\n  count = 9412,\n  delta = \"+8%\",\n  className,\n}: StatCounterBadgeProps) {\n  return (\n    <div className={cn(\"inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1 font-mono text-xs shadow-sm\", className)}>\n      <span className=\"text-ink/60\">{label}:</span>\n      <span className=\"font-bold text-ink\">{count.toLocaleString()}</span>\n      <span className=\"text-[10px] text-emerald-600 font-bold\">{delta}</span>\n    </div>\n  );\n}\n\nexport default StatCounterBadge;\n",
+      "contentHash": "009ed9b0c7baf433f9f438144860b71b00f56abc345be7c1868623a40d900f9c",
+      "sizeBytes": 715
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:component",
+      "content": "import { StatCounterBadge } from \"./stat-counter-badge\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex min-h-[14rem] items-center justify-center bg-paper p-8\">\n      <StatCounterBadge />\n    </div>\n  );\n}\n",
+      "contentHash": "95fdb7ba809bc6c1dc3f8d04930323e4f7fc8a261e9ada02667e0a5a79740187",
+      "sizeBytes": 229
+    }
+  ],
+  "tags": [
+    "stat",
+    "counter",
+    "badge",
+    "metrics",
+    "kpi"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "technical",
+      "macrostructure": "symmetric",
+      "density": "compact",
+      "shapeLanguage": "pill",
+      "motionLanguage": "none",
+      "typographyStyle": "monospace",
+      "colorStrategy": "high-contrast"
+    },
+    "difficulty": "starter",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "data-display",
+    "fingerprint": {
+      "interactionModel": "kpi-counter-display",
+      "visualModel": "numeric-pill-badge",
+      "motionModel": "none",
+      "layoutModel": "inline-stat-badge",
+      "semanticPurpose": "metric-counter-badge"
+    }
+  },
+  "url": "https://openui.dev/r/stat-counter-badge.json",
+  "designRules": "# Design System\n\nGenre: Technical\nMacrostructure: Symmetric\nDensity: Compact\nShape: Pill\nMotion: None\nTypography: Monospace\nColor: High Contrast\n\n## Rules\n\n- Kpi Counter Display: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

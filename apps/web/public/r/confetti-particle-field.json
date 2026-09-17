@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openui.dev/schema/registry-item.json",
+  "name": "confetti-particle-field",
+  "type": "registry:background",
+  "title": "Confetti Particle Field",
+  "description": "Multi-colored geometric confetti squares drifting slowly downward across an celebratory canvas backdrop.",
+  "category": "backgrounds",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "confetti-particle-field.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\nimport { cn } from \"@/lib/cn\";\n\nexport interface ConfettiParticleFieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  count?: number;\n  children?: React.ReactNode;\n}\n\nexport function ConfettiParticleField({ count = 40, className, children, ...props }: ConfettiParticleFieldProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = canvasRef.current;\n    if (!canvas) return;\n    const ctx = canvas.getContext(\"2d\");\n    if (!ctx) return;\n\n    let animId: number;\n    let w = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);\n    let h = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);\n\n    const colors = [\"#ef4444\", \"#3b82f6\", \"#10b981\", \"#f59e0b\", \"#8b5cf6\", \"#ec4899\"];\n    const flakes = Array.from({ length: count }, () => ({\n      x: Math.random() * w,\n      y: Math.random() * h,\n      size: Math.random() * 6 + 4,\n      color: colors[Math.floor(Math.random() * colors.length)] ?? \"#3b82f6\",\n      speedY: Math.random() * 1.5 + 0.5,\n      tilt: Math.random() * 10,\n      tiltSpeed: Math.random() * 0.05 + 0.02,\n    }));\n\n    const render = () => {\n      ctx.clearRect(0, 0, w, h);\n      for (const f of flakes) {\n        f.y += f.speedY;\n        f.tilt += f.tiltSpeed;\n        if (f.y > h) {\n          f.y = -10;\n          f.x = Math.random() * w;\n        }\n\n        ctx.fillStyle = f.color;\n        ctx.fillRect(f.x, f.y, f.size, f.size * Math.sin(f.tilt));\n      }\n      animId = requestAnimationFrame(render);\n    };\n\n    render();\n    return () => cancelAnimationFrame(animId);\n  }, [count]);\n\n  return (\n    <div className={cn(\"relative isolate w-full min-h-full bg-paper text-ink overflow-hidden\", className)} {...props}>\n      <canvas ref={canvasRef} className=\"absolute inset-0 pointer-events-none opacity-50 -z-10\" />\n      {children}\n    </div>\n  );\n}\n",
+      "contentHash": "1872381aac41092b479f0643cfc1cb896f3cd3e5a5b1110be1648578fb97db65",
+      "sizeBytes": 1929
+    },
+    {
+      "path": "demo.tsx",
+      "type": "registry:background",
+      "content": "\"use client\";\n\nimport { ConfettiParticleField } from \"./confetti-particle-field\";\n\nexport default function ConfettiParticleFieldDemo() {\n  return (\n    <ConfettiParticleField className=\"min-h-[260px] flex items-center justify-center p-8\">\n      <div className=\"p-6 rounded-xl border border-line bg-paper/90 backdrop-blur-md shadow-md text-center max-w-sm\">\n        <h3 className=\"text-sm font-bold font-sans text-ink\">Celebration Confetti</h3>\n        <p className=\"text-xs text-ink/60 mt-1 font-sans\">Slow fluttering geometric paper particles.</p>\n      </div>\n    </ConfettiParticleField>\n  );\n}\n",
+      "contentHash": "e439310b9e485b9c9b871cf8a1326a53dff32a7abb1fe8e8bd6e796eed80f0af",
+      "sizeBytes": 598
+    }
+  ],
+  "tags": [
+    "confetti",
+    "party",
+    "canvas",
+    "celebration",
+    "particles"
+  ],
+  "license": "MIT",
+  "meta": {
+    "dna": {
+      "genre": "playful",
+      "macrostructure": "full-bleed",
+      "density": "airy",
+      "shapeLanguage": "cut",
+      "motionLanguage": "kinetic",
+      "typographyStyle": "grotesk",
+      "colorStrategy": "pastel"
+    },
+    "difficulty": "intermediate",
+    "features": [
+      "keyboard-accessible",
+      "reduced-motion-safe",
+      "responsive"
+    ],
+    "peer": {
+      "react": ">=19"
+    },
+    "subcategory": "canvases",
+    "fingerprint": {
+      "interactionModel": "passive-canvas-confetti",
+      "visualModel": "falling-geometric-flakes",
+      "motionModel": "downward-swaying-drift",
+      "layoutModel": "full-viewport-underlay",
+      "semanticPurpose": "celebratory-particle-field"
+    }
+  },
+  "url": "https://openui.dev/r/confetti-particle-field.json",
+  "designRules": "# Design System\n\nGenre: Playful\nMacrostructure: Full Bleed\nDensity: Airy\nShape: Cut\nMotion: Kinetic\nTypography: Grotesk\nColor: Pastel\n\n## Rules\n\n- Passive Canvas Confetti: the interaction model is part of the design, not an add-on.\n- Reduced motion replaces animation with a state change; nothing is hidden behind motion.\n- The component composes through `cn` and never hardcodes colours.\n\n## Avoid\n\n- Reskinning this resource and republishing it under a new name.\n- Adding shadows or radii that contradict its shape language.\n"
+}

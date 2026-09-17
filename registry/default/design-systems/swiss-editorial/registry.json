@@ -7,12 +7,26 @@
   "category": "design-systems",
   "dependencies": [],
   "registryDependencies": [],
-  "files": [{ "path": "swiss-editorial.css", "type": "registry:theme", "target": "styles" }],
-  "tags": ["design-system", "editorial", "swiss"],
+  "files": [
+    {
+      "path": "swiss-editorial.css",
+      "type": "registry:theme",
+      "target": "styles"
+    }
+  ],
+  "tags": [
+    "design-system",
+    "editorial",
+    "swiss"
+  ],
   "license": "MIT",
   "meta": {
     "difficulty": "intermediate",
-    "features": ["design-tokens", "dark-mode", "ai-consumable"],
+    "features": [
+      "design-tokens",
+      "dark-mode",
+      "ai-consumable"
+    ],
     "dna": {
       "genre": "editorial",
       "macrostructure": "asymmetric",
@@ -21,6 +35,13 @@
       "motionLanguage": "subtle",
       "typographyStyle": "serif-display",
       "colorStrategy": "high-contrast"
+    },
+    "subcategory": "design-system",
+    "fingerprint": {
+      "interactionModel": "design-system-tokens",
+      "visualModel": "asymmetric-swiss-editorial-typography",
+      "layoutModel": "modular-grid-scale",
+      "semanticPurpose": "global-design-system"
     }
   }
 }
