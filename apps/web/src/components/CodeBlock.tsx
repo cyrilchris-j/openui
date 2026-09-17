@@ -45,30 +45,30 @@ export function CodeBlock({
   const visible = collapsible && !expanded ? lines.slice(0, maxLines) : lines;
 
   return (
-    <figure className={cn("border border-line", className)}>
-      <figcaption className="flex items-center justify-between gap-3 border-b border-line px-3 py-2">
-        <span className="flex items-baseline gap-2 truncate">
-          <span className="eyebrow">{caption ?? language ?? "Source"}</span>
+    <figure className={cn("border border-line min-w-0 max-w-full", className)}>
+      <figcaption className="flex items-center justify-between gap-3 border-b border-line px-3 py-2 min-w-0">
+        <span className="flex items-baseline gap-2 truncate min-w-0">
+          <span className="eyebrow truncate">{caption ?? language ?? "Source"}</span>
           {language && caption ? (
-            <span className="font-mono text-[10px] tracking-[0.14em] text-graphite/70">
+            <span className="shrink-0 font-mono text-[10px] tracking-[0.14em] text-graphite/70">
               {language}
             </span>
           ) : null}
         </span>
-        <CopyButton value={code} label={`Copy ${caption ?? "code"}`} />
+        <CopyButton value={code} label={`Copy ${caption ?? "code"}`} className="shrink-0" />
       </figcaption>
 
-      <div className={cn("code-plate", tone === "light" && "code-plate--light")}>
-        <pre className="m-0">
+      <div className={cn("code-plate max-w-full overflow-x-auto", tone === "light" && "code-plate--light")}>
+        <pre className="m-0 min-w-0">
           <code>
             {visible.map((line, index) => (
-              <span key={index} className="grid grid-cols-[auto_1fr] gap-4">
+              <span key={index} className="grid grid-cols-[auto_1fr] gap-4 min-w-0">
                 {showLineNumbers ? (
                   <span aria-hidden className="select-none text-right opacity-40">
                     {index + 1}
                   </span>
                 ) : null}
-                <span>{line.length > 0 ? line : " "}</span>
+                <span className="break-words sm:break-normal">{line.length > 0 ? line : " "}</span>
               </span>
             ))}
           </code>
@@ -98,8 +98,8 @@ export function CodeBlock({
  */
 export function CommandLine({ command }: { command: string }): React.JSX.Element {
   return (
-    <div className="flex items-stretch border border-line max-w-full">
-      <code className="flex-1 overflow-x-auto whitespace-nowrap no-scrollbar bg-ink/95 px-3.5 sm:px-4 py-2.5 sm:py-3 font-mono text-[0.75rem] sm:text-[0.8rem] text-paper">
+    <div className="flex items-stretch border border-line max-w-full min-w-0">
+      <code className="flex-1 min-w-0 overflow-x-auto whitespace-nowrap no-scrollbar bg-ink/95 px-3.5 sm:px-4 py-2.5 sm:py-3 font-mono text-[0.75rem] sm:text-[0.8rem] text-paper">
         {command}
       </code>
       <CopyButton value={command} label="Copy install command" className="border-y-0 border-r-0 shrink-0" />

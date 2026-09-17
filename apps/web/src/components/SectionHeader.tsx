@@ -74,7 +74,7 @@ export function Section({
     <section id={id} className={cn("border-t border-line pt-8", className)}>
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-12">
         {label ? <p className="eyebrow lg:sticky lg:top-24 lg:self-start">{label}</p> : <span />}
-        <div>{children}</div>
+        <div className="min-w-0">{children}</div>
       </div>
     </section>
   );

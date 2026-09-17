@@ -55,7 +55,7 @@ export default function HomePage(): React.JSX.Element {
       {/* ---------------------------------------------------------------- */}
       <section className="shell pt-8 sm:pt-16 lg:pt-24">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
-          <div>
+          <div className="min-w-0">
             <p className="eyebrow text-[10px] sm:text-[11px]">Open registry · MIT · v{index.data?.version ?? "0.1.0"}</p>
 
             <h1 className="optically-align mt-4 sm:mt-8 max-w-[18ch] text-balance text-3xl sm:text-5xl lg:text-step-5 leading-[1.05]">
@@ -84,7 +84,7 @@ export default function HomePage(): React.JSX.Element {
           </div>
 
           {/* The index column: a live inventory, not a feature list. */}
-          <aside className="lg:pt-2">
+          <aside className="min-w-0 lg:pt-2">
             <div className="border-t border-line pt-4">
               <p className="eyebrow">Registry index</p>
               {index.isLoading ? (
@@ -142,6 +142,7 @@ export default function HomePage(): React.JSX.Element {
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-12">
           <CodeBlock
+            className="min-w-0"
             caption="registry/default/components/magnetic-button/design.md"
             language="markdown"
             maxLines={22}
@@ -162,7 +163,7 @@ Motion: subtle
 - The accent colour is the only signal; no shadows.`}
           />
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 min-w-0">
             <p className="prose-measure text-[0.95rem] leading-relaxed text-graphite">
               The registry is not a package index. A package tells you what it exports; a registry
               resource tells you what it <em>is</em>, in the vocabulary of design — so an
@@ -236,6 +237,7 @@ Motion: subtle
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,4fr)] lg:gap-16">
             <CodeBlock
+              className="min-w-0"
               tone="light"
               caption="ai/design-rules/anti-slop/anti-slop.md"
               language="markdown"
@@ -256,7 +258,7 @@ None of these is a mistake in isolation. Together they
 are a fingerprint — and it is the wrong one.`}
             />
 
-            <div className="flex flex-col justify-between gap-8">
+            <div className="flex flex-col justify-between gap-8 min-w-0">
               <div className="flex flex-col gap-4">
                 {[
                   ["Design rules", "Editorial rules, brutalist rules, composition rules."],
@@ -298,6 +300,7 @@ are a fingerprint — and it is the wrong one.`}
 
         <Section label="Install" className="mt-12">
           <CodeBlock
+            className="min-w-0"
             caption="terminal"
             language="bash"
             code={`# Add a component and everything it needs
@@ -331,10 +334,10 @@ pnpm dlx openui theme add swiss-editorial`}
       {/* ---------------------------------------------------------------- */}
       <section className="shell mt-12 sm:mt-24 lg:mt-32">
         <div className="grid gap-6 sm:gap-8 border-t border-line pt-6 sm:pt-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,4fr)] lg:gap-16">
-          <h2 className="optically-align text-2xl sm:text-3xl lg:text-step-4 max-w-[20ch] text-balance leading-[1.08]">
+          <h2 className="optically-align text-2xl sm:text-3xl lg:text-step-4 max-w-[20ch] text-balance leading-[1.08] min-w-0">
             Add the resource you wish existed.
           </h2>
-          <div className="flex flex-col items-start gap-4 sm:gap-6">
+          <div className="flex flex-col items-start gap-4 sm:gap-6 min-w-0">
             <p className="prose-measure text-[0.88rem] sm:text-[0.95rem] leading-relaxed text-graphite">
               Contributions go through a pull request, automated schema validation, a preview build
               and a moderation review. Published versions are immutable — a correction is a new

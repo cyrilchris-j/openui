@@ -32,7 +32,7 @@ export function RootLayout(): React.JSX.Element {
 
       <Masthead />
 
-      <main id="main" tabIndex={-1} className="focus-visible:outline-none">
+      <main id="main" tabIndex={-1} className="min-w-0 max-w-full overflow-x-hidden focus-visible:outline-none">
         <Outlet />
       </main>
 
