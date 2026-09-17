@@ -85,6 +85,7 @@ export default defineConfig({
   build: {
     target: "es2022",
     sourcemap: true,
+    chunkSizeWarningLimit: 1000,
     // Markdown is content, not code, and it is the largest text payload on the
     // site. Treating it as an asset keeps it out of the JavaScript graph.
     assetsInlineLimit: 0,

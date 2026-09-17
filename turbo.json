@@ -16,6 +16,14 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "@openui/web#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "@openui/registry-api#build": {
+      "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
     "typecheck": {
