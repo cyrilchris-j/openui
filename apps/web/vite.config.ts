@@ -38,18 +38,16 @@ export default defineConfig({
         replacement: fileURLToPath(new URL("../../registry/default/components/cn/cn.ts", import.meta.url)),
       },
       {
-        // `@/hooks/<name>` appears twice in the target path (directory and
-        // file base name), so a plain $1 replacement cannot build it; a find
-        // function can. Vite calls customFilter for every id it resolves.
-        find: ((source: string) => /^@\/hooks\/(use-[a-z0-9-]+)$/.test(source)) as unknown as RegExp,
-        replacement: "",
-        async customResolver(source: string) {
-          const hookName = /^@\/hooks\/(use-[a-z0-9-]+)$/.exec(source)?.[1];
-          if (!hookName) return null;
-          return fileURLToPath(
-            new URL(`../../registry/default/components/${hookName}/${hookName}.ts`, import.meta.url),
-          );
-        },
+        find: "@/hooks/use-in-view",
+        replacement: fileURLToPath(new URL("../../registry/default/components/use-in-view/use-in-view.ts", import.meta.url)),
+      },
+      {
+        find: "@/hooks/use-canvas-loop",
+        replacement: fileURLToPath(new URL("../../registry/default/components/use-canvas-loop/use-canvas-loop.ts", import.meta.url)),
+      },
+      {
+        find: "@/hooks/use-reduced-motion",
+        replacement: fileURLToPath(new URL("../../registry/default/components/use-reduced-motion/use-reduced-motion.ts", import.meta.url)),
       },
       // Registry sources, for the generated mount tests: demos import their
       // own item's source with the same relative convention they ship with.

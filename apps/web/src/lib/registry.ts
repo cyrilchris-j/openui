@@ -41,11 +41,11 @@ export class RegistryError extends Error {
   }
 }
 
-async function fetchJson<T>(url: string): Promise<T> {
+async function fetchJson<T>(url: string, forceCache = false): Promise<T> {
   const response = await fetch(url, {
-    // Artifacts are immutable and content-addressed by integrity digest, so a
-    // conditional request is pointless overhead on a hot path.
-    cache: "force-cache",
+    // Individual item artifacts are immutable, but the registry index
+    // is dynamic and should be revalidated so new catalogue releases show immediately.
+    cache: forceCache ? "force-cache" : "no-cache",
     headers: { accept: "application/json" },
   });
 
@@ -62,7 +62,7 @@ async function fetchJson<T>(url: string): Promise<T> {
 
 /** The full index. Cached for the lifetime of the page. */
 export function loadIndex(): Promise<RegistryIndex> {
-  indexPromise ??= fetchJson<RegistryIndex>(registryUrl("registry.json")).catch((error) => {
+  indexPromise ??= fetchJson<RegistryIndex>(registryUrl("registry.json"), false).catch((error) => {
     // A failed load must not be cached, or a transient error would poison every
     // subsequent navigation until a reload.
     indexPromise = null;
@@ -78,6 +78,7 @@ export function loadItem(name: string, namespace = "default"): Promise<BuiltRegi
   if (!pending) {
     pending = fetchJson<BuiltRegistryItem>(
       registryUrl(namespace === "default" ? `${name}.json` : `${namespace}/${name}.json`),
+      true,
     ).catch((error) => {
       itemPromises.delete(key);
       throw error;
