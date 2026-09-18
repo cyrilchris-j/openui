@@ -6,10 +6,21 @@ export function registerServiceWorker(): void {
     return;
   }
 
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!refreshing) {
+      refreshing = true;
+      window.location.reload();
+    }
+  });
+
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/sw.js")
       .then((registration) => {
+        // Proactively check for an updated service worker
+        void registration.update();
+
         // Check for updates periodically
         registration.addEventListener("updatefound", () => {
           const installingWorker = registration.installing;
@@ -17,8 +28,7 @@ export function registerServiceWorker(): void {
           installingWorker.addEventListener("statechange", () => {
             if (installingWorker.state === "installed") {
               if (navigator.serviceWorker.controller) {
-                // New content is available once current tabs are closed or updated
-                console.info("[PWA] New content available. Refresh to update.");
+                console.info("[PWA] New content available. Updating...");
               } else {
                 console.info("[PWA] Content cached for offline use.");
               }

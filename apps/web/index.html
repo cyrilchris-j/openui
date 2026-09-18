@@ -59,8 +59,9 @@
       (() => {
         try {
           const stored = localStorage.getItem("openui-theme");
+          const isStandalone = window.matchMedia("(display-mode: standalone)").matches || Boolean(window.navigator.standalone);
           const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          const dark = stored ? stored === "dark" : prefersDark;
+          const dark = stored ? stored === "dark" : (isStandalone ? true : prefersDark);
           document.documentElement.classList.toggle("dark", dark);
         } catch {
           /* A blocked localStorage is not a reason to fail to render. */

@@ -135,7 +135,9 @@ export function Masthead(): React.JSX.Element {
             </button>
           )}
 
-          <ThemeToggle />
+          <div className="hidden lg:block">
+            <ThemeToggle />
+          </div>
           <AccountMenu />
 
           <button

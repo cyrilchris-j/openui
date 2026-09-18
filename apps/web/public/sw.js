@@ -1,5 +1,5 @@
 // OpenUI PWA Service Worker
-const CACHE_NAME = "openui-cache-v1";
+const CACHE_NAME = "openui-cache-v3";
 
 const PRECACHE_URLS = [
   "/",

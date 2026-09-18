@@ -57,49 +57,48 @@ export default function HomePage(): React.JSX.Element {
       {/* Opening statement                                                 */}
       {/* ---------------------------------------------------------------- */}
       <section className="shell pt-6 sm:pt-14 lg:pt-20">
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
           <div className="min-w-0">
-            <p className="eyebrow text-[10px] sm:text-[11px]">Open registry · MIT · v{index.data?.version ?? "0.1.0"}</p>
+            <p className="eyebrow text-xs sm:text-[11px] tracking-[0.22em] text-graphite mb-3">
+              Open registry · MIT · v{index.data?.version ?? "0.1.0"}
+            </p>
 
-            <h1 className="optically-align mt-3 sm:mt-6 max-w-[18ch] text-balance text-2xl sm:text-4xl lg:text-step-5 leading-[1.08]">
+            <h1 className="optically-align text-balance text-3xl sm:text-5xl lg:text-step-5 font-normal leading-[1.06] tracking-tight text-ink">
               Interfaces should have a fingerprint.
             </h1>
 
-            <p className="prose-measure mt-3 sm:mt-6 text-[0.88rem] sm:text-step-1 leading-relaxed text-graphite">
+            <p className="prose-measure mt-4 sm:mt-6 text-[0.95rem] sm:text-step-1 leading-relaxed text-graphite">
               Most generated interfaces look the same because nothing ever told them not to. OpenUI
               is an open registry of components, text effects, motion, layouts, themes and design
               systems — each one shipping its source, a demo, and the <em>design rules</em> that
               make it work. Install the code. Keep the rules.
             </p>
 
-            <div className="mt-5 sm:mt-8 max-w-[34rem]">
+            <div className="mt-6 sm:mt-8 max-w-[34rem]">
               <CommandLine command="pnpm dlx openui add magnetic-button" />
             </div>
 
-            <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
-              <Button asChild className="h-11 sm:h-9 text-xs sm:text-sm justify-center">
+            <div className="mt-6 sm:mt-8 flex flex-col gap-3 w-full max-w-[34rem]">
+              <Button
+                asChild
+                className="w-full h-12 justify-center font-mono text-xs uppercase tracking-widest bg-ink text-paper hover:bg-ink/90 font-medium"
+              >
                 <Link to="/explore">Explore the registry</Link>
               </Button>
-              <Button variant="outline" asChild className="h-11 sm:h-9 text-xs sm:text-sm justify-center">
+              <Button
+                variant="outline"
+                asChild
+                className="w-full h-12 justify-center font-mono text-xs uppercase tracking-widest border-line text-ink hover:bg-surface/50 font-medium"
+              >
                 <Link to="/docs/registry">How the registry works</Link>
               </Button>
-              {!isInstalled && (
-                <Button
-                  variant="outline"
-                  onClick={triggerInstall}
-                  className="h-11 sm:h-9 text-xs sm:text-sm justify-center border border-line hover:border-ink hover:bg-surface/50"
-                >
-                  <Download className="h-3.5 w-3.5 mr-1.5 text-graphite" />
-                  Download App
-                </Button>
-              )}
             </div>
           </div>
 
           {/* The index column: a live inventory, not a feature list. */}
           <aside className="min-w-0 lg:pt-2">
-            <div className="border-t border-line pt-4">
-              <p className="eyebrow">Registry index</p>
+            <div className="border-t border-line pt-6">
+              <p className="eyebrow mb-3">Registry index</p>
               {index.isLoading ? (
                 <Skeleton lines={6} className="mt-4" />
               ) : index.error ? (

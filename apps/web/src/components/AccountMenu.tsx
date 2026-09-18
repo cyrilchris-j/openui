@@ -74,12 +74,12 @@ export function AccountMenu(): React.JSX.Element {
           variant="outline"
           size="sm"
           onClick={() => setDialogOpen(true)}
-          title="Sign in"
-          aria-label="Sign in"
-          className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5"
+          title="Account"
+          aria-label="Account"
+          className="h-8 sm:h-9 px-2.5 sm:px-3 text-[11px] font-mono uppercase tracking-wider gap-1.5 border-line text-ink hover:border-ink hover:bg-surface/50"
         >
-          <LogIn aria-hidden className="h-3.5 w-3.5" />
-          <span className="hidden lg:inline ml-1.5">Sign in</span>
+          <User aria-hidden className="h-3.5 w-3.5" />
+          <span>Account</span>
         </Button>
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -177,12 +177,10 @@ export function AccountMenu(): React.JSX.Element {
           size="sm"
           title={user.username ? `@${user.username}` : "Account"}
           aria-label="Account"
-          className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5"
+          className="h-8 sm:h-9 px-2.5 sm:px-3 text-[11px] font-mono uppercase tracking-wider gap-1.5 border-line text-ink hover:border-ink hover:bg-surface/50"
         >
           <User aria-hidden className="h-3.5 w-3.5" />
-          <span className="hidden lg:inline ml-1.5">
-            {user.username ? `@${user.username}` : "Account"}
-          </span>
+          <span>{user.username ? `@${user.username}` : "Account"}</span>
         </Button>
       </DropdownMenuTrigger>
 
