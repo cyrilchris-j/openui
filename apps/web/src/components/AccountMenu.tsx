@@ -59,9 +59,10 @@ export function AccountMenu(): React.JSX.Element {
         size="sm"
         disabled
         title="Authentication is not configured on this deployment."
+        className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5"
       >
         <User aria-hidden className="h-3.5 w-3.5" />
-        Accounts off
+        <span className="hidden lg:inline ml-1.5">Accounts off</span>
       </Button>
     );
   }
@@ -69,9 +70,16 @@ export function AccountMenu(): React.JSX.Element {
   if (!user) {
     return (
       <>
-        <Button variant="outline" size="sm" onClick={() => setDialogOpen(true)}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setDialogOpen(true)}
+          title="Sign in"
+          aria-label="Sign in"
+          className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5"
+        >
           <LogIn aria-hidden className="h-3.5 w-3.5" />
-          Sign in
+          <span className="hidden lg:inline ml-1.5">Sign in</span>
         </Button>
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -164,9 +172,17 @@ export function AccountMenu(): React.JSX.Element {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button
+          variant="outline"
+          size="sm"
+          title={user.username ? `@${user.username}` : "Account"}
+          aria-label="Account"
+          className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5"
+        >
           <User aria-hidden className="h-3.5 w-3.5" />
-          {user.username ? `@${user.username}` : "Account"}
+          <span className="hidden lg:inline ml-1.5">
+            {user.username ? `@${user.username}` : "Account"}
+          </span>
         </Button>
       </DropdownMenuTrigger>
 

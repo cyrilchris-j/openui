@@ -98,7 +98,7 @@ export function Masthead(): React.JSX.Element {
               const trimmed = term.trim();
               navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : "/search");
             }}
-            className="hidden items-center gap-2 border-b border-line md:flex"
+            className="hidden items-center gap-2 border-b border-line lg:flex"
           >
             <Search aria-hidden className="h-3.5 w-3.5 text-graphite" />
             <label htmlFor="masthead-search" className="sr-only">
@@ -118,7 +118,7 @@ export function Masthead(): React.JSX.Element {
           <Link
             to="/search"
             aria-label="Search the registry"
-            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide md:hidden"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide lg:hidden"
           >
             <Search aria-hidden className="h-4 w-4" />
           </Link>
@@ -128,7 +128,7 @@ export function Masthead(): React.JSX.Element {
               type="button"
               onClick={triggerInstall}
               title="Download OpenUI App for desktop or mobile"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider border border-line text-ink hover:border-ink hover:bg-surface/50 transition-colors duration-fast"
+              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider border border-line text-ink hover:border-ink hover:bg-surface/50 transition-colors duration-fast"
             >
               <Download className="h-3.5 w-3.5 text-graphite" />
               <span>Download App</span>

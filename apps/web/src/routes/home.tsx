@@ -1,9 +1,11 @@
+import { Download } from "lucide-react";
 import * as React from "react";
 import { Link } from "react-router";
 
 import { Badge, Button, EmptyState, Skeleton } from "@openui/ui";
 
 import { CodeBlock, CommandLine } from "../components/CodeBlock.js";
+import { usePWA } from "../components/PWAInstall.js";
 import { ResourceTile } from "../components/ResourceTile.js";
 import { Section, SectionHeader } from "../components/SectionHeader.js";
 import { useRegistryIndex } from "../features/resources/use-catalogue.js";
@@ -28,6 +30,7 @@ import { CATALOGUE_CATEGORIES, itemsInCategory, itemsWithDesignRules } from "../
  */
 export default function HomePage(): React.JSX.Element {
   const index = useRegistryIndex();
+  const { isInstalled, triggerInstall } = usePWA();
 
   const counts = React.useMemo(() => {
     if (!index.data) return [];
@@ -53,33 +56,43 @@ export default function HomePage(): React.JSX.Element {
       {/* ---------------------------------------------------------------- */}
       {/* Opening statement                                                 */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell pt-8 sm:pt-16 lg:pt-24">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
+      <section className="shell pt-6 sm:pt-14 lg:pt-20">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
           <div className="min-w-0">
             <p className="eyebrow text-[10px] sm:text-[11px]">Open registry · MIT · v{index.data?.version ?? "0.1.0"}</p>
 
-            <h1 className="optically-align mt-4 sm:mt-8 max-w-[18ch] text-balance text-3xl sm:text-5xl lg:text-step-5 leading-[1.05]">
+            <h1 className="optically-align mt-3 sm:mt-6 max-w-[18ch] text-balance text-2xl sm:text-4xl lg:text-step-5 leading-[1.08]">
               Interfaces should have a fingerprint.
             </h1>
 
-            <p className="prose-measure mt-4 sm:mt-8 text-[0.92rem] sm:text-step-1 leading-relaxed text-graphite">
+            <p className="prose-measure mt-3 sm:mt-6 text-[0.88rem] sm:text-step-1 leading-relaxed text-graphite">
               Most generated interfaces look the same because nothing ever told them not to. OpenUI
               is an open registry of components, text effects, motion, layouts, themes and design
               systems — each one shipping its source, a demo, and the <em>design rules</em> that
               make it work. Install the code. Keep the rules.
             </p>
 
-            <div className="mt-6 sm:mt-10 max-w-[34rem]">
+            <div className="mt-5 sm:mt-8 max-w-[34rem]">
               <CommandLine command="pnpm dlx openui add magnetic-button" />
             </div>
 
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
-              <Button asChild>
+            <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+              <Button asChild className="h-11 sm:h-9 text-xs sm:text-sm justify-center">
                 <Link to="/explore">Explore the registry</Link>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="h-11 sm:h-9 text-xs sm:text-sm justify-center">
                 <Link to="/docs/registry">How the registry works</Link>
               </Button>
+              {!isInstalled && (
+                <Button
+                  variant="outline"
+                  onClick={triggerInstall}
+                  className="h-11 sm:h-9 text-xs sm:text-sm justify-center border border-line hover:border-ink hover:bg-surface/50"
+                >
+                  <Download className="h-3.5 w-3.5 mr-1.5 text-graphite" />
+                  Download App
+                </Button>
+              )}
             </div>
           </div>
 
