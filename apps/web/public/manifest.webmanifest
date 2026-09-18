@@ -1,0 +1,68 @@
+{
+  "id": "/",
+  "name": "OpenUI Design Registry",
+  "short_name": "OpenUI",
+  "description": "An open registry of distinctive UI resources: components, text effects, motion, layouts, themes and design systems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f7f5f0",
+  "theme_color": "#0b0b0a",
+  "lang": "en",
+  "categories": ["design", "developer-tools", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Catalogue",
+      "short_name": "Explore",
+      "description": "Browse distinctive UI resources",
+      "url": "/explore",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Playground",
+      "short_name": "Playground",
+      "description": "Interactive component sandbox",
+      "url": "/playground",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search components and patterns",
+      "url": "/search",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

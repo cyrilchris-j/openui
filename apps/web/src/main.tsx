@@ -2,7 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { App } from "./app/App.js";
+import { registerServiceWorker } from "./lib/register-sw.js";
 import "./styles/app.css";
+
+registerServiceWorker();
 
 /**
  * Client entrypoint.

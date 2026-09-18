@@ -52,9 +52,18 @@ export function Masthead(): React.JSX.Element {
       <div className="shell flex h-14 sm:h-16 items-center gap-3 sm:gap-6">
         <Link
           to="/"
-          className="shrink-0 font-display text-xl sm:text-step-2 leading-none tracking-tight text-ink"
+          className="flex items-center gap-2.5 sm:gap-3 shrink-0 group focus-visible:outline-none"
         >
-          OpenUI
+          <img
+            src="/logo.png"
+            alt="OpenUI"
+            width={36}
+            height={36}
+            className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-contain shadow-xs ring-1 ring-line/30 transition-transform duration-fast ease-editorial group-hover:scale-105"
+          />
+          <span className="font-display text-xl sm:text-step-2 leading-none tracking-tight text-ink">
+            OpenUI
+          </span>
         </Link>
 
         <nav aria-label="Catalogue" className="hidden flex-1 lg:block">
@@ -102,6 +111,14 @@ export function Masthead(): React.JSX.Element {
             />
           </form>
 
+          <Link
+            to="/search"
+            aria-label="Search the registry"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide md:hidden"
+          >
+            <Search aria-hidden className="h-4 w-4" />
+          </Link>
+
           <ThemeToggle />
           <AccountMenu />
 
@@ -126,8 +143,29 @@ export function Masthead(): React.JSX.Element {
         <div
           id="mobile-index"
           className="fixed inset-x-0 bottom-0 top-14 sm:top-16 z-30 overflow-y-auto border-t border-line bg-paper lg:hidden"
+          style={{ paddingBottom: "max(3rem, env(safe-area-inset-bottom, 0px))" }}
         >
           <nav aria-label="Catalogue" className="shell py-6">
+            <form
+              role="search"
+              onSubmit={(event) => {
+                event.preventDefault();
+                const trimmed = term.trim();
+                setMenuOpen(false);
+                navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : "/search");
+              }}
+              className="mb-6 flex items-center gap-2.5 border-b border-line pb-2.5"
+            >
+              <Search aria-hidden className="h-4 w-4 text-graphite shrink-0" />
+              <input
+                type="search"
+                value={term}
+                onChange={(event) => setTerm(event.target.value)}
+                placeholder="Search components, text, motion..."
+                className="w-full bg-transparent font-mono text-xs tracking-wider text-ink placeholder:text-graphite/70 focus:outline-none"
+              />
+            </form>
+
             <p className="eyebrow mb-4">Index</p>
             <ul className="grid grid-cols-1 sm:grid-cols-2">
               {CATALOGUE_CATEGORIES.map((category) => (

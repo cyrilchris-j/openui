@@ -21,7 +21,16 @@ export function Footer(): React.JSX.Element {
     <footer className="mt-14 sm:mt-24 border-t border-line">
       <div className="shell grid gap-8 sm:gap-10 py-10 sm:py-16 grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr]">
         <div className="col-span-2 md:col-span-1">
-          <p className="font-display text-step-2 leading-none tracking-tight text-ink">OpenUI</p>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="OpenUI"
+              width={36}
+              height={36}
+              className="h-9 w-9 rounded-lg object-contain shadow-xs ring-1 ring-line/30"
+            />
+            <p className="font-display text-step-2 leading-none tracking-tight text-ink">OpenUI</p>
+          </div>
           <p className="mt-4 max-w-[34ch] text-[0.9rem] leading-relaxed text-graphite">
             An open registry of UI resources that carry a design fingerprint — with the design
             rules written down, so a model or a teammate can follow them.
