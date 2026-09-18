@@ -32,7 +32,7 @@ export function TilePreview({ item }: { item: RegistryIndexEntry }): React.JSX.E
   const { ref, inView } = useInView<HTMLDivElement>({ once: true, rootMargin: "200px" });
 
   return (
-    <div ref={ref} className="border-b border-line overflow-hidden pointer-events-none select-none">
+    <div ref={ref} className="border-b border-line/25 bg-[#f9f8f5] dark:bg-[#0e0e0d] overflow-hidden pointer-events-none select-none relative">
       {inView ? (
         <React.Suspense fallback={<PreviewSkeleton />}>
           <TileSandbox name={item.name} />
@@ -40,7 +40,7 @@ export function TilePreview({ item }: { item: RegistryIndexEntry }): React.JSX.E
       ) : (
         <Link
           to={`/${item.category}/${item.name}`}
-          className="flex h-44 items-end bg-ink/[0.02] p-4"
+          className="flex h-44 items-end bg-[#f9f8f5] dark:bg-[#0e0e0d] p-4"
           tabIndex={-1}
           aria-hidden
         >
@@ -53,7 +53,7 @@ export function TilePreview({ item }: { item: RegistryIndexEntry }): React.JSX.E
 
 function PreviewSkeleton(): React.JSX.Element {
   return (
-    <div className="flex h-44 items-center justify-center bg-ink/[0.02]">
+    <div className="flex h-44 items-center justify-center bg-[#f9f8f5] dark:bg-[#0e0e0d]">
       <Skeleton lines={3} />
     </div>
   );

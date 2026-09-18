@@ -31,7 +31,7 @@
 
     /* Alpha variants are separate tokens so a theme can change the *rule*
        weight without touching the colour. */
-    --line-alpha: 0.16;
+    --line-alpha: 0.22;
     --wash-alpha: 0.04;
 
     /* --- Typography ---------------------------------------------------- */
@@ -252,25 +252,24 @@
     }
   }
 
-  /* A grid of resource tiles that does not fall into identical 3-column rows:
-     the first item spans two columns so the eye has an entry point. */
+  /* A grid of distinct resource tile containers with clear spacing and visual separation */
   .catalogue-grid {
     display: grid;
-    gap: 1px;
-    background-color: hsl(var(--line) / var(--line-alpha));
-    border: 1px solid hsl(var(--line) / var(--line-alpha));
+    gap: 1.25rem;
     grid-template-columns: minmax(0, 1fr);
   }
 
   @media (min-width: 48rem) {
     .catalogue-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
     }
   }
 
   @media (min-width: 72rem) {
     .catalogue-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.75rem;
     }
   }
 

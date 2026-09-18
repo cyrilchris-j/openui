@@ -36,17 +36,15 @@ export function ResourceTile({ item, index, withPreview = false, className }: Re
   return (
     <article
       className={cn(
-        "group relative flex flex-col bg-paper",
-        withPreview ? "" : "p-4 sm:p-5",
-        "transition-colors duration-fast ease-editorial hover:bg-ink/[0.02]",
-        "focus-within:bg-ink/[0.02]",
+        "group relative flex flex-col bg-white dark:bg-[#141413] border border-line/30 dark:border-line/20 rounded-xl overflow-hidden shadow-xs hover:shadow-lg hover:border-ink/40 dark:hover:border-ink/50 transition-all duration-normal ease-editorial hover:-translate-y-0.5",
+        withPreview ? "" : "p-5 sm:p-6",
         className,
       )}
     >
       {index !== undefined ? (
         <span
           aria-hidden
-          className="absolute right-3.5 top-3.5 sm:right-4 sm:top-4 font-mono text-[10px] tracking-[0.2em] text-graphite"
+          className="absolute right-3.5 top-3.5 sm:right-4 sm:top-4 z-10 font-mono text-[10px] tracking-[0.2em] text-graphite bg-white/90 dark:bg-black/80 px-2 py-0.5 rounded border border-line/20 backdrop-blur-xs shadow-xs"
         >
           {String(index).padStart(2, "0")}
         </span>
@@ -54,7 +52,7 @@ export function ResourceTile({ item, index, withPreview = false, className }: Re
 
       {withPreview ? <TilePreview item={item} /> : null}
 
-      <div className={cn("flex items-center gap-2", withPreview && "px-4 pt-4 sm:px-5 sm:pt-5")}>
+      <div className={cn("flex items-center gap-2", withPreview && "px-5 pt-5 sm:px-6 sm:pt-6")}>
         <span className="eyebrow text-[10px] sm:text-[11px]">{item.type.replace("registry:", "")}</span>
         {item.license ? (
           <>
@@ -66,7 +64,7 @@ export function ResourceTile({ item, index, withPreview = false, className }: Re
         ) : null}
       </div>
 
-      <h3 className={cn("max-w-[22ch] font-display text-xl sm:text-step-2 leading-tight sm:leading-[1.1] tracking-tight text-ink", withPreview ? "mt-3 px-4 sm:px-5" : "mt-2.5 sm:mt-3")}>
+      <h3 className={cn("max-w-[24ch] font-display text-xl sm:text-step-2 leading-tight sm:leading-[1.1] tracking-tight text-ink", withPreview ? "mt-3 px-5 sm:px-6" : "mt-2.5 sm:mt-3")}>
         <Link
           to={href}
           className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
@@ -75,13 +73,13 @@ export function ResourceTile({ item, index, withPreview = false, className }: Re
         </Link>
       </h3>
 
-      <p className={cn("max-w-[42ch] text-[0.82rem] sm:text-[0.88rem] leading-relaxed text-graphite line-clamp-2 sm:line-clamp-none", withPreview ? "mt-2 px-4 sm:px-5" : "mt-2 sm:mt-3")}>
+      <p className={cn("max-w-[44ch] text-[0.82rem] sm:text-[0.88rem] leading-relaxed text-graphite line-clamp-2 sm:line-clamp-none", withPreview ? "mt-2.5 px-5 sm:px-6" : "mt-2.5 sm:mt-3")}>
         {item.description}
       </p>
 
-      <div className={cn("mt-auto", withPreview ? "px-4 pb-4 pt-4 sm:px-5 sm:pb-5" : "pt-4 sm:pt-6")}>
+      <div className={cn("mt-auto", withPreview ? "px-5 pb-5 pt-5 sm:px-6 sm:pb-6" : "pt-5 sm:pt-6")}>
         <DnaStrip dna={item.dna} />
-        <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-3">
+        <div className="mt-3 flex items-center justify-between gap-3 border-t border-line/10 pt-3">
           <p className="font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.14em] text-graphite truncate">
             {dependencies.length === 0 ? "zero dependencies" : dependencies.length === 1 ? dependencies[0] : `${dependencies.length} deps`}
           </p>
