@@ -51,7 +51,7 @@ export function Masthead(): React.JSX.Element {
 
   return (
     <header className="masthead">
-      <div className="shell flex h-14 sm:h-16 items-center gap-3 sm:gap-6">
+      <div className="shell flex h-14 sm:h-16 items-center justify-between gap-3 max-w-full min-w-0">
         <Link
           to="/"
           className="flex items-center gap-2.5 sm:gap-3 shrink-0 group focus-visible:outline-none"
@@ -68,9 +68,9 @@ export function Masthead(): React.JSX.Element {
           </span>
         </Link>
 
-        <nav aria-label="Catalogue" className="hidden flex-1 lg:block">
+        <nav aria-label="Catalogue" className="hidden flex-1 xl:block px-4">
           <ul className="flex items-center gap-5">
-            {CATALOGUE_CATEGORIES.slice(0, 8).map((category) => (
+            {CATALOGUE_CATEGORIES.slice(0, 6).map((category) => (
               <li key={category.slug}>
                 <NavLink
                   to={`/${category.slug}`}
@@ -88,7 +88,7 @@ export function Masthead(): React.JSX.Element {
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <form
             role="search"
             onSubmit={(event) => {
@@ -96,7 +96,7 @@ export function Masthead(): React.JSX.Element {
               const trimmed = term.trim();
               navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : "/search");
             }}
-            className="hidden items-center gap-2 border-b border-line lg:flex"
+            className="hidden items-center gap-2 border-b border-line xl:flex"
           >
             <Search aria-hidden className="h-3.5 w-3.5 text-graphite" />
             <label htmlFor="masthead-search" className="sr-only">
@@ -113,22 +113,19 @@ export function Masthead(): React.JSX.Element {
             />
           </form>
 
-
-          {!isInstalled && (
-            <button
-              type="button"
-              onClick={triggerInstall}
-              title="Download OpenUI App for desktop or mobile"
-              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider border border-line text-ink hover:border-ink hover:bg-surface/50 transition-colors duration-fast"
-            >
-              <Download className="h-3.5 w-3.5 text-graphite" />
-              <span>Download App</span>
-            </button>
-          )}
-
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <ThemeToggle />
           </div>
+
+          <Link
+            to="/search"
+            aria-label="Search the registry"
+            title="Search"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide xl:hidden"
+          >
+            <Search aria-hidden="true" className="h-4 w-4" />
+          </Link>
+
           <AccountMenu />
 
           <button
@@ -136,7 +133,7 @@ export function Masthead(): React.JSX.Element {
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls="mobile-index"
-            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide lg:hidden"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide xl:hidden"
           >
             {menuOpen ? (
               <X aria-hidden="true" className="h-4 w-4" />
@@ -151,7 +148,7 @@ export function Masthead(): React.JSX.Element {
       {menuOpen ? (
         <div
           id="mobile-index"
-          className="fixed inset-x-0 bottom-0 top-14 sm:top-16 z-30 overflow-y-auto border-t border-line bg-paper lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-14 sm:top-16 z-30 overflow-y-auto border-t border-line bg-paper xl:hidden"
           style={{ paddingBottom: "max(3rem, env(safe-area-inset-bottom, 0px))" }}
         >
           <nav aria-label="Catalogue" className="shell py-6">
@@ -239,6 +236,11 @@ export function Masthead(): React.JSX.Element {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-8 pt-6 border-t border-line flex items-center justify-between">
+              <span className="eyebrow">Colour theme</span>
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       ) : null}
