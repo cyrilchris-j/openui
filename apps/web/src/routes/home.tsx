@@ -93,6 +93,33 @@ export default function HomePage(): React.JSX.Element {
                 <Link to="/docs/registry">How the registry works</Link>
               </Button>
             </div>
+
+            {!isInstalled && (
+              <div className="mt-5 flex items-center justify-between gap-3 rounded-lg border border-line bg-surface/40 p-3.5 sm:hidden max-w-[34rem]">
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src="/logo.png"
+                    alt="OpenUI"
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 rounded-md object-contain ring-1 ring-line/30"
+                  />
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-wider text-ink font-semibold">Download OpenUI</p>
+                    <p className="text-[11px] text-graphite">Install as native app on your phone</p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={triggerInstall}
+                  className="font-mono text-[11px] uppercase tracking-wider gap-1.5 shrink-0"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Install
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* The index column: a live inventory, not a feature list. */}
