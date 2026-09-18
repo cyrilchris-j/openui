@@ -7,7 +7,6 @@ import { cn } from "@openui/ui";
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
 import { useAuth } from "../lib/auth.js";
 import { AccountMenu } from "./AccountMenu.js";
-import { MobileBottomNav } from "./MobileBottomNav.js";
 import { ThemeToggle } from "./ThemeToggle.js";
 import { usePWA } from "./PWAInstall.js";
 
@@ -51,8 +50,7 @@ export function Masthead(): React.JSX.Element {
   }, [menuOpen]);
 
   return (
-    <>
-      <header className="masthead">
+    <header className="masthead">
       <div className="shell flex h-14 sm:h-16 items-center gap-3 sm:gap-6">
         <Link
           to="/"
@@ -115,13 +113,6 @@ export function Masthead(): React.JSX.Element {
             />
           </form>
 
-          <Link
-            to="/search"
-            aria-label="Search the registry"
-            className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide lg:hidden"
-          >
-            <Search aria-hidden className="h-4 w-4" />
-          </Link>
 
           {!isInstalled && (
             <button
@@ -252,12 +243,6 @@ export function Masthead(): React.JSX.Element {
         </div>
       ) : null}
     </header>
-
-    <MobileBottomNav
-      onOpenMenu={() => setMenuOpen((open) => !open)}
-      menuOpen={menuOpen}
-    />
-  </>
   );
 }
 
