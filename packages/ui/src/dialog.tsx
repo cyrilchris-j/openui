@@ -44,8 +44,7 @@ export const DialogContent = React.forwardRef<
           "fixed z-50 flex flex-col gap-5 border border-line bg-paper p-6",
           // Docked on phones, centred from the tablet breakpoint up.
           "inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto",
-          "sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:w-[min(34rem,calc(100vw-3rem))]",
-          "sm:-translate-x-1/2 sm:-translate-y-1/2",
+          "sm:inset-0 sm:m-auto sm:h-fit sm:max-h-[88vh] sm:w-[min(34rem,calc(100vw-3rem))]",
           "data-[state=open]:animate-ink-in motion-reduce:animate-none",
           className,
         )}

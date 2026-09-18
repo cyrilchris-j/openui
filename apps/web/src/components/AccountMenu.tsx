@@ -75,16 +75,19 @@ export function AccountMenu(): React.JSX.Element {
         </Button>
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogContent>
-            <DialogTitle>Sign in to OpenUI</DialogTitle>
-            <DialogDescription>
-              Signing in lets you save favourites, build collections and submit resources to the
-              registry. Everything in the catalogue is readable without an account.
-            </DialogDescription>
+          <DialogContent className="sm:max-w-[28rem]">
+            <div className="text-center space-y-1.5">
+              <DialogTitle className="text-center">Sign in to OpenUI</DialogTitle>
+              <DialogDescription className="text-center">
+                Signing in lets you save favourites, build collections and submit resources to the
+                registry. Everything in the catalogue is readable without an account.
+              </DialogDescription>
+            </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2.5">
               <Button
                 variant="primary"
+                className="w-full justify-center"
                 onClick={() =>
                   void signInWithGitHub().catch((cause: unknown) =>
                     setError(cause instanceof Error ? cause.message : "GitHub sign-in failed."),
@@ -95,6 +98,7 @@ export function AccountMenu(): React.JSX.Element {
               </Button>
               <Button
                 variant="outline"
+                className="w-full justify-center"
                 onClick={() =>
                   void signInWithGoogle().catch((cause: unknown) =>
                     setError(cause instanceof Error ? cause.message : "Google sign-in failed."),
@@ -105,7 +109,14 @@ export function AccountMenu(): React.JSX.Element {
               </Button>
             </div>
 
-            <div className="rule" />
+            <div className="relative my-1 text-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-line" />
+              </div>
+              <span className="relative bg-paper px-3 font-mono text-[10px] uppercase tracking-[0.14em] text-graphite">
+                or use an email link
+              </span>
+            </div>
 
             <form
               className="flex flex-col gap-3"
@@ -124,7 +135,7 @@ export function AccountMenu(): React.JSX.Element {
               }}
             >
               <Input
-                label="Or use an email link"
+                label="Email address"
                 type="email"
                 required
                 mono
@@ -134,13 +145,13 @@ export function AccountMenu(): React.JSX.Element {
                 error={status === "error" ? (error ?? "Something went wrong.") : undefined}
                 hint="We send a one-time link. No password is stored."
               />
-              <Button type="submit" variant="ghost" loading={status === "sending"}>
+              <Button type="submit" variant="ghost" loading={status === "sending"} className="w-full justify-center">
                 {status === "sent" ? "Link sent — check your inbox" : "Email me a link"}
               </Button>
             </form>
 
             {error && status !== "error" ? (
-              <p role="alert" className="text-[0.8rem] text-oxide">
+              <p role="alert" className="text-center text-[0.8rem] text-oxide">
                 {error}
               </p>
             ) : null}
