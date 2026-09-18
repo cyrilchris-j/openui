@@ -74,19 +74,25 @@ export default function ResourcePage(): React.JSX.Element {
 
   const activeTab = searchParams.get("tab") ?? "preview";
   const previewView = searchParams.get("view") === "code" ? "code" : "preview";
-  const viewport = searchParams.get("viewport") ?? "full";
+
+  // Auto-detect mobile screen so resources default to mobile view on phones
+  const isMobileClient =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+  const viewport = searchParams.get("viewport") ?? (isMobileClient ? "mobile" : "full");
 
   const VIEWPORT_WIDTHS: Record<string, string> = {
-    mobile: "390px",
-    tablet: "834px",
-    desktop: "full",
-    wide: "full",
+    mobile: "min(390px, 100%)",
+    tablet: "min(834px, 100%)",
+    desktop: "100%",
+    wide: "100%",
+    full: "100%",
   };
   const VIEWPORT_MAX: Record<string, string> = {
-    mobile: "390px",
-    tablet: "834px",
+    mobile: "min(390px, 100%)",
+    tablet: "min(834px, 100%)",
     desktop: "100%",
     wide: "1440px",
+    full: "100%",
   };
 
   useDocumentTitle(entry ? `${entry.title} — OpenUI Design Registry` : "Resource — OpenUI");

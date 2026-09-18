@@ -7,6 +7,7 @@ import { cn } from "@openui/ui";
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
 import { useAuth } from "../lib/auth.js";
 import { AccountMenu } from "./AccountMenu.js";
+import { MobileBottomNav } from "./MobileBottomNav.js";
 import { ThemeToggle } from "./ThemeToggle.js";
 import { usePWA } from "./PWAInstall.js";
 
@@ -50,7 +51,8 @@ export function Masthead(): React.JSX.Element {
   }, [menuOpen]);
 
   return (
-    <header className="masthead">
+    <>
+      <header className="masthead">
       <div className="shell flex h-14 sm:h-16 items-center gap-3 sm:gap-6">
         <Link
           to="/"
@@ -122,26 +124,15 @@ export function Masthead(): React.JSX.Element {
           </Link>
 
           {!isInstalled && (
-            <>
-              <button
-                type="button"
-                onClick={triggerInstall}
-                aria-label="Download OpenUI App"
-                className="grid h-8 w-8 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide sm:hidden"
-              >
-                <Download className="h-3.5 w-3.5" />
-              </button>
-
-              <button
-                type="button"
-                onClick={triggerInstall}
-                title="Download OpenUI App for desktop or mobile"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider border border-line text-ink hover:border-ink hover:bg-surface/50 transition-colors duration-fast"
-              >
-                <Download className="h-3.5 w-3.5 text-graphite" />
-                <span>Download App</span>
-              </button>
-            </>
+            <button
+              type="button"
+              onClick={triggerInstall}
+              title="Download OpenUI App for desktop or mobile"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider border border-line text-ink hover:border-ink hover:bg-surface/50 transition-colors duration-fast"
+            >
+              <Download className="h-3.5 w-3.5 text-graphite" />
+              <span>Download App</span>
+            </button>
           )}
 
           <ThemeToggle />
@@ -259,6 +250,12 @@ export function Masthead(): React.JSX.Element {
         </div>
       ) : null}
     </header>
+
+    <MobileBottomNav
+      onOpenMenu={() => setMenuOpen((open) => !open)}
+      menuOpen={menuOpen}
+    />
+  </>
   );
 }
 

@@ -34,7 +34,7 @@ export function RootLayout(): React.JSX.Element {
 
         <Masthead />
 
-        <main id="main" tabIndex={-1} className="flex-1 min-w-0 max-w-full overflow-x-hidden focus-visible:outline-none">
+        <main id="main" tabIndex={-1} className="flex-1 min-w-0 max-w-full overflow-x-hidden pb-16 lg:pb-0 focus-visible:outline-none">
           <Outlet />
         </main>
 
