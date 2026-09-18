@@ -28,9 +28,17 @@ export interface AppConfig {
 }
 
 export const config: AppConfig = {
-  // Defaults point at the dev proxy, so `pnpm dev` works with no `.env` file.
-  apiBaseUrl: read("VITE_API_BASE_URL", "/api/v1").replace(/\/+$/, ""),
-  registryBaseUrl: read("VITE_REGISTRY_BASE_URL", "/r").replace(/\/+$/, ""),
+  // Defaults point at relative paths so CDN / hosting deployments work out of the box.
+  apiBaseUrl: (
+    import.meta.env.PROD && read("VITE_API_BASE_URL", "/api/v1").includes("localhost")
+      ? "/api/v1"
+      : read("VITE_API_BASE_URL", "/api/v1")
+  ).replace(/\/+$/, ""),
+  registryBaseUrl: (
+    import.meta.env.PROD && read("VITE_REGISTRY_BASE_URL", "/r").includes("localhost")
+      ? "/r"
+      : read("VITE_REGISTRY_BASE_URL", "/r")
+  ).replace(/\/+$/, ""),
   supabaseUrl: read("VITE_SUPABASE_URL", "https://hkzacjeplcmyexqmzyqn.supabase.co"),
   supabaseAnonKey: read(
     "VITE_SUPABASE_ANON_KEY",
