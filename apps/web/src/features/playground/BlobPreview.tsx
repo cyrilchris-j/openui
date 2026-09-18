@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { useTheme } from "../../hooks/use-theme.js";
+
 export interface BlobPreviewProps {
   /** Virtual file map: "/App.tsx" → source, "/lib/cn.ts" → source, … */
   files: Record<string, string>;
@@ -25,6 +27,8 @@ export function BlobPreview({
   className,
   scrollable = false,
 }: BlobPreviewProps): React.JSX.Element {
+  const { resolved } = useTheme();
+  const isDark = resolved === "dark";
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const pageBlobRef = React.useRef<string | null>(null);
 
@@ -53,7 +57,7 @@ export function BlobPreview({
     const cssStyle = cssChunks.length > 0 ? `<style>${cssChunks.join("\n")}</style>` : "";
 
     const html = `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="${isDark ? "dark" : ""}">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -63,7 +67,9 @@ export function BlobPreview({
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <script>
     window.tailwind = {
+      darkMode: 'class',
       config: {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
@@ -73,12 +79,12 @@ export function BlobPreview({
               oxide: 'hsl(var(--oxide) / <alpha-value>)',
               moss: 'hsl(var(--moss) / <alpha-value>)',
               azure: 'hsl(var(--azure) / <alpha-value>)',
-              line: 'hsl(var(--graphite) / 0.18)',
+              line: 'hsl(var(--line) / <alpha-value>)',
             },
             borderRadius: {
               sm: '0px',
               md: '2px',
-              lg: '3px',
+              lg: '4px',
               pill: '999px',
             }
           }
@@ -89,18 +95,20 @@ export function BlobPreview({
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
-      --paper: 42 33% 96%;
-      --ink: 60 4% 5%;
-      --graphite: 40 4% 33%;
-      --oxide: 13 76% 37%;
-      --moss: 137 22% 24%;
-      --azure: 214 45% 34%;
+      --paper: ${isDark ? "60 5% 5%" : "42 33% 96%"};
+      --ink: ${isDark ? "40 20% 93%" : "60 4% 5%"};
+      --graphite: ${isDark ? "40 5% 64%" : "40 4% 33%"};
+      --line: ${isDark ? "40 20% 93%" : "60 4% 5%"};
+      --oxide: ${isDark ? "13 72% 58%" : "13 76% 37%"};
+      --moss: ${isDark ? "137 20% 58%" : "137 22% 24%"};
+      --azure: ${isDark ? "214 55% 68%" : "214 45% 34%"};
+      --line-alpha: ${isDark ? "0.22" : "0.20"};
       --font-display: 'Instrument Serif', Georgia, serif;
       --font-sans: 'Inter', system-ui, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
       --color-paper: hsl(var(--paper));
       --color-ink: hsl(var(--ink));
-      --color-line: hsl(var(--graphite) / 0.18);
+      --color-line: hsl(var(--line) / var(--line-alpha));
       --color-graphite: hsl(var(--graphite));
       --color-oxide: hsl(var(--oxide));
       --color-moss: hsl(var(--moss));
@@ -479,7 +487,7 @@ export function BlobPreview({
         pageBlobRef.current = null;
       }
     };
-  }, [files, scrollable]);
+  }, [files, scrollable, resolved]);
 
   return (
     <iframe
@@ -492,7 +500,7 @@ export function BlobPreview({
         height,
         border: "none",
         display: "block",
-        background: "hsl(42 33% 96%)",
+        background: isDark ? "hsl(60 5% 5%)" : "hsl(42 33% 96%)",
         overflow: scrollable ? "auto" : "hidden",
         ...style,
       }}

@@ -1,4 +1,4 @@
-import { BookMarked, ExternalLink, Heart, PackageSearch, ShieldCheck } from "lucide-react";
+import { BookMarked, ExternalLink, Heart, Laptop, Monitor, PackageSearch, ShieldCheck, Smartphone, Tablet } from "lucide-react";
 import * as React from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 
@@ -359,15 +359,36 @@ export default function ResourcePage(): React.JSX.Element {
                   setSearchParams(next, { replace: true });
                 }}
                 options={[
-                  { value: "mobile", label: "Mobile" },
-                  { value: "tablet", label: "Tablet" },
-                  { value: "desktop", label: "Desktop" },
-                  { value: "wide", label: "Wide" },
+                  {
+                    value: "mobile",
+                    label: "Mobile",
+                    icon: <Smartphone aria-hidden className="h-3.5 w-3.5" />,
+                  },
+                  {
+                    value: "tablet",
+                    label: "Tablet",
+                    icon: <Tablet aria-hidden className="h-3.5 w-3.5" />,
+                  },
+                  {
+                    value: "desktop",
+                    label: "Desktop",
+                    icon: <Laptop aria-hidden className="h-3.5 w-3.5" />,
+                  },
+                  {
+                    value: "wide",
+                    label: "Wide",
+                    icon: <Monitor aria-hidden className="h-3.5 w-3.5" />,
+                  },
                 ]}
               />
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite">
-                {VIEWPORT_MAX[viewport] ?? "100%"} max-width
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite hidden sm:inline">
+                  Target viewport:
+                </span>
+                <span className="font-mono text-[11px] px-2.5 py-1 rounded-md border border-line/25 bg-surface/60 text-ink shadow-2xs">
+                  {VIEWPORT_MAX[viewport] ?? "100%"}
+                </span>
+              </div>
             </div>
 
             <div

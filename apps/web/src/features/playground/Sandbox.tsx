@@ -1,9 +1,11 @@
 import { SandpackCodeEditor, SandpackProvider } from "@codesandbox/sandpack-react";
+import { Code2, RotateCcw } from "lucide-react";
 import * as React from "react";
 
 import type { BuiltRegistryItem } from "@openui/types";
 import { EmptyState, Skeleton } from "@openui/ui";
 
+import { useTheme } from "../../hooks/use-theme.js";
 import { BlobPreview } from "./BlobPreview.js";
 import { buildSandboxFiles } from "./files.js";
 
@@ -15,6 +17,10 @@ export interface SandboxProps {
 }
 
 export function Sandbox({ item, view = "split", files: provided, className }: SandboxProps): React.JSX.Element {
+  const { resolved } = useTheme();
+  const isDark = resolved === "dark";
+  const [refreshKey, setRefreshKey] = React.useState(0);
+
   const computed = React.useMemo(() => buildSandboxFiles(item), [item]);
   const files = provided ?? computed;
 
@@ -32,7 +38,7 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
   // Sandpack code editor files (with hidden HTML/CSS overrides)
   const sandpackFiles = {
     ...files,
-    "/public/index.html": { code: SANDBOX_HTML, hidden: true },
+    "/public/index.html": { code: getSandboxHtml(isDark), hidden: true },
     "/styles.css": { code: SANDBOX_CSS, hidden: true },
   };
 
@@ -41,37 +47,86 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
 
   return (
     <div className={className}>
-      <div className="border border-line">
-        {/* BlobPreview: uses Babel standalone (jsdelivr) + React (esm.sh).
-            No connection to sandpack-bundler.codesandbox.io is required. */}
+      <div className="rounded-xl border border-line/30 dark:border-line/20 overflow-hidden shadow-xs bg-paper">
+        {/* Sleek Window Chrome Toolbar */}
+        <div className="flex h-10 items-center justify-between border-b border-line/25 bg-surface/50 px-3.5 sm:px-4">
+          {/* macOS window dots */}
+          <div className="flex items-center gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]/80 border border-[#e0443e]/40" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]/80 border border-[#dea123]/40" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]/80 border border-[#1aab29]/40" />
+          </div>
+
+          {/* Center component address pill */}
+          <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-paper border border-line/25 font-mono text-[11px] text-graphite shadow-2xs">
+            <span className="h-1.5 w-1.5 rounded-full bg-moss" />
+            <span className="text-ink font-medium tracking-tight">{item.name}</span>
+            <span className="text-graphite/50 hidden sm:inline">· preview</span>
+          </div>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setRefreshKey((k) => k + 1)}
+              title="Reset sandbox preview"
+              className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono text-graphite hover:text-ink transition-colors rounded border border-line/20 hover:bg-surface/70"
+            >
+              <RotateCcw className="h-3 w-3" />
+              <span className="hidden sm:inline">Reset</span>
+            </button>
+          </div>
+        </div>
+
+        {/* BlobPreview Canvas Stage */}
         {view !== "code" ? (
-          <BlobPreview files={files} height={previewHeight} scrollable />
+          <div
+            className="relative overflow-hidden bg-[#f8f6f1] dark:bg-[#0c0c0b]"
+            style={{
+              backgroundImage: "radial-gradient(hsl(var(--line) / 0.12) 1px, transparent 1px)",
+              backgroundSize: "16px 16px",
+            }}
+          >
+            <BlobPreview key={refreshKey} files={files} height={previewHeight} scrollable />
+          </div>
         ) : null}
 
-        {/* Code editor: Sandpack's code editor is safe to use from npm.
-            Only the preview iframe requires the blocked CDN. */}
+        {/* Live Code Editor Bar */}
+        {view === "split" ? (
+          <div className="flex items-center justify-between border-t border-line/25 bg-surface/50 px-3.5 sm:px-4 py-2 font-mono text-[10px] uppercase tracking-wider text-graphite">
+            <div className="flex items-center gap-1.5">
+              <Code2 className="h-3.5 w-3.5 text-graphite" />
+              <span>Live Editable Source</span>
+            </div>
+            <span>TypeScript · Tailwind CSS</span>
+          </div>
+        ) : null}
+
+        {/* Code editor */}
         {view !== "preview" ? (
-          <SandpackProvider
-            template="react-ts"
-            theme={sandpackTheme}
-            files={sandpackFiles}
-            customSetup={{
-              dependencies: {
-                clsx: "latest",
-                "tailwind-merge": "latest",
-                "lucide-react": "latest",
-                "class-variance-authority": "latest",
-                motion: "latest",
-              },
-            }}
-            options={{ autorun: false }}
-          >
-            <SandpackCodeEditor
-              showLineNumbers
-              showTabs
-              style={{ height: editorHeight }}
-            />
-          </SandpackProvider>
+          <div className={view === "code" ? "" : "border-t border-line/25"}>
+            <SandpackProvider
+              template="react-ts"
+              theme={isDark ? sandpackDarkTheme : sandpackLightTheme}
+              files={sandpackFiles}
+              customSetup={{
+                dependencies: {
+                  clsx: "latest",
+                  "tailwind-merge": "latest",
+                  "lucide-react": "latest",
+                  "class-variance-authority": "latest",
+                  motion: "latest",
+                },
+              }}
+              options={{ autorun: false }}
+            >
+              <SandpackCodeEditor
+                showLineNumbers
+                showTabs
+                style={{ height: editorHeight }}
+              />
+            </SandpackProvider>
+          </div>
         ) : null}
       </div>
 
@@ -85,18 +140,18 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
 
 export function SandboxSkeleton(): React.JSX.Element {
   return (
-    <div className="border border-line p-6">
+    <div className="rounded-xl border border-line/30 bg-paper p-6 shadow-xs">
       <Skeleton lines={6} />
       <p className="eyebrow mt-6">Loading the isolated sandbox…</p>
     </div>
   );
 }
 
-const sandpackTheme = {
+const sandpackDarkTheme = {
   colors: {
     surface1: "#0e0e0d",
-    surface2: "#1a1a19",
-    surface3: "#262625",
+    surface2: "#181817",
+    surface3: "#242423",
     clickable: "#a5a19a",
     base: "#f5f2ec",
     disabled: "#55534f",
@@ -122,6 +177,38 @@ const sandpackTheme = {
     size: "13px",
     lineHeight: "1.6",
   },
+} as const;
+
+const sandpackLightTheme = {
+  colors: {
+    surface1: "#ffffff",
+    surface2: "#f8f6f2",
+    surface3: "#ebe7df",
+    clickable: "#5c5852",
+    base: "#1a1918",
+    disabled: "#a5a19a",
+    hover: "#1a1918",
+    accent: "#c84b31",
+    error: "#c84b31",
+    errorSurface: "#fdeee9",
+  },
+  syntax: {
+    plain: "#1a1918",
+    comment: { color: "#8c877d", fontStyle: "italic" as const },
+    keyword: "#c84b31",
+    tag: "#2d6a4f",
+    punctuation: "#6b665c",
+    definition: "#1d4ed8",
+    property: "#854d0e",
+    static: "#854d0e",
+    string: "#2d6a4f",
+  },
+  font: {
+    body: '"Inter", system-ui, sans-serif',
+    mono: '"JetBrains Mono", ui-monospace, monospace',
+    size: "13px",
+    lineHeight: "1.6",
+  },
 } as const;const SANDBOX_CSS = `*, *::before, *::after { box-sizing: border-box; }
 
 :root {
@@ -133,7 +220,7 @@ const sandpackTheme = {
   --oxide:    13 76% 37%;
   --moss:     137 22% 24%;
   --azure:    214 45% 34%;
-  --line-alpha: 0.16;
+  --line-alpha: 0.20;
 
   /* Typography */
   --font-display: "Instrument Serif", Georgia, serif;
@@ -167,6 +254,17 @@ const sandpackTheme = {
   --gutter:     clamp(1rem, 4vw, 4rem);
 }
 
+.dark {
+  --paper:    60 5%  5%;
+  --ink:      40 20% 93%;
+  --graphite: 40 5%  64%;
+  --line:     40 20% 93%;
+  --oxide:    13 72% 58%;
+  --moss:     137 20% 58%;
+  --azure:    214 55% 68%;
+  --line-alpha: 0.22;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -184,10 +282,11 @@ body {
 `;
 
 /**
- * The full HTML shell for the Sandpack preview iframe.
+ * The full HTML shell for the Sandpack preview iframe with dynamic theme support.
  */
-const SANDBOX_HTML = `<!DOCTYPE html>
-<html lang="en">
+function getSandboxHtml(isDark: boolean): string {
+  return `<!DOCTYPE html>
+<html lang="en" class="${isDark ? "dark" : ""}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -199,12 +298,14 @@ const SANDBOX_HTML = `<!DOCTYPE html>
   />
 
   <style>
-\${SANDBOX_CSS}
+${SANDBOX_CSS}
   </style>
 
   <script>
     window.tailwind = {
+      darkMode: "class",
       config: {
+        darkMode: "class",
         theme: {
           extend: {
             colors: {
@@ -258,3 +359,4 @@ const SANDBOX_HTML = `<!DOCTYPE html>
 </body>
 </html>
 `;
+}
