@@ -26,9 +26,11 @@ import { MetaRow } from "../components/SectionHeader.js";
 import { ResourceTile, categorySegmentFor } from "../components/ResourceTile.js";
 import { SandboxSkeleton } from "../features/playground/Sandbox.js";
 import { useIndexEntry, useRegistryItem, useRelatedItems } from "../features/resources/use-catalogue.js";
-import { useAuth } from "../lib/auth.js";
+import { openSignInDialog, useAuth } from "../lib/auth.js";
 import * as api from "../lib/api.js";
+import { isResourceFavorited, toggleStoredFavorite } from "../lib/favorites.js";
 import { useDocumentTitle, useMetaDescription } from "../hooks/use-document-title.js";
+import { cn } from "@openui/utils";
 
 /**
  * The sandbox is split out of the main bundle.
@@ -67,10 +69,33 @@ export default function ResourcePage(): React.JSX.Element {
   const related = useRelatedItems(entry);
 
   const { token, user } = useAuth();
-  const [favorited, setFavorited] = React.useState(false);
+  const [favorited, setFavorited] = React.useState(() =>
+    isResourceFavorited(user?.id, entry?.name || slug),
+  );
   const [favoriteError, setFavoriteError] = React.useState<string | null>(null);
   const [favoritePending, setFavoritePending] = React.useState(false);
   const [downloaded, setDownloaded] = React.useState(false);
+
+  // Synchronize favorited state whenever user or entry/slug changes
+  React.useEffect(() => {
+    if (user?.id && (entry?.name || slug)) {
+      setFavorited(isResourceFavorited(user.id, entry?.name || slug));
+    } else {
+      setFavorited(false);
+    }
+  }, [user?.id, entry?.name, slug]);
+
+  // Listen to cross-window / cross-component favorite events
+  React.useEffect(() => {
+    const onFavChange = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail && (detail.slug === slug || (entry?.name && detail.slug === entry.name))) {
+        setFavorited(Boolean(detail.favorited));
+      }
+    };
+    window.addEventListener("openui:favorites_changed", onFavChange);
+    return () => window.removeEventListener("openui:favorites_changed", onFavChange);
+  }, [slug, entry?.name]);
 
   const activeTab = searchParams.get("tab") ?? "preview";
   const previewView = searchParams.get("view") === "code" ? "code" : "preview";
@@ -109,17 +134,28 @@ export default function ResourcePage(): React.JSX.Element {
   }, [entry, token, downloaded]);
 
   const toggleFavorite = async () => {
-    if (!token) {
-      setFavoriteError("Sign in to save a resource to your favourites.");
+    if (!user) {
+      openSignInDialog();
+      setFavoriteError("Sign in to save this resource to your favourites.");
       return;
     }
+    if (!entry) return;
+
     setFavoritePending(true);
     setFavoriteError(null);
     try {
-      const result = favorited
-        ? await api.unfavorite(slug, token)
-        : await api.favorite(slug, token);
-      setFavorited(result.favorited);
+      const nextFavorited = toggleStoredFavorite(
+        user.id,
+        {
+          name: entry.name,
+          title: entry.title,
+          description: entry.description,
+          category: entry.category,
+          type: entry.type,
+        },
+        token,
+      );
+      setFavorited(nextFavorited);
     } catch (cause) {
       setFavoriteError(cause instanceof Error ? cause.message : "Could not update your favourites.");
     } finally {
@@ -221,9 +257,19 @@ export default function ResourcePage(): React.JSX.Element {
                 onClick={() => void toggleFavorite()}
                 loading={favoritePending}
                 aria-pressed={favorited}
+                className={cn(
+                  "gap-1.5 transition-all duration-200",
+                  favorited && "bg-oxide border-oxide text-paper hover:bg-oxide/90",
+                )}
               >
-                <Heart aria-hidden className="h-3.5 w-3.5" />
-                {favorited ? "Saved" : "Save"}
+                <Heart
+                  aria-hidden
+                  className={cn(
+                    "h-3.5 w-3.5 transition-all duration-200",
+                    favorited && "fill-current scale-110",
+                  )}
+                />
+                <span>{favorited ? "Saved" : "Save"}</span>
               </Button>
 
               <TooltipProvider delayDuration={400}>
@@ -253,6 +299,15 @@ export default function ResourcePage(): React.JSX.Element {
             {favoriteError ? (
               <p role="alert" className="mt-3 text-[0.8rem] text-oxide">
                 {favoriteError}
+              </p>
+            ) : null}
+            {user && favorited && !favoriteError ? (
+              <p className="mt-3 text-[0.8rem] text-moss flex items-center gap-1.5 font-mono">
+                ✓ Saved to your{" "}
+                <Link to="/account/favorites" className="underline underline-offset-2 hover:text-ink font-medium">
+                  favourites
+                </Link>
+                .
               </p>
             ) : null}
             {!user ? (

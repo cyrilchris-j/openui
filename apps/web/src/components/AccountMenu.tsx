@@ -52,6 +52,16 @@ export function AccountMenu(): React.JSX.Element {
     }
   }, []);
 
+  React.useEffect(() => {
+    const handleOpenSignIn = () => {
+      setDialogOpen(true);
+    };
+    window.addEventListener("openui:open-signin", handleOpenSignIn);
+    return () => {
+      window.removeEventListener("openui:open-signin", handleOpenSignIn);
+    };
+  }, []);
+
   if (!enabled) {
     return (
       <Button

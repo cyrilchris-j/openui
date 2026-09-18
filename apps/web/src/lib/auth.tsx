@@ -43,6 +43,7 @@ export interface AuthContextValue {
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
+  openSignInDialog: () => void;
 }
 
 const AuthContext = React.createContext<AuthContextValue | null>(null);
@@ -174,11 +175,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         setUser(null);
         setToken(null);
       },
+      openSignInDialog: () => {
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("openui:open-signin"));
+        }
+      },
     }),
     [user, token, initialising, signIn],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export function openSignInDialog(): void {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("openui:open-signin"));
+  }
 }
 
 export function useAuth(): AuthContextValue {

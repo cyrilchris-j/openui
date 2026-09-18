@@ -25,6 +25,8 @@ import { useDocumentTitle } from "../hooks/use-document-title.js";
 import * as api from "../lib/api.js";
 import { useAuth } from "../lib/auth.js";
 import { useApiResource } from "../lib/use-api-resource.js";
+import { getFavoritesAsPaginated, removeFavorite } from "../lib/favorites.js";
+import type { ResourceSummary } from "@openui/types";
 
 /**
  * Account pages.
@@ -88,32 +90,56 @@ export function ProfilePage(): React.JSX.Element {
 }
 
 export function FavoritesPage(): React.JSX.Element {
-  const { token } = useAuth();
-  const { data, error, isLoading } = useApiResource(
+  const { user, token } = useAuth();
+  const [localFavorites, setLocalFavorites] = React.useState(() =>
+    getFavoritesAsPaginated(user?.id),
+  );
+
+  React.useEffect(() => {
+    const update = () => {
+      setLocalFavorites(getFavoritesAsPaginated(user?.id));
+    };
+    update();
+    window.addEventListener("openui:favorites_changed", update);
+    return () => {
+      window.removeEventListener("openui:favorites_changed", update);
+    };
+  }, [user?.id]);
+
+  const { data: remoteData, isLoading } = useApiResource(
     () => api.listMyFavorites(token),
     "favorites",
     token,
   );
   useDocumentTitle("Favourites — OpenUI");
 
+  const items = React.useMemo(() => {
+    const map = new Map<string, ResourceSummary>();
+    for (const item of localFavorites.items) {
+      map.set(item.slug, item);
+    }
+    if (remoteData?.items) {
+      for (const item of remoteData.items) {
+        if (!map.has(item.slug)) {
+          map.set(item.slug, item);
+        }
+      }
+    }
+    return Array.from(map.values());
+  }, [localFavorites.items, remoteData?.items]);
+
   return (
     <>
       <SectionHeader
         eyebrow="Favourites"
         title="Resources you have saved."
-        description="Saving a resource adds it to this list and increments its favourite count atomically in the database — two simultaneous saves cannot produce a duplicate or a lost count."
+        description="Saving a resource adds it to this list and lets you quickly revisit components, blocks and templates anytime."
       />
 
       <div className="mt-10">
-        {isLoading ? (
+        {isLoading && items.length === 0 ? (
           <Skeleton lines={6} />
-        ) : error ? (
-          <EmptyState
-            eyebrow="Unavailable"
-            title="Your favourites could not be loaded."
-            description={error.message}
-          />
-        ) : !data || data.items.length === 0 ? (
+        ) : items.length === 0 ? (
           <EmptyState
             eyebrow="Nothing saved"
             title="You have not saved any resources yet."
@@ -126,22 +152,47 @@ export function FavoritesPage(): React.JSX.Element {
           />
         ) : (
           <>
-            <p className="eyebrow mb-6">{data.total} saved</p>
-            <ul>
-              {data.items.map((resource) => (
-                <li key={resource.id} className="border-b border-line">
+            <div className="flex items-center justify-between border-b border-line pb-3">
+              <p className="eyebrow">{items.length} {items.length === 1 ? "resource" : "resources"} saved</p>
+            </div>
+            <ul className="divide-y divide-line">
+              {items.map((resource) => (
+                <li
+                  key={resource.id}
+                  className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-ink/[0.01]"
+                >
                   <Link
                     to={`/${categorySegmentFor(resource.categorySlug ?? "components")}/${resource.slug}`}
-                    className="flex flex-col gap-1 py-4 transition-colors duration-fast hover:bg-ink/[0.02]"
+                    className="flex flex-1 flex-col gap-1 min-w-0"
                   >
-                    <span className="eyebrow">{resource.resourceType}</span>
-                    <span className="font-display text-step-1 tracking-tight text-ink">
+                    <div className="flex items-center gap-2">
+                      <span className="eyebrow text-[10px] text-graphite uppercase">{resource.resourceType}</span>
+                      {resource.categorySlug ? (
+                        <span className="text-[10px] font-mono text-graphite/60">• {resource.categorySlug}</span>
+                      ) : null}
+                    </div>
+                    <span className="font-display text-step-1 tracking-tight text-ink group-hover:text-oxide transition-colors truncate">
                       {resource.title}
                     </span>
-                    <span className="max-w-[68ch] text-[0.85rem] text-graphite">
+                    <span className="max-w-[68ch] text-[0.85rem] text-graphite line-clamp-2">
                       {resource.description}
                     </span>
                   </Link>
+
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      if (user?.id) {
+                        removeFavorite(user.id, resource.slug, token);
+                      }
+                    }}
+                    aria-label={`Remove ${resource.title} from favourites`}
+                    title="Remove from favourites"
+                    className="text-graphite hover:text-oxide hover:bg-oxide/10 shrink-0 h-9 w-9"
+                  >
+                    <Trash2 aria-hidden className="h-4 w-4" />
+                  </Button>
                 </li>
               ))}
             </ul>
