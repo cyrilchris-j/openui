@@ -1,4 +1,4 @@
-import { BookMarked, Download, ExternalLink, Heart, PackageSearch, ShieldCheck } from "lucide-react";
+import { BookMarked, ExternalLink, Heart, PackageSearch, ShieldCheck } from "lucide-react";
 import * as React from "react";
 import { Link, useParams, useSearchParams } from "react-router";
 
@@ -275,9 +275,6 @@ export default function ResourcePage(): React.JSX.Element {
                     </Link>
                   </MetaRow>
                 ) : null}
-                <MetaRow label="Integrity">
-                  <span className="break-all font-mono text-[0.72rem]">{entry.integrity}</span>
-                </MetaRow>
                 <MetaRow label="Fingerprint">
                   <span className="text-graphite">{dnaSummary(entry.dna)}</span>
                 </MetaRow>
@@ -610,12 +607,7 @@ export default function ResourcePage(): React.JSX.Element {
 
       {/* Report / licence footer */}
       <div className="shell mt-16">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-          <p className="flex items-center gap-2 text-[0.8rem] text-graphite">
-            <Download aria-hidden className="h-3.5 w-3.5" />
-            Integrity <span className="font-mono text-ink">{entry.integrity.slice(0, 24)}…</span>
-            <CopyButton value={entry.integrity} label="Copy integrity digest" />
-          </p>
+        <div className="flex flex-wrap items-center justify-end gap-4 border-t border-line pt-6">
           <p className="eyebrow">
             Licence {entry.license ?? "not declared"} · verify before redistribution
           </p>
