@@ -45,7 +45,7 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
         {/* BlobPreview: uses Babel standalone (jsdelivr) + React (esm.sh).
             No connection to sandpack-bundler.codesandbox.io is required. */}
         {view !== "code" ? (
-          <BlobPreview files={files} height={previewHeight} />
+          <BlobPreview files={files} height={previewHeight} scrollable />
         ) : null}
 
         {/* Code editor: Sandpack's code editor is safe to use from npm.

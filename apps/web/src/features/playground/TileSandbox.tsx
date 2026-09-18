@@ -47,5 +47,5 @@ export function TileSandbox({ name }: { name: string }): React.JSX.Element {
     );
   }
 
-  return <BlobPreview files={files} height="11rem" />;
+  return <BlobPreview files={files} height="11rem" scrollable={false} />;
 }

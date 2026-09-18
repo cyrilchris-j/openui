@@ -6,6 +6,7 @@ export interface BlobPreviewProps {
   height?: string;
   style?: React.CSSProperties;
   className?: string;
+  scrollable?: boolean;
 }
 
 /**
@@ -22,6 +23,7 @@ export function BlobPreview({
   height = "22rem",
   style,
   className,
+  scrollable = false,
 }: BlobPreviewProps): React.JSX.Element {
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const pageBlobRef = React.useRef<string | null>(null);
@@ -106,6 +108,9 @@ export function BlobPreview({
       --line: var(--color-line);
     }
     *, *::before, *::after { box-sizing: border-box; }
+    ${
+      scrollable
+        ? `
     html, body {
       margin: 0;
       padding: 0;
@@ -115,6 +120,7 @@ export function BlobPreview({
       color: hsl(var(--ink));
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      overflow-y: auto;
     }
     #root {
       min-height: 100vh;
@@ -127,6 +133,64 @@ export function BlobPreview({
     }
     #root > * {
       max-width: 100%;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--graphite) / 0.2);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(var(--graphite) / 0.4);
+    }
+    `
+        : `
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: hsl(var(--paper));
+      color: hsl(var(--ink));
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    #root {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      overflow: hidden !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    #root > * {
+      max-width: 100%;
+    }
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    ::-webkit-scrollbar, *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+    }
+    `
     }
     #error-container {
       display: none;
@@ -415,12 +479,13 @@ export function BlobPreview({
         pageBlobRef.current = null;
       }
     };
-  }, [files]);
+  }, [files, scrollable]);
 
   return (
     <iframe
       ref={iframeRef}
       title="Component preview"
+      scrolling={scrollable ? "auto" : "no"}
       sandbox="allow-scripts allow-same-origin"
       style={{
         width: "100%",
@@ -428,6 +493,7 @@ export function BlobPreview({
         border: "none",
         display: "block",
         background: "hsl(42 33% 96%)",
+        overflow: scrollable ? "auto" : "hidden",
         ...style,
       }}
       className={className}

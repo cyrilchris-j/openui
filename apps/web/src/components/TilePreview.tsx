@@ -32,7 +32,7 @@ export function TilePreview({ item }: { item: RegistryIndexEntry }): React.JSX.E
   const { ref, inView } = useInView<HTMLDivElement>({ once: true, rootMargin: "200px" });
 
   return (
-    <div ref={ref} className="border-b border-line">
+    <div ref={ref} className="border-b border-line overflow-hidden pointer-events-none select-none">
       {inView ? (
         <React.Suspense fallback={<PreviewSkeleton />}>
           <TileSandbox name={item.name} />
