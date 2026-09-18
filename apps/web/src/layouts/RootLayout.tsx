@@ -3,7 +3,7 @@ import { Outlet, ScrollRestoration } from "react-router";
 
 import { Footer } from "../components/Footer.js";
 import { Masthead } from "../components/Masthead.js";
-import { PWAInstallPrompt } from "../components/PWAInstallPrompt.js";
+import { PWAProvider } from "../components/PWAInstall.js";
 
 /**
  * The root layout.
@@ -23,23 +23,24 @@ import { PWAInstallPrompt } from "../components/PWAInstallPrompt.js";
  */
 export function RootLayout(): React.JSX.Element {
   return (
-    <div className="min-h-[100dvh] flex flex-col">
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-paper focus:px-4 focus:py-2 focus:font-mono focus:text-[11px] focus:uppercase focus:tracking-[0.16em] focus:text-ink"
-      >
-        Skip to content
-      </a>
+    <PWAProvider>
+      <div className="min-h-[100dvh] flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-paper focus:px-4 focus:py-2 focus:font-mono focus:text-[11px] focus:uppercase focus:tracking-[0.16em] focus:text-ink"
+        >
+          Skip to content
+        </a>
 
-      <Masthead />
+        <Masthead />
 
-      <main id="main" tabIndex={-1} className="flex-1 min-w-0 max-w-full overflow-x-hidden focus-visible:outline-none">
-        <Outlet />
-      </main>
+        <main id="main" tabIndex={-1} className="flex-1 min-w-0 max-w-full overflow-x-hidden focus-visible:outline-none">
+          <Outlet />
+        </main>
 
-      <Footer />
-      <PWAInstallPrompt />
-      <ScrollRestoration />
-    </div>
+        <Footer />
+        <ScrollRestoration />
+      </div>
+    </PWAProvider>
   );
 }

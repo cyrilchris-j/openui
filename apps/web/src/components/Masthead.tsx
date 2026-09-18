@@ -1,4 +1,4 @@
-import { Menu, Search, X } from "lucide-react";
+import { Download, Menu, Search, X } from "lucide-react";
 import * as React from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
 
@@ -8,6 +8,7 @@ import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
 import { useAuth } from "../lib/auth.js";
 import { AccountMenu } from "./AccountMenu.js";
 import { ThemeToggle } from "./ThemeToggle.js";
+import { usePWA } from "./PWAInstall.js";
 
 /**
  * The masthead.
@@ -26,6 +27,7 @@ export function Masthead(): React.JSX.Element {
   const location = useLocation();
   const navigate = useNavigate();
   const [term, setTerm] = React.useState("");
+  const { isInstalled, triggerInstall } = usePWA();
 
   // Any navigation closes the panel; leaving it open over a new page is the
   // single most common mobile-navigation bug.
@@ -119,6 +121,29 @@ export function Masthead(): React.JSX.Element {
             <Search aria-hidden className="h-4 w-4" />
           </Link>
 
+          {!isInstalled && (
+            <>
+              <button
+                type="button"
+                onClick={triggerInstall}
+                aria-label="Download OpenUI App"
+                className="grid h-8 w-8 place-items-center border border-line text-graphite transition-colors duration-fast hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxide sm:hidden"
+              >
+                <Download className="h-3.5 w-3.5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={triggerInstall}
+                title="Download OpenUI App for desktop or mobile"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider border border-line text-ink hover:border-ink hover:bg-surface/50 transition-colors duration-fast"
+              >
+                <Download className="h-3.5 w-3.5 text-graphite" />
+                <span>Download App</span>
+              </button>
+            </>
+          )}
+
           <ThemeToggle />
           <AccountMenu />
 
@@ -165,6 +190,35 @@ export function Masthead(): React.JSX.Element {
                 className="w-full bg-transparent font-mono text-xs tracking-wider text-ink placeholder:text-graphite/70 focus:outline-none"
               />
             </form>
+
+            {!isInstalled && (
+              <div className="mb-6 flex items-center justify-between gap-3 rounded-xl border border-line bg-surface/60 p-3.5">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/logo.png"
+                    alt="OpenUI"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 shrink-0 rounded-lg object-contain shadow-xs ring-1 ring-line/30"
+                  />
+                  <div>
+                    <p className="font-display text-base font-medium leading-tight text-ink">Download App</p>
+                    <p className="text-[11px] text-graphite">Install OpenUI on your home screen</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    triggerInstall();
+                  }}
+                  className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium bg-ink text-paper hover:bg-oxide transition-colors"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Install
+                </button>
+              </div>
+            )}
 
             <p className="eyebrow mb-4">Index</p>
             <ul className="grid grid-cols-1 sm:grid-cols-2">

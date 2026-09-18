@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
+import { usePWA } from "./PWAInstall.js";
 
 /**
  * The footer.
@@ -16,6 +17,7 @@ import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
  */
 export function Footer(): React.JSX.Element {
   const year = new Date().getFullYear();
+  const { isInstalled, triggerInstall } = usePWA();
 
   return (
     <footer className="mt-14 sm:mt-24 border-t border-line">
@@ -100,6 +102,17 @@ export function Footer(): React.JSX.Element {
                 </Link>
               </li>
             ))}
+            {!isInstalled && (
+              <li>
+                <button
+                  type="button"
+                  onClick={triggerInstall}
+                  className="text-[0.85rem] text-graphite transition-colors duration-fast hover:text-ink text-left inline-flex items-center gap-1.5"
+                >
+                  Download App (PWA)
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
