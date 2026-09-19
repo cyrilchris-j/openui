@@ -24,6 +24,7 @@ import { useRegistryIndex, useRegistryItem } from "../features/resources/use-cat
 import { categorySegmentFor } from "../components/ResourceTile.js";
 import { useDocumentTitle } from "../hooks/use-document-title.js";
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
+import { ADVANCED_RESOURCES, getAdvancedItemBySlug } from "../advanced/index.js";
 
 /**
  * The playground.
@@ -46,41 +47,104 @@ import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
 export default function PlaygroundPage(): React.JSX.Element {
   const [params, setParams] = useSearchParams();
   const index = useRegistryIndex();
+  const [ecosystem, setEcosystem] = React.useState<"all" | "core" | "advanced">("all");
 
   const options = React.useMemo(() => {
-    if (!index.data) return [];
-    return index.data.items
+    const core = (index.data?.items ?? [])
       .filter((item) => item.type !== "registry:ai")
       .map((item) => ({
         name: item.name,
         title: item.title,
         category: item.category,
+        isAdvanced: false,
       }));
-  }, [index.data]);
 
-  const selected = params.get("item") ?? options[0]?.name ?? "";
-  const item = useRegistryItem(selected);
+    const advanced = ADVANCED_RESOURCES.map((item) => ({
+      name: item.slug,
+      title: item.title,
+      category: item.category,
+      isAdvanced: true,
+    }));
+
+    if (ecosystem === "core") return core;
+    if (ecosystem === "advanced") return advanced;
+    return [...advanced, ...core];
+  }, [index.data, ecosystem]);
+
+  const advancedQuery = params.get("advanced");
+  const selected = params.get("item") ?? (advancedQuery ? advancedQuery : options[0]?.name ?? "");
+  const advItem = React.useMemo(() => getAdvancedItemBySlug(selected), [selected]);
+  const coreItem = useRegistryItem(advItem ? "" : selected);
+
+  const itemData: BuiltRegistryItem | undefined = React.useMemo(() => {
+    if (advItem) {
+      return {
+        name: advItem.slug,
+        type: "registry:component",
+        title: advItem.title,
+        description: advItem.description,
+        category: advItem.category,
+        dependencies: advItem.dependencies,
+        registryDependencies: ["cn"],
+        files: [
+          {
+            path: `${advItem.slug}.tsx`,
+            type: "registry:component",
+            content: advItem.sourceCode,
+          },
+          {
+            path: "demo.tsx",
+            type: "registry:component",
+            content: `import React from "react";
+import { ${advItem.title.replace(/[^a-zA-Z0-9]/g, "")} } from "./${advItem.slug}";
+
+export default function Demo() {
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", background: "#fcfbf7" }}>
+      <div style={{ width: "100%", maxWidth: "600px", textAlign: "center" }}>
+        <h2 style={{ fontFamily: "serif", fontSize: "1.5rem", marginBottom: "0.5rem" }}>${advItem.title}</h2>
+        <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "1.5rem" }}>${advItem.description}</p>
+        <${advItem.title.replace(/[^a-zA-Z0-9]/g, "")} />
+      </div>
+    </div>
+  );
+}`,
+          },
+        ],
+        meta: {
+          dna: {
+            genre: "editorial",
+            macrostructure: "asymmetric",
+            density: "medium",
+            shapeLanguage: "sharp",
+            motionLanguage: "expressive",
+          },
+        },
+      } as unknown as BuiltRegistryItem;
+    }
+    return coreItem.data;
+  }, [advItem, coreItem.data]);
 
   const [tab, setTab] = React.useState(params.get("tab") === "code" ? "code" : "preview");
   const [fileOverrides, setFileOverrides] = React.useState<Record<string, string>>({});
   const [activeFile, setActiveFile] = React.useState<string | null>(null);
 
-  useDocumentTitle(item.data ? `${item.data.title} — Playground — OpenUI` : "Playground — OpenUI");
+  useDocumentTitle(itemData ? `${itemData.title} — Playground — OpenUI` : "Playground — OpenUI");
 
   const sandboxFiles = React.useMemo(() => {
-    if (!item.data) return null;
-    const base = buildSandboxFiles(item.data);
+    if (!itemData) return null;
+    const base = buildSandboxFiles(itemData);
     // Overrides are applied on top, so "Compose" can push edited source into a
     // fresh sandbox without mutating the resource definition.
     return { ...base, ...fileOverrides };
-  }, [item.data, fileOverrides]);
+  }, [itemData, fileOverrides]);
 
   const editableFiles = React.useMemo(() => {
-    if (!item.data) return [];
-    return item.data.files.filter(
+    if (!itemData) return [];
+    return itemData.files.filter(
       (file) => file.path.endsWith(".tsx") || file.path.endsWith(".ts") || file.path.endsWith(".css"),
     );
-  }, [item.data]);
+  }, [itemData]);
 
   React.useEffect(() => {
     setFileOverrides({});
@@ -89,10 +153,10 @@ export default function PlaygroundPage(): React.JSX.Element {
 
   const currentFile = activeFile ?? editableFiles[0]?.path ?? null;
   const currentSource = React.useMemo(() => {
-    if (!item.data || !currentFile) return "";
+    if (!itemData || !currentFile) return "";
     if (fileOverrides[`/${currentFile}`] !== undefined) return fileOverrides[`/${currentFile}`]!;
-    return item.data.files.find((file) => file.path === currentFile)?.content ?? "";
-  }, [item.data, currentFile, fileOverrides]);
+    return itemData.files.find((file) => file.path === currentFile)?.content ?? "";
+  }, [itemData, currentFile, fileOverrides]);
 
   return (
     <div className="shell py-16">
@@ -110,6 +174,20 @@ export default function PlaygroundPage(): React.JSX.Element {
             <p className="eyebrow">Resources</p>
             <span className="font-mono text-[10px] text-graphite">{options.length}</span>
           </div>
+
+          <div className="mt-2 mb-3">
+            <SegmentedControl
+              label="Ecosystem"
+              value={ecosystem}
+              onValueChange={(val) => setEcosystem(val as typeof ecosystem)}
+              options={[
+                { value: "all", label: "All" },
+                { value: "core", label: "Core" },
+                { value: "advanced", label: "Advanced" },
+              ]}
+            />
+          </div>
+
           <div className="mt-3 max-h-[32rem] overflow-y-auto border-t border-line">
             {index.isLoading ? (
               <Skeleton lines={8} className="pt-4" />
@@ -128,7 +206,7 @@ export default function PlaygroundPage(): React.JSX.Element {
                     >
                       <span className="text-[0.85rem]">{option.title}</span>
                       <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-graphite/70">
-                        {option.category}
+                        {option.category} {option.isAdvanced ? "· Adv" : ""}
                       </span>
                     </button>
                   </li>
@@ -140,15 +218,15 @@ export default function PlaygroundPage(): React.JSX.Element {
 
         {/* Work surface */}
         <div>
-          {index.isLoading || item.isLoading ? (
+          {index.isLoading || (!advItem && coreItem.isLoading) ? (
             <SandboxSkeleton />
-          ) : item.error ? (
+          ) : !advItem && coreItem.error ? (
             <EmptyState
               eyebrow="Unavailable"
               title="That resource could not be loaded."
-              description={item.error.message}
+              description={coreItem.error.message}
             />
-          ) : !item.data ? (
+          ) : !itemData ? (
             <EmptyState
               eyebrow="Nothing selected"
               title="Choose a resource from the index."
@@ -156,7 +234,7 @@ export default function PlaygroundPage(): React.JSX.Element {
             />
           ) : (
             <PlaygroundSurface
-              item={item.data}
+              item={itemData}
               tab={tab}
               setTab={setTab}
               sandboxFiles={sandboxFiles}
@@ -237,17 +315,48 @@ function PlaygroundSurface({
             {item.license ? <Badge tone="moss">{item.license}</Badge> : null}
           </p>
         </div>
-        <SegmentedControl
-          label="Mode"
-          hideLabel
-          value={tab}
-          onValueChange={setTab}
-          options={[
-            { value: "preview", label: "Preview" },
-            { value: "code", label: "Edit" },
-            { value: "source", label: "Read" },
-          ]}
-        />
+        <div className="flex items-center gap-2">
+          <SegmentedControl
+            label="Mode"
+            hideLabel
+            value={tab}
+            onValueChange={setTab}
+            options={[
+              { value: "preview", label: "Preview" },
+              { value: "code", label: "Edit" },
+              { value: "source", label: "Read" },
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* Visual Engine Controls Toolbar */}
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-y border-line/30 py-3 bg-surface/30 px-3 rounded-lg">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-graphite">Install:</span>
+          <code className="font-mono text-[11px] px-2 py-0.5 rounded bg-paper border border-line/30 text-ink">
+            pnpm dlx openui add {item.name}
+          </code>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigator.clipboard.writeText(`pnpm dlx openui add ${item.name}`)}
+            className="h-6 px-2 text-[10px] font-mono uppercase tracking-wider"
+          >
+            Copy
+          </Button>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-graphite hidden sm:inline">Engine:</span>
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono border border-line/30 bg-paper text-ink">
+            <span className="w-1.5 h-1.5 rounded-full bg-moss animate-pulse" />
+            Active
+          </span>
+          <span className="font-mono text-[11px] px-2 py-0.5 rounded border border-line/30 bg-paper text-graphite">
+            {item.meta?.dna?.motionLanguage ?? "subtle motion"}
+          </span>
+        </div>
       </div>
 
       <div className="mt-6">

@@ -5,22 +5,16 @@ import type { RegistryIndexEntry } from "@openui/types";
 import { Skeleton } from "@openui/ui";
 
 import { useInView } from "../hooks/use-in-view.js";
-import { useRegistryItem } from "../features/resources/use-catalogue.js";
+import { getCatalogueVisualPreview } from "../visual-engine/catalogue-previews.js";
 
 /**
  * Lazy tile preview.
  *
  * A catalogue of 800 live demos cannot mount 800 sandboxes; it cannot even
- * *fetch* 800 artifacts. This component renders a metadata-only tile until it
- * scrolls within one viewport of visibility, then loads the item artifact and
- * renders the real demo in the isolated iframe. When the tile leaves the
- * viewport the iframe is not torn down (scroll thrash would cost more than the
- * idle frame), but the underlying loop-driven demos pause themselves via
- * `use-canvas-loop`'s IntersectionObserver and the document visibility rules.
- *
- * The catalogue's performance contract is therefore enforced in layers:
- * metadata is cheap and instant; source is fetched on approach; heavy frames
- * only run while visible.
+ * *fetch* 800 artifacts. This component checks for bespoke native visual
+ * previews first (instant 60fps render, zero iframe cost). If none is available,
+ * it renders a metadata-only tile until it scrolls within visibility, then
+ * loads the sandbox demo in an isolated iframe.
  */
 const TileSandbox = React.lazy(() =>
   import("../features/playground/TileSandbox.js").then((module) => ({
@@ -29,18 +23,21 @@ const TileSandbox = React.lazy(() =>
 );
 
 export function TilePreview({ item }: { item: RegistryIndexEntry }): React.JSX.Element {
-  const { ref, inView } = useInView<HTMLDivElement>({ once: true, rootMargin: "200px" });
+  const { ref, inView } = useInView<HTMLDivElement>({ once: true, rootMargin: "600px" });
+  const bespoke = getCatalogueVisualPreview(item.name, item.category);
 
   return (
-    <div ref={ref} className="border-b border-line/25 bg-[#f9f8f5] dark:bg-[#0e0e0d] overflow-hidden pointer-events-none select-none relative">
-      {inView ? (
+    <div ref={ref} className="border-b border-line/25 bg-[#f9f8f5] dark:bg-[#0e0e0d] overflow-hidden pointer-events-none select-none relative h-44 flex items-center justify-center">
+      {bespoke ? (
+        bespoke
+      ) : inView ? (
         <React.Suspense fallback={<PreviewSkeleton />}>
           <TileSandbox name={item.name} />
         </React.Suspense>
       ) : (
         <Link
           to={`/${item.category}/${item.name}`}
-          className="flex h-44 items-end bg-[#f9f8f5] dark:bg-[#0e0e0d] p-4"
+          className="flex h-44 items-end bg-[#f9f8f5] dark:bg-[#0e0e0d] p-4 w-full"
           tabIndex={-1}
           aria-hidden
         >

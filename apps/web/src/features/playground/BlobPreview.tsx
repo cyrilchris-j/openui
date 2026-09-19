@@ -113,7 +113,7 @@ export function BlobPreview({
       --color-oxide: hsl(var(--oxide));
       --color-moss: hsl(var(--moss));
       --color-azure: hsl(var(--azure));
-      --line: var(--color-line);
+      --border-line: var(--color-line);
     }
     *, *::before, *::after { box-sizing: border-box; }
     ${
@@ -179,7 +179,7 @@ export function BlobPreview({
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 0.5rem !important;
       box-sizing: border-box;
       overflow: hidden !important;
       scrollbar-width: none !important;
@@ -187,6 +187,18 @@ export function BlobPreview({
     }
     #root > * {
       max-width: 100%;
+      box-sizing: border-box;
+    }
+    #root > div[class*="min-h-"],
+    #root > div[class*="p-8"],
+    #root > div[class*="p-10"] {
+      min-height: 0 !important;
+      height: 100% !important;
+      padding: 0.5rem !important;
+      background: transparent !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     * {
       scrollbar-width: none !important;
@@ -251,6 +263,7 @@ export function BlobPreview({
     import { twMerge } from "https://esm.sh/tailwind-merge@2";
     import * as CvaModule from "https://esm.sh/class-variance-authority@0.7.1";
     import * as MotionModule from "https://esm.sh/motion@11/react?deps=react@18.3.1";
+    import * as ThreeModule from "https://esm.sh/three@0.170.0";
 
     window.React = React;
     window.ReactDOM = ReactDOM;
@@ -261,6 +274,7 @@ export function BlobPreview({
     window.tailwindMerge = { twMerge, default: twMerge };
     window.cva = CvaModule;
     window.Motion = MotionModule;
+    window.THREE = ThreeModule;
 
     window.__depsReady = true;
     if (window.__maybeStart) window.__maybeStart();
@@ -372,6 +386,9 @@ export function BlobPreview({
           if (specifier === 'motion' || specifier === 'motion/react' || specifier === 'framer-motion') {
             return { __esModule: true, ...window.Motion, default: window.Motion };
           }
+          if (specifier === 'three') {
+            return { __esModule: true, ...window.THREE, default: window.THREE };
+          }
           return null;
         }
 
@@ -446,6 +463,66 @@ export function BlobPreview({
         // 7. Mount React App
         var root = window.ReactDOMClient.createRoot(document.getElementById('root'));
         root.render(window.React.createElement(ErrorBoundary, null, window.React.createElement(AppComponent)));
+
+        // 8. Auto-fit and auto-animate for thumbnail preview mode
+        if (!${scrollable}) {
+          function autoFit() {
+            var rootEl = document.getElementById('root');
+            if (!rootEl || !rootEl.firstElementChild) return;
+            var target = rootEl.firstElementChild;
+            if (target.children && target.children.length === 1 && target.firstElementChild) {
+              target = target.firstElementChild;
+            }
+            var availW = window.innerWidth - 16;
+            var availH = window.innerHeight - 16;
+            var curW = target.scrollWidth || target.offsetWidth;
+            var curH = target.scrollHeight || target.offsetHeight;
+            if (curW > availW || curH > availH) {
+              var s = Math.min(availW / curW, availH / curH, 1);
+              if (s < 0.96) {
+                target.style.transform = 'scale(' + s.toFixed(3) + ')';
+                target.style.transformOrigin = 'center center';
+              }
+            }
+          }
+          setTimeout(autoFit, 60);
+          setTimeout(autoFit, 250);
+          setTimeout(autoFit, 600);
+
+          // Auto-animate interactive previews so they are visibly active:
+          setTimeout(function() {
+            // A. If range slider exists (e.g. PhysicsRopePulley, InteractiveDiffSlider), oscillate it!
+            var slider = document.querySelector('input[type="range"]');
+            if (slider) {
+              var min = parseFloat(slider.min || 0);
+              var max = parseFloat(slider.max || 100);
+              var step = (max - min) / 50;
+              var dir = 1;
+              setInterval(function() {
+                var val = parseFloat(slider.value) + step * dir;
+                if (val >= max) { val = max; dir = -1; }
+                if (val <= min) { val = min; dir = 1; }
+                slider.value = val;
+                slider.dispatchEvent(new Event('input', { bubbles: true }));
+                slider.dispatchEvent(new Event('change', { bubbles: true }));
+              }, 40);
+            }
+
+            // B. If hamburger / toggle button exists, auto-toggle it!
+            var btn = document.querySelector('button[aria-expanded], button[aria-label*="menu" i], button[aria-label*="toggle" i]');
+            if (btn) {
+              setInterval(function() {
+                btn.click();
+              }, 1800);
+            }
+
+            // C. If spring drawer or dialog panel exists, click it to open!
+            var drawer = document.querySelector('[role="dialog"], [aria-label*="drawer" i], [aria-label*="panel" i]');
+            if (drawer) {
+              drawer.click();
+            }
+          }, 300);
+        }
       } catch (err) {
         showError(err);
       }

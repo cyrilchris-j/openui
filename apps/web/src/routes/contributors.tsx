@@ -199,7 +199,7 @@ export function ContributorPage(): React.JSX.Element {
         ) : (
           <div className="catalogue-grid">
             {authored.map((item, position) => (
-              <ResourceTile key={item.name} item={item} index={position + 1} />
+              <ResourceTile key={item.name} item={item} index={position + 1} withPreview />
             ))}
           </div>
         )}

@@ -10,6 +10,17 @@ import { ResourceTile } from "../components/ResourceTile.js";
 import { Section, SectionHeader } from "../components/SectionHeader.js";
 import { useRegistryIndex } from "../features/resources/use-catalogue.js";
 import { CATALOGUE_CATEGORIES, itemsInCategory, itemsWithDesignRules } from "../lib/registry.js";
+import {
+  AuroraField,
+  BentoGrid,
+  BentoCard,
+  InteractiveSphere,
+  InteractiveDock,
+  ScrambleDecryption,
+  ScrollReveal,
+  SpringButton,
+  WordReveal,
+} from "../visual-engine/index.js";
 
 /**
  * The home page.
@@ -56,15 +67,16 @@ export default function HomePage(): React.JSX.Element {
       {/* ---------------------------------------------------------------- */}
       {/* Opening statement                                                 */}
       {/* ---------------------------------------------------------------- */}
-      <section className="shell pt-6 sm:pt-14 lg:pt-20">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16">
+      <section className="shell relative pt-6 sm:pt-14 lg:pt-20">
+        <AuroraField opacity={0.16} className="-top-10 -left-10 -right-10 h-96 pointer-events-none" />
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-16 relative z-10">
           <div className="min-w-0">
             <p className="eyebrow text-xs sm:text-[11px] tracking-[0.22em] text-graphite mb-3">
               Open registry · MIT · v{index.data?.version ?? "0.1.0"}
             </p>
 
             <h1 className="optically-align text-balance text-3xl sm:text-5xl lg:text-step-5 font-normal leading-[1.06] tracking-tight text-ink">
-              Interfaces should have a fingerprint.
+              <WordReveal text="Interfaces should have a fingerprint." />
             </h1>
 
             <p className="prose-measure mt-4 sm:mt-6 text-[0.95rem] sm:text-step-1 leading-relaxed text-graphite">
@@ -230,9 +242,89 @@ Motion: subtle
             </div>
           ) : (
             featured.map((item, position) => (
-              <ResourceTile key={item.name} item={item} index={position + 1} />
+              <ScrollReveal key={item.name} delayMs={position * 40}>
+                <ResourceTile item={item} index={position + 1} withPreview />
+              </ScrollReveal>
             ))
           )}
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* The Visual Engine                                                */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="shell mt-12 sm:mt-24 lg:mt-32">
+        <SectionHeader
+          eyebrow="03 — The Visual Engine"
+          title="Motion, kinetic typography, 3D and micro-interactions."
+          description="OpenUI expands beyond static elements into an advanced visual infrastructure: GPU-accelerated motion, procedural canvases, Three.js WebGL spatial scenes, and tactile micro-interactions — each with strict reduced-motion and accessibility guarantees."
+          actions={
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/playground">Test in Playground</Link>
+            </Button>
+          }
+        />
+
+        <div className="mt-10">
+          <BentoGrid>
+            <BentoCard
+              title="3D WebGL Engine"
+              description="Hardware-accelerated Three.js procedural surfaces, particle clouds, and spatial objects with automatic 2D Canvas fallback."
+              badge="Three.js · WebGL"
+              colSpan={2}
+              graphic={
+                <div className="h-44 sm:h-52 w-full rounded-lg border border-line/20 overflow-hidden bg-surface/20">
+                  <InteractiveSphere radius={1.4} />
+                </div>
+              }
+            />
+
+            <BentoCard
+              title="Kinetic Typography"
+              description="Scramble decryption, character reveals, variable-font proximity, and sine wave oscillation."
+              badge="Typography"
+              colSpan={1}
+            >
+              <div className="mt-4 p-4 rounded-lg border border-line/20 bg-surface/30 flex flex-col justify-center gap-2">
+                <span className="font-mono text-[10px] text-graphite uppercase tracking-wider">Scramble reveal:</span>
+                <span className="font-mono text-xs sm:text-sm text-ink font-semibold">
+                  <ScrambleDecryption text="OPENUI_VISUAL_ENGINE" speedMs={40} />
+                </span>
+              </div>
+            </BentoCard>
+
+            <BentoCard
+              title="Parabolic Proximity Dock"
+              description="Dynamic pointer distance magnification calculated through Gaussian curve physics with spring return."
+              badge="Interactions"
+              colSpan={2}
+            >
+              <div className="mt-4 p-4 rounded-lg border border-line/20 bg-surface/30 flex items-center justify-center">
+                <InteractiveDock
+                  items={[
+                    { id: "1", label: "Components", icon: <span className="font-mono text-xs">⌘</span> },
+                    { id: "2", label: "Text", icon: <span className="font-mono text-xs">T</span> },
+                    { id: "3", label: "Motion", icon: <span className="font-mono text-xs">⚡</span>, active: true },
+                    { id: "4", label: "3D", icon: <span className="font-mono text-xs">◈</span> },
+                    { id: "5", label: "Registry", icon: <span className="font-mono text-xs">⌥</span> },
+                  ]}
+                />
+              </div>
+            </BentoCard>
+
+            <BentoCard
+              title="Tactile Micro-Interactions"
+              description="Spring buttons, elastic rubber switches, and hold-to-confirm controls."
+              badge="Micro-Engine"
+              colSpan={1}
+            >
+              <div className="mt-4 p-4 rounded-lg border border-line/20 bg-surface/30 flex flex-col items-center justify-center gap-3">
+                <SpringButton className="px-4 py-2 border border-line rounded-md bg-paper text-[11px] font-mono uppercase tracking-widest text-ink shadow-xs">
+                  Press Spring Button
+                </SpringButton>
+              </div>
+            </BentoCard>
+          </BentoGrid>
         </div>
       </section>
 
@@ -242,7 +334,7 @@ Motion: subtle
       <section className="mt-12 sm:mt-24 border-y border-line py-10 sm:py-20 lg:mt-32">
         <div className="shell">
           <SectionHeader
-            eyebrow="03 — Why"
+            eyebrow="04 — Why"
             title="Generated interfaces converge. A fingerprint is how you refuse."
             description="This is the actual opening of the anti-slop rule shipped in this registry. It is written for a model to read before it writes a line of JSX — and for a person to read before they accept one."
           />
@@ -305,7 +397,7 @@ are a fingerprint — and it is the wrong one.`}
       {/* ---------------------------------------------------------------- */}
       <section className="shell mt-12 sm:mt-24 lg:mt-32">
         <SectionHeader
-          eyebrow="04 — The path"
+          eyebrow="05 — The path"
           title="From a registry URL to code in your project."
           description="The CLI resolves the item, validates it against the published schema, resolves its dependencies, checks for conflicts with files you already have, and only then writes. It never silently overwrites your work."
         />

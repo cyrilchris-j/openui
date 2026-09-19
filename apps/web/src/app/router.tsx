@@ -36,6 +36,8 @@ const BuilderPage = React.lazy(() => import("../routes/builder.js"));
 const SubmitPage = React.lazy(() => import("../routes/submit.js"));
 const DocsPage = React.lazy(() => import("../routes/docs.js"));
 const NotFoundPage = React.lazy(() => import("../routes/not-found.js"));
+const AdvancedPage = React.lazy(() => import("../routes/advanced.js"));
+const AdvancedDetailPage = React.lazy(() => import("../routes/advanced-detail.js"));
 
 // Contributor pages live in the same module as the index, so one chunk serves
 // both. `ContributorsPage` is the module's default export.
@@ -127,6 +129,9 @@ export const routes: RouteObject[] = [
       // The design-systems index is also the `design-systems` category page, so
       // it is registered once, here, and the category loop skips it.
       { path: "design-systems", element: <DesignSystemsPage /> },
+      { path: "advanced", element: <AdvancedPage /> },
+      { path: "advanced/:category", element: <AdvancedPage /> },
+      { path: "advanced/:category/:slug", element: <AdvancedDetailPage /> },
 
       ...categoryRoutes,
       ...resourceRoutes,

@@ -234,7 +234,7 @@ export function DesignSystemPage(): React.JSX.Element {
         ) : (
           <div className="catalogue-grid">
             {linked.map((resource, position) => (
-              <ResourceTile key={resource.name} item={resource} index={position + 1} />
+              <ResourceTile key={resource.name} item={resource} index={position + 1} withPreview />
             ))}
           </div>
         )}

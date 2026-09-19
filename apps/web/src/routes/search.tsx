@@ -116,6 +116,24 @@ export default function SearchPage(): React.JSX.Element {
         <Button type="submit">Search</Button>
       </form>
 
+      {/* Visual Engine Quick Filter Chips */}
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        <span className="font-mono text-[10px] uppercase tracking-wider text-graphite">Quick tags:</span>
+        {["magnetic", "particles", "kinetic", "3d", "procedural", "aurora", "glitch", "bento", "spring"].map((tag) => (
+          <button
+            key={tag}
+            type="button"
+            onClick={() => {
+              setDraft(tag);
+              update((next) => next.set("q", tag));
+            }}
+            className="font-mono text-[10.5px] px-2.5 py-0.5 rounded-full border border-line/40 hover:border-ink/60 bg-surface/40 hover:bg-surface text-graphite hover:text-ink transition-colors"
+          >
+            #{tag}
+          </button>
+        ))}
+      </div>
+
       <div className="mt-6 sm:mt-10 grid gap-6 sm:gap-12 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
         {/* ---------------------------------------------------------- */}
         {/* Filter rail                                                */}

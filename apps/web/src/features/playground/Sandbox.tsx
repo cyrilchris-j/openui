@@ -6,6 +6,7 @@ import type { BuiltRegistryItem } from "@openui/types";
 import { EmptyState, Skeleton } from "@openui/ui";
 
 import { useTheme } from "../../hooks/use-theme.js";
+import { getCatalogueVisualPreview } from "../../visual-engine/catalogue-previews.js";
 import { BlobPreview } from "./BlobPreview.js";
 import { buildSandboxFiles } from "./files.js";
 
@@ -41,6 +42,11 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
     "/public/index.html": { code: getSandboxHtml(isDark), hidden: true },
     "/styles.css": { code: SANDBOX_CSS, hidden: true },
   };
+
+  const bespoke = React.useMemo(
+    () => getCatalogueVisualPreview(item.name, item.category),
+    [item.name, item.category],
+  );
 
   const previewHeight = view === "split" ? "22rem" : "32rem";
   const editorHeight = view === "split" ? "24rem" : "34rem";
@@ -78,16 +84,28 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
           </div>
         </div>
 
-        {/* BlobPreview Canvas Stage */}
+        {/* Visual Preview / BlobPreview Canvas Stage */}
         {view !== "code" ? (
           <div
-            className="relative overflow-hidden bg-[#f8f6f1] dark:bg-[#0c0c0b]"
+            className="relative overflow-hidden bg-[#f8f6f1] dark:bg-[#0c0c0b] flex items-center justify-center p-6 sm:p-10"
             style={{
+              minHeight: previewHeight,
               backgroundImage: "radial-gradient(hsl(var(--line) / 0.12) 1px, transparent 1px)",
               backgroundSize: "16px 16px",
             }}
           >
-            <BlobPreview key={refreshKey} files={files} height={previewHeight} scrollable />
+            {bespoke && !provided ? (
+              <div
+                key={refreshKey}
+                className="w-full max-w-2xl min-h-[16rem] sm:min-h-[22rem] p-6 sm:p-10 rounded-2xl bg-paper/95 border border-line/35 shadow-lg flex items-center justify-center relative overflow-hidden backdrop-blur-xs"
+              >
+                <div className="w-full h-full flex items-center justify-center scale-110 sm:scale-125 origin-center">
+                  {bespoke}
+                </div>
+              </div>
+            ) : (
+              <BlobPreview key={refreshKey} files={files} height={previewHeight} scrollable />
+            )}
           </div>
         ) : null}
 

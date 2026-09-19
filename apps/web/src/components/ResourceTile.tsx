@@ -29,7 +29,7 @@ export interface ResourceTileProps {
   className?: string;
 }
 
-export function ResourceTile({ item, index, withPreview = false, className }: ResourceTileProps): React.JSX.Element {
+export function ResourceTile({ item, index, withPreview = true, className }: ResourceTileProps): React.JSX.Element {
   const href = `/${categorySegmentFor(item.category)}/${item.name}`;
   const dependencies = item.dependencies.filter((name) => name !== "react");
 

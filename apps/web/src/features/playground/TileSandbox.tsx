@@ -21,9 +21,15 @@ export function TileSandbox({ name }: { name: string }): React.JSX.Element {
     loadItem(name)
       .then((item) => {
         if (!active) return;
-        setFiles(buildSandboxFiles(item));
+        try {
+          setFiles(buildSandboxFiles(item));
+        } catch (err) {
+          console.error("Failed to build sandbox files for", name, err);
+          setFailed(true);
+        }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("Failed to load item", name, err);
         if (active) setFailed(true);
       });
     return () => {

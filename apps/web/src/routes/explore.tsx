@@ -7,6 +7,7 @@ import { ResourceRow, ResourceTile } from "../components/ResourceTile.js";
 import { SectionHeader } from "../components/SectionHeader.js";
 import { useRegistryIndex } from "../features/resources/use-catalogue.js";
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
+import { ScrollReveal } from "../visual-engine/index.js";
 
 /**
  * Explore.
@@ -136,7 +137,9 @@ export default function ExplorePage(): React.JSX.Element {
       ) : (
         <div className="catalogue-grid mt-6 sm:mt-8">
           {items.map((item, position) => (
-            <ResourceTile key={item.name} item={item} index={position + 1} />
+            <ScrollReveal key={item.name} delayMs={Math.min(position * 20, 250)}>
+              <ResourceTile item={item} index={position + 1} withPreview />
+            </ScrollReveal>
           ))}
         </div>
       )}

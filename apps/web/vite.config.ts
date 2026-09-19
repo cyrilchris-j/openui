@@ -94,6 +94,7 @@ export default defineConfig({
         manualChunks: {
           sandpack: ["@codesandbox/sandpack-react"],
           editor: ["@monaco-editor/react"],
+          three: ["three"],
           vendor: ["react", "react-dom", "react-router"],
         },
       },

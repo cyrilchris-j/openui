@@ -7,6 +7,7 @@ import { ResourceTile } from "../components/ResourceTile.js";
 import { SectionHeader } from "../components/SectionHeader.js";
 import { useCategoryItems } from "../features/resources/use-catalogue.js";
 import { CATALOGUE_CATEGORIES, categoryBySlug } from "../lib/registry.js";
+import { ScrollReveal } from "../visual-engine/index.js";
 
 /**
  * A catalogue category, e.g. `/themes` or `/motion`.
@@ -207,7 +208,9 @@ export default function CategoryPage({ category }: CategoryPageProps): React.JSX
       ) : (
         <div className="catalogue-grid mt-6 sm:mt-10">
           {visible.map((item, position) => (
-            <ResourceTile key={item.name} item={item} index={position + 1} withPreview />
+            <ScrollReveal key={item.name} delayMs={Math.min(position * 25, 300)}>
+              <ResourceTile item={item} index={position + 1} withPreview />
+            </ScrollReveal>
           ))}
         </div>
       )}

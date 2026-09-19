@@ -92,10 +92,65 @@ export function useSearch({ search }: UseSearchOptions): SearchState {
 
     const runLocal = async (): Promise<SearchResult> => {
       const { indexEntryToSummary, loadIndex: readIndex } = await import("../../lib/registry.js");
+      const { ADVANCED_RESOURCES } = await import("../../advanced/index.js");
       const indexValue = index.data ?? (await readIndex());
-      // The shared ranking module operates on domain summaries, so artifacts are
-      // adapted rather than searched with a second, divergent implementation.
-      return searchInMemory(indexValue.items.map(indexEntryToSummary), params);
+      const coreSummaries = indexValue.items.map(indexEntryToSummary);
+
+      const advancedSummaries: import("@openui/types").ResourceSummary[] = ADVANCED_RESOURCES.map((adv) => ({
+        id: `advanced/${adv.slug}`,
+        slug: adv.slug,
+        name: adv.slug,
+        title: adv.title,
+        description: adv.description,
+        resourceType: (adv.category === "text-animations"
+          ? "text"
+          : adv.category === "motion-design"
+            ? "motion"
+            : adv.category === "backgrounds"
+              ? "background"
+              : adv.category === "heroes"
+                ? "section"
+                : adv.category === "landing-pages"
+                  ? "template"
+                  : adv.category === "css-layouts"
+                    ? "layout"
+                    : "component") as import("@openui/types").ResourceType,
+        status: "published" as const,
+        categorySlug: adv.category,
+        categoryName: adv.category,
+        designSystemSlug: null,
+        licenseSpdx: "MIT",
+        author: null,
+        latestVersion: "1.0.0",
+        tags: [...adv.tags, adv.technology, "advanced"],
+        subcategory: adv.subcategory,
+        fingerprint: {
+          visualFamily: adv.fingerprint.visualFamily,
+          motionProfile: adv.fingerprint.motionProfile,
+          interactionProfile: adv.fingerprint.interactionProfile,
+          performanceTier: adv.fingerprint.performanceTier,
+        },
+        design: {
+          genre: "editorial",
+          macrostructure: "fluid",
+          density: "medium",
+          shapeLanguage: "sharp",
+          motionLanguage: "expressive",
+          typographyStyle: "grotesk",
+          colorStrategy: "accent-only",
+        },
+        dependencies: adv.dependencies,
+        registryDependencies: [],
+        downloadCount: 0,
+        viewCount: 0,
+        favoriteCount: 0,
+        difficulty: "advanced",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        publishedAt: new Date().toISOString(),
+      }));
+
+      return searchInMemory([...coreSummaries, ...advancedSummaries], params);
     };
 
     const execute = async () => {

@@ -85,6 +85,22 @@ export function Masthead(): React.JSX.Element {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <NavLink
+                to="/advanced"
+                className={({ isActive }) =>
+                  cn(
+                    "eyebrow whitespace-nowrap transition-colors duration-fast ease-editorial hover:text-ink flex items-center gap-1.5",
+                    isActive && "text-ink",
+                  )
+                }
+              >
+                <span>Advanced</span>
+                <span className="px-1.5 py-0.5 rounded-full text-[9px] font-mono bg-ink text-paper leading-none">
+                  220+
+                </span>
+              </NavLink>
+            </li>
           </ul>
         </nav>
 
@@ -221,6 +237,7 @@ export function Masthead(): React.JSX.Element {
             <p className="eyebrow mb-3 mt-8">More</p>
             <ul className="flex flex-wrap gap-x-6 gap-y-3">
               {[
+                ["/advanced", "Advanced (220+)"],
                 ["/explore", "Explore"],
                 ["/playground", "Playground"],
                 ["/builder", "Builder"],
