@@ -23,6 +23,11 @@ export default function AdvancedDetailPage(): React.JSX.Element {
       .slice(0, 4);
   }, [item]);
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    setActiveTab("preview");
+  }, [slug]);
+
   if (!item) {
     return (
       <div className="shell py-16">
@@ -256,17 +261,29 @@ export default function AdvancedDetailPage(): React.JSX.Element {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-8">
             {related.map((other) => (
-              <article key={other.slug} className="group border border-line bg-paper rounded-lg p-4 transition-all hover:border-ink/60">
-                <span className="font-mono text-[9px] text-graphite uppercase">{other.technology}</span>
-                <h4 className="mt-1 font-display font-medium text-ink text-sm">
-                  <Link to={`/advanced/${other.category}/${other.slug}`} className="hover:underline">
-                    {other.title}
-                  </Link>
+              <Link
+                key={other.slug}
+                to={`/advanced/${other.category}/${other.slug}`}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "instant" });
+                }}
+                className="group block border border-line bg-paper rounded-lg p-4 transition-all duration-fast hover:border-ink/80 hover:shadow-md cursor-pointer select-none active:scale-[0.98]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[9px] text-graphite uppercase tracking-wider group-hover:text-oxide transition-colors">
+                    {other.technology}
+                  </span>
+                  <span className="font-mono text-xs text-graphite/60 group-hover:text-oxide group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+                    ↗
+                  </span>
+                </div>
+                <h4 className="mt-1.5 font-display font-medium text-ink text-sm group-hover:text-oxide transition-colors">
+                  {other.title}
                 </h4>
                 <p className="mt-1 text-[11px] text-graphite line-clamp-2 leading-relaxed">
                   {other.description}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </section>
