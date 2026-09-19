@@ -4,21 +4,17 @@ import { Link } from "react-router";
 
 import { Badge, Button, EmptyState, Skeleton } from "@openui/ui";
 
-import { CodeBlock, CommandLine } from "../components/CodeBlock.js";
+import { CodeBlock } from "../components/CodeBlock.js";
 import { usePWA } from "../components/PWAInstall.js";
 import { ResourceTile } from "../components/ResourceTile.js";
 import { Section, SectionHeader } from "../components/SectionHeader.js";
 import { useRegistryIndex } from "../features/resources/use-catalogue.js";
 import { CATALOGUE_CATEGORIES, itemsInCategory, itemsWithDesignRules } from "../lib/registry.js";
+import { ADVANCED_RESOURCES, getAdvancedItemBySlug } from "../advanced/index.js";
+import { AdvancedPreview } from "../advanced/renderers/AdvancedPreview.js";
 import {
   AuroraField,
-  BentoGrid,
-  BentoCard,
-  InteractiveSphere,
-  InteractiveDock,
-  ScrambleDecryption,
   ScrollReveal,
-  SpringButton,
   WordReveal,
 } from "../visual-engine/index.js";
 
@@ -31,8 +27,6 @@ import {
  *  - opens with an **asymmetric** split: a wide statement column and a narrow
  *    index column that immediately shows what the registry contains,
  *  - draws structure with **hairlines and type**, not with cards and shadows,
- *  - places a **real install command** above the fold, because the fastest way
- *    to understand a registry is to install from it,
  *  - shows the **design rules themselves** — the `anti-slop` rule text is
  *    rendered as content, so the product's thesis is visible rather than claimed.
  *
@@ -61,6 +55,22 @@ export default function HomePage(): React.JSX.Element {
   }, [index.data]);
 
   const totalItems = index.data?.items.length ?? 0;
+  const advancedCount = ADVANCED_RESOURCES.length;
+  const grandTotal = totalItems + advancedCount;
+
+  const featuredAdvanced = React.useMemo(() => {
+    const slugs = [
+      "kinetic-editorial-hero",
+      "interactive-wireframe-globe",
+      "aurora-sky-harmonic",
+      "true-focus-lens",
+      "magnetic-spring-button",
+      "depth-carousel-3d",
+    ];
+    return slugs
+      .map((slug) => getAdvancedItemBySlug(slug))
+      .filter((item): item is NonNullable<typeof item> => item !== undefined);
+  }, []);
 
   return (
     <>
@@ -85,10 +95,6 @@ export default function HomePage(): React.JSX.Element {
               systems — each one shipping its source, a demo, and the <em>design rules</em> that
               make it work. Install the code. Keep the rules.
             </p>
-
-            <div className="mt-6 sm:mt-8 max-w-[34rem]">
-              <CommandLine command="pnpm dlx openui add magnetic-button" />
-            </div>
 
             <div className="mt-6 sm:mt-8 flex flex-col gap-3 w-full max-w-[34rem]">
               <Button
@@ -123,6 +129,24 @@ export default function HomePage(): React.JSX.Element {
                 />
               ) : (
                 <dl className="mt-2">
+                  {/* Advanced Ecosystem Category */}
+                  <div className="flex items-baseline justify-between gap-4 border-b border-line py-2.5 bg-oxide/[0.04] -mx-2 px-2 rounded">
+                    <dt>
+                      <Link
+                        to="/advanced"
+                        className="text-[0.9rem] text-oxide font-medium transition-colors duration-fast hover:text-ink flex items-center gap-2"
+                      >
+                        <span>Advanced</span>
+                        <span className="inline-flex items-center gap-1 rounded-full border border-oxide/40 bg-oxide/15 px-1.5 py-0.5 text-[9px] font-mono text-oxide font-semibold uppercase tracking-wider">
+                          220+
+                        </span>
+                      </Link>
+                    </dt>
+                    <dd className="font-mono text-[0.8rem] tracking-[0.08em] text-oxide font-bold">
+                      {String(advancedCount).padStart(2, "0")}
+                    </dd>
+                  </div>
+
                   {counts.map((category) => (
                     <div
                       key={category.slug}
@@ -142,9 +166,14 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   ))}
                   <div className="flex items-baseline justify-between gap-4 py-3">
-                    <dt className="eyebrow">Total published</dt>
-                    <dd className="font-mono text-[0.8rem] tracking-[0.08em] text-ink">
-                      {String(totalItems).padStart(3, "0")}
+                    <div>
+                      <dt className="eyebrow">Total published</dt>
+                      <p className="text-[10px] font-mono text-graphite/60 mt-0.5">
+                        {totalItems} registry · {advancedCount} advanced
+                      </p>
+                    </div>
+                    <dd className="font-mono text-[0.85rem] tracking-[0.08em] text-ink font-semibold">
+                      {grandTotal.toLocaleString()}
                     </dd>
                   </div>
                 </dl>
@@ -251,80 +280,76 @@ Motion: subtle
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* The Visual Engine                                                */}
+      {/* Advanced Ecosystem Showcase                                      */}
       {/* ---------------------------------------------------------------- */}
       <section className="shell mt-12 sm:mt-24 lg:mt-32">
         <SectionHeader
-          eyebrow="03 — The Visual Engine"
-          title="Motion, kinetic typography, 3D and micro-interactions."
-          description="OpenUI expands beyond static elements into an advanced visual infrastructure: GPU-accelerated motion, procedural canvases, Three.js WebGL spatial scenes, and tactile micro-interactions — each with strict reduced-motion and accessibility guarantees."
+          eyebrow="03 — Advanced Ecosystem (220+)"
+          title="Spatial 3D, procedural canvases, and kinetic interactions."
+          description="Engineered for high-end digital products: GPU-accelerated Three.js WebGL scenes, organic canvas simulations, haptic micro-interactions, and kinetic typography with zero external runtime bloat."
           actions={
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/playground">Test in Playground</Link>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/advanced">Browse All 220+ Resources &rarr;</Link>
             </Button>
           }
         />
 
-        <div className="mt-10">
-          <BentoGrid>
-            <BentoCard
-              title="3D WebGL Engine"
-              description="Hardware-accelerated Three.js procedural surfaces, particle clouds, and spatial objects with automatic 2D Canvas fallback."
-              badge="Three.js · WebGL"
-              colSpan={2}
-              graphic={
-                <div className="h-44 sm:h-52 w-full rounded-lg border border-line/20 overflow-hidden bg-surface/20">
-                  <InteractiveSphere radius={1.4} />
+        {/* Featured Advanced Grid */}
+        <div className="catalogue-grid mt-10">
+          {featuredAdvanced.map((advItem, position) => (
+            <ScrollReveal key={advItem.slug} delayMs={position * 40}>
+              <article
+                className="group relative flex flex-col justify-between overflow-hidden border border-line/30 dark:border-line/20 bg-paper rounded-xl transition-all duration-normal ease-editorial hover:shadow-lg hover:border-ink/40 dark:hover:border-ink/50 hover:-translate-y-0.5"
+              >
+                {/* Live Preview Container */}
+                <div
+                  className="h-44 sm:h-52 w-full border-b border-line/25 overflow-hidden relative flex items-center justify-center bg-[#f8f6f1] dark:bg-[#0c0c0b] p-4"
+                  style={{
+                    backgroundImage: "radial-gradient(hsl(var(--line) / 0.12) 1px, transparent 1px)",
+                    backgroundSize: "14px 14px",
+                  }}
+                >
+                  <div className="w-full h-full flex items-center justify-center pointer-events-none transform scale-90">
+                    <AdvancedPreview item={advItem} />
+                  </div>
                 </div>
-              }
-            />
 
-            <BentoCard
-              title="Kinetic Typography"
-              description="Scramble decryption, character reveals, variable-font proximity, and sine wave oscillation."
-              badge="Typography"
-              colSpan={1}
-            >
-              <div className="mt-4 p-4 rounded-lg border border-line/20 bg-surface/30 flex flex-col justify-center gap-2">
-                <span className="font-mono text-[10px] text-graphite uppercase tracking-wider">Scramble reveal:</span>
-                <span className="font-mono text-xs sm:text-sm text-ink font-semibold">
-                  <ScrambleDecryption text="OPENUI_VISUAL_ENGINE" speedMs={40} />
-                </span>
-              </div>
-            </BentoCard>
+                {/* Meta & Info */}
+                <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="eyebrow text-[10px] uppercase tracking-wider text-graphite">
+                        {advItem.category} · {advItem.technology}
+                      </span>
+                      <span className="px-1.5 py-0.5 rounded text-[9px] font-mono border border-line/50 text-ink/70 bg-surface/50">
+                        {advItem.fingerprint.performanceTier}
+                      </span>
+                    </div>
 
-            <BentoCard
-              title="Parabolic Proximity Dock"
-              description="Dynamic pointer distance magnification calculated through Gaussian curve physics with spring return."
-              badge="Interactions"
-              colSpan={2}
-            >
-              <div className="mt-4 p-4 rounded-lg border border-line/20 bg-surface/30 flex items-center justify-center">
-                <InteractiveDock
-                  items={[
-                    { id: "1", label: "Components", icon: <span className="font-mono text-xs">⌘</span> },
-                    { id: "2", label: "Text", icon: <span className="font-mono text-xs">T</span> },
-                    { id: "3", label: "Motion", icon: <span className="font-mono text-xs">⚡</span>, active: true },
-                    { id: "4", label: "3D", icon: <span className="font-mono text-xs">◈</span> },
-                    { id: "5", label: "Registry", icon: <span className="font-mono text-xs">⌥</span> },
-                  ]}
-                />
-              </div>
-            </BentoCard>
+                    <h3 className="font-display font-semibold text-ink text-lg tracking-tight group-hover:text-oxide transition-colors">
+                      <Link to={`/advanced/${advItem.category}/${advItem.slug}`} className="focus:outline-hidden">
+                        <span className="absolute inset-0 z-10" aria-hidden="true" />
+                        {advItem.title}
+                      </Link>
+                    </h3>
 
-            <BentoCard
-              title="Tactile Micro-Interactions"
-              description="Spring buttons, elastic rubber switches, and hold-to-confirm controls."
-              badge="Micro-Engine"
-              colSpan={1}
-            >
-              <div className="mt-4 p-4 rounded-lg border border-line/20 bg-surface/30 flex flex-col items-center justify-center gap-3">
-                <SpringButton className="px-4 py-2 border border-line rounded-md bg-paper text-[11px] font-mono uppercase tracking-widest text-ink shadow-xs">
-                  Press Spring Button
-                </SpringButton>
-              </div>
-            </BentoCard>
-          </BentoGrid>
+                    <p className="mt-1.5 text-[0.85rem] leading-relaxed text-graphite line-clamp-2">
+                      {advItem.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-3 border-t border-line/20 flex items-center justify-between text-[11px] font-mono text-graphite">
+                    <span className="truncate text-[10px] text-graphite/80">
+                      {advItem.tags.slice(0, 2).map((t) => `#${t}`).join(" ")}
+                    </span>
+                    <span className="text-ink/70 group-hover:text-oxide transition-colors flex items-center gap-1 font-medium">
+                      Explore &rarr;
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
