@@ -17,14 +17,7 @@ export default function AdvancedExplorerPage(): React.JSX.Element {
   const { category: pathCategory } = useParams<{ category?: string }>();
   const [params, setParams] = useSearchParams();
 
-  const itemMatch = React.useMemo(
-    () => (pathCategory ? getAdvancedItemBySlug(pathCategory) : undefined),
-    [pathCategory],
-  );
-
-  if (itemMatch) {
-    return <Navigate to={`/advanced/${itemMatch.category}/${itemMatch.slug}`} replace />;
-  }
+  const itemMatch = pathCategory ? getAdvancedItemBySlug(pathCategory) : undefined;
 
   const selectedCategory = (pathCategory ?? params.get("category") ?? "all") as AdvancedCategorySlug | "all";
   const selectedTech = (params.get("tech") ?? "all") as AdvancedTechnology | "all";
@@ -48,6 +41,10 @@ export default function AdvancedExplorerPage(): React.JSX.Element {
       return true;
     });
   }, [selectedCategory, selectedTech, searchQuery]);
+
+  if (itemMatch) {
+    return <Navigate to={`/advanced/${itemMatch.category}/${itemMatch.slug}`} replace />;
+  }
 
   const updateParam = (key: string, value: string) => {
     const next = new URLSearchParams(params);

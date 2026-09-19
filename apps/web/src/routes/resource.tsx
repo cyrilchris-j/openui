@@ -65,6 +65,8 @@ export default function ResourcePage(): React.JSX.Element {
   const slug = params.slug ?? "";
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const advItem = slug ? getAdvancedItemBySlug(slug) : undefined;
+
   const { entry, state: indexState } = useIndexEntry(slug);
   const itemState = useRegistryItem(slug);
   const related = useRelatedItems(entry);
@@ -189,8 +191,6 @@ export default function ResourcePage(): React.JSX.Element {
       </div>
     );
   }
-
-  const advItem = React.useMemo(() => getAdvancedItemBySlug(slug), [slug]);
 
   if (!entry) {
     if (advItem) {
