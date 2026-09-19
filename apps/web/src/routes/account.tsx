@@ -42,48 +42,59 @@ export function ProfilePage(): React.JSX.Element {
   const { user } = useAuth();
   useDocumentTitle("Profile — OpenUI");
 
+  const displayName =
+    user?.displayName ||
+    (user?.email ? user.email.split("@")[0] : "Account User");
+
   return (
-    <div className="space-y-5">
+    <div className="max-w-xl space-y-5">
       <div className="border-b border-line pb-3">
         <div className="flex items-center justify-between">
           <div>
-            <p className="eyebrow text-[10px] text-graphite uppercase tracking-widest">Profile</p>
-            <h2 className="font-display text-2xl text-ink tracking-tight">Public Identity</h2>
+            <p className="eyebrow text-xs text-graphite uppercase tracking-widest">Profile</p>
+            <h2 className="font-display text-2xl sm:text-3xl text-ink tracking-tight">Public Identity</h2>
           </div>
-          <span className="font-mono text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-line/10 border border-line text-graphite font-semibold">
+          <span className="font-mono text-xs px-3 py-1 rounded-full uppercase tracking-wider bg-line/10 border border-line text-graphite font-semibold">
             {user?.role ?? "user"}
           </span>
         </div>
-        <p className="mt-1 text-xs text-graphite max-w-[58ch]">
-          Your public identity in the registry, synced directly from your verified authentication session.
+        <p className="mt-1.5 text-sm text-graphite leading-relaxed">
+          Your public identity in the registry, synced directly from your verified Google / GitHub session.
         </p>
       </div>
 
-      <div>
-        <dl className="divide-y divide-line/70 border-t border-b border-line">
-          {[
-            ["Username", user?.username ? `@${user.username}` : "Not set"],
-            ["Display name", user?.displayName ?? "Not set"],
-            ["Email", user?.email ?? "Unknown"],
-            ["Role", user?.role ?? "user"],
-            ["User id", user?.id ?? "Unknown"],
-          ].map(([label, value]) => (
-            <div
-              key={label}
-              className="flex flex-col gap-1 py-2.5 sm:flex-row sm:items-center sm:gap-6"
-            >
-              <dt className="eyebrow w-[8.5rem] shrink-0 text-graphite text-[10px] sm:text-[11px] uppercase tracking-wider">
-                {label}
-              </dt>
-              <dd className="break-all font-mono text-[0.82rem] text-ink font-medium">
-                {value}
-              </dd>
-            </div>
-          ))}
+      <div className="rounded-lg border border-line bg-paper/60 p-4 sm:p-5 shadow-xs">
+        <dl className="divide-y divide-line/60">
+          <div className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-6">
+            <dt className="text-sm font-medium text-graphite sm:w-[9rem] shrink-0">
+              Display name
+            </dt>
+            <dd className="text-base font-medium text-ink break-words">
+              {displayName}
+            </dd>
+          </div>
+
+          <div className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-6">
+            <dt className="text-sm font-medium text-graphite sm:w-[9rem] shrink-0">
+              Email address
+            </dt>
+            <dd className="font-mono text-sm sm:text-base text-ink break-all">
+              {user?.email ?? "Unknown"}
+            </dd>
+          </div>
+
+          <div className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-6">
+            <dt className="text-sm font-medium text-graphite sm:w-[9rem] shrink-0">
+              Account role
+            </dt>
+            <dd className="font-mono text-sm uppercase tracking-wide text-ink font-semibold">
+              {user?.role ?? "user"}
+            </dd>
+          </div>
         </dl>
 
-        <p className="mt-3 max-w-[62ch] text-[0.8rem] leading-relaxed text-graphite/80">
-          Your role is verified against database row-level security on every request. Direct database access enforces the same rule.
+        <p className="mt-4 pt-3 border-t border-line/40 text-xs text-graphite/80 leading-relaxed">
+          Your role is verified against database row-level security on every request.
         </p>
       </div>
     </div>

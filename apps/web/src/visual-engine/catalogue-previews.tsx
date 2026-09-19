@@ -1025,12 +1025,87 @@ function LedDotMatrixTextPreview() {
 
 // 46. Lens Magnify Text
 function LensMagnifyTextPreview() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [pos, setPos] = React.useState({ x: 180, y: 90 });
+  const [isHovered, setIsHovered] = React.useState(false);
+  const text = "Typography Precision In Motion";
+
+  React.useEffect(() => {
+    if (isHovered) return;
+    let t = 0;
+    const interval = setInterval(() => {
+      t += 0.04;
+      if (containerRef.current) {
+        const w = containerRef.current.clientWidth || 360;
+        const h = containerRef.current.clientHeight || 180;
+        setPos({
+          x: w / 2 + Math.sin(t) * (w * 0.26),
+          y: h / 2 + Math.cos(t * 1.5) * 10,
+        });
+      }
+    }, 25);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+    setIsHovered(true);
+  };
+
+  const lensSize = 96;
+
   return (
-    <div className="w-full h-full p-4 flex items-center justify-center select-none relative">
-      <span className="font-display text-lg text-graphite">Typography Precision</span>
-      <div className="absolute w-20 h-20 rounded-full border-2 border-oxide bg-surface/90 shadow-lg flex items-center justify-center backdrop-blur-xs">
-        <span className="font-display text-2xl font-black text-ink scale-125">Prec</span>
+    <div
+      ref={containerRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={() => setIsHovered(false)}
+      className="w-full h-full min-h-[12rem] p-6 flex flex-col items-center justify-center select-none relative overflow-hidden cursor-crosshair"
+    >
+      {/* Base text */}
+      <span className="font-display text-xl sm:text-2xl text-graphite/60 tracking-wider">
+        {text}
+      </span>
+
+      {/* Floating Magnifier Lens */}
+      <div
+        className="pointer-events-none absolute rounded-full border-2 border-oxide shadow-2xl overflow-hidden backdrop-blur-[2px]"
+        style={{
+          width: lensSize,
+          height: lensSize,
+          left: pos.x - lensSize / 2,
+          top: pos.y - lensSize / 2,
+          boxShadow:
+            "0 12px 35px -4px rgba(194, 65, 12, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.4)",
+          backgroundColor: "hsl(var(--paper) / 0.92)",
+        }}
+      >
+        {/* Reflection ring */}
+        <div className="absolute inset-0 rounded-full border border-white/40 pointer-events-none z-10" />
+
+        {/* Magnified Text */}
+        <div
+          className="absolute flex items-center justify-center whitespace-nowrap font-display text-xl sm:text-2xl font-black text-ink tracking-wider"
+          style={{
+            transform: "scale(1.75)",
+            transformOrigin: `${pos.x}px ${pos.y}px`,
+            left: -(pos.x - lensSize / 2),
+            top: -(pos.y - lensSize / 2),
+            width: containerRef.current ? containerRef.current.clientWidth : "100%",
+            height: containerRef.current ? containerRef.current.clientHeight : "100%",
+          }}
+        >
+          {text}
+        </div>
       </div>
+
+      <span className="absolute bottom-2 text-[9px] font-mono text-graphite/60 uppercase tracking-widest">
+        Hover to explore magnification
+      </span>
     </div>
   );
 }

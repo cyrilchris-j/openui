@@ -101,6 +101,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
       setToken(session.access_token);
       const email = session.user.email ?? null;
+      const userMeta = session.user.user_metadata as Record<string, unknown> | undefined;
+      const oauthDisplayName: string | null =
+        (typeof userMeta?.full_name === "string" && userMeta.full_name) ||
+        (typeof userMeta?.name === "string" && userMeta.name) ||
+        (typeof userMeta?.user_name === "string" && userMeta.user_name) ||
+        (typeof userMeta?.preferred_username === "string" && userMeta.preferred_username) ||
+        (email ? email.split("@")[0] : null) ||
+        null;
 
       try {
         const me = await api.getMe(session.access_token);
@@ -109,7 +117,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           id: me.userId,
           email: me.email ?? email,
           username: me.username,
-          displayName: me.displayName,
+          displayName: me.displayName || oauthDisplayName,
           role: me.role as UserRole,
         });
       } catch {
@@ -118,7 +126,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           id: session.user.id,
           email,
           username: null,
-          displayName: null,
+          displayName: oauthDisplayName,
           role: "user",
         });
       } finally {
