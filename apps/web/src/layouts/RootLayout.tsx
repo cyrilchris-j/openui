@@ -24,7 +24,7 @@ import { PWAProvider } from "../components/PWAInstall.js";
 export function RootLayout(): React.JSX.Element {
   return (
     <PWAProvider>
-      <div className="min-h-[100dvh] flex flex-col">
+      <div className="min-h-[100dvh] flex flex-col pt-14 sm:pt-16">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-paper focus:px-4 focus:py-2 focus:font-mono focus:text-[11px] focus:uppercase focus:tracking-[0.16em] focus:text-ink"
