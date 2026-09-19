@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://openui1.web.app/$1",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/r/:path*", "destination": "/r/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
