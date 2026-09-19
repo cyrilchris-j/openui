@@ -20,6 +20,7 @@ import {
 import { formatDate } from "@openui/utils";
 
 import { ResourceTile, categorySegmentFor } from "../components/ResourceTile.js";
+import { getAdvancedItemBySlug } from "../advanced/index.js";
 import { Section, SectionHeader } from "../components/SectionHeader.js";
 import { useDocumentTitle } from "../hooks/use-document-title.js";
 import * as api from "../lib/api.js";
@@ -145,15 +146,21 @@ export function FavoritesPage(): React.JSX.Element {
               <p className="eyebrow">{items.length} {items.length === 1 ? "resource" : "resources"} saved</p>
             </div>
             <ul className="divide-y divide-line">
-              {items.map((resource) => (
-                <li
-                  key={resource.id}
-                  className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-ink/[0.01]"
-                >
-                  <Link
-                    to={`/${categorySegmentFor(resource.categorySlug ?? "components")}/${resource.slug}`}
-                    className="flex flex-1 flex-col gap-1 min-w-0"
+              {items.map((resource) => {
+                const adv = getAdvancedItemBySlug(resource.slug);
+                const itemHref = adv
+                  ? `/advanced/${adv.category}/${adv.slug}`
+                  : `/${categorySegmentFor(resource.categorySlug ?? "components")}/${resource.slug}`;
+
+                return (
+                  <li
+                    key={resource.id}
+                    className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-ink/[0.01]"
                   >
+                    <Link
+                      to={itemHref}
+                      className="flex flex-1 flex-col gap-1 min-w-0"
+                    >
                     <div className="flex items-center gap-2">
                       <span className="eyebrow text-[10px] text-graphite uppercase">{resource.resourceType}</span>
                       {resource.categorySlug ? (
@@ -183,7 +190,8 @@ export function FavoritesPage(): React.JSX.Element {
                     <Trash2 aria-hidden className="h-4 w-4" />
                   </Button>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </>
         )}

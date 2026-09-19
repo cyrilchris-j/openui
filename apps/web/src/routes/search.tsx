@@ -9,6 +9,7 @@ import { SectionHeader } from "../components/SectionHeader.js";
 import { useSearch, facetValues } from "../features/search/use-search.js";
 import { useRegistryIndex } from "../features/resources/use-catalogue.js";
 import { categorySegmentFor } from "../components/ResourceTile.js";
+import { getAdvancedItemBySlug } from "../advanced/index.js";
 import { useDocumentTitle } from "../hooks/use-document-title.js";
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
 
@@ -327,12 +328,18 @@ export default function SearchPage(): React.JSX.Element {
             />
           ) : (
             <ul className="mt-2">
-              {results.map((result) => (
-                <li key={result.id} className="border-b border-line">
-                  <Link
-                    to={`/${categorySegmentFor(result.categorySlug ?? "components")}/${result.slug}`}
-                    className="group flex flex-col gap-2 py-6 transition-colors duration-fast ease-editorial hover:bg-ink/[0.02]"
-                  >
+              {results.map((result) => {
+                const adv = getAdvancedItemBySlug(result.slug);
+                const targetHref = adv
+                  ? `/advanced/${adv.category}/${adv.slug}`
+                  : `/${categorySegmentFor(result.categorySlug ?? "components")}/${result.slug}`;
+
+                return (
+                  <li key={result.id} className="border-b border-line">
+                    <Link
+                      to={targetHref}
+                      className="group flex flex-col gap-2 py-6 transition-colors duration-fast ease-editorial hover:bg-ink/[0.02]"
+                    >
                     <div className="flex flex-wrap items-baseline gap-3">
                       <span className="eyebrow">{result.resourceType}</span>
                       <h2 className="font-display text-step-2 leading-tight tracking-tight text-ink">
@@ -365,8 +372,9 @@ export default function SearchPage(): React.JSX.Element {
                       ) : null}
                     </div>
                   </Link>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           )}
 

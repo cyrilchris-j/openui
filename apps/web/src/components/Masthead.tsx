@@ -11,6 +11,9 @@ import {
 } from "@openui/ui";
 
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
+import { useRegistryIndex } from "../features/resources/use-catalogue.js";
+import { ADVANCED_RESOURCES } from "../advanced/index.js";
+import { categorySegmentFor } from "./ResourceTile.js";
 import { useAuth } from "../lib/auth.js";
 import { AccountMenu } from "./AccountMenu.js";
 import { ThemeToggle } from "./ThemeToggle.js";
@@ -34,6 +37,81 @@ export function Masthead(): React.JSX.Element {
   const navigate = useNavigate();
   const [term, setTerm] = React.useState("");
   const { isInstalled, triggerInstall } = usePWA();
+  const registryIndex = useRegistryIndex();
+  const [searchFocused, setSearchFocused] = React.useState(false);
+  const searchBoxRef = React.useRef<HTMLDivElement>(null);
+
+  const quickMatches = React.useMemo(() => {
+    const q = term.trim().toLowerCase();
+    if (!q) return [];
+    const matches: Array<{
+      title: string;
+      slug: string;
+      category: string;
+      href: string;
+      badge: string;
+      isAdvanced?: boolean;
+    }> = [];
+
+    // 1. First check Advanced resources (e.g. falling-physics-text)
+    for (const item of ADVANCED_RESOURCES) {
+      if (
+        item.title.toLowerCase().includes(q) ||
+        item.slug.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q) ||
+        item.tags.some((t) => t.toLowerCase().includes(q))
+      ) {
+        matches.push({
+          title: item.title,
+          slug: item.slug,
+          category: item.category,
+          href: `/advanced/${item.category}/${item.slug}`,
+          badge: "Advanced",
+          isAdvanced: true,
+        });
+        if (matches.length >= 6) break;
+      }
+    }
+
+    // 2. Check Core Registry items
+    if (registryIndex.data?.items && matches.length < 6) {
+      for (const item of registryIndex.data.items) {
+        if (
+          item.title.toLowerCase().includes(q) ||
+          item.name.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q) ||
+          item.tags.some((t) => t.toLowerCase().includes(q))
+        ) {
+          matches.push({
+            title: item.title,
+            slug: item.name,
+            category: item.category,
+            href: `/${categorySegmentFor(item.category)}/${item.name}`,
+            badge: item.category,
+            isAdvanced: false,
+          });
+          if (matches.length >= 6) break;
+        }
+      }
+    }
+
+    return matches;
+  }, [term, registryIndex.data]);
+
+  React.useEffect(() => {
+    const handlePointerDown = (e: MouseEvent) => {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target as Node)) {
+        setSearchFocused(false);
+      }
+    };
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => document.removeEventListener("mousedown", handlePointerDown);
+  }, []);
+
+  React.useEffect(() => {
+    setSearchFocused(false);
+    setTerm("");
+  }, [location.pathname]);
 
   const isSystemsActive = [
     "/sections",
@@ -244,29 +322,106 @@ export function Masthead(): React.JSX.Element {
         </nav>
 
         <div className="flex items-center gap-2 shrink-0">
-          <form
-            role="search"
-            onSubmit={(event) => {
-              event.preventDefault();
-              const trimmed = term.trim();
-              navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : "/search");
-            }}
-            className="hidden items-center gap-2 border-b border-line xl:flex"
-          >
-            <Search aria-hidden className="h-3.5 w-3.5 text-graphite" />
-            <label htmlFor="masthead-search" className="sr-only">
-              Search the registry
-            </label>
-            <input
-              id="masthead-search"
-              type="search"
-              value={term}
-              onChange={(event) => setTerm(event.target.value)}
-              placeholder="Search"
-              className="h-8 sm:h-9 w-24 2xl:w-32 bg-transparent font-mono text-[11px] tracking-[0.12em] text-ink placeholder:text-graphite/70 focus:w-36 2xl:focus:w-44 focus:outline-none"
-              style={{ transition: "width var(--motion-normal) var(--motion-ease)" }}
-            />
-          </form>
+          <div ref={searchBoxRef} className="relative hidden xl:flex items-center">
+            <form
+              role="search"
+              onSubmit={(event) => {
+                event.preventDefault();
+                const trimmed = term.trim();
+                setSearchFocused(false);
+                navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : "/search");
+              }}
+              className="flex items-center gap-2 border-b border-line"
+            >
+              <Search aria-hidden className="h-3.5 w-3.5 text-graphite" />
+              <label htmlFor="masthead-search" className="sr-only">
+                Search the registry
+              </label>
+              <input
+                id="masthead-search"
+                type="search"
+                value={term}
+                onFocus={() => setSearchFocused(true)}
+                onChange={(event) => {
+                  setTerm(event.target.value);
+                  setSearchFocused(true);
+                }}
+                placeholder="Search"
+                className="h-8 sm:h-9 w-24 2xl:w-32 bg-transparent font-mono text-[11px] tracking-[0.12em] text-ink placeholder:text-graphite/70 focus:w-40 2xl:focus:w-48 focus:outline-none"
+                style={{ transition: "width var(--motion-normal) var(--motion-ease)" }}
+              />
+            </form>
+
+            {searchFocused && term.trim().length > 0 && (
+              <div className="absolute right-0 top-full mt-2 w-80 max-w-[90vw] z-50 rounded-xl border border-line bg-paper/95 dark:bg-[#151514]/95 backdrop-blur-md shadow-2xl p-1.5 animate-in fade-in zoom-in-95 duration-100">
+                <div className="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-graphite/80 border-b border-line/40 flex items-center justify-between">
+                  <span>Matching Resources</span>
+                  <span>{quickMatches.length} {quickMatches.length === 1 ? "match" : "matches"}</span>
+                </div>
+                {quickMatches.length === 0 ? (
+                  <div className="px-3 py-4 text-center">
+                    <p className="text-xs text-graphite">No direct matches found</p>
+                    <Link
+                      to={`/search?q=${encodeURIComponent(term.trim())}`}
+                      onClick={() => {
+                        setSearchFocused(false);
+                        setTerm("");
+                      }}
+                      className="mt-1.5 inline-block text-[11px] font-mono text-oxide hover:underline"
+                    >
+                      Search across full registry &rarr;
+                    </Link>
+                  </div>
+                ) : (
+                  <ul className="divide-y divide-line/30 max-h-72 overflow-y-auto">
+                    {quickMatches.map((m) => (
+                      <li key={m.href}>
+                        <Link
+                          to={m.href}
+                          onClick={() => {
+                            setSearchFocused(false);
+                            setTerm("");
+                          }}
+                          className="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg hover:bg-ink/[0.04] dark:hover:bg-white/[0.06] transition-colors group"
+                        >
+                          <div className="min-w-0 flex-1">
+                            <p className="font-display text-xs text-ink group-hover:text-oxide transition-colors truncate font-medium">
+                              {m.title}
+                            </p>
+                            <p className="font-mono text-[9.5px] text-graphite truncate">
+                              {m.slug}
+                            </p>
+                          </div>
+                          <span
+                            className={cn(
+                              "shrink-0 font-mono text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider border",
+                              m.isAdvanced
+                                ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
+                                : "bg-surface text-graphite border-line/40",
+                            )}
+                          >
+                            {m.badge}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div className="border-t border-line/40 pt-1.5 mt-1 px-2 pb-0.5 text-right">
+                  <Link
+                    to={`/search?q=${encodeURIComponent(term.trim())}`}
+                    onClick={() => {
+                      setSearchFocused(false);
+                      setTerm("");
+                    }}
+                    className="font-mono text-[10px] text-graphite hover:text-ink transition-colors"
+                  >
+                    All results for &ldquo;{term.trim()}&rdquo; &rarr;
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
 
           <div className="hidden xl:block">
             <ThemeToggle />
@@ -326,6 +481,47 @@ export function Masthead(): React.JSX.Element {
                 className="w-full bg-transparent font-mono text-xs tracking-wider text-ink placeholder:text-graphite/70 focus:outline-none"
               />
             </form>
+
+            {term.trim().length > 0 && quickMatches.length > 0 && (
+              <div className="mb-6 rounded-xl border border-line bg-surface/60 p-2">
+                <p className="px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-graphite border-b border-line/30 mb-1">
+                  Suggested Matches ({quickMatches.length})
+                </p>
+                <ul className="divide-y divide-line/30">
+                  {quickMatches.map((m) => (
+                    <li key={m.href}>
+                      <Link
+                        to={m.href}
+                        onClick={() => {
+                          setMenuOpen(false);
+                          setTerm("");
+                        }}
+                        className="flex items-center justify-between py-2 px-2 hover:bg-ink/[0.04] rounded transition-colors"
+                      >
+                        <div className="min-w-0 flex-1 pr-2">
+                          <p className="font-display text-xs text-ink font-medium truncate">
+                            {m.title}
+                          </p>
+                          <p className="font-mono text-[9px] text-graphite truncate">
+                            {m.slug}
+                          </p>
+                        </div>
+                        <span
+                          className={cn(
+                            "shrink-0 font-mono text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider border",
+                            m.isAdvanced
+                              ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
+                              : "bg-surface text-graphite border-line/40",
+                          )}
+                        >
+                          {m.badge}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {!isInstalled && (
               <div className="mb-6 flex items-center justify-between gap-3 rounded-xl border border-line bg-surface/60 p-3.5">

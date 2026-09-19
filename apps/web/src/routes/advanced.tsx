@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useSearchParams, useParams } from "react-router";
+import { Link, Navigate, useSearchParams, useParams } from "react-router";
 import { Button, EmptyState, SegmentedControl } from "@openui/ui";
 
 import { SectionHeader } from "../components/SectionHeader.js";
@@ -7,6 +7,7 @@ import { ScrollReveal } from "../visual-engine/index.js";
 import {
   ADVANCED_CATEGORIES,
   ADVANCED_RESOURCES,
+  getAdvancedItemBySlug,
   type AdvancedCategorySlug,
   type AdvancedTechnology,
 } from "../advanced/index.js";
@@ -15,6 +16,15 @@ import { AdvancedPreview } from "../advanced/renderers/AdvancedPreview.js";
 export default function AdvancedExplorerPage(): React.JSX.Element {
   const { category: pathCategory } = useParams<{ category?: string }>();
   const [params, setParams] = useSearchParams();
+
+  const itemMatch = React.useMemo(
+    () => (pathCategory ? getAdvancedItemBySlug(pathCategory) : undefined),
+    [pathCategory],
+  );
+
+  if (itemMatch) {
+    return <Navigate to={`/advanced/${itemMatch.category}/${itemMatch.slug}`} replace />;
+  }
 
   const selectedCategory = (pathCategory ?? params.get("category") ?? "all") as AdvancedCategorySlug | "all";
   const selectedTech = (params.get("tech") ?? "all") as AdvancedTechnology | "all";

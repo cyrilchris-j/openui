@@ -1,6 +1,7 @@
 import { BookMarked, ExternalLink, Heart, Laptop, Monitor, PackageSearch, ShieldCheck, Smartphone, Tablet } from "lucide-react";
 import * as React from "react";
-import { Link, useParams, useSearchParams } from "react-router";
+import { Link, Navigate, useParams, useSearchParams } from "react-router";
+import { getAdvancedItemBySlug } from "../advanced/index.js";
 
 import {
   Badge,
@@ -189,7 +190,13 @@ export default function ResourcePage(): React.JSX.Element {
     );
   }
 
+  const advItem = React.useMemo(() => getAdvancedItemBySlug(slug), [slug]);
+
   if (!entry) {
+    if (advItem) {
+      return <Navigate to={`/advanced/${advItem.category}/${advItem.slug}`} replace />;
+    }
+
     return (
       <div className="shell py-20">
         <EmptyState
