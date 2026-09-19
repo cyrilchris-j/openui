@@ -208,16 +208,6 @@ export function AccountMenu(): React.JSX.Element {
             Favourites
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link to="/account/collections" className="w-full">
-            Collections
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link to="/account/submissions" className="w-full">
-            Submissions
-          </Link>
-        </DropdownMenuItem>
 
         {isStaff ? (
           <>

@@ -46,7 +46,7 @@ export function ProfilePage(): React.JSX.Element {
       <SectionHeader
         eyebrow="Profile"
         title="Your public identity in the registry."
-        description="A username is what appears on a published resource and a public collection. It is read from the database, never from a token claim."
+        description="Your public identity in the registry. It is read from the database, never from a token claim."
       />
 
       <Section label="Account" className="mt-10">
@@ -73,17 +73,6 @@ export function ProfilePage(): React.JSX.Element {
           changes nothing: the API looks the role up, and the row-level security policies enforce the
           same rule again for any direct database access.
         </p>
-      </Section>
-
-      <Section label="Contributing" className="mt-12">
-        <div className="flex flex-wrap gap-2">
-          <Button asChild>
-            <Link to="/submit">Submit a resource</Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link to="/docs/contributing">Contributing guide</Link>
-          </Button>
-        </div>
       </Section>
     </>
   );

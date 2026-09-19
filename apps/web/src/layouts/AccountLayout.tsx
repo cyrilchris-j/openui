@@ -1,4 +1,4 @@
-import { Heart, Library, Send, UserCog } from "lucide-react";
+import { Heart, UserCog } from "lucide-react";
 import * as React from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
 
@@ -22,8 +22,6 @@ import { useAuth } from "../lib/auth.js";
 const NAV = [
   { to: "/account/profile", label: "Profile", icon: UserCog },
   { to: "/account/favorites", label: "Favourites", icon: Heart },
-  { to: "/account/collections", label: "Collections", icon: Library },
-  { to: "/account/submissions", label: "Submissions", icon: Send },
 ] as const;
 
 export function AccountLayout(): React.JSX.Element {
