@@ -24,17 +24,33 @@ function AcrosticColumnPreview() {
   ];
 
   return (
-    <div className="w-full h-full p-4 flex flex-col justify-center font-mono text-[11px] leading-tight select-none">
-      <div className="text-[9px] uppercase tracking-widest text-graphite mb-1.5 font-bold">Acrostic Stanza</div>
-      <div className="space-y-1">
-        {lines.map((l, i) => (
-          <div key={i} className={`flex items-center gap-1.5 transition-colors duration-200 ${i === activeIdx ? "text-oxide font-bold" : "text-ink/80"}`}>
-            <span className={`w-5 h-5 rounded flex items-center justify-center font-bold text-xs ${i === activeIdx ? "bg-oxide text-white shadow-xs" : "bg-line/20 text-ink"}`}>
-              {l.root}
-            </span>
-            <span className="text-[10px] tracking-tight">{l.rest}</span>
-          </div>
-        ))}
+    <div className="w-full h-full p-4 sm:p-6 flex flex-col items-center justify-center font-mono text-[11px] leading-tight select-none">
+      <div className="w-fit max-w-full">
+        <div className="text-[9px] uppercase tracking-widest text-graphite mb-2 font-bold flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-oxide" />
+          <span>Acrostic Stanza</span>
+        </div>
+        <div className="space-y-1.5">
+          {lines.map((l, i) => (
+            <div
+              key={i}
+              className={`flex items-center gap-2 transition-colors duration-200 ${
+                i === activeIdx ? "text-oxide font-bold" : "text-ink/80"
+              }`}
+            >
+              <span
+                className={`w-5 h-5 rounded flex items-center justify-center font-bold text-xs shrink-0 ${
+                  i === activeIdx
+                    ? "bg-oxide text-white shadow-xs"
+                    : "bg-line/25 text-ink"
+                }`}
+              >
+                {l.root}
+              </span>
+              <span className="text-[11px] tracking-tight">{l.rest}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

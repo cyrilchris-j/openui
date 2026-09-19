@@ -97,9 +97,9 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
             {bespoke && !provided ? (
               <div
                 key={refreshKey}
-                className="w-full max-w-2xl min-h-[16rem] sm:min-h-[22rem] p-6 sm:p-10 rounded-2xl bg-paper/95 border border-line/35 shadow-lg flex items-center justify-center relative overflow-hidden backdrop-blur-xs"
+                className="w-full max-w-xl min-h-[16rem] sm:min-h-[20rem] p-6 sm:p-10 rounded-2xl bg-paper/95 border border-line/35 shadow-lg flex items-center justify-center relative backdrop-blur-xs mx-auto"
               >
-                <div className="w-full h-full flex items-center justify-center scale-110 sm:scale-125 origin-center">
+                <div className="w-full flex items-center justify-center">
                   {bespoke}
                 </div>
               </div>

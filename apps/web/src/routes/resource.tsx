@@ -103,20 +103,18 @@ export default function ResourcePage(): React.JSX.Element {
   // Auto-detect mobile screen so resources default to mobile view on phones
   const isMobileClient =
     typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
-  const viewport = searchParams.get("viewport") ?? (isMobileClient ? "mobile" : "full");
+  const viewport = searchParams.get("viewport") ?? (isMobileClient ? "mobile" : "desktop");
 
   const VIEWPORT_WIDTHS: Record<string, string> = {
     mobile: "min(390px, 100%)",
     tablet: "min(834px, 100%)",
     desktop: "100%",
-    wide: "100%",
     full: "100%",
   };
   const VIEWPORT_MAX: Record<string, string> = {
     mobile: "min(390px, 100%)",
     tablet: "min(834px, 100%)",
     desktop: "100%",
-    wide: "1440px",
     full: "100%",
   };
 
@@ -167,7 +165,7 @@ export default function ResourcePage(): React.JSX.Element {
     const next = new URLSearchParams(searchParams);
     if (value === "preview") next.delete("tab");
     else next.set("tab", value);
-    setSearchParams(next, { replace: true });
+    setSearchParams(next, { replace: true, preventScrollReset: true });
   };
 
   if (indexState.isLoading) {
@@ -392,7 +390,7 @@ export default function ResourcePage(): React.JSX.Element {
                   const next = new URLSearchParams(searchParams);
                   if (value === "preview") next.delete("view");
                   else next.set("view", value);
-                  setSearchParams(next, { replace: true });
+                  setSearchParams(next, { replace: true, preventScrollReset: true });
                 }}
                 options={[
                   { value: "preview", label: "Preview" },
@@ -411,9 +409,9 @@ export default function ResourcePage(): React.JSX.Element {
                 value={viewport}
                 onValueChange={(value) => {
                   const next = new URLSearchParams(searchParams);
-                  if (value === "full") next.delete("viewport");
+                  if (value === "desktop") next.delete("viewport");
                   else next.set("viewport", value);
-                  setSearchParams(next, { replace: true });
+                  setSearchParams(next, { replace: true, preventScrollReset: true });
                 }}
                 options={[
                   {
@@ -430,11 +428,6 @@ export default function ResourcePage(): React.JSX.Element {
                     value: "desktop",
                     label: "Desktop",
                     icon: <Laptop aria-hidden className="h-3.5 w-3.5" />,
-                  },
-                  {
-                    value: "wide",
-                    label: "Wide",
-                    icon: <Monitor aria-hidden className="h-3.5 w-3.5" />,
                   },
                 ]}
               />

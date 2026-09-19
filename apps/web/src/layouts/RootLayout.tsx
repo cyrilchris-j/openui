@@ -39,7 +39,7 @@ export function RootLayout(): React.JSX.Element {
         </main>
 
         <Footer />
-        <ScrollRestoration />
+        <ScrollRestoration getKey={(location) => location.pathname} />
       </div>
     </PWAProvider>
   );

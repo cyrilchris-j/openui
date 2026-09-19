@@ -106,27 +106,30 @@ export default function AdvancedDetailPage(): React.JSX.Element {
                 {/* Viewport Width */}
                 <div className="flex items-center border border-line rounded-md p-0.5 bg-surface/30">
                   <button
+                    type="button"
                     onClick={() => setViewport("desktop")}
-                    className={`px-2 py-1 text-[10px] font-mono rounded ${
-                      viewport === "desktop" ? "bg-paper text-ink shadow-xs" : "text-graphite"
+                    className={`px-2 py-1 text-[10px] font-mono rounded transition-colors ${
+                      viewport === "desktop" ? "bg-paper text-ink shadow-xs" : "text-graphite hover:text-ink"
                     }`}
                     title="Desktop (100%)"
                   >
                     Desktop
                   </button>
                   <button
+                    type="button"
                     onClick={() => setViewport("tablet")}
-                    className={`px-2 py-1 text-[10px] font-mono rounded ${
-                      viewport === "tablet" ? "bg-paper text-ink shadow-xs" : "text-graphite"
+                    className={`px-2 py-1 text-[10px] font-mono rounded transition-colors ${
+                      viewport === "tablet" ? "bg-paper text-ink shadow-xs" : "text-graphite hover:text-ink"
                     }`}
                     title="Tablet (768px)"
                   >
                     Tablet
                   </button>
                   <button
+                    type="button"
                     onClick={() => setViewport("mobile")}
-                    className={`px-2 py-1 text-[10px] font-mono rounded ${
-                      viewport === "mobile" ? "bg-paper text-ink shadow-xs" : "text-graphite"
+                    className={`px-2 py-1 text-[10px] font-mono rounded transition-colors ${
+                      viewport === "mobile" ? "bg-paper text-ink shadow-xs" : "text-graphite hover:text-ink"
                     }`}
                     title="Mobile (375px)"
                   >
@@ -136,6 +139,7 @@ export default function AdvancedDetailPage(): React.JSX.Element {
 
                 {/* Reduced Motion Toggle */}
                 <button
+                  type="button"
                   onClick={() => setReducedMotion(!reducedMotion)}
                   className={`px-2.5 py-1 text-[10px] font-mono border rounded-md transition-colors ${
                     reducedMotion
@@ -157,7 +161,10 @@ export default function AdvancedDetailPage(): React.JSX.Element {
                   viewport === "tablet" ? "max-w-[768px]" : viewport === "mobile" ? "max-w-[375px]" : "max-w-full"
                 }`}
               >
-                <div className="h-[360px] sm:h-[480px] w-full flex items-center justify-center relative">
+                <div
+                  key={`${item.slug}-${viewport}`}
+                  className="h-[360px] sm:h-[480px] w-full flex items-center justify-center relative"
+                >
                   <AdvancedPreview item={item} reducedMotion={reducedMotion} />
                 </div>
 
