@@ -1,8 +1,10 @@
 import * as React from "react";
 import { Link, useParams } from "react-router";
+import { ArrowUpRight, RotateCcw } from "lucide-react";
 import { Button, EmptyState, Tabs, TabsContent, TabsList, TabsTrigger } from "@openui/ui";
 
 import { CodeBlock } from "../components/CodeBlock.js";
+import { DnaStrip } from "../components/DnaStrip.js";
 import { SectionHeader } from "../components/SectionHeader.js";
 import { getAdvancedItemBySlug, getAdvancedItemsByCategory } from "../advanced/index.js";
 import { AdvancedPreview } from "../advanced/renderers/AdvancedPreview.js";
@@ -15,12 +17,13 @@ export default function AdvancedDetailPage(): React.JSX.Element {
   const [viewport, setViewport] = React.useState<"desktop" | "tablet" | "mobile">("desktop");
   const [reducedMotion, setReducedMotion] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
+  const [refreshKey, setRefreshKey] = React.useState(0);
 
   const related = React.useMemo(() => {
     if (!item) return [];
     return getAdvancedItemsByCategory(item.category)
       .filter((other) => other.slug !== item.slug)
-      .slice(0, 4);
+      .slice(0, 3);
   }, [item]);
 
   React.useEffect(() => {
@@ -160,24 +163,71 @@ export default function AdvancedDetailPage(): React.JSX.Element {
 
           {/* Preview Tab */}
           <TabsContent value="preview" className="mt-6">
-            <div className="flex justify-center w-full">
+            <div className="flex flex-col items-center w-full">
               <div
-                className={`w-full transition-all duration-normal border border-line rounded-xl overflow-hidden bg-surface/20 shadow-xs ${
+                className={`w-full transition-all duration-normal rounded-xl border border-line/30 dark:border-line/20 overflow-hidden shadow-xs bg-paper ${
                   viewport === "tablet" ? "max-w-[768px]" : viewport === "mobile" ? "max-w-[375px]" : "max-w-full"
                 }`}
               >
-                <div
-                  key={`${item.slug}-${viewport}`}
-                  className="h-[360px] sm:h-[480px] w-full flex items-center justify-center relative"
-                >
-                  <AdvancedPreview item={item} reducedMotion={reducedMotion} />
+                {/* macOS Chrome Toolbar */}
+                <div className="flex h-10 items-center justify-between border-b border-line/25 bg-surface/50 px-3.5 sm:px-4">
+                  {/* macOS window dots */}
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]/90 border border-[#e0443e]/50" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]/90 border border-[#dea123]/50" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]/90 border border-[#1aab29]/50" />
+                  </div>
+
+                  {/* Center component address pill */}
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-paper border border-line/25 font-mono text-[11px] text-graphite shadow-2xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-moss" />
+                    <span className="text-ink font-medium tracking-tight">{item.slug}</span>
+                    <span className="text-graphite/50 hidden sm:inline">·</span>
+                    <span className="hidden sm:inline">preview</span>
+                  </div>
+
+                  {/* Right actions */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setRefreshKey((k) => k + 1)}
+                      title="Reset preview"
+                      className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono text-graphite hover:text-ink transition-colors rounded border border-line/20 hover:bg-surface/70 cursor-pointer"
+                    >
+                      <RotateCcw className="h-3 w-3" />
+                      <span className="hidden sm:inline">Reset</span>
+                    </button>
+                  </div>
                 </div>
 
-                <div className="border-t border-line/40 bg-paper/60 px-4 py-2.5 flex items-center justify-between text-[11px] font-mono text-graphite">
+                {/* Canvas Stage */}
+                <div
+                  className="relative overflow-hidden bg-[#f8f6f1] dark:bg-[#0c0c0b] flex items-center justify-center p-6 sm:p-10 min-h-[360px] sm:min-h-[480px]"
+                  style={{
+                    backgroundImage: "radial-gradient(hsl(var(--line) / 0.12) 1px, transparent 1px)",
+                    backgroundSize: "16px 16px",
+                  }}
+                >
+                  <div
+                    key={`${item.slug}-${viewport}-${refreshKey}`}
+                    className="w-full flex items-center justify-center"
+                  >
+                    <AdvancedPreview item={item} reducedMotion={reducedMotion} />
+                  </div>
+                </div>
+
+                {/* Tech and performance status bar */}
+                <div className="border-t border-line/25 bg-surface/40 px-4 py-2.5 flex items-center justify-between text-[11px] font-mono text-graphite">
                   <span>Technology: {item.technology}</span>
                   <span>Performance: {item.fingerprint.performanceTier}</span>
                 </div>
               </div>
+
+              {/* Sandbox isolation note */}
+              <p className="mt-3 flex items-start sm:items-center gap-2 text-[0.78rem] leading-relaxed text-graphite self-start">
+                <span aria-hidden className="mt-1 sm:mt-0 h-1.5 w-1.5 shrink-0 rounded-full bg-moss" />
+                Running in an isolated sandbox. The preview has no access to this page, your session or your files.
+              </p>
             </div>
           </TabsContent>
 
@@ -250,40 +300,93 @@ export default function AdvancedDetailPage(): React.JSX.Element {
         </Tabs>
       </div>
 
-      {/* Related Resources */}
+      {/* Composes With / Companion Resources */}
       {related.length > 0 && (
-        <section className="mt-16 sm:mt-24 border-t border-line pt-8">
-          <SectionHeader
-            eyebrow={`Related · ${item.category}`}
-            title="More in this collection"
-            description="Explore companion resources engineered within the same creative family."
-          />
+        <section className="mt-20 sm:mt-24">
+          <div className="flex items-baseline justify-between gap-4 border-t border-line pt-5">
+            <p className="eyebrow">COMPOSES WITH</p>
+            <p className="eyebrow">SHARED TAGS AND CATEGORY</p>
+          </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-8">
-            {related.map((other) => (
-              <Link
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
+            {related.map((other, index) => (
+              <article
                 key={other.slug}
-                to={`/advanced/${other.category}/${other.slug}`}
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "instant" });
-                }}
-                className="group block border border-line bg-paper rounded-lg p-4 transition-all duration-fast hover:border-ink/80 hover:shadow-md cursor-pointer select-none active:scale-[0.98]"
+                className="group relative flex flex-col bg-white dark:bg-[#141413] border border-line/30 dark:border-line/20 rounded-xl overflow-hidden shadow-xs hover:shadow-lg hover:border-ink/40 dark:hover:border-ink/50 transition-all duration-normal ease-editorial hover:-translate-y-0.5"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[9px] text-graphite uppercase tracking-wider group-hover:text-oxide transition-colors">
-                    {other.technology}
-                  </span>
-                  <span className="font-mono text-xs text-graphite/60 group-hover:text-oxide group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
-                    ↗
-                  </span>
+                {/* Index Badge */}
+                <span
+                  aria-hidden
+                  className="absolute right-3.5 top-3.5 sm:right-4 sm:top-4 z-10 font-mono text-[10px] tracking-[0.2em] text-graphite bg-white/90 dark:bg-black/80 px-2 py-0.5 rounded border border-line/20 backdrop-blur-xs shadow-xs"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                {/* Live Preview Stage */}
+                <div
+                  className="h-44 sm:h-52 w-full border-b border-line/25 overflow-hidden relative flex items-center justify-center bg-[#f8f6f1] dark:bg-[#0c0c0b] p-4"
+                  style={{
+                    backgroundImage: "radial-gradient(hsl(var(--line) / 0.12) 1px, transparent 1px)",
+                    backgroundSize: "14px 14px",
+                  }}
+                >
+                  <div className="w-full h-full flex items-center justify-center pointer-events-none transform scale-90">
+                    <AdvancedPreview item={other} />
+                  </div>
                 </div>
-                <h4 className="mt-1.5 font-display font-medium text-ink text-sm group-hover:text-oxide transition-colors">
-                  {other.title}
-                </h4>
-                <p className="mt-1 text-[11px] text-graphite line-clamp-2 leading-relaxed">
+
+                {/* Category & License */}
+                <div className="flex items-center gap-2 px-5 pt-5 sm:px-6 sm:pt-6">
+                  <span className="eyebrow text-[10px] sm:text-[11px] uppercase tracking-wider">
+                    {other.category}
+                  </span>
+                  <span aria-hidden className="text-graphite/50">·</span>
+                  <span className="eyebrow text-[10px] sm:text-[11px]">MIT</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="max-w-[24ch] font-display text-xl sm:text-step-2 leading-tight sm:leading-[1.1] tracking-tight text-ink mt-3 px-5 sm:px-6">
+                  <Link
+                    to={`/advanced/${other.category}/${other.slug}`}
+                    onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
+                    className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none group-hover:text-oxide transition-colors"
+                  >
+                    {other.title}
+                  </Link>
+                </h3>
+
+                {/* Description */}
+                <p className="max-w-[44ch] text-[0.82rem] sm:text-[0.88rem] leading-relaxed text-graphite line-clamp-2 mt-2.5 px-5 sm:px-6">
                   {other.description}
                 </p>
-              </Link>
+
+                {/* DNA Strip & Dependencies */}
+                <div className="mt-auto px-5 pb-5 pt-5 sm:px-6 sm:pb-6">
+                  <DnaStrip
+                    dna={{
+                      genre: (other.fingerprint.visualFamily as any) || "minimal",
+                      macrostructure: (other.fingerprint.responsiveProfile as any) || "stack",
+                      density: "compact",
+                      shapeLanguage: "rounded",
+                      motionLanguage: (other.fingerprint.motionProfile as any) || "mechanical",
+                      typographyStyle: "grotesk",
+                    }}
+                  />
+                  <div className="mt-3 flex items-center justify-between gap-3 border-t border-line/10 pt-3">
+                    <p className="font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.14em] text-graphite truncate">
+                      {other.dependencies.length === 0
+                        ? "zero dependencies"
+                        : other.dependencies.length === 1
+                        ? other.dependencies[0]
+                        : `${other.dependencies.length} deps`}
+                    </p>
+                    <span className="flex items-center gap-1 font-mono text-[9.5px] sm:text-[10px] uppercase tracking-[0.14em] text-graphite transition-colors duration-fast group-hover:text-oxide shrink-0">
+                      Open
+                      <ArrowUpRight aria-hidden className="h-3 w-3" />
+                    </span>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </section>
