@@ -791,9 +791,9 @@ export default function ResourcePage(): React.JSX.Element {
       ) : null}
 
       {/* Report / licence footer */}
-      <div className="shell mt-16">
-        <div className="flex flex-wrap items-center justify-end gap-4 border-t border-line pt-6">
-          <p className="eyebrow">
+      <div className="shell mt-8 -mb-10 sm:-mb-20">
+        <div className="flex items-center justify-end">
+          <p className="eyebrow text-[10px] text-graphite/70">
             Licence {entry.license ?? "not declared"} · verify before redistribution
           </p>
         </div>

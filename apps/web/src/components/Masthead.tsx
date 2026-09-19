@@ -1,8 +1,14 @@
-import { Download, Menu, Search, X } from "lucide-react";
+import { ChevronDown, Download, Menu, Search, X } from "lucide-react";
 import * as React from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
 
-import { cn } from "@openui/ui";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  cn,
+} from "@openui/ui";
 
 import { CATALOGUE_CATEGORIES } from "../lib/registry.js";
 import { useAuth } from "../lib/auth.js";
@@ -28,6 +34,13 @@ export function Masthead(): React.JSX.Element {
   const navigate = useNavigate();
   const [term, setTerm] = React.useState("");
   const { isInstalled, triggerInstall } = usePWA();
+
+  const isSystemsActive = [
+    "/sections",
+    "/blocks",
+    "/themes",
+    "/design-systems",
+  ].some((path) => location.pathname === path || location.pathname.startsWith(`${path}/`));
 
   // Any navigation closes the panel; leaving it open over a new page is the
   // single most common mobile-navigation bug.
@@ -68,16 +81,16 @@ export function Masthead(): React.JSX.Element {
           </span>
         </Link>
 
-        <nav aria-label="Catalogue" className="hidden flex-1 xl:block px-4">
-          <ul className="flex items-center gap-5">
+        <nav aria-label="Catalogue" className="hidden flex-1 xl:block px-2 2xl:px-4 min-w-0">
+          <ul className="flex items-center justify-center gap-2.5 2xl:gap-4 min-w-0">
             {CATALOGUE_CATEGORIES.slice(0, 6).map((category) => (
               <li key={category.slug}>
                 <NavLink
                   to={`/${category.slug}`}
                   className={({ isActive }) =>
                     cn(
-                      "eyebrow whitespace-nowrap transition-colors duration-fast ease-editorial hover:text-ink",
-                      isActive && "text-ink",
+                      "eyebrow whitespace-nowrap text-[10px] 2xl:text-[11px] tracking-wider 2xl:tracking-[0.24em] transition-colors duration-fast ease-editorial hover:text-ink",
+                      isActive && "text-ink font-semibold",
                     )
                   }
                 >
@@ -85,18 +98,144 @@ export function Masthead(): React.JSX.Element {
                 </NavLink>
               </li>
             ))}
+
+            <li>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    type="button"
+                    className={cn(
+                      "eyebrow whitespace-nowrap text-[10px] 2xl:text-[11px] tracking-wider 2xl:tracking-[0.24em] transition-colors duration-fast ease-editorial hover:text-ink flex items-center gap-1 focus-visible:outline-none cursor-pointer py-1",
+                      isSystemsActive ? "text-ink font-semibold" : "text-graphite",
+                    )}
+                    aria-label="Systems menu"
+                  >
+                    <span>Systems</span>
+                    <ChevronDown aria-hidden="true" className="h-3 w-3 text-graphite/70" />
+                  </button>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent
+                  align="center"
+                  sideOffset={8}
+                  className="w-72 p-1.5 bg-paper border border-line shadow-xl z-50 rounded-lg"
+                >
+                  <div className="px-2.5 py-1 mb-1 border-b border-line/40 flex items-center justify-between">
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-graphite font-bold">
+                      Systems & Architecture
+                    </span>
+                    <span className="font-mono text-[9px] text-oxide font-bold">4 Categories</span>
+                  </div>
+
+                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                    <Link
+                      to="/sections"
+                      className={cn(
+                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                        location.pathname.startsWith("/sections") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                      )}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                          Sections
+                        </span>
+                        <span className="text-[9px] font-mono text-graphite/70 uppercase">Hero & Nav</span>
+                      </div>
+                      <span className="text-[10px] text-graphite leading-tight">
+                        Whole page regions, headers, heroes, footers
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                    <Link
+                      to="/blocks"
+                      className={cn(
+                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                        location.pathname.startsWith("/blocks") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                      )}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                          Blocks
+                        </span>
+                        <span className="text-[9px] font-mono text-graphite/70 uppercase">Composite</span>
+                      </div>
+                      <span className="text-[10px] text-graphite leading-tight">
+                        Multi-part application surfaces & working blocks
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                    <Link
+                      to="/themes"
+                      className={cn(
+                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                        location.pathname.startsWith("/themes") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                      )}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                          Themes
+                        </span>
+                        <span className="text-[9px] font-mono text-graphite/70 uppercase">Tokens</span>
+                      </div>
+                      <span className="text-[10px] text-graphite leading-tight">
+                        Visual token sets, palette voices & themes
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                    <Link
+                      to="/design-systems"
+                      className={cn(
+                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                        location.pathname.startsWith("/design-systems") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                      )}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                          Design Systems
+                        </span>
+                        <span className="text-[9px] font-mono text-oxide font-bold uppercase">Complete</span>
+                      </div>
+                      <span className="text-[10px] text-graphite leading-tight">
+                        Full brand systems, tokens, typography & rules
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </li>
+
             <li>
               <NavLink
                 to="/advanced"
                 className={({ isActive }) =>
                   cn(
-                    "eyebrow whitespace-nowrap transition-colors duration-fast ease-editorial hover:text-ink flex items-center gap-1.5",
-                    isActive && "text-ink",
+                    "relative inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] 2xl:text-[11px] font-mono uppercase tracking-wider transition-all duration-fast ease-editorial group",
+                    "border border-oxide/50 bg-oxide/10 text-oxide shadow-xs hover:bg-oxide hover:text-paper hover:border-oxide hover:shadow-sm",
+                    isActive && "bg-oxide text-paper border-oxide font-bold shadow-xs",
                   )
                 }
               >
-                <span>Advanced</span>
-                <span className="px-1.5 py-0.5 rounded-full text-[9px] font-mono bg-ink text-paper leading-none">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-oxide opacity-75" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-oxide group-hover:bg-paper" />
+                </span>
+                <span className="font-bold">Advanced</span>
+                <span
+                  className={cn(
+                    "px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold leading-none transition-colors",
+                    "bg-oxide text-paper group-hover:bg-paper group-hover:text-oxide",
+                  )}
+                >
                   220+
                 </span>
               </NavLink>
@@ -124,7 +263,7 @@ export function Masthead(): React.JSX.Element {
               value={term}
               onChange={(event) => setTerm(event.target.value)}
               placeholder="Search"
-              className="h-9 w-32 bg-transparent font-mono text-[11px] tracking-[0.12em] text-ink placeholder:text-graphite/70 focus:w-44 focus:outline-none"
+              className="h-8 sm:h-9 w-24 2xl:w-32 bg-transparent font-mono text-[11px] tracking-[0.12em] text-ink placeholder:text-graphite/70 focus:w-36 2xl:focus:w-44 focus:outline-none"
               style={{ transition: "width var(--motion-normal) var(--motion-ease)" }}
             />
           </form>
@@ -235,9 +374,24 @@ export function Masthead(): React.JSX.Element {
             </ul>
 
             <p className="eyebrow mb-3 mt-8">More</p>
+            <div className="mb-4">
+              <Link
+                to="/advanced"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-oxide/50 bg-oxide/10 text-oxide font-mono text-xs uppercase tracking-wider"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-oxide opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-oxide" />
+                </span>
+                <span className="font-bold">Advanced Collection</span>
+                <span className="px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold bg-oxide text-paper leading-none">
+                  220+
+                </span>
+              </Link>
+            </div>
             <ul className="flex flex-wrap gap-x-6 gap-y-3">
               {[
-                ["/advanced", "Advanced (220+)"],
                 ["/explore", "Explore"],
                 ["/playground", "Playground"],
                 ["/builder", "Builder"],

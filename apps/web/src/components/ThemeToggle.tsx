@@ -26,22 +26,23 @@ export function ThemeToggle(): React.JSX.Element {
             <SegmentedControl
               label="Colour theme"
               hideLabel
+              size="sm"
               value={theme}
               onValueChange={(value) => setTheme(value as Theme)}
               options={[
                 {
                   value: "light",
-                  label: "Light",
+                  label: <span className="hidden 2xl:inline">Light</span>,
                   icon: <Sun aria-hidden className="h-3.5 w-3.5" />,
                 },
                 {
                   value: "dark",
-                  label: "Dark",
+                  label: <span className="hidden 2xl:inline">Dark</span>,
                   icon: <Moon aria-hidden className="h-3.5 w-3.5" />,
                 },
                 {
                   value: "system",
-                  label: "System",
+                  label: <span className="hidden 2xl:inline">System</span>,
                   icon: <Monitor aria-hidden className="h-3.5 w-3.5" />,
                 },
               ]}

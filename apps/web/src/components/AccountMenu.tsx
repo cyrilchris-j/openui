@@ -69,7 +69,7 @@ export function AccountMenu(): React.JSX.Element {
         size="sm"
         disabled
         title="Authentication is not configured on this deployment."
-        className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5"
+        className="h-8 w-8 sm:h-9 sm:w-auto px-0 sm:px-2.5 shrink-0"
       >
         <User aria-hidden className="h-3.5 w-3.5" />
         <span className="hidden lg:inline ml-1.5">Accounts off</span>
@@ -86,7 +86,7 @@ export function AccountMenu(): React.JSX.Element {
           onClick={() => setDialogOpen(true)}
           title="Account"
           aria-label="Account"
-          className="h-8 sm:h-9 px-2.5 sm:px-3 text-[11px] font-mono uppercase tracking-wider gap-1.5 border-line text-ink hover:border-ink hover:bg-surface/50"
+          className="h-8 sm:h-9 px-2.5 sm:px-3 text-[11px] font-mono uppercase tracking-wider gap-1.5 border-line text-ink hover:border-ink hover:bg-surface/50 shrink-0"
         >
           <User aria-hidden className="h-3.5 w-3.5" />
           <span>Account</span>
@@ -187,7 +187,7 @@ export function AccountMenu(): React.JSX.Element {
           size="sm"
           title={user.username ? `@${user.username}` : "Account"}
           aria-label="Account"
-          className="h-8 sm:h-9 px-2.5 sm:px-3 text-[11px] font-mono uppercase tracking-wider gap-1.5 border-line text-ink hover:border-ink hover:bg-surface/50"
+          className="h-8 sm:h-9 px-2.5 sm:px-3 text-[11px] font-mono uppercase tracking-wider gap-1.5 border-line text-ink hover:border-ink hover:bg-surface/50 shrink-0"
         >
           <User aria-hidden className="h-3.5 w-3.5" />
           <span>{user.username ? `@${user.username}` : "Account"}</span>

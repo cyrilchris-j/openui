@@ -37,6 +37,7 @@ export interface SegmentedControlProps {
   /** Renders the label only for assistive technology. */
   hideLabel?: boolean;
   className?: string;
+  size?: "default" | "sm";
 }
 
 export function SegmentedControl({
@@ -46,6 +47,7 @@ export function SegmentedControl({
   label,
   hideLabel = false,
   className,
+  size = "default",
 }: SegmentedControlProps): React.JSX.Element {
   const labelId = React.useId();
 
@@ -72,8 +74,11 @@ export function SegmentedControl({
               value={option.value}
               disabled={option.disabled}
               className={cn(
-                "inline-flex shrink-0 items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4 sm:py-2",
-                "eyebrow whitespace-nowrap text-[10px] sm:text-[11px] text-graphite",
+                "inline-flex shrink-0 items-center",
+                size === "sm"
+                  ? "gap-1 px-2 py-1 text-[10px]"
+                  : "gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-[11px]",
+                "eyebrow whitespace-nowrap text-graphite",
                 "border-r border-line last:border-r-0",
                 "transition-colors duration-fast ease-editorial",
                 "hover:text-ink",

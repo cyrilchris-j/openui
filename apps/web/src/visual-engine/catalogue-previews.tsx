@@ -113,7 +113,7 @@ function BaselineGridOverlayPreview() {
       />
       <div className="relative z-10 font-display text-2xl font-black text-ink leading-[32px] tracking-tight">
         Precision Drafting<br />
-        <span className="text-oxide font-sans text-xs tracking-widest uppercase font-mono block mt-1">
+        <span className="text-oxide text-xs tracking-widest uppercase font-mono block mt-1">
           Y: {(24 + offset)}px · 8pt Grid Lock
         </span>
       </div>
@@ -169,7 +169,7 @@ function BidiMirrorTypePreview() {
         </div>
         <div className="text-right pl-2" dir="rtl">
           <span className="text-[10px] font-mono text-cyan-600 font-bold block">RTL (Arabic)</span>
-          <span className="font-display text-sm font-bold text-ink font-serif">واجهات مفتوحة</span>
+          <span className="text-sm font-bold text-ink font-serif">واجهات مفتوحة</span>
         </div>
       </div>
     </div>
@@ -996,7 +996,7 @@ function KineticMarqueePreview() {
 // 44. Kinetic Ticker
 function KineticTickerPreview() {
   return (
-    <div className="w-full h-full p-4 flex flex-col justify-center select-none font-mono text-xs bg-[#0b0f14] text-white p-3 rounded-lg">
+    <div className="w-full h-full flex flex-col justify-center select-none font-mono text-xs bg-[#0b0f14] text-white p-3 rounded-lg">
       <div className="flex justify-between items-center py-1 border-b border-gray-800">
         <span>OPUI</span>
         <span className="text-emerald-400 font-bold">▲ $148.20 (+12.4%)</span>
@@ -1662,7 +1662,7 @@ function TfAutoEmphasisPreview() {
 // 84. Theatre Marquee Bulbs
 function TheatreMarqueeBulbsPreview() {
   return (
-    <div className="w-full h-full p-4 flex flex-col items-center justify-center select-none bg-[#1a0f0f] border-2 border-yellow-500 p-2 rounded-xl text-center shadow-lg">
+    <div className="w-full h-full flex flex-col items-center justify-center select-none bg-[#1a0f0f] border-2 border-yellow-500 p-2 rounded-xl text-center shadow-lg">
       <div className="flex gap-1.5 text-yellow-400 text-xs mb-1">
         {"● ● ● ● ● ● ● ●".split(" ").map((b, i) => (
           <span key={i} className="animate-ping" style={{ animationDuration: `${0.8 + i * 0.1}s` }}>
@@ -1680,7 +1680,7 @@ function TheatreMarqueeBulbsPreview() {
 // 85. Thermal Print Type
 function ThermalPrintTypePreview() {
   return (
-    <div className="w-full h-full p-4 flex flex-col justify-center select-none font-mono text-[10px] bg-[#faf8f0] text-black p-3 border-dashed border border-gray-400 rounded">
+    <div className="w-full h-full flex flex-col justify-center select-none font-mono text-[10px] bg-[#faf8f0] text-black p-3 border-dashed border border-gray-400 rounded">
       <div className="text-center font-bold pb-1 border-b border-dashed border-gray-400">
         OPENUI THERMAL LAB
       </div>
@@ -1711,7 +1711,7 @@ function ThermalReceiptTotalPreview() {
 // 87. Ticker Tape Deltas
 function TickerTapeDeltasPreview() {
   return (
-    <div className="w-full h-full p-4 flex flex-col justify-center select-none font-mono text-xs bg-[#f4ebd0] text-[#1c1917] p-2 border border-amber-900/30 rounded">
+    <div className="w-full h-full flex flex-col justify-center select-none font-mono text-xs bg-[#f4ebd0] text-[#1c1917] p-2 border border-amber-900/30 rounded">
       <div className="flex justify-between font-bold">
         <span>TAPE № 408</span>
         <span className="text-emerald-700">▲ +3.4pt</span>
