@@ -9,6 +9,22 @@
  */
 @import "@openui/ui/styles.css";
 
+/* Ensure a single, unified window scrollbar with zero nested scrollbars */
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
+#root,
+main#main {
+  overflow: visible !important;
+}
+
 /* ==========================================================================
    Web-app layer
    --------------------------------------------------------------------------
