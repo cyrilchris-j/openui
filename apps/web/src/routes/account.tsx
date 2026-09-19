@@ -43,15 +43,24 @@ export function ProfilePage(): React.JSX.Element {
   useDocumentTitle("Profile — OpenUI");
 
   return (
-    <>
-      <SectionHeader
-        eyebrow="Profile"
-        title="Your public identity in the registry."
-        description="Your public identity in the registry. It is read from the database, never from a token claim."
-      />
+    <div className="space-y-5">
+      <div className="border-b border-line pb-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="eyebrow text-[10px] text-graphite uppercase tracking-widest">Profile</p>
+            <h2 className="font-display text-2xl text-ink tracking-tight">Public Identity</h2>
+          </div>
+          <span className="font-mono text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-line/10 border border-line text-graphite font-semibold">
+            {user?.role ?? "user"}
+          </span>
+        </div>
+        <p className="mt-1 text-xs text-graphite max-w-[58ch]">
+          Your public identity in the registry, synced directly from your verified authentication session.
+        </p>
+      </div>
 
-      <Section label="Account" className="mt-10">
-        <dl>
+      <div>
+        <dl className="divide-y divide-line/70 border-t border-b border-line">
           {[
             ["Username", user?.username ? `@${user.username}` : "Not set"],
             ["Display name", user?.displayName ?? "Not set"],
@@ -61,21 +70,23 @@ export function ProfilePage(): React.JSX.Element {
           ].map(([label, value]) => (
             <div
               key={label}
-              className="flex flex-col gap-1 border-b border-line py-3 sm:flex-row sm:items-baseline sm:gap-6"
+              className="flex flex-col gap-1 py-2.5 sm:flex-row sm:items-center sm:gap-6"
             >
-              <dt className="eyebrow w-[9rem] shrink-0">{label}</dt>
-              <dd className="break-all font-mono text-[0.82rem] text-ink">{value}</dd>
+              <dt className="eyebrow w-[8.5rem] shrink-0 text-graphite text-[10px] sm:text-[11px] uppercase tracking-wider">
+                {label}
+              </dt>
+              <dd className="break-all font-mono text-[0.82rem] text-ink font-medium">
+                {value}
+              </dd>
             </div>
           ))}
         </dl>
 
-        <p className="mt-6 max-w-[62ch] text-[0.85rem] leading-relaxed text-graphite">
-          Your role is read from the database on every request. A token that claims a higher role
-          changes nothing: the API looks the role up, and the row-level security policies enforce the
-          same rule again for any direct database access.
+        <p className="mt-3 max-w-[62ch] text-[0.8rem] leading-relaxed text-graphite/80">
+          Your role is verified against database row-level security on every request. Direct database access enforces the same rule.
         </p>
-      </Section>
-    </>
+      </div>
+    </div>
   );
 }
 
@@ -119,14 +130,16 @@ export function FavoritesPage(): React.JSX.Element {
   }, [localFavorites.items, remoteData?.items]);
 
   return (
-    <>
-      <SectionHeader
-        eyebrow="Favourites"
-        title="Resources you have saved."
-        description="Saving a resource adds it to this list and lets you quickly revisit components, blocks and templates anytime."
-      />
+    <div className="space-y-5">
+      <div className="border-b border-line pb-3">
+        <p className="eyebrow text-[10px] text-graphite uppercase tracking-widest">Favourites</p>
+        <h2 className="font-display text-2xl text-ink tracking-tight">Saved Resources</h2>
+        <p className="mt-1 text-xs text-graphite max-w-[58ch]">
+          Saved resources for quick access to components, blocks, and templates.
+        </p>
+      </div>
 
-      <div className="mt-10">
+      <div>
         {isLoading && items.length === 0 ? (
           <Skeleton lines={6} />
         ) : items.length === 0 ? (
@@ -196,7 +209,7 @@ export function FavoritesPage(): React.JSX.Element {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

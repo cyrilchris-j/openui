@@ -61,30 +61,32 @@ export function AccountLayout(): React.JSX.Element {
   }
 
   return (
-    <div className="shell py-12">
-      <p className="eyebrow">Account</p>
-      <h1 className="mt-4 font-display text-step-4 tracking-tight">Your library</h1>
-      <p className="mt-3 max-w-[52ch] text-[0.95rem] text-graphite">
+    <div className="shell py-6 sm:py-8">
+      <p className="eyebrow text-[10px] sm:text-[11px]">Account</p>
+      <h1 className="mt-1.5 font-display text-2xl sm:text-step-3 tracking-tight">Your library</h1>
+      <p className="mt-1 max-w-[52ch] text-xs sm:text-sm text-graphite">
         Signed in as {user.email ?? "an unknown address"}
         {user.username ? ` · @${user.username}` : ""}.
       </p>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
+      <div className="mt-6 grid gap-6 lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-8">
         <nav aria-label="Account">
-          <ul className="flex flex-row gap-4 overflow-x-auto border-b border-line pb-2 lg:flex-col lg:gap-0 lg:overflow-visible lg:border-b-0 lg:pb-0">
+          <ul className="flex flex-row gap-3 overflow-x-auto border-b border-line pb-2 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:border-b-0 lg:pb-0">
             {NAV.map((item) => (
-              <li key={item.to} className="lg:border-b lg:border-line">
+              <li key={item.to} className="lg:border-b lg:border-line/60">
                 <NavLink
                   to={item.to}
                   className={({ isActive }) =>
                     [
-                      "flex items-center gap-2 whitespace-nowrap py-2.5 transition-colors duration-fast ease-editorial",
-                      isActive ? "text-ink" : "text-graphite hover:text-ink",
+                      "flex items-center gap-2 whitespace-nowrap py-2 px-2 rounded-sm transition-colors duration-fast ease-editorial",
+                      isActive
+                        ? "text-ink font-semibold bg-line/10 lg:bg-transparent lg:border-l-2 lg:border-oxide lg:rounded-none"
+                        : "text-graphite hover:text-ink hover:bg-line/5 lg:border-l-2 lg:border-transparent lg:rounded-none",
                     ].join(" ")
                   }
                 >
                   <item.icon aria-hidden className="h-3.5 w-3.5" />
-                  <span className="eyebrow">{item.label}</span>
+                  <span className="eyebrow text-[10px] sm:text-[11px]">{item.label}</span>
                 </NavLink>
               </li>
             ))}
@@ -96,8 +98,8 @@ export function AccountLayout(): React.JSX.Element {
         </div>
       </div>
 
-      <div className="mt-16">
-        <Button variant="ghost" onClick={() => void window.scrollTo({ top: 0 })}>
+      <div className="mt-10">
+        <Button variant="ghost" size="sm" onClick={() => void window.scrollTo({ top: 0 })}>
           Back to top
         </Button>
       </div>

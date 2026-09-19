@@ -142,186 +142,190 @@ export function Masthead(): React.JSX.Element {
 
   return (
     <header className="masthead">
-      <div className="shell flex h-14 sm:h-16 items-center justify-between gap-3 max-w-full min-w-0">
-        <Link
-          to="/"
-          className="flex items-center gap-2.5 sm:gap-3 shrink-0 group focus-visible:outline-none"
-        >
-          <img
-            src="/logo.png"
-            alt="OpenUI"
-            width={36}
-            height={36}
-            className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-contain shadow-xs ring-1 ring-line/30 transition-transform duration-fast ease-editorial group-hover:scale-105"
-          />
-          <span className="font-display text-xl sm:text-step-2 leading-none tracking-tight text-ink">
-            OpenUI
-          </span>
-        </Link>
+      <div className="shell flex h-14 sm:h-16 items-center justify-between gap-4 max-w-full min-w-0">
+        <div className="flex items-center gap-6 xl:gap-8 2xl:gap-10 min-w-0">
+          <Link
+            to="/"
+            className="flex items-center gap-2.5 sm:gap-3 shrink-0 group focus-visible:outline-none"
+          >
+            <img
+              src="/logo.png"
+              alt="OpenUI"
+              width={36}
+              height={36}
+              className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-contain shadow-xs ring-1 ring-line/30 transition-transform duration-fast ease-editorial group-hover:scale-105"
+            />
+            <span className="font-display text-xl sm:text-step-2 leading-none tracking-tight text-ink">
+              OpenUI
+            </span>
+          </Link>
 
-        <nav aria-label="Catalogue" className="hidden flex-1 xl:block px-2 2xl:px-4 min-w-0">
-          <ul className="flex items-center justify-center gap-2.5 2xl:gap-4 min-w-0">
-            {CATALOGUE_CATEGORIES.slice(0, 6).map((category) => (
-              <li key={category.slug}>
+          <nav aria-label="Catalogue" className="hidden xl:block min-w-0">
+            <ul className="flex items-center gap-3.5 2xl:gap-5 min-w-0">
+              {CATALOGUE_CATEGORIES.slice(0, 6).map((category) => (
+                <li key={category.slug}>
+                  <NavLink
+                    to={`/${category.slug}`}
+                    className={({ isActive }) =>
+                      cn(
+                        "eyebrow whitespace-nowrap text-[11px] 2xl:text-[11.5px] tracking-[0.14em] 2xl:tracking-[0.18em] transition-colors duration-fast ease-editorial hover:text-ink py-1",
+                        isActive ? "text-ink font-semibold" : "text-graphite",
+                      )
+                    }
+                  >
+                    {category.title}
+                  </NavLink>
+                </li>
+              ))}
+
+              <li>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      className={cn(
+                        "eyebrow whitespace-nowrap text-[11px] 2xl:text-[11.5px] tracking-[0.14em] 2xl:tracking-[0.18em] transition-colors duration-fast ease-editorial hover:text-ink flex items-center gap-1 focus-visible:outline-none cursor-pointer py-1",
+                        isSystemsActive ? "text-ink font-semibold" : "text-graphite",
+                      )}
+                      aria-label="Systems menu"
+                    >
+                      <span>Systems</span>
+                      <ChevronDown aria-hidden="true" className="h-3 w-3 text-graphite/70" />
+                    </button>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent
+                    align="center"
+                    sideOffset={8}
+                    className="w-72 p-1.5 bg-paper border border-line shadow-xl z-50 rounded-lg"
+                  >
+                    <div className="px-2.5 py-1 mb-1 border-b border-line/40 flex items-center justify-between">
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-graphite font-bold">
+                        Systems & Architecture
+                      </span>
+                      <span className="font-mono text-[9px] text-oxide font-bold">4 Categories</span>
+                    </div>
+
+                    <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                      <Link
+                        to="/sections"
+                        className={cn(
+                          "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                          "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                          location.pathname.startsWith("/sections") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                        )}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                            Sections
+                          </span>
+                          <span className="text-[9px] font-mono text-graphite/70 uppercase">Hero & Nav</span>
+                        </div>
+                        <span className="text-[10px] text-graphite leading-tight">
+                          Whole page regions, headers, heroes, footers
+                        </span>
+                      </Link>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                      <Link
+                        to="/blocks"
+                        className={cn(
+                          "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                          "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                          location.pathname.startsWith("/blocks") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                        )}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                            Blocks
+                          </span>
+                          <span className="text-[9px] font-mono text-graphite/70 uppercase">Composite</span>
+                        </div>
+                        <span className="text-[10px] text-graphite leading-tight">
+                          Multi-part application surfaces & working blocks
+                        </span>
+                      </Link>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                      <Link
+                        to="/themes"
+                        className={cn(
+                          "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                          "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                          location.pathname.startsWith("/themes") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                        )}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                            Themes
+                          </span>
+                          <span className="text-[9px] font-mono text-graphite/70 uppercase">Tokens</span>
+                        </div>
+                        <span className="text-[10px] text-graphite leading-tight">
+                          Visual token sets, palette voices & themes
+                        </span>
+                      </Link>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
+                      <Link
+                        to="/design-systems"
+                        className={cn(
+                          "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
+                          "hover:bg-line/10 data-[highlighted]:bg-line/10",
+                          location.pathname.startsWith("/design-systems") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
+                        )}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
+                            Design Systems
+                          </span>
+                          <span className="text-[9px] font-mono text-oxide font-bold uppercase">Complete</span>
+                        </div>
+                        <span className="text-[10px] text-graphite leading-tight">
+                          Full brand systems, tokens, typography & rules
+                        </span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </li>
+
+              <li>
                 <NavLink
-                  to={`/${category.slug}`}
+                  to="/advanced"
                   className={({ isActive }) =>
                     cn(
-                      "eyebrow whitespace-nowrap text-[10px] 2xl:text-[11px] tracking-wider 2xl:tracking-[0.24em] transition-colors duration-fast ease-editorial hover:text-ink",
-                      isActive && "text-ink font-semibold",
+                      "relative inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-[0.14em] font-semibold transition-all duration-300 group",
+                      "border border-oxide/60 bg-gradient-to-r from-oxide/[0.12] via-amber-500/[0.14] to-oxide/[0.12] text-oxide shadow-xs hover:shadow-md hover:border-oxide hover:from-oxide hover:to-oxide hover:text-paper",
+                      "dark:border-amber-400/50 dark:bg-gradient-to-r dark:from-amber-500/[0.16] dark:via-orange-500/[0.14] dark:to-amber-500/[0.16] dark:text-amber-300 dark:hover:border-amber-300 dark:hover:from-amber-500 dark:hover:to-amber-600 dark:hover:text-black",
+                      isActive && "bg-gradient-to-r from-oxide to-amber-600 text-paper border-transparent font-bold shadow-md shadow-oxide/20 dark:text-black dark:from-amber-400 dark:to-orange-400",
                     )
                   }
                 >
-                  {category.title}
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-oxide dark:bg-amber-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-oxide dark:bg-amber-400 group-hover:bg-paper dark:group-hover:bg-black" />
+                  </span>
+                  <span className="font-bold tracking-wider">Advanced</span>
+                  <span
+                    className={cn(
+                      "px-1.5 py-0.5 rounded-full text-[9.5px] font-mono font-bold leading-none transition-colors",
+                      "bg-oxide text-paper group-hover:bg-paper group-hover:text-oxide",
+                      "dark:bg-amber-400 dark:text-black dark:group-hover:bg-black dark:group-hover:text-amber-300",
+                    )}
+                  >
+                    220+
+                  </span>
                 </NavLink>
               </li>
-            ))}
+            </ul>
+          </nav>
+        </div>
 
-            <li>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    type="button"
-                    className={cn(
-                      "eyebrow whitespace-nowrap text-[10px] 2xl:text-[11px] tracking-wider 2xl:tracking-[0.24em] transition-colors duration-fast ease-editorial hover:text-ink flex items-center gap-1 focus-visible:outline-none cursor-pointer py-1",
-                      isSystemsActive ? "text-ink font-semibold" : "text-graphite",
-                    )}
-                    aria-label="Systems menu"
-                  >
-                    <span>Systems</span>
-                    <ChevronDown aria-hidden="true" className="h-3 w-3 text-graphite/70" />
-                  </button>
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent
-                  align="center"
-                  sideOffset={8}
-                  className="w-72 p-1.5 bg-paper border border-line shadow-xl z-50 rounded-lg"
-                >
-                  <div className="px-2.5 py-1 mb-1 border-b border-line/40 flex items-center justify-between">
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-graphite font-bold">
-                      Systems & Architecture
-                    </span>
-                    <span className="font-mono text-[9px] text-oxide font-bold">4 Categories</span>
-                  </div>
-
-                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
-                    <Link
-                      to="/sections"
-                      className={cn(
-                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
-                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
-                        location.pathname.startsWith("/sections") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
-                      )}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
-                          Sections
-                        </span>
-                        <span className="text-[9px] font-mono text-graphite/70 uppercase">Hero & Nav</span>
-                      </div>
-                      <span className="text-[10px] text-graphite leading-tight">
-                        Whole page regions, headers, heroes, footers
-                      </span>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
-                    <Link
-                      to="/blocks"
-                      className={cn(
-                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
-                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
-                        location.pathname.startsWith("/blocks") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
-                      )}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
-                          Blocks
-                        </span>
-                        <span className="text-[9px] font-mono text-graphite/70 uppercase">Composite</span>
-                      </div>
-                      <span className="text-[10px] text-graphite leading-tight">
-                        Multi-part application surfaces & working blocks
-                      </span>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
-                    <Link
-                      to="/themes"
-                      className={cn(
-                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
-                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
-                        location.pathname.startsWith("/themes") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
-                      )}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
-                          Themes
-                        </span>
-                        <span className="text-[9px] font-mono text-graphite/70 uppercase">Tokens</span>
-                      </div>
-                      <span className="text-[10px] text-graphite leading-tight">
-                        Visual token sets, palette voices & themes
-                      </span>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="p-0 cursor-pointer focus:bg-transparent data-[highlighted]:bg-transparent">
-                    <Link
-                      to="/design-systems"
-                      className={cn(
-                        "group flex flex-col gap-0.5 px-3 py-2 w-full rounded transition-colors duration-fast",
-                        "hover:bg-line/10 data-[highlighted]:bg-line/10",
-                        location.pathname.startsWith("/design-systems") ? "bg-line/10 border-l-2 border-oxide" : "border-l-2 border-transparent",
-                      )}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink group-hover:text-oxide transition-colors">
-                          Design Systems
-                        </span>
-                        <span className="text-[9px] font-mono text-oxide font-bold uppercase">Complete</span>
-                      </div>
-                      <span className="text-[10px] text-graphite leading-tight">
-                        Full brand systems, tokens, typography & rules
-                      </span>
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </li>
-
-            <li>
-              <NavLink
-                to="/advanced"
-                className={({ isActive }) =>
-                  cn(
-                    "relative inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] 2xl:text-[11px] font-mono uppercase tracking-wider transition-all duration-fast ease-editorial group",
-                    "border border-oxide/50 bg-oxide/10 text-oxide shadow-xs hover:bg-oxide hover:text-paper hover:border-oxide hover:shadow-sm",
-                    isActive && "bg-oxide text-paper border-oxide font-bold shadow-xs",
-                  )
-                }
-              >
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-oxide opacity-75" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-oxide group-hover:bg-paper" />
-                </span>
-                <span className="font-bold">Advanced</span>
-                <span
-                  className={cn(
-                    "px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold leading-none transition-colors",
-                    "bg-oxide text-paper group-hover:bg-paper group-hover:text-oxide",
-                  )}
-                >
-                  220+
-                </span>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-3 shrink-0">
           <div ref={searchBoxRef} className="relative hidden xl:flex items-center">
             <form
               role="search"
@@ -331,9 +335,9 @@ export function Masthead(): React.JSX.Element {
                 setSearchFocused(false);
                 navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : "/search");
               }}
-              className="flex items-center gap-2 border-b border-line"
+              className="flex items-center gap-2 border-b border-line/80 focus-within:border-ink dark:focus-within:border-white transition-colors duration-fast px-1 py-0.5"
             >
-              <Search aria-hidden className="h-3.5 w-3.5 text-graphite" />
+              <Search aria-hidden className="h-3.5 w-3.5 text-graphite shrink-0" />
               <label htmlFor="masthead-search" className="sr-only">
                 Search the registry
               </label>
@@ -346,8 +350,8 @@ export function Masthead(): React.JSX.Element {
                   setTerm(event.target.value);
                   setSearchFocused(true);
                 }}
-                placeholder="Search"
-                className="h-8 sm:h-9 w-24 2xl:w-32 bg-transparent font-mono text-[11px] tracking-[0.12em] text-ink placeholder:text-graphite/70 focus:w-40 2xl:focus:w-48 focus:outline-none"
+                placeholder="Search resources..."
+                className="h-8 sm:h-9 w-36 lg:w-48 xl:w-56 2xl:w-64 bg-transparent font-mono text-[11px] tracking-[0.12em] text-ink placeholder:text-graphite/60 focus:w-48 lg:focus:w-60 xl:focus:w-68 2xl:focus:w-76 focus:outline-none"
                 style={{ transition: "width var(--motion-normal) var(--motion-ease)" }}
               />
             </form>

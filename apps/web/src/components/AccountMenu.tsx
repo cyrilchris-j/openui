@@ -14,7 +14,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  Input,
 } from "@openui/ui";
 
 import { useAuth } from "../lib/auth.js";
@@ -23,11 +22,11 @@ import { useHasRole } from "../lib/auth.js";
 /**
  * Account menu.
  *
- * Two states, and the difference matters:
- *
- *  - **Signed out** → a sign-in dialog. Providers first (one click), then magic
- *    link, because a password field would be a form we would then have to
- *    secure for no benefit.
+ * It has three states:
+ *  - **Auth disabled** (no credentials in env) → a disabled button with an
+ *    explanatory title.
+ *  - **Signed out** → a trigger for the sign-in dialog. The dialog offers
+ *    GitHub and Google OAuth.
  *  - **Signed in** → an account menu. The moderation link appears only when the
  *    *API-derived* role permits it; the navigation is a convenience, and the
  *    route itself is guarded server-side regardless.
@@ -36,10 +35,8 @@ import { useHasRole } from "../lib/auth.js";
  * that rather than opening a dialog that cannot work.
  */
 export function AccountMenu(): React.JSX.Element {
-  const { user, enabled, signInWithGitHub, signInWithGoogle, signInWithEmail, signOut } = useAuth();
+  const { user, enabled, signInWithGitHub, signInWithGoogle, signOut } = useAuth();
   const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [status, setStatus] = React.useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = React.useState<string | null>(null);
   const isStaff = useHasRole("moderator");
 
@@ -127,48 +124,7 @@ export function AccountMenu(): React.JSX.Element {
               </Button>
             </div>
 
-            <div className="relative my-1 text-center">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-line" />
-              </div>
-              <span className="relative bg-paper px-3 font-mono text-[10px] uppercase tracking-[0.14em] text-graphite">
-                or use an email link
-              </span>
-            </div>
-
-            <form
-              className="flex flex-col gap-3"
-              onSubmit={(event) => {
-                event.preventDefault();
-                setStatus("sending");
-                setError(null);
-                void signInWithEmail(email)
-                  .then(() => setStatus("sent"))
-                  .catch((cause: unknown) => {
-                    setStatus("error");
-                    setError(
-                      cause instanceof Error ? cause.message : "Could not send the sign-in link.",
-                    );
-                  });
-              }}
-            >
-              <Input
-                label="Email address"
-                type="email"
-                required
-                mono
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="you@example.com"
-                error={status === "error" ? (error ?? "Something went wrong.") : undefined}
-                hint="We send a one-time link. No password is stored."
-              />
-              <Button type="submit" variant="ghost" loading={status === "sending"} className="w-full justify-center">
-                {status === "sent" ? "Link sent — check your inbox" : "Email me a link"}
-              </Button>
-            </form>
-
-            {error && status !== "error" ? (
+            {error ? (
               <p role="alert" className="text-center text-[0.8rem] text-oxide">
                 {error}
               </p>
