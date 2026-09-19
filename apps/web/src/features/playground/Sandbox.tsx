@@ -147,11 +147,6 @@ export function Sandbox({ item, view = "split", files: provided, className }: Sa
           </div>
         ) : null}
       </div>
-
-      <p className="mt-3 flex items-start gap-2 text-[0.78rem] leading-relaxed text-graphite">
-        <span aria-hidden className="mt-[0.35rem] h-1.5 w-1.5 shrink-0 rounded-pill bg-moss" />
-        Running in an isolated sandbox. The preview has no access to this page, your session or your files.
-      </p>
     </div>
   );
 }

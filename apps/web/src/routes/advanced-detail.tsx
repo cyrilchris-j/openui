@@ -57,7 +57,7 @@ export default function AdvancedDetailPage(): React.JSX.Element {
   };
 
   return (
-    <div className="shell py-8 sm:py-16">
+    <div className="shell pt-8 sm:pt-16 pb-0">
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="mb-6">
         <ol className="flex items-center gap-2 font-mono text-[11px] text-graphite">
@@ -222,12 +222,6 @@ export default function AdvancedDetailPage(): React.JSX.Element {
                   <span>Performance: {item.fingerprint.performanceTier}</span>
                 </div>
               </div>
-
-              {/* Sandbox isolation note */}
-              <p className="mt-3 flex items-start sm:items-center gap-2 text-[0.78rem] leading-relaxed text-graphite self-start">
-                <span aria-hidden className="mt-1 sm:mt-0 h-1.5 w-1.5 shrink-0 rounded-full bg-moss" />
-                Running in an isolated sandbox. The preview has no access to this page, your session or your files.
-              </p>
             </div>
           </TabsContent>
 
@@ -302,7 +296,7 @@ export default function AdvancedDetailPage(): React.JSX.Element {
 
       {/* Composes With / Companion Resources */}
       {related.length > 0 && (
-        <section className="mt-20 sm:mt-24">
+        <section className="mt-16 sm:mt-20 -mb-6 sm:-mb-14">
           <div className="flex items-baseline justify-between gap-4 border-t border-line pt-5">
             <p className="eyebrow">COMPOSES WITH</p>
             <p className="eyebrow">SHARED TAGS AND CATEGORY</p>
